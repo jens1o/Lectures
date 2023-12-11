@@ -1,6 +1,16 @@
+# Local content
 .vscode
-*.rst.html
-graffles
-datagraph
+
 *.key
 *.ova
+
+# Content we can't share publicly
+exercise
+
+# Generated files
+*.rst.html
+
+# Folders with generated files
+graffles
+datagraph
+dgraphs

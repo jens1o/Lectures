@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Labels</key>
+	<string>LUKS2 Bruteforce (20 H/s)
+# Zeichen 
+Tage
+Das Testen aller 6 stelligen 
+Passwortkandidaten würde
+ca. 1500 Jahre dauern.
+</string>
+	<key>Text</key>
+	<string></string>
+</dict>
+</plist>
