@@ -1,0 +1,6 @@
+[submodule "LectureDoc2"]
+	path = LectureDoc2
+	url = https://github.com/Delors/LectureDoc2
+[submodule "reStructuredTextToLectureDoc2"]
+	path = reStructuredTextToLectureDoc2
+	url = https://github.com/Delors/reStructuredTextToLectureDoc2
