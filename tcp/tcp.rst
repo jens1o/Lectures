@@ -2,7 +2,7 @@
     :author: Michael Eichberg
     :keywords: "TCP"
     :description lang=de: Verteilte Systeme
-    :id: lecture-tcp
+    :id: lecture-a-primer-in-network-security
     :first-slide: last-viewed
 
 .. |date| date::
@@ -25,16 +25,116 @@
    :format: html
 
 
-Transmission Control Protocol (TCP) 
-=====================================================
+Eine erste Einführung in die Sicherheit von (verteilten) Systemen
+===================================================================
 
 :Dozent: **Prof. Dr. Michael Eichberg**
 :Kontakt: michael.eichberg@dhbw-mannheim.de
 :Version: |date|
 
+.. container:: footer-left tiny
+    
+    Die Folien basieren in weiten Teilen auf einem Foliensatz von Prof. Dr. Henning Pagnia.
+    
+    Alle Fehler sind meine eigenen.
 
 
-Grundlagen
+Wiederholung: Klassische Sicherheitsprinzipien
+-----------------------------------------------
+
+(Jerome Saltzer and Michael Schroeder, 1975)
+
+.. class:: incremental
+
+:Principle of Economy of Mechanism (aka Principle of Simplicity): Die Sicherheitsmechanismen sollten so einfach wie möglich sein.
+
+.. class:: incremental
+
+:Principle of Fail-Safe Defaults: Standardmäßig sollte der Zugriff auf Ressourcen verweigert werden.
+
+.. class:: incremental
+
+:Principle of Complete Mediation: Jeder Zugriff auf eine Ressource sollte überprüft werden.
+
+
+Wiederholung: Klassische Sicherheitsprinzipien
+-----------------------------------------------
+
+
+:Principle of Least Authority (aka POLA)/ Principle of Least Privilege: Jedes Programm und jeder Benutzer sollte nur die für seine Aufgabe unbedingt notwendigen Rechte besitzen.
+
+.. class:: incremental
+
+:Principle of Separation of Privilege: Ein System sollte in mehrere POLA konforme Komponenten unterteilt sein. Sollte eine Komponente kompromittiert sein, dann sind die Möglichkeiten des Angreifers dennoch begrenzt. (Eng verwandt mit dem POLA.)
+
+
+Wiederholung: Klassische Sicherheitsprinzipien
+-----------------------------------------------
+
+:Principle of Least Common Mechanism: Die Sicherheitsmechanismen sollten über Nutzer hinweg möglichst wenig Gemeinsamkeiten haben.
+
+.. class:: incremental
+
+:Principle of Open Design (vgl. Kerckhoffs Prinzip): Die Sicherheit des Systems sollte nicht von der Geheimhaltung der Sicherheitsmechanismen abhängen (sondern nur vom Schlüssel). 
+
+.. container:: supplemental 
+
+    **Beispiel - Principle of Least Common Mechanism**
+
+    Z.B. sollten keine gemeinsamen Speicherbereiche verwendet werden und es ist deswegen sinnvoll - wenn möglich - auf Implementierungen im Kernel zu verzichten und statt dessen auf User-Space-Implementierungen zu setzen. 
+    
+       TCP Connection Hijacking wird z.B. durch die Implementierung des TCP Stacks im Kernel ermöglicht (:math:`\Leftrightarrow` :ger-quote:`Principle of Least Common Mechanism`).
+
+
+
+Wiederholung: Klassische Sicherheitsprinzipien
+-----------------------------------------------
+
+
+:Principle of Psychological Acceptability: Die Sicherheitsmechanismen sollten einfach zu verstehen und zu benutzen sein.
+  
+.. class:: incremental
+
+:Principle of Isolation: Die Sicherheitsmechanismen sollten so entworfen sein, dass Fehler in einem Teil des Systems nicht die Sicherheit des gesamten Systems gefährden; d.h. die einzelnen Komponenten sollten möglichst unabhängig voneinander sein und nur über wohldefinierte  Schnittstellen miteinander kommunizieren und entsprechende Sicherheitsüberprüfungen durchführen. 
+
+.. container:: supplemental
+
+    **Beispiel - Principle of Isolation:**
+
+    Typischerweise kommuniziert zum Beispiel ein Basebandchip (WIFI, LTE, 5G, ...) mit dem Betriebssystem über eine minimale Schnittstelle über die nur Nachrichten übermittelt werden können, die leicht auf ihre Korrektheit überprüft werden können. Insbesondere erfolgt kein direkter Zugriff auf den Speicher des Betriebssystems.
+
+    Einen Angreifer ist es somit ggf. möglich den Basebandchip anzugreifen und ggf. zu kompromittieren, aber er kann nicht direkt auf das Betriebssystem zugreifen und Nachrichten, die bereits auf Betriebssystem oder Anwendungsebene verschlüsselt werden, sind weiterhin sicher.
+
+
+Wiederholung: ergänzende Sicherheitsprinzipien
+-----------------------------------------------
+
+:Principle of Modularity: Die Sicherheitsmechanismen sollten so entworfen sein, dass sie unabhängig voneinander implementiert und geprüft werden können.
+
+.. class:: incremental
+
+:Principle of Layering: Die Sicherheitsmechanismen sollten in Schichten organisiert sein.
+
+.. class:: incremental
+
+:Principle of Least Astonishment: Die Sicherheitsmechanismen sollten so entworfen sein, dass sie keine Überraschungen für die Benutzer bereithalten.
+
+
+.. container:: supplemental
+
+    Beispiel für ein Schutzsystem für Netzwerke, dass mehrere Schichten verwendet:
+
+    - einfache (und effiziente) Paketfilter auf unterster Ebene
+    - zustandsbehaftete Paketfilter auf der nächsten bzw. der Anwendungsebene
+
+
+.. class:: new-section transition-fade
+
+Transmission Control Protocol (TCP) 
+-------------------------------------
+
+
+TCP Grundlagen
 -------------------
 
 .. class:: incremental more-space-between-list-items
@@ -58,10 +158,21 @@ Dreifacher Handshake:
 
 .. container:: supplemental
 
-    1. Client sendet SYN(1000) Paket an Server
-    2. Server sendet SYN(2000)-ACK(1001) Paket an Client
-    3. Client sendet ACK(2001) Paket an Server
+    **Terminologie**:
 
+    :SYN: :eng:`synchronize (session establishment)`
+    :ACK: :eng:`acknowledge`
+    :RST: :eng:`reset`
+
+    **Verbindungsaufbau - Ablauf**:
+
+    1. Client sendet SYN Paket mit initialer Sequenznummer 1000 an den Server.
+    2. Server sendet ein SYN-ACK Paket mit einem SYN mit seiner initialen Sequenznummer 2000 und ein ACK mit der Sequenznummer 1001 an den Client
+    3. Client sendet ein ACK Paket mit Sequenznummer 2001 an den Server; danach ist die Verbindung aufgebaut.
+
+    Das Betriebssystem sollte die initialen Sequenznummern zufällig wählen, so dass ein Angreifer diese nicht leicht vorhersagen kann. Beide Seiten haben eigene Sequenznummern, die unabhängig voneinander sind.
+
+    Bei einer laufenden Verbindung werden die Sequenznummern inkrementiert und es ist nicht (mehr) erkennbar wer die Verbindung aufgebaut hat.
 
 .. container:: stack
 
@@ -138,487 +249,885 @@ Dreifacher Handshake:
                 <line x1="200" y1="300" x2="1000" y2="390" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
             </svg>
 
-   
-Das Betriebssystem sollte die initialen Sequenznummern zufällig wählen, so
-dass ein Angreifer diese nicht leicht vorhersagen kann.
 
 
 
-
-
-
-
-
-
-Reverse Engineering
-----------------------
-
-Reverse Engineering ist die Analyse von Systemen mit dem Ziel, ihren Aufbau und ihre Funktionsweise zu verstehen.
-
-.. container:: incremental 
-
-        
-    Typische Anwendungsfälle:
-
-    .. class:: incremental
-
-    - die Rekonstruktion (von Teilen) des Quellcodes von Programmen, die nur als Binärabbild vorliegen.
-    - die Analyse von Kommunikationsprotokollen proprietärer Software 
-
-.. container:: supplemental 
-
-    Vom Reverse Engineering ist das **Reengineering** zu unterscheiden. Im Fall von letzteren geht es :ger-quote:`nur` darum die Funktionalität eines bestehenden Systems mit neuen Techniken wiederherzustellen.
-
-
-Zweck von Reverse Engineering
---------------------------------
+Ports bei TCP
+----------------
 
 .. class:: incremental
 
-- Herstellung von Interoperabilität 
-- Untersuchung auf Schwachstellen
-- Untersuchung auf Copyrightverletzungen
-- Untersuchung auf Backdoors
-- Analyse von Viren, Würmern etc.
-- Umgehung von ungerechtfertigten(?) Schutzmaßnahmen (z.B. bei Malware)
-
-
-
-Reverse Engineering - grundlegende Schritte
----------------------------------------------
-
-.. class:: incremental impressive
-
-1. Informationsgewinnung zur Gewinnung aller relevanten Informationen über das Produkt
-2. Modellierung mit dem Ziel der (Wieder-)Gewinnung eines (abstrakten) Modells der relevanten Funktionalität.
-3. Überprüfung (:eng:`review`) des Modells auf seine Richtigkeit und Vollständigkeit.
-
-
-Informationsgewinnung - Beispiel
-----------------------------------
-
-Gegeben sei eine App zum Ver- und Entschlüsseln von Dateien sowie ein paar verschlüsselte Dateien. Mögliche erste Schritte vor der Analyse von Binärcode:
-
-.. container:: stack
-
-    .. container:: layer incremental
-    
-       - Die ausführbare Datei ggf. mit ``file`` überprüfen (z.B. wie kompiliert und für welches Betriebssystem und Architektur)
-    
-        Beispiel:
-
-        .. code:: bash
-        
-            $ file /usr/bin/openssl
-            /usr/bin/openssl: Mach-O universal binary with 2 archi...
-            /usr/bin/openssl (for architecture x86_64):	Mach-O 64-bit
-            /usr/bin/openssl (for architecture arm64e):	Mach-O 64-bit
-
-    .. container:: layer incremental
-
-       - Die Dateien mit einem (guten) Hexeditor auf Auffälligkeiten untersuchen.
-
-    .. container:: layer incremental warning
-
-        Die Datei auf bekannte Viren und Malware überprüfen.
-
-    .. container:: layer incremental
-    
-      - Eine Datei mit einem bekannten Inhalt verschlüsseln und danach vergleichen.
+- Port-Nummern werden für die Kommunikation zwischen zwei Diensten/Prozessen verwendet
+- Ports sind 16 Bit Zahlen (0-65535)
+- (Unix) Ports < 1024 sind privilegiert (nur root kann diese öffnen)
+- einige Port-Nummern sind Standarddiensten zugeordnet
   
-        Ist die Datei gleich groß? 
-  
-           Falls ja, dann werden keine Metainformationen gespeichert und das Passwort kann (ggf.) nicht (leicht) verifiziert werden.
-
-    .. container:: layer incremental
-
-      - Eine Datei mit verschiedenen Passworten verschlüsseln.
-
-        Sind die Dateien gleich? 
-
-           Falls ja, dann wäre die Verschlüsselung komplett nutzlos und es gilt nur noch den konstanten Schlüssel zu finden.
- 
-        Gibt es Gemeinsamkeiten? 
-   
-           Falls ja, dann wäre es möglich, dass das Passwort (gehasht) in der Datei gespeichert wird.
-
-    .. container:: layer incremental
-
-       - Eine Datei mit einem wohldefinierten Muster verschlüsseln, um ggf. den "Mode of Operation" (insbesondere ECB) zu identifizieren.
-
-    .. container:: layer incremental
-
-       - Mehrere verschiedene Dateien mit dem gleichen Passwort verschlüsseln
-
-         Gibt es Gemeinsamkeiten? 
-         
-           Falls ja, dann wäre es möglich, dass die entsprechenden Teile direkt vom Passwort abgeleitet werden/damit verschlüsselt werden.
-  
-    .. container:: layer incremental
-
-       - ...
-
-
-Rechtliche Aspekte des Reverse Engineering
--------------------------------------------
-
-.. class:: incremental
-
-- **unterschiedliche nationale Gesetzgebung**
-- Rechtslage in Deutschland hat sich mehrfach geändert
-- Umgehung von Kopierschutzmechanismen ist im Allgemeinen verboten
-- Lizenz verbietet das Reverse Engineering häufig
-
-.. admonition:: Warnung
-    :class: incremental warning 
-    
-    Bevor Sie Reverse Engineering von Systemen betreiben, erkundigen sie sich erst über mögliche rechtliche Konsequenzen.
-
-
-.. class:: new-section transition-scale
-
-Software Reverse Engineering
---------------------------------
-
-Ansätze
------------
-
-:statische Analyse: Studieren des Programms ohne es auszuführen; typischerweise mittels eines Disassemblers oder eines Decompilers.
-
-.. class:: incremental 
-
-:dynamische Analyse: Ausführen des Programms; typischerweise unter Verwendung eines Debuggers oder eines instrumentations Frameworks (z.B. `Frida <https://frida.re>`__).
-
-.. class:: incremental 
-
-:hybride Analyse: Kombination aus statischer und dynamischer Analyse.
-
-    Ansätze wie `Unicorn <https://www.unicorn-engine.org>`__, welches auf `QEmu <https://www.qemu.org>`__ aufbaut, erlaubt zum Beispiel die Ausführung von (Teilen von) Binärcode auf einer anderen Architektur als der des Hosts.
-    
-    Ein Beispiel wäre die Ausführung einer Methode, die im Code verschlüsselte hinterlegte Strings entschlüsselt (:eng:`deobfuscation`), um die Analyse zu vereinfachen.
-
-.. container:: incremental 
-
-    Ggf. müssen für Teile des Codes, die die Hostfunktionalität nutzen, Stubs/Mocks bereitgestellt werden.
-
-
-Disassembler
--------------
-
-Überführt (maschinenlesbaren) Binärcode in Assemblercode
-
-Beispiel:
-
-- objdump -d 
-- gdb
-- radare
-- javap (für Java) 
-
-.. admonition:: Hinweis
-    :class: incremental small
-
-    Für einfache Programme ist es häufig möglich direkt den gesamten Assemblercode mittels der entsprechenden Werkzeuge zu erhalten. Im Falle komplexer Binärdateien (z.B. im ELF (Linux) und PE (Windows) Format) gilt dies nicht und erfordert ggf. manuelle Unterstützung zum Beispiel durch das Markieren von Methodenanfängen. 
-    
-    Im Fall von Java ``.class`` ist die Disassemblierung immer möglich. 
-
-
-Decompiler
--------------
-
-Überführt (maschinenlesbarem) Binärcode bestmöglich in Hochsprache (meist C oder Java). Eine *kleine* Auswahl von verfügbaren Werkzeugen:
-
-- Hex-Rays IDAPro (kommerziell)
-- `Ghidra <https://ghidra-sre.org/>`__ (unterstützt fast jede Platform; die Ergebnisse sind sehr unterschiedlich)
-- JadX (Androids ``.dex`` Format)
-- CFR (Java ``.class`` Dateien)
-- IntelliJ
-- `decompiler.com <https://decompiler.com>`__
-
-.. container:: supplemental 
-
-    Mittels Decompiler ist es ggf. möglich Code, der zum Beispiel ursprünglich in Kotlin oder Scala geschrieben und für die JVM kompiliert wurde, als Java Code zurückzubekommen. 
-    
-    Die Ergebnisse sind für Analysezwecke zwar häufig ausreichend gut - von funktionierendem Code jedoch ggf. ((sehr) weit) entfernt.
-
-.. admonition:: Hinweis
-    :class: incremental small
-
-    Generell sehr hilfreich, aber gleichzeitig auch sehr fehlerbehaftet. Vieles, dass im Binärcode möglich ist, hat auf Sourcecode Ebene keine Entsprechung. Zum Beispiel unterstützt Java Bytecode beliebige Sprünge. Solche, die  
-
-
-Debugger
------------
-
-Dient der schrittweisen Ausführung des zu analysierenden Codes oder Hardware; ermöglichen zum Beispiel Speicherinspektion und Manipulation.
-
-- gdb
-- lldb
-- x64dbg (Windows, Open-Source)
-- jdb (Java Debugger)
-
-.. container:: supplemental 
-
-    Auch für das Debuggen von Hardware gibt es entsprechende Werkzeuge, z.B.
-    `Lauterbach Hardware Debugger <https://www.lauterbach.com>`__
-    Mittels solcher Werkzeuge ist es möglich die Ausführung von Hardware Schritt für Schritt (:eng:`single step mode``) zu verfolgen und den Zustand der Hardware (Speicher und Register) zu inspizieren. Dies erfordert (z.Bsp.) eine JTAG Schnittstelle.
-
-
-.. class:: new-section transition-fade
-
-Erschwerung des Reverse Engineering
-------------------------------------
-
-
-Obfuscation (:ger:`Verschleierung`)
-------------------------------------
-
-.. class:: incremental
-
-- Techniken, die dazu dienen das Reverse Engineering zu erschweren.
-- Häufig eingesetzt ...
-
-  .. class:: incremental 
-
-  -  von Malware
-  -  Adware (im Kontext von Android ein häufig beobachtetes Phänomen)
-  -  zum Schutz geistigen Eigentums
-  -  für DRM / Durchsetzung von Kopierrechten
-  -  zur Prävention von :ger-quote:`Cheating` (insbesondere im Umfeld von Online Games)
-  -  Wenn das Programm als Source Code vertrieben wird (JavaScript)
-
-- Arbeiten auf Quellcode oder Maschinencode Ebene
-- Grenze zwischen *Code Minimization*, *Code Optimization* und *Code Obfuscation* ist fließend.
-- Mögliche Werkzeuge (ohne Wertung der Qualität/Effektivität):
-  
-  - [Java] Proguard / Dexguard
-  - [C/C++] `Star Force <https://www.star-force.com/products/starforce-crypto/>`__ 
-
-.. container:: supplemental 
-
-    Gerade im Umfeld von klassischen *Binaries* für Windows, Mac und Linux erhöhen Compiler Optimierungen, z.B. von C/C++ und Rust Compilern (``-O2 / -O3``), bereits den Aufwand, der notwendig ist den Code zu verstehen, erheblich.
-
-    .. admonition:: Hinweis
-
-        Einen ambitionierten und entsprechend ausgestatteten Angreifer wird **Code Obfuscation** bremsen, aber sicher nicht vollständig ausbremsen und das Vorhaben verteilen.
-
-
-Obfuscation - Techniken (Auszug)
-------------------------------------
-
-.. class:: incremental
-
-- :not-important:`entfernen aller Debug-Informationen`
-- das Kürzen aller möglichen Namen (insbesondere Methoden und Klassennamen)
-- das Verschleiern von Konstanten durch den Einsatz vermeintlich komplexer Berechnungen zu deren Initialisierung.
-
-    .. code:: Java
-        
-        ~(((int)Math.PI) ^ Integer.MAX_VALUE >> 16)+Short.MAX_VALUE
-
-    .. class:: incremental
-        
-        .. code:: Java
-        
-            = 2
-
-.. container:: supplemental 
-
-   Obfuscation auf Source Code Ebene: 
-   `International Obfuscated C Code Contest <https://www.ioccc.org/>`__
-
-
-Obfuscation - Techniken (Auszug)
-------------------------------------
-
-.. class:: incremental
-
-- die Verwendung von Unicode Codepoints für Strings oder die Verschleierung von Strings mittels `rot13 <https://cryptii.com/pipes/rot13-decoder>`__ Verschlüsselung.
-  
-  .. code:: C
-    
-     /* ??? */ printf("\x48""e\154l\x6F"" \127o\x72""l\144!");
-
-  .. class:: incremental
-
-    .. code:: C
-    
-        /*  =  */ printf("Hello World!");
-
-- das Umstellen von Instruktionen, um das Dekompilieren zu erschweren
-- das Hinzufügen von totem Code
-
-- den relevanten Teil der Anwendung komprimieren und verschlüsseln und erst bei Verwendung entpacken und entschlüsseln.
-- ...
-
-.. container:: supplemental 
-
-   **Umstellen von Instruktionen**
-    
-   Das Umstellen von Instruktionen erschwert die Analyse, da viele Werkzeuge zum Dekompilieren auf die Erkennung von bestimmten Mustern im Code angewiesen sind und ansonsten nur sehr generischen (Spagetti Code) oder gar unsinnigen Code zurückgeben.
-
-   **Verschleierung von Strings**
-
-   Das Verschleiern von Strings kann insbesondere das Reversen von Binärcode erschweren, da ein Angreifer häufig :ger-quote:`nur` an einer ganz bestimmten Funktionalität interessiert ist und dann Strings ggf. einen sehr guten Einstiegspunkt für die weitergehende Analyse bieten. 
-   
-   Stellen Sie sich eine komplexe Java Anwendung vor, in der alle Namen von Klassen, Methoden und Attributen durch einzelne oder kurze Sequenzen von Buchstaben ersetzt wurden und sie suchen danach wie von der Anwendung Passworte verarbeitet werden. Handelt es sich um eine GUI Anwendung, dann wäre zum Beispiel die Suche nach Text, der in den Dialogen vorkommt (z.B. ``"Password"``) z.B. ein sehr guter Einstiegspunkt.
-
-
-.. class:: new-section transition-fade
-
-Eine sehr kurz Einführung in Java Bytecode
------------------------------------------------
-
-Die Java Virtual Machine
-------------------------------------------------- 
-
-.. class:: incremental
-
-- **Java Bytecode** ist die Sprache, in der Java (oder Scala, Kotlin, Groovy, ...) Programme auf der Java Virtual Machine (JVM) [#]_ ausgeführt werden.
-- :not-important:`In den meisten Fällen arbeiten Java Decompiler so gut, dass ein tiefgehendes Verständnis von Java Bytecode selten notwendig ist.`
-- Java Bytecode kann, muss aber nicht interpretiert werden. (z.B. können virtuelle Methodenaufrufe in Java schneller sein als in C++)
-
-
-.. [#] `Java Bytecode Spezifikation <https://docs.oracle.com/javase/specs/jvms/se21/html/index.html>`__
-
-
-Java Bytecode - stackbasierte virtuelle Maschine
-------------------------------------------------- 
-
-.. container:: smaller
-
-   Die JVM ist eine stackbasierte virtuelle Maschine; die getypten Operanden eines Befehls werden auf einem Stack abgelegt und die Operationen arbeiten auf den obersten Elementen des Stacks. Jeder Thread hat seinen eigenen Stack.
-   
-        .. container:: two-columns footnotesize incremental
-    
-            .. container:: column 
-        
-                Instruktion
-
-                .. code:: Java
-
-                    nop
-                    bipush 100               → int
-
-                    bipush  50               → int
-
-
-                    iadd        ← 2 ⨉ int    → int
-
-
-            
-            .. container:: column incremental
-                
-                Stack
-
-                .. code:: Java
-
-                    └─────┘
-                    │ 100 │
-                    └─────┘
-                    │  50 │
-                    │ 100 │
-                    └─────┘
-                    │ 150 │
-                    └─────┘
-
-   - Die benötigte Höhe des Stacks wird vom Compiler berechnet und von der JVM überprüft.
-
-
-Java Bytecode - Methodenaufrufe und lokale Variablen
----------------------------------------------------------
-
-.. class:: incremental
-
-- Die Java Virtual Machine verwendet lokale Variablen zur Übergabe von Parametern beim Methodenaufruf. 
-- Beim Aufruf von *Klassenmethoden* (``static``) werden alle Parameter in aufeinanderfolgenden lokalen Variablen übergeben, beginnend mit der lokalen Variable 0. 
-  D.h. in der aufrufenden Methode werden die Parameter vom Stack geholt und in lokalen Variablen gespeichert.
-- Beim Aufruf von *Instanzmethoden* wird die lokale Variable 0 dazu verwendet, um die Referenz (``this``) auf das Objekt zu übergeben, auf dem die Instanzmethode aufgerufen wird. 
-  Anschließend werden alle Parameter in aufeinanderfolgenden lokalen Variablen übergeben, beginnend mit der lokalen Variable 1.
-- Die Anzahl der benötigten lokalen Variablen wird vom Compiler berechnet und von der JVM überprüft.
-
 
 .. class:: small
 
-Beispiel: *Default Constructor* In Java Bytecode
--------------------------------------------------
+Port-Nummern einiger Standarddienste [#]_
+------------------------------------------
 
-Ein *Constructor* welcher keine expliziten Parameter hat und nur den super Konstruktor aufruft.
+**Ungeschützte Dienste**
 
-.. code:: Java
+.. csv-table::
+    :header: Protokoll, Dienst, Portnummer
+    :class: highlight-line-on-hover
+    :widths: 100, 600, 50
 
-    // Method descriptor #8 ()V
-    // Stack: 1, Locals: 1
-    public Main();
-        0  aload_0 [this]
-        1  invokespecial java.lang.Object() [31]
-        4  return
+    ftp, Dateitransfer, 21
+    smtp, Simple Mail Transfer Protocol, 25
+    dns, Domain Name System, 53
+    http, Hypertext Transfer Protocol, 80
+    login, Login auf entfernte Rechner, 513
 
-Die Zeilennummern und die Informationen über die lokalen Variablen ist optional und wird nur für Debugging Zwecke benötigt.
+**Geschützte Dienste**
 
-.. code:: Java
-    
-      Line numbers:         [pc: 0, line: 9]
-      Local variable table: [pc: 0, pc: 5]  local: this 
-                                            index: 0 
-                                            type:  de.dhbw.simplesecurepp.Main
+.. csv-table::
+    :header: Protokoll, Dienst, Portnummer
+    :class: highlight-line-on-hover 
+    :widths: 100, 600, 50
+
+    ssh, Secure Shell, 22
+    https, HTTP über Secure Socket Layer, 443
+    smtps, SMTP über Secure Socket Layer, 465
+    imaps, IMAP über Secure Socket Layer, 993
+    pop3s, POP3 über Secure Socket Layer, 995
+
+
+.. [#] `Port numbers assigned by IANA <https://www.iana.org/assignments/service-names-port-numbers>`__
+
+
+
+Angriffe auf TCP - Motivation
+--------------------------------
+
+.. class:: incremental
+
+- Netzwerkprogrammierung mit TCP ist relativ komfortabel. 
+- Viele Dienste sind mit TCP implementiert.
+- Angreifer nutzen Schwachstellen in TCP Diensten aus.
+- Server haben heutzutage i. Allg. alle nicht verwendeten Dienste geschlossen. Angreifer muss verwundbare Dienste zum Beispiel durch Port Scans finden.
+
+
+Port Scans: TCP Connect Scan
+-------------------------------
+
+.. container:: two-columns
+
+    .. container:: column 
+        
+        .. class:: incremental
+
+          - vollständiger Verbindungsaufbau zu allen bzw. zu ausgewählten Ports
+          
+          .. container:: incremental
+
+              **Bewertung**:
+
+              - simpelster Port Scan
+              - große Entdeckungsgefahr (Scan selbst ist kein Angriff)
+              - mögliche Verbesserung: zwischen dem Scannen mehrerer Ports Pausen einstreuen (Wie lange?)
+
+    .. container:: column no-border
+
+        .. raw:: html
+
+            <svg width="900" height="440" viewBox="0 0 1200 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <marker 
+                    id="arrow"
+                    viewBox="0 0 10 10"
+                    refX="10"
+                    refY="5"
+                    markerWidth="8"
+                    markerHeight="8"
+                    orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" />
+                    </marker>
+                </defs>
+                <text x="125" y="75" style="font-weight: bolder">Scanner</text>
+                <line x1="200" y1="100" x2="200" y2="400" style="stroke:rgb(0,0,0);stroke-width:3" />
+                <text x="925" y="75" style="font-weight: bolder">Server</text>
+                <line x1="1000" y1="100" x2="1000" y2="400" style="stroke:rgb(0,0,0);stroke-width:3" />
+                <line x1="200" y1="400" x2="200" y2="550" stroke-dasharray="5,5" style="stroke:rgb(0,0,0);stroke-width:3" />
+                <line x1="1000" y1="400" x2="1000" y2="550" stroke-dasharray="5,5" style="stroke:rgb(0,0,0);stroke-width:3" />
+                
+                <text x="500" y="65" transform="rotate(6.6)">SYN</text>
+                <line x1="200" y1="110" x2="1000" y2="190" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
+
+                <text x="390" y="300" transform="rotate(-6.6)">SYN / ACK</text>
+                <line x1="1000" y1="200" x2="200" y2="290" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
+                
+                <text x="555" y="315" transform="rotate(6.6)">ACK</text>
+                <line x1="200" y1="300" x2="1000" y2="390" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
+            </svg>
+
+
+Port Scans: TCP SYN Scan
+-----------------------------
+
+.. container:: two-columns
+
+    .. container:: column 
+
+        .. class:: incremental
+        
+        1. Senden eines TCP-Segments mit gesetztem SYN-Flag an einen Port
+        2. falls der *Port offen* ist, kommt SYN/ACK zurück danach RST senden
+        3. falls der *Port nicht offen* ist, kommt RST (oder nichts) zurück
+
+        .. container:: incremental 
+        
+            **Bewertung**:
+            
+            - kein vollständiger Verbindungsaufbau
+            - meist nicht protokolliert
+            - geringe(re) Entdeckungsgefahr
+
+    .. container:: column    
+
+        .. raw:: html
+
+            <svg width="900" height="440" viewBox="0 0 1200 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <marker 
+                    id="arrow"
+                    viewBox="0 0 10 10"
+                    refX="10"
+                    refY="5"
+                    markerWidth="8"
+                    markerHeight="8"
+                    orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" />
+                    </marker>
+                </defs>
+                <text x="125" y="75" style="font-weight: bolder">Scanner</text>
+                <line x1="200" y1="100" x2="200" y2="400" style="stroke:rgb(0,0,0);stroke-width:3" />
+                <text x="925" y="75" style="font-weight: bolder">Server</text>
+                <line x1="1000" y1="100" x2="1000" y2="400" style="stroke:rgb(0,0,0);stroke-width:3" />
+                <line x1="200" y1="400" x2="200" y2="550" stroke-dasharray="5,5" style="stroke:rgb(0,0,0);stroke-width:3" />
+                <line x1="1000" y1="400" x2="1000" y2="550" stroke-dasharray="5,5" style="stroke:rgb(0,0,0);stroke-width:3" />
+                
+                <text x="500" y="65" transform="rotate(6.6)">SYN</text>
+                <line x1="200" y1="110" x2="1000" y2="190" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
+
+                <text x="390" y="300" transform="rotate(-6.6)">SYN / ACK</text>
+                <line x1="1000" y1="200" x2="200" y2="290" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
+                
+                <text x="555" y="315" transform="rotate(6.6)">RST</text>
+                <line x1="200" y1="300" x2="1000" y2="390" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
+            </svg>
+
+        
+Port Scans: Stealth Scans
+-----------------------------
+
+Versenden eines für den Verbindungsaufbau ungültigen TCP-Segments an einen Port:
+
+  .. class:: incremental
+
+  - NULL-Scan (keine Flags)
+  - ACK-Scan (ACK-Flag)
+  - FIN-Scan (FIN-Flag)
+  - XMAS-Scan (alle Flags)
+
+  .. class:: incremental
+
+  Laut RFC kommt RST zurück, falls Port offen. (Reaktion aber abhängig vom Betriebssystem)
+
+.. container:: incremental 
+  
+    **Bewertung**:
+
+    - Zugriff wird meist nicht protokolliert
+    - Scan bleibt unbemerkt
+
 
 .. container:: supplemental 
 
-    Es gibt weitere Metainformationen, die :ger-quote:`nur` für Debugging-Zwecke benötigt werden, z.B. Informationen über die ursprünglich Quelle des Codes oder die sogenannte "Local Variable Type Table" in Hinblick auf generische Typinformationen. Solche Informationen werden häufig vor Auslieferung entfernt bzw. nicht hineinkompiliert. 
+    **XMAS-Scan**: 
+    
+    Bei diesem Scan sind alle Flags gesetzt; ein XMAS-Scan wird auch als Christmas-Tree-Scan bezeichnet, da das Paket erleuchtet ist wie ein Weihnachtsbaum.
 
 
-Beispiel: Aufruf einer komplexeren Methode
--------------------------------------------
+Port Scans: Idle Scan [#]_
+-----------------------------
 
-.. code:: Java
-    :class: small
+Bei allen bisher betrachteten Scans kann der Scanner prinzipiell identifiziert werden. Unter Verwendung eines sog. Zombies geht es auch anders:
+
+.. container:: two-columns 
+
+    .. container:: column
+
+        Sondiere IP ID des Zombies:
+
+        .. image:: idle-scan/idle-scan-step1.svg 
+            :alt: Idle Scan - Schritte 1-2
+            :align: left
+            :width: 700px
+
+    .. container:: column faded-to-white
+
+        Starte Scan:
+
+        .. image:: idle-scan/idle-scan-step2.svg 
+            :alt: Idle Scan - Schritte 3-5
+            :align: left
+            :width: 750px
+
+.. container:: supplemental 
+
+    Zombies: ein Rechner (Computer, Drucker oder anderes IoT Gerät) im Internet *möglichst ohne eigenen Netzverkehr* und mit :ger-quote:`altem` Betriebssystem, bei dem die IP ID in vorhersehbarer Weise inkrementiert wird.
+
+    Sollte ein Intrusion Detection System vorhanden sein, so wird dieses den Zombie als Angreifer identifizieren.
+
+    **Grundlegende Idee**: Der Zombie sendet ein RST Paket zurück, da er kein SYN gesendet hat und kein SYN/ACK erwarte. Dadurch erfährt der Angreifer die aktuelle IP ID des Zombies. Über diesen Seitenkanal - d.h. die Veränderung der IP ID des Zombies - kann der Angreifer nun den Zustand des Ports auf dem Zielrechner ermitteln.
+
+.. [#] `NMap Book <https://nmap.org/book/idlescan.html>`__
+
+    
+
+Port Scans: Idle Scan
+-----------------------------
+
+.. container:: two-columns 
+
+    .. container:: column
+
+        Starte Scan:
+
+        .. image:: idle-scan/idle-scan-step2.svg 
+            :alt: Idle Scan - Schritte 3-5
+            :align: left
+            :width: 750px
+
+    .. container:: column   
+
+        Sondiere IP ID des Zombies:
+
+        .. image:: idle-scan/idle-scan-step3.svg 
+            :alt: Idle Scan - Schritt 6
+            :align: right
+            :width: 700px
+
+
+
+Port Scans: Idle Scan - Zusammenfassung
+----------------------------------------
+
+- Angreifer sendet SYN/ACK Paket an Zombie
+- der Zombie antwortet mit RST und enthüllt seine IP ID (:eng:`IP Fragment Identification Number`).
+- Angreifer sendet SYN ("vom" Zombie) an Port des Servers
+- [**Port offen**] Der Zielrechner antwortet mit SYN/ACK an den Zombie, wenn der Port offen ist.
+  
+  [**Port geschlossen**] Der Zielrechner antwortet mit RST an den Zombie, wenn der Port geschlossen ist. Dies wird vom Zombie ignoriert.
+- [**Port offen**] Der Zombie antwortet mit RST, da er kein SYN gesendet hat und kein SYN/ACK erwartet und erhöht seine IP ID. 
+- Der Angreifer sendet wieder ein SYN/ACK an den Zombie, um die IP ID zu erfahren. 
+
+.. container:: supplemental 
+
+    Mit einem IDLE Scan kann nicht unterschieden werden, ob der Port geschlossen oder gefiltert ist.
+
+Port Scans mit nmap
+-----------------------
+
+.. class:: incremental
+
+- alle Arten von Port-Scans möglich
+- auch OS fingerprinting
+- u. U. sogar Ermittlung der Versionsnummern von Diensten
+
+.. code:: bash
+    :class: incremental smaller
+
+    $ nmap 192.168.178.121 -Pn
+    Starting Nmap 7.94 ( https://nmap.org ) at 2023-12-14 13:16 PST
+    Nmap scan report for Michaels-MacBook-Pro (192.168.178.121)
+    Host is up (0.0056s latency).
+    Not shown: 995 filtered tcp ports (no-response)
+    PORT     STATE SERVICE
+    53/tcp   open  domain
+    88/tcp   open  kerberos-sec
+    445/tcp  open  microsoft-ds
+    5000/tcp open  upnp
+    7000/tcp open  afs3-fileserver
+
+.. container:: supplemental
+
+    **OS-Fingerprinting**
+
+    Beim OS-Fingerprinting werden Datenpakete analysiert, die aus einem Netzwerk stammen, um Informationen für spätere Angriffe zu gewinnen. Durch die Erkennung des Betriebssystems, mit dem ein Netzwerk arbeitet, haben Hacker es leichter, Schwachstellen zu finden und auszunutzen. OS-Fingerprinting kann auch Konfigurationsattribute von entfernten Geräten sammeln. Diese Art von Aufklärungsangriff ist in der Regel (einer) der erste(n) Schritt(e).
+
+    Es gibt zwei Arten von OS-Fingerprinting: (1) Aktiv und (2) passiv.
+
+        (1) Bei einem aktiven OS-Fingerprinting-Versuch senden die Angreifer ein Paket an das Zielsystem und warten auf eine Antwort, um den Inhalt des TCP-Pakets zu analysieren. 
         
-    // Method descriptor #36 ([Ljava/lang/String;)V
-    // Stack: 5, Locals: 8
-    public static void main(java.lang.String[] args) throws ...;
-        0  aload_0 [args]
-        1  arraylength
-        2  iconst_2
-        3  if_icmpeq 74                // integer comparison for equality
-        6  getstatic java.lang.System.err : java.io.PrintStream 
-        9  ldc <String "SimpleSecure++">
-        11  invokevirtual java.io.PrintStream.println(java.lang.String) : void 
-        ...
+        (2) Bei einem passiven Versuch agieren die Angreifer eher als "Schnüffler", der keine absichtlichen Änderungen oder Aktionen im Netzwerk vornimmt. Passives OS-Fingerprinting ist ein unauffälligerer, aber wesentlich langsamerer Prozess. 
+
+
+Port Knocking
+---------------- 
+
+.. class:: incremental
+
+- Ein Knock-Daemon versteckt offene Ports auf dem Server.
+- Zugriffe auf alle Ports werden im Log-File protokolliert.
+- Knock-Daemon beobachtet das Log-File.
+- Erst nach Erkennen einer vordefinierten (Einmal-)Klopfsequenz öffnet der Knock-Daemon den gewünschten Port für diesen Client.
+- Client kann nun die Verbindung aufbauen.
+
+.. container:: supplemental
+
+    
+    **Weiterführend**
+
+    Alternativen zu einer Knock-Sequenz ist zum Beispiel, dass der Port nur dann als offen gilt, wenn die IP ID eine bestimmte Sequenznummer aufweist.
+
+    M. Krzywinski: Port Knocking: Network Authentication Across Closed Ports in SysAdmin Magazine 12: 12-17. (2003)
+
+    TCP Stealth
+
+Connection Hijacking
+-------------------------
+
+Angreifer übernimmt eine bestehende - zum Beispiel eine bereits durch (Einmal-)Passwort authentisierte - Verbindung.
+
+.. image:: connection-hijacking.svg 
+    :alt: Connection Hijacking (einfache Variante)
+    :align: center
+    :height: 800px
+
+
+.. container:: supplemental 
+
+    TCP/IP-Hijacking ist eine Form eines Man-in-the-Middle-Angriffs. Der Angreifer bestimmt erst die IP-Adressen der beiden Sitzungsteilnehmer.
+    
+    Danach gibt es mehrere Möglichkeiten: 
+
+    - Der Angreifer schickt ("in einer Pause") ein Paket mit der passenden Sequenznummer an den Server. 
+    
+      *(Dies kann dann in einem ACK-Storm enden, was ggf. unterbunden werden muss (zum Beispiel durch das Senden eines RSTs), oder ignoriert werden kann.)*
+
+    - Der Angreifer macht einen Client mit einem DoS-Angriff unerreichbar, um sich dann mit dem Anderen zu verbinden, indem er die Netzwerk-ID des ausgeschalteten Clients nutzt.
+
+
+Denial-of-Service (DoS) Angriffe
+------------------------------------
+
+Ziel des Angreifers: Lahmlegen eines Dienstes oder des ganzen Systems ...
+
+- durch Ausnutzen von Schwachstellen (:eng:`vulnerabilities`, z.B. Buffer Overflow)
+- durch Generierung von Überlast (Ausschöpfen von RAM, CPU, Netzwerkbandbreite, ...)
+
+.. admonition:: Beispiel: Ping-of-Death
+    :class: incremental smaller
+
+    (Historisch: aus dem Jahr 1997)
+
+    Ein ``ping`` verwendet Internet Control Message Protocol (ICMP) üblicherweise kleine Nachrichten, verwendete Länge ist aber einstellbar.
+
+    Falls zu groß ⇒ Buffer Overflow ⇒ Systemabsturz!
+    
+    Variante: mittels Fragmentierung ließen sich generell übergroße IP-Pakete (>65,536 Byte) erstellen.
+
+
+Denial-of-Service: SYN-flooding Angriff
+-----------------------------------------
+
+.. class:: incremental
+
+- Angriff auf Design
+- Angreifer sendet eine Verbindungsaufbauanforderung (gesetztes SYN-Flag) an Zielmaschine
+- Server generiert eine halboffene TCP-Verbindung
+- Angreifer wiederholt in schneller Folge dieses erste Paket zum Verbindungsaufbau
+
+  ⇒ vollständiges Füllen der internen Systemtabelle
+
+  ⇒ Anfragen normaler Benutzer werden zurückgewiesen
+
+- Angreifer verwendet i. Allg. IP-Spoofing weswegen Firewalls wirkungslos sind.
+- Abwehr: SYN-Cookies 
+
+
+`SYN-Cookies - D J. Bernstein <https://cr.yp.to/syncookies.html>`__
+-----------------------------------------------------------------------
+
+SYN-Cookies sind speziell konstruiert initiale Sequenznummern.
+
+.. container:: stack
+
+    .. container:: layer
+
+        .. raw:: html
+
+            <svg width="1700" height="600" viewBox="0 0 1700 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <marker 
+                    id="arrow"
+                    viewBox="0 0 10 10"
+                    refX="10"
+                    refY="5"
+                    markerWidth="8"
+                    markerHeight="8"
+                    orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" />
+                    </marker>
+                </defs>
+                <text x="125" y="75" style="font-weight: bolder">Client</text>
+                <line x1="200" y1="100" x2="200" y2="400" style="stroke:rgb(0,0,0);stroke-width:3" />
+                <line x1="200" y1="400" x2="200" y2="550" stroke-dasharray="5,5" style="stroke:rgb(0,0,0);stroke-width:3" />
+                
+                <text x="925" y="75" style="font-weight: bolder">Server</text>
+                <line x1="1500" y1="100" x2="1500" y2="400" style="stroke:rgb(0,0,0);stroke-width:3" />
+                <line x1="1500" y1="400" x2="1500" y2="550" stroke-dasharray="5,5" style="stroke:rgb(0,0,0);stroke-width:3" />
+                
+                <text x="500" y="75" transform="rotate(4.25)">SYN(1000)</text>
+                <line x1="200" y1="110" x2="1500" y2="190" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
+            </svg>
+
+    .. container:: layer overlay incremental
+
+        .. raw:: html
+
+            <svg height="600" width="1700" viewBox="0 0 1700 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <marker 
+                    id="arrow"
+                    viewBox="0 0 10 10"
+                    refX="10"
+                    refY="5"
+                    markerWidth="8"
+                    markerHeight="8"
+                    orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" />
+                    </marker>
+                </defs>
+
+                <text x="270" y="290" transform="rotate(-4.25)">SYN(2000), ACK(with cookie)</text>
+                <line x1="1500" y1="200" x2="200" y2="290" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
+            </svg>
+
+        .. container:: smaller
+
+            Der Cookie ermöglicht es, dass keine Informationen im Speicher gehalten werden müssen. Der Cookie encodiert die Informationen, die der Server benötigt, um die Verbindung aufzubauen: Client IP, time window, etc.
+
+    .. container:: layer overlay incremental
+
+        .. raw:: html
+
+            <svg height="600" width="1800" viewBox="0 0 1800 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <marker 
+                    id="arrow"
+                    viewBox="0 0 10 10"
+                    refX="10"
+                    refY="5"
+                    markerWidth="8"
+                    markerHeight="8"
+                    orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" />
+                    </marker>
+                </defs>
+                
+                <text x="555" y="325" transform="rotate(4.2)">ACK(with cookie(+1))</text>
+                <line x1="200" y1="300" x2="1500" y2="390" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
+
+                <text x="1515" y="340" style="font-size:40px">Validierung</text>
+                <text x="1515" y="390" style="font-size:40px">des Cookie</text>
+                <line x1="1600" y1="400" x2="1600" y2="455" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
+                <text x="1515" y="490" style="font-size:40px">ggf. </text>
+                <text x="1515" y="540" style="font-size:40px">Verbindungs-</text>
+                <text x="1515" y="590" style="font-size:40px">aufbau</text>
+
+            </svg>
 
 
 
-.. class:: new-section transition-scale
+Distributed Denial-of-Service (DDoS) Angriff
+------------------------------------------------
 
-Verschlüsselung von Daten
-----------------------------------------------
+Opfer wird von sehr vielen Angreifern mit Nachrichten überflutet.
+
+.. container:: incremental
+
+    Ein Beispiel: Smurf-Angriff:
+
+    .. image:: smurf-angriff.svg 
+        :alt: Smurf Angriff
+        :align: center
+        :height: 800px
 
 
-Alternativen zur Speicherung von Passwörtern
----------------------------------------------
+Distributed Denial-of-Service (DDoS) Angriff
+------------------------------------------------
 
-In einigen Anwendungsgebieten ist es möglich auf das explizite Speichern von Passwörtern ganz zu verzichten [*]_. 
+.. class:: incremental
+
+- Bot-Netze (Botnetze) werden verwendet, um DDoS-Angriffe durchzuführen.
+- Bot-Netze können viele 10.000 Rechner umfassen.
+- IoT Geräte sind besonders beliebt (z.B. IP-Kameras, Smart-TVs, Smart-Home Geräte, ...), da diese oft nicht ausreichend geschützt sind und trotzdem permanent mit dem Internet verbunden sind.
+- Beliebte Ziele:
+
+  - Onlinespieleserver
+  - Banking-Portale
+  - politische Webseiten
+- Firewalls und Intrusion Detection Systeme sind meist wirkungslos, da die Angriffe von vielen verschiedenen IP-Adressen kommen.
+
+
+Distributed-Reflected-Denial-of-Service (DRDoS) Angriff
+------------------------------------------------------------
+
+- Idee:
+
+  .. class:: incremental smaller
+  
+  - Es wird eine Anfrage an einen Server gesendet, die eine große Antwort auslöst. (z.B. hat(te) der NTP Monlist Befehl eine Antwort, die ca. 200 Fach größer ist als die Anfrage!)
+  - Mittels IP-Spoofing wird die IP-Adresse des Opfers als Absenderadresse verwendet.
+  - Es werden insbesondere Dienste basierend auf UDP verwendet, da hier keine Verbindung aufgebaut werden muss.
+
+.. class:: incremental smaller
+
+- Nehmen einen signifikanten Teil aller DDoS-Angriffe ein. 
+- Die Tatsache, dass die Sender legitime Server sind, erschwert die Abwehr.
+- :eng:`Egress filtering` kann helfen, die Verwendung von IP-Spoofing zu verhindern. In diesem Fall verwirft der Router alle Pakete, die eine Absenderadresse verwenden, die nicht aus dem eigenen Netzwerk stammt. 
+
+
+.. container:: supplemental
+    
+    Bereits im Jahr 2018 wurde ein Angriff mit einer Bandbreite von 1,7 TBit/s beobachtet.
+
+
+`Distributed Denial-of-Service (DDoS) Angriffe - Beispiel <https://cloud.google.com/blog/products/identity-security/google-cloud-mitigated-largest-ddos-attack-peaking-above-398-million-rps>`__
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+.. epigraph::
+
+    [...] Google's DDoS Response Team has observed the trend that distributed denial-of-service (DDoS) attacks are **increasing exponentially in size**. Last year, we blocked the largest DDoS attack recorded at the time. This August [2023], we stopped an even larger DDoS attack — 7½ times larger — that also used new techniques to try to disrupt websites and Internet services.
+
+    This new series of DDoS attacks reached **a peak of 398 million requests per second (rps)**, and relied on a novel HTTP/2 “Rapid Reset” technique based on stream multiplexing that has affected multiple Internet infrastructure companies. By contrast, last year’s largest-recorded DDoS attack peaked at 46 million rps.
+
+
+Distributed Denial-of-Service (DDoS) Angriffe 
+------------------------------------------------
 
 .. container:: incremental 
 
-    Stattdessen wird z.B. einfach versucht das Ziel zu entschlüsseln und danach evaluiert ob das Passwort (vermutlich) das Richtige war. 
+    Beispiele:
 
-.. container:: incremental 
+    - TCP Stack Attacks (SYN, FIN, RST, ACK, SYN-ACK, URG-PSH, other combinations of TCP Flags, slow TCP attacks)
+    - Application Attacks (HTTP GET/POST Floods, slow HTTP Attacks, SIP Invite Floods, DNS Attacks, HTTPS Protocol Attacks)
+    - SSL/TLS Attacks (Malformed SSL Floods, SSL Renegotiation, SSL Session Floods)
+    - DNS Cache Poisoning
+    - Reflection Amplification Flood Attacks (TCP, UDP, ICMP, DNS, mDNS, SSDP, NTP, NetBIOS, RIPv1, rpcbind, SNMP, SQL RS, Chargen, L2TP, Microsoft SQL Resolution Service)
+    - Fragmentation Attacks (Teardrop, Targa3, Jolt2, Nestea)
+    - Vulnerability Attacks
+    - Resource Exhaustion Attacks (Slowloris, Pyloris, LOIC, etc.)
+    - Flash Crowd Protection
+    - Attacks on Gaming Protocols.
 
-    Kann darauf verzichtet werden zu überprüfen ob das Passwort korrekt war, dann sind keine Metainformationen notwendig und die verschlüsselte Datei kann genau so groß sein wie die unverschlüsselte Datei.
 
-.. [*] Bei einer Verschlüsselung mit OpenSSL wird das Passwort nicht gespeichert.
+Schutz vor DDoS-Angriffen - On-Site Robustheitsmaßnahmen
+--------------------------------------------------------
+
+.. class:: incremental
+
+- Aufrüsten der Ressourcen (z.B. Bandbreite, CPU, RAM, ...) 
+- Exemplarische Sofortmaßnahmen bei aktivem Angriff: 
+  
+  .. class:: incremental smaller
+
+  - Whitelisting von IP-Adressen von besonders wichtigen Clients
+  - Blacklisting von IP-Adressen aus bestimmten Bereichen
+  - Captchas
+  - Überprüfung der Browser-Echtheit
+  
+- Anti-DDos Appliances 
+
+.. admonition:: Achtung
+    :class: warning incremental
+
+    Diese Maßnahmen sind häufig teuer und ggf. begrenzt effektiv; wenn der Angriff die verfügbare Brandbreite übersteigt, sind diese Maßnahmen wirkungslos.
 
 
 
+Schutz vor DDoS-Angriffen - Off-Site Robustheitsmaßnahmen
+------------------------------------------------------------
+
+.. class:: incremental
+  
+- Einbinden des ISP
+- Einbinden spezialisierter Dienstleister (im Angriffsfall wird mittels BGP-Rerouting der Traffic an den Dienstleister umgeleitet, der dann die DDos Attacke filtert.)
+- Content-Delivery-Networks (CDNs) für statische Inhalte (z.B. Cloudflare, Akamai, ...)
+- Distributed Clouds
 
 
+Password Sniffing
+---------------------
 
-.. class:: center-elements-on-slide
+:In der Anfangszeit: unverschlüsselte Übertragung von Passwörtern (telnet, ftp, ...)
+:In der Übergangszeit (bzw. in bestimmten Szenarien auch heute): Verwendung von Einmal-Passwörtern (S/Key, ...)
+:Heute: Passwörter werden verschlüsselt übertragen (ssh, https, ...)
 
-\
+
+.. container:: supplemental
+
+    Unverschlüsselte Passworte können leicht mittels eines Sniffers, der den Netzwerkverkehr mitschneidet (z.B. Wireshark), abgefangen werden.
+
+
+Einmal-Passwörter
+----------------------
+
+Die Idee ist, dass Passwörter nur genau einmal gültig sind und nicht wiederverwendbar sind.
+
+- Tokens (z.B. RSA SecurID)
+- Codebuch: Liste von Einmal-Passwörtern, die das gemeinsame Geheimnis sind.
+- S/Key: Passwort wird mit einem Zähler kombiniert und dann gehasht.
+
+
+Das S/Key Verfahren 
+------------------------------
+
+.. admonition:: Prinzip
+
+    Einmal-Passwort-System nach Codebuch-Verfahren, dass im Original auf der kryptographischen Hashfunktion MD4 basiert.
+
+.. container:: incremental stack scriptsize
+
+    .. container:: layer
+
+        **Initialisierung**
+
+        .. class:: incremental
+
+        1) Der Nutzer gibt sein Passwort W ein; dies ist der geheime Schlüssel. (Sollte W bekannt werden, dann ist die Sicherheit des Verfahrens nicht mehr gewährleistet.)
+        2) Eine kryptografische Hash-Funktion H wird n-mal auf W angewandt, wodurch eine Hash-Kette von n einmaligen Passwörtern entsteht. :math:`H(W), H(H(W)), \dots, H^{n}(W)`
+        3) Das initiale Passwort wird verworfen.
+        4) Der Benutzer erhält die n Passwörter, die in umgekehrter Reihenfolge ausgedruckt werden: :math:`H^n(W), H^{n-1}(W), ..., H(H(W)), H(W)`.
+        5) Nur das Passwort :math:`H^n(W)`, das an erster Stelle der Liste des Benutzers steht, der Wert von :math:`n` und ggf. ein Salt, wird auf dem Server gespeichert.
+
+    .. container:: layer incremental
+
+        **Anmeldung**
+
+        Identifiziere :math:`n` das letzte verwendete Passwort.
+
+        .. class:: incremental
+       
+        - Der Server fragt den Nutzer nach dem Passwort :math:`n-1` (d.h. :math:`H^{n-1}(W)`) und übermittelt ggf. auch den Salt. 
+        - Der Server hasht das Passwort und vergleicht es mit dem gespeicherten Passwort :math:`H^n(W)`.
+        - Ist das Passwort korrekt, dann wird der Nutzer angemeldet und der Server speichert das Passwort :math:`H^{n-1}(W)` als neues Passwort :math:`H^n(W)` und dekrementiert n.
+
+.. container:: supplemental
+
+    Intern verwendet S/KEY 64-bit Zahlen. Für die Benutzbarkeit werden diese Zahlen auf sechs kurze Wörter, von ein bis vier Zeichen, aus einem öffentlich zugänglichen 2048-Wörter-Wörterbuch (:math:`2048 = 2^{11}`) abgebildet. Zum Beispiel wird eine 64-Bit-Zahl auf "ROY HURT SKI FAIL GRIM KNEE" abgebildet. 
+
+
+`Secure Shell (SSH) <https://datatracker.ietf.org/doc/html/rfc4254>`__
+----------------------------------------------------------------------------
+
+**Verschlüsselte Verbindung**
+
+SSH ermöglicht die sichere Fernanmeldung von einem Computer bei einem anderen (typischerweise über TCP über Port 22). Es bietet mehrere Optionen für eine starke Authentifizierung und schützt die Sicherheit und Integrität der Kommunikation durch starke Verschlüsselung
+
+.. container:: incremental
+
+    **Ablauf**
+
+    (1) Authentisierung des Server-Rechners
+    (2) Authentisierung des Benutzers (bzw. des Clients) mittels
+
+        a. Passwort
+        b. :obsolete:`.rhosts-Eintrag`
+        c. privatem :not-important:`(RSA-)`\ Key (hauptsächlich verwendete Methode)
+
+    (3) Kommunikation über symmetrisch verschlüsselte Verbindung
+
+
+.. container:: supplemental
+
+    Die Authentifizierung mittels eines Schlüsselpaars dient primäre der Automatisierung (dann wird auch keine :ger-quote:`Schlüsselphrase` zum Schutz des Passworts verwendet). Auf jeden Fall ist effektives Schlüsselmanagement erforderlich:
+
+    .. epigraph::
+
+        [...] In einigen Fällen haben wir mehrere Millionen SSH-Schlüssel gefunden, die den Zugang zu Produktionsservern in Kundenumgebungen autorisieren, wobei 90 % der Schlüssel tatsächlich ungenutzt sind und für einen Zugang stehen, der zwar bereitgestellt, aber nie gekündigt wurde.
+
+        -- `SSH.com (Dez. 2023) <https://www.ssh.com/academy/ssh/protocol>`__
+                                                                                                                                                                
+
+Secure Shell (SSH) - Protokoll
 --------------------------------------
 
-.. admonition:: Bleibe fokussiert! 
-    :class: warning incremental
+
+.. image:: ssh/initiation.svg 
+    :alt: SSH Protokoll
+    :align: center
+    :width: 1850px
+
+.. container:: incremental small
+
+    Beide Seiten haben einen Public-private Key Schlüsselpaar zur Gegenseitigen Authentifizierung
+
+    :User Keys: 
+     - ``Authorized keys`` - Datei mit den öffentlichen Schlüsseln der Nutzer, gespeichert auf Serverseite
+     - ``Identity keys`` private Schlüssel der Nutzer
+
+    :Host keys: benötigt für die Authentifizierung von Servern, um Man-in-the-Middle-Angriffe zu verhindern.
+
+    :Session Keys: werden für die symmetrische Verschlüsselung der Daten in einer Verbindung verwendet. Session Keys (:ger:`Sitzungsschlüssel`) werden während des  Verbindungsaufbaus ausgehandelt.
+
+.. container:: supplemental 
+
+    Im Falle von SSH gibt es kein initiales Vertrauen zwischen Server und Client.
+
+
+Secure Shell (SSH) - Risiken durch mangelnde Schlüsselverwaltung
+------------------------------------------------------------------
+
+.. class:: incremental
+
+- Schlüssel werden nicht regelmäßig ausgetauscht
+- Schlüssel werden nicht gelöscht, wenn sie nicht mehr benötigt werden
+- viele (die meisten) Schlüssel werden nicht verwendet
+- Es ist of nicht bekannt, wer Zugriff auf welche Schlüssel hat(te)
+- Es ist nicht bekannt, welche Schlüssel auf welche Systeme Zugriff haben
+- Malware kann SSH-Schlüssel stehlen
+- SSH Keys können ggf. privilegierten Zugriff gewähren
+- SSH Keys können benutzt werden, wenn um Backdoors zu verstecken 
+- Server keys erlauben ggf. Man-in-the-Middle-Angriffe
    
-    Analysiere nur was notwendig ist.
+    
+SSH Tunneling
+-----------------------
+
+- ermöglicht die Übertragung beliebiger Netzwerkdaten über eine verschlüsselte SSH-Verbindung. Z.B. 
+
+  - um ältere Anwendungen zu verschlüsseln. 
+  - um VPNs (Virtual Private Networks) zu implementieren 
+  - um über Firewalls hinweg auf Intranetdienste zuzugreifen.
+
+- ermöglicht auch Port-forwarding (lokale Ports werden auf entfernten Rechner weitergeleitet)
+
+.. image:: ssh/tunneling.svg 
+    :alt: SSH Protokoll
+    :align: center
+    :width: 1450px
+
+
+SSH und :ger-quote:`Back-tunneling`
+--------------------------------------
+
+.. class:: incremental
+
+- Der Angreifer richtet einen Server außerhalb des Zielnetzwerks ein
+- Nach Infiltration des Zielsystems verbindet der Angreifer sich von innen mit dem externen SSH-Server.  
+- Diese SSH-Verbindung wird so eingerichtet, das eine TCP-Port-Weiterleitung von einem Port auf dem externen Server zu einem SSH-Port auf einem Server im internen Netzwerk möglich ist. 
+- Die meisten Firewalls bieten wenig bis gar keinen Schutz dagegen.
+
+
+.. container:: supplemental
+
+    Es ist in diesem Fall besonders interessant für den Angreifer den SSH Server zum Beispiel bei einem Cloud-Anbieter zu betreiben, welcher von dem Unternehmen  standardmäßig verwendet wird (am Anfang steht immer die Aufklärung!). In diesem Fall wird die Firewall keine ausgehenden SSH-Verbindungen dorthin blockieren.
+
+
+.. class:: integrated-exercise transition-move-left
+
+
+Übung: Port Scans - IDLE Scan
+------------------------------
+
+- Warum kann mit einem IDLE Scan nicht festgestellt werden warum ein Port geschlossen oder gefiltert ist?
+- Welchen Wert hat die IP ID des Zombies, der einem IDLE Scan durchführt, wenn der Zielport offen bzw. geschlossen ist wenn der Scanner diesen wieder abfragt?
+
+.. Lösung:
+   - Wenn der Port geschlossen ist, dann sendet der Zielrechner ein RST Paket an den Zombie. Dieses wird vom Zombie ignoriert. Daher erhöht sich die IP ID des Zombies nicht.
+   - Wenn der Port offen ist, dann sendet der Zielrechner ein SYN/ACK Paket an den Zombie. Dieser antwortet mit einem RST Paket und erhöht seine IP ID um 1. D.h. der Wert der IP ID des Zombies ist um 2 höher wenn der Port offen ist und "nur" eins höher sonst.
+
+
+.. class:: integrated-exercise transition-move-left
+
+Übung: S/Key
+--------------
+
+1. Welche Vorteile bieten Einmalpasswortsysteme gegenüber Systemen mit mehrfach zu verwendenden Passworten?
+2. Welchen Angriffen sind Einmalpasswortsysteme weiterhin ausgesetzt?
+3. Generieren Sie eine Liste von Einmalpassworten mit Initialwert r = 769. Generieren Sie h(r) bis h6(r) wenn die Einwegfunktion hier der Einfachheit halber :math:`h(x) = x^2\; mod\; 1000` ist.
+4. Wie oft kann sich der Benutzer anmelden? Wie sieht seine Liste aus?
+5. Welchen Wert speichert der Server vor dem jeweiligen Anmeldevorgang?
+6. Spielen Sie zwei Anmeldevorgänge durch.
+7. Wenn ein Passwort :math:`H^L(W), 1 < L < N` bekannt ist, welche Auswirkungen hat dies auf die Sicherheit des Verfahrens?
+
+.. Lösung:
+   1. Schutz gegen Lauscher
+   2. Man-in-the-middle
+   3. Der Benutzer w ̈ahlt eine Zufallszahl r, hier r = 769. Berechnet wird nun:
+   769^2 mod 1000 = 361 
+   361^2 mod 1000 = 321 
+   321^2 mod 1000 = 41 
+   41^2 mod 1000 = 681 
+   681^2 mod 1000 = 761 
+   761^2 mod 1000 = 121
+   1. Fu ̈nfmal. Der Benutzer erh ̈alt folgende Passwortliste: 761, 681, 41, 321, 361
+   2. Der Server speichert: 121
+   3. Beim ersten Anmeldevorgang verwendet der Benutzer das erste Passwort auf der Liste, die 761.
+   Der Server berechnet nun 7612 mod 1000 = 121 und vergleicht dies mit dem gespeicherten Wert. Da diese u ̈bereinstimmen, wird der Benutzer angemeldet.
+   Der Server speichert jetzt die 761, und der Benutzer streicht die 761 von der Liste, usw.
+   1. Keine
+
+
+.. class:: integrated-exercise transition-move-left
+
+Übung: DDoS
+--------------
+
+1.  Welches Problem entsteht wenn zum Schutze vor Angriffen auf die Verfügbarkeit die Ressourcen von IT-Systemen und deren Internet-Anbindung erhöht werden?
+2. Recherchieren Sie was ein "Low and Slow Angriff" ist.
+3. Wo kann überall "Egress filtering" statt finden.
+
+.. Lösung:
+   1. Ressourceverschwendung wenn gerade kein Angriff stattfindet. Wenn der Angriff stattfindet, dann ist es immer noch möglich bzw. sogar wahrscheinlich, dass die Ressourcen nicht ausreichen.
+   2. Was ist ein Low-and-Slow-Angriff?
+   (https://www.cloudflare.com/de-de/learning/ddos/ddos-low-and-slow-attack/)
+   Ein Low-and-Slow-Angriff ist eine Art von DoS- oder DDoS-Angriff, der sich auf einen kleinen Strom sehr langsamen Traffics stützt, der auf Anwendungs- oder Serverressourcen abzielt. Im Gegensatz zu herkömmlichen Brute-Force-Angriffen benötigen Low-and-Slow-Angriffe nur sehr wenig Bandbreite und können schwer bekämpft werden, da sie Traffic erzeugen, der nur sehr schwer von normalem Traffic zu unterscheiden ist. Während groß angelegte DDoS-Angriffe wahrscheinlich schnell bemerkt werden, können Low-and-Slow-Attacken über lange Zeiträume unentdeckt bleiben, während der Dienst für echte Nutzer verweigert oder verlangsamt wird.
+   Da sie nicht viele Ressourcen benötigen, können Low-and-Slow-Angriffe von einem einzigen Computer aus erfolgreich durchgeführt werden, im Gegensatz zu verteilten Angriffen, für die ein Botnet erforderlich sein kann. Zwei der beliebtesten Tools für Low-and-Slow-Angriffe heißen Slowloris und R.U.D.Y.
+   3. Dies kann zum Beispiel auf Seiten eines ISPs geschehen.
+
+
+.. class:: new-section transition-fade
+
+Firewalls
+------------
+
+(Siehe Folien von Prof. Pagnia)
+
+
+.. class:: integrated-exercise transition-move-left
+
+Übung: Firewalls
+------------------
+
+1. Was sind Vorteile eines Dual Homed Host gegenüber einem Packetfilter? Was sind die Nachteile?
+
+2. Benennen Sie die zwei konzeptionelle Grenzen von Firewalls. D.h. zwei Szenarien gegen die Firewalls nicht schützen können.
+
+3. Für welche der folgenden Cybersicherheitsstrategien können Firewalls eingesetzt werden:
+   
+   1. Angriffe vermeiden
+   2. Angriffe erkennen
+   3. Angriffe abwehren/Angriffen entgegenwirken
+   4. Reaktion auf Angriffe
+
+4. Sie werden beauftragt die Firewall so einzurichten, dass Mails mit Schadsoftware nicht durchgelassen werden. Wie reagieren Sie?
+
+.. Lösung:
+    1.
+    Ein Dual Homed Host ist ein Computer mit zwei Netzwerkschnittstellen. Zur Verwendung als Firewall wird das Routing, also die Weiterleitung von IP-Paketen zwischen den Schnittstellen, abgeschaltet. Damit ko ̈nnen keine Pakete direkt zwischen den Netzen ausgetauscht werden und alle Verbindungen enden am Dual Homed Host. Um Daten weiterzuleiten, muss auf dem Dual Homed Host ein Proxy laufen, der eine Verbindung annimmt und eine neue Verbindung in das andere Netz aufbaut (gesteuert u ̈ber Regel- und Berechtigungstabellen). Man kann u ̈ber diese Application Level Gateways eine gute inhaltliche Kontrolle der u ̈bertragenen Daten durchfu ̈hren, bei E-Mail beispielsweise eine L ̈angenbegrenzung oder eine Erkennung von mitgeschickten ausfu ̈hrbaren Programmen, die dann automatisch gepru ̈ft oder entfernt werden ko ̈nnten. Fu ̈r jeden freigeschalteten Dienst beno ̈tigt man einen speziellen Proxy.
+    Ein Risiko bei Dual Homed Hosts ist die U ̈bernahme des Hosts durch einen Angreifer. Dieser hat dann u ̈ber die entsprechende Netzwerkschnittstelle des Dual Homed Hosts vollst ̈andigen Zugriff auf das interne Netz.
+    2.
+    - Hintertüren - sollte es Kommunikationsübergänge an der Firewall vorbei geben,  so können diese von Angreifern genutzt werden.
+    - Interne Angriffe - diesbezüglich gibt es keine Unterschiede zu einem Netzwerk ohne Firewall.
+    - Vertrauenswürdigkeit der Kommunikationspartner
+    3. Die Hauptaufgabe von Firewalls ist es Angriffen entgegenzuwirken (3.) Eine Reaktion auf Angriffe ist nicht möglich, da Firewalls keine Angriffe erkennen können, die sie nicht abwehren können. Eine Reaktion auf Angriffe ist Aufgabe von Intrusion Detection Systemen.
+    4. ... die Mails sollen ja den Mailserver erreichen; eine inhaltsbasierte Beurteilung des Inhalts einer Mail ist nicht Aufgabe einer Firewall. 
+
