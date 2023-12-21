@@ -39,6 +39,13 @@ Eine erste Einführung in die Sicherheit von (verteilten) Systemen
     Alle Fehler sind meine eigenen.
 
 
+.. class:: new-section transition-fade
+
+Klassische Sicherheitsprinzipien
+----------------------------------
+
+
+
 Wiederholung: Klassische Sicherheitsprinzipien
 -----------------------------------------------
 
