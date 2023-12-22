@@ -14,7 +14,7 @@
 .. role:: red
 .. role:: green
 .. role:: blue
-.. role:: not-important
+.. role:: minor
 .. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
@@ -39,7 +39,7 @@ Eine erste Einführung in die Sicherheit von (verteilten) Systemen
     Alle Fehler sind meine eigenen.
 
 
-.. class:: new-section transition-fade
+.. class:: new-section transition-move-to-top
 
 Klassische Sicherheitsprinzipien
 ----------------------------------
@@ -186,6 +186,7 @@ Dreifacher Handshake:
     .. container:: layer
 
         .. raw:: html
+            :class: center-element
 
             <svg width="1200" height="600" viewBox="0 0 1200 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -214,6 +215,7 @@ Dreifacher Handshake:
     .. container:: layer overlay incremental
 
         .. raw:: html
+            :class: center-element
 
             <svg height="600" width="1200" viewBox="0 0 1200 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -237,6 +239,7 @@ Dreifacher Handshake:
     .. container:: layer overlay incremental
 
         .. raw:: html
+            :class: center-element
 
             <svg height="600" width="1200" viewBox="0 0 1200 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -947,7 +950,7 @@ SSH ermöglicht die sichere Fernanmeldung von einem Computer bei einem anderen (
 
         a. Passwort
         b. :obsolete:`.rhosts-Eintrag`
-        c. privatem :not-important:`(RSA-)`\ Key (hauptsächlich verwendete Methode)
+        c. privatem :minor:`(RSA-)`\ Key (hauptsächlich verwendete Methode)
 
     (3) Kommunikation über symmetrisch verschlüsselte Verbindung
 
