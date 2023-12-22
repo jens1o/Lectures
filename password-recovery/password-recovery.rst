@@ -14,7 +14,7 @@
 .. role:: red
 .. role:: green
 .. role:: blue
-.. role:: not-important
+.. role:: minor
 .. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
@@ -180,8 +180,8 @@ Hashfunktionen (Wiederholung)
 - Wird oft zur Gewährleistung der Datenintegrität verwendet. Eine Änderung eines beliebigen Bits in :math:`M` sollte mit hoher Wahrscheinlichkeit zu einer Änderung des Hashwerts :math:`h` führen.
 - Kryptographische Hashfunktionen werden für Sicherheitsanwendungen benötigt. Mögliche Anwendungen:
   
-  - :not-important:`Authentifizierung von Nachrichten`
-  - :not-important:`Digitale Signaturen`
+  - :minor:`Authentifizierung von Nachrichten`
+  - :minor:`Digitale Signaturen`
   - Speicherung von Passwörtern
 
 
@@ -1100,7 +1100,7 @@ Aufgrund der :ger-quote:`Unmöglichkeit` eines Brute-Force-Angriffs stellen sich
 - Es sollten nur *technisch sinnvolle* Passwörter getestet/generiert werden. 
 - Es sollten *keine Duplikate* getestet werden.
 - Auswahl/Generierung von *Passwörten in absteigender Wahrscheinlichkeit*.
-- :not-important:`Die Auswahl/Generierung sollte effizient sein.`
+- :minor:`Die Auswahl/Generierung sollte effizient sein.`
 
 .. container:: supplemental
     
@@ -1158,7 +1158,7 @@ Password Cracking Using Probabilistic Context-Free Grammars [PCFG]_
    1. Vorverarbeitung, um die Basisstrukturen und deren Wahrscheinlichkeiten zu identifizieren (z.B. zwei Ziffern gefolgt von einem Sonderzeichen und 8 Buchstaben.)
    2. Passwortkandidatengenerierung unter Beachtung der Wahrscheinlichkeiten der Basisstrukturen und der Wahrscheinlichkeiten der Worte, Ziffern und Sonderzeichen. 
    
-      :not-important:`(In der Originalversion wurden die Wahrscheinlichkeiten von Worten nicht beachtet; die auf GitHub verfügbare Version enthält jedoch zahlreiche Verbesserungen.)``
+      :minor:`(In der Originalversion wurden die Wahrscheinlichkeiten von Worten nicht beachtet; die auf GitHub verfügbare Version enthält jedoch zahlreiche Verbesserungen.)``
 
 
 PCFG - Analyse - Beispiel
@@ -1376,7 +1376,7 @@ Bewertung von Passworten
     
 .. container:: supplemental
 
-    .. container:: foundations blue-background
+    .. container:: foundations the-blue-background
         
         **Diceware**
 
@@ -1387,7 +1387,7 @@ Bewertung von Passworten
     
         Beim klassischen Dicewareansatz umfasst das Wörterbuch :math:`6^5` Worte, da man mit einem normalen Würfel fünfmal Würfelt und dann das entsprechende Wort nachschlägt. Würde man zum Beispiel die folgenden Zahlen würfeln: 1,4,2,5,2. Dann würde man das Wort zur Zahl: 14252 nachschlagen.
 
-    .. container:: foundations blue-background  
+    .. container:: foundations the-blue-background  
         
         **Zeichensatz**
 
@@ -1817,9 +1817,9 @@ Szenario 5: Kombination von Wörterbuch mit eigenem Regelsatz
       :class: incremental no-table-borders
       :width: 100%
 
-      cd, :not-important:`Erst Groß-Kleinschreibung anpassen und dann duplizieren.`
-      dc, :not-important:`Erst duplizieren und dann Groß-Kleinschreibung anpassen.`
-      d, :not-important:`Einfach nur duplizieren.`
+      cd, :minor:`Erst Groß-Kleinschreibung anpassen und dann duplizieren.`
+      dc, :minor:`Erst duplizieren und dann Groß-Kleinschreibung anpassen.`
+      d, :minor:`Einfach nur duplizieren.`
 
 .. class:: incremental
 

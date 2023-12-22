@@ -14,7 +14,7 @@
 .. role:: red
 .. role:: green
 .. role:: blue
-.. role:: not-important
+.. role:: minor
 .. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above

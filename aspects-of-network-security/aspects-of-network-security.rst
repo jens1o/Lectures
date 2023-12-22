@@ -141,10 +141,12 @@ Transmission Control Protocol (TCP)
 -------------------------------------
 
 
+.. class:: vertical-title
+
 TCP Grundlagen
 -------------------
 
-.. class:: incremental more-space-between-list-items
+.. class:: incremental more-space-between-list-items inline-block
 
 - Protokoll der Schicht 4 (Transport Layer) basiert auf IP
 - verbindungsorientierte Kommunikation zweier Rechner im Internet zuverlässig und geordnet:
@@ -186,7 +188,7 @@ Dreifacher Handshake:
     .. container:: layer
 
         .. raw:: html
-            :class: center-element
+            :class: center-child-element
 
             <svg width="1200" height="600" viewBox="0 0 1200 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -215,7 +217,7 @@ Dreifacher Handshake:
     .. container:: layer overlay incremental
 
         .. raw:: html
-            :class: center-element
+            :class: center-child-element
 
             <svg height="600" width="1200" viewBox="0 0 1200 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -239,7 +241,7 @@ Dreifacher Handshake:
     .. container:: layer overlay incremental
 
         .. raw:: html
-            :class: center-element
+            :class: center-child-element
 
             <svg height="600" width="1200" viewBox="0 0 1200 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -548,8 +550,8 @@ Port Scans mit nmap
 - auch OS fingerprinting
 - u. U. sogar Ermittlung der Versionsnummern von Diensten
 
-.. code:: bash
-    :class: incremental smaller
+.. code:: bash 
+    :class: incremental smaller copy-to-clipboard
 
     $ nmap 192.168.178.121 -Pn
     Starting Nmap 7.94 ( https://nmap.org ) at 2023-12-14 13:16 PST

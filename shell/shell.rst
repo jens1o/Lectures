@@ -14,7 +14,7 @@
 .. role:: red
 .. role:: green
 .. role:: blue
-.. role:: not-important
+.. role:: minor
 .. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
@@ -176,7 +176,7 @@ echo
 
 - Universell eingesetzt, um Inhalte in Dateien zu schreiben bzw. anzuhängen.
 - ``-n`` um das automatische Anhängen von Zeilenumbrüchen zu unterdrücken.
-  :not-important:`(Besonders dann wichtig, wenn man Hashes für Testdaten generieren will.)`
+  :minor:`(Besonders dann wichtig, wenn man Hashes für Testdaten generieren will.)`
 - Entweder ein explizites Programm oder ein in die Shell eingebautes Kommando.
 
 .. container:: incremental line-above margin-above
@@ -266,7 +266,7 @@ uniq
     
     Mittels ``uniq`` kann die Häufigkeit gezählt werden. 
     
-    :not-important:`Die Sortierung - zum Beispiel angefangen mit den am häufigsten vorkommenden Einträgen - kann danach im Nachgang erfolgen`.
+    :minor:`Die Sortierung - zum Beispiel angefangen mit den am häufigsten vorkommenden Einträgen - kann danach im Nachgang erfolgen`.
 
     .. code:: bash
 
@@ -293,7 +293,7 @@ awk
 
 .. container:: incremental line-above margin-above
 
-    **Anwendungsfall**: Die Einträge einer Datei sollen nach länge sortiert werden. In diesem Fall, kann mit Hilfe von awk jede Zeile mit der Länge ausgegeben werden. :not-important:`Danach kann die Liste entsprechend sortiert werden.`
+    **Anwendungsfall**: Die Einträge einer Datei sollen nach länge sortiert werden. In diesem Fall, kann mit Hilfe von awk jede Zeile mit der Länge ausgegeben werden. :minor:`Danach kann die Liste entsprechend sortiert werden.`
 
     .. code:: bash
 
@@ -407,7 +407,7 @@ grep
 
 .. container:: incremental line-above margin-above
 
-    **Anwendungsfall**: Alle Textfragmente in einem Leak finden\ :not-important:`, um danach mit Regeln neue Passwortkandidaten zu bilden`.
+    **Anwendungsfall**: Alle Textfragmente in einem Leak finden\ :minor:`, um danach mit Regeln neue Passwortkandidaten zu bilden`.
 
     .. code:: bash
 
@@ -491,7 +491,7 @@ Software nachinstallieren
 
   - ``apt`` (Debian, Ubuntu, Kali Linux, ...)
   
-  .. class:: not-important
+  .. class:: minor
 
   - ``yum`` (RedHat, CentOS, ...)
   - ``pacman`` (Arch Linux, ...)

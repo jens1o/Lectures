@@ -14,7 +14,7 @@
 .. role:: red
 .. role:: green
 .. role:: blue
-.. role:: not-important
+.. role:: minor
 .. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
@@ -132,7 +132,7 @@ Reguläre Ausdrücke (Grundlagen)
  
      echo "abc-123[a-z]" | grep -Eo "\[a-z\]"
 
-   findet: ``[a-z]`` :not-important:`(aber nicht "abc")`
+   findet: ``[a-z]`` :minor:`(aber nicht "abc")`
 
 
 Reguläre Ausdrücke (Grundlagen)

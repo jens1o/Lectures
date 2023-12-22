@@ -14,7 +14,7 @@
 .. role:: red
 .. role:: green
 .. role:: blue
-.. role:: not-important
+.. role:: minor
 .. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
@@ -346,7 +346,7 @@ Obfuscation - Techniken (Auszug)
 
 .. class:: incremental
 
-- :not-important:`entfernen aller Debug-Informationen`
+- :minor:`entfernen aller Debug-Informationen`
 - das Kürzen aller möglichen Namen (insbesondere Methoden und Klassennamen)
 - das Verschleiern von Konstanten durch den Einsatz vermeintlich komplexer Berechnungen zu deren Initialisierung.
 
@@ -413,7 +413,7 @@ Die Java Virtual Machine
 .. class:: incremental
 
 - **Java Bytecode** ist die Sprache, in der Java (oder Scala, Kotlin, Groovy, ...) Programme auf der Java Virtual Machine (JVM) [#]_ ausgeführt werden.
-- :not-important:`In den meisten Fällen arbeiten Java Decompiler so gut, dass ein tiefgehendes Verständnis von Java Bytecode selten notwendig ist.`
+- :minor:`In den meisten Fällen arbeiten Java Decompiler so gut, dass ein tiefgehendes Verständnis von Java Bytecode selten notwendig ist.`
 - Java Bytecode kann, muss aber nicht interpretiert werden. (z.B. können virtuelle Methodenaufrufe in Java schneller sein als in C++)
 
 
