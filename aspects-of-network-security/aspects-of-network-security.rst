@@ -818,7 +818,7 @@ Distributed-Reflected-Denial-of-Service (DRDoS) Angriff
 
     [...] Google's DDoS Response Team has observed the trend that distributed denial-of-service (DDoS) attacks are **increasing exponentially in size**. Last year, we blocked the largest DDoS attack recorded at the time. This August [2023], we stopped an even larger DDoS attack — 7½ times larger — that also used new techniques to try to disrupt websites and Internet services.
 
-    This new series of DDoS attacks reached **a peak of 398 million requests per second (rps)**, and relied on a novel HTTP/2 “Rapid Reset” technique based on stream multiplexing that has affected multiple Internet infrastructure companies. By contrast, last year’s largest-recorded DDoS attack peaked at 46 million rps.
+    This new series of DDoS attacks reached **a peak of 398 million requests per second (rps)**, and relied on a novel HTTP/2 “Rapid Reset” technique based on stream multiplexing that has affected multiple Internet infrastructure companies. By contrast, last year's largest-recorded DDoS attack peaked at 46 million rps.
 
 
 Distributed Denial-of-Service (DDoS) Angriffe 
@@ -1073,17 +1073,17 @@ SSH und :ger-quote:`Back-tunneling`
 .. Lösung:
    1. Schutz gegen Lauscher
    2. Man-in-the-middle
-   3. Der Benutzer w ̈ahlt eine Zufallszahl r, hier r = 769. Berechnet wird nun:
+   3. Der Benutzer wählt eine Zufallszahl r, hier r = 769. Berechnet wird nun:
    769^2 mod 1000 = 361 
    361^2 mod 1000 = 321 
    321^2 mod 1000 = 41 
    41^2 mod 1000 = 681 
    681^2 mod 1000 = 761 
    761^2 mod 1000 = 121
-   1. Fu ̈nfmal. Der Benutzer erh ̈alt folgende Passwortliste: 761, 681, 41, 321, 361
+   1. Fünfmal. Der Benutzer erhält folgende Passwortliste: 761, 681, 41, 321, 361
    2. Der Server speichert: 121
    3. Beim ersten Anmeldevorgang verwendet der Benutzer das erste Passwort auf der Liste, die 761.
-   Der Server berechnet nun 7612 mod 1000 = 121 und vergleicht dies mit dem gespeicherten Wert. Da diese u ̈bereinstimmen, wird der Benutzer angemeldet.
+   Der Server berechnet nun 7612 mod 1000 = 121 und vergleicht dies mit dem gespeicherten Wert. Da diese übereinstimmen, wird der Benutzer angemeldet.
    Der Server speichert jetzt die 761, und der Benutzer streicht die 761 von der Liste, usw.
    1. Keine
 
@@ -1111,7 +1111,281 @@ SSH und :ger-quote:`Back-tunneling`
 Firewalls
 ------------
 
-(Siehe Folien von Prof. Pagnia)
+Unabhängiges Netz - :ger-quote:`Ideale Situation` 
+---------------------------------------------------
+
+.. image:: firewalls/all-save.png
+    :alt: Ideale Situation
+    :align: center
+
+:Vorteile: 
+    
+    - keinerlei Angriffsmöglichkeiten von außen 
+
+:Nachteile:
+
+    - kein Schutz gegen Insider
+    - kein Zugang zum Internet
+
+
+
+Schutzschicht zwischen internem und externem Netz
+------------------------------------------------------
+
+.. image:: firewalls/firewall.png
+    :alt: Schutzschicht zwischen internem und externem Netz
+    :align: center
+
+- Kontrolle des Nachrichtenverkehrs durch Filterung 
+- begrenzte Isolation mit begrenztem Schutz
+
+.. container:: supplemental
+
+    Eine Firewall schafft zwischen verbundenen Netzen Sicherheitsdomänen mit unterschiedlichem Schutzbedarf. Eine wichtige Teilaufgabe ist das Ausarbeiten von Sicherheitsrichtlinien.
+
+
+Realisierung von Virtual Private Networks (VPN)
+------------------------------------------------------
+
+.. image:: firewalls/vpn.png
+    :alt: Realisierung von Virtual Private Networks (VPN)
+    :align: center
+
+- Aufbau einer scheinbar privaten Verbindung von Firmenteilnetzen über das (öffentliche) Internet
+- Zusätzliche Verbindungsverschlüsselung zwischen den Firewalls.
+
+.. container:: supplemental
+
+    Ziel ist es aktive und passive Angriffe zu unterbinden. (Selbst bei verschlüsselten Verbindungen kann die Verkehrflussanalyse noch Informationen liefern über die Verbindungen liefern.)
+
+
+Schutz auf den Schichten des TCP/IP Stacks
+-----------------------------------------------------------
+
+Zentraler Schutz des gesamten internen Netzwerks durch:
+
+.. class:: incremental
+
+- Paket Filter (:eng:`Packet filtering`) 
+
+  - Blockieren bestimmter IP-Empfänger-Adressen (extern / intern)
+  - Blockieren bestimmter IP-Absender-Adressen (extern / intern)
+    
+    :minor:`(Z.B. aus dem Internet mit internen IP-Absender-Adressen.)`
+  
+  - Blockieren bestimmter Dienste; ggf. nur für bestimmte IP-Adressen
+
+- Filter auf Anwendungsebene (:eng:`Application-level filtering`)
+
+  - inhaltsbezogene Filterung der Verkehrsdaten eines Dienstes
+  - z.B. Virenfilter
+  - wirkungslos bei verschlüsselten Verkehrsdaten
+
+- Protokollierungsmöglichkeit der Kommunikation von / nach extern
+
+
+.. container:: supplemental
+
+    Firewalls (alleine) können die Struktur des Netzwerks nicht verbergen.
+
+
+
+Realisierungsmöglichkeiten von Firewalls
+------------------------------------------------
+
+.. class:: incremental
+
+- Hardware-Firewall
+ 
+  - Screening Router
+  - Application Gateway (auch Bastion Host)
+  
+    - Proxy-Server für bestimmte Dienste
+    - Client-Software (HTTP-Browser, telnet, ftp, ...) 
+    - Server-Software 
+
+- Software-Firewall (Personal Firewall)
+
+
+.. container:: supplemental
+
+    Im Falle eines :eng:`Bastion Host`, ist dies der einzige unmittelbar erreichbare Rechner.
+
+
+.. .. class:: vertical-title
+
+Dual-Homed Host
+----------------
+
+.. image:: firewalls/dual-homed-host.png 
+    :alt: Dual-Homed Host
+    :align: right
+    :class: border-transparent-1em
+
+**Aufbau**
+
+- zwei Netzwerkkarten: ggf. private interne Adressen
+- Screening Router & Gate: Packet Filter und Application-Level Filter
+- Proxy-Dienste installieren 
+- Benutzer-Logins von extern
+- Konf. der Netzwerkkarten: IP-Pakete nicht automat. Weiterleiten
+
+
+Screening Router
+---------------------
+
+.. image:: firewalls/screening-router.png 
+    :alt: Screening Router
+    :align: right
+    :class: border-transparent-1em 
+
+**Aufbau**
+
+- programmierbarer HW-Router 
+- simple Filterfunktionen:
+
+  - nur Paket-Header prüfen  
+  - schnelle Auswertung ermöglicht hohen Durchsatz
+
+- Realisierung eines Packet Filters
+
+**Bewertung**
+
+.. container:: two-columns no-default-width
+
+    .. container:: column
+        
+        .. class:: positive-list
+
+        - einfach und billig
+        - flexibel
+        
+    .. container:: column
+
+        .. class:: negative-list
+
+        - schwer zu testen
+        - Protokollierung
+        - Fernwartung 
+        - keine Inhaltsfilterung 
+
+
+Screened Host
+-----------------
+
+.. image:: firewalls/screened-host.png 
+    :alt: Screened Host
+    :align: right
+    :class: border-transparent-1em
+
+**Aufbau**
+
+- Screening Router blockiert:
+
+  - Pakete von / an interne Rechner (nicht Gate)
+  - Source-Routed Pakete
+
+- von extern nur Gate sichtbar 
+- Pakete von intern nur via Gate
+- Gate bietet Proxy-Server (z.B. für E-Mail)
+
+
+.. container:: supplemental
+
+    Gibt es für eine bestimmte Anwendung kein Application-level Proxy, dann kann auf einen für TCP/UDP generischen Proxy zurückgegriffen werden. Dieser arbeitet auf dem Session Layer und kann nur die Header-Informationen auswerten. Es handelt sich dann um ein :eng:`Circuit-level Proxy/Gateway`. Im Vergleich zu einem Application-level Proxy ist die Sicherheit geringer, da der Circuit-level Proxy nicht in der Lage ist, die Daten zu interpretieren.
+
+    Ein allgemeines Problem ist, dass viele Anwendungen auf generische Protokolle wie HTTP aufsetzen. Weiterhin betreiben einige Anwendungen :ger-quote:`Port Hopping`, d.h. sie wechseln den Port wenn der Standardport nicht offen ist.
+
+    Eine Anforderung an :ger-quote:`Next-generation Firewalls` ist, dass diese die Analyse von den Daten einer Anwendung unabhängig vom Port und Protokoll ermöglichen.
+
+
+Konfiguration eines Gateways
+---------------------------------
+
+Das Ziel der Konfiguration muss eine minimale angreifbare Oberfläche sein.
+
+.. class:: incremental
+
+- Abschalten aller nicht-benötigten Netzdienste
+- Löschen aller nicht benötigter Programme
+- Rechte von /bin/sh auf 500 setzen
+- Rechte aller Systemverzeichnisse auf 711 setzen
+- keine regulären Benutzerkennungen
+- root-Login mit Einmal-Passwortsystem
+- setzen von Platten- und Prozess-Quotas
+- volle Protokollierung, möglichst auf Hardcopy-Gerät
+- möglichst sichere, stabile und regelmäßig aktualisierte Betriebssystemversion einsetzen
+
+
+Screened Subnet
+----------------
+
+.. image:: firewalls/screened-subnet.png 
+    :alt: Screened Subnet
+    :align: right
+
+
+**Aufbau**
+
+.. class:: incremental
+
+- interner Screening Router als dritter Schutzwall
+
+  - blockiert Dienste, die nicht einmal bis zum Gate gelangen sollen
+  - lässt nur Pakete zum / vom Gate durch
+
+- äußeres Netz realisiert Demilitarisierte Zone (DMZ) für HTTP-Server, Mail-Server, ...
+
+
+Intrusion Detection Systeme (IDS)
+--------------------------------------
+
+.. admonition:: Definition
+
+    Ein IDS ist ein Gerät (meist ein speziell konfigurierter Rechner), das vielfältige Techniken zur Erkennung von Angriffen anwendet und Angriffe meldet und ggf. abwehrt, in dem (z.B.) die Firewall automatisch umkonfiguriert wird.
+
+.. container:: incremental
+
+    **Motivation**
+
+    .. class:: incremental
+
+    - Firewalls alleine sind zu statisch und deswegen häufig nicht ausreichend
+    - bessere Aufzeichnung und flexiblere Erkennung notwendig 
+    - angepasste Reaktion notwendig
+
+.. container:: incremental
+
+    **Umsetzung**
+
+    An verschiedenen, neuralgischen Stellen werden spezielle Sensoren platziert, die (hier) den Netzwerkverkehr überwachen und verdächtige Aktivitäten melden.
+
+.. container:: supplemental
+
+    Miteinander verwandt bzw. typischerweise in einem Produkt zu finden:
+
+    - Intrusion Detection (IDS) 
+    - Intrusion Response (IRS)
+    - Intrusion Prevention (IPS)
+
+
+
+IDS-Erkennungstechniken
+----------------------------
+
+- Signaturerkennung
+- statistische Analyse
+- Anomalieerkennung
+
+
+.. admonition:: Probleme
+    :class: incremental
+
+    - Fälschlicherweise gemeldete Angriffe (false positives) 
+    - nicht gemeldete Angriffe (false negatives) (insb. bei neuartigen Angriffen)
+    - Echtzeitanforderung, insb. bei Hochgeschwindigkeitsnetzen 
+    - Aufzeichnung bei Netzwerken mit Switches ( ⇒ spez. SPAN Port)
+    - Sensoren sollen unbeobachtbar sein (stealth)
 
 
 .. class:: integrated-exercise transition-move-left
@@ -1119,7 +1393,7 @@ Firewalls
 Übung: Firewalls
 ------------------
 
-1. Was sind Vorteile eines Dual Homed Host gegenüber einem Packetfilter? Was sind die Nachteile?
+1. Was sind Vorteile eines Dual Homed Host gegenüber einem Paketfilter? Was sind die Nachteile?
 
 2. Benennen Sie die zwei konzeptionelle Grenzen von Firewalls. D.h. zwei Szenarien gegen die Firewalls nicht schützen können.
 
@@ -1134,12 +1408,230 @@ Firewalls
 
 .. Lösung:
     1.
-    Ein Dual Homed Host ist ein Computer mit zwei Netzwerkschnittstellen. Zur Verwendung als Firewall wird das Routing, also die Weiterleitung von IP-Paketen zwischen den Schnittstellen, abgeschaltet. Damit ko ̈nnen keine Pakete direkt zwischen den Netzen ausgetauscht werden und alle Verbindungen enden am Dual Homed Host. Um Daten weiterzuleiten, muss auf dem Dual Homed Host ein Proxy laufen, der eine Verbindung annimmt und eine neue Verbindung in das andere Netz aufbaut (gesteuert u ̈ber Regel- und Berechtigungstabellen). Man kann u ̈ber diese Application Level Gateways eine gute inhaltliche Kontrolle der u ̈bertragenen Daten durchfu ̈hren, bei E-Mail beispielsweise eine L ̈angenbegrenzung oder eine Erkennung von mitgeschickten ausfu ̈hrbaren Programmen, die dann automatisch gepru ̈ft oder entfernt werden ko ̈nnten. Fu ̈r jeden freigeschalteten Dienst beno ̈tigt man einen speziellen Proxy.
-    Ein Risiko bei Dual Homed Hosts ist die U ̈bernahme des Hosts durch einen Angreifer. Dieser hat dann u ̈ber die entsprechende Netzwerkschnittstelle des Dual Homed Hosts vollst ̈andigen Zugriff auf das interne Netz.
+    Ein Dual Homed Host ist ein Computer mit zwei Netzwerkschnittstellen. Zur Verwendung als Firewall wird das Routing, also die Weiterleitung von IP-Paketen zwischen den Schnittstellen, abgeschaltet. Damit können keine Pakete direkt zwischen den Netzen ausgetauscht werden und alle Verbindungen enden am Dual Homed Host. Um Daten weiterzuleiten, muss auf dem Dual Homed Host ein Proxy laufen, der eine Verbindung annimmt und eine neue Verbindung in das andere Netz aufbaut (gesteuert über Regel- und Berechtigungstabellen). Man kann über diese Application Level Gateways eine gute inhaltliche Kontrolle der übertragenen Daten durchführen, bei E-Mail beispielsweise eine Längenbegrenzung oder eine Erkennung von mitgeschickten ausführbaren Programmen, die dann automatisch geprüft oder entfernt werden könnten. Für jeden freigeschalteten Dienst benötigt man einen speziellen Proxy.
+    Ein Risiko bei Dual Homed Hosts ist die Übernahme des Hosts durch einen Angreifer. Dieser hat dann über die entsprechende Netzwerkschnittstelle des Dual Homed Hosts vollständigen Zugriff auf das interne Netz.
     2.
     - Hintertüren - sollte es Kommunikationsübergänge an der Firewall vorbei geben,  so können diese von Angreifern genutzt werden.
     - Interne Angriffe - diesbezüglich gibt es keine Unterschiede zu einem Netzwerk ohne Firewall.
     - Vertrauenswürdigkeit der Kommunikationspartner
-    3. Die Hauptaufgabe von Firewalls ist es Angriffen entgegenzuwirken (3.) Eine Reaktion auf Angriffe ist nicht möglich, da Firewalls keine Angriffe erkennen können, die sie nicht abwehren können. Eine Reaktion auf Angriffe ist Aufgabe von Intrusion Detection Systemen.
+    3. Die Hauptaufgabe von Firewalls ist es Angriffen entgegenzuwirken; (3.) Eine Reaktion auf Angriffe ist für klassische Firewalls nicht möglich. Eine Reaktion auf Angriffe ist Aufgabe von Intrusion Detection Systemen. Moderne Firewalls integrieren jedoch häufig auch Funktionen von Intrusion Detection Systemen.
     4. ... die Mails sollen ja den Mailserver erreichen; eine inhaltsbasierte Beurteilung des Inhalts einer Mail ist nicht Aufgabe einer Firewall. 
+
+
+
+
+Tor (The Onion Router)
+---------------------------
+
+.. class:: incremental
+
+- Anwendungsunabhängiger :eng:`low-latency` **Anonymisierungsdienst für TCP-Verbindungen**, der den Standort und die IP des Nutzers verschleiert
+- Typische Anwendung: anonymes Surfen im Internet und Instant Messaging (z.B. Briar)
+- Frei und Open Source
+- gegründet 2002, öffentlich nutzbar seit 2003, Code seit 2004 frei verfügbar
+- Baut ein *Overlay-Netzwerk* auf
+- Grundlegendes Prinzip: Onion Routing
+
+.. container:: supplemental
+
+    :eng:`low-latency` bedeutet, dass die Verzögerung durch die Anonymisierung gering ist. Dies ist wichtig für die Nutzbarkeit von Tor für Instant Messaging und das Surfen im Internet. 
+
+    :eng:`Overlay-Netzwerk` bedeutet, dass Tor ein eigenes Netzwerk aufbaut, welches auf dem Internet aufsetzt. Die Verbindungen zwischen den Tor-Knoten werden verschlüsselt. 
+
+
+
+Tor - Verwendung und Sicherheit
+--------------------------------
+
+.. class:: incremental
+
+- legale/intendierte Nutzungen: :eng:`Whistleblowers`, oder Nutzer mit allg. Datenschutzbedürfnissen, Dissidenten, Journalisten, ...
+- illegale Zwecke (Darknet)r. 
+
+  .. container:: smaller minor
+
+    Es wird geschätzt, dass etwa 80% des Datenverkehrs im Zusammenhang mit dem Zugriff auf Kinderpornografie steht.
+
+- Mehrere Sicherheitslücken wurden in der Vergangenheit gefunden und geschlossen. Angriffsziele [#]_ waren:
+  
+  - :minor:`DoS Attacken`
+  - **Deanonymisierungsattacken**
+  - **Identifikation von Onion Services (:eng:`Hidden Services`)**.
+
+.. [#] (`Aufstellung von Angriffen auf Tor <https://github.com/Attacks-on-Tor/Attacks-on-Tor#correlation-attacks>`__).
+
+
+.. container:: supplemental
+
+    .. epigraph::
+
+        [Sicherheitslücke gefunden in 2013] :ger:`Wenn ein einzelner Nutzer Tor über einen längeren Zeitraum [3 bis 6-Monate, abhängig von vielen Faktoren] regelmäßig nutzt, ist es fast sicher, dass er *de-anonymisiert* werden kann.` [Übersetzt mit DeepL.]
+
+        -- https://www.infosecurity-magazine.com/news/tor-is-not-as-safe-as-you-may-think/
+
+
+
+Tor - Hintergrund
+------------------
+
+.. class:: incremental
+
+- Die grundlegende Idee ist es eine Trennung zwischen der Quelle und dem Ziel des Datenverkehrs zu schaffen.
+- Der Datenverkehr wird über **mehrere Knoten** (Relays) umgeleitet, die jeweils nur den vorherigen und den nächsten Knoten kennen.
+- Der Pfad wird dazu vorher ausgewählt und der gesamte Datenverkehr entsprechend des Pfades verschlüsselt.
+- Tor bietet Anonymität auch für die Serverseite durch Onion Services/Hidden Services, die nur über eine von Tor vergebene Onion-Adresse erreicht werden können
+
+
+Tor - Bedrohungsmodel
+----------------------
+
+Einem Angreifer gelingt es:
+
+- einen Teil der Kommunikation zu beobachten und 
+- nur einen Teil der Tor-Knoten zu kontrollieren, indem er entweder eigenen Onion-Routers betreibt oder einen bereits laufenden Onion-Router kompromittiert.
+
+.. admonition:: Warnung
+   :class: incremental margin-top-2em
+
+   Folgendes Szenario ist nicht abgedeckt: Ein Angreifer, der beide Enden der Kommunikation, den ``Entry Guard`` und den ``Exit Guard`` überwachen kann.
+   
+   Gegen solche Angreifer bietet Tor keine Anonymität.
+
+
+
+
+Tor - Aufbau
+----------------
+
+
+
+
+Onion Routing
+---------------
+
+xxx
+
+
+.. container:: supplemental
+
+    :`Onion Routing`:eng:: bedeutet, dass die Datenpakete mehrfach verschlüsselt werden. Jeder Tor-Knoten kann nur die Verschlüsselungsschicht entfernen, die er selbst hinzugefügt hat. Daher ist es für einen Tor-Knoten nicht möglich zu sehen, woher die Datenpakete kommen und wohin sie gehen. 
+
+    :Tor-Knoten: Rechner, die das Tor-Netzwerk bilden. Es gibt drei Arten von Tor-Knoten:
+
+      - :eng:`Entry Nodes` (auch :eng:`Guard Nodes`): Diese Knoten sind die ersten Knoten in der Kette. Sie kennen die IP-Adresse des Clients. Sie können den Datenverkehr nicht entschlüsseln. Sie können aber sehen, dass der Datenverkehr von einem bestimmten Client kommt. 
+      - :eng:`Middle Nodes`: Diese Knoten sind die mittleren Knoten in der Kette. Sie kennen weder die IP-Adresse des Clients noch die IP-Adresse des Ziels. Sie können den Datenverkehr nicht entschlüsseln. Sie können aber sehen, dass der Datenverkehr von einem bestimmten Entry Node kommt und an einen bestimmten Exit Node geht. 
+      - :eng:`Exit Nodes`: Diese Knoten sind die letzten Knoten in der Kette. Sie kennen die IP-Adresse des Ziels. Sie können den Datenverkehr entschlüsseln. Sie können aber nicht sehen, von welchem Entry Node der Datenverkehr kommt. 
+
+    :Tor-Netzwerk: besteht aus mehreren tausend Tor-Knoten. Viele Knoten sind freiwillig betriebene Knoten. 
+
+    :Tor-Organisation: ist eine gemeinnützige Organisation, die das Tor-Netzwerk betreibt. Sie wird unter anderem von der US-Regierung finanziert.
+
+
+
+Onion Services/Hidden Services
+-----------------------------------
+
+- Server, die Anfragen nur aus dem Tor-Netzwerk annehmen, werden als Onion Services (aka :eng:`Hidden Services`) bezeichnet. 
+- ``.onion`` ist eine **Pseudo**-Top-Level-Domain, die für Onion Services verwendet wird.
+- Onion Services können nur über das Tor-Netzwerk erreicht werden. 
+  
+  :minor:`Onion-Adresse der New-York-Times im Tor Netzwerk: https://nytimesn7cgmftshazwhfgzm37qxb44r64ytbb2dj3x62d2lljsciiyd.onion (Aus Deutschland faktisch nicht nutzbar.)` 
+
+
+
+Tor Browser
+---------------
+
+Standardanwendung für den Zugriff auf das Tor-Netzwerk.
+
+.. container:: stack
+
+    .. container:: layer 
+        
+        .. image:: nyt-accessed-via-tor-onion-service.png
+            :alt: Tor Browser mit Ney-York-Times - 01.01.2024
+            :align: center
+            :width: 1000px
+
+    .. container:: layer incremental
+
+        **Sicherheitseinstellungen des Tor Browsers**       
+        
+        :Standard: alle Browserfunktionen sind aktiviert.
+        :Sicherer: JavaScript ist auf Nicht-HTTPS-Seiten deaktiviert. Wenn JavaScript aktiviert ist, dann sind die Leistungsoptimierungen deaktiviert. Audio und Video (HTML5-Medien) sowie WebGL werden nur nach Mausklick abgespielt.
+        :Sicher: (zusätzlich) JavaScript ist immer deaktiviert. Einige Schriftarten, Symbole, mathematische Symbole und Bilder sind deaktiviert.
+
+
+.. container:: supplemental
+
+    Das Tor-Netzwerk erlaubt ggf. das Setzen des ``Exit Nodes``, um zum Beispiel geografische Sperren zu umgehen. Entsprechende Dienstanbieter können dies jedoch ggf. erkennen und verweigern dennoch den Zugriff.
+
+
+
+
+Tor
+----
+
+.. class:: positive-list incremental
+
+- Schützt vor der Analyse des Datenverkehrs. 
+
+  Von `SecureDrop <https://securedrop.org/>`__ wird zum Beispiel für Whistleblower empfohlen sich mit dem SecureDrop Service über Tor zu verbinden und erst dann Dokumente hochzuladen.
+
+- Schützt relativ effektiv vor Website-/Browser Fingerprinting.
+
+.. class:: negative-list incremental
+
+- Teilweise sehr langsam
+- Monitoring des Netzwerks an den Grenzen möglich 
+- Ende-zu-Ende Korrelation von Datenverkehr möglich
+- Die Anonymität hängt auch von der Anzahl der Nutzer ab.
+
+
+.. container:: supplemental
+
+    *(Cross-)Browser Fingerprinting*
+
+    Durch das Sammeln vieler (auch kleiner) Informationen über den/die Browser und das Betriebssystem kann ein für praktische Zwecke hinreichend eindeutiger Fingerabdruck erstellt werden. Dieser kann dann zur Identifikation des Nutzers verwendet werden.
+
+    Kleiner Auszug aus den möglichen Informationen:
+
+    - System Fonts
+    - Werden Cookies unterstützt?
+    - Betriebssystem
+    - Betriebssystem Sprache 
+    - Keyboard layout
+    - Art/Version des Browsers
+    - verfügbare Sensoren: Beschleunigungssensor, Näherungssensor, Gyroskop
+    - verfügbare Browser Plugins
+    - HTTP-Header Eigenschaften
+    - CPU Klasse
+    - HTML 5 Canvas Fingerprinting 
+    - Unterstützung von Multitouch
+
+    *Monitoring des Netzwerks an den Grenzen*
+
+    Hat in der Vergangenheit dazu geführt, dass Nutzer von Tor-Netzwerken identifiziert werden konnten.
+
+    *Ende-zu-Ende Korrelation von Datenverkehr* 
+
+    Auch als :eng:`traffic confirmation`` bekannt. Diese Art von Attacke ist möglich, wenn Relay Knoten am Anfang und am Ende der Verbindung kontrolliert werden. Die Angreifer können dann den Datenverkehr an beiden Enden beobachten und die Datenpakete korrelieren z.B. basierend auf statistischen Informationen über die Zeitpunkte und Volumen von Datenflüssen. 
+
+
+
+
+.. class:: integrated-exercise transition-move-left
+
+TOR
+-----
+
+- Warum hätte das Abschalten von TOR auf kriminelle Aktivitäten im Internet vermutlich nur einen geringeren Einfluss?
+  
+.. **ANTWORT**
+   Es gibt zahlreicher weitere Dienste, die ähnliche Funktionalität bieten. Darüber hinaus haben kriminelle Organisationen ggf. die Mittel sich alternative Lösungen zu schaffen.
+
+- Was ist der Unterschied zwischen einem Proxy und einem Tor-Server?
+
+.. **Antwort**
+   Ein Proxy ist ein Server, der als Vermittler zwischen einem Client und einem Server fungiert. Ein Tor-Server ist ein Server, der als Vermittler zwischen einem Client und einem Server fungiert, der selbst ein Tor-Server ist. Ein Tor-Server ist also ein Proxy, aber ein Proxy ist nicht unbedingt ein Tor-Server.
 

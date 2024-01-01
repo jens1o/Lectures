@@ -1,4 +1,9 @@
+# Folders with generated images
 idle-scan
 ssh
+firewalls
+resources
+
+# individual generated images
 connection-hijacking.svg
 smurf-angriff.svg
