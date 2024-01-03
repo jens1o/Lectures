@@ -2,7 +2,10 @@
 idle-scan
 ssh
 firewalls
-resources
+tor
+
+# Folder with external resources such as papers 
+resources 
 
 # individual generated images
 connection-hijacking.svg
