@@ -1831,8 +1831,8 @@ Tor
 
 .. class:: integrated-exercise transition-move-left
 
-TOR
------
+Übung: Tor
+-----------
 
 - Ist es für Onion Services notwendig auf HTTPS zu setzen oder reicht HTTP für eine sichere Kommunikation?
 
