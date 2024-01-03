@@ -1593,12 +1593,22 @@ Onion Routing
     :Cells: sind die Datenpakete, die zwischen den Tor-Knoten ausgetauscht werden. Cells sind immer 512Byte groß, um es unmöglich zu machen anhand der Größe der Datenpakete Rückschlüsse auf die Daten zu ziehen.
 
 
-Initiierung eines Circuits
------------------------------
 
-TODO 
+.. class:: vertical-title tiny
 
-De Client verwendet die Onion Keys, um mittels Diffie-Hellman.. nochmal nachschauen! ... einen gemeinsamen Schlüssel mit dem Entry Node zu erzeugen. Dieser Schlüssel wird verwendet um die *Create* Zelle zu verschlüsseln. Diese Zelle enthält die Onion Keys für den Entry Node. Der Entry Node verwendet diese Onion Keys um die *Create* Zelle zu entschlüsseln und den gemeinsamen Schlüssel zu erzeugen. Dieser Schlüssel wird verwendet um die *Create* Zelle für den Middle Node zu verschlüsseln. Dieser Vorgang wird für jeden Tor-Knoten wiederholt. 
+Initiierung eines Circuits (konzeptionell)
+--------------------------------------------
+
+.. image:: tor/tor-circuit-creation.svg
+    :alt: Initiierung eines Circuits
+    :align: center
+    :width: 1800px
+
+.. container:: supplemental
+
+    Jeder Tor-Knoten verfügt über mehrere Keys. Für den Aufbau der Verbindung werden die *Onion Keys* verwendet. Mit Hilfe dieser werden die initialen Datenpakete mittels Public-Key Kryptografie verschlüsselt. Dies wird benötigt, um den AES Key - einer pro Knoten - der für den eigentlichen Versand benötigt wird, auszuhandeln und sicher zu übertragen.
+
+    In der Grafik wird der Aufbau eines Circuits mit zwei Tor-Knoten dargestellt. Der Client kennt die Onion Keys der Tor-Knoten (``OR1`` und ``OR2``). Die Onion Keys werden verwendet, um die *Create* Zelle zu verschlüsseln. Der Entry Node verwendet diese Onion Keys um die *Create* Zelle zu entschlüsseln und den gemeinsamen Schlüssel zu erzeugen. Um einen längeren Pfad aufzubauen, muss der Client ggf. einfach mehrere ``Extend`` Nachrichten versenden. Erhält ein Knoten eine Relay Nachricht, dann kann der Knoten diese mit dem mit ihm ausgehandelten AES Key entschlüsseln und die Nachricht weiterleiten. Er kann den Inhalt (zum Beispiel eine weitere Relay Nachricht oder eine Extend Nachricht) nicht lesen.
    
    
 
@@ -1685,17 +1695,6 @@ Informationen über Tor Relays
         1337 Services GmbH / RDP.sh (AS210558)
 
 
-Tor Relays: ``Exit Policy``
------------------------------
-
-Jeder ``Node`` legt in seiner ``Exit Policy`` genau fest welchen Datenverkehr weiterleiten möchte:
-
-- Es gibt offene Exit Nodes, die alle Anfragen weiterleiten.
-- Es gibt Knoten, die die Daten nur an weitere Tor-Knoten weiterleiten.
-- Es gibt Knoten, die nur bestimmte Dienste (z.B. HTTPs) weiterleiten.
-- Es gibt :ger-quote:`private Exit Nodes`, die nur zu einem bestimmten Netz Verbindungen aufbauen.
-
-
 Tor Exit Nodes
 -----------------
 
@@ -1711,6 +1710,19 @@ Die Anzahl der Exit nodes ist deutlich kleiner (2. Jan. 2024 - 1314 Einträge) a
     Reverse IP Lookup für 130.149.80.199 durchgeführt mit `IP Location Service <https://www.iplocation.net/ip-lookup>`__.
 
 .. [#] `Tor Exit Node Guidelines <https://community.torproject.org/relay/community-resources/tor-exit-guidelines/>`__
+
+
+
+
+Tor Relays: ``Exit Policy``
+-----------------------------
+
+Jeder ``Node`` legt in seiner ``Exit Policy`` genau fest welchen Datenverkehr weiterleiten möchte:
+
+- Es gibt offene Exit Nodes, die alle Anfragen weiterleiten.
+- Es gibt Knoten, die die Daten nur an weitere Tor-Knoten weiterleiten.
+- Es gibt Knoten, die nur bestimmte Dienste (z.B. HTTPs) weiterleiten.
+- Es gibt :ger-quote:`private Exit Nodes`, die nur zu einem bestimmten Netz Verbindungen aufbauen.
 
 
 
