@@ -579,7 +579,7 @@ Nachgehakt
 
     Wie bewerten Sie die Sicherheit des Produkts?
 
-.. container:: supplemental excersise-solution
+.. container:: supplemental exercise-solution
 
     **Lösung**
 
@@ -890,7 +890,7 @@ Gedankenexperiment
 
     Werden Sie im Laufe Ihres Lebens in der Lage sein, ein Passwort mit 12 Zeichen zu ermitteln?
 
-.. container:: supplemental excersise-solution
+.. container:: supplemental exercise-solution
 
     Es dauert ca. 3 Monate (~2200 Stunden), um ein Passwort mit 10 Ziffern zu ermitteln!
         
@@ -918,7 +918,7 @@ Gedankenexperiment
     Berechnen Sie den Anteil des Suchraums, den Sie abgesucht haben, wenn das Passwort 32 Zeichen lang sein sollte. Drücken Sie den Anteil des abgesuchten Raums in Relation der Sandkörner der Sahara aus. Gehen Sie davon aus, dass die Sahara ca. 70 Trilliarden (:math:`70 \times 10^{21}`) Sankörner hat.
 
 .. admonition:: Lösung
-    :class: supplemental excersise-solution
+    :class: supplemental exercise-solution
 
     Suchraum: :math:`100^{32} = 10^{64}` 
 
