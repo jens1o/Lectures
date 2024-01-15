@@ -802,12 +802,14 @@ Distributed-Reflected-Denial-of-Service (DRDoS) Angriff
 
 - Nehmen einen signifikanten Teil aller DDoS-Angriffe ein. 
 - Die Tatsache, dass die Sender legitime Server sind, erschwert die Abwehr.
-- :eng:`Egress Filtering` kann helfen, die Verwendung von IP-Spoofing zu verhindern. In diesem Fall verwirft der Router alle Pakete, die eine Absenderadresse verwenden, die nicht aus dem eigenen Netzwerk stammt. 
+- :eng:`Egress Filtering` kann helfen, die Verwendung von IP-Spoofing zu verhindern. 
 
 
 .. container:: supplemental
     
     Bereits im Jahr 2018 wurde ein Angriff mit einer Bandbreite von 1,7 TBit/s beobachtet.
+
+    :Egress Filtering: Der Router verwirft alle Pakete, die eine Absenderadresse verwenden, die nicht aus dem eigenen Netzwerk stammt. 
 
 
 `Distributed Denial-of-Service (DDoS) Angriffe - Beispiel <https://cloud.google.com/blog/products/identity-security/google-cloud-mitigated-largest-ddos-attack-peaking-above-398-million-rps>`__
@@ -895,7 +897,7 @@ Die Idee ist, dass Passwörter nur genau einmal gültig sind und nicht wiederver
 
 - Tokens (z.B. RSA SecurID)
 - Codebuch: Liste von Einmal-Passwörtern, die das gemeinsame Geheimnis sind.
-- S/Key: Passwort wird mit einem Zähler kombiniert und dann gehasht.
+- S/Key: Passwort "wird mit einem Zähler kombiniert" und dann gehasht.
 
 
 Das S/Key Verfahren 
@@ -1043,8 +1045,26 @@ SSH und :ger-quote:`Back-tunneling`
     Es ist in diesem Fall besonders interessant für den Angreifer den SSH Server zum Beispiel bei einem Cloud-Anbieter zu betreiben, welcher von dem Unternehmen  standardmäßig verwendet wird (am Anfang steht immer die Aufklärung!). In diesem Fall wird die Firewall keine ausgehenden SSH-Verbindungen dorthin blockieren.
 
 
-.. class:: integrated-exercise transition-move-left
 
+Schwachstellen in SSH 
+--------------------------
+
+.. epigraph::
+
+    **Nearly 11 million SSH servers vulnerable to new Terrapin attacks**
+    
+    [...]
+    It [The Terrapin attack] manipulates sequence numbers during the handshake process to compromise the integrity of the SSH channel, particularly when specific encryption modes like ChaCha20-Poly1305 or CBC with Encrypt-then-MAC are used. 
+    [...]
+
+    By Bill Toulas  
+
+
+    -- `January 3, 2024 10:06 AM <https://www.bleepingcomputer.com/news/security/nearly-11-million-ssh-servers-vulnerable-to-new-terrapin-attacks/>`__
+
+
+
+.. class:: integrated-exercise transition-move-left
 
 Übung: Port Scans - IDLE Scan
 ------------------------------
@@ -1103,6 +1123,11 @@ SSH und :ger-quote:`Back-tunneling`
    (https://www.cloudflare.com/de-de/learning/ddos/ddos-low-and-slow-attack/)
    Ein Low-and-Slow-Angriff ist eine Art von DoS- oder DDoS-Angriff, der sich auf einen kleinen Strom sehr langsamen Traffics stützt, der auf Anwendungs- oder Serverressourcen abzielt. Im Gegensatz zu herkömmlichen Brute-Force-Angriffen benötigen Low-and-Slow-Angriffe nur sehr wenig Bandbreite und können schwer bekämpft werden, da sie Traffic erzeugen, der nur sehr schwer von normalem Traffic zu unterscheiden ist. Während groß angelegte DDoS-Angriffe wahrscheinlich schnell bemerkt werden, können Low-and-Slow-Attacken über lange Zeiträume unentdeckt bleiben, während der Dienst für echte Nutzer verweigert oder verlangsamt wird.
    Da sie nicht viele Ressourcen benötigen, können Low-and-Slow-Angriffe von einem einzigen Computer aus erfolgreich durchgeführt werden, im Gegensatz zu verteilten Angriffen, für die ein Botnet erforderlich sein kann. Zwei der beliebtesten Tools für Low-and-Slow-Angriffe heißen Slowloris und R.U.D.Y.
+   Was ist ein R.U.D.Y.-Angriff
+   (1) „R U Dead Yet?“ oder R.U.D.Y. ist ein Denial-of-Service-Angriffstool, das zum Ziel hat, einen Webserver durch Senden von Formulardaten bei unsinnig niedriger Geschwindigkeit zu blockieren. Ein R.U.D.Y.-Exploit wird als Low-and-Slow-Angriff kategorisiert, weil er darauf abzielt, einige wenige langwierige Anfragen zu erzeugen, anstatt einen Server mit einem hohen Volumen schneller Anfragen zu überfluten. Ein erfolgreicher R.U.D.Y.-Angriff bewirkt, dass der Ursprungsserver des Opfers für legitimen Traffic unzugänglich wird.
+   (2) Slowloris is a ‘low and slow’ DDoS attack vector. The idea with the Slowloris attack is to saturate the entire TCP stack for the HTTP/S daemon; this is done by slowly opening up connections and then sending an incomplete request in an attempt to keep the connection alive as long as possible. The tool does this slowly, and it is possible in some cases that a single attacking machine can take down a web server.
+   When the limit of concurrent connections is reached on the attacked server, the server can no longer respond to legitimate requests from other users, effectively causing a denial of service.
+   The Slowloris attack aims to fill up the connections table, making it unavailable to serve new legitimate requests from legitimate users. This is accomplished through the use of two primary functionalities: 1. Unstable new connections opening rate – new TCP connections are requested bursty while waiting some time between each burst, making it difficult to be detected by rate-based mitigations 2. Maintain newly established TCP connections – newly established TCP connections are maintained by sending partial data through multiple HTTP requests using the same TCP connection. Forcing the target to keep the connections open while consuming connections table space and memory usage.
    3. Dies kann zum Beispiel auf Seiten eines ISPs geschehen.
 
 
@@ -1156,7 +1181,8 @@ Realisierung von Virtual Private Networks (VPN)
 
 .. container:: supplemental
 
-    Ziel ist es aktive und passive Angriffe zu unterbinden. (Selbst bei verschlüsselten Verbindungen kann die Verkehrflussanalyse noch Informationen liefern über die Verbindungen liefern.)
+    Ziel ist es aktive und passive Angriffe zu unterbinden. 
+    Selbst bei verschlüsselten Verbindungen kann die Verkehrsflussanalyse noch Informationen liefern über die Verbindungen liefern.
 
 
 Kommerzielle VPNs für Endnutzer
@@ -1176,7 +1202,7 @@ Kommerzielle VPNs für Endnutzer
 
     **Nachteile?**
 
-    - Vertrauen in den VPN-Anbieter muss vorhanden sein. Insbesondere, beim Einsatz zum Stärken der Privatsphäre, muss der VPN-Anbieter vertrauenswürdig sein und sollte ein so genannter "no-log" Anbieter sein. Es gibt auch (kostenlose) VPN-Anbieter, die die Daten der Nutzer verkaufen (`Facebook Onavo <https://techcrunch.com/2019/02/21/facebook-removes-onavo/?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAGVIppEgEOd9Z0FoMbmk2TCleRmD9wCMWDmIzGYEjIo1c7Cmz8NpiSoibthFG5IZQzmZ-kiJq-5Wj1bj21byh7YUrC_aSJJk1Bapwz80GSgzLFS-LHCF2OOetUYLSKwEG7W75znuqJJBJcNTTbtJ1UGB95Yu90saK9aIIkEywcRq>`__).
+    - Vertrauen in den VPN-Anbieter muss vorhanden sein. Insbesondere, beim Einsatz zum Stärken der Privatsphäre, muss der VPN-Anbieter vertrauenswürdig sein und sollte ein so genannter "no-log" Anbieter sein. Es gibt auch (kostenlose) VPN-Anbieter, die die Daten der Nutzer verkaufen (ehemals: `Facebook Onavo <https://techcrunch.com/2019/02/21/facebook-removes-onavo/?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAGVIppEgEOd9Z0FoMbmk2TCleRmD9wCMWDmIzGYEjIo1c7Cmz8NpiSoibthFG5IZQzmZ-kiJq-5Wj1bj21byh7YUrC_aSJJk1Bapwz80GSgzLFS-LHCF2OOetUYLSKwEG7W75znuqJJBJcNTTbtJ1UGB95Yu90saK9aIIkEywcRq>`__).
 
 
 
@@ -1227,7 +1253,7 @@ Realisierungsmöglichkeiten von Firewalls
     - Client-Software (HTTP-Browser, telnet, ftp, ...) 
     - Server-Software 
 
-- Software-Firewall (Personal Firewall)
+- Software-Firewall (*Personal Firewall*)
 
 
 .. container:: supplemental
@@ -1251,7 +1277,7 @@ Dual-Homed Host
 - Screening Router & Gate: Packet Filter und Application-Level Filter
 - Proxy-Dienste installieren 
 - Benutzer-Logins von extern
-- Konf. der Netzwerkkarten: IP-Pakete nicht automat. Weiterleiten
+- Konf. der Netzwerkkarten: IP-Pakete nicht automat. weiterleiten
 
 
 Screening Router
@@ -1264,7 +1290,7 @@ Screening Router
 
 **Aufbau**
 
-- programmierbarer HW-Router 
+- programmierbarer Hardwarerouter 
 - simple Filterfunktionen:
 
   - nur Paket-Header prüfen  
@@ -1352,7 +1378,7 @@ Screened Subnet
 
 .. class:: incremental
 
-- interner Screening Router als dritter Schutzwall
+- interner Screening Router als weiterer Schutzwall
 
   - blockiert Dienste, die nicht einmal bis zum Gate gelangen sollen
   - lässt nur Pakete zum / vom Gate durch
@@ -1418,7 +1444,7 @@ IDS-Erkennungstechniken
 
 1. Was sind Vorteile eines Dual Homed Host gegenüber einem Paketfilter? Was sind die Nachteile?
 
-2. Benennen Sie die zwei konzeptionelle Grenzen von Firewalls. D.h. zwei Szenarien gegen die Firewalls nicht schützen können.
+2. Benennen Sie zwei konzeptionelle Grenzen von Firewalls. D.h. zwei Szenarien gegen die Firewalls nicht schützen können.
 
 3. Für welche der folgenden Cybersicherheitsstrategien können Firewalls eingesetzt werden:
    
@@ -1437,7 +1463,7 @@ IDS-Erkennungstechniken
     - Hintertüren - sollte es Kommunikationsübergänge an der Firewall vorbei geben,  so können diese von Angreifern genutzt werden.
     - Interne Angriffe - diesbezüglich gibt es keine Unterschiede zu einem Netzwerk ohne Firewall.
     - Vertrauenswürdigkeit der Kommunikationspartner
-    3. Die Hauptaufgabe von Firewalls ist es Angriffen entgegenzuwirken; (3.) Eine Reaktion auf Angriffe ist für klassische Firewalls nicht möglich. Eine Reaktion auf Angriffe ist Aufgabe von Intrusion Detection Systemen. Moderne Firewalls integrieren jedoch häufig auch Funktionen von Intrusion Detection Systemen.
+    3. Die Hauptaufgabe von Firewalls ist es Angriffen entgegenzuwirken; (3.) Eine Reaktion auf Angriffe ist für klassische Firewalls nicht möglich. Eine Reaktion auf Angriffe ist Aufgabe von Intrusion Detection Systemen. Moderne Firewalls integrieren jedoch häufig auch Funktionen von Intrusion Detection Systemen. (Angriffe können nicht vermieden werden, da dies nicht in der Macht der Firewall liegt. Klassische/Einfache Firewalls können keine Angriffe erkennen.
     4. ... die Mails sollen ja den Mailserver erreichen; eine inhaltsbasierte Beurteilung des Inhalts einer Mail ist nicht Aufgabe einer Firewall. 
 
 
@@ -1479,7 +1505,7 @@ Tor - Verwendung und Sicherheit
   
   - :minor:`DoS Attacken`
   - Deanonymisierungsattacken
-  - Identifikation von *Onion Services*
+  - Identifikation von *Onion Services* (aka *Hidden Services*)
 
 .. [#] `Aufstellung von Angriffen auf Tor <https://github.com/Attacks-on-Tor/Attacks-on-Tor#correlation-attacks>`__.
 
@@ -1834,7 +1860,7 @@ Tor
 Übung: Tor
 -----------
 
-- Ist es für Onion Services notwendig auf HTTPS zu setzen oder reicht HTTP für eine sichere Kommunikation?
+- Ist es für *Onion Services* (.onion) notwendig auf HTTPS zu setzen oder reicht HTTP für eine sichere Kommunikation? Ist die Verwendung von HTTPS ggf. sogar problematisch?
 
 .. **Antwort**
    Im Allgemeinen ist es ausreichend wenn Onion Service "nur" HTTP anbieten, da der gesamte Verkehr zwischen Client und Server durch Tor verschlüsselt ist.
@@ -1842,7 +1868,7 @@ Tor
 
    https://support.torproject.org/https/https-1/
 
-- Wie wird der DNS Lookup für normale Webseiten durchgeführt, wenn der Tor Browser verwendet wird? Warum ist dies wichtig?
+- Warum führt der Tor Browser keine DNS Lookups durch? Warum ist dies wichtig und wer kann/muss es stattdessen machen?
 
 .. **ANTWORT**
    Der DNS Lookup wird nicht durch den Tor Browser durchgeführt. Der DNS Lookup wird durch den Exit Node durchgeführt.
@@ -1853,10 +1879,10 @@ Tor
 .. **ANTWORT**
    Es gibt zahlreicher weitere Dienste, die ähnliche Funktionalität bieten. Darüber hinaus haben kriminelle Organisationen ggf. die Mittel sich alternative Lösungen zu schaffen.
 
-- Was ist der Unterschied zwischen einem Proxy und einem Tor-Knoten?
+- Wie vergleichen sich Proxies und Tor-Knoten?
 
 .. **Antwort**
-   Ein Proxy ist ein Server, der als Vermittler zwischen einem Client und einem Server fungiert. Ein Tor-Knoten ist ein Server, der als Vermittler zwischen einem Client und einem Server fungiert, der selbst ein Tor-Knoten ist. Ein Tor-Knoten ist also ein Proxy, aber ein Proxy ist nicht unbedingt ein Tor-Knoten.
+   Ein Proxy ist ein Server, der als Vermittler zwischen einem Client und einem Server fungiert. Ein Tor-Knoten ist ein Server, der als Vermittler zwischen einem Client und einem Server fungiert. Ein Tor-Knoten ist also ein Proxy, aber ein Proxy ist nicht unbedingt ein Tor-Knoten.
 
 - Wie unterscheidet sich Tor von einem VPN?
   
@@ -1865,7 +1891,7 @@ Tor
    - In beiden Fällen kennt der Zielwebserver nicht die IP-Adresse des Clients.
    - Tor ist dezentralisiert und anonym. VPNs sind zentralisiert und nicht anonym; der VPN Anbieter kennt die IP-Adresse des Clients. 
    - Tor ist sehr langsam; VPNs sind schnell(er).
-   - Bei Tor ist dem exit node nicht bekannt wer der Client ist; bei VPNs ist dem VPN Anbieter bekannt wer der Client ist.
+   - Bei Tor ist dem *Exit Node* nicht bekannt wer der Client ist; bei VPNs ist dem VPN Anbieter bekannt wer der Client ist.
    - Tor erlaubt den Zugriff auf .onion Adressen; VPNs nicht.
 
 - Macht es Sinn ein VPN über Tor oder anders herum zu betreiben?
