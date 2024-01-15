@@ -25,12 +25,196 @@
    :format: html
 
 
-CVSS, CVE und OWASP
+CVSS, CVE und CWE/OWASP
 =====================================================
 
 :Dozent: **Prof. Dr. Michael Eichberg**
 :Kontakt: michael.eichberg@dhbw-mannheim.de
 :Version: |date|
+
+
+.. class:: new-section transition-fade
+
+Social-Engineering Angriffe
+-------------------------------------------------------------
+
+
+Ausgewählte Social-Engineering Angriffe bzw. Terminologie
+-------------------------------------------------------------
+
+.. class:: incremental
+
+- sind häufig die Ursache für erfolgreiche Angriffe
+- stellen die größte Bedrohung für die Sicherheit von IT-Systemen dar
+- es wird angenommen, dass die betroffenen Personen es in vielen Fällen nicht merken (Beispiel: "Bewerbungsgespräch")
+- mittels OSINT kann die Vorbereitung von Social-Engineering Angriffen vereinfacht werden
+
+.. container:: supplemental
+
+    Ein vom Angreifer bewusst eingefädeltes Bewerbungsgespräch für eine Position als Administrator könnte zum Beispiel dazu genutzt werden, um Informationen über das Zielsystem zu erhalten, die für einen Angriff nützlich sind (z.B. welche Software wird eingesetzt, wie sieht die Architektur aus, ...). In diesem Fall ist davon auszugehen, dass ein Bewerber zum Beispiel durch ein Headhunter eine gutes Angebot gemacht wird und er dann im Rahmen des Gesprächs gebeten eine (die?) Sicherheitsarchitektur darzustellen.
+
+
+Ausgewählte Social-Engineering Angriffe bzw. Terminologie
+-------------------------------------------------------------
+
+:Phishing and spear phishing: 
+
+    .. container:: incremental
+
+        Phishing nutzt elekr. Kommunikationswege (z.B. E-Mail, SMS, ...) um an Informationen zu gelangen. Spear phishing ist eine spezielle Form des Phishings, bei der der Angreifer auf eine bestimmte Zielgruppe oder Person abzielt.
+
+:Smishing: 
+ 
+    .. container:: incremental
+
+        Phishing mit Hilfe von SMS.
+
+:Vishing:
+
+    .. container:: incremental
+
+        `Phishing mit Hilfe von Telefonanrufen <https://www.europol.europa.eu/publications-events/publications/vishing-calls>`__. (z.B. "Anrufe von Europol")
+
+:Whaling:
+
+    .. container:: incremental
+
+        Phishing, das sich gegen hochrangige und sehr ausgewählte Personen richtet (z.B. den CEO eines Unternehmens).
+
+
+:Spam / Spam over Internet messaging (SPIM):
+
+
+    .. container:: incremental
+
+        Unerwünschte und nicht angeforderte E-Mail-Nachrichten oder Nachrichten in sozialen Medien bzw. Instant Messaging-Diensten.
+
+
+Ausgewählte Social-Engineering Angriffe bzw. Terminologie
+-------------------------------------------------------------
+
+:Dumpster diving:
+
+    .. container:: incremental
+
+        Durchsuchen von :ger-quote:`Müllcontainern` nach Informationen, die für einen Angriff nützlich sein könnten.
+
+:Shoulder surfing:
+
+    .. container:: incremental
+
+        Beobachten von Personen, die sich an einem Computer anmelden, um das Passwort zu erfahren oder die sensitive Informationen auf dem Schreibtisch liegen haben.   
+
+:Pharming:
+
+    .. container:: incremental
+
+        Manipulation des DNS-Servers, um den Nutzer auf eine gefälschte Webseite zu leiten, um dann sensitive Informationen zu erlangen.
+
+:Tailgating:
+
+    .. container:: incremental
+
+        Ein Angreifer nutzt die Zugangsberechtigung einer Person, um sich Zugang zu einem Gebäude zu verschaffen ohne das die Person dies bemerkt oder gar zustimmt. Dies kann durch Zugangsschleusen verhindert werden, die immer nur einer Person den Zugang gewähren. 
+
+
+
+Ausgewählte Social-Engineering Angriffe bzw. Terminologie
+-------------------------------------------------------------
+
+
+:Eliciting information:
+
+    .. container:: incremental
+
+        Der Angreifer versucht durch geschicktes Fragen an Informationen zu gelangen, die für einen Angriff nützlich sein könnten.
+
+
+:Identity fraud:
+
+    .. container:: incremental
+
+        Identitätsdiebstahl. Der Angreifer gibt sich als jemand anderes aus, um an Informationen zu gelangen oder um eine Straftat zu begehen.
+
+
+:Invoice scams:
+
+    .. container:: incremental
+
+        Versenden von Rechnungen, die man nicht gekauft hat. (Z.B. Rechnungen für Postzustellung.)
+
+
+Ausgewählte Social-Engineering Angriffe bzw. Terminologie
+-------------------------------------------------------------
+
+
+:Credential harvesting:
+
+    .. container:: incremental
+
+        Sammlung von Zugangsdaten, die durch Sicherheitslücken in Systemen oder durch Phishing erlangt wurden. (Häufig konnten auch Zugangsdaten und Zertifikate in öffentlichen Repositories gefunden werden.)
+
+
+:Hoax:
+
+    .. container:: incremental
+
+        Eine bewusste Falschmeldung, die Menschen dazu veranlasst etwas falsches zu glauben. 
+
+
+:Impersonation or pretexting: 
+
+    .. container:: incremental
+
+        Vorgabe einer falschen Identität (z.B. als Mitarbeiter des IT-Supports) D.h. der Angreifer gibt sich persönlich als jemand anderes aus, um an Informationen zu gelangen und nutzt dafür keine elektronischen Hilfsmittel.
+
+.. container:: supplemental
+
+    Ein Beispiel eines nicht-harmlosen Streichs ist die Falschmeldung vom 1. April 2003, dass Bill Gates gestorben sei. Diese Falschmeldung wurde von vielen Menschen geglaubt und hatte relevanten Einfluss auf den Aktienmarkt.
+
+
+Ausgewählte Social-Engineering Angriffe bzw. Terminologie
+-------------------------------------------------------------
+
+
+:Eavesdropping:
+
+    .. container:: incremental
+    
+        Abhören von Gesprächen, um an relevante Informationen zu gelangen.   
+
+:Baiting `Ködern`:ger::
+
+    .. container:: incremental
+
+        Der Angreifer bietet etwas an, um an Informationen zu gelangen. (Z.B. ein USB-Stick mit einem Virus, der sich beim Einstecken des USB-Sticks auf dem Rechner installiert.)
+
+
+:Watering hole attack:
+
+    .. container:: incremental
+
+        Der Angreifer infiziert eine Webseite, die von der Zielgruppe häufig besucht wird, um dann die Besucher der Webseite anzugreifen.
+
+:Typo squatting:
+
+    .. container:: incremental
+            
+            Ausnutzen von Tippfehlern durch das Registrieren einer Domain, die der Domain eines Zielunternehmens ähnelt, um dann Besucher der Webseite auf eine gefälschte Webseite zu leiten. (Z.B. `www.gooogle.com`)
+
+
+Motivationstechniken von Social-Engineers 
+-------------------------------------------------------------
+
+.. class:: incremental
+
+- Autorität: Der Angreifer gibt sich z.B. als Mitarbeiter des IT-Supports aus.
+- Einschüchterung
+- Dringlichkeit
+- Konsens (*"Alle machen das so."*)
+- Knappheit (*"Nur noch Heute im Angebot."*)
+- Vertrautheit 
+- Vertrauen
 
 
 .. class:: new-section transition-fade
@@ -290,6 +474,10 @@ Intensive weitere Untersuchungen haben ergeben, dass es nicht möglich ist den B
    CVSS v4.0 Score: 7.1 / High ⊕
 
 
+.. class:: new-section transition-fade
+
+Common Vulnerabilities and Exposures (`CVE <https://cve.org/>`__)
+--------------------------------------------------------------------
 
 
 
@@ -1249,9 +1437,10 @@ CWE-20: Improper Input Validation - zu verifizierende Werte und Eigenschaften
 
 .. class:: scriptsize
 
-CWE-20: Improper Input Validation - Beispiel (C)
---------------------------------------------------------
+CWE-20: Improper Input Validation - Beispiel partielle Validierung
+---------------------------------------------------------------------
 
+C:
 
 .. code:: c
 
@@ -1264,14 +1453,12 @@ CWE-20: Improper Input Validation - Beispiel (C)
     printf("Please specify the board width: \n");
     error = scanf("%d", &n);
     if ( EOF == error ) die("No integer passed!\n");
-    if ( m > MAX_DIM || n > MAX_DIM ) {
-      die("Value too large!\n");
-    }
+    if ( m > MAX_DIM || n > MAX_DIM ) die("Value too large!\n");
     board = (board_square_t*) malloc( m * n * sizeof(board_square_t));
     ...
 
 .. admonition:: Warnung
-    :class: incremental
+    :class: incremental margin-top-1em
 
     Ein vergleichbares Problem ist auch in sicheren Programmiersprachen möglich.
 
@@ -1322,17 +1509,17 @@ CWE-125: Out-of-bounds Read
 
 .. class:: scriptsize
 
-CWE-125: Out-of-bounds Read - Beispiel (C)
---------------------------------------------------------
+CWE-125: Out-of-bounds Read - Beispiel: partielle Validierung
+-------------------------------------------------------------
+
+C:
 
 .. code:: C
 
     int getValueFromArray(int *array, int len, int index) {
-
       int value;
 
-      // check that the array index is less than the maximum
-      // length of the array
+      // check that the array index is less than the maximum length of the array
       if (index < len) {
         // get the value at the specified index of the array
         value = array[index];
@@ -1360,3 +1547,323 @@ CWE-125: Out-of-bounds Read - Abhilfemaßnahmen und Erkennung
 - eine sichere Programmiersprache verwenden
 - Fuzzing
 - Statische Analyse Werkzeuge welche Kontroll- und Datenflussanalyse durchführen
+
+
+
+.. No 8 in CWE Top 2023
+
+.. class:: new-subsection transition-move-to-top
+
+CWE-22: Improper Limitation of a Pathname to a Restricted Directory (*Path Traversal*)
+-------------------------------------------------------------------------------------------
+
+
+CWE-22: Improper Limitation of a Pathname to a Restricted Directory
+----------------------------------------------------------------------------
+
+
+:Short Description: The product uses external input to construct a pathname that is intended to identify a file or directory that is located underneath a restricted parent directory, but the product does not properly neutralize special elements within the pathname that can cause the pathname to resolve to a location that is outside of the restricted directory. 
+
+:Likelihood Of Exploit: High
+:Scope: Confidentiality, Integrity, Availability
+
+
+.. class:: scriptsize
+
+CWE-22: Path Traversal - Beispiel: fehlende Validierung
+--------------------------------------------------------
+
+PHP:
+
+.. code:: php
+
+    <?php
+    $file = $_GET['file'];
+    include("/home/www-data/$file");
+    ?>
+
+.. container:: post-lecture-exercise-solution
+
+    - Problem: Der Wert von :code:`file` wird nicht validiert. Der Angreifer kann so beliebige Dateien auslesen.
+
+
+.. class:: scriptsize
+
+CWE-22: Path Traversal - Beispiel: partielle Validierung
+--------------------------------------------------------
+
+Perl:
+
+.. code:: Perl
+
+    my $Username = GetUntrustedInput();
+    $Username =~ s/\.\.\///;                # Remove ../
+    my $filename = "/home/user/" . $Username;
+    ReadAndSendFile($filename);
+
+.. container:: post-lecture-exercise-solution
+
+    - Problem: :code:`Username` wird nur bzgl. ../ am Anfang der Zeichenkette gesäubert. Beginnt der Nutzername mit :code:`../../` dann kann der Angreifer dennoch zum darüber liegenden Verzeichnis wechseln. Es fehlt im Wesentlichen das :code:`g` Flag (vgl. ``sed``)
+
+.. container:: incremental margin-top-2em
+
+    Java: 
+
+    .. code:: Java
+
+        String path = getInputPath();
+        if (path.startsWith("/safe_dir/")) {
+          File f = new File(path);
+          f.delete()
+        }
+
+.. container:: post-lecture-exercise-solution
+
+    - Problem: Auch in diesem Falle wird zwar der Anfang geprüft, d.h. ob der Pfad mit :code:`/safe_dir/` beginnt, aber dies verhindert nicht, dass der Pfad im Weiteren :code:`../` verwendet und der Angreifer darüber zu einem höherliegenden Verzeichnis wechseln kann.
+
+
+.. class:: scriptsize
+
+CWE-22: Path Traversal - Beispiel: verwirrende API
+--------------------------------------------------------
+
+.. container:: two-columns
+
+    .. container:: column
+
+        Python:
+
+        .. code:: Python
+
+            import os
+            import sys
+            def main():
+            filename = sys.argv[1]
+            path = os.path.join(os.getcwd(), 
+                                filename)
+            try:
+                with open(path, 'r') as f:
+                file_data = f.read()
+            except FileNotFoundError as e:
+                print("Error - file not found")
+
+
+    .. container:: column
+
+        Dokumentation ``os.path.join``:
+
+        .. epigraph:: 
+
+            Join one or more path components intelligently. The return value is the concatenation of path and any members of \*paths with exactly one directory separator following each non-empty part except the last, meaning that the result will only end in a separator if the last part is empty. 
+            
+            If a component is an absolute path [...], all previous components are thrown away and joining continues from the absolute path component.
+            
+            -- `Python 3.11.7 <https://docs.python.org/3.11/library/os.path.html#os.path.join>`__
+
+
+
+CWE-22: Path Traversal - Abhilfemaßnahmen und Erkennung
+----------------------------------------------------------------------
+
+.. class:: incremental
+
+- Eingabe vollständig validieren; zum Beispiel über kanonische Pfade
+- Sandboxen
+- Umgebung härten
+- Bei Fehlerausgaben darauf achten, dass keine Informationen über das Dateisystem preisgegeben werden
+- den Code mit minimalen Rechten ausführen
+
+
+.. No 9 in CWE Top 2023
+
+.. class:: new-subsection transition-move-to-top
+
+CWE-352: Cross-Site Request Forgery (*CSRF*)
+-------------------------------------------------------------------------------------------
+
+
+CWE-352: Cross-Site Request Forgery (CSRF)
+----------------------------------------------------------------------------
+
+
+:Kurze Beschreibung: 
+
+    Die Webanwendung prüft nicht bzw. kann nicht prüfen, ob eine Anfrage absichtlich von dem Benutzer gestellt wurde, von dessen Browser sie übermittelt wurde.
+
+    D.h. eine CSRF Schwachstelle nutzt das Vertrauen aus, das eine Webseite in den Browser eines Nutzers hat. Bei einem CSRF-Angriff wird ein legitimer Nutzer von einem Angreifer dazu gebracht, ohne sein Wissen eine Anfrage zu übermitteln, die er nicht beabsichtigt hat und auch nicht bemerkt.
+
+:Missbrauchswahrscheinlichkeit: Mittel
+:Auswirkung: Hängt von den Nutzerrechten ab
+:Ausmaß: Vertraulichkeit, Integrität, Verfügbarkeit
+
+
+.. class:: scriptsize
+
+CWE-352: Cross-Site Request Forgery (CSRF) - ursprüngliche Form
+------------------------------------------------------------------
+
+
+.. image:: csrf.svg
+    :alt: Cross-Site Request Forgery (CSRF) - ursprüngliche Form
+    :height: 1050px
+
+
+
+CWE-352: Cross-Site Request Forgery (CSRF) in 2023
+----------------------------------------------------------
+
+.. epigraph::   
+
+    Fiber ist ein von Express inspiriertes Web-Framework, das in Go geschrieben wurde. In der Anwendung wurde eine Cross-Site Request Forgery (CSRF)-Schwachstelle entdeckt, die es einem Angreifer ermöglicht, beliebige Werte zu injizieren und bösartige Anfragen im Namen eines Benutzers zu fälschen. Diese Schwachstelle kann es einem Angreifer ermöglichen, beliebige Werte ohne Authentifizierung einzuschleusen oder verschiedene böswillige Aktionen im Namen eines authentifizierten Benutzers durchzuführen, wodurch die Sicherheit und Integrität der Anwendung gefährdet werden kann. Die Schwachstelle wird durch eine unsachgemäße Validierung und Durchsetzung von CSRF-Tokens innerhalb der Anwendung verursacht.
+
+    -- `CVE-2023-45128 <https://nvd.nist.gov/vuln/detail/CVE-2023-45128>`__ (übersetzt mit DeepL)
+
+.. container:: small margin-top-1em
+
+    Identifizierte Schwachstellen: *CWE-20* Improper Input Validation, *CWE-807* Reliance on Untrusted Inputs in a Security Decision, *CWE-565* Reliance on Cookies without Validation and Integrity Checking, **CWE-352** Cross-Site Request Forgery
+
+
+CWE-352: Cross-Site Request Forgery (CSRF) in 2023
+----------------------------------------------------------
+
+Standardtechniken, die CSRF verhindern *sollen*:
+
+.. class:: incremental
+
+- Same-site Cookies (für Authentifizierung)
+- CSRF-Tokens, wenn diese die folgenden Eigenschaften haben:
+  
+  - Einmalig pro Nutzersession
+  - Geheim
+  - nicht vorhersagbar (z.B. eine sehr große, sicher erzeugte Zufallszahl)
+ 
+- Validierung des Referer-Header 
+- Custom Request Header, da diese nur vom JavaScript Code gesetzt werden können, der den gleichen Ursprung hat (siehe *Same Origin Policy* (SOP)).
+
+.. admonition:: Warnung
+    :class: incremental small
+
+    Auch diese Techniken lassen sich ggf. (alle zusammen) aushebeln, `wenn die Anwendung weitere Schwachstellen aufweist <https://portswigger.net/web-security/csrf>`__. So gibt/gab es Anwendungen, die Anfragen, die nur über ein POST request gestellt werden sollten, auch bei einem GET akzeptiert haben. 
+
+
+.. container:: supplemental
+
+    In allen Browsern wird in der Zwischenzeit für Cookies die Same-site Policy angewandt mit dem Wert :code:`Lax`. Dieser Wert hat zur Folge, dass Cookies nur dann gesendet werden, wenn der Nutzer explizit auf einen Link klickt oder sich innerhalb der selben Seite befindet.
+    
+
+
+.. No 10 in CWE Top 2023
+
+.. class:: new-subsection transition-move-to-top
+
+CWE-434: Unrestricted Upload of File with Dangerous Type
+-------------------------------------------------------------------------------------------
+
+
+
+CWE-434: Unrestricted Upload of File with Dangerous Type
+----------------------------------------------------------------------------
+
+:Kurze Beschreibung: 
+
+    Es ist möglich potentiell gefährliche Dateien hochzuladen bzw. zu transferieren, die von der Anwendung automatisch im Kontext der Anwendung verarbeitet werden.
+
+:Missbrauchswahrscheinlichkeit: Mittel
+:Auswirkung: Bis hin zur Ausführung von beliebigen Befehlen
+:Ausmaß: Vertraulichkeit, Integrität, Verfügbarkeit
+
+
+
+.. class:: scriptsize
+
+CWE-434: Unrestricted Upload of File with Dangerous Type - Beispiel
+----------------------------------------------------------------------------
+
+HTML:
+
+.. code:: HTML
+
+    <form action="upload_picture.php" method="post" enctype="multipart/form-data">
+        Choose a file to upload:
+        <input type="file" name="filename"/>
+        <br/>
+        <input type="submit" name="submit" value="Submit"/>
+    </form>
+
+
+PHP:
+
+.. code:: PHP
+
+    // Define the target location where the picture being
+    // uploaded is going to be saved.
+    $target = "pictures/" . basename($_FILES['uploadedfile']['name']);
+
+    // Move the uploaded file to the new location.
+    move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target)
+
+
+.. container:: post-lecture-exercise-solution
+
+   Problem: Die Datei :code:`$_FILES['uploadedfile']['name']` wird nicht validiert. Sollte der Nutzer statt einem Bild eine PHP Datei hochladen, dann wird diese beim einem späteren Aufruf im Kontext der Anwendung ausgeführt.
+  
+   Eine einfache Möglichkeit die Schwachstelle auszunutzen wäre die Datei:
+
+    .. code:: PHP
+
+        // malicious.php
+   
+        <?php
+        system($_GET['cmd']);
+        ?>
+
+    Mit einer Anfrage wie:
+
+        ``...malicious.php?cmd=ls%20-l``
+
+
+CWE-434: Unrestricted Upload of File with Dangerous Type - Abhilfemaßnahmen und Erkennung
+-------------------------------------------------------------------------------------------
+
+- Beim Speichern von Dateien niemals den ursprünglichen Dateinamen verwenden sondern einen vom Server generierten.
+- Speicher die Daten nicht im Kontext der Webanwendung sondern außerhalb des Webroots.
+- Prüfe die Dateiendung. Prüfe den Inhalt der Datei gegen die Erwartung.
+- Ausführen der Webanwendung mit minimalen Rechten.
+- Sandbox.
+
+
+
+\
+----
+
+TODO MORE CWEs i.e. more SLIDES!!!
+
+
+.. class:: new-section
+
+Open Worldwide Application Security Project (OWASP)
+-------------------------------------------------------------------------------------------
+
+
+OWASP
+-------------------------------------------------------------------------------------------
+
+.. class:: incremental
+    
+- gemeinnützige Stiftung, die sich für die Verbesserung der Sicherheit von Software einsetzt
+- 2001 gegründet
+- weltweit tätig
+- Stellt insbesondere Foren, Dokumente und Werkzeuge bereit
+- Dokumente, die bei der Entwicklung sicherer Anwendungen unterstützen:
+
+  - `OWASP Web Security Testing Guide <https://owasp.org/www-project-web-security-testing-guide/>`__
+  - `OWASP Code Review Guide <https://owasp.org/www-project-code-review-guide/>`__
+- Ausgewählte Projekte:
+  
+  .. class:: incremental
+
+  - `OWASP Top 10 (die relevantesten Sicherheitsprobleme bei Webanwendungen) <https://owasp.org/www-project-top-ten/>`__
+  - `Cheat Sheets <https://owasp.org/www-project-cheat-sheets/>`__
+  - `OWASP Dependency-Track <https://owasp.org/www-project-dependency-track/>`__
+  - `OWASP Web Security Testing Guide <https://owasp.org/www-project-web-security-testing-guide/>`__
+  
