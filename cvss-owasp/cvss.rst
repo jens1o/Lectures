@@ -25,7 +25,7 @@
    :format: html
 
 
-CVSS, CVE und CWE/OWASP
+CVSS, CVE, CVD, VEP und CWE/OWASP
 =====================================================
 
 :Dozent: **Prof. Dr. Michael Eichberg**
@@ -39,29 +39,29 @@ Social-Engineering Angriffe
 -------------------------------------------------------------
 
 
-Ausgewählte Social-Engineering Angriffe bzw. Terminologie
+Social-Engineering Angriffe
 -------------------------------------------------------------
 
 .. class:: incremental
 
 - sind häufig die Ursache für erfolgreiche Angriffe
 - stellen die größte Bedrohung für die Sicherheit von IT-Systemen dar
-- es wird angenommen, dass die betroffenen Personen es in vielen Fällen nicht merken (Beispiel: "Bewerbungsgespräch")
+- es wird angenommen, dass die betroffenen Personen es in vielen Fällen nicht merken :incremental:`(Beispiel: Fake Bewerbungsgespräch)`
 - mittels OSINT kann die Vorbereitung von Social-Engineering Angriffen vereinfacht werden
 
 .. container:: supplemental
 
-    Ein vom Angreifer bewusst eingefädeltes Bewerbungsgespräch für eine Position als Administrator könnte zum Beispiel dazu genutzt werden, um Informationen über das Zielsystem zu erhalten, die für einen Angriff nützlich sind (z.B. welche Software wird eingesetzt, wie sieht die Architektur aus, ...). In diesem Fall ist davon auszugehen, dass ein Bewerber zum Beispiel durch ein Headhunter eine gutes Angebot gemacht wird und er dann im Rahmen des Gesprächs gebeten eine (die?) Sicherheitsarchitektur darzustellen.
+    Ein vom Angreifer bewusst eingefädeltes Bewerbungsgespräch für eine Position als Administrator könnte zum Beispiel dazu genutzt werden, um Informationen über das Zielsystem zu erhalten, die für einen Angriff nützlich sind (z.B. welche Software wird eingesetzt, wie sieht die Architektur aus, ...). In diesem Fall ist davon auszugehen, dass ein Bewerber zum Beispiel durch ein Headhunter eine gutes Angebot gemacht wird und er dann im Rahmen des Gesprächs gebeten eine Sicherheitsarchitektur darzustellen, die er einführen würde. Es ist dann davon auszugehen, dass er auf seine bisherige Erfahrung zurückgreift und diese darstellt und er somit die Architektur des Zielsystems offenlegt.
 
 
 Ausgewählte Social-Engineering Angriffe bzw. Terminologie
 -------------------------------------------------------------
 
-:Phishing and spear phishing: 
+:Phishing and Spear Phishing: 
 
     .. container:: incremental
 
-        Phishing nutzt elekr. Kommunikationswege (z.B. E-Mail, SMS, ...) um an Informationen zu gelangen. Spear phishing ist eine spezielle Form des Phishings, bei der der Angreifer auf eine bestimmte Zielgruppe oder Person abzielt.
+        *Phishing* nutzt elekr. Kommunikationswege (z.B. E-Mail, SMS, ...) um an Informationen zu gelangen. *Spear phishing* ist Phishing, bei der der Angreifer auf eine bestimmte Zielgruppe oder Person abzielt.
 
 :Smishing: 
  
@@ -73,14 +73,23 @@ Ausgewählte Social-Engineering Angriffe bzw. Terminologie
 
     .. container:: incremental
 
-        `Phishing mit Hilfe von Telefonanrufen <https://www.europol.europa.eu/publications-events/publications/vishing-calls>`__. (z.B. "Anrufe von Europol")
+        `Phishing mit Hilfe von Telefonanrufen <https://www.europol.europa.eu/publications-events/publications/vishing-calls>`__. :incremental:`(z.B. Anrufe von Europol)`
 
 :Whaling:
 
     .. container:: incremental
 
-        Phishing, das sich gegen hochrangige und sehr ausgewählte Personen richtet (z.B. den CEO eines Unternehmens).
+        Phishing, dass sich gegen hochrangige und sehr ausgewählte Personen richtet (z.B. den CEO eines Unternehmens).
 
+
+Ausgewählte Social-Engineering Angriffe bzw. Terminologie
+-------------------------------------------------------------
+
+:Pharming:
+
+    .. container:: incremental
+
+        Manipulation des DNS-Servers, um den Nutzer auf eine gefälschte Webseite zu leiten, um dann sensitive Informationen zu erlangen.
 
 :Spam / Spam over Internet messaging (SPIM):
 
@@ -93,23 +102,17 @@ Ausgewählte Social-Engineering Angriffe bzw. Terminologie
 Ausgewählte Social-Engineering Angriffe bzw. Terminologie
 -------------------------------------------------------------
 
-:Dumpster diving:
+:Dumpster Diving:
 
     .. container:: incremental
 
         Durchsuchen von :ger-quote:`Müllcontainern` nach Informationen, die für einen Angriff nützlich sein könnten.
 
-:Shoulder surfing:
+:Shoulder Surfing:
 
     .. container:: incremental
 
         Beobachten von Personen, die sich an einem Computer anmelden, um das Passwort zu erfahren oder die sensitive Informationen auf dem Schreibtisch liegen haben.   
-
-:Pharming:
-
-    .. container:: incremental
-
-        Manipulation des DNS-Servers, um den Nutzer auf eine gefälschte Webseite zu leiten, um dann sensitive Informationen zu erlangen.
 
 :Tailgating:
 
@@ -123,25 +126,18 @@ Ausgewählte Social-Engineering Angriffe bzw. Terminologie
 -------------------------------------------------------------
 
 
-:Eliciting information:
-
-    .. container:: incremental
-
-        Der Angreifer versucht durch geschicktes Fragen an Informationen zu gelangen, die für einen Angriff nützlich sein könnten.
-
-
-:Identity fraud:
+:Identity Fraud:
 
     .. container:: incremental
 
         Identitätsdiebstahl. Der Angreifer gibt sich als jemand anderes aus, um an Informationen zu gelangen oder um eine Straftat zu begehen.
 
 
-:Invoice scams:
+:Invoice Scams:
 
     .. container:: incremental
 
-        Versenden von Rechnungen, die man nicht gekauft hat. (Z.B. Rechnungen für Postzustellung.)
+        Versenden von Rechnungen, für Dienstleistungen und Produkte die man nicht gekauft hat. :incremental:`(Z.B. Rechnungen für Postzustellung.)`
 
 
 Ausgewählte Social-Engineering Angriffe bzw. Terminologie
@@ -152,7 +148,7 @@ Ausgewählte Social-Engineering Angriffe bzw. Terminologie
 
     .. container:: incremental
 
-        Sammlung von Zugangsdaten, die durch Sicherheitslücken in Systemen oder durch Phishing erlangt wurden. (Häufig konnten auch Zugangsdaten und Zertifikate in öffentlichen Repositories gefunden werden.)
+        Sammlung von Zugangsdaten, die durch Sicherheitslücken in Systemen oder durch Phishing erlangt wurden. 
 
 
 :Hoax:
@@ -162,7 +158,7 @@ Ausgewählte Social-Engineering Angriffe bzw. Terminologie
         Eine bewusste Falschmeldung, die Menschen dazu veranlasst etwas falsches zu glauben. 
 
 
-:Impersonation or pretexting: 
+:Impersonation or Pretexting: 
 
     .. container:: incremental
 
@@ -170,12 +166,13 @@ Ausgewählte Social-Engineering Angriffe bzw. Terminologie
 
 .. container:: supplemental
 
-    Ein Beispiel eines nicht-harmlosen Streichs ist die Falschmeldung vom 1. April 2003, dass Bill Gates gestorben sei. Diese Falschmeldung wurde von vielen Menschen geglaubt und hatte relevanten Einfluss auf den Aktienmarkt.
+    Ein Beispiel eines nicht-harmlosen Streichs (Hoax) ist die Falschmeldung vom 1. April 2003, dass Bill Gates gestorben sei. Diese Falschmeldung wurde von vielen Menschen geglaubt und hatte relevanten Einfluss auf den Aktienmarkt.
+
+    In der Anfangszeit von Github und Bitbucket wurden häufig Zugangsdaten und Zertifikate in öffentlichen Repositories gefunden, da die Nutzer diese im Quellcode hinterlegt hatten oder sogar als Ressourcen direkt eingebunden hatten.
 
 
 Ausgewählte Social-Engineering Angriffe bzw. Terminologie
 -------------------------------------------------------------
-
 
 :Eavesdropping:
 
@@ -183,33 +180,46 @@ Ausgewählte Social-Engineering Angriffe bzw. Terminologie
     
         Abhören von Gesprächen, um an relevante Informationen zu gelangen.   
 
-:Baiting `Ködern`:ger::
+
+:Eliciting Information:
+
+    .. container:: incremental
+
+        Der Angreifer versucht durch geschicktes Fragen an Informationen zu gelangen, die für einen Angriff nützlich sein könnten.
+
+
+
+Ausgewählte Social-Engineering Angriffe bzw. Terminologie
+-------------------------------------------------------------
+
+
+:Baiting (`Ködern`:ger:):
 
     .. container:: incremental
 
         Der Angreifer bietet etwas an, um an Informationen zu gelangen. (Z.B. ein USB-Stick mit einem Virus, der sich beim Einstecken des USB-Sticks auf dem Rechner installiert.)
 
 
-:Watering hole attack:
+:Watering Hole Attack:
 
     .. container:: incremental
 
         Der Angreifer infiziert eine Webseite, die von der Zielgruppe häufig besucht wird, um dann die Besucher der Webseite anzugreifen.
 
-:Typo squatting:
+:Typo Squatting:
 
     .. container:: incremental
             
             Ausnutzen von Tippfehlern durch das Registrieren einer Domain, die der Domain eines Zielunternehmens ähnelt, um dann Besucher der Webseite auf eine gefälschte Webseite zu leiten. (Z.B. `www.gooogle.com`)
 
 
-Motivationstechniken von Social-Engineers 
+:ger-quote:`Motivationstechniken` von Social-Engineers 
 -------------------------------------------------------------
 
 .. class:: incremental
 
 - Autorität: Der Angreifer gibt sich z.B. als Mitarbeiter des IT-Supports aus.
-- Einschüchterung
+- Einschüchterung (:eng:`Intimidation`)
 - Dringlichkeit
 - Konsens (*"Alle machen das so."*)
 - Knappheit (*"Nur noch Heute im Angebot."*)
@@ -232,7 +242,7 @@ CVSS
 
     Das `Common Vulnerability Scoring System (CVSS 4.0) <https://www.first.org/cvss/v4.0/specification-document>`__ stellt einen Rahmen bereit für die Beschreibung und Bewertung des Schweregrads von Software-/Hardware-/Firmwareschwachstellen.
 
-    Die Bewertung der Basiskennzahlen ergibt eine Punktzahl zwischen 0,0 und 10,0. Wobei 0 bedeuted, dass die Schwachstelle (bisher) harmlos ist und 10,0 bedeutet, dass die Schwachstelle sehr gefährlich ist.
+    Die Bewertung der Basiskennzahlen ergibt eine Punktzahl zwischen 0,0 und 10,0. Wobei 0 bedeuted, dass die Schwachstelle (bisher) harmlos ist und 10,0 bedeutet, dass die Schwachstelle sehr gravierend ist.
 
 
 CVSS umfasst vier Gruppen von Metriken
@@ -289,7 +299,7 @@ CVSS - Basis-Metriken (:eng:`Base Metric Group`)
 
 
 
-CVSS Bedrohungs-Metriken (:eng:`Threat Metric Group`) [#]_
+CVSS - Bedrohungs-Metriken (:eng:`Threat Metric Group`) [#]_
 --------------------------------------------------------------
 
 .. container::  scriptsize
@@ -306,7 +316,7 @@ CVSS Bedrohungs-Metriken (:eng:`Threat Metric Group`) [#]_
     Gibt es bisher nur die Beschreibung der Schwachstelle oder gibt es bereits einen Proof-of-Concept (PoC) Exploit?
 
 
-CVSS Umgebungs-Metriken 
+CVSS - Umgebungs-Metriken 
 ---------------------------------------------------------------
 
 .. container:: scriptsize two-columns
@@ -398,7 +408,7 @@ CVSS - Bewertung der Ausnutzbarkeit/Exploitability Metrics
 
     **User Interaction**
     
-    Passiv bedeuted hier, dass der Nutzer unfreiwillig die Schwachstelle ausnutzt ohne bewusst Schutzmechanismen zu unterlaufen. Aktiv bedeuted, dass der Nutzer aktiv Interaktionen unternimmt, um die Schutzmechanismen des Systems ausnutzen (z.B. durch das Installieren einer nicht-signierten Anwendung aus dem Internet).
+    Passiv bedeuted hier, dass der Nutzer unfreiwillig die Schwachstelle ausnutzt ohne bewusst Schutzmechanismen zu unterlaufen. Aktiv bedeuted, dass der Nutzer aktiv Interaktionen unternimmt, um die Schutzmechanismen des Systems auszuhebeln (z.B. durch das Installieren einer nicht-signierten Anwendung aus dem Internet).
 
 
 
@@ -486,9 +496,13 @@ Common Vulnerabilities and Exposures (`CVE <https://cve.org/>`__)
 
 .. epigraph:: CVE definiert eine Sicherheitslücke als:
 
-    "Eine Schwachstelle in der Berechnungslogik (z. B. Code), die in Software- und Hardwarekomponenten gefunden wird und die, wenn sie ausgenutzt wird, zu einer negativen Auswirkung auf die Vertraulichkeit, Integrität oder Verfügbarkeit führt. Die Behebung der Schwachstellen in diesem Zusammenhang umfasst in der Regel Änderungen am Code, kann aber auch Änderungen an der Spezifikation oder sogar die Ablehnung der Spezifikation (z. B. die vollständige Entfernung der betroffenen Protokolle oder Funktionen) beinhalten."
+    "Eine Schwachstelle in der Berechnungslogik (z. B. Code), die in Software- und Hardwarekomponenten gefunden wird und die, wenn sie ausgenutzt wird, zu einer negativen Auswirkung auf die **Vertraulichkeit**, **Integrität** oder **Verfügbarkeit** führt. Die Behebung der Schwachstellen in diesem Zusammenhang umfasst in der Regel Änderungen am Code, kann aber auch Änderungen an der Spezifikation oder sogar die Ablehnung der Spezifikation (z. B. die vollständige Entfernung der betroffenen Protokolle oder Funktionen) beinhalten."
 
     -- https://nvd.nist.gov/vuln (Übersetzt mit DeepL)
+
+.. container:: incremental margin-top-2em
+
+   In der Praxis werden n-Day und 0-Day Schwachstellen unterschieden.
 
 
 Zweck von CVEs
@@ -497,8 +511,136 @@ Zweck von CVEs
 .. class:: incremental
 
 - Schwachstellen eindeutig identifizieren und bestimmten Versionen eines Codes (z. B. Software und gemeinsam genutzte Bibliotheken) mit diesen Schwachstellen verknüpfen. 
-- Kommunikationsgrundlage bilden, damit mehrere Parteien über eine eindeutig identifizierte Sicherheitslücke diskutieren können.
-- Es können generell n-Day und 0-Day Schwachstellen unterschieden werden.
+- Kommunikationsgrundlage bilden, damit mehrere Parteien über eine eindeutig identifizierte Sicherheitslücke diskutieren können. `National Vulnerabilities Database - NIST <https://nvd.nist.gov>`__
+
+
+.. class:: scriptsize
+
+16. Jan. 2024 - zuletzt bewertete CVEs
+-------------------------------------------------------------
+
+.. container::  incremental
+
+    .. die folgende Liste wurde per Copy-and-Paste des HTML Code von der NIST Webseite erzeugt:
+
+    .. raw:: html
+
+                        <ul>
+							<li>
+								<div class="col-lg-9">
+									<p>
+										<strong><a href="/vuln/detail/CVE-2024-20672" id="cveDetailAnchor-0">CVE-2024-20672</a></strong>  - .NET Denial of Service Vulnerability
+									</p>
+								</div>
+								<div class="col-lg-3">
+									<p id="severity-score-0">
+										<span id="cvss3-link-0"> <em>V3.1:</em> <a href="/vuln-metrics/cvss/v3-calculator?name=CVE-2024-20672&amp;vector=AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H&amp;version=3.1&amp;source=Microsoft%20Corporation" class="label label-danger" data-testid="vuln-cvss3-link-0" aria-label="V3 score for CVE-2024-20672">7.5 HIGH</a><br>
+										</span> 
+									</p>
+								</div>
+							</li>
+
+							<li>
+								<div class="col-lg-9">
+									<p>
+										<strong><a href="/vuln/detail/CVE-2024-20666" id="cveDetailAnchor-1">CVE-2024-20666</a></strong>  - BitLocker Security Feature Bypass Vulnerability
+									</p>
+								</div>
+								<div class="col-lg-3">
+									<p id="severity-score-1">
+										<span id="cvss3-link-1"> <em>V3.1:</em> <a href="/vuln-metrics/cvss/v3-calculator?name=CVE-2024-20666&amp;vector=AV:P/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H&amp;version=3.1&amp;source=Microsoft%20Corporation" class="label label-warning" data-testid="vuln-cvss3-link-1" aria-label="V3 score for CVE-2024-20666">6.6 MEDIUM</a><br>
+										</span> 
+									</p>
+								</div>
+							</li>
+
+							<li>
+								<div class="col-lg-9">
+									<p>
+										<strong><a href="/vuln/detail/CVE-2024-20680" id="cveDetailAnchor-2">CVE-2024-20680</a></strong>  - Windows Message Queuing Client (MSMQC) Information Disclosure
+									</p>
+								</div>
+								<div class="col-lg-3">
+									<p id="severity-score-2">
+										<span id="cvss3-link-2"> <em>V3.1:</em> <a href="/vuln-metrics/cvss/v3-calculator?name=CVE-2024-20680&amp;vector=AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N&amp;version=3.1&amp;source=Microsoft%20Corporation" class="label label-warning" data-testid="vuln-cvss3-link-2" aria-label="V3 score for CVE-2024-20680">6.5 MEDIUM</a><br>
+										</span> 
+									</p>
+								</div>
+							</li>
+
+							<li>
+								<div class="col-lg-9">
+									<p>
+										<strong><a href="/vuln/detail/CVE-2024-20676" id="cveDetailAnchor-3">CVE-2024-20676</a></strong>  - Azure Storage Mover Remote Code Execution Vulnerability
+									</p>
+								</div>
+								<div class="col-lg-3">
+									<p id="severity-score-3">
+										<span id="cvss3-link-3"> <em>V3.1:</em> <a href="/vuln-metrics/cvss/v3-calculator?name=CVE-2024-20676&amp;vector=AV:N/AC:H/PR:H/UI:N/S:C/C:H/I:H/A:H&amp;version=3.1&amp;source=Microsoft%20Corporation" class="label label-danger" data-testid="vuln-cvss3-link-3" aria-label="V3 score for CVE-2024-20676">8.0 HIGH</a><br>
+										</span> 
+									</p>
+								</div>
+							</li>
+
+							<li>
+								<div class="col-lg-9">
+									<p>
+										<strong><a href="/vuln/detail/CVE-2024-20674" id="cveDetailAnchor-4">CVE-2024-20674</a></strong>  - Windows Kerberos Security Feature Bypass Vulnerability
+									</p>
+								</div>
+								<div class="col-lg-3">
+									<p id="severity-score-4">
+										 
+									</p>
+								</div>
+							</li>
+
+							<li>
+								<div class="col-lg-9">
+									<p>
+										<strong><a href="/vuln/detail/CVE-2024-20682" id="cveDetailAnchor-5">CVE-2024-20682</a></strong>  - Windows Cryptographic Services Remote Code Execution Vulnerability
+									</p>
+								</div>
+								<div class="col-lg-3">
+									<p id="severity-score-5">
+										<span id="cvss3-link-5"> <em>V3.1:</em> <a href="/vuln-metrics/cvss/v3-calculator?name=CVE-2024-20682&amp;vector=AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H&amp;version=3.1&amp;source=Microsoft%20Corporation" class="label label-danger" data-testid="vuln-cvss3-link-5" aria-label="V3 score for CVE-2024-20682">7.8 HIGH</a><br>
+										</span> 
+									</p>
+								</div>
+							</li>
+
+							<li>
+								<div class="col-lg-9">
+									<p>
+										<strong><a href="/vuln/detail/CVE-2024-20683" id="cveDetailAnchor-6">CVE-2024-20683</a></strong>  - Win32k Elevation of Privilege Vulnerability
+									</p>
+								</div>
+								<div class="col-lg-3">
+									<p id="severity-score-6">
+										<span id="cvss3-link-6"> <em>V3.1:</em> <a href="/vuln-metrics/cvss/v3-calculator?name=CVE-2024-20683&amp;vector=AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H&amp;version=3.1&amp;source=Microsoft%20Corporation" class="label label-danger" data-testid="vuln-cvss3-link-6" aria-label="V3 score for CVE-2024-20683">7.8 HIGH</a><br>
+										</span> 
+									</p>
+								</div>
+							</li>
+
+							<li>
+								<div class="col-lg-9">
+									<p>
+										<strong><a href="/vuln/detail/CVE-2024-20681" id="cveDetailAnchor-7">CVE-2024-20681</a></strong>  - Windows Subsystem for Linux Elevation of Privilege Vulnerability
+									</p>
+								</div>
+								<div class="col-lg-3">
+									<p id="severity-score-7">
+										<span id="cvss3-link-7"> <em>V3.1:</em> <a href="/vuln-metrics/cvss/v3-calculator?name=CVE-2024-20681&amp;vector=AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H&amp;version=3.1&amp;source=Microsoft%20Corporation" class="label label-danger" data-testid="vuln-cvss3-link-7" aria-label="V3 score for CVE-2024-20681">7.8 HIGH</a><br>
+										</span> 
+									</p>
+								</div>
+							</li>
+
+							<li> ... </li>
+						</ul>
+
+
 
 
 .. class:: smaller
@@ -506,7 +648,7 @@ Zweck von CVEs
 Beschreibung eines `CVEs <https://github.com/CVEProject/cvelistV5>`__
 ----------------------------------------------------------------------
 
-Jeder CVE ist mit Hilfe eines wohldefinierten JSON-Formats beschrieben. Gekürztes Beispiel
+Jeder CVE ist mit Hilfe eines wohldefinierten JSON-Dokuments beschrieben. Gekürztes Beispiel
 
 .. code:: json
     :class: footnotesize
@@ -527,6 +669,20 @@ Jeder CVE ist mit Hilfe eines wohldefinierten JSON-Formats beschrieben. Gekürzt
               } ], ...
     } } }
 
+
+
+
+National Vulnerability Database (`NVDs <https://nvd.nist.gov/>`__)
+---------------------------------------------------------------------
+
+.. class:: incremental
+
+- Auflistung aller CVEs und deren Bewertung
+- Alle Schwachstellen in der NVD wurden sind einer CVE-Kennung versehen 
+- Die NVD ist ein Produkt der NIST Computer Security Division, Information Technology Laboratory
+- Verlinkt häufig weiterführend Seiten, die Lösungshinweise und Tools bereitstellen, um die Schwachstelle zu beheben;
+- Verweist auf entsprechende Schwachstellen gemäß `CWEs <https://cwe.mitre.org/>`__
+- Verlinkt gelegentlich *PoC* Exploits (:eng:`Proof-of-Concept Exploits`)
 
 
 
@@ -595,28 +751,12 @@ CWE - Schwachstellenkatalog `TOP 17-25 in 2023 <https://cwe.mitre.org/top25/arch
     24 , CWE-863 , Incorrect Authorization ,  +4
     25 , CWE-276 , Incorrect Default Permissions , -5
 
-
-
-
-National Vulnerability Database (`NVDs <https://nvd.nist.gov/>`__)
----------------------------------------------------------------------
-
-.. class:: incremental
-
-- Auflistung aller CVEs und deren Bewertung
-- Alle Schwachstellen in der NVD wurden sind einer CVE-Kennung versehen 
-- Die NVD ist ein Produkt der NIST Computer Security Division, Information Technology Laboratory
-- Verlinkt häufig weiterführend Seiten, die Lösungshinweise und Tools bereitstellen, um die Schwachstelle zu beheben;
-- Verweist auf entsprechende `CWEs <https://cwe.mitre.org/>`__
-- Verlinkt gelegentlich *PoC* Exploits (:eng:`Proof-of-Concept Exploits`)
-
-
 Beispiel eines CVEs für eine *XSS Schwachstelle*
 ------------------------------------------------
 
 .. epigraph:: CVE-2023-50712
 
-   Iris is a web collaborative platform aiming to help incident responders sharing technical details during investigations. A stored Cross-Site Scripting (XSS) vulnerability has been identified in iris-web, affecting multiple locations in versions prior to v2.3.7. The vulnerability may allow an attacker to inject malicious scripts into the application, which could then be executed when a user visits the affected locations. This could lead to unauthorized access, data theft, or other related malicious activities. An attacker need to be authenticated on the application to exploit this vulnerability. The issue is fixed in version v2.3.7 of iris-web. No known workarounds are available.
+   Iris is a web collaborative platform aiming to help incident responders sharing technical details during investigations. A stored Cross-Site Scripting (XSS) vulnerability has been identified in iris-web, affecting multiple locations in versions prior to v2.3.7. The vulnerability may allow an attacker to inject malicious scripts into the application, which could then be executed when a user visits the affected locations. This could lead to unauthorized access, data theft, or other related malicious activities. An attacker needs to be authenticated on the application to exploit this vulnerability. The issue is fixed in version v2.3.7 of iris-web. No known workarounds are available.
 
    -- Published: December 22, 2023
 
@@ -739,6 +879,136 @@ CVE-2023-51034 - zugrundeliegende Schwachstelle
     Der Aufruf von :code:`doSystem` ermöglicht die Ausführung von beliebigem Code. Der Angreifer kann den Wert von :code:`Var` so manipulieren, dass er quasi beliebigen Code ausführen kann.
 
 
+Ausgenutzte Schwachstellen
+---------------------------
+
+
+Der `Known Exploited Vulnerabilities (KEV) Katalog der CISA <https://www.cisa.gov/known-exploited-vulnerabilities-catalog>`__ umfasst Produkte deren Schwachstellen ausgenutzt wurden oder aktiv ausgenutzt werden.  
+ 
+.. class:: incremental
+
+- Kriterien für die Aufnahme in den KEV Katalog:
+
+  1. Eine CVE-Id liegt vor
+  2. Aktive Ausnutzung (:eng:`Active Exploitation`) (ggf. reicht es wenn :ger-quote:`nur` ein *Honeypot* aktiv angegriffen wurde) - ein PoC reicht nicht aus
+  3. eine Handlungsempfehlung liegt vor (z.B. Patch, Workaround oder vollständige Abschaltung)
+- Firmen sollten die KEV Schwachstellen priorisieren, um die Wahrscheinlichkeit eines erfolgreichen Angriffs zu verringern. (Ausgewählte Amerikanische Behörden sind sogar verpflichtet innerhalb vorgegebener Zeiträume zu reagieren.)
+ 
+
+2023 CWE Top 10 KEV Weaknesses
+-------------------------------
+
+.. csv-table::
+    :class: small highlight-line-on-hover
+    :header: Schwachstelle, CWE ID, # CVE Mappings in KEV, Avg. CVSS
+
+    Use After Free, 416, 44, 8.54
+    Heap-based Buffer Overflow, 122, 32, 8.79
+    Out-of-bounds Write, 787, 34, 8.19
+    Improper Input Validation, 20, 33, 8.27
+    Improper Neutralization of Special Elements used in an OS Command ("OS Command Injection"), 78, 25, 9.36
+    Deserialization of Untrusted Data, 502, 16, 9.06
+    Server-Side Request Forgery (SSRF), 918, 16, 8.72
+    Access of Resource Using Incompatible Type ("Type Confusion"), 843, 16, 8.61
+    Improper Limitation of a Pathname to a Restricted Directory ("Path Traversal"), 22, 14, 8.09
+    Missing Authentication for Critical Function, 306,  8, 8.86
+
+
+Offenlegung von Sicherheitslücken nach `CISA <https://www.cisa.gov/coordinated-vulnerability-disclosure-process>`__ [#]_
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+:eng:`Coordinated Vulnerability Disclosure (CVD)`
+
+.. class:: incremental smaller
+
+1. Sammlung von Schwachstellenmeldungen
+   
+   - Eigene Schwachstellenanalysen
+   - Überwachung öffentlicher Quellen
+   - Direkte Meldungen von Herstellern, Forschern und Nutzern
+  
+2. Analyse der Schwachstellenmeldungen zusammen mit den Herstellern, um die Sicherheitsauswirkungen zu verstehen
+3. Entwicklung von Strategien zur Eindämmung der Schwachstellen; insbesondere Entwicklung von notwendigen Patches
+4. Anwendung der Strategien zur Eindämmung der Schwachstellen in Zusammenarbeit mit dem Hersteller und ggf. betroffenen Nutzern
+5. Veröffentlichung der Schwachstellenmeldung in Abstimmung mit der Quelle des Schwachstellenberichts und dem Hersteller
+
+.. container:: supplemental
+
+    **CISA** (America's Cybersecurity and Infrastructure Security Agency/Cyber Defense Agency).
+
+.. [#] Das BSI verfährt ähnlich.
+
+
+
+Zeitlicher Rahmen für die Offenlegung von Sicherheitslücken
+--------------------------------------------------------------
+
+Der Zeitrahmen für die Offenlegung von Sicherheitslücken wird durch folgende Faktoren bestimmt:
+
+.. class:: incremental 
+
+- Aktive Ausnutzung der Schwachstelle
+- besonders kritische Schwachstellen
+- Auswirkungen auf Standards
+- bereits öffentlich bekannt zum Beispiel durch einen Forscher
+- Auswirkungen auf die kritische Infrastruktur, öffentliche Gesundheit und Sicherheit
+- die Verfügbarkeit von effektiven Eindämmungsmaßnahmen
+- das Verhalten des Herstellers und die Möglichkeit der Entwicklung eines Patches
+- Schätzung des Herstellers wie lange es dauert einen Patch zu entwickeln, zu testen und auszurollen.
+
+
+`Vulnerabilities Equities Process (VEP) (USA) <https://trumpwhitehouse.archives.gov/sites/whitehouse.gov/files/images/External%20-%20Unclassified%20VEP%20Charter%20FINAL.PDF>`__ [#]_
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. epigraph::
+
+    [...] Der *Vulnerability-Equity-Process (VEP)* wägt ab, ob Informationen über Schwachstellen an den Hersteller/Lieferanten weitergegeben werden sollen, in der Erwartung, dass sie gepatcht werden, oder ob die Kenntnis der Schwachstelle vorübergehend auf die US-Regierung und möglicherweise andere Partner beschränkt werden soll, damit sie für Zwecke der nationalen Sicherheit und der Strafverfolgung, wie z. B. nachrichtendienstliche Erfassung, militärische Operationen und/oder Spionageabwehr, genutzt werden können. [...]
+
+    -- Übersetzt von www.DeepL.com/Translator 
+
+.. [#] die rechtlichen Rahmenbedingungen bzgl. eines effektiven Schwachstellenmanagement sind in Deutschland gerade in der Diskussion. (Stand Jan. 2024); Schwachstellen, die direkt an das BSI gemeldet werden, unterliegen dem CVD.
+
+.. container:: supplemental
+
+    Insbesondere durch die föderale Struktur in Deutschland kann es ggf. dazu kommen, dass bezüglich der Handhabung von Schwachstellen unterschiedliche rechtliche Regelungen gelten werden - je nachdem ob die Behörde eine Bundes- oder Landesbehörde ist.
+
+
+`Vulnerabilities Equities Process (VEP) (USA) <https://trumpwhitehouse.archives.gov/sites/whitehouse.gov/files/images/External%20-%20Unclassified%20VEP%20Charter%20FINAL.PDF>`__
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+.. epigraph::
+
+    [...] Die Entscheidung der US-Regierung, ob eine Schwachstelle veröffentlicht oder eingeschränkt werden soll, ist nur ein Element des Prozesses zur Bewertung der Schwachstellen und ist nicht immer eine binäre Entscheidung. Andere Optionen, die in Betracht gezogen werden können, sind die Verbreitung von Informationen zur Schadensbegrenzung an bestimmte Stellen, ohne die jeweilige Schwachstelle offenzulegen, die Einschränkung der Nutzung der Schwachstelle durch die US-Regierung in irgendeiner Weise, die Information von Regierungsstellen der USA und verbündeter Staaten über die Schwachstelle [...]. 
+    -- Übersetzt von www.DeepL.com/Translator 
+    
+`Vulnerabilities Equities Process (VEP) (USA) <https://trumpwhitehouse.archives.gov/sites/whitehouse.gov/files/images/External%20-%20Unclassified%20VEP%20Charter%20FINAL.PDF>`__
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+.. epigraph::
+
+    [...] Alle diese Entscheidungen müssen auf der Grundlage des Verständnisses der Risiken einer Verbreitung, des potenziellen Nutzens von Schwachstellen durch die Regierung sowie der Risiken und Vorteile aller dazwischen liegenden Optionen getroffen werden. [...]
+
+    -- Übersetzt von www.DeepL.com/Translator 
+
+
+
+.. class:: integrated-exercise transition-move-left
+
+CVEs - Übung
+---------------------------------------------------------------
+
+1. Finden Sie Schwachstellen, die macOS Sonoma betreffen.
+   
+   .. auf https://nvd.nist.gov/search "macOS Sonoma" eingeben:
+     https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=macOS+Sonoma&search_type=all&isCpeNameSearch=false
+
+2. Finden Sie heraus um was es bei CVE-2020-20095 geht.
+
+   .. es handelt sich um eine URI Spoofing Attacke bei der Nutzer dazu verleitet werden können, auf einen scheinbar harmlosen Link zu klicken, der sie auf eine bösartige Webseite umleitet.
+      Poc:  https://github.com/zadewg/RIUS
+
 
 .. class:: new-section transition-fade
 
@@ -756,10 +1026,10 @@ CWE-787: Out-of-bounds Write (Memory Corruption)
 CWE-787: Out-of-bounds Write
 ----------------------------
 
-:Description: The product writes data past the end, or before the beginning, of the intended buffer. 
-:Languages: C /C++
-:Likelihood Of Exploit: High
-:Technical Impact: Modify Memory; DoS: Crash, Exit, or Restart; Execute Unauthorized Code or Commands
+:Beschreibung: Es werden Daten hinter oder vor den Bereich des Puffers geschrieben.
+:Programmiersprachen: C /C++
+:Wahrscheinlichkeit des Missbrauchs: Hoch
+:Technische Auswirkungen: Speichermodifikation; DoS: Crash, Beendigung oder Neustart; Ausführen von nicht autorisiertem Code oder Befehlen
 
 
 .. class:: scriptsize
@@ -882,6 +1152,7 @@ CWE-787: Out-of-bounds Write - Beispiel 5
         message[index] = strMessage[index];      //
       }                                          //
       message[index] = '\0';                     //
+
       int len = index-1;                         // trim trailing whitespace
       while (isspace(message[len])) {            //
         message[len] = '\0';                     //
@@ -932,8 +1203,8 @@ CWE-787: Out-of-bounds Write - Beispiel 6
     - Problem 2: :code:`WidgetList[numWidgets] = NULL;` schreibt außerhalb des Puffers. (Buffer-Overflow)
     
 
-CWE-787: Out-of-bounds Write - Potential Mitigations
---------------------------------------------------------
+CWE-787: Out-of-bounds Write - Mögliche Abhilfemaßnahmen
+----------------------------------------------------------
 
 .. class:: incremental
 
@@ -958,12 +1229,14 @@ CWE-79: Improper Neutralization of Input During Web Page Generation (*Cross-site
 CWE-79: Improper Neutralization of Input During Web Page Generation
 ---------------------------------------------------------------------
 
-:Short Description: The product does not neutralize or incorrectly neutralizes user-controllable input before it is placed in output that is used as a web page that is served to other users.
+:Kurzbeschreibung: Nutzereingaben werden nicht oder falsch bereinigt, bevor sie in die Ausgabe eingefügt werden, die als Webseite für andere Benutzer verwendet wird.
 
-:Likelihood Of Exploit: High
-:Technical Impact: Modify Memory; DoS: Crash, Exit, or Restart; Execute Unauthorized Code or Commands
-:Scope: Access Control, Confidentiality
-:Main Kinds: Stored XSS (Typ 2), Reflected XSS (Typ 1), DOM-based XSS (Typ 0)
+.. The product does not neutralize or incorrectly neutralizes user-controllable input before it is placed in output that is used as a web page that is served to other users.
+
+:Wahrscheinlichkeit des Missbrauchs: Hoch
+:Technische Auswirkungen: Speichermodifikation; DoS: Crash, Beendigung oder Neustart; Ausführen von nicht autorisiertem Code oder Befehlen
+:Betrifft: Zugriffskontrolle, Vertraulichkeit
+:Typen: Stored XSS (Typ 2), Reflected XSS (Typ 1), DOM-based XSS (Typ 0)
 
 .. container:: supplemental
 
@@ -1001,7 +1274,7 @@ Dom-based XSS (Typ 0)
 
 .. container:: supplemental
 
-    Dom-based-xss ist am schwersten Auszunutzen, da der Angreifer den Nutzer dazu bringen muss den Schadcode in die Informationen einzubringen, die von dem Script verarbeitet werden (z.B. durch das Eingeben in ein Formular).
+    Dom-based XSS ist am schwersten Auszunutzen, da der Angreifer den Nutzer dazu bringen muss den Schadcode in die Informationen einzubringen, die von dem Script verarbeitet werden (z.B. durch das Eingeben in ein Formular).
 
 
 
@@ -1023,7 +1296,7 @@ CWE-79: XSS - Beispiel 1 - XSS Typ 1 (Php)
 
 .. container:: post-lecture-exercise-solution
 
-    - Problem: der Nutzername kann "beliebig lange" sein und insbesondere beliebigen JavaScript Code enthalten. Beispiel :code:`http://trustedSite.example.com/welcome.php?username=<Script Language="Javascript">alert("You've been attacked!");</Script>`. Komplexerer Code könnte zum Beispiel ein Fakelogin nachbauen und so die Zugangsdaten des Nutzers abgreifen. Entsprechende Links könnten mit Hilfe von Verschleierungstechniken so verschleiert werden, dass der Nutzer nicht bemerkt, dass er auf einen Link mit Schadfunktion klickt.
+    - Problem: der Nutzername kann "beliebig lange" sein und insbesondere beliebigen JavaScript Code enthalten. Beispiel :code:`http://trustedSite.example.com/welcome.php?username=<Script Language="Javascript">alert("You've been attacked!");</Script>`. Komplexerer Code könnte zum Beispiel ein Fakelogin nachbauen und so die Zugangsdaten des Nutzers abgreifen. Entsprechende Links könnten mit Hilfe von Werkzeugen so verschleiert werden, dass der Nutzer nicht bemerkt, dass er auf einen Link mit Schadfunktion klickt.
 
 
 .. class:: scriptsize
@@ -1097,11 +1370,11 @@ CWE-89: Improper Neutralization of Special Elements used in an SQL Command (*SQL
 CWE-89: Improper Neutralization of Special Elements used in an SQL Command 
 ----------------------------------------------------------------------------
 
-:Short Description: The product constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component. 
+:Kurzbeschreibung: Ein SQL-Befehl wird ganz oder teilweise unter Verwendung extern beeinflusster Eingaben von einer vorgelagerten Komponente erzeugt, bereinigt aber spezielle Elemente nicht oder falsch, die den beabsichtigten SQL-Befehl verändern könnten, wenn er an eine nachgelagerte Komponente gesendet wird.
 
-:Likelihood Of Exploit: High
-:Technology: Database Server
-:Scope: Access Control, Confidentiality, Integrity
+:Wahrscheinlichkeit des Missbrauchs: Hoch
+:Technologie: Datenbanken
+:Betrifft: Zugriffskontrolle, Vertraulichkeit, Integrität
 
 
 
@@ -1138,7 +1411,7 @@ CWE-89: SQL Injection - Beispiel 2 (PHP)
 
 .. container:: post-lecture-exercise-solution   
 
-    - Problem: Der Wert von :code:`$id`, welcher aus einem Cookie ausgelesen wird, wird nicht validiert. Auch wenn Cookies nicht trivial von einem Nutzer bzw. Angreifer manipuliert werden können, so ist es doch möglich. Der Angreifer kann so beliebige SQL Statements ausführen. Deswegen gilt: *Alle* Eingaben müssen validiert werden.
+    - Problem: Der Wert von :code:`$id`, welcher aus einem Cookie ausgelesen wird, wird nicht validiert. Auch wenn Cookies nicht trivial von einem Nutzer bzw. Angreifer manipuliert werden können, so ist es dennoch möglich. Der Angreifer kann so beliebige SQL Statements ausführen. Deswegen gilt: *Alle* Eingaben müssen validiert werden.
     - 
 
 CWE-89: Improper Neutralization of Special Elements used in an SQL Command - Abhilfemaßnahmen und Erkennung
@@ -1147,8 +1420,8 @@ CWE-89: Improper Neutralization of Special Elements used in an SQL Command - Abh
 .. class:: incremental
 
 - Verwendung von geprüften/sicheren APIs.
-- Verwendung von Prepared Statements.
-- Datenbank nur mit den notwendigen Rechten betreiben (Principle of Least Privilege)
+- Verwendung von *Prepared Statements*.
+- Datenbank nur mit den notwendigen Rechten betreiben (*Principle of Least Privilege*)
 - Sollte es notwendig sein einen dynamischen SQL Befehl zu erstellen, dann sollten geprüfte Escapefunktionen verwendet werden.
 - Statische Analyse Werkzeuge
 - ggf. Application-level Firewall einsetzen
@@ -1166,11 +1439,11 @@ CWE-416: Use After Free (UAF)
 CWE-416: Use After Free 
 ----------------------------------------------------------------------------
 
-:Short Description: Referencing memory after it has been freed can cause a program to crash, use unexpected values, or execute code.  
+:Kurzbeschreibung: Referenzierung von Speicher nach der Freigabe kann dazu führen, dass ein Programm abstürzt, unerwartete Werte verwendet oder Code ausführt.
 
-:Likelihood Of Exploit: High
-:Languages: C, C++
-:Scope: Availability, Confidentiality, Integrity
+:Wahrscheinlichkeit des Missbrauchs: Hoch
+:Programmiersprachen: C, C++
+:Betrifft: Verfügbarkeit, Vertraulichkeit, Integrität
 
 
 
@@ -1228,6 +1501,8 @@ CWE-416: Use After Free - Beispiel
             }
 
     .. container:: column
+
+        **Fragen**:
 
         Wird dieses Program bis zum Ende laufen oder abstürzen? 
         
@@ -1316,7 +1591,7 @@ CWE-416: Use After Free - Abhilfemaßnahmen und Erkennung
 .. class:: incremental
 
 - Wahl einer sicheren Programmiersprache (z.B. RUST)
-- explizites :code:`NULL` setzen, nachdem der Speicherbereich freigegeben wurde. 
+- explizites :code:`NULL` setzen, nachdem der Speicherbereich freigegeben wurde 
 - Fuzzing
 - Statische Analyse Werkzeuge
 
@@ -1337,13 +1612,15 @@ CWE-78: Improper Neutralization of Special Elements used in an OS Command (*OS C
 CWE-78: Improper Neutralization of Special Elements used in an OS Command
 ----------------------------------------------------------------------------
 
-:Short Description: The product constructs all or part of an OS command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended OS command when it is sent to a downstream component.  
+:Kurzbeschreibung: Alles oder zumindest ein Teil eines Betriebssystembefehls hängt von extern beeinflussten Eingaben ab. Es erfolgt jedoch keine Bereinigung spezieller Elemente, die den beabsichtigten Betriebssystembefehl verändern könnten.
 
-:Likelihood Of Exploit: High
-:Scope: Availability, Confidentiality, Integrity
-:Main Kinds:
-    1. Die Anwendung führt ein bestimmtes Program aus und die Daten werden als Parameter übergeben.
-    2. Die Anwendung bestimmt basierend auf den Nutzerdaten welches Program mit welchen Parameter ausgeführt werden soll.
+.. The product constructs all or part of an OS command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended OS command when it is sent to a downstream component.  
+
+:Wahrscheinlichkeit des Missbrauchs: Hoch
+:Betrifft: Verfügbarkeit, Vertraulichkeit, Integrität
+:Arten:
+    1. Ein bestimmtes Program wird ausgeführt und die Nutzerdaten werden als Parameter übergeben.
+    2. Die Anwendung bestimmt basierend auf den Nutzerdaten welches Program mit welchen Parametern ausgeführt wird.
 
 
 .. class:: scriptsize
@@ -1375,7 +1652,7 @@ CWE-78: Improper Neutralization of Special Elements used in an OS Command - Abhi
 .. class:: incremental
 
 - Verwendung von geprüften/sicheren APIs.
-- Anwendung bzw. Befehl nur mit den notwendigen Rechten betreiben (Principle of Least Privilege) bzw. in einer Sandbox ausführen.
+- Anwendung bzw. Befehl nur mit den notwendigen Rechten betreiben (*Principle of Least Privilege*) bzw. in einer Sandbox ausführen.
 - Statische Analyse Werkzeuge
 - Dynammische Analyse in Kombination mit Fuzzing
 - Manuelle Code Reviews/Statische Analyse
@@ -1397,29 +1674,31 @@ CWE-20: Improper Input Validation
 -------------------------------------------
 
 
-:Short Description: The product receives input or data, but it does not validate or incorrectly validates that the input has the properties that are required to process the data safely and correctly.   
+:Kurzbeschreibung:  Empfangene Eingaben oder Daten werden nicht nicht oder falsch validiert in Hinblick darauf, dass die Eingaben die Eigenschaften haben, die für eine sichere und korrekte Verarbeitung der Daten erforderlich sind.   
 
-:Likelihood Of Exploit: High
-:Scope: Availability, Confidentiality, Integrity
-:Application Areas:
-    - raw data - strings, numbers, parameters, file contents, etc.
-    - metadata - information about the raw data, such as headers or size 
+.. The product receives input or data, but it does not validate or incorrectly validates that the input has the properties that are required to process the data safely and correctly.   
+
+:Wahrscheinlichkeit des Missbrauchs: Hoch
+:Betrifft: Verfügbarkeit, Vertraulichkeit, Integrität
+:Anwendungsbereiche:
+    - Rohdaten - Strings, Zahlen, Parameter, Dateiinhalte, etc.
+    - Metadaten - Information über die Rohdaten, wie zum Beispiel *Header* oder Größe
 
 
 CWE-20: Improper Input Validation - zu verifizierende Werte und Eigenschaften
 -------------------------------------------------------------------------------
 
-.. class:: incremental
+.. class:: incremental smaller
 
-- Größen wie Größe, Länge, Häufigkeit, Preis, Rate, Anzahl der Vorgänge, Zeit usw.
-- implizite oder abgeleitete Größen, wie z. B. die tatsächliche Größe einer Datei anstelle einer angegebenen Größe
-- Indizes, Offsets oder Positionen in komplexeren Datenstrukturen
-- Schlüssel von Hashtabellen, assoziativen Feldern usw.
-- syntaktische Korrektheit - Übereinstimmung mit der erwarteten Syntax
-- Bestimmung des tatsächlichen Typs der Eingabe (oder das, was die Eingabe zu sein scheint)
-- Konsistenz zwischen den Rohdaten und Metadaten, zwischen Referenzen usw.
-- semantische Korrektheit Konformität mit domänenspezifischen Regeln, z. B. Geschäftslogik
-- Authentizität von z. B. kryptografischen Signaturen 
+- **Größen** wie Größe, Länge, Häufigkeit, Preis, Rate, Anzahl der Vorgänge, Zeit usw.
+- **implizite oder abgeleitete Größen**, wie z. B. die tatsächliche Größe einer Datei anstelle einer angegebenen Größe
+- **Indizes**, Offsets oder Positionen in komplexeren Datenstrukturen
+- **Schlüssel** von Hashtabellen, assoziativen Feldern usw.
+- **syntaktische Korrektheit** - Übereinstimmung mit der erwarteten Syntax
+- Bestimmung des **tatsächlichen Typs der Eingabe** (oder das, was die Eingabe zu sein scheint)
+- **Konsistenz** zwischen den Rohdaten und Metadaten, zwischen Referenzen usw.
+- **semantische Korrektheit** bzw. Konformität mit domänenspezifischen Regeln, z. B. Geschäftslogik
+- **Authentizität** von z. B. kryptografischen Signaturen 
 
 
 
@@ -1454,6 +1733,7 @@ C:
     error = scanf("%d", &n);
     if ( EOF == error ) die("No integer passed!\n");
     if ( m > MAX_DIM || n > MAX_DIM ) die("Value too large!\n");
+
     board = (board_square_t*) malloc( m * n * sizeof(board_square_t));
     ...
 
@@ -1464,7 +1744,7 @@ C:
 
 .. container:: post-lecture-exercise-solution   
 
-    - Problem: n und m werden nicht vollständig validiert. Sind die Werte negative, dann wird ggf. sehr viel Speicher alloziiert oder das Programm stürzt ab. 
+    - Problem: n und m werden nicht vollständig validiert. Sind die Werte negativ, dann wird ggf. sehr viel Speicher alloziiert oder das Programm stürzt ab. 
 
     
 
@@ -1495,12 +1775,14 @@ CWE-125: Out-of-bounds Read
 -------------------------------------------
 
 
-:Short Description: The product reads data past the end, or before the beginning, of the intended buffer. 
+:Kurzbeschreibung: Daten vor oder nach einem Puffer werden gelesen.
 
-:Likelihood Of Exploit: High
-:Languages: C, C++
-:Scope: Confidentiality
-:Impact: Bypass Protection Mechanism; Read Memory
+.. The product reads data past the end, or before the beginning, of the intended buffer. 
+
+:Wahrscheinlichkeit des Missbrauchs: Hoch
+:Programmiersprachen: C, C++
+:Betrifft: Vertraulichkeit
+:Auswirkungen: Umgehung von Schutzmaßnahmen; Lesen von Speicher
 
 .. container:: supplemental
 
@@ -1562,10 +1844,12 @@ CWE-22: Improper Limitation of a Pathname to a Restricted Directory
 ----------------------------------------------------------------------------
 
 
-:Short Description: The product uses external input to construct a pathname that is intended to identify a file or directory that is located underneath a restricted parent directory, but the product does not properly neutralize special elements within the pathname that can cause the pathname to resolve to a location that is outside of the restricted directory. 
+:Kurzbeschreibung:  Externe Eingaben werden für die Konstruktion eines Pfadnamens verwendet, der eine Datei oder ein Verzeichnis identifizieren soll, das sich unterhalb eines eingeschränkten übergeordneten Verzeichnisses befindet. Eine Bereinigung spezieller Elemente innerhalb des Pfadnamens erfolgt jedoch nicht ordnungsgemäß, was dazu führen kann, dass der Pfadname zu einem Ort außerhalb des eingeschränkten Verzeichnisses aufgelöst wird. 
 
-:Likelihood Of Exploit: High
-:Scope: Confidentiality, Integrity, Availability
+.. The product uses external input to construct a pathname that is intended to identify a file or directory that is located underneath a restricted parent directory, but the product does not properly neutralize special elements within the pathname that can cause the pathname to resolve to a location that is outside of the restricted directory. 
+
+:Wahrscheinlichkeit des Missbrauchs: Hoch
+:Betrifft: Vertraulichkeit, Integrität, Verfügbarkeit
 
 
 .. class:: scriptsize
@@ -1603,7 +1887,7 @@ Perl:
 
 .. container:: post-lecture-exercise-solution
 
-    - Problem: :code:`Username` wird nur bzgl. ../ am Anfang der Zeichenkette gesäubert. Beginnt der Nutzername mit :code:`../../` dann kann der Angreifer dennoch zum darüber liegenden Verzeichnis wechseln. Es fehlt im Wesentlichen das :code:`g` Flag (vgl. ``sed``)
+    - Problem: :code:`Username` wird nur bzgl. ../ am Anfang der Zeichenkette gesäubert. Beginnt der Nutzername mit :code:`../../` dann kann der Angreifer dennoch zum darüber liegenden Verzeichnis wechseln. Es fehlt im Wesentlichen das :code:`g` Flag (vgl. Reguläre Ausdrücke in ``sed``)
 
 .. container:: incremental margin-top-2em
 
@@ -1646,7 +1930,8 @@ CWE-22: Path Traversal - Beispiel: verwirrende API
                 file_data = f.read()
             except FileNotFoundError as e:
                 print("Error - file not found")
-
+    
+            # do something with file_data
 
     .. container:: column
 
@@ -1740,8 +2025,7 @@ Standardtechniken, die CSRF verhindern *sollen*:
 - Validierung des Referer-Header 
 - Custom Request Header, da diese nur vom JavaScript Code gesetzt werden können, der den gleichen Ursprung hat (siehe *Same Origin Policy* (SOP)).
 
-.. admonition:: Warnung
-    :class: incremental small
+.. container:: incremental small foundations
 
     Auch diese Techniken lassen sich ggf. (alle zusammen) aushebeln, `wenn die Anwendung weitere Schwachstellen aufweist <https://portswigger.net/web-security/csrf>`__. So gibt/gab es Anwendungen, die Anfragen, die nur über ein POST request gestellt werden sollten, auch bei einem GET akzeptiert haben. 
 
@@ -1837,6 +2121,8 @@ CWE-434: Unrestricted Upload of File with Dangerous Type - Abhilfemaßnahmen und
 ----
 
 TODO MORE CWEs i.e. more SLIDES!!!
+
+
 
 
 .. class:: new-section
