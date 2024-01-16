@@ -25,7 +25,7 @@
    :format: html
 
 
-CVSS, CVE, CVD, VEP und CWE/OWASP
+CVSS, CVE, CVD, KEV, VEP und CWE/OWASP
 =====================================================
 
 :Dozent: **Prof. Dr. Michael Eichberg**
