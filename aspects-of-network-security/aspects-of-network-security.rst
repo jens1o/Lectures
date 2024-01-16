@@ -1773,12 +1773,12 @@ Standardanwendung für den Zugriff auf das Tor-Netzwerk.
 
 .. container:: stack
 
-    .. container:: layer 
+    .. container:: layer clearfix
         
         .. image:: tor-onion-service-nyt.png
             :alt: Tor Browser mit Ney-York-Times - 01.01.2024
+            :height: 848px
             :align: left
-            :width: 1000px
 
         .. container:: scriptsize
 
@@ -1909,3 +1909,5 @@ Tor
    "Hell breaks loose." Er kann zum Beispiel auf die Entry und Exitnodes verweisen, die er kontrolliert. Damit kann er den Datenverkehr entschlüsseln. Er kann auch die Onion Services verweisen, die er kontrolliert. Damit kann er die Identität der Nutzer der Onion Services ermitteln.
 
 
+.. IDEAs/TODOs/FIXMEs
+   add a discussion about alle the keys used by tor and how they are initialized!
