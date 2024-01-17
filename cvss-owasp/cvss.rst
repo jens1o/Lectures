@@ -2117,6 +2117,62 @@ CWE-434: Unrestricted Upload of File with Dangerous Type - Abhilfemaßnahmen und
 
 
 
+.. No 2 in 2023 CWE Top 10 KEV Weaknesses
+
+.. class:: new-subsection transition-move-to-top
+
+CWE-122: Heap-based Buffer Overflow
+-------------------------------------------------------------------------------------------
+
+
+CWE-122: Heap-based Buffer Overflow
+------------------------------------------------------
+
+
+:Kurze Beschreibung: 
+
+    Ein Pufferüberlauf, bei dem der Puffer, der überschrieben wird, auf dem Heap alloziiert wurde, was im Allgemeinen bedeutet, dass der Puffer mit einer Routine wie malloc() allloziiert wurde.
+
+:Missbrauchswahrscheinlichkeit: Hoch
+:Sprachen: C/C++
+:Auswirkung: Bis hin zur Ausführung von beliebigen Befehlen
+:Ausmaß: Vertraulichkeit, Integrität, Verfügbarkeit, Zugriffskontrolle
+
+
+.. class:: scriptsize
+
+CWE-122: Heap-based Buffer Overflow
+-------------------------------------------------------------------
+
+:ger-quote:`Basisbeispiel` in C:
+
+.. code:: C
+
+    #define BUFSIZE 256
+    int main(int argc, char **argv) {
+        char *buf;
+        buf = (char *)malloc(sizeof(char)*BUFSIZE);
+        strcpy(buf, argv[1]);
+    }
+
+
+.. container:: post-lecture-exercise-solution
+
+    Problem: Die Größe von buf ist unabhängig von der Größe von :code:`argv[1]`. 
+
+
+
+CWE-122: Heap-based Buffer Overflow - Abhilfemaßnahmen und Erkennung
+-----------------------------------------------------------------------
+
+- Verwendung einer sicheren Programmiersprache
+- Verwendung von sicheren APIs
+- Kompilierung unter Verwendung entsprechender Schutzmechanismen (Position-Independent Executables (PIE), Canaries, ...)
+- Härtung der Umgebung (z.B. ASLR)
+- Statische Analyse Werkzeuge
+- Fuzzing
+
+
 \
 ----
 
