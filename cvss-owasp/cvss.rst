@@ -993,6 +993,16 @@ Der Zeitrahmen für die Offenlegung von Sicherheitslücken wird durch folgende F
     -- Übersetzt von www.DeepL.com/Translator 
 
 
+Schwachstellenmanagement in Deutschland (2021-2025)
+-------------------------------------------------------------
+
+
+.. epigraph::
+
+    [...] Die Ausnutzung von Schwachstellen von IT-Systemen steht in einem hochproblematischen Spannungsverhältnis zur IT-Sicherheit und den Bürgerrechten. Der Staat wird daher keine Sicherheitslücken ankaufen oder offenhalten, sondern sich in einem Schwachstellenmanage- ment unter Federführung eines unabhängigeren Bundesamtes für Sicherheit in der Informa- tionstechnik immer um die schnellstmögliche Schließung bemühen.[...]
+
+    -- KOALITIONSVERTRAG 2021—2025 (SPD, BÜNDNIS 90/DIE GRÜNEN, FDP)
+    
 
 .. class:: integrated-exercise transition-move-left
 
