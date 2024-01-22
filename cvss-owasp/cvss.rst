@@ -2012,7 +2012,7 @@ Perl:
 .. container:: post-lecture-exercise-solution
 
     - Problem im Perl Beispiel: :code:`Username` wird nur bzgl. ../ am Anfang der Zeichenkette gesäubert. Beginnt der Nutzername mit :code:`../../` dann kann der Angreifer dennoch zum darüber liegenden Verzeichnis wechseln. Es fehlt im Wesentlichen das :code:`g` Flag (vgl. Reguläre Ausdrücke in ``sed``)
-    - 
+
     - Problem im Java Beispiel: Auch in diesem Falle wird zwar der Anfang geprüft, d.h. ob der Pfad mit :code:`/safe_dir/` beginnt, aber dies verhindert nicht, dass der Pfad im Weiteren :code:`../` verwendet und der Angreifer darüber zu einem höherliegenden Verzeichnis wechseln kann.
 
 
@@ -2673,10 +2673,10 @@ OWASP
 
 .. class:: scriptsize
 
-0. Benenne die Schwachstelle(n) entsprechend der CWEs (ohne ID).
-1. Identifiziere die für die Schwachstelle(n) relevanten Zeilen im Code.
-2. Gebe - falls möglich - einen Angriffsvektor an.
-3. Skizziere mögliche Auswirkung der Schwachstelle(n) (z.B. Verlust der Vertraulichkeit, Integrität oder Verfügbarkeit; Umgehung der Zugriffskontrolle; beliebige Codeausführung, ...) 
+1. Benenne die Schwachstelle(n) entsprechend der CWEs (ohne ID).
+2. Identifiziere die für die Schwachstelle(n) relevanten Zeilen im Code.
+3. Gebe - falls möglich - einen Angriffsvektor an.
+4. Skizziere mögliche Auswirkung der Schwachstelle(n) (z.B. Verlust der Vertraulichkeit, Integrität oder Verfügbarkeit; Umgehung der Zugriffskontrolle; beliebige Codeausführung, ...) 
 
 .. code:: C
     :class: tiny
