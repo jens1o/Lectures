@@ -82,6 +82,14 @@ Ausgewählte Social-Engineering Angriffe bzw. Terminologie
         Phishing, dass sich gegen hochrangige und sehr ausgewählte Personen richtet (z.B. den CEO eines Unternehmens).
 
 
+.. container:: supplemental
+
+    **Typische Phishing E-Mail**
+
+    .. image:: phishing-mail-fake-fedex.png 
+        :width: 80%
+        
+
 Ausgewählte Social-Engineering Angriffe bzw. Terminologie
 -------------------------------------------------------------
 
@@ -400,7 +408,7 @@ CVSS - Bewertung der Ausnutzbarkeit/Exploitability Metrics
 
     **Attack Requirements**
 
-    Welcher Vorbedingungen (unabhängig von den expliziten Sicherungsmaßnahmen) müssen erfüllt sein, damit die Schwachstelle ausgenutzt werden kann. (z.B. der Nutzer muss sich an seinem Smartphone mindestens einmal seit dem Boot angemeldet haben (After-First-Use vs. Before-First-Use.))
+    Welcher Vorbedingungen (unabhängig von den expliziten Sicherungsmaßnahmen) müssen erfüllt sein, damit die Schwachstelle ausgenutzt werden kann. (z.B. der Nutzer muss sich an seinem Smartphone mindestens einmal seit dem Boot angemeldet haben (*After-First-Use* vs. *Before-First-Use*.))
 
     **Privileges Required**
 
@@ -733,6 +741,11 @@ CWE - Schwachstellenkatalog `TOP 9-16 in 2023 <https://cwe.mitre.org/top25/archi
     16 , CWE-77 , Improper Neutralization of Special Elements used in a Command ('Command Injection') , +1
 
 
+.. container:: supplemental
+
+    Request Forgery = :ger:`Anfragefälschung`
+
+
 CWE - Schwachstellenkatalog `TOP 17-25 in 2023 <https://cwe.mitre.org/top25/archive/2023/2023_top25_list.html#tableView>`__
 --------------------------------------------------------------------------------------------------------------------------------------
 
@@ -957,6 +970,91 @@ Der Zeitrahmen für die Offenlegung von Sicherheitslücken wird durch folgende F
 - Schätzung des Herstellers wie lange es dauert einen Patch zu entwickeln, zu testen und auszurollen.
 
 
+
+Welche neuen Schwachstellen werden in absehbarer Zeit ausgenutzt?
+----------------------------------------------------------------------------
+
+.. admonition:: Beobachtung 
+    :class: the-blue-background
+
+    Am 1. Oktober 2023 hat die NVD 139.473 CVSS veröffentlicht. In den folgenden 30 Tagen wurden 3.852 CVEs beobachtet, die ausgenutzt (:eng:`exploited`) wurden. 
+
+    Ca. 5-6% aller Schwachstellen werden :ger-quote:`irgendwann` ausgenutzt. [#]_
+    
+.. admonition:: Frage
+    :class: question incremental 
+
+    Wie stelle ich sicher, dass ich meine Bemühungen zum Beseitigen der Schwachstellen auf diejenigen konzentriere, die am wahrscheinlichsten zeitnahe ausgenutzt werden?
+
+.. [#] Fortinet, `Threat Landscape Report Q2 2018 <https://www.fortinet.com/content/dam/fortinet/assets/threat-reports/q2-2018-threat-landscape-report.pdf>`__
+
+Nutzung des CVSS als Grundlage für die Schätzung?
+----------------------------------------------------------------------------
+
+Annahme: Schwachstellen mit einem CVSS Score :math:`\geq` 7 (d.h. mit einer Bewertung von Hoch oder kritisch) werden ausgenutzt.
+
+.. class:: incremental
+
+- 80.024 Schwachstellen haben einen CVSS Score :math:`\geq` 7
+  
+  **Ausgenutzt wurden: 3.166**
+- 59.449 Schwachstellen haben eine CVSS :math:`<` 7
+  
+  **Ausgenutzt wurden: 686**
+
+.. container:: incremental assessment smaller
+
+    **Zusammenfassung:**
+
+    D.h. die Strategie "Priorisierung von Schwachstellen mit einem CVSS Score :math:`\geq` 7" ist keine geeignete Strategie, da sie nicht alle relevanten  Schwachstellen erfasst (686 *False Negatives*) und - ganz insbesondere - zu viele Schwachstellen (76.858 *False Positives*) erfasst, die nicht ausgenutzt werden.
+
+
+
+`Exploit Prediction Scoring System (EPSS) <https://www.first.org/epss/>`__
+--------------------------------------------------------------------------
+
+.. class:: incremental
+
+- EPSS ist eine Methode zur *Bewertung der Wahrscheinlichkeit*, dass eine Schwachstelle in den nächsten 30 Tagen ausgenutzt wird
+- EPSS basiert auf der Analyse von Schwachstellen, die in den letzten 12 Monaten ausgenutzt wurden
+- EPSS nutzt KI basierend auf folgenden Informationen (Stand Jan. 2024):
+
+  .. class:: incremental smaller
+
+  - Hersteller
+  - Alter der Schwachstelle (Tage seit der Veröffentlichung des CVEs)
+  - die Beschreibung der Schwachstelle
+  - betroffene CWEs
+  - CVSS Bewertungen der Schwachstellen
+  - Wird der CVE auf bekannten Listen diskutiert bzw. aufgelistet?
+  - Gibt es öffentliche verfügbare Exploits?
+
+
+Nutzung des EPSS für die Schätzung? [#]_
+----------------------------------------------------------------------------
+
+Annahme: Schwachstellen mit EPSS 10% und größer sind werden ausgenutzt werden.
+
+
+.. class:: incremental
+
+- 3.735 Schwachstellen haben ein Wahrscheinlichkeit von EPSS 10% und größer
+  
+  **Ausgenutzt wurden: 2.4356**
+- 135.738 Schwachstellen haben ein EPSS :math:`<` 10%
+    
+  **Ausgenutzt wurden: 1.417**
+
+.. container:: incremental assessment smaller
+
+    **Zusammenfassung:**
+
+    D.h. die Strategie "Priorisierung von Schwachstellen mit einem EPSS von 10% und höher" ist eine geeignetere Strategie, da noch immer sehr viele  relevante Schwachstellen erfasst werden und - ganz insbesondere - die Anzahl der zu beachtenden Schwachstellen ganz massiv reduziert wird ohne die Gesamtqualität zu stark zu beeinflussen.
+
+.. [#] `Enhancing Vulnerability Prioritization: Data-Driven Exploit Predictions with Community-Driven Insights <https://arxiv.org/abs/2302.14172>`__
+
+
+
 `Vulnerabilities Equities Process (VEP) (USA) <https://trumpwhitehouse.archives.gov/sites/whitehouse.gov/files/images/External%20-%20Unclassified%20VEP%20Charter%20FINAL.PDF>`__ [#]_
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1004,6 +1102,8 @@ Schwachstellenmanagement in Deutschland (2021-2025)
     -- KOALITIONSVERTRAG 2021—2025 (SPD, BÜNDNIS 90/DIE GRÜNEN, FDP)
     
 
+
+
 .. class:: integrated-exercise transition-move-left
 
 CVEs - Übung
@@ -1020,9 +1120,11 @@ CVEs - Übung
       Poc:  https://github.com/zadewg/RIUS
 
 
+
+
 .. class:: new-section transition-fade
 
-Diskussion der relevantesten Schwachstellen (CWEs)
+Diskussion relevanter Schwachstellen (CWEs)
 -------------------------------------------------------------
 
 
@@ -1895,10 +1997,6 @@ Perl:
     my $filename = "/home/user/" . $Username;
     ReadAndSendFile($filename);
 
-.. container:: post-lecture-exercise-solution
-
-    - Problem: :code:`Username` wird nur bzgl. ../ am Anfang der Zeichenkette gesäubert. Beginnt der Nutzername mit :code:`../../` dann kann der Angreifer dennoch zum darüber liegenden Verzeichnis wechseln. Es fehlt im Wesentlichen das :code:`g` Flag (vgl. Reguläre Ausdrücke in ``sed``)
-
 .. container:: incremental margin-top-2em
 
     Java: 
@@ -1913,7 +2011,9 @@ Perl:
 
 .. container:: post-lecture-exercise-solution
 
-    - Problem: Auch in diesem Falle wird zwar der Anfang geprüft, d.h. ob der Pfad mit :code:`/safe_dir/` beginnt, aber dies verhindert nicht, dass der Pfad im Weiteren :code:`../` verwendet und der Angreifer darüber zu einem höherliegenden Verzeichnis wechseln kann.
+    - Problem im Perl Beispiel: :code:`Username` wird nur bzgl. ../ am Anfang der Zeichenkette gesäubert. Beginnt der Nutzername mit :code:`../../` dann kann der Angreifer dennoch zum darüber liegenden Verzeichnis wechseln. Es fehlt im Wesentlichen das :code:`g` Flag (vgl. Reguläre Ausdrücke in ``sed``)
+    - 
+    - Problem im Java Beispiel: Auch in diesem Falle wird zwar der Anfang geprüft, d.h. ob der Pfad mit :code:`/safe_dir/` beginnt, aber dies verhindert nicht, dass der Pfad im Weiteren :code:`../` verwendet und der Angreifer darüber zu einem höherliegenden Verzeichnis wechseln kann.
 
 
 .. class:: scriptsize
@@ -2183,22 +2283,367 @@ CWE-122: Heap-based Buffer Overflow - Abhilfemaßnahmen und Erkennung
 - Fuzzing
 
 
-\
-----
-
-TODO MORE CWEs i.e. more SLIDES!!!
 
 
+.. No 6 in 2023 CWE Top 10 KEV Weaknesses https://cwe.mitre.org/top25/archive/2023/2023_kev_list.html
+
+.. class:: new-subsection transition-move-to-top
+
+
+CWE-502: Deserialization of Untrusted Data
+--------------------------------------------------------------------------------
+
+
+CWE-502: Deserialization of Untrusted Data
+------------------------------------------------------
+
+
+:Kurze Beschreibung: 
+
+    Nicht vertrauenswürdige Daten werden deserialisiert ohne - *je nach Bibliothek notwendige vorhergehende* - Prüfung, dass die Daten die erwarteten Eigenschaften haben.
+
+:Missbrauchswahrscheinlichkeit: Mittel
+:Sprachen: Java, Ruby, Python, PHP, JavaScript, ...
+:Ausmaß: Insbesondere: Integrität und Verfügbarkeit (DoS); weitere Effekte sind vom Kontext abhängig.
+
+:Alternative Begriffe: (Un-)Marshalling, (Un-)Picking
+
+
+.. container:: supplemental
+
+    Bei der Serialisierung werden programminterne Objekte so verpackt, dass die Daten extern gespeichert und/oder übertragen werden können. Die Deserialisierung kehrt diesen Prozess um.
+
+
+
+
+.. class:: scriptsize
+
+CWE-502: Deserialization of Untrusted Data - Beispiel
+-------------------------------------------------------------------
+
+Java
+
+.. code:: Java
+
+    File file = new File("object.obj");
+    try ( FileInputStream fin = new FileInputStream(file);
+          ObjectInputStream oin = new ObjectInputStream(fin)
+        ) {
+        javax.swing.JButton button = (javax.swing.JButton) oin.readObject();
+        ...
+    } 
+
+.. container:: supplemental
+
+    In diesem Beispiel wird ein Objekt aus einer Datei gelesen und in eine Variable vom Typ :code:`javax.swing.JButton` geschrieben. Der Typ des Objekts wird nicht geprüft. Es ist möglich, dass die Datei ein Objekt enthält, welches vom Typ :code:`javax.swing.JButton` ist, aber nicht die Eigenschaften hat, die ein Button haben sollte. In diesem Fall wird keine Exception geworfen, aber das Objekt kann nicht wie erwartet verwendet werden bzw. es kommt zur Ausführung von beliebigem Code.
+
+
+.. class:: scriptsize
+
+CWE-502: Deserialization of Untrusted Data - Beispiel
+-------------------------------------------------------------------
+
+Python
+
+.. code:: Python
+
+    
+    class ExampleProtocol(protocol.Protocol):
+
+        def dataReceived(self, data):
+            # ... parse the incoming data and 
+            # after receiving headers, call confirmAuth() to authenticate
+
+        def confirmAuth(self, headers):
+            try:
+                token = cPickle.loads(base64.b64decode(headers['AuthToken']))
+                if not check_hmac(token['signature'], token['data'], getSecretKey()):
+                    raise AuthFail
+                self.secure_data = token['data']
+            except:
+                raise AuthFail
+    
+
+
+.. container:: post-lecture-exercise-solution
+
+    In diesem Fall könnte man der Funktion ein Objekt unterschieben, dass bei der Deserialisierung beliebigen Code ausführt (zum Beispiel um einen weitere Prozess zu starten.).
+
+    Dieses Problem wird in der Dokumentation  auch explizit erwähnt:
+
+    .. epigraph::
+
+        Warning The pickle module is not secure. Only unpickle data you trust.
+        It is possible to construct malicious pickle data which will execute arbitrary code during unpickling. Never unpickle data that could have come from an untrusted source, or that could have been tampered with.
+
+        -- `Python 3.12 <https://docs.python.org/3/library/pickle.html>`__
+
+    
+
+CWE-502: Deserialization of Untrusted Data - Abhilfemaßnahmen und Erkennung
+-----------------------------------------------------------------------------
+
+
+- ggf. Einsatz von Signaturen, um sicherzustellen, dass der serialisierte Code nicht manipuliert wurde 
+- Serialisiere nur Daten, die auch wirklich serialisiert werden müssen
+- Verwendung von sicheren Formaten (z.B. JSON)
+- statische Analyse
+
+.. class:: supplemental
+
+    Empfohlene Lektüre: `Deserialization Vulnerabilities <https://portswigger.net/web-security/deserialization>`__
+
+
+
+
+.. No 7 in 2023 CWE Top 10 KEV Weaknesses https://cwe.mitre.org/top25/archive/2023/2023_kev_list.html
+
+.. class:: new-subsection transition-move-to-top
+
+
+
+CWE-918: Server-Side Request Forgery (SSRF)
+--------------------------------------------------------------------------------
+
+
+CWE-918: Server-Side Request Forgery 
+------------------------------------------------------
+
+
+:Kurze Beschreibung: 
+    Der Webserver erhält eine URL oder eine ähnliche Anfrage und ruft den Inhalt dieser URL ab, stellt aber nicht sicher, dass die Anfrage an das erwartete Ziel gesendet wird.
+
+:Technologien: Webserver
+:Ausmaß: Vetraulichkeit, Integrität 
+
+
+
+CWE-918: Server-Side Request Forgery 
+------------------------------------------------------
+
+.. image:: ssrf.svg
+    :alt: Server-Side Request Forgery (SSRF)
+    :width: 1800px
+
+
+
+.. class:: scriptsize
+
+CWE-918: Server-Side Request Forgery - Beispiel: CVE-2002-1484
+-----------------------------------------------------------------
+
+:Beschreibung:  
+    Wenn der DB4Web-Server so konfiguriert ist, dass er ausführliche Debug-Meldungen verwendet, können entfernte Angreifer DB4Web als Proxy verwenden und über eine Anfrage an eine URL, die die Ziel-IP-Adresse und den Port angibt, TCP-Verbindungen zu anderen Systemen (Port-Scan) versuchen, was einen Verbindungsstatus in der resultierenden Fehlermeldung erzeugt.
+    
+.. class:: incremental
+
+:PoC: http://127.0.0.1/DB4Web/172.31.93.30:22/foo
+
+.. class:: incremental
+
+:Workaround:
+    Der Hersteller betrachtet die Funktionalität nicht als Fehler, sondern als nützliches Feature für Entwickler. Um die Ausnutzung dieses Features zu verhindern, muss die Standardfehlerseite durch eine benutzerdefinierte Fehlerseite ersetzt werden.
+
+
+.. class:: scriptsize
+
+CWE-918: Server-Side Request Forgery - Beispiel: NodeJS Unicode Handling Fehler [#]_
+---------------------------------------------------------------------------------------
+
+JavaScript:
+
+.. code:: JavaScript
+
+    var base = "http://orange.tw/sandbox/";
+    var path = req.query.path;
+    if (path.indexOf("..") == -1) { // check for no directory traversal
+        http.get(base + path, callback);
+    }
+
+.. container:: incremental
+
+    Beispiel URL (*U+FF2E Full width Latin capital letter N*):
+
+    .. code:: restructuredtext
+        :class: incremental
+
+          http://orange.tw/sandbox/ＮＮ/passwd
+
+    .. code:: restructuredtext
+        :class: incremental
+
+        ≙ http://orange.tw/sandbox/\xFF\x2E\xFF\x2E/passwd
+
+    .. code:: restructuredtext
+        :class: incremental
+
+        ≙ http://orange.tw/sandbox/\x2E\x2E/passwd
+
+    .. code:: restructuredtext
+        :class: incremental
+
+        ≙ http://orange.tw/sandbox/../passwd
+
+    
+.. [#] `Exploiting URL Parsers <https://www.blackhat.com/docs/us-17/thursday/us-17-Tsai-A-New-Era-Of-SSRF-Exploiting-URL-Parser-In-Trending-Programming-Languages.pdf>`__
+
+
+.. class:: scriptsize
+
+CWE-918: Server-Side Request Forgery - Beispiel: URL Parser vs. Abfrage der URL
+---------------------------------------------------------------------------------
+
+PHP (> 7.0.13):
+
+.. code:: php
+
+    $url = 'http://foo@127.0.0.1⬜@google.com:11211/'; // ⬜ is "just" a space
+    $parsed = parse_url($url);
+    var_dump($parsed[host]); // string(10) "google.com"
+    var_dump($parsed[port]); // int(11211)
+    curl($url);
+
+Ergebnis:
+
+.. container:: incremental
+
+    ``curl`` fragt die URL ``127.0.0.1:11211`` abfragen.
+
+CWE-918: Server-Side Request Forgery - Variante: Blind SSRF
+-----------------------------------------------------------------------------
+
+Bei *Blind SSRF*-Schwachstellen werden auch Back-End-HTTP-Anfragen an eine bereitgestellte URL gestellt, die Antwort der Back-End-Anfrage jedoch nicht an die Front-End-Antwort der Anwendung zurückgegeben.
+
+.. container:: supplemental
+
+    Empfohlene Lektüre: `Blind Server-Side Request Forgery (SSRF) <https://portswigger.net/web-security/ssrf/blind>`__
+
+
+CWE-918: Server-Side Request Forgery - Abhilfemaßnahmen und Erkennung
+-----------------------------------------------------------------------------
+
+- keine (Wieder-)Verwendung der Eingabe URL
+- sichere APIs
+- statische Analyse (insbesondere Datenflußanalysen)
+- Behandlung von Zugriffen von lokalen Maschinen sollte mit der gleichen sorgfalt überprüft werden wie Zugriffe von externen Maschinen; andernfalls können kritische SSRF Angriffe durchgeführt werden
+- Firewall/Network Policy um Zugriff auf interne Systeme zu verhindern
+
+
+
+.. No 8 in 2023 CWE Top 10 KEV Weaknesses https://cwe.mitre.org/top25/archive/2023/2023_kev_list.html
+
+.. class:: new-subsection transition-move-to-top
+
+
+CWE-843: Access of Resource Using Incompatible Type (Type Confusion)
+------------------------------------------------------------------------------
+
+
+CWE-843: Access of Resource Using Incompatible Type (Type Confusion)
+----------------------------------------------------------------------
+
+:Beschreibung: 
+
+        Eine Anwendung initialisiert eine Ressource mit einem bestimmten Typ (z.B. Zeiger (:eng:`Pointer`), Objekt, etc.). Später wird auf die Ressource (Variable) dann mit einem anderen Typ zugegriffen. 
+
+:Sprachen: insbesondere (aber nicht ausschließlich) C/C++; im Prinzip in jeder Sprache, die automatische Typkonvertierungen durchführt. 
+:Ausmaß: Integrität, Verfügbarkeit, Vertraulichkeit
+
+
+.. class:: scriptsize
+
+CWE-843: Access of Resource Using Incompatible Type - Beispiel in C
+----------------------------------------------------------------------
+
+.. code:: c
+
+    #define NAME_TYPE 1
+    #define ID_TYPE 2
+    struct MessageBuffer {
+        int msgType;
+        union {
+            char *name;
+            int nameID;
+    };  };
+    int main (int argc, char **argv) {
+        struct MessageBuffer buf;
+        char *defaultMessage = "Hello World";
+        buf.msgType = NAME_TYPE;
+        buf.name = defaultMessage;              // printf("*buf.name %p", buf.name);
+        buf.nameID = (int)(defaultMessage + 1); // printf("*buf.name %p", buf.name);
+        if (buf.msgType == NAME_TYPE) printf("%s\n", buf.name);
+        else                          printf("ID %d\n", buf.nameID);
+    }
+
+.. container:: post-lecture-exercise-solution
+
+    Der Zugriff auf ``buf.nameId`` manipuliert den Zeiger auf ``buf.name``. Dieser zeigt nun auf die Speicherstelle ``defaultMessage +1`` weswegen der nachfolgende Zugriff ``buf.name`` :ger-quote:`nur` noch ``ello World`` ausgibt und nicht mehr ``Hello World``.
+
+
+
+.. class:: scriptsize
+
+CWE-843: Access of Resource Using Incompatible Type - Beispiel in Perl
+------------------------------------------------------------------------
+
+.. code:: perl
+
+    my $UserPrivilegeArray = ["user", "user", "admin", "user"];
+    my $userID = get_current_user_ID();
+    if ($UserPrivilegeArray eq "user") {
+        print "Regular user!\n";
+    }
+    else {
+        print "Admin!\n";
+    }
+
+    print "\$UserPrivilegeArray = $UserPrivilegeArray\n";
+
+
+.. container:: post-lecture-exercise-solution
+
+    In der Zeile: :code:`if ($UserPrivilegeArray eq "user")` wurde vergesen die Indizierung (:code:`$userID`) zu verwenden (:code:`$UserPrivilegeArray->{$userID}`). Es wird also das Array als Ganzes mit dem String ``user`` verglichen und der Vergleich ist immer ``falsch (:eng:`false`)``.
+
+
+
+.. No 10 in 2023 CWE Top 10 KEV Weaknesses https://cwe.mitre.org/top25/archive/2023/2023_kev_list.html
+
+.. class:: new-subsection transition-move-to-top
+
+
+CWE-306: Missing Authentication for Critical Function
+--------------------------------------------------------------------------------
+
+
+CWE-306: Missing Authentication for Critical Function
+----------------------------------------------------------------------
+
+
+:Beschreibung: 
+
+    Eine Anwendung führt eine kritische Funktion aus, ohne die Identität des Nutzers zu überprüfen. Kritischer Funktionen sind solche, die entweder signifikante Ressourcen verbrauchen oder nur von privilegierten Nutzern ausgeführt werden sollten.
+
+:Sprachen: "alle"
+
+
+CWE-306: Missing Authentication for Critical Function - Abhilfemaßnahmen und Erkennung
+-----------------------------------------------------------------------------------------
+
+.. class:: incremental
+
+- manuelle Code Reviews 
+- statische Analyse (Binärcode und/oder Quellcode)
+- 
 
 
 .. class:: new-section
 
 Open Worldwide Application Security Project (OWASP)
--------------------------------------------------------------------------------------------
+----------------------------------------------------------------------
 
 
 OWASP
--------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------
 
 .. class:: incremental
     
@@ -2219,3 +2664,133 @@ OWASP
   - `OWASP Dependency-Track <https://owasp.org/www-project-dependency-track/>`__
   - `OWASP Web Security Testing Guide <https://owasp.org/www-project-web-security-testing-guide/>`__
   
+
+
+.. class:: integrated-exercise 
+
+Übung: Schwachstelle(n) (1)
+-----------------------------------------------------------------------
+
+.. class:: scriptsize
+
+0. Benenne die Schwachstelle(n) entsprechend der CWEs (ohne ID).
+1. Identifiziere die für die Schwachstelle(n) relevanten Zeilen im Code.
+2. Gebe - falls möglich - einen Angriffsvektor an.
+3. Skizziere mögliche Auswirkung der Schwachstelle(n) (z.B. Verlust der Vertraulichkeit, Integrität oder Verfügbarkeit; Umgehung der Zugriffskontrolle; beliebige Codeausführung, ...) 
+
+.. code:: C
+    :class: tiny
+    
+    #include <stdio.h>
+    #include <string.h>
+    void process(char *str) {
+        char *buffer = malloc(16);
+        strcpy(buffer, str);
+        ...
+        // ... definitively executed in the future: free(buffer);
+    }
+    int main(int argc, char *argv[]) {
+        if (argc < 2) { printf("Usage: %s <string>\n", argv[0]); return 1; }
+        process(argv[1]);
+        return 0;
+    }
+
+.. container:: post-lecture-exercise-solution
+
+    Die Länge von :code:`str` wird nicht validiert. Es kommt somit potentiel zu einem "Out-of-bounds Write" (:code:`strcpy(buffer,str)`). Ein String wäre jeder String, der länger als 16 Zeichen ist. Ein Angriffsvektor wäre z.B. ein String, der 17 Zeichen lang ist und am Ende ein :code:`\0` enthält. Die Auswirkung wäre ein Pufferüberlauf, der ggf. zur Ausführung von beliebigem Code führt.
+
+
+.. class:: integrated-exercise 
+
+Übung: Schwachstelle(n) (2)
+-----------------------------------------------------------------------
+
+.. container:: scriptsize
+
+    Sie analysieren eine REST API die folgendes Verhalten aufweist, wenn man einem Blog einen Kommentar hinzufügen möchte:
+
+    .. code:: HTTP
+        :class: tiny
+
+        POST /post/comment HTTP/1.1
+        Host: important-website.com
+        Content-Length: 100
+
+        postId=3&comment=This+<post>+was+helpful.&name=Karl+Gustav
+
+    Fragt man danach den Webservice nach dem Kommentar, dann erhält man folgendes zurück:
+
+    .. code:: HTML
+        :class: tiny
+
+        <div class="comment">
+            <div class="name">Karl Gustav</div>
+            <div class="comment">This <post> was helpful.</div>
+        </div>
+
+    Bewerten Sie die Schwachstelle: CWE Name, problematische Codestelle(n), möglicher Angriffsvektor und mögliche Auswirkung.
+
+
+
+
+.. class:: integrated-exercise 
+
+Übung: Schwachstelle(n) (3)
+-----------------------------------------------------------------------
+
+
+.. container:: scriptsize
+
+    TODO
+
+    Bewerten Sie die Schwachstelle: CWE Name, problematische Codestelle(n), möglicher Angriffsvektor und mögliche Auswirkung.
+
+
+.. class:: integrated-exercise 
+
+Übung: Schwachstelle(n) (4)
+-----------------------------------------------------------------------
+
+.. note::  
+    :class: tiny the-blue-background
+
+    **URL Encoding**
+
+    :%20: Leerzeichen
+
+    :%22: "
+
+    :%3C: <
+
+    :%3E: >
+
+    :%2F: /
+
+
+.. container:: scriptsize
+
+    Sie beobachten folgendes Verhalten einer Webseite:
+
+    **Anfrage**
+
+    .. code:: http
+
+        https://my-website.com/search?
+              term=This%20is%20a%20%3C%22%3Egift%3C%2F%22%3E
+
+    **Antwort**
+
+    .. code:: HTML
+
+        <div class="search-result">
+            <div class="title">This is a <">gift</"></div>
+        </div>   
+
+    Bewerten Sie die Schwachstelle: CWE Name, problematische Codestelle(n), möglicher Angriffsvektor und mögliche Auswirkung.
+
+
+.. container:: post-lecture-exercise-solution
+
+    Es handelt sich um eine *Reflected Cross-Site Scripting* Schwachstelle. Der Angreifer kann beliebigen Code ausführen, wenn er es schafft der angegriffenen Person den richtigen Link unterzuschieben. In diesem Fall wird der Code in der Variable :code:`term` ausgeführt. Der Angreifer könnte also z.B. folgende Anfrage stellen:
+
+    :code:`https://my-website.com/search?term=<script>/*+Bad+stuff+here...+*/</script>``
