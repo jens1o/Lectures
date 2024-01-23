@@ -268,7 +268,7 @@ CWE-79: Improper Neutralization of Input During Web Page Generation
 Stored XSS (Typ 2)
 -------------------
 
-.. image:: xss/stored-xss.svg
+.. image:: images/xss/stored-xss.svg
    :alt: Stored XSS
    :width: 1700px
    :align: center
@@ -277,7 +277,7 @@ Stored XSS (Typ 2)
 Reflected XSS (Typ 1)
 ----------------------
 
-.. image:: xss/reflected-xss.svg
+.. image:: images/xss/reflected-xss.svg
    :alt: Reflected XSS
    :width: 1650px
    :align: center
@@ -290,7 +290,7 @@ Reflected XSS (Typ 1)
 Dom-based XSS (Typ 0)
 ----------------------
 
-.. image:: xss/dom-based-xss.svg
+.. image:: images/xss/dom-based-xss.svg
    :alt: Dom-based XSS
    :width: 1500px
    :align: center
@@ -1009,7 +1009,7 @@ CWE-352: Cross-Site Request Forgery (CSRF) - ursprüngliche Form
 ------------------------------------------------------------------
 
 
-.. image:: csrf.svg
+.. image:: images/csrf.svg
     :alt: Cross-Site Request Forgery (CSRF) - ursprüngliche Form
     :height: 1050px
 
@@ -1332,7 +1332,7 @@ CWE-918: Server-Side Request Forgery
 CWE-918: Server-Side Request Forgery 
 ------------------------------------------------------
 
-.. image:: ssrf.svg
+.. image:: images/ssrf.svg
     :alt: Server-Side Request Forgery (SSRF)
     :width: 1800px
 
