@@ -2680,6 +2680,7 @@ OWASP
 
 .. code:: C
     :class: tiny
+    :number-lines:
     
     #include <stdio.h>
     #include <string.h>
@@ -2741,7 +2742,19 @@ OWASP
 
 .. container:: scriptsize
 
-    TODO
+    Java:
+
+    .. code:: Java
+        :class: tiny
+        :number-lines:
+
+        String query = 
+            "SELECT account_balance FROM user_data WHERE user_name = "
+                + request.getParameter("customerName");
+        try {
+            Statement statement = connection.createStatement( ... );
+            ResultSet results = statement.executeQuery( query );
+        }
 
     Bewerten Sie die Schwachstelle: CWE Name, problematische Codestelle(n), möglicher Angriffsvektor und mögliche Auswirkung.
 
