@@ -4,3 +4,6 @@ xss
 # Exported files
 ssrf.svg
 csrf.svg
+
+# Generated files
+*.pdf
