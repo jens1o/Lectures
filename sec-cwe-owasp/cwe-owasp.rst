@@ -112,7 +112,7 @@ CWE-787: Out-of-bounds Write - Beispiel 3
         struct hostent *hp;
         in_addr_t *addr;
         char hostname[64];
-        in_addr_t inet_addr(const char *cp);
+        in_addr_t inet_addr(const char *cp); // function prototype
 
         /* routine that ensures user_supplied_addr is in the right format for 
            conversion */
@@ -149,7 +149,7 @@ CWE-787: Out-of-bounds Write - Beispiel 4
           dst_buf[dst_index++] = 'p';
           dst_buf[dst_index++] = ';';
         }
-        else if ('<' == user_supplied_string[i] ){ /* encode to &lt; */ }
+        else if ( '<' == user_supplied_string[i] ){ /* encode to &lt; */ }
         else dst_buf[dst_index++] = user_supplied_string[i];
       }
       return dst_buf;
@@ -355,7 +355,7 @@ CWE-79: XSS - Beispiel 3 - XSS Typ 2 (PHP)
 
     $username = mysql_real_escape_string($username);
     $fullName = mysql_real_escape_string($fullName);
-    $query = sprintf('Insert Into users (username,password) Values ("%s","%s","%s")', 
+    $query = sprintf('Insert Into users (uname,pwd,fname) Values ("%s","%s","%s")', 
                      $username, 
                      crypt($password),
                      $fullName) ;
@@ -605,7 +605,7 @@ CWE-416: CVE-2006-4997 IP over ATM clip_mkip dereference freed pointer (Linux Ke
 
 .. container:: post-lecture-exercise-solution   
 
-    - Problem: In Zeile 511 wird auf den Speicherbereich von :code:`skb->dev` zugegriffen, obwohl dieser bereits freigegeben wurde in netif_rx in Zeile 1428.
+    - Problem: In Zeile 511 wird auf den Speicherbereich von :code:`skb->dev` zugegriffen, obwohl dieser bereits freigegeben wurde in ``netif_rx`` in Zeile 1428.
 
 
 CWE-416: Use After Free - Abhilfemaßnahmen und Erkennung

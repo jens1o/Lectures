@@ -39,100 +39,14 @@ Eine erste Einführung in die Sicherheit von (verteilten) Systemen
     Alle Fehler sind meine eigenen.
 
 
-.. class:: new-section transition-move-to-top
-
-Klassische Sicherheitsprinzipien
+Themen
 ----------------------------------
 
-
-
-Wiederholung: Klassische Sicherheitsprinzipien
------------------------------------------------
-
-(Jerome Saltzer and Michael Schroeder, 1975)
-
-.. class:: incremental
-
-:Principle of Economy of Mechanism (aka Principle of Simplicity): Die Sicherheitsmechanismen sollten so einfach wie möglich sein.
-
-.. class:: incremental
-
-:Principle of Fail-Safe Defaults: Standardmäßig sollte der Zugriff auf Ressourcen verweigert werden.
-
-.. class:: incremental
-
-:Principle of Complete Mediation: Jeder Zugriff auf eine Ressource sollte überprüft werden.
-
-
-Wiederholung: Klassische Sicherheitsprinzipien
------------------------------------------------
-
-
-:Principle of Least Authority (aka POLA)/ Principle of Least Privilege: Jedes Programm und jeder Benutzer sollte nur die für seine Aufgabe unbedingt notwendigen Rechte besitzen.
-
-.. class:: incremental
-
-:Principle of Separation of Privilege: Ein System sollte in mehrere POLA konforme Komponenten unterteilt sein. Sollte eine Komponente kompromittiert sein, dann sind die Möglichkeiten des Angreifers dennoch begrenzt. (Eng verwandt mit dem POLA.)
-
-
-Wiederholung: Klassische Sicherheitsprinzipien
------------------------------------------------
-
-:Principle of Least Common Mechanism: Die Sicherheitsmechanismen sollten über Nutzer hinweg möglichst wenig Gemeinsamkeiten haben.
-
-.. class:: incremental
-
-:Principle of Open Design (vgl. Kerckhoffs Prinzip): Die Sicherheit des Systems sollte nicht von der Geheimhaltung der Sicherheitsmechanismen abhängen (sondern nur vom Schlüssel). 
-
-.. container:: supplemental 
-
-    **Beispiel - Principle of Least Common Mechanism**
-
-    Z.B. sollten keine gemeinsamen Speicherbereiche verwendet werden und es ist deswegen sinnvoll - wenn möglich - auf Implementierungen im Kernel zu verzichten und statt dessen auf User-Space-Implementierungen zu setzen. 
-    
-       TCP Connection Hijacking wird z.B. durch die Implementierung des TCP Stacks im Kernel ermöglicht (:math:`\Leftrightarrow` :ger-quote:`Principle of Least Common Mechanism`).
-
-
-
-Wiederholung: Klassische Sicherheitsprinzipien
------------------------------------------------
-
-
-:Principle of Psychological Acceptability: Die Sicherheitsmechanismen sollten einfach zu verstehen und zu benutzen sein.
-  
-.. class:: incremental
-
-:Principle of Isolation: Die Sicherheitsmechanismen sollten so entworfen sein, dass Fehler in einem Teil des Systems nicht die Sicherheit des gesamten Systems gefährden; d.h. die einzelnen Komponenten sollten möglichst unabhängig voneinander sein und nur über wohldefinierte  Schnittstellen miteinander kommunizieren und entsprechende Sicherheitsüberprüfungen durchführen. 
-
-.. container:: supplemental
-
-    **Beispiel - Principle of Isolation:**
-
-    Typischerweise kommuniziert zum Beispiel ein Basebandchip (WIFI, LTE, 5G, ...) mit dem Betriebssystem über eine minimale Schnittstelle über die nur Nachrichten übermittelt werden können, die leicht auf ihre Korrektheit überprüft werden können. Insbesondere erfolgt kein direkter Zugriff auf den Speicher des Betriebssystems.
-
-    Einen Angreifer ist es somit ggf. möglich den Basebandchip anzugreifen und ggf. zu kompromittieren, aber er kann nicht direkt auf das Betriebssystem zugreifen und Nachrichten, die bereits auf Betriebssystem oder Anwendungsebene verschlüsselt werden, sind weiterhin sicher.
-
-
-Wiederholung: ergänzende Sicherheitsprinzipien
------------------------------------------------
-
-:Principle of Modularity: Die Sicherheitsmechanismen sollten so entworfen sein, dass sie unabhängig voneinander implementiert und geprüft werden können.
-
-.. class:: incremental
-
-:Principle of Layering: Die Sicherheitsmechanismen sollten in Schichten organisiert sein.
-
-.. class:: incremental
-
-:Principle of Least Astonishment: Die Sicherheitsmechanismen sollten so entworfen sein, dass sie keine Überraschungen für die Benutzer bereithalten.
-
-
-.. container:: supplemental
-
-    Beispiel für ein Schutzsystem für Netzwerke, dass mehrere Schichten verwendet:
-
-    - einfache (und effiziente) Paketfilter auf unterster Ebene
-    - zustandsbehaftete Paketfilter auf der nächsten bzw. der Anwendungsebene
+- `Transmission Control Protocol (TCP)`_ 
+- `Einmal-Passwörter`_
+- `Secure Shell (SSH)`_
+- `Firewalls`_
+- `The Onion Router (TOR)`_
 
 
 .. class:: new-section transition-fade
@@ -474,7 +388,7 @@ Bei allen bisher betrachteten Scans kann der Scanner prinzipiell identifiziert w
 
         Sondiere IP ID des Zombies:
 
-        .. image:: idle-scan/idle-scan-step1.svg 
+        .. image:: images/idle-scan/idle-scan-step1.svg 
             :alt: Idle Scan - Schritte 1-2
             :align: left
             :width: 700px
@@ -483,7 +397,7 @@ Bei allen bisher betrachteten Scans kann der Scanner prinzipiell identifiziert w
 
         Starte Scan:
 
-        .. image:: idle-scan/idle-scan-step2.svg 
+        .. image:: images/idle-scan/idle-scan-step2.svg 
             :alt: Idle Scan - Schritte 3-5
             :align: left
             :width: 750px
@@ -509,7 +423,7 @@ Port Scans: Idle Scan
 
         Starte Scan:
 
-        .. image:: idle-scan/idle-scan-step2.svg 
+        .. image:: images/idle-scan/idle-scan-step2.svg 
             :alt: Idle Scan - Schritte 3-5
             :align: left
             :width: 750px
@@ -518,7 +432,7 @@ Port Scans: Idle Scan
 
         Sondiere IP ID des Zombies:
 
-        .. image:: idle-scan/idle-scan-step3.svg 
+        .. image:: images/idle-scan/idle-scan-step3.svg 
             :alt: Idle Scan - Schritt 6
             :align: right
             :width: 700px
@@ -605,7 +519,7 @@ Connection Hijacking
 
 Angreifer übernimmt eine bestehende - zum Beispiel eine bereits durch (Einmal-)Passwort authentisierte - Verbindung.
 
-.. image:: connection-hijacking.svg 
+.. image:: images/connection-hijacking.svg 
     :alt: Connection Hijacking (einfache Variante)
     :align: center
     :height: 800px
@@ -765,7 +679,7 @@ Opfer wird von sehr vielen Angreifern mit Nachrichten überflutet.
 
     Ein Beispiel: Smurf-Angriff:
 
-    .. image:: smurf-angriff.svg 
+    .. image:: images/smurf-angriff.svg 
         :alt: Smurf Angriff
         :align: center
         :height: 800px
@@ -974,7 +888,7 @@ Secure Shell (SSH) - Protokoll
 --------------------------------------
 
 
-.. image:: ssh/initiation.svg 
+.. image:: images/ssh/initiation.svg 
     :alt: SSH Protokoll
     :align: center
     :width: 1850px
@@ -1023,7 +937,7 @@ SSH Tunneling
 
 - ermöglicht auch Port-forwarding (lokale Ports werden auf entfernten Rechner weitergeleitet)
 
-.. image:: ssh/tunneling.svg 
+.. image:: images/ssh/tunneling.svg 
     :alt: SSH Protokoll
     :align: center
     :width: 1450px
@@ -1139,7 +1053,7 @@ Firewalls
 Unabhängiges Netz - :ger-quote:`Ideale Situation` 
 ---------------------------------------------------
 
-.. image:: firewalls/all-save.png
+.. image:: images/firewalls/all-save.png
     :alt: Ideale Situation
     :align: center
 
@@ -1157,7 +1071,7 @@ Unabhängiges Netz - :ger-quote:`Ideale Situation`
 Schutzschicht zwischen internem und externem Netz
 ------------------------------------------------------
 
-.. image:: firewalls/firewall.png
+.. image:: images/firewalls/firewall.png
     :alt: Schutzschicht zwischen internem und externem Netz
     :align: center
 
@@ -1172,7 +1086,7 @@ Schutzschicht zwischen internem und externem Netz
 Realisierung von Virtual Private Networks (VPN)
 ------------------------------------------------------
 
-.. image:: firewalls/vpn.png
+.. image:: images/firewalls/vpn.png
     :alt: Realisierung von Virtual Private Networks (VPN)
     :align: center
 
@@ -1188,7 +1102,7 @@ Realisierung von Virtual Private Networks (VPN)
 Kommerzielle VPNs für Endnutzer
 ---------------------------------
 
-.. image:: firewalls/vpn-commercial.svg
+.. image:: images/firewalls/vpn-commercial.svg
     :alt: Einsatz von Virtual Private Networks (VPN) für Privatnutzer
     :align: center
     :width: 1400px
@@ -1266,7 +1180,7 @@ Realisierungsmöglichkeiten von Firewalls
 Dual-Homed Host
 ----------------
 
-.. image:: firewalls/dual-homed-host.png 
+.. image:: images/firewalls/dual-homed-host.png 
     :alt: Dual-Homed Host
     :align: right
     :class: border-transparent-1em
@@ -1283,7 +1197,7 @@ Dual-Homed Host
 Screening Router
 ---------------------
 
-.. image:: firewalls/screening-router.png 
+.. image:: images/firewalls/screening-router.png 
     :alt: Screening Router
     :align: right
     :class: border-transparent-1em 
@@ -1322,7 +1236,7 @@ Screening Router
 Screened Host
 -----------------
 
-.. image:: firewalls/screened-host.png 
+.. image:: images/firewalls/screened-host.png 
     :alt: Screened Host
     :align: right
     :class: border-transparent-1em
@@ -1369,7 +1283,7 @@ Das Ziel der Konfiguration muss eine minimale angreifbare Oberfläche sein.
 Screened Subnet
 ----------------
 
-.. image:: firewalls/screened-subnet.png 
+.. image:: images/firewalls/screened-subnet.png 
     :alt: Screened Subnet
     :align: right
 
@@ -1467,6 +1381,11 @@ IDS-Erkennungstechniken
     4. ... die Mails sollen ja den Mailserver erreichen; eine inhaltsbasierte Beurteilung des Inhalts einer Mail ist nicht Aufgabe einer Firewall. 
 
 
+.. class:: new-section transition-fade
+
+The Onion Router (TOR)
+-------------------------
+
 
 
 Tor (The Onion Router)
@@ -1559,19 +1478,19 @@ Tor - Aufbau
 
     .. container:: layer
 
-        .. image:: tor/tor-1.svg
+        .. image:: images/tor/tor-1.svg
             :alt: Tor Network
             :align: center
 
     .. container:: layer incremental overlay
 
-        .. image:: tor/tor-directory-authority-2.svg
+        .. image:: images/tor/tor-directory-authority-2.svg
             :alt: Tor Directory Authority
             :align: center
 
     .. container:: layer incremental overlay
 
-        .. image:: tor/tor-bridge-3.svg
+        .. image:: images/tor/tor-bridge-3.svg
             :alt: Tor Bridge
             :align: center
 
@@ -1606,7 +1525,7 @@ Tor - Aufbau
 Onion Routing
 ---------------
 
-.. image:: tor/tor-onion-routing.svg
+.. image:: images/tor/tor-onion-routing.svg
     :alt: Tor Onion Routing
     :align: left
     :width: 1600px
@@ -1625,7 +1544,7 @@ Onion Routing
 Initiierung eines Circuits (konzeptionell)
 --------------------------------------------
 
-.. image:: tor/tor-circuit-creation.svg
+.. image:: images/tor/tor-circuit-creation.svg
     :alt: Initiierung eines Circuits
     :align: center
     :width: 1800px
@@ -1644,7 +1563,7 @@ Initiierung eines Circuits (konzeptionell)
 Tor Relays in Deutschland
 ----------------------------
 
-.. image:: tor-metrics-relays.png
+.. image:: images/tor-metrics-relays.png
    :alt: Tor Relays gelistet von Tor Metrics Jan. 2024
    :align: center
    :height: 1050px
@@ -1669,7 +1588,7 @@ Informationen über Tor Relays
 
     .. container:: column
 
-        .. image:: tor-relay-snorlax.png
+        .. image:: images/tor-relay-snorlax.png
             :alt: Tor Relay Snorlax
             :align: left
             :width: 900px
@@ -1702,7 +1621,7 @@ Informationen über Tor Relays
 
     Pfade, die über die ganze Welt gehen verhindern, dass der ``Entry-`` und ``Exit-node`` beim gleichen Anbieter liegen.
 
-    .. image:: tor-circuit.png
+    .. image:: images/tor-circuit.png
         :alt: Tor Circuit
         :align: center
         :class: picture
@@ -1726,7 +1645,7 @@ Tor Exit Nodes
 
 Die Anzahl der Exit nodes ist deutlich kleiner (2. Jan. 2024 - 1314 Einträge) als die Anzahl der Knoten. Dies liegt daran, dass die technischen Anforderungen höher sind (z.B. stabile IP Adressen) und insbesondere daran, dass die Betreiber der ``Exit nodes`` darauf vorbereitet sein müssen ggf. (zahlreiche) Anfragen von den Behörden zu bekommen. [#]_
 
-.. image:: tor-german-exit-node.png
+.. image:: images/tor-german-exit-node.png
     :alt: Deutscher Tor Exit Node von der TU Berlin
     :align: center
     :class: picture
@@ -1775,7 +1694,7 @@ Standardanwendung für den Zugriff auf das Tor-Netzwerk.
 
     .. container:: layer clearfix
         
-        .. image:: tor-onion-service-nyt.png
+        .. image:: images/tor-onion-service-nyt.png
             :alt: Tor Browser mit Ney-York-Times - 01.01.2024
             :height: 848px
             :align: left

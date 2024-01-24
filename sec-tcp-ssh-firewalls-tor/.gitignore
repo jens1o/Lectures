@@ -1,11 +1,11 @@
 # Folders with generated images
+firewalls
 idle-scan
 ssh
-firewalls
 tor
 
 # Folder with external resources such as papers 
-resources 
+external 
 
 # individual generated images
 connection-hijacking.svg
