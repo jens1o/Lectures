@@ -13,7 +13,7 @@
 .. role:: ger
 .. role:: red
 .. role:: green
-.. role:: blue
+.. role:: the-blue
 .. role:: minor
 .. role:: ger-quote
 .. role:: obsolete
@@ -62,7 +62,7 @@ Umleitung von ``stdin`` in Dateien
 
     ``>>`` leitet die Ausgabe eines Programmes/Kommandos in eine Datei um; hängt die Ausgabe an das Ende einer bestehenden Datei an bzw. legt die Zieldatei bei Bedarf an.
 
-.. container:: incremental small line-above margin-above
+.. container:: incremental small line-above margin-top-1em padding-top-1em
 
     Beispiel: Erzeugen einer Datei ``tmp/0s.txt``, die 1024 mal den Wert 0 in Base64 Kodierung enthält.
 
@@ -83,7 +83,7 @@ Beim Umleiten von Ausgaben an eine Datei, kann der Dateideskriptor angegeben wer
 
     ``2>`` leitet z.B. die Fehlerausgaben (:eng:`stderr`) eines Programmes/Kommandos in eine Datei um; löscht bzw. legt die Zieldatei bei Bedarf an.
 
-.. container:: incremental small line-above margin-above
+.. container:: incremental small line-above margin-top-1em padding-top-1em
 
     Beispiel: Finden von bestimmten Dateien; aber Fehlerausgaben während des Suchprozesses ignorieren.
 
@@ -102,7 +102,7 @@ Grundlegende Prinzipien: Lesen aus einer Datei
 
     ``<`` liest den Inhalt einer Datei und leitet diesen an das Programm/Kommando weiter; d.h. stellt den Inhalt über stdin zur Verfügung.
 
-.. container:: incremental small line-above margin-above
+.. container:: incremental small line-above margin-top-1em padding-top-1em
 
     Beispiel: Finden aller Städte, die mit "B" beginnen.[#]_
 
@@ -126,9 +126,8 @@ Linux Shell - Grundlegendes Design-Pattern: **Pipes and Filters**
         
     ``|``: Verbindet den Ausgabestrom (``stdout``) des vorhergehenden Befehls mit dem Eingabestrom (``stdin``) des nachfolgenden Befehls.
     
-    :ger-quote:`Filter`: Kommandos/Programme, die von ``stdin`` lesen und nach ``stdout`` schreiben.
-
-.. container:: incremental scriptsize line-above margin-above
+    
+.. container:: incremental scriptsize line-above margin-top-1em padding-top-1em
 
     Beispiel: Konvertierung des Wortes ``Test`` in Base64 Kodierung.
 
@@ -138,6 +137,11 @@ Linux Shell - Grundlegendes Design-Pattern: **Pipes and Filters**
         echo -n "Test" \ 
         |              \ # Weiterleitung der Ausgabe von echo an base64.
         base64 
+
+.. container:: supplemental
+
+    :ger-quote:`Filter`: Kommandos/Programme, die von ``stdin`` lesen und nach ``stdout`` schreiben.
+
 
 
 Wichtige Linux Kommandozeilenwerkzeuge für die Verarbeitung von Passwortkandidaten
@@ -179,7 +183,7 @@ echo
   :minor:`(Besonders dann wichtig, wenn man Hashes für Testdaten generieren will.)`
 - Entweder ein explizites Programm oder ein in die Shell eingebautes Kommando.
 
-.. container:: incremental line-above margin-above
+.. container:: incremental line-above margin-top-1em padding-top-1em
 
     .. admonition:: Hinweis
         :class: note
@@ -210,7 +214,7 @@ cat
   
   (Das Einlesen von der Kommandozeile kann mit ``CTR+D`` beendet werden.)
 
-.. container:: incremental line-above
+.. container:: incremental line-above margin-top-1em padding-top-1em
 
     **Anwendungsfall**: Mehrere Teilwörterbücher sollen zusammengefügt werden.
 
@@ -233,7 +237,7 @@ tr
 
 - Kopiert die Eingabe von ``stdin`` nach ``stdout`` und führt dabei Substitutionen und Löschungen durch.
 
-.. container:: incremental line-above margin-above
+.. container:: incremental line-above margin-top-1em padding-top-1em
 
     **Anwendungsfall**: bestimmte Buchstaben - zum Beispiel Sonderzeichen - sollen gelöscht werden.
     
@@ -242,7 +246,7 @@ tr
        $ echo -n 'ab.cd_12!' | tr -dc '[:alnum:]'  # -dc = delete complement 
        abcd12
 
-.. container:: incremental line-above margin-above
+.. container:: incremental line-above margin-top-1em padding-top-1em
 
     **Anwendungsfall**: Groß- in Kleinbuchstaben verwandeln.
     
@@ -260,7 +264,7 @@ uniq
 - vergleicht nebeneinanderliegende Zeilen und schreibt jede einzigartige Zeile einmal nach ``stdout``. Nicht-nebeneinanderliegende Wiederholungen werden nicht erkannt.
 - ``-c`` erlaubt es die Anzahl der Wiederholungen zu zählen. 
 
-.. container:: incremental line-above margin-above
+.. container:: incremental line-above margin-top-1em padding-top-1em
 
     **Anwendungsfall**: Wir möchten eine alphabetisch sortierte Liste nach der Häufigkeit des Vorkommens eines Wortes sortieren. 
     
@@ -291,7 +295,7 @@ awk
      
   ist das Muster (:eng:`pattern`) leer, dann wird die Zeile immer verarbeitet; ist keine Handlungsanweisung (:eng:`action`) angegeben, dann wird die Zeile ausgegeben.
 
-.. container:: incremental line-above margin-above
+.. container:: incremental line-above margin-top-1em padding-top-1em
 
     **Anwendungsfall**: Die Einträge einer Datei sollen nach länge sortiert werden. In diesem Fall, kann mit Hilfe von awk jede Zeile mit der Länge ausgegeben werden. :minor:`Danach kann die Liste entsprechend sortiert werden.`
 
@@ -313,11 +317,12 @@ sort
 - ``-k`` spezifiziert das Feld, nach dem sortiert werden soll. (z.B. -k 3)
 - ``-t`` spezifiziert das Trennzeichen, das die Felder trennt. (z.B. -t ',')
 
-.. container:: incremental line-above margin-above
+.. container:: incremental line-above margin-top-1em padding-top-1em
 
     **Anwendungsfall**: Sortiere eine Liste nach Häufigkeit des Vorkommens eines Wortes.
 
     .. code:: bash
+        :class: smaller 
 
         $ echo "abc\nxyz\nuvw\nxyz" \
           | sort \                  # alphabetische Sortierung
@@ -336,6 +341,7 @@ sort
     Sortierung einer Liste von Worten in absteigender Reihenfolge bzgl. (1) der Häufigkeit und (2) Länge.
 
     .. code:: bash
+        :class: smaller 
 
         $ printf '%s' "abc\nuvw\nxyz\nlmnop\nxyz\nuvw" \
                "\nlmnop\nlmnop\nxyz\ncd\ncd\ncd" \
@@ -352,6 +358,7 @@ sort
     Sortierung einer Liste von Worten in absteigender Reihenfolge bzgl. (1) der Häufigkeit und (2) aufsteigend bzgl. der Länge.
 
     .. code:: bash
+        :class: smaller 
 
         $ echo "abc\n" "uvw\n" "xyz\n" "lmnop\n" "xyz\n" "uvw\n" \
                "lmnop\n" "lmnop\n" "xyz\n" "cd\n" "cd\n" "cd" \
@@ -376,11 +383,12 @@ Base64 kodierte Werte bestehen nur noch aus gültigen ASCII Zeichen und können 
 
     Je nach Betriebssystem/Konfiguration ist der Befehl unter Umständen etwas anders benannt. Grundlegend gibt es den Befehl auf allen Unixoiden.
 
-.. container:: incremental line-above margin-above
+.. container:: incremental line-above margin-top-1em padding-top-1em
 
     **Anwendungsfall**: In vielen Fällen können gehashte Passworte nicht roh (d.h. als Binärdaten) gespeichert werden sondern müssen `Base64 <https://datatracker.ietf.org/doc/html/rfc4648#section-4>`__ (oder vergleichbar) kodiert werden. 
 
     .. code:: bash
+        :class: smaller 
 
         # Codierung
         $ echo "Dies_ist_ein_test" | base64
@@ -405,11 +413,12 @@ grep
 - ``-i`` ignoriert Groß-/Kleinschreibung (in Verbindung mit -E mgl. verwirrend).
 - ``-P`` Perl kompatible Ausdrücke 
 
-.. container:: incremental line-above margin-above
+.. container:: incremental line-above margin-top-1em padding-top-1em
 
     **Anwendungsfall**: Alle Textfragmente in einem Leak finden\ :minor:`, um danach mit Regeln neue Passwortkandidaten zu bilden`.
 
     .. code:: bash
+        :class: smaller 
 
         $ echo "Test123\nmichael@dhbw.de\n345test@dhbw.de\nEnde__" \
           | grep -Eo "[a-zA-Z]{3,}" | sort -u
@@ -428,23 +437,25 @@ sed - Stromeditor
 - modifiziert die Eingabe gemäß der spezifizierten Kommandos in der angegebenen Reihenfolge.
 - ``-E`` zur Verwendung moderner regulärer Ausdrücke
 - Standardform: ``Funktion[Agrumente]``
-- Substitutionen: ``s/Regulärer Ausdruck/Ersatz/[Kennzeichen]``; durch die Verwendung des Kennzeichen "``g``"  wird jedes Vorkommen, dass der reguläre Ausdruck findet, ersetzt; sonst nur das erste Vorkommen.
+- Substitutionen: ``s/Regulärer Ausdruck/Ersatz/[Kennzeichen]``; das Kennzeichen "``g``" z.B. bewirkt, dass jedes Vorkommen ersetzt wird; sonst nur das erste Vorkommen.
   
-.. container:: incremental line-above margin-above
+.. container:: incremental line-above margin-top-1em padding-top-1em
 
     **Anwendungsfall**: Löschen des ersten Sonderzeichens in einer Zeile.
 
     .. code:: bash
+        :class: smaller 
 
         $ echo 'ab_cd!_ef?' | sed -E  's/[^a-zA-Z0-9]//'
         abcd!_ef?
     
 
-.. container:: incremental line-above margin-above
+.. container:: incremental line-above margin-top-1em padding-top-1em
 
     **Anwendungsfall**: Analyse der Struktur eines Leaks durch das Abbilden **aller** Buchstaben auf die Repräsentanten: ``l``\ (lower) ``u``\ (upper) ``d``\ (digits) ``s``\ (special).
 
     .. code:: bash
+        :class: smaller 
 
         $ echo 'aB_c1d!_ef?' | 
           sed -E -e's/[a-z]/l/g' -e's/[A-Z]/u/g' -e's/[0-9]/d/g' -e 's/[^lud]/s/g'
@@ -467,11 +478,12 @@ find
 - ``-exec ... {} ... \;`` ermöglicht es für jede gefilterte Datei ``{}`` einen Befehl auszuführen.
 
 
-.. container:: incremental line-above margin-above
+.. container:: incremental line-above margin-top-1em padding-top-1em
 
     **Anwendungsfall**: Feststellen wie lange die Hashes sind. 
 
     .. code:: bash
+        :class: smaller 
 
         $ find . -iname "*hash*" -exec wc -c {} \;
         33 ./saltedmd5/hash.md5
@@ -499,12 +511,12 @@ Software nachinstallieren
   
 .. [*] Beide sind in diesem Fall nicht Teil des Betriebssystems, sondern müssen erst nachinstalliert werden, bevor damit weitere Software nachinstalliert werden kann.
 
-.. container:: incremental line-above margin-above copy-to-clipboard
+.. container:: incremental line-above margin-top-1em padding-top-1em copy-to-clipboard
 
     **Anwendungsfall**: Installieren von ``ent`` (ein Programm, das die Entropie von Dateien berechnet):
 
     .. code:: bash
-        :class: copy-to-clipboard
+        :class: smaller copy-to-clipboard
 
         sudo apt install ent
 
@@ -516,11 +528,12 @@ Shellprogrammierung
 
 - Jede Shell (insbesondere: ``zsh`` (auf Mac und Kali Linux) und ``bash`` (Debian, Ubuntu, ...)) erlaubt es prozedurale Programme zu schreiben.
 
-.. container:: incremental line-above margin-above copy-to-clipboard
+.. container:: incremental line-above margin-top-1em padding-top-1em copy-to-clipboard
 
    **Anwendungsfall**: Berechnung der Entropie für jede Datei in einer Liste.
 
    .. code:: zsh
+    :class: smaller 
 
     #!/usr/bin/zsh                    # Shebang
     IFS=$'\n'                         # IFS = Internal Field Separator
