@@ -1643,6 +1643,12 @@ OWASP
     Bewerten Sie die Schwachstelle: CWE Name, problematische Codestelle(n), möglicher Angriffsvektor und mögliche Auswirkung.
 
 
+.. container:: post-lecture-exercise-solution
+
+    Es handelt sich um eine *Reflected Cross-Site Scripting* Schwachstelle. Der Angreifer kann beliebigen Code ausführen, wenn er es schafft der angegriffenen Person den richtigen Link unterzuschieben. In diesem Fall wird der Code in der Variable :code:`comment` ausgeführt. Der Angreifer könnte also z.B. folgende Anfrage stellen:
+
+    :code:`POST /post/comment HTTP/1.1 Host: important-website.com Content-Length: 100 postId=3&comment=<script>/*+Bad+stuff+here...+*/</script>&name=Karl+Gustav`
+
 
 
 .. class:: integrated-exercise 
