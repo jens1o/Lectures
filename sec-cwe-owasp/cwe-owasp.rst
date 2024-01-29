@@ -11,15 +11,19 @@
 .. role:: incremental   
 .. role:: eng
 .. role:: ger
-.. role:: red
-.. role:: green
-.. role:: blue
-.. role:: minor
 .. role:: ger-quote
+.. role:: minor
 .. role:: obsolete
-.. role:: line-above
-.. role:: huge
-.. role:: xxl
+
+.. role:: dhbw-red
+.. role:: dhbw-gray
+.. role:: dhbw-light-gray
+.. role:: the-blue
+.. role:: the-green
+.. role:: shiny-green
+.. role:: shiny-red 
+.. role:: black
+.. role:: dark-red
 
 .. role:: raw-html(raw)
    :format: html
@@ -725,7 +729,7 @@ CWE-20: Improper Input Validation - zu verifizierende Werte und Eigenschaften
 
 
 
-.. class:: center-elements-on-slide
+.. class:: center-child-elements
 
 \ 
 -------------------------------------------------------------------------------
