@@ -13,7 +13,7 @@
 .. role:: ger
 .. role:: red
 .. role:: green
-.. role:: blue
+.. role:: the-blue
 .. role:: minor
 .. role:: ger-quote
 .. role:: obsolete
@@ -60,7 +60,7 @@ Transmission Control Protocol (TCP)
 TCP Grundlagen
 -------------------
 
-.. class:: incremental more-space-between-list-items inline-block
+.. class:: incremental more-space-between-list-items 
 
 - Protokoll der Schicht 4 (Transport Layer) basiert auf IP
 - verbindungsorientierte Kommunikation zweier Rechner im Internet zuverlässig und geordnet:
@@ -102,7 +102,7 @@ Dreifacher Handshake:
     .. container:: layer
 
         .. raw:: html
-            :class: center-child-element
+            :class: center-child-elements
 
             <svg width="1200" height="600" viewBox="0 0 1200 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -131,7 +131,7 @@ Dreifacher Handshake:
     .. container:: layer overlay incremental
 
         .. raw:: html
-            :class: center-child-element
+            :class: center-child-elements
 
             <svg height="600" width="1200" viewBox="0 0 1200 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -155,7 +155,7 @@ Dreifacher Handshake:
     .. container:: layer overlay incremental
 
         .. raw:: html
-            :class: center-child-element
+            :class: center-child-elements
 
             <svg height="600" width="1200" viewBox="0 0 1200 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <defs>

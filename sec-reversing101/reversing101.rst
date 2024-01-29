@@ -13,7 +13,7 @@
 .. role:: ger
 .. role:: red
 .. role:: green
-.. role:: blue
+.. role:: the-blue
 .. role:: minor
 .. role:: ger-quote
 .. role:: obsolete
@@ -573,7 +573,7 @@ Generische Dateiverschlüsselung ohne explizite Speicherung des Passworts
 
 
 
-.. class:: center-elements-on-slide
+.. class:: center-child-elements
 
 \
 --------------------------------------

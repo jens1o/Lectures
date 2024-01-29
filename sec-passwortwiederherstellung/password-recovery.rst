@@ -13,7 +13,7 @@
 .. role:: ger
 .. role:: red
 .. role:: green
-.. role:: blue
+.. role:: the-blue
 .. role:: minor
 .. role:: ger-quote
 .. role:: obsolete
@@ -32,7 +32,7 @@ Passwortwiederherstellung
 
      a.k.a. Password-Cracking
 
-.. class:: footnotesize margin-above
+.. class:: footnotesize margin-top-1em padding-top-1em
 
 :Dozent: **Prof. Dr. Michael Eichberg**
 :Kontakt: michael.eichberg@dhbw-mannheim.de
@@ -102,7 +102,7 @@ Ist Passwortwiederherstellung noch relevant?
             :alt: Cryptostick
             :height: 400px
 
-        .. class:: center-text-in-div incremental
+        .. class:: text-align-center incremental
         
             :xxl:`🛜`
 
@@ -120,7 +120,7 @@ Ist Passwortwiederherstellung noch relevant?
             :height: 200px
             :alt: Veracrypt Logo
 
-.. container:: incremental margin-above line-above
+.. container:: incremental margin-top-1em padding-top-1em line-above
 
     Klassische Passwörter werden (noch immer) in zahlreichen Bereichen verwendet. Beispiele sind Smartphones, Cryptosticks, Logins für Computer und Serversysteme, verschlüsselte Dateien und Datenträger.
 
@@ -149,7 +149,7 @@ Ist Passwortwiederherstellung nicht :ger-quote:`trivial`?
 .. image:: logos/home_security_heroes.webp 
     :align: center
     :height: 800
-    :class: shadow
+    :class: picture
     :alt: An AI just cracked your password.
 
 
@@ -178,13 +178,13 @@ Beurteilen Sie die Qualität der folgenden Passwörter in Hinblick darauf wie au
 11. password123 
 
 
-.. class:: center-elements-on-slide
+.. class:: center-child-elements
 
 \ 
 ----
 
 .. admonition:: Warnung
-    :class: incremental warning 
+    :class: warning 
     
     Es ist nie eine Option Passwörter im Klartext zu speichern.
 
@@ -225,7 +225,7 @@ Beispiel: Berechnung von MD5 Hashwerten
                  = 8fcf22b1f8327e3a005f0cba48dd44c8
 
 .. admonition:: Warnung
-    :class: warning incremental margin-above
+    :class: warning incremental margin-top-2em
 
     Die Verwendung von MD5 dient hier lediglich der Illustration. In realen Anwendung sollte MD5 auf keinen Fall mehr verwendet werden.
 
@@ -323,7 +323,7 @@ Effizienzanforderungen an kryptografische Hashfunktionen
 
 .. container:: incremental
 
-    .. container:: center-text-in-div bold huge
+    .. container:: text-align-center bold huge
         
         vs.
 
@@ -497,7 +497,7 @@ HMAC (Hash-based Message Authentication Code)
         :alt: Schlüsselableitung für den inneren und äußeren Schlüssel K'
         :align: right
         :width: 1300px
-        :class: incremental margin-above
+        :class: incremental margin-top-1em padding-top-1em
 
 .. container:: supplemental
 
@@ -1231,7 +1231,7 @@ PCFG - Analyse - Beispiel
 PCFG - Generierung - Beispiel
 -------------------------------------------------------------------------------------
 
-.. container:: small margin-above
+.. container:: small 
 
     **Ergebnis der Analyse**:
 
@@ -1267,13 +1267,13 @@ PCFG+
 
     Unterstützt Tastaturwanderungen (zum Beispiel asdf oder qwerty12345), Passworte bestehend aus mehrerern Worten und wiederholten Worten (zum Beispiel qpqpqpq).
 
-.. class:: incremental line-above margin-above
+.. class:: incremental margin-top-1em line-above padding-top-1em
 
 :On Practical Aspects of PCFG Password Cracking [PAofPCFG]_:
     
     Im Wesentlichen Performanceoptimierungen, um PCFG schneller zu machen.
 
-.. class:: incremental line-above margin-above
+.. class:: incremental margin-top-1em line-above padding-top-1em
 
 :Using personal information in targeted grammar-based probabilistic password attacks [PIandPCFG]_:
 
