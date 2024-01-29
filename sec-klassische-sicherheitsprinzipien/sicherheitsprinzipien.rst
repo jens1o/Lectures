@@ -12,8 +12,6 @@
 .. role:: eng
 .. role:: ger
 .. role:: red
-.. role:: green
-.. role:: blue
 .. role:: minor
 .. role:: ger-quote
 .. role:: obsolete
