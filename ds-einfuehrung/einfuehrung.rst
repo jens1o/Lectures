@@ -1,8 +1,8 @@
 .. meta:: 
     :author: Michael Eichberg
-    :keywords: "TCP"
+    :keywords: "Verteilte Systeme"
     :description lang=de: Verteilte Systeme
-    :id: lecture-tcp
+    :id: lecture-ds-einfuehrung
     :first-slide: last-viewed
 
 .. |date| date::
@@ -13,7 +13,7 @@
 .. role:: ger
 .. role:: red
 .. role:: green
-.. role:: blue
+.. role:: the-blue
 .. role:: minor
 .. role:: ger-quote
 .. role:: obsolete
@@ -31,6 +31,16 @@ Einführung in verteilte Systeme
 :Dozent: **Prof. Dr. Michael Eichberg**
 :Kontakt: michael.eichberg@dhbw-mannheim.de
 :Version: |date|
+
+.. class:: padding-none no-title
+
+Terminologie verteilter Systeme
+----------------------------------
+
+.. image:: images/modern_software_architecture-tag_cloud.png
+    :width: 100%
+    :align: center
+
 
 
 Inhalt
