@@ -1,8 +1,8 @@
 .. meta:: 
     :author: Michael Eichberg
-    :keywords: "TCP"
-    :description lang=de: Verteilte Systeme
-    :id: lecture-tcp
+    :keywords: "Agile Entwicklung", "Verteilte Systeme", "DevOps"
+    :description lang=de: Diskussion der Bedeutung der agilen Softwareentwicklung für verteilte Anwendungsarchitekturen
+    :id: lecture-ds-agile-for-distributed-systems
     :first-slide: last-viewed
 
 .. |date| date::
