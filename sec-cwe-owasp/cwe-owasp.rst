@@ -100,7 +100,7 @@ CWE-787: Out-of-bounds Write - Beispiel 2
         ...
     }
 
-.. container:: post-lecture-exercise-solution
+.. protected-exercise-solution:: Solution
 
     `memcpy` erwartet als dritten Parameter einen :code:`unsigned int`. Wenn :code:`returnChunkSize -1 zurückgibt, dann wird :code:`MAX_INT-1` verwendet.
 
@@ -127,7 +127,7 @@ CWE-787: Out-of-bounds Write - Beispiel 3
         strcpy(hostname, hp->h_name);
     }
 
-.. container:: post-lecture-exercise-solution
+.. protected-exercise-solution:: Solution
 
     - Problem 1: hostname hat nur 64 Bytes, aber der Name des Hosts kann länger sein.
     - Problem 2: `gethostbyaddr` kann NULL zurückgeben, wenn der Host nicht gefunden werden kann. (Null pointer dereference)
@@ -159,7 +159,7 @@ CWE-787: Out-of-bounds Write - Beispiel 4
       return dst_buf;
     }
 
-.. container:: post-lecture-exercise-solution
+.. protected-exercise-solution:: Solution
 
     - Problem: :code:`dst_buf` hat nur :code:`4*sizeof(char) * MAX_SIZE`` Bytes. Wenn der Nutzer einen sehr langen String mit (fast) nur `&` übermittelt, dann wird der Puffer überlaufen, da das Encoding 5 Zeichen benötigt.
 
@@ -194,7 +194,7 @@ CWE-787: Out-of-bounds Write - Beispiel 5
 
     :isspace: If an argument (character) passed to the isspace() function is a white-space character, it returns non-zero integer. If not, it returns 0.
 
-.. container:: post-lecture-exercise-solution
+.. protected-exercise-solution:: Solution
 
     - Problem: Zeichenketten, die nur aus Whitespace bestehen, werden nicht korrekt behandelt. In diesem Fall kommt es zu einem Buffer-Underflow (d.h. es wird auf den Speicherbereich vor dem Puffer zugegriffen).
     
@@ -224,7 +224,7 @@ CWE-787: Out-of-bounds Write - Beispiel 6
     showWidgets(WidgetList);
 
 
-.. container:: post-lecture-exercise-solution
+.. protected-exercise-solution:: Solution
 
     - Problem 1: Der Rückgabewert von :code:`malloc` wird nicht überprüft.
     - Problem 2: :code:`WidgetList[numWidgets] = NULL;` schreibt außerhalb des Puffers. (Buffer-Overflow)
@@ -321,7 +321,7 @@ CWE-79: XSS - Beispiel 1 - XSS Typ 1 (Php)
 
 
 
-.. container:: post-lecture-exercise-solution
+.. protected-exercise-solution:: Solution
 
     - Problem: der Nutzername kann "beliebig lange" sein und insbesondere beliebigen JavaScript Code enthalten. Beispiel :code:`http://trustedSite.example.com/welcome.php?username=<Script Language="Javascript">alert("You've been attacked!");</Script>`. Komplexerer Code könnte zum Beispiel ein Fakelogin nachbauen und so die Zugangsdaten des Nutzers abgreifen. Entsprechende Links könnten mit Hilfe von Werkzeugen so verschleiert werden, dass der Nutzer nicht bemerkt, dass er auf einen Link mit Schadfunktion klickt.
 
@@ -344,7 +344,7 @@ CWE-79: XSS - Beispiel 2 - XSS Typ 2 (JSP)
 
     Employee Name: <%= name %>
 
-.. container:: post-lecture-exercise-solution
+.. protected-exercise-solution:: Solution
 
     - Problem: Falls der Nutzer in der Lage war seinen Namen selber zu wählen und beim Anlegen keine ausreichenden Prüfungen stattgefunden haben, ist ggf. ein XSS Angriff möglich. 
     - Weiteres Problem : In dem Beispiel wird der Parameter :code:`eid` nicht validiert. Der Angreifer kann beliebige SQL-Statements ausführen. 
@@ -366,7 +366,7 @@ CWE-79: XSS - Beispiel 3 - XSS Typ 2 (PHP)
     mysql_query($query);
     ...
 
-.. container:: post-lecture-exercise-solution
+.. protected-exercise-solution:: Solution
 
     - Problem: Hier wird zwar die Eingabe validiert (mysql_real_escape_string) aber *nur* in Hinblick auf SQL Injections! Der Angreifer kann so einen Nutzer anlegen, der HTML code enthält.
 
@@ -420,7 +420,7 @@ CWE-89: SQL Injection - Beispiel 1 (MS SQl)
     MS SQL hat eine eingebaute Funktion, die es erlaubt Shell Befehle auszuführen. Diese Funktion kann auch in einem SQL Statement verwendet werden.
 
 
-.. container:: post-lecture-exercise-solution   
+.. protected-exercise-solution:: Solution   
 
     - Problem: Sollte der Nutzername :code:`'; exec master..xp_cmdshell 'dir' --` sein, dann wird das entsprechende Kommando ausgeführt.
 
@@ -436,7 +436,7 @@ CWE-89: SQL Injection - Beispiel 2 (PHP)
     mysql_query("SELECT MessageID, Subject FROM messages WHERE MessageID = '$id'");
 
 
-.. container:: post-lecture-exercise-solution   
+.. protected-exercise-solution:: Solution   
 
     - Problem: Der Wert von :code:`$id`, welcher aus einem Cookie ausgelesen wird, wird nicht validiert. Auch wenn Cookies nicht trivial von einem Nutzer bzw. Angreifer manipuliert werden können, so ist es dennoch möglich. Der Angreifer kann so beliebige SQL Statements ausführen. Deswegen gilt: *Alle* Eingaben müssen validiert werden.
     - 
@@ -537,7 +537,7 @@ CWE-416: Use After Free - Beispiel
 
         Ist die Ausgabe bei jedem Lauf gleich?
 
-.. container:: post-lecture-exercise-solution   
+.. protected-exercise-solution:: Solution   
 
     Das Programm wird (immer) bis zum Ende laufen!
 
@@ -607,7 +607,7 @@ CWE-416: CVE-2006-4997 IP over ATM clip_mkip dereference freed pointer (Linux Ke
       1428        kfree_skb(skb);	//drop skb
       1429        return NET_RX_DROP;
 
-.. container:: post-lecture-exercise-solution   
+.. protected-exercise-solution:: Solution   
 
     - Problem: In Zeile 511 wird auf den Speicherbereich von :code:`skb->dev` zugegriffen, obwohl dieser bereits freigegeben wurde in ``netif_rx`` in Zeile 1428.
 
@@ -668,7 +668,7 @@ CWE-78: Improper Neutralization of Special Elements used in an OS Command - Beis
     ...
 
 
-.. container:: post-lecture-exercise-solution   
+.. protected-exercise-solution:: Solution   
 
     - Problem: Der Wert von :code:`btype` wird nicht validiert und dewegen kann der Angreifer  beliebige Befehle ausführen, da die Shell (:code:`cmd.exe``) mehrere Befehle, die mit :code:`&&` verknüpft sind hintereinander ausführt.
 
@@ -769,7 +769,7 @@ C:
 
     Ein vergleichbares Problem ist auch in sicheren Programmiersprachen möglich.
 
-.. container:: post-lecture-exercise-solution   
+.. protected-exercise-solution:: Solution   
 
     - Problem: n und m werden nicht vollständig validiert. Sind die Werte negativ, dann wird ggf. sehr viel Speicher alloziiert oder das Programm stürzt ab. 
 
@@ -843,7 +843,7 @@ C:
     }
 
 
-.. container:: post-lecture-exercise-solution   
+.. protected-exercise-solution:: Solution   
 
     - Problem: Der Wert von :code:`index` wird nicht gegen zu kleine Werte validiert. Der Angreifer kann so beliebige Speicherbereiche auslesen.
 
@@ -893,7 +893,7 @@ PHP:
     include("/home/www-data/$file");
     ?>
 
-.. container:: post-lecture-exercise-solution
+.. protected-exercise-solution:: Solution
 
     - Problem: Der Wert von :code:`file` wird nicht validiert. Der Angreifer kann so beliebige Dateien auslesen.
 
@@ -924,7 +924,7 @@ Perl:
           f.delete()
         }
 
-.. container:: post-lecture-exercise-solution
+.. protected-exercise-solution:: Solution
 
     - Problem im Perl Beispiel: :code:`Username` wird nur bzgl. ../ am Anfang der Zeichenkette gesäubert. Beginnt der Nutzername mit :code:`../../` dann kann der Angreifer dennoch zum darüber liegenden Verzeichnis wechseln. Es fehlt im Wesentlichen das :code:`g` Flag (vgl. Reguläre Ausdrücke in ``sed``)
 
@@ -1112,7 +1112,7 @@ PHP:
     move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target)
 
 
-.. container:: post-lecture-exercise-solution
+.. protected-exercise-solution:: Solution
 
    Problem: Die Datei :code:`$_FILES['uploadedfile']['name']` wird nicht validiert. Sollte der Nutzer statt einem Bild eine PHP Datei hochladen, dann wird diese beim einem späteren Aufruf im Kontext der Anwendung ausgeführt.
   
@@ -1181,7 +1181,7 @@ CWE-122: Heap-based Buffer Overflow
     }
 
 
-.. container:: post-lecture-exercise-solution
+.. protected-exercise-solution:: Solution
 
     Problem: Die Größe von buf ist unabhängig von der Größe von :code:`argv[1]`. 
 
@@ -1280,7 +1280,7 @@ Python
     
 
 
-.. container:: post-lecture-exercise-solution
+.. protected-exercise-solution:: Solution
 
     In diesem Fall könnte man der Funktion ein Objekt unterschieben, dass bei der Deserialisierung beliebigen Code ausführt (zum Beispiel um einen weitere Prozess zu starten.).
 
@@ -1490,7 +1490,7 @@ CWE-843: Access of Resource Using Incompatible Type - Beispiel in C
         else                          printf("ID %d\n", buf.nameID);
     }
 
-.. container:: post-lecture-exercise-solution
+.. protected-exercise-solution:: Solution
 
     Der Zugriff auf ``buf.nameId`` manipuliert den Zeiger auf ``buf.name``. Dieser zeigt nun auf die Speicherstelle ``defaultMessage +1`` weswegen der nachfolgende Zugriff ``buf.name`` :ger-quote:`nur` noch ``ello World`` ausgibt und nicht mehr ``Hello World``.
 
@@ -1515,7 +1515,7 @@ CWE-843: Access of Resource Using Incompatible Type - Beispiel in Perl
     print "\$UserPrivilegeArray = $UserPrivilegeArray\n";
 
 
-.. container:: post-lecture-exercise-solution
+.. protected-exercise-solution:: Solution
 
     In der Zeile: :code:`if ($UserPrivilegeArray eq "user")` wurde vergesen die Indizierung (:code:`$userID`) zu verwenden (:code:`$UserPrivilegeArray->{$userID}`). Es wird also das Array als Ganzes mit dem String ``user`` verglichen und der Vergleich ist immer ``falsch (:eng:`false`)``.
 
@@ -1611,7 +1611,7 @@ OWASP
         return 0;
     }
 
-.. container:: post-lecture-exercise-solution
+.. protected-exercise-solution:: Solution
 
     Die Länge von :code:`str` wird nicht validiert. Es kommt somit potentiel zu einem "Out-of-bounds Write" (:code:`strcpy(buffer,str)`). Ein String wäre jeder String, der länger als 16 Zeichen ist. Ein Angriffsvektor wäre z.B. ein String, der 17 Zeichen lang ist und am Ende ein :code:`\0` enthält. Die Auswirkung wäre ein Pufferüberlauf, der ggf. zur Ausführung von beliebigem Code führt.
 
@@ -1647,7 +1647,7 @@ OWASP
     Bewerten Sie die Schwachstelle: CWE Name, problematische Codestelle(n), möglicher Angriffsvektor und mögliche Auswirkung.
 
 
-.. container:: post-lecture-exercise-solution
+.. protected-exercise-solution:: Solution
 
     Es handelt sich um eine *Reflected Cross-Site Scripting* Schwachstelle. Der Angreifer kann beliebigen Code ausführen, wenn er es schafft der angegriffenen Person den richtigen Link unterzuschieben. In diesem Fall wird der Code in der Variable :code:`comment` ausgeführt. Der Angreifer könnte also z.B. folgende Anfrage stellen:
 
@@ -1723,7 +1723,7 @@ OWASP
     Bewerten Sie die Schwachstelle: CWE Name, problematische Codestelle(n), möglicher Angriffsvektor und mögliche Auswirkung.
 
 
-.. container:: post-lecture-exercise-solution
+.. protected-exercise-solution:: Solution
 
     Es handelt sich um eine *Reflected Cross-Site Scripting* Schwachstelle. Der Angreifer kann beliebigen Code ausführen, wenn er es schafft der angegriffenen Person den richtigen Link unterzuschieben. In diesem Fall wird der Code in der Variable :code:`term` ausgeführt. Der Angreifer könnte also z.B. folgende Anfrage stellen:
 
