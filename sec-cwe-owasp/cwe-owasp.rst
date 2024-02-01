@@ -1221,7 +1221,7 @@ CWE-502: Deserialization of Untrusted Data
 :Sprachen: Java, Ruby, Python, PHP, JavaScript, ...
 :Ausmaß: Insbesondere: Integrität und Verfügbarkeit (DoS); weitere Effekte sind vom Kontext abhängig.
 
-:Alternative Begriffe: (Un-)Marshalling, (Un-)Picking
+:Alternative Begriffe: (Un-)Marshalling, (Un-)Pickling
 
 
 .. container:: supplemental
