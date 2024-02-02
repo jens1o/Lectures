@@ -1,4 +1,18 @@
 external
 
+images/transactions
+images/mobile_computing
+images/multiprocessor-vs-multicomputer
+images/sensor_networks
+
 images/distributed-vs-decentralized.svg
 images/modern_software_architecture-tag_cloud.png
+images/queuing-system.svg
+images/response_time.svg
+images/number_of_requests_in_system.svg
+images/average_number_of_requests_in_system.svg
+images/moving-computations.svg
+images/cluster-computing.svg
+images/architecture-for-grid-computing.svg
+images/middleware.svg
+images/cloud_edge_continuum.svg
