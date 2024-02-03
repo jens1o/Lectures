@@ -201,33 +201,9 @@ Hashfunktionen (Wiederholung)
 .. class:: incremental
 
 - Eine Hashfunktion :math:`H` akzeptiert eine beliebig lange Nachricht :math:`M` als Eingabe und gibt einen Wert fixer Größe zurück: :math:`h = H(M)`.
-- Wird oft zur Gewährleistung der Datenintegrität verwendet. Eine Änderung eines beliebigen Bits in :math:`M` sollte mit hoher Wahrscheinlichkeit zu einer Änderung des Hashwerts :math:`h` führen.
-- Kryptographische Hashfunktionen werden für Sicherheitsanwendungen benötigt. Mögliche Anwendungen:
-  
-  - :minor:`Authentifizierung von Nachrichten`
-  - :minor:`Digitale Signaturen`
-  - Speicherung von Passwörtern
+- Eine Änderung eines beliebigen Bits in :math:`M` sollte mit hoher Wahrscheinlichkeit zu einer Änderung des Hashwerts :math:`h` führen.
+- Kryptographische Hashfunktionen werden für die Speicherung von Passwörtern verwendet.
 
-
-Beispiel: Berechnung von MD5 Hashwerten
--------------------------------------------------------
-
-.. class:: monospaced
-
-:: 
-
-    md5("Hello") = 8b1a9953c4611296a827abf8c47804d7
-    md5("hello") = 5d41402abc4b2a76b9719d911017c592
-    md5("Dieses Passwort ist wirklich total sicher 
-          und falls Du es mir nicht glaubst, dann
-          tippe es zweimal hintereinander blind 
-          fehlerfrei ein.") 
-                 = 8fcf22b1f8327e3a005f0cba48dd44c8
-
-.. admonition:: Warnung
-    :class: warning incremental margin-top-2em
-
-    Die Verwendung von MD5 dient hier lediglich der Illustration. In realen Anwendung sollte MD5 auf keinen Fall mehr verwendet werden.
 
 .. container:: supplemental
 
@@ -235,101 +211,6 @@ Beispiel: Berechnung von MD5 Hashwerten
 
     Wenn ein Passwort :ger-quote:`nur` als Hash gespeichert wird, dann gibt es zwangsläufig Kollisionen und es könnte dann theoretisch passieren, dass ein Angreifer (zufällig) ein völlig anderes Passwort findet, dass bei der Überprüfung des Passworts akzeptiert wird. Die Konstruktion kryptografischer Hashfunktionen stellt jedoch sicher, dass dies in der Praxis nicht auftritt.
 
-
-Sicherheitsanforderungen an kryptografische Hashfunktion I
--------------------------------------------------------------------------
-
-:Pseudozufälligkeit: Die Ausgabe von :math:`H` erfüllt die Standardtests für Pseudozufälligkeit.
-
-.. class:: incremental 
-
-:Einweg Eigenschaft: 
-    
-    Es ist rechnerisch/praktisch nicht machbar für einen gegeben Hashwert :math:`h` ein :math:`N` zu finden so dass gilt: :math:`H(N) = h`
-
-    (:eng:`Preimage resistant; one-way property`)
-
-
-Sicherheitsanforderungen an kryptografische Hashfunktion II
--------------------------------------------------------------------------
-
-:Schwache Kollisionsresistenz: 
-
-    Es ist rechnerisch nicht machbar für eine gegebene Nachricht M eine Nachricht N zu finden so dass gilt: :math:`M \neq N` mit :math:`H(M) = H(N)` 
-
-    (:eng:`Second preimage resistant; weak collision resistant`)
-
-.. class:: incremental
-
-:Starke Kollisionsresistenz: 
-    
-    Es ist rechnerisch unmöglich ein paar :math:`(N,M)` zu finden so dass gilt: :math:`H(M) = H(N)`. 
-
-    (:eng:`Collision resistant; strong collision resistant`)
-
-.. container:: supplemental
-
-    **Hintergrund**
-
-    Im Deutschen wird auch von Urbild-Angriffen gesprochen. In dem Fall ist *preimage resistance* (d.h. die Einweg Eigenschaft) gleichbedeutend damit, dass man nicht effektiv einen :ger-quote:`Erstes-Urbild-Angriff` durchführen kann. Hierbei ist das Urbild die ursprüngliche Nachricht :math:`M`, die *gehasht* wurde.
-
-    *Second preimage resistance* ist dann gleichbedeutend damit, dass man nicht effektiv einen :ger-quote:`Zweites-Urbild-Angriff` durchführen kann. Es ist nicht möglich zu einer Nachricht M eine zweite Nachricht N (d.h. ein zweites Urbild) zu finden, die für eine gegebene Hashfunktion den gleich Hash aufweist.
-
-
-Beziehung zwischen den Sicherheitsanforderungen an Hashfunktionen
-------------------------------------------------------------------
-
-.. image:: graffles/beziehung_zwischen_eigenschaften_von_hashfunktionen.svg 
-    :alt: Beziehung zwischen den Eigenschaften von Hashfunktionen
-    :align: center
-    :width: 1200px
-
-
-Anforderungen an die Resistenz von Hashfunktionen
----------------------------------------------------
-
-.. csv-table::
-    :header: "", Preimage Resistant, Second Preimage Resistant, Collision Resistant
-    :class: smaller highlight-line-on-hover incremental
-    
-    Hash + Digitale Signaturen, ✓, ✓, ✓
-    Einbruchserkennung und Viruserkennung, , ✓ , 
-    Hash + Symmetrische Verschlüsselung, , , 
-    Passwortspeicherung, ✓, , 
-    MAC, ✓, ✓, ✓
-
-.. container:: supplemental
-    
-    **Hintergrund**
-
-    Ein Kollisionsangriff erfordert weniger Aufwand als ein *preimage* oder ein *second preimage* Angriff.
-
-    Dies wird durch das Geburtstagsparadoxon erklärt. Wählt man Zufallsvariablen aus einer Gleichverteilung im Bereich von :math:`0` bis :math:`N-1`, so übersteigt die Wahrscheinlichkeit, dass ein sich wiederholendes Element gefunden wird, nach :math:`\sqrt{N}` Auswahlen :math:`0,5`. Wenn wir also für einen m-Bit-Hashwert Datenblöcke zufällig auswählen, können wir erwarten, zwei Datenblöcke innerhalb von :math:`\sqrt{2^m} = 2^{m/2}` Versuchen zu finden.
-
-    .. admonition:: Beispiel
-        :class: smaller
-
-        Es ist relativ einfach, ähnliche Meldungen zu erstellen. Wenn ein Text 8 Stellen hat, an denen ein Wort mit einem anderen ausgetauscht werden kann, dann hat man bereits :math:`2^{8}` verschiedene Texte.
-
-        Es ist relativ trivial(1), vergleichbare(2) Nachrichten(3) zu schreiben(4). Wenn ein Text 8 Stellen hat, an denen ein Ausdruck(5) mit einem vergleichbaren (6) ausgetauscht werden kann, dann erhält(7) man bereits :math:`2^{8}` verschiedene Dokumente(8).
-
-
-Effizienzanforderungen an kryptografische Hashfunktionen
-------------------------------------------------------------------------
-
-:Effizienz bei der Verwendung für Signaturen und zur Authentifizierung:
-
-  Bei der Verwendung zur Nachrichtenauthentifizierung und für digitale Signaturen ist :math:`H(N)` für jedes beliebige :math:`N` relativ einfach zu berechnen. Dies soll sowohl Hardware- als auch Softwareimplementierungen ermöglichen.
-
-.. container:: incremental
-
-    .. container:: text-align-center bold huge
-        
-        vs.
-
-    :Brute-Force-Angriffe auf Passwörter erschweren:
-
-        Bei der Verwendung für das Hashing von Passwörtern soll es schwierig sein den Hash effizient zu berechnen, selbst auf spezialisierter Hardware (GPUs, ASICs).
 
 
 Kryptografische Hashfunktionen für Passworte
@@ -449,112 +330,6 @@ Vom Salzen (:eng:`Salt`)...
 
     Laut OWASP sollten zum Beispiel für PBKDF2-HMAC-SHA512 600.000 Iterationen verwendet werden.
 
-
-
-HMAC (Hash-based Message Authentication Code)
-----------------------------------------------
-
-.. container:: small
-
-    Auch als *keyed-hash message authentication code* bezeichnet.
-
-    .. math::
-
-        \begin{array}{rcl}
-        HMAC(K,m) & = & H( (K' \oplus opad) || H( ( K' \oplus ipad) || m) ) \\
-        K' & = &\begin{cases}
-                H(K) & \text{falls K größer als die Blockgröße ist}\\
-                K & \text{andernfalls}
-                \end{cases}
-        \end{array}
-    
-    :math:`H` is eine kryptografische Hashfunktion.
-
-    :math:`m` ist die Nachricht.
-
-    :math:`K` ist der geheime Schlüssel (*Secret Key*).
-
-    :math:`K'` ist vom Schlüssel K abgeleiteter Schlüssel mit Blockgröße (ggf. *padded* oder *gehasht*).
-
-    :math:`||` ist die Konkatenation.
-
-    :math:`\oplus` ist die XOR Operation.
-
-    :math:`opad` ist das äußere Padding bestehend aus Wiederholungen von 0x5c in Blockgröße.
-
-    :math:`ipad` ist das innere Padding bestehend aus Wiederholungen von 0x36 in Blockgröße.
-
-
-\ 
-----------------------------------------------
-
-.. image:: graffles/hmac_i_o_key_derivation.svg
-        :alt: Schlüsselableitung für den inneren und äußeren Schlüssel K'
-        :align: left
-        :width: 1400px
-
-.. image:: graffles/hmac_message_hashing.svg
-        :alt: Schlüsselableitung für den inneren und äußeren Schlüssel K'
-        :align: right
-        :width: 1300px
-        :class: incremental margin-top-1em padding-top-1em
-
-.. container:: supplemental
-
-    **Padding und Hashing**
-
-    Im Rahmen der Speicherung von Passwörtern und *Secret Keys* ist die Verwendung von Padding Operationen bzw. das Hashing von Passwörtern, um Eingaben in einer wohl-definierten Länge zu bekommen, üblich. Neben dem hier gesehenen Padding, bei dem 0x00 Werte angefügt werden, ist zum Beispiel auch das einfache Wiederholen des ursprünglichen Wertes, bis man auf die notwendige Länge kommt, ein Ansatz. 
-    
-    Diese Art Padding darf jedoch nicht verwechselt werden mit dem Padding, dass ggf. im Rahmen der Verschlüsselung von Nachrichten notwendig ist, um diese ggf. auf eine bestimmte Blockgröße zu bringen (zum Beispiel bei ECB bzw. CBC Block Mode Operations.)
-
-
-
-HMAC Computation in Python
----------------------------
-    
-**Implementierung**
-
-.. code:: python
-    :class: small
-
-    import hashlib
-    pwd = b"MyPassword"
-    stretched_pwd = pwd + (64-len(pwd)) * b"\x00" 
-    ikeypad = bytes(map(lambda x : x ^ 0x36 , stretched_pwd)) # xor with ipad 
-    okeypad = bytes(map(lambda x : x ^ 0x5c , stretched_pwd)) # xor with opad 
-    hash1 = hashlib.sha256(ikeypad+b"JustASalt"+b"\x00\x00\x00\x01").digest()
-    hmac  = hashlib.sha256(okeypad+hash1).digest()
-
-
-.. container:: incremental small
-
-    **Ausführung**
-
-    .. code:: python
-
-        hmac =
-        b'h\x88\xc2\xb6X\xb7\xcb\x9c\x90\xc2R...
-          \x16\x87\x87\x0e\xad\xa1\xe1:9\xca'
-
-
-.. container:: supplemental
-    
-    HMAC ist auch direkt als Bibliotheksfunktion verfügbar.
-
-    .. code:: python
-        :class: black
-
-        import hashlib
-        import hmac
-        
-        hash_hmac = hmac.new(
-            b"MyPassword",
-            b"JustASalt"+b"\x00\x00\x00\x01",
-            hashlib.sha256).digest()
-
-        hash_hmac = 
-            b'h\x88\xc2\xb6X\xb7\xcb\x9c\x90\xc2R...
-              \x16\x87\x87\x0e\xad\xa1\xe1:9\xca'
 
 
 PBKDF2-HMAC (Hash-based Message Authentication Code)
@@ -2136,6 +1911,33 @@ Passwörter angreifen - Zusammenfassung
 - Kleine etablierte Kommandozeilenwerkzeuge (tr, greb, sed, awk, ...) oder selbstentwickelte Werkzeuge (zum Beispiel in Python) sind häufig ergänzend notwendig und führen oft  schneller zum Ziel als die Suche nach **dem** Tool. 
 - Insbesondere wenn es um die semantische Anreicherung von Wörterbüchern geht, dann sind (bisher) keine etablierten Werkzeuge vorhanden.
 - Häufig führen nur Kombinationen von etablierten und eigenen Werkzeugen zum gewünschten Ziel.
+
+
+
+.. class:: integrated-exercise
+
+Übung
+-------
+
+Ihnen liegt folgender MD5 Hash vor, Stellen Sie das Passwort wieder her: 
+   
+1. ``81dc9bdb52d04dc20036dbd8313ed055``
+ 
+  Hinweise: Das Passwort ist kurz, besteht nur aus Ziffern und ist sehr häufig.
+
+  .. protected-exercise-solution:: Lösung 1
+      
+      1234
+
+2. ``7c6a180b36896a0a8c02787eeafb0e4c``
+    
+  Hinweise: Das Passwort besteht aus Buchstaben gefolgt von Ziffern und ist sehr häufig.
+   
+  Sie können Hashcat (https://hashcat.net/hashcat/) verwenden oder ein Bash-Skript schreiben oder eine kleine Lösung in einer Programmiersprache Ihrer Wahl entwickeln.
+   
+  .. protected-exercise-solution:: Lösung 2
+    
+        password1
 
 
 
