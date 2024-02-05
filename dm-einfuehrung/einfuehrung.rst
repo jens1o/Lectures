@@ -316,12 +316,14 @@ Struktur eines Dokumentes
             :align: center
 
 
+
 Dokumente annotieren
 --------------------------------
 
 .. image:: images/dokument_mit_anmerkungen.png
     :height: 1050px
     :align: center
+
 
 
 *Renditions* eines Dokumentes
@@ -332,6 +334,7 @@ Dokumente annotieren
 - Man unterscheidet zwischen dem Originalformat des Dokuments (z.B. MS-Word oder LibreOffice Format) und Renditions (wie PDF/a und TIFF)
 - Formate wie PDF/a und TIFF sind in der Regel langlebiger, es gibt Viewer dafür und erhalten besser den ursprünglichen optischen Zustand.
 - Previewimages oft zusätzlich
+
 
 
 Hashwerte und Signaturen [#]_
@@ -348,11 +351,13 @@ Hashwerte und Signaturen [#]_
 .. [#] Hashwerte und Signaturen werden wir ausführlich im zweiten Teil der Vorlesung betrachten.
 
 
+
 Volltext
 --------------------------------
 
 • Für Volltextindizierung wird oft der Volltext - insbesondere wenn er durch OCR/ICR gewonnen wurde - mit dem Dokument abgespeichert.
 • Die indizierten Begriffe werden oft mit der Angabe der Fundstelle im Dokument abgespeichert, um innerhalb des Dokuments das Suchergebnis anzeigen zu können.
+
 
 
 Versionierung von Dokumenten
@@ -409,6 +414,7 @@ Arten von Meta-Daten
   • Dynamische Metadaten (wie Status oder Version der Dokumente)
 
 
+
 Beispiel von Meta-Daten einer Verwaltungssoftware für Metadaten
 ----------------------------------------------------------------
 
@@ -422,6 +428,8 @@ Beispiel von Meta-Daten einer Verwaltungssoftware für Metadaten
     3b, Check-In-Datum, M, Datum des Checkin der Version, Automatische Vergabe durch DMS, Check in Datum
     3c, Dokumenten-Owner, M, Gruppe aus letzten Bearbeiter, Aus USER-ID abgeleitet
     3d, Letzter Bearbeiter, M, Identifikation, USER-ID, Beim Check In
+
+
 
 Zusammenfassung: Dokumente in einem DMS
 -----------------------------------------------
@@ -499,6 +507,7 @@ Dokumente ...
 • können bzw. müssen gelöscht werden.
 
 
+
 Erstellen von Dokumenten
 -----------------------------------------------
 
@@ -508,6 +517,7 @@ Erstellen von Dokumenten
 • Dokumente aus Applikationen übernehmen (SAP-Archive-Link, Mail-Archivierung, ...)
 • Spezielle Verfahren bei Migration und Massenimporten
 • Indizieren der Dokumente entweder automatisch oder manuell
+
 
 
 Nutzen und bearbeiten von Dokumenten
@@ -573,6 +583,8 @@ Bewertung von Dateiformaten in Hinblick auf die Dauerhaftigkeit
 - keine vollständige oder teilweise Verschlüsselung
 - kein Passwortschutz
 - relevante Nutzerbasis
+
+
 
 .. class:: tiny
 
@@ -713,6 +725,26 @@ Langfristige Aufbewahrung von Dokumenten
             • All other presentation formats not listed here"
 
 
+
+Dateiformate und ihre Eignung für die Langzeitarchivierung
+----------------------------------------------------------------
+
+.. epigraph::
+
+    .. container:: larger
+
+        **SPASSPROJEKT: Entwicklerin erstellt PDF-Dokument in der Größe der Welt**
+        
+        Sind PDFs in ihren Ausmaßen in der Größe limitiert? Eine Frau wollte es genau wissen und erstellte ein Dokument, das größer ist als Deutschland.
+
+    PDF-Enthusiastin Alex Chan hat ein Experiment durchgeführt, um ein extrem großes PDF-Dokument zu erstellen – lediglich, um zu sehen, ob es möglich ist. Mit ihrem Wissen über das PDF-Dateiformat machte sich Chan daran, ein PDF-Dokument zu erstellen, das größer ist als die Bundesrepublik Deutschland. [...]
+
+    Sie lädt andere Dateiformat-Enthusiasten ein, mit ihr die Möglichkeiten jenseits der dokumentierten Spezifikationen zu erforschen.
+
+    -- `Andreas Donath 3. Februar 2024, 14:21 Uhr <https://www.golem.de/news/spassprojekt-mann-erstellt-pdf-dokument-in-der-groesse-der-welt-2402-181844.html>`__
+
+
+
 Pflege des Systems
 -----------------------------------------------
 
@@ -810,8 +842,7 @@ Typische Fragestellungen bei Integration
 
 • Welches System ist bezüglich der Schlüssel das führende System
 • Einheitliche Nutzer- und Zugriffsrechte
-• Wie werden die Systeme synchronisiert (permanent-online
-oder zyklisch im Batch)
+• Wie werden die Systeme synchronisiert (permanent-online oder zyklisch im Batch)
 • Schnittstellenrealisierung
 • ...
 
