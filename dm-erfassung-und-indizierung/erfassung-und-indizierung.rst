@@ -188,6 +188,10 @@ Unterstützung für Workflowdefinitionen in ECM Systemen
     https://start.docuware.com
 
 
+.. container:: supplemental
+    
+        :ECM: *Enterprise Content Management*
+
 
 Erstmalige Übernahme von Dokumenten
 ---------------------------------------
@@ -317,13 +321,13 @@ Scanner
 
 .. container:: two-columns
     
-        .. container:: column
+        .. container:: column no-separator
     
             Scanner unterscheiden sich in:
 
-            - Zufuhr von Seiten
+            - Zufuhr von Seiten 
             - Vorlagengröße (z.B. A4, A3)
-            - Geschwindigkeit
+            - Geschwindigkeit (bis zu mehrere hundert Seiten pro Minute)
             - Farbtiefe
             - Umschlagerkennung
             - Heftklammererkennung
@@ -334,9 +338,10 @@ Scanner
     
             .. figure:: screenshots/hochleistungsscanner-140blatt_pro_min-canon-scanmachine-10000eur-2024.webp
                 :height: 800px
-                :align: center
 
-            `Scanmachine <https://www.scanmachine.de>`__
+            .. class:: text-align-center
+            
+                `Scanmachine <https://www.scanmachine.de>`__
 
 
 
