@@ -40,11 +40,15 @@ Dokumentmanagement, Archivierungs- und Verschlüsselungsverfahren
     :12 Jahre: Postdoc am Fachgebiet Softwaretechnik der TU Darmstadt
     :2007: Promotion zum Dr. Ing. am Fachgebiet Softwaretechnik der TU Darmstadt
 
-.. container:: footer-left tiny incremental
+.. container:: footer-left x-tiny incremental
 
-    Dieser Foliensatz basiert teilweise auf Folien von: Klaus Götzer
-
+    Dieser Foliensatz basiert auf Folien von: Klaus Götzer.
+    
     Alle Fehler sind meine eigenen.
+
+    Dokumenten-Management von *Klaus Götzer, Patrick Maué, und Ulrich Emmert*, dpunkt.verlag, 2023.
+
+    
 
 
 
