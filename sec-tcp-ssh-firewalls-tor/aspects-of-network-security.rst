@@ -1068,6 +1068,17 @@ Unabhängiges Netz - :ger-quote:`Ideale Situation`
 
 
 
+Von der Notwendigkeit des Schutzes von Rechnern
+--------------------------------------------------------
+
+.. epigraph:: 
+    
+    [...] Züger und sein Team hätten [...] erst kürzlich ein Experiment durchgeführt, [...]. Sie hätten einen Computer "ohne jeglichen Schutz" mit dem Internet verbunden, um zu sehen, wie lange es dauere, bis er befallen sei. Konkrete Details zur Konfiguration dieses Systems werden zwar nicht genannt, angeblich war der Rechner aber schon nach 20 Minuten infiltriert.
+
+    -- `Golem.de 6.2.2024 <https://www.golem.de/news/iot-hacker-missbrauchen-zahnbuersten-fuer-ddos-angriffe-2402-181921.html>`__
+
+
+
 Schutzschicht zwischen internem und externem Netz
 ------------------------------------------------------
 
