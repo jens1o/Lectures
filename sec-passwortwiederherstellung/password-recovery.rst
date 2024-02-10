@@ -133,6 +133,7 @@ Ist Passwortwiederherstellung noch relevant?
     Biometrie ist zum Beispiel in machen Bereichen kein Ersatz für Passwörter und wird - wenn überhaupt - nur ergänzend genommen. So ist es zum Beispiel im deutschen Recht erlaubt/möglich einem Beschuldigten sein Smartphone bei Bedarf vor das Gesicht zu halten, um es zu entsperren. Je nach Qualität des Fingerabdrucksensors können ggf. auch genommene Fingerabdrücke verwendet werden. Möchte der Beschuldigte jedoch das Passwort nicht freiwillige nennen, dann besteht keine direkte weitere Handhabe.
 
 
+
 Ist Passwortwiederherstellung noch relevant?
 ----------------------------------------------
 
@@ -141,6 +142,25 @@ Ist Passwortwiederherstellung noch relevant?
     Microsoft said hackers working for the Russian government breached its corporate networks recently and stole email from executives and some employees to find out what the company knew about them. The tech company said the breach was not due to any flaw in its software, but rather began with a “password spraying.” The technique worked on what Microsoft said was an old test account, and the hackers then used the account’s privileges to get access to multiple streams of email.
 
     -- The Washington Post; Joseph Menn (January 19, 2024)
+
+
+
+Ist Passwortwiederherstellung noch relevant?
+----------------------------------------------
+
+.. epigraph::
+
+    **Researchers Uncover How Outlook Vulnerability Could Leak Your NTLM Passwords**
+
+    A now-patched security flaw in Microsoft Outlook could be exploited by threat actors to access NT LAN Manager (NTLM) v2 hashed passwords when opening a specially crafted file.
+
+    [...]
+    Varonis security researcher Dolev Taler, who has been credited with discovering and reporting the bug, said NTLM hashes could be leaked by leveraging Windows Performance Analyzer (WPA) and Windows File Explorer. These two attack methods, however, remain unpatched.
+
+    "What makes this interesting is that WPA attempts to authenticate using NTLM v2 over the open web," Taler said.
+
+    -- `The Hacker News (Jan 29, 2024) <https://thehackernews.com/2024/01/researchers-uncover-outlook.html>`__
+
 
 
 Ist Passwortwiederherstellung nicht :ger-quote:`trivial`?
