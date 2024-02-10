@@ -13,6 +13,12 @@
 .. role:: ger
 .. role:: ger-quote
 .. role:: eng
+.. role:: minor
+.. role:: smaller
+.. role:: scriptsize
+
+.. role:: raw-html(raw)
+    :format: html
 
 
 Einführung in die Zahlentheorie
@@ -281,7 +287,7 @@ Modulare Arithmetik (*kongruent modulo* :math:`n`)
 
     .. math:: 
 
-        73 \equiv 4 (mod\; 23); \qquad 21 \equiv -9 (mod\; 10)
+        73 \equiv 4 (mod\; 23); \qquad 21 \equiv -9 (mod\; 10); \qquad 81 \equiv 0 (mod\; 27)
 
 .. admonition:: Hinweis
     :class: incremental
@@ -297,7 +303,7 @@ Eigenschaften der Kongruenz
 
 1. :math:`a \equiv b (mod\; n)` wenn :math:`n|(a-b)`
 2. :math:`a \equiv b (mod\; n) \Rightarrow b \equiv a (mod\; n)`
-3. :math:`a \equiv b (mod\; n)\; und\; b \equiv c (mod\; n) \Rightarrow a \equiv c (mod\; n)`
+3. :math:`a \equiv b (mod\; n)` und :math:`b \equiv c (mod\; n) \Rightarrow a \equiv c (mod\; n)`
 
 
 
@@ -426,7 +432,7 @@ Addition Modulo 8
 
     .. container:: column incremental
     
-        .. admonition:: Definition 
+        .. admonition:: Definition
 
             .. math:: 
 
@@ -480,9 +486,18 @@ Additive und Multiplikative Inverse Modulo 8
 
     .. container:: column no-separator
 
+        .. admonition:: Definition
+
+            Die **negative/additive Inverse** einer ganzen Zahl :math:`x` ist die ganze Zahl :math:`y`, für die gilt: :math:`(x + y)\; mod\; 8 = 0`. 
+
+            Die **muliplikative Inverse** einer ganzen Zahl :math:`x` ist die ganze Zahl :math:`y`, für die gilt: :math:`(x \times y)\; mod\; 8 = 1`.
+
+    .. container:: column incremental
+
         .. csv-table:: 
             :class: highlight-line-on-hover
             :header: :math:`w`, :math:`-w`, :math:`w^{-1}`
+            :align: center
             
             0, 0, :math:`-`
             1, 7, 1
@@ -493,13 +508,8 @@ Additive und Multiplikative Inverse Modulo 8
             6, 2, :math:`-`
             7, 1, 7 
 
-    .. container:: column
 
-        .. admonition:: Definition
-
-            Die **negative/additive Inverse** einer ganzen Zahl :math:`x` ist die ganze Zahl :math:`y`, für die gilt: :math:`(x + y)\; mod\; 8 = 0`. 
-
-            Die **muliplikative Inverse** einer ganzen Zahl :math:`x` ist die ganze Zahl :math:`y`, für die gilt: :math:`(x \times y)\; mod\; 8 = 1`.
+        
 
 
 
@@ -579,23 +589,32 @@ Euklidischer Algorithmus - neu betrachtet
                         ↳ ggt(2,0)
             2              ↩︎
 
+.. container:: incremental
+
+    Um welche Art von rekursivem Algorithmus handelt es sich hierbei?
+
+.. container:: supplemental
+
+    In der gegebenen Formulierung ist der Algorithmus endrekursiv (:eng:`tail recursive`).
 
 
 Erweiterter Euklidischer Algorithmus 
 --------------------------------------
 
-- Erforderlich für Berechnungen im Bereich der endlichen Körper und Verschlüsselungsalgorithmen wie RSA.
+- Erforderlich für Berechnungen im Bereich der endlichen Körper und Verschlüsselungsalgorithmen wie RSA. 
 - Für zwei ganze Zahlen :math:`a` und :math:`b` berechnet der erweiterte euklidische Algorithmus den GGT :math:`d`, aber auch zwei zusätzliche ganze Zahlen :math:`x` und :math:`y`, die die folgende Gleichung erfüllen:
   
-.. container:: note incremental smaller
-
-    **Hinweis**
-
-    :math:`x` und :math:`y` haben entgegen- gesetzte Vorzeichen. 
-
 .. math::
-    ax + by = d = ggt(a,b)
+    x \times a + y \times b = d = ggt(a,b)
 
+.. container:: supplemental
+
+    Notwendigerweise haben :math:`x` und :math:`y` gegensätzliche Vorzeichen, da sonst :math:`(x \times a + y \times b) > a\; ( > b )` gelten würde und somit nicht den GGT darstellen könnte.
+
+    Der erweiterte euklidische Algorithmus kann auf jeden Ring angewandt werden, in welchem eine Division mit kleinstem Rest durchgeführt werden kann. Ein Beispiel ist der Polynomring in einer Variablen mit rationalen oder reellen Koeffizienten wie sie bei der Verschlüsselung angewandt werden.
+    
+    Der erweiterte Algo. dient insbesondere der Berechnung der inversen Elemente in ganzzahligen Restklassenringen. :minor:`(Beides werden wir später in der Vorlesung betrachten).`
+  
 
 
 .. class:: smaller-slide-title
@@ -603,7 +622,7 @@ Erweiterter Euklidischer Algorithmus
 :math:`ggt(a=42,b=30)` mit Erweitertem Euklidischen Algorithmus
 ------------------------------------------------------------------------------
 
-Werfen wir einen Blick auf :math:`ax+by` für einige :math:`x` und :math:`y`:
+Werfen wir einen Blick auf :math:`x \times a + y \times b` für einige :math:`x` und :math:`y`:
 
 .. csv-table::
     :width: 1500px
@@ -623,7 +642,35 @@ Werfen wir einen Blick auf :math:`ax+by` für einige :math:`x` und :math:`y`:
     :class: incremental small
 
     Der GGT :math:`6` erscheint in der Tabelle (:math:`x = -2` und :math:`y = 3`).
-    
+
+
+Erweiterter Euklidischer Algorithmus :raw-html:`<br>` :scriptsize:`systematische Berechnung`
+--------------------------------------------------------------------------------------------------
+
+.. container:: two-columns
+
+    .. container:: column
+
+        .. image:: drawings/euclidean_algorithm/example.svg
+            :width: 800px
+
+    .. container:: column
+
+        Umgestellt:
+
+        .. image:: drawings/euclidean_algorithm/example-umgestellt.svg
+            :width: 850px
+
+Erweiterter Euklidischer Algorithmus - systematische Berechnung
+-------------------------------------------------------------------
+
+.. image:: drawings/euclidean_algorithm/example-ausgerechnet.svg
+    :width: 100%
+    :align: center
+
+
+:math:`x = 7` und :math:`y = -16`
+
 
 
 Erweiterter Euklidischer Algorithmus - Formeln
@@ -652,16 +699,16 @@ Erweiterter Euklidischer Algorithmus
 .. csv-table::
     :align: left
     :width: 1850px
-    :class: tiny highlight-line-on-hover
+    :class: footnotesize highlight-line-on-hover
     :header: Berechne, Was erfüllt, Berechne, Was erfüllt
 
     :math:`r_{-1} = a`, , :math:`x_{-1}=1; y_{-1}=0`, :math:`a = ax_{-1} + by_{-1}`
     :math:`r_{0} = b`, , :math:`x_0=0;y_{0}=0`, :math:`b = ax_{0} + by_{0}`
-    ":math:`r_{1} = a\;mod\;b`; :math:`q_1= \lfloor a/b \rfloor`", :math:`a=q_1b+r_1` , :math:`x_1=x_{-1} -q_1x_0 = 1; y_1=y_{-1} -q_1y_0 = -q_1`, :math:`r_1 = ax_{1} + by_{1}` 
+    ":math:`r_{1} = a\;mod\;b`; :math:`q_1= \lfloor a/b \rfloor`", :math:`a=q_1b+r_1` , :math:`x_1=x_{-1} -q_1x_0 = 1`; :math:`y_1=y_{-1} -q_1y_0 = -q_1`, :math:`r_1 = ax_{1} + by_{1}` 
     :math:`r_{2} = b\;mod\;r_1`; :math:`q_2= \lfloor b/r_1 \rfloor`, :math:`b=q_2r_1+r_2` , :math:`x_2=x_{0} -q_2x_1; y_2=y_{0} -q_2y_1`, :math:`r_2 = ax_{2} + by_{2}`
     :math:`r_{3} = r_1\;mod\;r_2`; :math:`q_3= \lfloor r_1/r_2 \rfloor`, :math:`r_1=q_3r_2+r_3` , :math:`x_3=x_{1} -q_3x_2; y_3=y_{1} -q_3y_2`, :math:`r_3 = ax_{3} + by_{3}`
     :math:`\vdots`, :math:`\vdots`, :math:`\vdots`, :math:`\vdots`
-    :math:`r_{n} = r_{n-2}\;mod\;r_{n-1}`; :math:`q_n= \lfloor r_{n-2}/r_{n-1} \rfloor`, :math:`r_{n-2}=q_nr_{n-1}+r_n` , :math:`x_n=x_{n-2} -q_nx_{n-1}; y_n=y_{n-2} -q_ny_{n-1}`, :math:`r_n = ax_{n} + by_{n}`
+    :math:`r_{n} = r_{n-2}\;mod\;r_{n-1}`; :math:`q_n= \lfloor r_{n-2}/r_{n-1} \rfloor`, :math:`r_{n-2}=q_nr_{n-1}+r_n` , :math:`x_n=x_{n-2} -q_nx_{n-1}`; :math:`y_n=y_{n-2} -q_ny_{n-1}`, :math:`r_n = ax_{n} + by_{n}`
     :math:`r_{n+1} = r_{n-1}\;mod\;r_{n} = 0`; :math:`q_{n+1}= \lfloor r_{n-1}/r_{n} \rfloor`, :math:`r_{n-1}=q_{n+1}r_{n}+0` , ,  
 
 .. class:: incremental 
