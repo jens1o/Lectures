@@ -3,6 +3,7 @@
 
 *.key
 *.ova
+Icon?
 
 # Content we can't share publicly
 exercise
