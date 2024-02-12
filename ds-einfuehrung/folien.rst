@@ -131,7 +131,7 @@ Verteilte Systeme
     :class: definition in
 
     - Ein dezentrales System ist ein vernetztes Computersystem, in dem Prozesse und Ressourcen *notwendigerweise* über mehrere Computer verteilt sind.
-    - Ein verteiltes System ist ein vernetztes Computersystem, bei dem Prozesse und Ressourcen *ausreichend* über mehrere Computer verteilt sind.
+    - Ein verteiltes System ist ein vernetztes Computersystem, bei dem Prozesse und Ressourcen *hinreichend* über mehrere Computer verteilt sind.
 
 
 
