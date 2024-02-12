@@ -5,13 +5,16 @@
 *.ova
 Icon?
 
-# Content we can't share publicly
+# Content we never share publicly
 exercise
 
 # Generated files
 *.rst.html
+*.rst.html.pdf
 
-# Folders with generated files
+Readme.pdf
+
+# Folders with generated files TODO put these in local .gitignore files!
 graffles
 datagraph
 dgraphs
