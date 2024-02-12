@@ -1,23 +1,32 @@
+Lehrveranstaltungen und Foliensätze
+===================================
+
 Die Foliensätze sind modularisiert und lassen sich an die jeweiligen Anforderungen der Vorlesungen anpassen. Im Folgenden sind einige sinnvolle Kombinationen aufgeführt:
+
+
 
 Vorlesung "Dokumentenmanagement und Verschlüsselungsverfahren"
 ---------------------------------------------------------------
 
 1. Einführung in das Dokumentenmanagement (`<dm-einfuehrung>`__)
-2. 
+2. ...
+
+
 
 Vorlesung "Verteilte Systeme"
 -----------------------------
 
 1. Einführung in verteilte Systeme (`<ds-se-einfuehrung>`__)
-4. Zusammenspiel von Agile Methoden und Entwurf verteilter Systeme (`<ds-se-agile>`__)
-2. Architekturen von verteilten Systemen (`<ds-se-architekturen>`__)
-3. Entwurfsprinzipien für verteilte Systeme (`<ds-se-entwurfsprinzipien>`__)
+2. Zusammenspiel von Agile Methoden und Entwurf verteilter Systeme (`<ds-se-agile>`__)
+3. Architekturen von verteilten Systemen (`<ds-se-architekturen>`__)
+4. Entwurfsprinzipien für verteilte Systeme (`<ds-se-entwurfsprinzipien>`__)
 5. RESTful Web Services (`<ds_restful>`_)
+
 
 
 Vorlesung "IT Sicherheit (IT Infrastrukturen)"
 -----------------------------------------------
+
 1. [Optional] Klassische Sicherheitsprinzipien (`<sec-klassische-sicherheitsprinzipien>`__)
 2. Einführung in die Zahlentheorie (`<sec-einfuehrung-in-die-zahlentheorie>`__)
 3. Klassische Verschlüsselungsverfahren (`<sec-klassische-verschluesselungsverfahren>`__)
