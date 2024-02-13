@@ -16,9 +16,9 @@ Vorlesung "Dokumentenmanagement und Verschlüsselungsverfahren"
 Vorlesung "Verteilte Systeme"
 -----------------------------
 
-1. Einführung in verteilte Systeme (`<ds-se-einfuehrung>`__)
+1. Einführung in verteilte Systeme (`<ds--einfuehrung>`__)
+3. Architekturen von verteilten Systemen (`<ds-architekturen>`__)
 2. Zusammenspiel von Agile Methoden und Entwurf verteilter Systeme (`<ds-se-agile>`__)
-3. Architekturen von verteilten Systemen (`<ds-se-architekturen>`__)
 4. Entwurfsprinzipien für verteilte Systeme (`<ds-se-entwurfsprinzipien>`__)
 5. RESTful Web Services (`<ds_restful>`_)
 
