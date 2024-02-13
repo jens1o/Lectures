@@ -13,8 +13,14 @@
 .. role:: red
 .. role:: green 
 .. role:: blue 
-    
-    
+.. role:: smaller
+.. role:: much-smaller
+
+.. role:: raw-html(raw)
+    :format: html
+
+
+
 
 Advanced Encryption Standard (AES)
 ===============================================
@@ -89,7 +95,7 @@ AES Key Elements
 AES Encryption Process
 -----------------------
 
-.. image:: 5-aes_encryption_process.svg
+.. image:: drawings/aes/encryption_process.svg
     :width: 1700px
     :alt: AES Encryption Process
     :align: center
@@ -109,15 +115,16 @@ AES Parameters
     Expanded Key Size (words/bytes), 44/176, 52/208, 60/240
 
 
-AES Encryption and Decryption Process
---------------------------------------------------------
 
-.. container:: small
+.. class:: vertical-title smaller-slide-title
+
+AES - Ver- und Entschlüsselungsprozess :raw-html:`<br>` :much-smaller:`(Key Size 128bits)`
+---------------------------------------------------------------------------------------------
+
     
-    (Key Size 128bits)
 
-.. image:: 5-aes_encryption_and_decryption.svg
-    :width: 1250px
+.. image:: drawings/aes/encryption_and_decryption_process.svg
+    :height: 1150px
     :alt: AES Encryption and Decryption Process
     :align: center
 
@@ -151,7 +158,7 @@ AES Uses Four Different Stages
 AES Substitute byte transformation
 ----------------------------------
 
-.. image:: 5-aes_substitute_byte_transformation.svg
+.. image:: drawings/aes/substitute_byte_transformation.svg
     :align: center
     :width: 1400px
     :alt: AES substitute byte tansformation
@@ -161,7 +168,7 @@ AES S-box
 -----------
 
 .. csv-table::
-    :class: small monospaced highlight-on-hover       
+    :class: footnotesize monospaced highlight-on-hover       
     :align: center 
     :name: s-box
 
@@ -183,15 +190,16 @@ AES S-box
     E, E1, F8, 98, 11, 69, D9, 8E, 94, 9B, 1E, 87, E9, CE, 55, 28, DF
     F, 8C, A1, 89, OD, BF, E6, 42, 68, 41, 99, 2D, OF, BO, 54, BB, 16
 
-.. class:: smaller incremental
+.. container:: supplemental
 
-    Each individual byte of State is mapped into a new byte in the following way: The leftmost 4 bits of the byte are used as a row value and the rightmost 4 bits are used as a column vlaue. These two values serve as indexes into the S-box.
+    Jedes einzelne Byte des Zustands (*State*) wird auf folgende Weise auf ein neues Byte abgebildet: Die äußersten linken 4 Bits des Bytes werden als Zeilenwert und die äußersten rechten 4 Bits als Spaltenwert verwendet. Diese beiden Werte dienen als Indizes in der S-Box.
+
 
 AES Inverse S-box
 -----------------
 
 .. csv-table::
-    :class: small monospaced highlight-on-hover        
+    :class: footnotesize monospaced highlight-on-hover        
     :align: center
     :name: inverse-s-box
 
@@ -213,143 +221,166 @@ AES Inverse S-box
     E, A0, E0, 3B, 4D, AE, 2A, F5, BO, C8, EB, BB, 3С, 83, 53, 99, 61
     F, 17, 2B, 04, 7E, BA, 77, D6, 26, E1, 69, 14, 63, 55, 21, 0C, 7D
 
-.. class:: smaller incremental
+.. container:: supplemental
 
-    *Example*: The (hex)value 0xA3 (x=A and y=3) is mapped by the S-box to the (hex)value 0x0A. **The inverse S-box maps the value 0x0A (x=0 and y=A) back to the original value**.
+    .. rubric:: Beispiel
+    
+    Der (Hex)Wert ``0xA3`` (``x=A`` und ``y=3``) wird von der S-Box auf den (Hex)Wert ``0x0A`` abgebildet. 
+    
+    Die inverse S-Box bildet den Wert ``0x0A`` (``x=0`` und ``y=A``) wieder auf den ursprünglichen Wert ab.
 
     
 
-S-Box Rationale
-----------------
+S-Box Design Grundlagen
+--------------------------
 
-- The S-box is designed to be resistant to known cryptanalytic attacks.
-- The Rijndael developers sought a design that has a low correlation between input bits and output bits and the property that the output is not a linear mathematical function of the input.
-- The nonlinearity is due to the use of the multiplicative inverse in the construction of the S-box.
+- Die S-Box ist so konzipiert, dass sie gegen bekannte kryptoanalytische Angriffe resistent ist.
+- Die Rijndael-Entwickler suchten nach einem Design, das eine geringe Korrelation zwischen Eingabe- und Ausgabebits aufweist und die Eigenschaft hat, dass die Ausgabe keine lineare mathematische Funktion der Eingabe ist.
+- Die Nichtlinearität ist auf die Verwendung der multiplikativen Inversen bei der Konstruktion der S-Box zurückzuführen.
 
 
 
 Shift Row Transformation
 ------------------------
 
-.. image:: 5-aes_shift_row_transformation.svg
+.. image:: drawings/aes/shift_row_transformation.svg
     :width: 1600px 
-    :alt: Shift row transformation
+    :alt: Shift Row Transformation
     :align: center 
 
 
-Shift Row Transformation - Rationale
+
+Shift Row Transformation - Begründung
 --------------------------------------
 
-- More substantial than it may first appear!
+- Wesentlicher als es auf den ersten Blick scheint!
 
 .. class:: incremental
-    
-- The State, as well as the cipher input and output, is treated as an array of four 4-byte columns.
-- On encryption, the first 4 bytes of the plaintext are copied to the first column of State, and so on.
-- The round key is applied to State column by column.
-- Thus, a row shift moves an individual byte from one column to another, which is a linear distance of a multiple of 4 bytes.
-- Transformation ensures that the 4 bytes of one column are spread out to four different columns.
+
+- Der Zustand (*State*) wird ebenso wie die Chiffrierein- und -ausgabe als Array aus vier 4-Byte-Spalten behandelt.
+- Bei der Verschlüsselung werden die ersten 4 Bytes des Klartextes in die erste Spalte vom Zustands (*State*) kopiert, und so weiter.
+- Der Rundenschlüssel wird spaltenweise auf den Zustand (*State*) angewendet.
+- Bei einer Zeilenverschiebung wird also ein einzelnes Byte von einer Spalte in eine andere verschoben, was einem linearen Abstand von einem Vielfachen von 4 Byte entspricht.
+- Die Transformation sorgt dafür, dass die 4 Bytes einer Spalte auf vier verschiedene Spalten verteilt werden.
+
+
 
 Mix Column Transformation
 ---------------------------
 
-
-.. image:: 5-aes_mix_column_transformation.svg 
-    :alt: Mix column transformation
+.. image:: drawings/aes/mix_column_transformation.svg 
+    :alt: Mix Column Transformation
     :align: center
     :width: 1500px 
+
+
 
 Inverse Mix Column Transformation
 ---------------------------------
 
-
-.. image:: 5-aes_inv_mix_column_transformation.svg
-    :alt: Mix column transformation
+.. image:: drawings/aes/inv_mix_column_transformation.svg
+    :alt: Inverse Mix Column Transformation
     :align: center
     :width: 1500px 
 
 
-Mix Colum Transformation - Example
+
+Mix Colum Transformation - Beispiel
 -----------------------------------
 
-.. container:: two-columns smaller
+.. container:: three-columns smaller margin-top-0em padding-top-0em
     
-    .. csv-table:: Given
-        :class: monospaced small
+    .. csv-table:: Gegeben
+        :class: monospaced footnotesize  
 
         87, F2, 4D, 97
         6E, 4C, 90, EC
         46, E7, 4A, C3
         A6, 8C, D8, 95
 
-    .. csv-table:: Result
-        :class: monospaced small
+    .. csv-table:: Ergebnis
+        :class: monospaced footnotesize 
 
         47,40,A3,4C
         37,D4,70,9F
         94,E4,3A,42 
         ED,A5,A6,BC
         
-.. container:: smaller
+    .. container:: tiny
 
-    Example computation of :math:`S'_{0,0}`:
+        Beispiel für die Berechnung von :math:`S'_{0,0}`:
 
-    .. math::
-        
-        (02 \times 87) \oplus (03 \times 6E) \oplus (46) \oplus (A6) = 47.
+        .. math::
 
-.. admonition:: Hints
-    :class: smaller
+            \begin{matrix}
+            S'_{0,0} = & 02 \times S_{0,0} & \oplus & 03 \times S_{1,0} & \oplus & 01 \times S_{2,0} & \oplus & 01 \times S_{3,0} &  \\
+            & (02 \times 87) & \oplus & (03 \times 6E) & \oplus & (46) & \oplus & (A6) & = 47.
+            \end{matrix}
+
+.. admonition:: Hilfsrechnungen
+    :class: small 
     
     .. math::
 
         \begin{matrix}
-        (02 \times 87) = (0000\,1110) \oplus (0001\,1011) = & (0001\,0101) \\
-        (03 \times 6E) = 6E \oplus (02 \times 6E) = (0110\,1110) \oplus (1101\, 1100)  = & (1011\,0010) \\
-        46 = & (0100\,0110) \\
-        A6 = & (1010\,0110) \\
-        & \overline{  (0100\, 0111) }
+        (02 \times 87) & = & (0000\,1110) \oplus (0001\,1011) = & (0001\,0101) \\
+        (03 \times 6E) = 6E \oplus (02 \times 6E) & = & (0110\,1110) \oplus (1101\, 1100)  = & (1011\,0010) \\
+        46 & = & & (0100\,0110) \\
+        A6 & = & & (1010\,0110) \\
+        & & & \overline{  (0100\, 0111) }
         \end{matrix}
 
 
-Mix Column Transformation - Rationale
+.. container:: supplemental
+
+    .. admonition:: Warnung
+        :class: warning
+
+        :math:`(03 \times 6E) = 6E \oplus (02 \times 6E)` und **ist nicht** :math:`6E \oplus 6E \oplus 6E`, da wir hier Polynomarithmetik in :math:`GF(2^8)` nutzen und :math:`03` dem Polynom: :math:`x+1` entspricht.
+
+
+
+Mix Column Transformation - Begründung
 --------------------------------------
 
-
-- Coefficients of a matrix based on a linear code with maximal distance between code words ensures a good mixing among the bytes of each column.
+- Die Koeffizienten einer Matrix, die auf einem linearen Code mit maximalem Abstand zwischen den Codewörtern basiert, gewährleisten eine gute Mischung zwischen den Bytes jeder Spalte.
   
-- The mix column transformation combined with the shift row transformation ensures that after a few rounds all output bits depend on all input bits.
+- Die *Mix Column Transformation* (:ger:`Mischspaltentransformation`) kombiniert mit der *Shift Row Transformation* (:ger:`Zeilenverschiebungstransformation`) stellt sicher, dass nach einigen Runden alle Ausgangsbits von allen Eingangsbits abhängen.
+
 
 
 AddRoundKey Transformation
 --------------------------
 
-• The 128 bits of State are bitwise XORed with the 128 bits of the round key.
+- Die 128 Bits des Zustands (*State*) werden bitweise mit den 128 Bits des Rundenschlüssels XOR-verknüpft.
 
 .. class:: incremental 
 
-• Operation is viewed as a columnwise operation between the 4 bytes of a State column and one word of the round key.
-• *Can also be viewed as a byte-level operation*.
+- Die Operation wird als spaltenweise Operation zwischen den 4 Bytes einer Spalte des Zustands (*State*) und einem Wort des runden Schlüssels betrachtet.
+- *Kann auch als eine Operation auf Byte-Ebene betrachtet werden*.
 
-.. admonition:: Rationale
-    :class: incremental 
-        
+.. admonition:: Designbebegründung
+    :class: incremental margin-top-2em
 
-    -  It is as simple as possible and affects every bit of State.
-    -  The complexity of the round key expansion plus the complexity of the other stages of AES ensure security!
-    
+    - Sie ist so einfach wie möglich und betrifft jedes Bit des Staates.
+    - Die Komplexität der runden Schlüsselexpansion plus die Komplexität der anderen Stufen von AES sorgen für Sicherheit!
 
-Input for a Single AES Encryption Round
------------------------------------------
 
-.. image::  5-aes_input_for_a_single_round.svg
-    :alt: Input for a single round.
+
+.. class:: vertical-title smaller-slide-title
+
+Eingabe für eine einzelne AES-Verschlüsselungsrunde
+-----------------------------------------------------
+
+.. image::  drawings/aes/input_for_a_single_aes_round.svg
+    :alt: Eingabe für eine einzelne AES-Verschlüsselungsrunde
     :align: center
-    :width: 1150px 
-    
+    :height: 1150px 
 
-AES Key Expansion
-------------------
+
+
+AES Schlüsselexpansion
+--------------------------
 
 - Takes as input a four-word (16 byte) key and produces a linear array of 44 words (176) bytes.
 - This is sufficient to provide a four-word round key for the initial `AddRoundKey` stage and each of the 10 rounds of the cipher.
@@ -360,72 +391,92 @@ AES Key Expansion
 - For a word whose position in the w array is a multiple of 4, a more complex function :math:`g` is used.
 
 
-AES Key Expansion - Visualized
---------------------------------
 
-.. image:: 5-aes_key_expansion.svg 
-    :alt: AES Key Expansion
+.. class:: vertical-title smaller-slide-title
+
+AES Schlüsselexpansion - Visualisiert
+---------------------------------------
+
+.. image:: drawings/aes/key_expansion.svg 
+    :alt: AES Schlüsselexpansion
     :align: center
-    :width: 1200px
+    :height: 1170px
 
 
 
-AES Round Key Computation
--------------------------
+AES *Round Key* Berechnung
+-----------------------------
 
 .. math::
 
-    r_i = (r_{c_i},00,00,00)
-
-    r_{c_1} = 01
-    
-    r_{c_{i+1}} = xtime(r_{c_i})
+    \begin{matrix}
+        r_i & = & (r_{c_i},00,00,00) \\
+        r_{c_1} & = & 01 \\
+        r_{c_{i+1}} & = & xtime(r_{c_i})
+    \end{matrix}
 
 .. admonition:: :math:`xtime` Function
-    :class: incremental smaller
+    :class: incremental smaller definition
 
     .. math::
-            y_7y_6y_5y_5y_4y_3y_2y_1y_0 = xtime(x_7x_6x_5x_5x_4x_3x_2x_1x_0) \qquad (x_i,y_i \in \lbrace 0,1 \rbrace)
+        
+        y_7y_6y_5y_5y_4y_3y_2y_1y_0 = xtime(x_7x_6x_5x_5x_4x_3x_2x_1x_0) \qquad (x_i,y_i \in \lbrace 0,1 \rbrace)
 
-            y_7y_6y_5y_5y_4y_3y_2y_1y_0 =
-            \begin{cases}
-            x_6x_5x_5x_4x_3x_2x_1x_00, & if x_7 = 0\\
-            x_6x_5x_5x_4x_3x_2x_1x_00 \oplus 0001 1011,& if x_7 = 1\\
-            \end{cases}
+        y_7y_6y_5y_5y_4y_3y_2y_1y_0 =
+        \begin{cases}
+        x_6x_5x_5x_4x_3x_2x_1x_00, & if x_7 = 0\\
+        x_6x_5x_5x_4x_3x_2x_1x_00 \oplus 0001 1011,& if x_7 = 1\\
+        \end{cases}
 
-.. admonition:: The (Fixed) Round Key Values:
-    :class: incremental smaller
+.. admonition:: Die *Round Key* Werte sind:
+    :class: incremental small
 
-    :math:`r_{c_{1}}=01, r_{c_{2}}=02,r_{c_{3}}=04,r_{c_{4}}=08,r_{c_{5}}=10,r_{c_{6}}=20,r_{c_{7}}=40,r_{c_{8}}=80,r_{c_{9}}=1B = 0001 1011, r_{c_{10}}=36`
-
-
-
-
+    :math:`r_{c_{1}}=01, r_{c_{2}}=02,r_{c_{3}}=04,r_{c_{4}}=08,r_{c_{5}}=10`
     
+    :math:`r_{c_{6}}=20,r_{c_{7}}=40,r_{c_{8}}=80,r_{c_{9}}=1B = 0001 1011, r_{c_{10}}=36`
 
-AES Key Expansion - Example (Round 1)
--------------------------------------
 
-Let's assume: :math:`w[3] = (67,20,46,75)`:
 
-- :math:`g(w[3])`:
 
-  - circular byte left shift of :math:`w[3]`: :math:`(20,46,75,67)`  
-  - byte substitution using s-box: :math:`(B7,5A,9D,85)`
-  - adding round constant :math:`(01,00,00,00)` gives: :math:`g(w[3]) = (B6,5A,9D,85)`  
+.. class:: smaller
 
-- :math:`w[4] = w[0] \oplus g(w[3]) = (E2,32,FC,F1)` 
-- :math:`w[5] = w[4] \oplus w[1] = (91,12,91,88)` 
-- :math:`w[6] = w[5] \oplus w[2] = (B1,59,E4,E6)` 
-- :math:`w[7] = w[6] \oplus w[3] = (D6,79,A2,93)` 
-- First roundkey is: :math:`w[4] || w[5] || w[6] || w[7]` 
+AES Schlüsselexpansion - Beispiel (Runde 1)
+---------------------------------------------
+
+:Gegeben sei: 
+        :math:`w[0] = (54,68,61,74)`
+
+        :math:`w[1] = (73,20,6D,79)`
+        
+        :math:`w[2] = (20,4B,75,6E)`
+        
+        :math:`w[3] = (67,20,46,75)`
+
+.. container:: incremental
+
+  - :math:`g(w[3])`:
+
+    - zirkuläre Linksverschiebung von  :math:`w[3]`: :math:`(20,46,75,67)`  
+    - Bytesubstitution mit Hilfe der s-box: :math:`(B7,5A,9D,85)`
+    - Addition der Rundenkonstante :math:`(01,00,00,00)` ⇒ :math:`g(w[3]) = (B6,5A,9D,85)`  
   
+.. container:: incremental
+
+  - :math:`w[4] = w[0] \oplus g(w[3]) = (E2,32,FC,F1)` 
+  - :math:`w[5] = w[4] \oplus w[1] = (91,12,91,88)` 
+  - :math:`w[6] = w[5] \oplus w[2] = (B1,59,E4,E6)` 
+  - :math:`w[7] = w[6] \oplus w[3] = (D6,79,A2,93)` 
+
+.. container:: incremental
+
+  - First roundkey is: :math:`w[4] || w[5] || w[6] || w[7]` 
+
+
 
 AES Key Expansion - Rationale
 ------------------------------
 
-.. note:: 
-    :class: incremental small
+.. container:: width-50 note incremental small
 
     The specific criteria that were used are:
 
@@ -443,75 +494,83 @@ AES Key Expansion - Rationale
 • Inclusion of a round-dependent round constant eliminates the symmetry between the ways in which round keys are generated in different rounds
 
 
-Avalanche Effect in AES: Change in Plaintext
+.. class:: vertical-title smaller smaller-slide-title
+
+Lawineneffekt in AES: Änderung im Klartext
 --------------------------------------------
 
-.. csv-table::        
-    :class: tiny monospaced highlight-line-on-hover
-    :align: center 
-    :width: 1000px
+.. container:: tiny
 
-    Round,,"Number of Bits 
-    that Differ"
-        ,"0123456789abcdeffedcba9876543210
-    0023456789abcdeffedcba9876543210",1
-    0,"0e3634aece7225b6f26b174ed92b5588
-    0f3634aece7225b6f26b174ed92b5588",1
-    1,"657470750fc7ff3fc0e8e8ca4dd02a9c
-    c4a9ad090fc7ff3fc0e8e8ca4dd02a9c",20
-    2,"5c7bb49a6b72349b05a2317ff46d1294
-    fe2ae569f7ee8bb8c1f5a2bb37ef53d5",58
-    3,"7115262448dc747e5cdac7227da9bd9c
-    ec093dfb7c45343d6890175070485e62",59
-    4,"f867aee8b437a5210c24c1974cffeabc
-    43efdb697244df808e8d9364ee0ae6f5",61
-    5,"721eb200ba06206dcbd4bce704fa654e
-    7b28a5d5ed643287e006c099bb375302",68
-    6,"0ad9d85689f9f77bc1c5f71185e5fb14
-    3bc2d8b6798d8ac4fe36ald891ac181a",64
-    7,"db18a8ffa16d30d5f88b08d777ba4eaa
-    9fb8b5452023c70280e5c4bb9e555a4b",67
-    8,"f91b4fbfe934c9bf8f2f85812b084989
-    20264e1126b219aef7feb3f9b2d6de40",65
-    9,"cca104a13e678500f£59025f3bafaa34
-    b56a0341b2290ba7dfdfbddcd8578205",61
-    10,"ff0b844a0853bf7c6934ab4364148fb9
-    612b89398d0600cde116227ce72433f0",58
+    .. csv-table::        
+        :class: smaller monospaced highlight-line-on-hover
+        :align: center 
+        :widths: 90 400 325
+        :header: Round,,"# unterschiedlicher Bits"
+
+            ,"0123456789abcdeffedcba9876543210
+        0023456789abcdeffedcba9876543210",1
+        0,"0e3634aece7225b6f26b174ed92b5588
+        0f3634aece7225b6f26b174ed92b5588",1
+        1,"657470750fc7ff3fc0e8e8ca4dd02a9c
+        c4a9ad090fc7ff3fc0e8e8ca4dd02a9c",20
+        2,"5c7bb49a6b72349b05a2317ff46d1294
+        fe2ae569f7ee8bb8c1f5a2bb37ef53d5",58
+        3,"7115262448dc747e5cdac7227da9bd9c
+        ec093dfb7c45343d6890175070485e62",59
+        4,"f867aee8b437a5210c24c1974cffeabc
+        43efdb697244df808e8d9364ee0ae6f5",61
+        5,"721eb200ba06206dcbd4bce704fa654e
+        7b28a5d5ed643287e006c099bb375302",68
+        6,"0ad9d85689f9f77bc1c5f71185e5fb14
+        3bc2d8b6798d8ac4fe36ald891ac181a",64
+        7,"db18a8ffa16d30d5f88b08d777ba4eaa
+        9fb8b5452023c70280e5c4bb9e555a4b",67
+        8,"f91b4fbfe934c9bf8f2f85812b084989
+        20264e1126b219aef7feb3f9b2d6de40",65
+        9,"cca104a13e678500f£59025f3bafaa34
+        b56a0341b2290ba7dfdfbddcd8578205",61
+        10,"ff0b844a0853bf7c6934ab4364148fb9
+        612b89398d0600cde116227ce72433f0",58
 
 
-Avalanche Effect in AES: Change in Key
-----------------------------------------
 
-.. csv-table::        
-    :class: tiny monospaced highlight-line-on-hover
-    :align: center 
-    :width: 1000px
+.. class:: vertical-title smaller smaller-slide-title
 
-    Round, , Number of Bits that Differ
-     , "0123456789abcdeffedcba9876543210
-    0123456789abcdeffedcba9876543210", 0
-    0, "0e3634aece7225b6f26b174ed92b5588
-    0f3634aece7225b6f26b174ed92b5588", 1
-    1, "657470750fc7ff3fc0e8e8ca4dd02a9c
-    c5a9ad090ec7ff3fcle8e8ca4cd02a9c", 22
-    2, "5c7bb49a6b72349b05a2317ff46d1294
-    90905fa9563356d15f3760f3b8259985", 58
-    3, "7115262448dc747e5cdac7227da9bd9c
-    18aeb7aa794b3b66629448d575c7cebf", 67
-    4, "f867aee8b437a5210c24c1974cffeabc
-    f81015f993c978a876ae017cb49e7eec", 63
-    5, "721eb200ba06206dcbd4bce704fa654e
-    5955c91b4e769f3cb4a94768e98d5267", 81
-    6, "0ad9d85689f9f77bc1c5f71185e5fb14
-    dc60a24d137662181e45b8d3726b2920", 70
-    7, "db18a8ffa16d30d5f88b08d777ba4eaa
-    fe8343b8f88bef66cab7e977d005a03c", 74
-    8, "f91b4fbfe934c9bf8f2f85812b084989
-    da7dad581d1725c5b72fa0f9d9d1366a", 67
-    9, "cca104a13e678500ff59025f3bafaa34
-    Occb4c66bbfd912f4b511d72996345e0", 59
-    10, "ff0b844a0853bf7c6934ab4364148fb9
-    fc8923ee501a7d207ab670686839996b", 53
+Lawineneffekt in AES: Änderung im Schlüssel
+---------------------------------------------
+
+.. container:: tiny
+
+    .. csv-table::        
+        :class: smaller monospaced highlight-line-on-hover
+        :align: center 
+        :widths: 90 400 325
+        :header: Runde,,"# unterschiedlicher Bits"
+
+        , "0123456789abcdeffedcba9876543210
+        0123456789abcdeffedcba9876543210", 0
+        0, "0e3634aece7225b6f26b174ed92b5588
+        0f3634aece7225b6f26b174ed92b5588", 1
+        1, "657470750fc7ff3fc0e8e8ca4dd02a9c
+        c5a9ad090ec7ff3fcle8e8ca4cd02a9c", 22
+        2, "5c7bb49a6b72349b05a2317ff46d1294
+        90905fa9563356d15f3760f3b8259985", 58
+        3, "7115262448dc747e5cdac7227da9bd9c
+        18aeb7aa794b3b66629448d575c7cebf", 67
+        4, "f867aee8b437a5210c24c1974cffeabc
+        f81015f993c978a876ae017cb49e7eec", 63
+        5, "721eb200ba06206dcbd4bce704fa654e
+        5955c91b4e769f3cb4a94768e98d5267", 81
+        6, "0ad9d85689f9f77bc1c5f71185e5fb14
+        dc60a24d137662181e45b8d3726b2920", 70
+        7, "db18a8ffa16d30d5f88b08d777ba4eaa
+        fe8343b8f88bef66cab7e977d005a03c", 74
+        8, "f91b4fbfe934c9bf8f2f85812b084989
+        da7dad581d1725c5b72fa0f9d9d1366a", 67
+        9, "cca104a13e678500ff59025f3bafaa34
+        Occb4c66bbfd912f4b511d72996345e0", 59
+        10, "ff0b844a0853bf7c6934ab4364148fb9
+        fc8923ee501a7d207ab670686839996b", 53
 
 
 
@@ -558,11 +617,14 @@ Interchanging `AddRoundKey` and `InvMixColumns`
 
     InvMixColumns(S_i \oplus w_j) = InvMixColumns(S_i) \oplus InvMixColumns(w_j)
 
-Equivalent Inverse Cipher
---------------------------
 
-.. image:: 5-aes_equivalent_inverse_cipher.svg
-    :width: 1230px
+.. class:: vertical-title
+
+Äquivalente Inverse Chiffre
+----------------------------
+
+.. image:: drawings/aes/equivalent_inverse_cipher.svg
+    :height: 1170px
     :align: center
 
 
