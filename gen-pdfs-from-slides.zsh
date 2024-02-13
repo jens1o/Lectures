@@ -7,7 +7,7 @@ function update_pdf_if_necessary() {
     if [[ ! -f "$pdf_file" || "$pdf_file" -ot "$1" ]]
     then
         echo "$(date '+%Y-%m-%d %H:%M:%S') updating:" $pdf_file 
-        osascript gen-pdfs-from-slides.scpt "$1" 
+        osascript LectureDoc2/gen-pdf-from-slides.applescript "$1" 
     fi
 }
 
