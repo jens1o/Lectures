@@ -398,21 +398,24 @@ Die Behandlung von Polynomen
 Beispiel für gewöhnliche Polynomarithmetik
 ------------------------------------------
 
-.. class:: incremental
-
-  :Addition:
+:Addition:
     .. math::
 
         (x^3 + x^2 + 2) + (x^2 - x + 1) = x^3 + 2x^2 - x + 3
+
+.. class:: incremental
 
   :Subtraktion:
     .. math::
 
         (x^3 + x^2 + 2) - (x^2 - x + 1) = x^3 + x + 1
 
-  :Multiplikation:
-    .. math::
 
+Beispiel für gewöhnliche Polynomarithmetik
+------------------------------------------
+
+:Multiplikation:
+    .. math::
         (x^3 + x^2 + 2) \times (x^2 - x + 1) = 
 
     .. class:: small
@@ -420,13 +423,13 @@ Beispiel für gewöhnliche Polynomarithmetik
         .. math::
         
             \begin{matrix}   & & & & x^3 & + & x^2 & &  & + & 2 \\
-                             & - & x^4 & - & x^3 & & & - & 2x & & & \\
-                             x^5 & + & x^4 & & & + & 2x^2 & & & & &  =
+                                & - & x^4 & - & x^3 & & & - & 2x & & & \\
+                                x^5 & + & x^4 & & & + & 2x^2 & & & & &  = \\
+                                x^{5} & & & + & 3x^2 & -& 2x & & & + & 2 & 
             \end{matrix}
+        
 
-    .. math::
-
-       x^{5} + 3x^2 - 2x + 2 
+.. class:: incremental
 
   :Division:
     .. math::
