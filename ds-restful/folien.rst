@@ -117,8 +117,15 @@ RESTful Web Services - Grundlagen
 :`Repräsentation`:ger-quote:: **JSON**, WebP, XML, ...
 
 
-Zwei Arten von Zustand: (1) Anwendungszustand/Sitzungszustand (:eng:`Application State / Session State`
+
+.. class:: smaller-slide-title
+
+Zwei Arten von Zustand: (1) Anwendungs-/Sitzungszustand 
 -----------------------------------------------------------------------------------------------------------
+
+.. class:: minor small
+    
+    (:eng:`Application State / Session State`)
 
 
 - :ger-quote:`Zustand` bedeutet Anwendungs-/Sitzungsstatus 
@@ -132,8 +139,15 @@ Zwei Arten von Zustand: (1) Anwendungszustand/Sitzungszustand (:eng:`Application
 - Somit kann jeder Server die Transaktion potenziell an dem Punkt fortsetzen, an dem sie unterbrochen wurde.
 
 
-Zwei Arten von Zustand: (2) Ressourcenzustand (:eng:`Resource State`)
+
+.. class:: smaller-slide-title
+
+Zwei Arten von Zustand: (2) Ressourcenzustand 
 ----------------------------------------------------------------------------------------------------
+
+.. class:: minor small
+
+    (:eng:`Resource State`)
 
 - Der Ressourcenzustand ist die Art von Zustand, auf die sich das *S* in *REST* bezieht.
 
