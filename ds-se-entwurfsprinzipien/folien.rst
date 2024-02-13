@@ -161,7 +161,7 @@ Niedrige statische Kopplung (:eng:`low (static) coupling`)
 
   Keine Kopplung ist (auch) nicht wünschenswert, da dies zu Entitäten führt, die alle Arbeit durchführen; weiterhin führt dies auch dazu, dass sich ggf. die Arbeit sehr viel schlechter aufteilen lässt und dann eine agile Entwicklung mit einem kleinen Team nicht mehr möglich ist. 
 
-
+  Relevante Frage: Wer ist/sollte der Eigentümer der Schnittstellen sein? D.h. aus welcher Perspektive sollte die Schnittstelle entworfen werden?
 
 
 .. class:: vertical-title much-smaller
@@ -239,7 +239,7 @@ Ausgewählte Typen von Zusammenhalt:
 
 
 Geringer Zusammenhalt (:eng:`low cohesion`) 
--------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------
 
 Entitäten mit geringem Zusammenhalt sind nicht wünschenswert! 
 Sie sind:
@@ -254,10 +254,12 @@ Sie sind:
   Services mit einer geringen Kohäsion repräsentieren häufig Dinge auf sehr grober, abstrakter Ebene und haben Verantwortlichkeiten übernommen für Dinge, die sie bessere delegieren sollten.
 
 
+
 Hoher Zusammenhalt / hohe Kohäsion (:eng:`high cohesion`)
--------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------
 
 Alle Funktionalität und alle Daten sollten :ger-quote:`natürlich` zum Konzept gehören, das von der Entität realisiert wird.
+
 
 
 .. class:: center-child-elements
@@ -290,6 +292,7 @@ Alle Funktionalität und alle Daten sollten :ger-quote:`natürlich` zum Konzept 
 .. container:: supplemental
 
   Eine sehr niedrige Kopplung führt zwangsweise dazu, das man zu viel Funktionalität in ein Modul/einen Service/eine Klasse/eine Funktion packt. Eine hohe Kohäsion führt zwangsweise dazu, dass man (sehr) viele Module/Services/Klassen/Funktionen benötigt, die häufig viele (starke) Kopplungen haben. Es gilt also die richtige Balance zu finden.
+
 
 
 .. class:: transition-fade center-child-elements thin
@@ -346,9 +349,9 @@ Fasse die Dinge zusammen, die sich aus dem gleichen Grund und zur selben Zeit ä
 
 .. container:: supplemental
 
-  :Single Responsibility Principle: Ein Modul sollte nur einem einzigen Akteur gegenüber verantwortlich sein. D.h. es sollte nur eine wohldefinierte Gruppe von Personen geben, die eine Veränderung veranlassen/verlangen können. Code, von dem verschiedene Akteure abhängen, sollte aufgeteilt werden.
+  :Single Responsibility Principle (SRP): Ein Modul sollte nur einem einzigen Akteur gegenüber verantwortlich sein. D.h. es sollte nur eine wohldefinierte Gruppe von Personen geben, die eine Veränderung veranlassen/verlangen können. Code, von dem verschiedene Akteure abhängen, sollte aufgeteilt werden.
   
-  :Common Closure Principle: Fasse in Komponenten solche Klassen zusammen, die sich aus dem gleichen Grund und zur gleichen Zeit ändern. Z.B. weil sie die gleichen Stakeholder haben oder die gleichen rechtlichen Grundlagen haben.
+  :Common Closure Principle (CCP): Fasse in Komponenten solche Klassen zusammen, die sich aus dem gleichen Grund und zur gleichen Zeit ändern. Z.B. weil sie die gleichen Stakeholder haben oder die gleichen rechtlichen Grundlagen haben.
 
   Die beiden Prinzipien sind eng miteinander verwandt. Das CCP ist ein Prinzip, das auf allen Abstraktionsgeraden angewendet werden kann. Das SRP ist - zumindest ursprünglich - ein Prinzip, das nur auf der Ebene von Klassen und Modulen angewendet wurde.
 
@@ -360,7 +363,74 @@ Fasse die Dinge zusammen, die sich aus dem gleichen Grund und zur selben Zeit ä
 
 .. container:: dhbw-red huge
 
-  Open-closed Principle
+  Dependency Inversion Principle (DIP)
+
+.. container:: stack
+
+  .. container:: layer
+    
+    .. epigraph::
+      
+      …all well-structured [object-oriented] architectures have clearly defined layers, with each layer providing some coherent set of services through a well-defined and controlled interface…
+
+      -- Grady Booch
+
+  .. container:: layer incremental
+
+    .. epigraph::
+      
+      High-Level-Module sollten nicht von Low-Level-Modulen abhängen. Beide sollten von Abstraktionen abhängen.
+
+      Abstraktionen sollten nicht von Details abhängen. Details sollten von Abstraktionen abhängen.
+
+      -- Agile Software Development; Robert C. Martin; Prentice Hall, 2003
+
+.. container:: supplemental
+
+  **Mögliche Interpretation**
+
+  Je höher das Modul in einer Schichtenarchitektur positioniert ist, desto allgemeiner ist die Funktion, die es implementiert.
+
+  Je niedriger das Modul, desto detaillierter ist die Funktion, die es implementiert.
+
+  **Mögliches Fehldesign (Verletzt das DIP)**
+
+  .. image:: images/dip-layers/traditionelle-schichtenabhaengigkeit.svg
+    :width: 60%
+    :align: center
+
+
+  **Die Einhaltung des DIP sollte auf allen Ebenen der Architektur sichergestellt werden.**
+
+
+Dependency Inversion Principle
+-------------------------------------
+
+.. image:: images/dip-layers/dip-konforme-schichtenabhaengigkeit.svg
+  :height: 1000px
+  :align: center
+
+
+.. container:: supplemental
+
+  .. rubric:: Begründung
+
+  Gute Softwarekonzepte sind in Module gegliedert.
+
+  High-Level-Module enthalten die wichtigen politischen Entscheidungen und Geschäftsmodelle einer Anwendung - Die Identität der Anwendung.
+
+  Low-Level-Module enthalten detaillierte Implementierungen einzelner Mechanismen, die zur Umsetzung der Richtlinie benötigt werden.
+
+
+
+.. class:: center-child-elements
+
+\ 
+--
+
+.. container:: dhbw-red huge
+
+  Open-closed Principle (OCP)
 
 
 .. epigraph::
@@ -373,6 +443,7 @@ Fasse die Dinge zusammen, die sich aus dem gleichen Grund und zur selben Zeit ä
 .. container:: supplemental
 
   D.h. es sollte möglich sein neue Erweiterungen zu realisieren ohne dass man die Software verändern, rekompilieren, neu bereitstellen (:eng:`to deploy`) oder vergleichbare muss. Klassisches Beispiel ist ein Texteditor wie VS Code, welcher durch Extensions erweitert werden kann; d.h. es liegt eine Plug-in Architektur vor. 
+
 
 
 .. class:: smaller
@@ -452,7 +523,7 @@ Open-closed Principle - Case Study
 
 .. container:: dhbw-red huge
 
-  Liskov Substitution Principle
+  Liskov Substitution Principle (LSP)
 
 .. container:: stack
 
@@ -473,6 +544,7 @@ Open-closed Principle - Case Study
 .. container:: supplemental
 
   Im Original wird auf die Substituierbarkeit von Subtypen im Kontext der objekt-orientierten Programmierung eingegangen. Das Prinzip lässt sich aber auch auf andere Abstraktionsgeraden übertragen. Insbesondere auch auf die Ebene von Services deren Schnittstellen und Implementierungen.
+
 
 
 .. class:: smaller
