@@ -138,24 +138,30 @@ Verteilte Systeme
 Häufige Missverständnisse bzgl. zentralisierter Systeme
 --------------------------------------------------------
 
-.. class:: incremental
+.. class:: incremental 
 
 1. **Zentralisierte Lösungen lassen sich nicht skalieren**
  
-   Es gilt zwischen logischer und physischer Zentralisierung zu unterscheiden. Zum Beispiel ist das Domain Name Systems:
+    .. container:: scriptsize
+   
+      
+        Es gilt zwischen logischer und physischer Zentralisierung zu unterscheiden. Zum Beispiel ist das *Domain Name System*:
 
-   - logisch zentralisiert
-   - physisch (massiv) verteilt
-   - dezentralisiert über mehrere Organisationen
+        - logisch zentralisiert
+        - physisch (massiv) verteilt
+        - dezentralisiert über mehrere Organisationen
   
 2. **Zentralisierte Lösungen haben einen Single Point of Failure**
-   
-   Im Allgemeinen nicht zutreffend (z.B. DNS). 
-   
-   Ein einzelner Fehlerpunkt ist weiterhin oft:
 
-   - leichter zu verwalten
-   - einfacher robuster zu machen
+    .. container:: scriptsize
+   
+      
+        Im Allgemeinen nicht zutreffend (z.B. DNS). 
+        
+        Ein einzelne mögliche Fehlerquelle ist weiterhin oft:
+
+        - leichter zu verwalten
+        - einfacher robuster zu machen
 
 .. container:: supplemental 
     
@@ -217,11 +223,11 @@ Verteilungstransparenz (:eng:`Distribution Transparency`)
 
 .. container:: incremental
 
-  Die Verteilungstransparenz wird durch viele verschiedene Techniken von der so genannten Middleware realisiert - einer Schicht zwischen Anwendungen und Betriebssystemen.
+  Die Verteilungstransparenz wird durch viele verschiedene Techniken von der so genannten *Middleware* realisiert - einer Schicht zwischen Anwendungen und Betriebssystemen.
 
 
 
-Aspekte der Verteilungstransparenz (:eng:`Distribution Transparency`)
+Aspekte der Verteilungstransparenz 
 ----------------------------------------------------------------------------
 
 .. csv-table::
@@ -235,6 +241,10 @@ Aspekte der Verteilungstransparenz (:eng:`Distribution Transparency`)
     Nebenläufigkeit, "Verbergen, dass ein Objekt von mehreren unabhängigen Benutzern gemeinsam genutzt werden kann"
     Fehlertransparenz, Verbergen des Ausfalls und der Wiederherstellung eines Objekts.
 
+
+.. container:: supplemental
+
+    Datendarstellung: Big-Endian vs. Little-Endian; ASCII vs. Iso-Latin 8859-1 vs. UTF-8
 
 
 Grad der erreichbaren Verteilungstransparenz
@@ -266,9 +276,11 @@ Die Verteilung offen zu legen kann Vorteile bringen
 - Beim Umgang mit Benutzern in verschiedenen Zeitzonen
 - Wenn es für einen Benutzer einfacher ist, zu verstehen, was vor sich geht (wenn z. B. ein Server lange Zeit nicht antwortet kann er als ausgefallen gemeldet werden).
 
-.. container:: assessment
+.. container:: assessment margin-top-2em
 
-    Verteilungstransparenz (:eng:`Distribution Transparency`) ist ein heres Ziel, aber oft schwer zu erreichen, und häufig auch nicht erstrebenswert. 
+    .. container:: 
+    
+        Verteilungstransparenz ist ein heres Ziel, aber oft schwer zu erreichen, und häufig auch nicht erstrebenswert. 
 
 
 
@@ -279,28 +291,39 @@ Offene verteilte Systeme
 
     Ein offenes verteiltes System bietet Komponenten an, die leicht von anderen Systemen verwendet oder in andere Systeme integriert werden können. Ein offenes verteiltes System besteht selbst oft aus Komponenten, die von anderswoher stammen.
 
-.. container:: incremental
+.. container:: incremental smaller margin-top-1em
 
     Offene verteilte Systeme müssen in der Lage sein, mit Diensten anderer (offener) Systeme zu interagieren, unabhängig von der zugrunde liegenden Umgebung:
 
-    - Systeme sollten wohl-definierte Schnittstellen korrekt realisieren
-    - Systeme sollten leicht mit anderen Systemen interagieren können
-    - Systeme sollten die Portabilität von Anwendungen unterstützen 
-    - Systeme sollten leicht erweiterbar sein
+    - Sie sollten wohl-definierte Schnittstellen korrekt realisieren
+    - Sie sollten leicht mit anderen Systemen interagieren können
+    - Sie sollten die Portabilität von Anwendungen unterstützen 
+    - Sie sollten leicht erweiterbar sein
 
 
 
-Vorgaben/Richtlinien vs. Umsetzungen (:eng:`Policies vs. Mechanisms`)
+Vorgaben/Richtlinien vs. Umsetzungen 
 ------------------------------------------------------------------------------
 
+.. container:: minor
+
+    (:eng:`Policies vs. Mechanisms`)
+
+
 .. rubric:: Richtlinien für die Umsetzung von Offenheit
+
+.. class:: incremental
 
 - Welchen Grad an Konsistenz benötigen wir für Daten im Client-Cache?
 - Welche Operationen erlauben wir heruntergeladenem Code?
 - Welche QoS-Anforderungen passen wir angesichts schwankender Bandbreiten an? 
 - Welchen Grad an Geheimhaltung benötigen wir für die Kommunikation?
 
+.. class:: incremental
+
 .. rubric:: Mechanismen bgzl. der Umsetzung von Offenheit
+
+.. class:: incremental
 
 - Ermöglichung der (dynamischen) Einstellung von Caching-Richtlinien
 - Unterstützung verschiedener Vertrauensstufen für mobilen Code
@@ -314,8 +337,12 @@ Vorgaben/Richtlinien vs. Umsetzungen (:eng:`Policies vs. Mechanisms`)
 
 
 
-Verlässlichkeit verteilter Systeme (:eng:`Dependability`)
+Verlässlichkeit verteilter Systeme 
 ------------------------------------------------------------
+
+.. container:: minor
+
+    (:eng:`Dependability`)
 
 .. admonition:: Abhängigkeiten
     :class: foundations
@@ -323,7 +350,7 @@ Verlässlichkeit verteilter Systeme (:eng:`Dependability`)
     Eine **Komponente**\ [#]_ stellt seinen **Clients** **Dienste** zur Verfügung. Dafür kann die Komponente jedoch wiederum Dienste von anderen Komponenten benötigen und somit ist eine Komponente  von einer anderen Komponente abhängig (:eng:`depend`).
 
 
-    Eine Komponente C hängt von C\ :sup:`*` ab, wenn die Korrektheit des Verhaltens von C von der Korrektheit des Verhaltens von C\ :sup:`*` abhängt. 
+    Eine Komponente :math:`C` hängt von :math:`C^*` ab, wenn die Korrektheit des Verhaltens von :math:`C` von der Korrektheit des Verhaltens von :math:`C^*` abhängt. 
 
 .. [#] Komponenten sein Prozesse oder Kanäle.
 
@@ -336,8 +363,9 @@ Anforderungen an die Verlässlichkeit verteilter Systeme
     :header: "Anforderung", "Beschreibung"
 
     "Verfügbarkeit", "Das System ist nutzbar."
-    "Zuverlässigkeit", "Kontinuität der korrekten Leistungserbringung"
-    Sicherheit (:eng:`Safety`\ [#]_), "Niedrige Wahrscheinlichkeit für ein katastrophales Ereignis"
+    "Zuverlässigkeit", "Kontinuität der korrekten Leistungserbringung."
+    "Sicherheit 
+    (:eng:`Safety`\ [#]_)", "Niedrige Wahrscheinlichkeit für ein katastrophales Ereignis"
     "Wartbarkeit", "Wie leicht kann ein fehlgeschlagenes System wiederhergestellt werden?"
 
 .. [#] :eng:`Safety` und :eng:`Security` werden beide im Deutschen gleich mit Sicherheit übersetzt und sind daher leicht zu verwechseln. :eng:`Safety` bezieht sich auf die Sicherheit von Personen und Sachen, während :eng:`Security` sich auf die Sicherheit von Daten und Informationen bezieht.
@@ -358,12 +386,12 @@ Bedingte Wahrscheinlichkeit, dass :math:`C` während :math:`[0,t)` korrekt funkt
 
 .. container:: supplemental
 
-    - Zuverlässigkeit: Wie wahrscheinlich ist es, dass ein System korrekt arbeitet?
+    - Zuverlässigkeit: Wie wahrscheinlich ist es, dass ein System *korrekt* arbeitet?
     - Verfügbarkeit: Wie wahrscheinlich ist es, dass ein System zu einem bestimmten Zeitpunkt verfügbar ist?
 
 
-Sicherheit in verteilten Systemen
---------------------------------------
+Sicherheit in verteilten Systemen - Schutzziele
+-------------------------------------------------
 
 .. container:: assessment
 
@@ -374,15 +402,21 @@ Grundlegende Schutzziele:
 :Vertraulichkeit: Informationen werden nur an autorisierte Parteien weitergegeben.
 :Integrität: Änderungen an den Werten eines Systems dürfen nur auf autorisierte Weise vorgenommen werden können.
 
-.. container:: smaller margin-top-2em incremental
 
-    .. rubric:: Autorisierung, Authentifizierung, Vertrauen
+Sicherheit in verteilten Systemen - Autorisierung, Authentifizierung, Vertrauen
+-------------------------------------------------------------------------------------
 
-    .. class:: incremental
+.. class:: incremental
 
-    - Authentifizierung (:eng:`Authentication`): Überprüfung der Korrektheit einer behaupteten Identität
-    - Autorisierung (:eng:`Authorization`): Verfügt eine identifizierte Einheit über die richtigen Zugriffsrechte?
-    - Vertrauen (:eng:`Trust`): Eine Komponente kann sich sicher sein, dass eine andere Komponente bestimmte Handlungen gemäß den Erwartungen ausführt.
+:Authentifizierung `Authentication`:eng:: Prozess zur Überprüfung der Korrektheit einer behaupteten Identität.
+
+.. class:: incremental
+
+:Autorisierung `Authorization`:eng:: Verfügt eine identifizierte Einheit über die richtigen Zugriffsrechte?
+
+.. class:: incremental
+
+:Vertrauen `Trust`:eng:: Eine Komponente kann sich sicher sein, dass eine andere Komponente bestimmte Handlungen gemäß den Erwartungen ausführt.
 
 
 
@@ -419,7 +453,7 @@ Es geht im Wesentlichen um das Ver- und Entschlüsseln von Daten (:math:`X`) mit
 
             .. container:: layer
 
-                **Symmetrische Verschlüsselung von Nachrichten**
+                **Verschlüsselung von Nachrichten**
                 
                 Alice sendet eine Nachricht an Bob und nutzt dazu den öffentlichen Schlüssel von Bob.
 
@@ -429,9 +463,9 @@ Es geht im Wesentlichen um das Ver- und Entschlüsseln von Daten (:math:`X`) mit
 
             .. container:: layer incremental
 
-                **Asymmetrische Verschlüsselung von Nachrichten**
+                **Signierung von Nachrichten**
 
-                Alice signiert (:math:`S`) eine Nachricht mit ihrem privaten Schlüssel.
+                Alice :ger-quote:`signiert` (:math:`S`) eine Nachricht mit ihrem privaten Schlüssel.
 
                 .. math::
                     Y = E(PR_{Alice},X) \\
@@ -441,7 +475,8 @@ Es geht im Wesentlichen um das Ver- und Entschlüsseln von Daten (:math:`X`) mit
 Sicherheit - Sicheres Hashing (:eng:`Secure Hashing`)
 ------------------------------------------------------- 
 
-Eine sichere Hash-Funktionen: :math:`Digest(X)` gibt eine Zeichenkette fester Länge zurück (:math:`H`).
+Eine sichere Hash-Funktionen :math:`Digest(X)` gibt eine Zeichenkette fester Länge (:math:`H`) zurück.
+
 - Jede Änderung - noch so klein - der Eingabedaten führt zu einer völlig anderen Zeichenkette.
 - Bei einem Hash-Wert ist es rechnerisch unmöglich die ursprüngliche Nachricht X basierend auf :math:`Digest(X)` zu finden.
 
@@ -453,7 +488,7 @@ Alice signiert eine Nachricht mit ihrem privaten Schlüssel.
 .. math::
     Alice: [E(PR_{Alice},H=Digest(X)),X] \\
 
-Bob prüft die Nachricht X auf Authentizität:
+Bob prüft die Nachricht :math:`X` auf Authentizität:
 
 .. math::
     Bob: D(PU_{Alice},H) \stackrel{?}{=} Digest(X)
@@ -473,7 +508,7 @@ Wir können mind. drei Arten von Skalierbarkeit unterscheiden:
 Ursachen für Skalierbarkeitsprobleme bei zentralisierten Lösungen:
 ---------------------------------------------------------------------
 
-- Die Rechenkapazität, da diese begrenzt ist durch die CPUs
+- Die Rechenkapazität, da diese begrenzt ist durch die Anzahl CPUs
 - Die Speicherkapazität, einschließlich der Übertragungsrate zwischen CPUs und Festplatten 
 - Das Netzwerk zwischen dem Benutzer und dem zentralisierten Dienst
 
@@ -509,10 +544,10 @@ Ein zentralisierter Dienst kann als einfaches Warteschlangensystem modelliert we
 
         .. container:: two-columns no-default-width
 
-            .. container:: column
+            .. container:: column no-separator
 
-                - Ankunftsrate der Anfragen: λ
-                - Verarbeitungskapazität des Services: μ Anfragen pro Sekunde
+                - Ankunftsrate der Anfragen: λ *(in Anfragen pro Sekunde)*
+                - Verarbeitungskapazität des Services: μ *(in Anfragen pro Sekunde)*
 
                 Anteil der Zeit mit :math:`x` Anfragen im System:
 
@@ -523,12 +558,22 @@ Ein zentralisierter Dienst kann als einfaches Warteschlangensystem modelliert we
             .. container:: column
 
                 .. image:: images/number_of_requests_in_system.svg
-                    :width: 1300px
+                    :width: 1200px
+
+                .. container:: text-align-center tiny
+
+                    # Anfragen in Bearbeitung und Warteschlange
+
+                    (z.B. ist der Anteil der Zeit in der der Rechner *idle* ist (d.h. es gibt keine Anfragen) 90%, 60% und 30%.)
 
 
     .. container:: layer incremental
 
-        .. note::
+        .. container:: note width-30
+
+            **Hinweis**
+            
+            :math:`x` = # Anfragen im Sys.
 
             .. math::
                 p_x  = \bigl(1 - \frac{\lambda}{\mu}\bigr)\bigl(\frac{\lambda}{\mu}\bigr)^x
@@ -609,7 +654,7 @@ Probleme der administrativen Skalierbarkeit
 
     .. rubric:: Beispiele
 
-    - Gridcomputing: gemeinsame Nutzung teurer Ressourcen über verschiedene Domänen hinweg.
+    - Grid Computing: gemeinsame Nutzung teurer Ressourcen über verschiedene Domänen hinweg.
     - Gemeinsam genutzte Geräte: Wie kontrolliert, verwaltet und nutzt man ein gemeinsam genutztes Radioteleskop, das als groß angelegtes gemeinsames Sensornetz konstruiert wurde?
 
     .. rubric:: Ausnahme 
@@ -627,6 +672,7 @@ Ansätze, um Skalierung zu erreichen
 .. container::
 
     **Verbergen von Kommunikationslatenzen** durch:
+
     - Nutzung asynchroner Kommunikation
     - Verwendung separater *Handler* für eingehende Antworten 
 
@@ -646,7 +692,7 @@ Verlagerung von Berechnungen auf Clients
 ------------------------------------------
 
 .. image:: images/moving-computations.svg
-    :height: 900px
+    :height: 1025px
     :align: center
 
 
@@ -704,7 +750,130 @@ Paralleles Rechnen (:eng:`Parallel Computing`)
     **Verteilte Systeme mit gemeinsamem Speicher** (:eng:`Multicomputer with shared memory`) als alternative Architektur haben die Erwartungen nicht erfüllt und sind daher nicht mehr relevant.
 
 
+
+Amdahls Gesetz - Grenzen der Skalierbarkeit
+-----------------------------------------------------
+
+.. container:: stack
+
+    .. container:: layer
+
+        .. class:: list-with-explanations
+
+        - Lösen von **fixen Problemen** in möglichst kurzer Zeit
+        
+          (Beispiel: Hochfahren(“Booten”) eines Rechners. In wie weit lässt sich durch mehr CPUs/Kerne die Zeit verkürzen?)
+        - Es modelliert die erwartete Beschleunigung (Speedup) eines zum Teil parallelisierten/parallelisierbaren Programms relativ zu der nicht-parallelisierten Variante
+
+        .. container:: note width-40 tiny
+
+            **Legende**
+
+            :math:`C` = Anzahl CPUs 
+
+            :math:`P` = Parallelisierungsgrad
+            
+            :math:`S` = Speedup 
+
+        .. admonition:: Definition 
+            
+            .. class:: huge
+
+                :math:`S(C) = \frac{1}{(1-P) + \frac{P}{C}}`
+
+    .. container:: layer incremental
+
+        .. image:: images/amdahl.svg
+            :height: 900px
+            :align: center
+
+
+
+Gustafsons Gesetz - Grenzen der Skalierbarkeit
+-----------------------------------------------------
+
+.. class:: list-with-explanations
+
+- Lösen von Problemen mit (sehr) großen, sich strukturell wiederholenden Datensätzen in **fixer Zeit**; der serielle Anteil des Programms wird als  konstant angenommen.
+
+  (Beispiel: Erstelle innerhalb der nächsten 24 Stunden die Wettervorhersage für übermorgen. In wie weit lässt sich durch mehr CPUs/Rechner die Präzision der Vorhersage verbessern?)
+
+Beschleunigung (Speedup) eines parallelisierten Programms relativ zu der nicht-parallelisierten Variante:
+
+.. container:: stack
+
+    .. container:: layer
+
+        .. container:: note width-50 tiny
+
+            **Legende**
+
+            :math:`C` = Anzahl CPUs 
+
+            :math:`P` = Parallelisierungsgrad in Abhängigkeit von der Problemgröße n
+            
+            :math:`S` = Speedup 
+        
+        .. admonition:: Definition 
+                    
+            .. class:: huge
+
+                :math:`S(C) = 1 + P(n) \cdot (C-1)`
+
+    .. container:: layer incremental
+
+        .. admonition:: Beispiel
+            :class: tiny 
+
+            Sei der Parallelisierungsgrad ab einer relevanten Problemgröße n 80%. Dann ergibt sich für 4 CPUs ein Speedup von :math:`(1+0.8*3) = 3.4`, für 8 CPUs ein Speedup von 6.6 und für 16 CPUs ein Speedup von 13.
+
+
 .. class:: smaller
+
+MapReduce - ein Programmiermodell für paralleles Rechnen
+----------------------------------------------------------
+
+.. class:: incremental
+
+- MapReduce ist ein Programmiermodel und eine entsprechende Implementierung (ein Framework entwickelt von Google) zur Verarbeitung sehr großer Datenmengen (ggf. TBytes).
+- Programme, die mit Hilfe von MapReduce implementiert werden, werden automatisch parallelisiert und auf einem großen Cluster von handelsüblichen Rechnern ausgeführt.
+
+  .. class:: smaller
+
+  - Die Laufzeitumgebung übernimmt die Partitionierung der Eingabedaten und Verteilung selbiger auf die Rechner des Clusters
+  - Einplanung und Ausführung der “Map”- und “Reduce”- Funktionen auf den Rechnern des Clusters
+  - Behandlung von Fehlern und die Kommunikation zwischen den Rechnern
+
+.. admonition:: Hinweis
+    :class: warning
+
+    Nicht alle Arten von Berechnungen können mit Hilfe von MapReduce durchgeführt werden.
+
+
+
+.. class:: smaller-slide-title
+
+MapReduce - Visualisierung und Beispiel
+----------------------------------------------------------
+
+
+.. image:: images/map-reduce.png
+    :width: 90%
+    :align: center
+
+.. container:: supplemental
+
+
+    Beispiel: Berechnung der Häufigkeit von Wörtern in einem sehr großen Datensatz.
+
+    :K1: URLs
+    :V1: HTML Dokumente
+    :K2: Wörter in einem HTML Dokument
+    :V2: Anzahl pro gefundenem Wort
+    :V3: Häufigkeit des Wortes
+
+    Ein weiteres Beispiel ist die Berechnung eines invertierten Indexes.
+
 
 Cluster Computing
 --------------------
@@ -720,9 +889,23 @@ Eine Gruppe von :ger-quote:`High-End-Systemen`, die über ein LAN verbunden sind
     Die einzelnen Rechner/Compute Nodes sind oft identisch (Hardware und Software) und werden von einem Verwaltungsknotenpunkt (:eng:`management node`) verwaltet.
 
 
-.. rubric:: Grid Computing
 
-Weiterführung des Cluster Computing. Viele heterogene, weit und über mehrere Organisationen verstreute Knotenpunkte. Die Knotenpunkte sind über das WAN verbunden. Die Zusammenarbeit erfolgt im Rahmen einer virtuellen Organisation.
+Grid Computing
+-------------------
+
+Weiterführung des Cluster Computing. 
+
+- Viele heterogene, weit und über mehrere Organisationen verstreute Knotenpunkte. 
+- Die Knotenpunkte sind über das WAN verbunden. 
+- Die Zusammenarbeit erfolgt im Rahmen einer virtuellen Organisation.
+
+.. container:: supplemental
+
+    (Volunteer) Grid Computing - Beispiel:
+
+    https://scienceunited.org
+
+    https://einsteinathome.org
 
 
 Grundlegende Architektur für Grid-Computing
@@ -730,13 +913,13 @@ Grundlegende Architektur für Grid-Computing
 
 .. container:: two-columns no-default-width
 
-    .. container:: column center-child-elements
+    .. container:: column center-child-elements no-separator
 
         .. image:: images/architecture-for-grid-computing.svg
             :width: 600px
             :align: center
 
-    .. container:: column footnotesize
+    .. container:: column footnotesize margin-left-1em
 
         
       :Fabric Layer: Bietet Schnittstellen zu lokalen Ressourcen (zur Abfrage von Status und Fähigkeiten, Sperren usw.)
@@ -821,10 +1004,10 @@ Transaktionen
 
 .. container:: two-columns 
 
-    .. container:: column center-child-elements
+    .. container:: column center-child-elements no-default-width no-separator
 
         .. image:: images/transactions/transaction.svg
-            :width: 850px
+            :width: 750px
             :align: center
 
         .. container:: bold margin-top-2em line-above
@@ -839,7 +1022,7 @@ Transaktionen
 
                 .. csv-table::
                     :header: "Primitiv", "Beschreibung"
-                    :width: 900px
+                    :width: 875px
 
                     BEGINN DER TRANSAKTION, Zeigt den Beginn einer Transaktion an.
                     ENDE DER TRANSAKTION, Beendigung der Transaktion mit dem Versuch eines COMMIT.
@@ -866,11 +1049,11 @@ Transaktionen
     Daten, die im Rahmen einer Transaktion benötigt werden, sind of verteilt über mehrere Server. 
 
 .. image:: images/transactions/tpm.svg
-    :width: 65%
+    :width: 80%
     :align: center
     :class: incremental
 
-.. container:: incremental
+.. container:: incremental smaller
 
     Ein TPM ist für die Koordination der Ausführung einer Transaktion verantwortlich.
 
@@ -946,7 +1129,7 @@ Ubiquitous Systems - Kernbestandteile
 2. :eng:`Interaction`: Die Interaktion zwischen Benutzern und Geräten ist in hohem Maße unaufdringlich 
 3. :eng:`Context Awareness`: Das System kennt den Kontext eines Benutzers, um die Interaktion zu optimieren.
 4. :eng:`Autonomy`: Die Geräte arbeiten autonom, ohne menschliches Eingreifen, und verwalten sich in hohem Maße selber.
-5. :eng:`Intelligece`: Das System als Ganzes kann ein breites Spektrum dynamischer Aktionen und Interaktionen bewältigen.
+5. :eng:`Intelligence`: Das System als Ganzes kann ein breites Spektrum dynamischer Aktionen und Interaktionen bewältigen.
 
 
 Mobile Computing - Auszeichnende Merkmale
@@ -1038,13 +1221,45 @@ Fallstricke bei der Entwicklung verteilter Systeme
 
 .. class:: integrated-exercise
 
-Übung: MTBF
+Übung
 ----------------
 
-Wenn die MTTF einer Komponente 100 Stunden beträgt und die MTTR 10 Stunden beträgt, wie hoch ist dann die MTBF?
+1. Wenn die MTTF einer Komponente 100 Stunden beträgt und die MTTR 10 Stunden beträgt, wie hoch ist dann die MTBF?
 
 .. protected-exercise-solution:: Berechnung des MTBF
    :class: smaller
     
     .. math::
         MTBF = MTTF + MTTR = 100 + 10 = 110
+
+2. Wenn Alice eine mit Bob's öffentlichen Schlüssel verschlüsselte Nachricht an Ihn schickt, welches Sicherheitsproblem kann dann aufkommen?
+
+.. protected-exercise-solution:: Person-in-the-Middle-Angriff
+   :class: smaller
+
+    Alice kann nicht sicher sein, dass Ihre Nachricht nicht verfälscht wurde! Jeder, der die Nachricht abfängt kann sie verändern und dann mit Bob's öffentlichen Schlüssel verschlüsseln.
+
+3. Sie sind Pentester und versuchen in ein System einzudringen indem Sie die Passwörter der Administratoren angreifen. Momentan setzten Sie dazu 2 Grafikkarten mit je 2048 Compute Units ein. Der serielle Anteil des Angriffs beträgt 10%. Wie hoch ist der Speedup, den Sie erwarten können, wenn Sie zwei weitere vergleichbare Grafikkarten mit weiteren 2048 Compute Units je GPU hinzufügen?
+
+   Hintergrund: Die Angriffe sind hochgradig parallelisierbar und hängen effektiv von der Anzahl an CUs ab. Die Grafikkarten sind in der Lage, die Angriffe effektiv zu beschleunigen.
+
+.. protected-exercise-solution:: Berechnung des Speedup
+   :class: smaller
+
+   Es handelt sich hierbei um ein Problem mit sich strukturell wiederholenden Datensätzen, d.h.  Gustafsons Gesetz ist anwendbar. Der serielle Anteil beträgt 10%, d.h. der Parallelisierungsgrad beträgt 90%. Der Speedup beträgt dann:
+
+   .. math::
+
+        S(4096) = 1 + 0.9 * 4096 = 3.687,4
+
+        S(2048) = 1 + 0.9 * 2048 = 1844,2
+
+    Das Rechnen mit den GPUs als solches führt somit zu einem etwas geringeren Speedup, da der serielle Anteil des Angriffs noch mehr in Gewicht fällt.
+
+    .. math::
+
+        S(4096) / S(2048) \approx 1.9995 
+
+        S(4) / S(2) \approx 1,9474 
+
+1. 
