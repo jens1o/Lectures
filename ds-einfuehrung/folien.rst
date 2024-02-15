@@ -30,18 +30,18 @@ Einführung in verteilte Systeme
 
 Ein weitgefasster Überblick über verteilte Systeme.
 
-.. container:: smaller line-above
+.. container:: line-above tiny
 
     :Dozent: **Prof. Dr. Michael Eichberg**
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
     :Version: |date|
+    :Folien: 
+        https://delors.github.io/ds-einfuehrung/folien.rst.html :raw-html:`<br>`
+        https://delors.github.io/ds-einfuehrung/folien.rst.html.pdf
+    :Fehler auf Folien melden:
+        https://github.com/Delors/delors.github.io bzw. https://github.com/Delors/delors.github.io/issues
 
-.. container:: tiny line-above incremental
 
-    :seit Okt. 2023: Professor an der DHBW Mannheim
-    :4 Jahre: Bundeskriminalamt
-    :12 Jahre: Postdoc am Fachgebiet Softwaretechnik der TU Darmstadt
-    :2007: Promotion zum Dr. Ing. am Fachgebiet Softwaretechnik der TU Darmstadt
 
 .. container:: footer-left tiny incremental
 
@@ -54,13 +54,54 @@ Ein weitgefasster Überblick über verteilte Systeme.
     Alle Fehler sind meine eigenen.
     
 
+Lebenslauf - Prof. Dr. Michael Eichberg
+--------------------------------------------
+
+:seit Okt. 2023: Professor an der DHBW Mannheim
+:4 Jahre: Bundeskriminalamt
+:12 Jahre: Postdoc am Fachgebiet Softwaretechnik der TU Darmstadt
+:2007: Promotion zum Dr. Ing. am Fachgebiet Softwaretechnik der TU Darmstadt
+
+
 
 Verteilte Systeme - W3WI_110.2
 ----------------------------------
 
-:Modul: Entwicklung verteilter Systeme (W3WI_110)
-:Umfang: 22 Vorlesungsstunden und 38 Stunden Selbststudium
-:Prüfungsleistung: Portfolio 
+:Modul - W3WI_110: 
+
+    - Entwicklung verteilter Systeme (W3WI_110) 
+    - 5 ECTS 
+  
+:Umfang der Vorlesung: 
+    - 22 Vorlesungsstunden (verteilt auf 5 Termine) 
+    - 38 Stunden Selbststudium
+
+:Prüfungsleistung: 
+
+    - Portfolio (mit insgesamt 120 Punkten für das Modul W3WI_110)
+    - 48 Punkte in verteilte Systeme (22/55)*120 = 0.4*120 = 48
+  
+      -  12 Punkte Präsentationen in Teams 
+      -  36 Punkte Programmieraufgabe in Teams
+
+
+Verteilte Systeme - *Middleware Lösungen*
+------------------------------------------
+
+Für die Präsentationen stehen die folgenden Themen stehen zur Auswahl:
+
+1. Apache Kafka
+2. Apache Zookeeper
+3. (Scala) Akka
+4. Rabbit MQ
+5. (Twitter/X) Finagle
+6. Apache Hive
+7. Apache Cassandra
+8. Apache Spark
+9.  Hadoop HDFS
+10. Hadoop Yarn/MapReduce
+11. Apache Mahout
+12. `Zeebe <https://github.com/camunda/zeebe>`__
 
 .. container:: supplemental
 
@@ -72,6 +113,11 @@ Verteilte Systeme - W3WI_110.2
     - Synchrone und asynchrone Kommunikation, entfernter Methodenaufruf 
     - Asynchrone Kommunikation und Messaging-Systeme
     - Sicherheitsaspekte in verteilten Systemen
+
+
+
+  Die Präsentationen sind am letzten Termin zu halten. Die Präsentationen sollen sich insbesondere mit den Kerninhalten der Vorlesung beschäftigen und insbesondere konzeptioneller Natur sein. D.h. nach der Darstellung des Anwendungszweckes gilt es  die Architektur darzustellen, wie mit Fehlern umgegangen wird, welche Services angeboten werden, welche Garantien/Sicherheitsaspekte umgesetzt werden, wie wird die Skalierbarkeit erreicht, etc. 
+
 
 
 
@@ -90,7 +136,7 @@ Empfohlene Literatur
 ---------------------
 
 .. image:: screenshots/distributed-systems.net.png
-    :height: 800px
+    :height: 1000px
     :align: center
 
 .. container:: supplemental
@@ -98,10 +144,19 @@ Empfohlene Literatur
     Ergänzend bzw. für interessierte Studierende:
 
     .. image:: screenshots/microservices.jpg
-        :height: 800px
+        :height: 1000px
         :align: center
         :class: box-shadow 
 
+
+
+Empfohlener Podcast
+---------------------
+
+.. image:: screenshots/se-radio.net.png
+    :height: 1000px
+    :align: center
+    
     
 
 Verteilt vs. Dezentralisiert (:eng:`Distributed vs Decentralized`)
@@ -184,7 +239,7 @@ Sichtweisen auf verteilte Systeme
 - Kommunikation: Welche Möglichkeiten zum Austausch von Daten gibt es?
 - Koordinierung: Wie erfolgt die Koordinierung der beteiligten Systeme?
 - Benennung: Wie identifiziert man Ressourcen?
-- Konsistenz und Replikation: Welcher Tradeoffs müssen in Hinblick auf die Konsistenz der Daten, der Replikation der Selbigen und der Performance getroffen werden?
+- Konsistenz und Replikation: Welcher Tradeoffs müssen in Hinblick auf die Konsistenz der Daten, der Replikation derselben und der Performance getroffen werden?
 - Fehlertoleranz: Wie kann eine Aufrechterhaltung des Betriebs auch bei Teilausfällen gewährleistet werden?
 - Sicherheit: Wie kann der autorisierte Zugriff auf Ressourcen gewährleistet werden?
 
@@ -252,7 +307,7 @@ Grad der erreichbaren Verteilungstransparenz
 
 .. container:: assessment
 
-    Eine vollständigen Verteilungstransparenz ist nicht erreichbar. 
+    Eine vollständige Verteilungstransparenz ist nicht erreichbar. 
 
 Jedoch kann auch eine sehr hohe Verteilungstransparenz bereits hohe Kosten nach sich ziehen.
 
@@ -280,7 +335,7 @@ Die Verteilung offen zu legen kann Vorteile bringen
 
     .. container:: 
     
-        Verteilungstransparenz ist ein heres Ziel, aber oft schwer zu erreichen, und häufig auch nicht erstrebenswert. 
+        Verteilungstransparenz ist ein hehres Ziel, aber oft schwer zu erreichen, und häufig auch nicht erstrebenswert. 
 
 
 
@@ -321,7 +376,7 @@ Vorgaben/Richtlinien vs. Umsetzungen
 
 .. class:: incremental
 
-.. rubric:: Mechanismen bgzl. der Umsetzung von Offenheit
+.. rubric:: Mechanismen bzgl. der Umsetzung von Offenheit
 
 .. class:: incremental
 
@@ -347,7 +402,7 @@ Verlässlichkeit verteilter Systeme
 .. admonition:: Abhängigkeiten
     :class: foundations
     
-    Eine **Komponente**\ [#]_ stellt seinen **Clients** **Dienste** zur Verfügung. Dafür kann die Komponente jedoch wiederum Dienste von anderen Komponenten benötigen und somit ist eine Komponente  von einer anderen Komponente abhängig (:eng:`depend`).
+    Eine **Komponente**\ [#]_ stellt ihren **Clients** **Dienste** zur Verfügung. Dafür kann die Komponente jedoch wiederum Dienste von anderen Komponenten benötigen und somit ist eine Komponente  von einer anderen Komponente abhängig (:eng:`depend`).
 
 
     Eine Komponente :math:`C` hängt von :math:`C^*` ab, wenn die Korrektheit des Verhaltens von :math:`C` von der Korrektheit des Verhaltens von :math:`C^*` abhängt. 
@@ -388,6 +443,42 @@ Bedingte Wahrscheinlichkeit, dass :math:`C` während :math:`[0,t)` korrekt funkt
 
     - Zuverlässigkeit: Wie wahrscheinlich ist es, dass ein System *korrekt* arbeitet?
     - Verfügbarkeit: Wie wahrscheinlich ist es, dass ein System zu einem bestimmten Zeitpunkt verfügbar ist?
+
+
+
+.. class:: integrated-exercise smaller-slide-title
+
+Übung - Verfügbarkeit und Ausfallwahrscheinlichkeit
+------------------------------------------------------
+
+1. Wenn die MTTF einer Komponente 100 Stunden beträgt und die MTTR 10 Stunden beträgt, wie hoch ist dann die MTBF?
+
+.. protected-exercise-solution:: Berechnung des MTBF
+   :class: smaller
+    
+    .. math::
+        MTBF = MTTF + MTTR = 100 + 10 = 110
+
+2. Gegeben sei ein größeres verteiltes System bestehend aus 500 unabhängigen Rechnern, die auch unabhängig voneinander ausfallen. Im Mittel ist jeder Rechner innerhalb von zwei Tagen zwölf Stunden lang nicht erreichbar.
+
+   (a) Bestimmen Sie die Intaktwahrscheinlichkeit eines einzelnen Rechners.
+   (b) Ein Datensatz ist aus Gründen der Fehlertoleranz auf drei Rechnern identisch repliziert gespeichert. Wie hoch ist seine mittlere Zugriffsverfügbarkeit beim Lesen?
+   (c) Auf wievielen Rechnern müssen Sie identische Kopien dieses Datensatzes speichern, damit die mittlere Zugriffsverfügbarkeit beim Lesen bei 99,999% liegt 
+   (d) Für wieviele Minuten im Jahr ist im Mittel bei einer Verfügbarkeit von 99,999% *kein Lesen des Datensatzes* möglich?
+
+.. protected-exercise-solution:: Ausfallwahrscheinlichkeit
+
+    (a) Die Verfügbarkeit eines einzelnen Rechners beträgt p = 36h/48h = 0,75 (MTBF = 36H, MTTR = 12H)
+    (b) Die mittlere Zugriffsverfügbarkeit (für :math:`p = 0.75`) beim Lesen beträgt :math:`1 - (1 - p)^3 = 0,984375`; :math:`(1-p)` ist die Ausfallwahrscheinlichkeit.
+    (c) (Erinnerung: :math:`log_a(u^v) = v \cdot log_a(u)`).
+        
+        Wahrscheinlichkeit, dass alle gleichzeitig ausfallen muss kleiner(gleich) der erlaubten Nichtverfügbarkeit sein:  :math:`(1-p)^x \leq (1-0,99999) \Leftrightarrow x \cdot log(1-p) \geq log(1-0,99999)`
+
+        :math:`\Rightarrow x \geq log(1-0,99999)/log(1-p) \approx 8,3`
+        
+        Die Anzahl der Rechner, auf denen der Datensatz repliziert werden muss, beträgt :math:`\lceil \frac{log(1-0,99999)}{log(1-p)} \rceil = 9`
+
+
 
 
 Sicherheit in verteilten Systemen - Schutzziele
@@ -475,7 +566,7 @@ Es geht im Wesentlichen um das Ver- und Entschlüsseln von Daten (:math:`X`) mit
 Sicherheit - Sicheres Hashing (:eng:`Secure Hashing`)
 ------------------------------------------------------- 
 
-Eine sichere Hash-Funktionen :math:`Digest(X)` gibt eine Zeichenkette fester Länge (:math:`H`) zurück.
+Eine sichere Hash-Funktion :math:`Digest(X)` gibt eine Zeichenkette fester Länge (:math:`H`) zurück.
 
 - Jede Änderung - noch so klein - der Eingabedaten führt zu einer völlig anderen Zeichenkette.
 - Bei einem Hash-Wert ist es rechnerisch unmöglich die ursprüngliche Nachricht X basierend auf :math:`Digest(X)` zu finden.
@@ -492,6 +583,20 @@ Bob prüft die Nachricht :math:`X` auf Authentizität:
 
 .. math::
     Bob: D(PU_{Alice},H) \stackrel{?}{=} Digest(X)
+
+
+
+.. class:: integrated-exercise
+
+Übung
+----------------
+
+Wenn Alice eine mit Bob's öffentlichen Schlüssel verschlüsselte Nachricht an Ihn schickt, welches Sicherheitsproblem kann dann aufkommen?
+
+.. protected-exercise-solution:: Person-in-the-Middle-Angriff
+   :class: smaller
+
+    Alice kann nicht sicher sein, dass Ihre Nachricht nicht verfälscht wurde! Jeder, der die Nachricht abfängt kann sie verändern und dann mit Bob's öffentlichen Schlüssel verschlüsseln.
 
 
 
@@ -828,6 +933,37 @@ Beschleunigung (Speedup) eines parallelisierten Programms relativ zu der nicht-p
             Sei der Parallelisierungsgrad ab einer relevanten Problemgröße n 80%. Dann ergibt sich für 4 CPUs ein Speedup von :math:`(1+0.8*3) = 3.4`, für 8 CPUs ein Speedup von 6.6 und für 16 CPUs ein Speedup von 13.
 
 
+
+.. class:: integrated-exercise
+
+Übung
+----------------
+
+Sie sind Pentester und versuchen in ein System einzudringen indem Sie die Passwörter der Administratoren angreifen. Momentan setzten Sie dazu 2 Grafikkarten mit je 2048 Compute Units ein. Der serielle Anteil des Angriffs beträgt 10%. Wie hoch ist der Speedup, den Sie erwarten können, wenn Sie zwei weitere vergleichbare Grafikkarten mit weiteren 2048 Compute Units je GPU hinzufügen?
+
+   Hintergrund: Die Angriffe sind hochgradig parallelisierbar und hängen effektiv von der Anzahl an CUs ab. Die Grafikkarten sind in der Lage, die Angriffe effektiv zu beschleunigen.
+
+.. protected-exercise-solution:: Berechnung des Speedup
+   :class: smaller
+
+   Es handelt sich hierbei um ein Problem mit sich strukturell wiederholenden Datensätzen, d.h.  Gustafsons Gesetz ist anwendbar. Der serielle Anteil beträgt 10%, d.h. der Parallelisierungsgrad beträgt 90%. Der Speedup beträgt dann:
+
+   .. math::
+
+        S(4096) = 1 + 0.9 * 4096 = 3.687,4
+
+        S(2048) = 1 + 0.9 * 2048 = 1844,2
+
+    Das Rechnen mit den GPUs als solches führt somit zu einem etwas geringeren Speedup, da der serielle Anteil des Angriffs noch mehr in Gewicht fällt.
+
+    .. math::
+
+        S(4096) / S(2048) \approx 1.9995 
+
+        S(4) / S(2) \approx 1,9474 
+
+
+
 .. class:: smaller
 
 MapReduce - ein Programmiermodell für paralleles Rechnen
@@ -969,7 +1105,7 @@ Cloud-Computing
 
 .. container:: supplemental
 
-    Vorteile des Clous-Computings: Kosten, Aktualit ̈at von Daten und Diensten, keine eigene Infrastruktur notwendig, Unterstützung von mobilen Teilnehmern
+    Vorteile des Clous-Computings: Kosten, Aktualität von Daten und Diensten, keine eigene Infrastruktur notwendig, Unterstützung von mobilen Teilnehmern
 
     Probleme des Clous-Computings: Sicherheit und Vertrauen, Verlust von eigenem Know-How, Umgang mit klassifizierten Daten
 
@@ -1056,6 +1192,14 @@ Transaktionen
 .. container:: incremental smaller
 
     Ein TPM ist für die Koordination der Ausführung einer Transaktion verantwortlich.
+
+
+.. container:: supplemental
+
+    Insbesondere im Zusammenhang mit Microservices ist der Einsatz von TPMs und 2PC zum Zwecke der Koordination von Geschäftsprozessen häufig nicht die 1. Wahl. 
+
+    Nichtsdestotrotz sind verteilte Transaktionen ein wichtiger Bestandteil von verteilten Systemen und Google hat z.B. mit Spanner eine Lösung entwickelt, die Transaktionen im globalen Maßstab ermöglicht  (*Global Consistency*). (https://cloud.google.com/spanner?hl=en und https://www.youtube.com/watch?v=iKQhPwbzzxU).
+       
 
 
 *Middleware* und *Enterprise Application Integration (EAI)*
@@ -1217,49 +1361,3 @@ Fallstricke bei der Entwicklung verteilter Systeme
     - Die Transportkosten sind gleich Null
     - Es gibt nur einen Administrator
 
-
-
-.. class:: integrated-exercise
-
-Übung
-----------------
-
-1. Wenn die MTTF einer Komponente 100 Stunden beträgt und die MTTR 10 Stunden beträgt, wie hoch ist dann die MTBF?
-
-.. protected-exercise-solution:: Berechnung des MTBF
-   :class: smaller
-    
-    .. math::
-        MTBF = MTTF + MTTR = 100 + 10 = 110
-
-2. Wenn Alice eine mit Bob's öffentlichen Schlüssel verschlüsselte Nachricht an Ihn schickt, welches Sicherheitsproblem kann dann aufkommen?
-
-.. protected-exercise-solution:: Person-in-the-Middle-Angriff
-   :class: smaller
-
-    Alice kann nicht sicher sein, dass Ihre Nachricht nicht verfälscht wurde! Jeder, der die Nachricht abfängt kann sie verändern und dann mit Bob's öffentlichen Schlüssel verschlüsseln.
-
-3. Sie sind Pentester und versuchen in ein System einzudringen indem Sie die Passwörter der Administratoren angreifen. Momentan setzten Sie dazu 2 Grafikkarten mit je 2048 Compute Units ein. Der serielle Anteil des Angriffs beträgt 10%. Wie hoch ist der Speedup, den Sie erwarten können, wenn Sie zwei weitere vergleichbare Grafikkarten mit weiteren 2048 Compute Units je GPU hinzufügen?
-
-   Hintergrund: Die Angriffe sind hochgradig parallelisierbar und hängen effektiv von der Anzahl an CUs ab. Die Grafikkarten sind in der Lage, die Angriffe effektiv zu beschleunigen.
-
-.. protected-exercise-solution:: Berechnung des Speedup
-   :class: smaller
-
-   Es handelt sich hierbei um ein Problem mit sich strukturell wiederholenden Datensätzen, d.h.  Gustafsons Gesetz ist anwendbar. Der serielle Anteil beträgt 10%, d.h. der Parallelisierungsgrad beträgt 90%. Der Speedup beträgt dann:
-
-   .. math::
-
-        S(4096) = 1 + 0.9 * 4096 = 3.687,4
-
-        S(2048) = 1 + 0.9 * 2048 = 1844,2
-
-    Das Rechnen mit den GPUs als solches führt somit zu einem etwas geringeren Speedup, da der serielle Anteil des Angriffs noch mehr in Gewicht fällt.
-
-    .. math::
-
-        S(4096) / S(2048) \approx 1.9995 
-
-        S(4) / S(2) \approx 1,9474 
-
-1. 
