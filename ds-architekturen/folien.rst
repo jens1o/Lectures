@@ -91,7 +91,7 @@ Schlüsselkonzepte von Microservices
   Häufig entlang einer Kontextgrenze (eng. Bounded Context) oder eines Aggregats aus DDD
 - verwalten Ihren eigenen Zustand
   
-  D.h. keine geteilten Datenbanken
+  d. h. keine geteilten Datenbanken
 - sind klein
   
   Klein genug, um durch (max.) ein Team entwickelt werden zu können

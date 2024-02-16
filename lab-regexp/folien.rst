@@ -262,12 +262,12 @@ Fingerübungen
 ..
     grep -E "^[a-zA-Z]+$" /usr/share/wordlists/rockyou.txt | grep -ni "schmetterling"
 
-2. Finden Sie alle Passworte in denen ein Zeichen mind. 3 oder mehrmals wiederholt wird. Z.B. "x0000!" oder "aaaabbbb".  
+2. Finden Sie alle Passworte in denen ein Zeichen mind. 3 oder mehrmals wiederholt wird. z. B. "x0000!" oder "aaaabbbb".  
 
 ..
     grep -E "(.)\1{3,}" /usr/share/wordlists/rockyou.txt 
 
-3. Finden Sie alle Passworte, in denen eine Sequenz mit mindestens 3 Zeichen wiederholt wird. Z.B. "TestTest" oder "1AffeIstAffe#".
+3. Finden Sie alle Passworte, in denen eine Sequenz mit mindestens 3 Zeichen wiederholt wird. z. B. "TestTest" oder "1AffeIstAffe#".
 
 ..
     └─$ grep -E "(.{3,}).*\1" /usr/share/wordlists/rockyou.txt 

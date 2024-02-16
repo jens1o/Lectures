@@ -185,7 +185,7 @@ Gegenüberstellung konventionelles Archiv zu DMS
     :class: highlight-line-on-hover small incremental
     :header: " ", "Konventionell","DMS"
 
-    Ablagestruktur, "hierarchisch, meist nach Dokumententypen getrennt", "datenbankgestützt,Suchbeginn nach jedem Suchkriterium möglich, Suche wahlweise z.B. je Kunde, Vorgang oder Beleg"
+    Ablagestruktur, "hierarchisch, meist nach Dokumententypen getrennt", "datenbankgestützt,Suchbeginn nach jedem Suchkriterium möglich, Suche wahlweise z. B. je Kunde, Vorgang oder Beleg"
     Auskunftsbereitschaft,"zeitverzögert, nach Sichtung/ Entnahme aller Dokumente", "unmittelbar durch vorgangsbezogene, bzw. dokumentenübergreifende Suche"
     Auskunftsaufwand, "für Beleg Suche, Entnahme und wieder einordnen, evtl. kopieren und Versand", "nur für Recherche am Bildschirm, gegebenenfalls direkter Versand per EMail"
     Redundanz, "Abteilungsablagen = mehrfacher Aufwand", Einmalablage
@@ -275,7 +275,7 @@ Elektronische Dokumente
 
     :OCR (Optical Character Recognition):  Text einer gedruckten Vorlage wird durch einfachen Mustervergleich automatisch in maschinenlesbare Zeichen transformiert. 
 
-    :ICR (Intelligent Character Recognition): Die Qualität der Texterkennung wird durch Kontextanalyse verbessert. Typische Fehler von OCR-Systemen wie zum Beispiel Fehlerkennungen von optisch nahe beieinanderliegenden Zeichen (z.B. "8 und B" oder "0 und O") werden vermieden. (Wie nahe Zeichen beieinander liegen ist stark vom verwendeten Schrifttyp abhängig.)
+    :ICR (Intelligent Character Recognition): Die Qualität der Texterkennung wird durch Kontextanalyse verbessert. Typische Fehler von OCR-Systemen wie zum Beispiel Fehlerkennungen von optisch nahe beieinanderliegenden Zeichen (z. B. "8 und B" oder "0 und O") werden vermieden. (Wie nahe Zeichen beieinander liegen ist stark vom verwendeten Schrifttyp abhängig.)
 
     :OMR (Optical Mark Recognition): liest mit großer Sicherheit spezielle Markierungen in vordefinierten Feldern aus - zum Beispiel in Multiple-Choice-Tests und Vordrucken.
 
@@ -335,7 +335,7 @@ Dokumente annotieren
 
 .. class:: incremental
 
-- Man unterscheidet zwischen dem Originalformat des Dokuments (z.B. MS-Word oder LibreOffice Format) und Renditions (wie PDF/a und TIFF)
+- Man unterscheidet zwischen dem Originalformat des Dokuments (z. B. MS-Word oder LibreOffice Format) und Renditions (wie PDF/a und TIFF)
 - Formate wie PDF/a und TIFF sind in der Regel langlebiger, es gibt Viewer dafür und erhalten besser den ursprünglichen optischen Zustand.
 - Previewimages oft zusätzlich
 
@@ -401,7 +401,7 @@ Meta-Daten
 
 .. container:: supplemental
 
-    Dies ist insbesondere ein Thema der Datenmodellierung. D.h. welche Daten möchte man wie erfassen.
+    Dies ist insbesondere ein Thema der Datenmodellierung. d. h. welche Daten möchte man wie erfassen.
 
 
 
@@ -410,7 +410,7 @@ Arten von Meta-Daten
 
 
 • Eindeutiger Schlüssel im DMS
-• Fremdschlüssel (z.B. Buchungsnummern)
+• Fremdschlüssel (z. B. Buchungsnummern)
 
 .. container:: incremental margin-top-2em
 
@@ -442,7 +442,7 @@ Ein Dokument in einem DMS ist ein komplexes Objekt, das aus verschiedenen Kompon
 
 .. class:: incremental
 
-• Das Dokument im Originalformat (z.B. odt, docx, xlsx, txt, ...)
+• Das Dokument im Originalformat (z. B. odt, docx, xlsx, txt, ...)
 • Verschiedene Renditions (pdf, tiff, xml, ....)
 • Vorschaubild
 • Volltext
@@ -531,7 +531,7 @@ Nutzen und bearbeiten von Dokumenten
 
   - Volltext
   - Indizes
-  - Verknüpfungen (z.B. in Applikationen)
+  - Verknüpfungen (z. B. in Applikationen)
   
 - Ausgabe der Dokumente auf Bildschirm, Drucker, Mail
   
@@ -559,7 +559,7 @@ Rahmenbedingungen die Lebensdauer von Dokumenten
 Löschen von Dokumenten
 -----------------------------------------------
 
-• Falsche Dokumente (z.B. Fehler beim Indizieren)
+• Falsche Dokumente (z. B. Fehler beim Indizieren)
 • Logisches Löschen
 • Physikalisches Löschen
 
@@ -838,7 +838,7 @@ Beispiel: Anlagendokumentation
 • Aktuelle Version der Dokumente überall und sofort verfügbar (Web)
 • Revisionssichere Prozesse für Bereitstellung und Freigabe der Prozesse
 • Eine verbindliche Quelle für alle Dokumente und alle Nutzer
-• DMS wird für weitere Bereiche genutzt (z.B. SAP-Eingangs- und Ausgangsrechnungen, Magazin, E-Mail-Archivierung).
+• DMS wird für weitere Bereiche genutzt (z. B. SAP-Eingangs- und Ausgangsrechnungen, Magazin, E-Mail-Archivierung).
 
 
 Typische Fragestellungen bei Integration

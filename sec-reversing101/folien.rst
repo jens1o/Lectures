@@ -75,7 +75,7 @@ Zweck von Reverse Engineering
 - Untersuchung auf Copyrightverletzungen
 - Untersuchung auf Backdoors
 - Analyse von Viren, Würmern etc.
-- Umgehung von ungerechtfertigten(?) Schutzmaßnahmen (z.B. bei Malware)
+- Umgehung von ungerechtfertigten(?) Schutzmaßnahmen (z. B. bei Malware)
 
 
 
@@ -98,7 +98,7 @@ Gegeben sei eine App zum Ver- und Entschlüsseln von Dateien sowie ein paar vers
 
     .. container:: layer incremental
     
-       - Die ausführbare Datei ggf. mit ``file`` überprüfen (z.B. wie kompiliert und für welches Betriebssystem und Architektur)
+       - Die ausführbare Datei ggf. mit ``file`` überprüfen (z. B. wie kompiliert und für welches Betriebssystem und Architektur)
     
         Beispiel:
 
@@ -187,7 +187,7 @@ Ansätze
 
 .. class:: incremental 
 
-:dynamische Analyse: Ausführen des Programms; typischerweise unter Verwendung eines Debuggers oder eines instrumentations Frameworks (z.B. `Frida <https://frida.re>`__).
+:dynamische Analyse: Ausführen des Programms; typischerweise unter Verwendung eines Debuggers oder eines instrumentations Frameworks (z. B. `Frida <https://frida.re>`__).
 
 .. class:: incremental 
 
@@ -217,7 +217,7 @@ Beispiel:
 .. admonition:: Hinweis
     :class: incremental small
 
-    Für einfache Programme ist es häufig möglich direkt den gesamten Assemblercode mittels der entsprechenden Werkzeuge zu erhalten. Im Falle komplexer Binärdateien (z.B. im ELF (Linux) und PE (Windows) Format) gilt dies nicht und erfordert ggf. manuelle Unterstützung zum Beispiel durch das Markieren von Methodenanfängen. 
+    Für einfache Programme ist es häufig möglich direkt den gesamten Assemblercode mittels der entsprechenden Werkzeuge zu erhalten. Im Falle komplexer Binärdateien (z. B. im ELF (Linux) und PE (Windows) Format) gilt dies nicht und erfordert ggf. manuelle Unterstützung zum Beispiel durch das Markieren von Methodenanfängen. 
     
     Im Fall von Java ``.class`` ist die Disassemblierung immer möglich. 
 
@@ -297,7 +297,7 @@ Dient der schrittweisen Ausführung des zu analysierenden Codes oder Hardware; e
 
 .. container:: supplemental 
 
-    Auch für das Debuggen von Hardware gibt es entsprechende Werkzeuge, z.B.
+    Auch für das Debuggen von Hardware gibt es entsprechende Werkzeuge, z. B.
     `Lauterbach Hardware Debugger <https://www.lauterbach.com>`__
     Mittels solcher Werkzeuge ist es möglich die Ausführung von Hardware Schritt für Schritt (:eng:`single step mode``) zu verfolgen und den Zustand der Hardware (Speicher und Register) zu inspizieren. Dies erfordert (z.Bsp.) eine JTAG Schnittstelle.
 
@@ -334,7 +334,7 @@ Obfuscation (:ger:`Verschleierung`)
 
 .. container:: supplemental 
 
-    Gerade im Umfeld von klassischen *Binaries* für Windows, Mac und Linux erhöhen Compiler Optimierungen, z.B. von C/C++ und Rust Compilern (``-O2 / -O3``), bereits den Aufwand, der notwendig ist den Code zu verstehen, erheblich.
+    Gerade im Umfeld von klassischen *Binaries* für Windows, Mac und Linux erhöhen Compiler Optimierungen, z. B. von C/C++ und Rust Compilern (``-O2 / -O3``), bereits den Aufwand, der notwendig ist den Code zu verstehen, erheblich.
 
     .. admonition:: Hinweis
 
@@ -399,7 +399,7 @@ Obfuscation - Techniken (Auszug)
 
    Das Verschleiern von Strings kann insbesondere das Reversen von Binärcode erschweren, da ein Angreifer häufig :ger-quote:`nur` an einer ganz bestimmten Funktionalität interessiert ist und dann Strings ggf. einen sehr guten Einstiegspunkt für die weitergehende Analyse bieten. 
    
-   Stellen Sie sich eine komplexe Java Anwendung vor, in der alle Namen von Klassen, Methoden und Attributen durch einzelne oder kurze Sequenzen von Buchstaben ersetzt wurden und sie suchen danach wie von der Anwendung Passworte verarbeitet werden. Handelt es sich um eine GUI Anwendung, dann wäre zum Beispiel die Suche nach Text, der in den Dialogen vorkommt (z.B. ``"Password"``) z.B. ein sehr guter Einstiegspunkt.
+   Stellen Sie sich eine komplexe Java Anwendung vor, in der alle Namen von Klassen, Methoden und Attributen durch einzelne oder kurze Sequenzen von Buchstaben ersetzt wurden und sie suchen danach wie von der Anwendung Passworte verarbeitet werden. Handelt es sich um eine GUI Anwendung, dann wäre zum Beispiel die Suche nach Text, der in den Dialogen vorkommt (z. B. ``"Password"``) z. B. ein sehr guter Einstiegspunkt.
 
 
 .. class:: new-section transition-fade
@@ -414,7 +414,7 @@ Die Java Virtual Machine
 
 - **Java Bytecode** ist die Sprache, in der Java (oder Scala, Kotlin, Groovy, ...) Programme auf der Java Virtual Machine (JVM) [#]_ ausgeführt werden.
 - :minor:`In den meisten Fällen arbeiten Java Decompiler so gut, dass ein tiefgehendes Verständnis von Java Bytecode selten notwendig ist.`
-- Java Bytecode kann, muss aber nicht interpretiert werden. (z.B. können virtuelle Methodenaufrufe in Java schneller sein als in C++)
+- Java Bytecode kann, muss aber nicht interpretiert werden. (z. B. können virtuelle Methodenaufrufe in Java schneller sein als in C++)
 
 
 .. [#] `Java Bytecode Spezifikation <https://docs.oracle.com/javase/specs/jvms/se21/html/index.html>`__
@@ -470,7 +470,7 @@ Java Bytecode - Methodenaufrufe und lokale Variablen
 
 - Die Java Virtual Machine verwendet lokale Variablen zur Übergabe von Parametern beim Methodenaufruf. 
 - Beim Aufruf von *Klassenmethoden* (``static``) werden alle Parameter in aufeinanderfolgenden lokalen Variablen übergeben, beginnend mit der lokalen Variable 0. 
-  D.h. in der aufrufenden Methode werden die Parameter vom Stack geholt und in lokalen Variablen gespeichert.
+  d. h. in der aufrufenden Methode werden die Parameter vom Stack geholt und in lokalen Variablen gespeichert.
 - Beim Aufruf von *Instanzmethoden* wird die lokale Variable 0 dazu verwendet, um die Referenz (``this``) auf das Objekt zu übergeben, auf dem die Instanzmethode aufgerufen wird. 
   Anschließend werden alle Parameter in aufeinanderfolgenden lokalen Variablen übergeben, beginnend mit der lokalen Variable 1.
 - Die Anzahl der benötigten lokalen Variablen wird vom Compiler berechnet und von der JVM überprüft.
@@ -503,7 +503,7 @@ Die Zeilennummern und die Informationen über die lokalen Variablen ist optional
 
 .. container:: supplemental 
 
-    Es gibt weitere Metainformationen, die :ger-quote:`nur` für Debugging-Zwecke benötigt werden, z.B. Informationen über die ursprünglich Quelle des Codes oder die sogenannte "Local Variable Type Table" in Hinblick auf generische Typinformationen. Solche Informationen werden häufig vor Auslieferung entfernt bzw. nicht hineinkompiliert. 
+    Es gibt weitere Metainformationen, die :ger-quote:`nur` für Debugging-Zwecke benötigt werden, z. B. Informationen über die ursprünglich Quelle des Codes oder die sogenannte "Local Variable Type Table" in Hinblick auf generische Typinformationen. Solche Informationen werden häufig vor Auslieferung entfernt bzw. nicht hineinkompiliert. 
 
 
 Beispiel: Aufruf einer komplexeren Methode
@@ -539,7 +539,7 @@ In einigen Anwendungsgebieten ist es möglich auf das explizite Speichern von Pa
 
 .. container:: incremental 
 
-    Stattdessen wird z.B. einfach versucht das Ziel zu entschlüsseln und danach evaluiert ob das Passwort (vermutlich) das Richtige war. 
+    Stattdessen wird z. B. einfach versucht das Ziel zu entschlüsseln und danach evaluiert ob das Passwort (vermutlich) das Richtige war. 
 
 .. container:: incremental 
 
@@ -549,7 +549,7 @@ In einigen Anwendungsgebieten ist es möglich auf das explizite Speichern von Pa
 
 
 
-schematische Darstellung der Verschlüsselung von Containern (z.B., Veracrypt)
+schematische Darstellung der Verschlüsselung von Containern (z. B., Veracrypt)
 -------------------------------------------------------------------------------
 
 

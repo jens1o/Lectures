@@ -241,7 +241,7 @@ Kryptografische Hashfunktionen für Passworte
 - Bekannte kryptografische Hash-Funktionen: :obsolete:`MD4`, :obsolete:`MD5`, SHA-256, SHA-512, RIPE-MD, ...
 - Bekannte Funktion zur Schlüsselableitung: PBKDF2, ...
 - Beim Hashing von Passwörtern werden die Basisalgorithmen in der Regel mehrfach (ggf. viele hunderttausend Male) angewendet, um die Laufzeit zu verlängern und es für Angreifer schwieriger zu machen.
-- Mehrere Hash-Algorithmen/Schlüsselableitungsfunktionen wurden ausdrücklich für das Hashing von Passwörtern entwickelt, um gängigen Angriffen zu widerstehen. Z.B. bcrypt, scrypt, Argon2.
+- Mehrere Hash-Algorithmen/Schlüsselableitungsfunktionen wurden ausdrücklich für das Hashing von Passwörtern entwickelt, um gängigen Angriffen zu widerstehen. z. B. bcrypt, scrypt, Argon2.
 - Einige dieser Algorithmen sind so rechenintensiv, dass sie nicht für Webanwendungen/Situationen geeignet sind, in denen viele Benutzer gleichzeitig autorisiert werden müssen. Diese Algorithmen werden in der Regel zum Schutz von Dateien, Containern oder lokaler Festplatten verwendet.
 
 
@@ -322,7 +322,7 @@ Vom Salzen (:eng:`Salt`)...
 
 - Wie ein *Salt* geht auch der *Secret Key* in den Hashvorgang des Passworts ein.
 - Der *Secret Key* wird jedoch **nicht** mit den Hashwerten der Passworte gespeichert.
-- Ein *Secret key* kann zum Beispiel in einem Hardwaresicherheitsmodul (z.B. Secure Element oder TPM Chip) gespeichert werden. Gel. wird der *Secret Key* bzw. ein Teil davon auch im Code gespeichert.
+- Ein *Secret key* kann zum Beispiel in einem Hardwaresicherheitsmodul (z. B. Secure Element oder TPM Chip) gespeichert werden. Gel. wird der *Secret Key* bzw. ein Teil davon auch im Code gespeichert.
 - Wie ein Salt sollte auch auch *Secret Key* mind. 16 Byte lang sein, um ggf. ein Brute-Force Angriff auf den *Secret Key* zu verhindern sollte dem Angreifer zu einem Hash und Salt auch noch das Klartext Passwort bekannt sein.
 - Der *Secret Key* sollte zufällig sein. 
 - Der *Secret Key* sollte pro Instanziierung einer Anwendung einmalig sein. 
@@ -695,7 +695,7 @@ Gedankenexperiment
 
 .. container:: conditions 
 
-    Sie wollen einen SHA 256 angreifen und sie haben 100 Nvidia 4090 GPUs. Jede GPU hat eine Hash-Rate von ~22GH/s (mit Hashcat 6.2.6) und benötigt ~500 Watt. Der verwendete Zeichensatz besteht aus 84 verschiedenen Zeichen (z.B. a-z, A-Z, 0-9, <einige Sonderzeichen>).
+    Sie wollen einen SHA 256 angreifen und sie haben 100 Nvidia 4090 GPUs. Jede GPU hat eine Hash-Rate von ~22GH/s (mit Hashcat 6.2.6) und benötigt ~500 Watt. Der verwendete Zeichensatz besteht aus 84 verschiedenen Zeichen (z. B. a-z, A-Z, 0-9, <einige Sonderzeichen>).
 
 .. container:: task 
 
@@ -780,7 +780,7 @@ Moderne Passwortrichtlinien (:eng:`Password Policies`) machen es unmöglich, äl
 - Mindestanzahl von Zeichen (maximale Anzahl von Zeichen)
 - Anforderungen an die Anzahl der Ziffern, Sonderzeichen, Groß- und Kleinbuchstaben
 - Anforderungen an die Vielfalt der verwendeten Zeichen
-- einige Passwörter (z. B. aus bekannten Leaks und Wörterbüchern) sind verboten
+- einige Passwörter (z. B. aus bekannten Leaks und Wörterbüchern) sind verboten
 - ...
 
 .. container:: supplemental
@@ -865,7 +865,7 @@ Die Zusammensetzung von Passwörtern verstehen
 
     Die Sprachen, die bei der Identifizierung der Wörter berücksichtigt wurden, waren: "de, en, fr, es, pt, nl".
     
-    *Populäre Wörter* sind Wörter, die auf Twitter oder Facebook verwendet wurden, z. B. "iloveu", "iluvu", ....
+    *Populäre Wörter* sind Wörter, die auf Twitter oder Facebook verwendet wurden, z. B. "iloveu", "iluvu", ....
 
 
 Der Effekt von Passwortrichtlinien auf Passwörter
@@ -883,7 +883,7 @@ Reale Passwortrichtlinie:
 
         Password12!! 
     
-    D.h. die Passworte werden mit möglichst geringem Aufwand erweitert.
+    d. h. die Passworte werden mit möglichst geringem Aufwand erweitert.
 
 
 Aufbau von Passwörtern - Zusammenfassung
@@ -892,7 +892,7 @@ Aufbau von Passwörtern - Zusammenfassung
 .. class:: more-space-between-list-items
 
 - Passwörter, die häufig eingegeben werden müssen, basieren in den allermeisten Fällen auf :ger-quote:`echten` Wörtern.
-- Echte Wörter werden oft nicht unverändert verwendet, sondern nach einfachen Regeln umgewandelt, z. B. durch Anhängen einer Zahl oder eines Sonderzeichens, Veränderung der Groß-/Kleinschreibung, etc.
+- Echte Wörter werden oft nicht unverändert verwendet, sondern nach einfachen Regeln umgewandelt, z. B. durch Anhängen einer Zahl oder eines Sonderzeichens, Veränderung der Groß-/Kleinschreibung, etc.
 
 .. admonition:: Frage 
     :class: incremental small
@@ -974,7 +974,7 @@ Password Cracking Using Probabilistic Context-Free Grammars [PCFG]_
 - Generiert Passwortkandidaten mit absteigender Wahrscheinlichkeit.
   
 - Prozeß:
-   1. Vorverarbeitung, um die Basisstrukturen und deren Wahrscheinlichkeiten zu identifizieren (z.B. zwei Ziffern gefolgt von einem Sonderzeichen und 8 Buchstaben.)
+   1. Vorverarbeitung, um die Basisstrukturen und deren Wahrscheinlichkeiten zu identifizieren (z. B. zwei Ziffern gefolgt von einem Sonderzeichen und 8 Buchstaben.)
    2. Passwortkandidatengenerierung unter Beachtung der Wahrscheinlichkeiten der Basisstrukturen und der Wahrscheinlichkeiten der Worte, Ziffern und Sonderzeichen. 
    
       :minor:`(In der Originalversion wurden die Wahrscheinlichkeiten von Worten nicht beachtet; die auf GitHub verfügbare Version enthält jedoch zahlreiche Verbesserungen.)``
@@ -1390,7 +1390,7 @@ Liest ein(e Liste von) Hash(es) ein und prüft, ob einer der angegebenen Passwor
 .. class:: incremental
 
 - unterstützt über 350 Hash-Typen (mit einigen automatischen Erkennungen)
-- unterstützt mehrere Angriffsmodi, z.B., 
+- unterstützt mehrere Angriffsmodi, z. B., 
 	- Wörterbuch (ggf. mit Regeln)
 	- Masken
 	- Kombinationen aus Wörterbüchern und Masken

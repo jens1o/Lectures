@@ -93,7 +93,7 @@ Die Entitäten (:dhbw-light-gray:`Klassen`, :dhbw-gray:`Module`, :dhbw-gray:`Kom
 
 .. container:: supplemental
 
-  Es muss Leitlinien geben, die uns helfen einen guten Entwurf zu erstellen, der die genannten Ziele erreicht. Weiterhin muss klar sein wie dieser beurteilt werden kann. D.h. Code darf nicht beliebig :ger-quote:`platziert` werden; Schnittstellen sollten nicht aus dem Bauch heraus entworfen werden.
+  Es muss Leitlinien geben, die uns helfen einen guten Entwurf zu erstellen, der die genannten Ziele erreicht. Weiterhin muss klar sein wie dieser beurteilt werden kann. d. h. Code darf nicht beliebig :ger-quote:`platziert` werden; Schnittstellen sollten nicht aus dem Bauch heraus entworfen werden.
 
   Die folgenden Prinzipien wurden (zumindest teilweise) im Kontext der objekt-orientierten Programmierung identifiziert und beschrieben; passen jedoch auf verschiedensten Abstraktionsgeraden, deswegen ist im Folgenden auch von Entitäten die Rede.
 
@@ -119,7 +119,7 @@ Kopplung (:eng:`coupling`)
       - ...
 
 
-.. [#] Eine Entität kann z.B. eine Methode, Klasse, Modul, Package, Komponente oder Service sein.
+.. [#] Eine Entität kann z. B. eine Methode, Klasse, Modul, Package, Komponente oder Service sein.
 
 
 .. container:: supplemental
@@ -161,7 +161,7 @@ Niedrige statische Kopplung (:eng:`low (static) coupling`)
 
   Keine Kopplung ist (auch) nicht wünschenswert, da dies zu Entitäten führt, die alle Arbeit durchführen; weiterhin führt dies auch dazu, dass sich ggf. die Arbeit sehr viel schlechter aufteilen lässt und dann eine agile Entwicklung mit einem kleinen Team nicht mehr möglich ist. 
 
-  Relevante Frage: Wer ist/sollte der Eigentümer der Schnittstellen sein? D.h. aus welcher Perspektive sollte die Schnittstelle entworfen werden?
+  Relevante Frage: Wer ist/sollte der Eigentümer der Schnittstellen sein? d. h. aus welcher Perspektive sollte die Schnittstelle entworfen werden?
 
 
 .. class:: vertical-title much-smaller
@@ -349,9 +349,9 @@ Fasse die Dinge zusammen, die sich aus dem gleichen Grund und zur selben Zeit ä
 
 .. container:: supplemental
 
-  :Single Responsibility Principle (SRP): Ein Modul sollte nur einem einzigen Akteur gegenüber verantwortlich sein. D.h. es sollte nur eine wohldefinierte Gruppe von Personen geben, die eine Veränderung veranlassen/verlangen können. Code, von dem verschiedene Akteure abhängen, sollte aufgeteilt werden.
+  :Single Responsibility Principle (SRP): Ein Modul sollte nur einem einzigen Akteur gegenüber verantwortlich sein. d. h. es sollte nur eine wohldefinierte Gruppe von Personen geben, die eine Veränderung veranlassen/verlangen können. Code, von dem verschiedene Akteure abhängen, sollte aufgeteilt werden.
   
-  :Common Closure Principle (CCP): Fasse in Komponenten solche Klassen zusammen, die sich aus dem gleichen Grund und zur gleichen Zeit ändern. Z.B. weil sie die gleichen Stakeholder haben oder die gleichen rechtlichen Grundlagen haben.
+  :Common Closure Principle (CCP): Fasse in Komponenten solche Klassen zusammen, die sich aus dem gleichen Grund und zur gleichen Zeit ändern. z. B. weil sie die gleichen Stakeholder haben oder die gleichen rechtlichen Grundlagen haben.
 
   Die beiden Prinzipien sind eng miteinander verwandt. Das CCP ist ein Prinzip, das auf allen Abstraktionsgeraden angewendet werden kann. Das SRP ist - zumindest ursprünglich - ein Prinzip, das nur auf der Ebene von Klassen und Modulen angewendet wurde.
 
@@ -442,7 +442,7 @@ Dependency Inversion Principle
 
 .. container:: supplemental
 
-  D.h. es sollte möglich sein neue Erweiterungen zu realisieren ohne dass man die Software verändern, rekompilieren, neu bereitstellen (:eng:`to deploy`) oder vergleichbare muss. Klassisches Beispiel ist ein Texteditor wie VS Code, welcher durch Extensions erweitert werden kann; d.h. es liegt eine Plug-in Architektur vor. 
+  d. h. es sollte möglich sein neue Erweiterungen zu realisieren ohne dass man die Software verändern, rekompilieren, neu bereitstellen (:eng:`to deploy`) oder vergleichbare muss. Klassisches Beispiel ist ein Texteditor wie VS Code, welcher durch Extensions erweitert werden kann; d. h. es liegt eine Plug-in Architektur vor. 
 
 
 
@@ -482,7 +482,7 @@ Open-closed Principle - Case Study
 
   Das Problem ist, dass wir hier die Nachrichten - welche im Prinzip die Schnittstelle modellieren - relativ exakt an den Anforderungen des Services zur Bestimmung der Verfügbarkeit von Autos ausgerichtet haben. 
   
-  Wie sähe in diesem Fall z.B. eine Erweiterung um einen Dienst für Kundenprämienberechnung aus? Über die ``VereinbarungID`` bekommen wir Zugriff auf die Daten des Kunden aber dies fordert dann mehr als einen *Lookup* in einer Datenbank und ggf. auch das Einbinden mehrerer Dienste, was es zu vermeiden gilt, da die Kopplung unnötig ansteigen würde.
+  Wie sähe in diesem Fall z. B. eine Erweiterung um einen Dienst für Kundenprämienberechnung aus? Über die ``VereinbarungID`` bekommen wir Zugriff auf die Daten des Kunden aber dies fordert dann mehr als einen *Lookup* in einer Datenbank und ggf. auch das Einbinden mehrerer Dienste, was es zu vermeiden gilt, da die Kopplung unnötig ansteigen würde.
 
 
 .. class:: smaller transition-scale
@@ -588,7 +588,7 @@ Interface Segregation Principle & Common Reuse Principle
 
 .. container:: supplemental
 
-  Segregation (:ger:`Abtrennung`) bezeichnet hier die Aufspaltung eines bestehenden Interfaces bei dem die Teile abgespalten werden, die logisch zu einer anderen Funktionalität gehören. D.h. die von der Schnittstelle zur Verfügung gestellte Funktionalität ist nicht homogen und wird deswegen in verschiedene Teile aufgeteilt.
+  Segregation (:ger:`Abtrennung`) bezeichnet hier die Aufspaltung eines bestehenden Interfaces bei dem die Teile abgespalten werden, die logisch zu einer anderen Funktionalität gehören. d. h. die von der Schnittstelle zur Verfügung gestellte Funktionalität ist nicht homogen und wird deswegen in verschiedene Teile aufgeteilt.
 
 
 
@@ -968,7 +968,7 @@ Hexagonal Architecture (Ports & Adapters) [#]_
 
   .. rubric:: Code Abhängigkeiten
 
-  Wie bei den anderen Architekturen auch, gehen auch hier die Abhängigkeiten immer von außen nach innen. D.h. die Entitäten sind von nichts abhängig, die Anwendungsfälle von den Entitäten, die Schnittstellen von den Anwendungsfällen und die externen Details von den Schnittstellen.
+  Wie bei den anderen Architekturen auch, gehen auch hier die Abhängigkeiten immer von außen nach innen. d. h. die Entitäten sind von nichts abhängig, die Anwendungsfälle von den Entitäten, die Schnittstellen von den Anwendungsfällen und die externen Details von den Schnittstellen.
 
 
 

@@ -311,7 +311,7 @@ Brute-Force-Kryptoanalyse der Caesar-Chiffre
 Brute-Force-Kryptoanalyse der Caesar-Chiffre
 ---------------------------------------------
 
-Die Entschlüsselung ist komplizierter, wenn der Klartext bereits eine sehr hohe Entropie aufweist, wie z.B. im Falle einer komprimierten Datei:
+Die Entschlüsselung ist komplizierter, wenn der Klartext bereits eine sehr hohe Entropie aufweist, wie z. B. im Falle einer komprimierten Datei:
 
 .. csv-table:: 
     :delim: space
@@ -437,10 +437,10 @@ Die Verschlüsselung wird für jedes Buchstabenpaar des Klartextes durchgeführt
 
 .. class:: smaller incremental
 
-1. Wenn beide Buchstaben gleich sind (oder nur ein Buchstabe übrig ist), fügen Sie ein "X" hinter dem ersten Buchstaben ein. Verschlüsseln Sie das neue Paar und fahren Sie fort. (Z. B. würde statt "ballon" "ba lx lo on" verschlüsselt werden.)
-2. Wenn die Buchstaben in der gleichen Zeile stehen, ersetzen sie sie durch die Buchstaben unmittelbar rechts davon (ggf. umbrechen). (Z. B. wird `ar` als `RM` verschlüsselt.)
-3. Tauchen die Buchstaben in derselben Spalte auf, so sind sie durch die unmittelbar darunter liegenden Buchstaben zu ersetzen (ggf. umbrechen). (Z. B. wird "mu" als "CM" verschlüsselt.)
-4. Befinden sich die Buchstaben nicht in derselben Zeile oder Spalte, so werden sie durch die Buchstaben in derselben Zeile bzw. in dem anderen Paar von Ecken des durch das ursprüngliche Paar definierten Rechtecks ersetzt. (Z. B. wird `hs` als `BP` und `ea` als `IM` verschlüsselt.)
+1. Wenn beide Buchstaben gleich sind (oder nur ein Buchstabe übrig ist), fügen Sie ein "X" hinter dem ersten Buchstaben ein. Verschlüsseln Sie das neue Paar und fahren Sie fort. (z. B. würde statt "ballon" "ba lx lo on" verschlüsselt werden.)
+2. Wenn die Buchstaben in der gleichen Zeile stehen, ersetzen sie sie durch die Buchstaben unmittelbar rechts davon (ggf. umbrechen). (z. B. wird `ar` als `RM` verschlüsselt.)
+3. Tauchen die Buchstaben in derselben Spalte auf, so sind sie durch die unmittelbar darunter liegenden Buchstaben zu ersetzen (ggf. umbrechen). (z. B. wird "mu" als "CM" verschlüsselt.)
+4. Befinden sich die Buchstaben nicht in derselben Zeile oder Spalte, so werden sie durch die Buchstaben in derselben Zeile bzw. in dem anderen Paar von Ecken des durch das ursprüngliche Paar definierten Rechtecks ersetzt. (z. B. wird `hs` als `BP` und `ea` als `IM` verschlüsselt.)
 
 
 
@@ -627,7 +627,7 @@ Schwierigkeiten bei der Verwendung eines One-Time-Pads
 Rail Fence Chiffre
 -------------------
 
-- Einfachste Transpositions-Chiffre (d.h. Chiffre basierend auf `Vertauschung`).
+- Einfachste Transpositions-Chiffre (d. h. Chiffre basierend auf `Vertauschung`).
 - Der Klartext wird als eine Folge von Diagonalen aufgeschrieben und dann als eine Folge von Zeilen abgelesen.
 
 .. admonition:: Beispiel

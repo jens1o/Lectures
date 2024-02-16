@@ -219,16 +219,16 @@ Diffusion
 
 - Die statistische Struktur des Klartextes wird in weitreichende Statistiken des Chiffretextes überführt, d. h. die statistische Beziehung zwischen Klartext und Chiffretext wird so komplex wie möglich.
 - :bold:`Dies wird dadurch erreicht, dass jede Klartextziffer den Wert *vieler* Chiffretextziffern beeinflusst.` (:ger-quote:`Lawineneffekt`)
-- Die Diffusion kann z. B. durch *Permutationen* erreicht werden.
+- Die Diffusion kann z. B. durch *Permutationen* erreicht werden.
 
 
 
 Konfusion
 ---------------------------
 
-- Versucht, die Beziehung zwischen den Statistiken des Chiffriertextes und dem Wert des Chiffrierschlüssels so komplex wie möglich zu gestalten, d.h. :bold:`eine einzige Änderung des Chiffrierschlüssels sollte viele Bits des Chiffriertextes beeinflussen.`
+- Versucht, die Beziehung zwischen den Statistiken des Chiffriertextes und dem Wert des Chiffrierschlüssels so komplex wie möglich zu gestalten, d. h. :bold:`eine einzige Änderung des Chiffrierschlüssels sollte viele Bits des Chiffriertextes beeinflussen.`
 - Selbst wenn der Angreifer die Statistik des Chiffretextes einigermaßen in den Griff bekommt, ist die Art und Weise, wie der Schlüssel verwendet wurde, um diesen Chiffretext zu erzeugen, so komplex, dass es schwierig ist, den Schlüssel abzuleiten.
-- Die Verwirrung kann z. B. durch *Substitutionen* realisiert werden.
+- Die Verwirrung kann z. B. durch *Substitutionen* realisiert werden.
 
 
 
@@ -549,18 +549,18 @@ Entwurfsprinzipien für Blockchiffre - Schlüsselableitung
 Übung - Feistelchiffre Implementieren
 ---------------------------------------
 
-Implementieren Sie eine Feistel Chiffre in einer Programmiersprache Ihrer Wahl (z.B. Java, Scala, Python, C, JavaScript ...), die es Ihnen ermöglicht: 
+Implementieren Sie eine Feistel Chiffre in einer Programmiersprache Ihrer Wahl (z. B. Java, Scala, Python, C, JavaScript ...), die es Ihnen ermöglicht: 
    
 - Nachrichten zu ver- und entschlüsseln
 - Blöcke von 128 Bit zu verschlüsseln
-- die Funktion :math:`f` einfach auszutauschen, um die Wirkung von :math:`f` zu testen (je nach Sprache Ihrer Wahl können Sie z. B. native Funktionen höherer Ordnung oder einen Funktionszeiger verwenden)
+- die Funktion :math:`f` einfach auszutauschen, um die Wirkung von :math:`f` zu testen (je nach Sprache Ihrer Wahl können Sie z. B. native Funktionen höherer Ordnung oder einen Funktionszeiger verwenden)
 - Für die Ableitung der Rundenschlüssel können Sie eine Funktion verwenden, die ein einfaches Verschieben des Schlüssels durchführt
 
 .. container:: tiny
 
     **Hinweis**
 
-    Kümmern Sie sich nicht um Nachrichten, die größer oder kleiner als die Blockgröße sind. Dies ist nicht notwendig, um die Auswirkungen von "f" oder der Verwendung eines runden Schlüssels zu verstehen. Kümmern Sie sich nicht um einen Schlüssel, der nicht die richtige Größe hat. D.h. verwenden Sie eine Nachricht und einen Schlüssel mit der entsprechenden Größe.
+    Kümmern Sie sich nicht um Nachrichten, die größer oder kleiner als die Blockgröße sind. Dies ist nicht notwendig, um die Auswirkungen von "f" oder der Verwendung eines runden Schlüssels zu verstehen. Kümmern Sie sich nicht um einen Schlüssel, der nicht die richtige Größe hat. d. h. verwenden Sie eine Nachricht und einen Schlüssel mit der entsprechenden Größe.
 
 
 
@@ -573,7 +573,7 @@ Implementieren Sie eine Feistel Chiffre in einer Programmiersprache Ihrer Wahl (
 2. Was passiert, wenn f nur 0x01-Werte zurückgibt (unabhängig vom Rundenschlüssel)?
 3. Was passiert, wenn f einfach die entsprechende Hälfte mit dem Ergebnis der Verschiebung des Schlüssels xor?
 4. Teste, was passiert, wenn du deine Nachricht änderst. Testen Sie insbesondere, was passiert wenn die Nachricht nur aus 0x00 besteht (und Sie eine :ger-quote:`vernünftigere` f-Funktion verwenden.)
-5. Teste, was passiert, wenn du deinen Schlüssel änderst. Was passiert in extremen Fällen (z.B. wenn das Passwort nur aus "0 "s besteht?
+5. Teste, was passiert, wenn du deinen Schlüssel änderst. Was passiert in extremen Fällen (z. B. wenn das Passwort nur aus "0 "s besteht?
 
 
 .. protected-exercise-solution:: Feistelchiffre

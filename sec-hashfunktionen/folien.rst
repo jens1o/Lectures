@@ -100,9 +100,9 @@ Sicherheitsanforderungen an kryptografische Hashfunktion II
 
     **Hintergrund**
 
-    Im Deutschen wird auch von Urbild-Angriffen gesprochen. In dem Fall ist *preimage resistance* (d.h. die Einweg Eigenschaft) gleichbedeutend damit, dass man nicht effektiv einen :ger-quote:`Erstes-Urbild-Angriff` durchführen kann. Hierbei ist das Urbild die ursprüngliche Nachricht :math:`M`, die *gehasht* wurde.
+    Im Deutschen wird auch von Urbild-Angriffen gesprochen. In dem Fall ist *preimage resistance* (d. h. die Einweg Eigenschaft) gleichbedeutend damit, dass man nicht effektiv einen :ger-quote:`Erstes-Urbild-Angriff` durchführen kann. Hierbei ist das Urbild die ursprüngliche Nachricht :math:`M`, die *gehasht* wurde.
 
-    *Second preimage resistance* ist dann gleichbedeutend damit, dass man nicht effektiv einen :ger-quote:`Zweites-Urbild-Angriff` durchführen kann. Es ist nicht möglich zu einer Nachricht M eine zweite Nachricht N (d.h. ein zweites Urbild) zu finden, die für eine gegebene Hashfunktion den gleich Hash aufweist.
+    *Second preimage resistance* ist dann gleichbedeutend damit, dass man nicht effektiv einen :ger-quote:`Zweites-Urbild-Angriff` durchführen kann. Es ist nicht möglich zu einer Nachricht M eine zweite Nachricht N (d. h. ein zweites Urbild) zu finden, die für eine gegebene Hashfunktion den gleich Hash aufweist.
 
 
 Beziehung zwischen den Sicherheitsanforderungen an Hashfunktionen
@@ -304,7 +304,7 @@ HMAC Computation in Python
 
   .. protected-exercise-solution:: XOR als Hashfunktion
 
-        Je nach Beschaffenheit der zugrunde liegenden Daten können wir die ursprüngliche Nachricht wiederherstellen. Stellen Sie sich z. B. vor, dass nur der erste Block sinnvolle Daten enthält und alle anderen Blöcke einfach "0" sind; außerdem können wir nicht alle Bits verwenden.
+        Je nach Beschaffenheit der zugrunde liegenden Daten können wir die ursprüngliche Nachricht wiederherstellen. Stellen Sie sich z. B. vor, dass nur der erste Block sinnvolle Daten enthält und alle anderen Blöcke einfach "0" sind; außerdem können wir nicht alle Bits verwenden.
 
 2. Warum sind Second-Preimage-Resistenz und Kollisionssicherheit nicht relevant, wenn der Hash-Algorithmus zum Hashing von Passwörtern verwendet wird?
 

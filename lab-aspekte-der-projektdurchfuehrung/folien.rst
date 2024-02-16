@@ -87,10 +87,10 @@ Risikomanagementplan
 -----------------------
 
 Erstellen Sie für Ihr Projekt ein Risikomanagementplan.
-D.h. betrachten Sie nur solche, die im Rahmen Ihres Projekts tatsächlich auftreten können.
+d. h. betrachten Sie nur solche, die im Rahmen Ihres Projekts tatsächlich auftreten können.
 
 - Identifizieren und bewerten Sie mögliche Risiken 
-- Beschreiben Sie für Risiken, die eine hohe Eintrittswahrscheinlichkeit haben, wie sie diesen Risiken begegnen; d.h. wie Ihre Strategie aussieht.
+- Beschreiben Sie für Risiken, die eine hohe Eintrittswahrscheinlichkeit haben, wie sie diesen Risiken begegnen; d. h. wie Ihre Strategie aussieht.
 
 
 
@@ -179,7 +179,7 @@ Qualitätssicherungsdokumentation am Projektende
 - Die Abgabe muss belegen, dass die beschriebenen Qualitätsmaßnahmen und Prozesse auch durchgeführt wurden. 
 - Es ist darauf zu achten, dass 
   
-  1. erkenntlich ist, dass der Prozess eingehalten wurde (d.h. wann und wie häufig etwas getan wurde) und auch, dass 
+  1. erkenntlich ist, dass der Prozess eingehalten wurde (d. h. wann und wie häufig etwas getan wurde) und auch, dass 
   2. die Maßnahmen im beschriebenen Umfang durchgeführt wurden.
 
 
@@ -189,7 +189,7 @@ Qualitätssicherungsdokumentation am Projektende
 
 Wurde als QS Maßnahme automatisierte Tests geplant, so ist die vollständige Liste der Tests abzugeben und es ist zu belegen welche Teile des Codes getestet wurden. Weiterhin ist die Relation der Tests zu den User Stories zu zeigen.
 
-Dies kann insbesondere dadurch geschehen, dass ein Auszug eines Codeabdeckungstools gezeigt wird; z.B. aggregiert auf Klassen-/Dateiebene. 
+Dies kann insbesondere dadurch geschehen, dass ein Auszug eines Codeabdeckungstools gezeigt wird; z. B. aggregiert auf Klassen-/Dateiebene. 
 
 Bitte halten Sie die Möglichkeit vor die Testsuite im Rahmen der Abschlusspräsentation zu zeigen.
 

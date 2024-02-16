@@ -81,7 +81,7 @@ Eine mögliche Architektur für RESTful Web Services
     **Resource-oriented Architecture (ROA)**
 
     - Informationen zur Methode werden in die HTTP-Methode aufgenommen.
-    - Scoping-Informationen gehen in den URI ein. (D.h. welche Daten sind betroffen.)
+    - Scoping-Informationen gehen in den URI ein. (d. h. welche Daten sind betroffen.)
 
 
 .. class:: incremental
@@ -134,7 +134,7 @@ Zwei Arten von Zustand: (1) Anwendungs-/Sitzungszustand
 
    :not-important:`Autorisierungs- und Authentifizierungsinformationen sind Beispiele für den Anwendungsstatus.`
 
-- Wird als Teil des vom Client zum Server und zurück zum Client übertragenen Inhalts beibehalten. D.h. der Client verwaltet den Anwendungszustand.
+- Wird als Teil des vom Client zum Server und zurück zum Client übertragenen Inhalts beibehalten. d. h. der Client verwaltet den Anwendungszustand.
 
 - Somit kann jeder Server die Transaktion potenziell an dem Punkt fortsetzen, an dem sie unterbrochen wurde.
 
@@ -151,7 +151,7 @@ Zwei Arten von Zustand: (2) Ressourcenzustand
 
 - Der Ressourcenzustand ist die Art von Zustand, auf die sich das *S* in *REST* bezieht.
 
-- Die Einschränkung :ger-quote:`zustandslos` bedeutet, dass alle Nachrichten den gesamten Anwendungsstatus enthalten müssen (d.h., dass wir effektiv keine Sitzungen haben).
+- Die Einschränkung :ger-quote:`zustandslos` bedeutet, dass alle Nachrichten den gesamten Anwendungsstatus enthalten müssen (d. h., dass wir effektiv keine Sitzungen haben).
 
 
 Mehrere Repräsentationen
@@ -193,7 +193,7 @@ Ressourcenmodellierung
 
     **DELETE** löscht die angegebene Ressource.
     
-    Der Unterschied zwischen **PUT** und **POST** besteht darin, dass **PUT** idempotent ist: der einmalige oder mehrmalige Aufruf hat die gleiche Wirkung (d.h. keine Nebenwirkung), während aufeinanderfolgende identische **POST** Aufrufe zusätzliche Wirkungen haben können, wie z.B. die mehrmalige Übergabe eines Auftrags/das mehrmalige Anlegen einer Nachricht.
+    Der Unterschied zwischen **PUT** und **POST** besteht darin, dass **PUT** idempotent ist: der einmalige oder mehrmalige Aufruf hat die gleiche Wirkung (d. h. keine Nebenwirkung), während aufeinanderfolgende identische **POST** Aufrufe zusätzliche Wirkungen haben können, wie z. B. die mehrmalige Übergabe eines Auftrags/das mehrmalige Anlegen einer Nachricht.
 
     Eine **PATCH**-Anfrage wird als ein Satz von Anweisungen zur Änderung einer Ressource betrachtet. Im Gegensatz dazu ist eine PUT-Anfrage eine vollständige Darstellung einer Ressource.
     

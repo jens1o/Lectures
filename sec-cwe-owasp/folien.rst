@@ -196,7 +196,7 @@ CWE-787: Out-of-bounds Write - Beispiel 5
 
 .. protected-exercise-solution:: Solution
 
-    - Problem: Zeichenketten, die nur aus Whitespace bestehen, werden nicht korrekt behandelt. In diesem Fall kommt es zu einem Buffer-Underflow (d.h. es wird auf den Speicherbereich vor dem Puffer zugegriffen).
+    - Problem: Zeichenketten, die nur aus Whitespace bestehen, werden nicht korrekt behandelt. In diesem Fall kommt es zu einem Buffer-Underflow (d. h. es wird auf den Speicherbereich vor dem Puffer zugegriffen).
     
 
 
@@ -236,13 +236,13 @@ CWE-787: Out-of-bounds Write - Mögliche Abhilfemaßnahmen
 .. class:: incremental
 
 - Verwendung einer sicheren Programmiersprache (Java, ...)
-- Verwendung von Bibliotheken, die sicherer sind (z.B. :code:`strncpy` statt :code:`strcpy`)
-- Kompilierung mit entsprechenden Flags, die entsprechende Prüfung aktivieren (z.B. :code:`-D_FORTIFY_SOURCE=2`)
+- Verwendung von Bibliotheken, die sicherer sind (z. B. :code:`strncpy` statt :code:`strcpy`)
+- Kompilierung mit entsprechenden Flags, die entsprechende Prüfung aktivieren (z. B. :code:`-D_FORTIFY_SOURCE=2`)
 - Kompilierung als Position-Independent-Code 
 
   :minor:`Dies löst nicht das Problem, aber es macht es schwerer eine Schwachstelle auszunutzen.`
 - Statische Analyse Werkzeuge
-- Dynamische Analyse Werkzeuge (z.B. *Fuzzing*, *Fault Injection*, ...)
+- Dynamische Analyse Werkzeuge (z. B. *Fuzzing*, *Fault Injection*, ...)
 
 
 
@@ -267,7 +267,7 @@ CWE-79: Improper Neutralization of Input During Web Page Generation
 
 .. container:: supplemental
 
-    Durch eine XSS Lücke werden häufig Informationen abgegriffen (z.B. Session Cookies). Allerdings ist es ggf. auch möglich, dass der Angreifer die Session des Nutzers übernimmt und sich als dieser ausgibt. 
+    Durch eine XSS Lücke werden häufig Informationen abgegriffen (z. B. Session Cookies). Allerdings ist es ggf. auch möglich, dass der Angreifer die Session des Nutzers übernimmt und sich als dieser ausgibt. 
 
 Stored XSS (Typ 2)
 -------------------
@@ -301,7 +301,7 @@ Dom-based XSS (Typ 0)
 
 .. container:: supplemental
 
-    Dom-based XSS ist am schwersten Auszunutzen, da der Angreifer den Nutzer dazu bringen muss den Schadcode in die Informationen einzubringen, die von dem Script verarbeitet werden (z.B. durch das Eingeben in ein Formular).
+    Dom-based XSS ist am schwersten Auszunutzen, da der Angreifer den Nutzer dazu bringen muss den Schadcode in die Informationen einzubringen, die von dem Script verarbeitet werden (z. B. durch das Eingeben in ein Formular).
 
 
 
@@ -381,7 +381,7 @@ CWE-79: Improper Neutralization of Input During Web Page Generation - Abhilfema�
 - Verringerung der Angriffsfläche mit dem Ziel möglichst wenig Daten in Cookies etc. zu speichern.
 - Prüfung dass alle Client-seitigen Prüfungen auch Server-seitig vorgenommen werden.
 - Prüfe jeden Input.
-- Verwendung von HttpOnly Cookies (d.h. Cookies, die nicht über JavaScript ausgelesen werden können)
+- Verwendung von HttpOnly Cookies (d. h. Cookies, die nicht über JavaScript ausgelesen werden können)
 - Statische Analyse Werkzeuge
 - Beherzigen von Best Practices (`XSS Prevention Cheat Sheet <https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html>`__)
 
@@ -617,7 +617,7 @@ CWE-416: Use After Free - Abhilfemaßnahmen und Erkennung
 
 .. class:: incremental
 
-- Wahl einer sicheren Programmiersprache (z.B. RUST)
+- Wahl einer sicheren Programmiersprache (z. B. RUST)
 - explizites :code:`NULL` setzen, nachdem der Speicherbereich freigegeben wurde 
 - Fuzzing
 - Statische Analyse Werkzeuge
@@ -718,14 +718,14 @@ CWE-20: Improper Input Validation - zu verifizierende Werte und Eigenschaften
 .. class:: incremental smaller
 
 - **Größen** wie Größe, Länge, Häufigkeit, Preis, Rate, Anzahl der Vorgänge, Zeit usw.
-- **implizite oder abgeleitete Größen**, wie z. B. die tatsächliche Größe einer Datei anstelle einer angegebenen Größe
+- **implizite oder abgeleitete Größen**, wie z. B. die tatsächliche Größe einer Datei anstelle einer angegebenen Größe
 - **Indizes**, Offsets oder Positionen in komplexeren Datenstrukturen
 - **Schlüssel** von Hashtabellen, assoziativen Feldern usw.
 - **syntaktische Korrektheit** - Übereinstimmung mit der erwarteten Syntax
 - Bestimmung des **tatsächlichen Typs der Eingabe** (oder das, was die Eingabe zu sein scheint)
 - **Konsistenz** zwischen den Rohdaten und Metadaten, zwischen Referenzen usw.
-- **semantische Korrektheit** bzw. Konformität mit domänenspezifischen Regeln, z. B. Geschäftslogik
-- **Authentizität** von z. B. kryptografischen Signaturen 
+- **semantische Korrektheit** bzw. Konformität mit domänenspezifischen Regeln, z. B. Geschäftslogik
+- **Authentizität** von z. B. kryptografischen Signaturen 
 
 
 
@@ -813,7 +813,7 @@ CWE-125: Out-of-bounds Read
 
 .. container:: supplemental
 
-    Die Ausnutzung dieser Schwachstelle ist häufig schwierig, da nicht immer bekannt ist welche und wieviele Daten gelesen werden können. Es kann allerdings möglich sein Speicheradressen auszulesen. Dies kann ggf. genutzt werden, um Mechanismen wie ASLR zu umgehen.
+    Die Ausnutzung dieser Schwachstelle ist häufig schwierig, da nicht immer bekannt ist welche und wie viele Daten gelesen werden können. Es kann allerdings möglich sein Speicheradressen auszulesen. Dies kann ggf. genutzt werden, um Mechanismen wie ASLR zu umgehen.
 
 
 .. class:: scriptsize
@@ -928,7 +928,7 @@ Perl:
 
     - Problem im Perl Beispiel: :code:`Username` wird nur bzgl. ../ am Anfang der Zeichenkette gesäubert. Beginnt der Nutzername mit :code:`../../` dann kann der Angreifer dennoch zum darüber liegenden Verzeichnis wechseln. Es fehlt im Wesentlichen das :code:`g` Flag (vgl. Reguläre Ausdrücke in ``sed``)
 
-    - Problem im Java Beispiel: Auch in diesem Falle wird zwar der Anfang geprüft, d.h. ob der Pfad mit :code:`/safe_dir/` beginnt, aber dies verhindert nicht, dass der Pfad im Weiteren :code:`../` verwendet und der Angreifer darüber zu einem höherliegenden Verzeichnis wechseln kann.
+    - Problem im Java Beispiel: Auch in diesem Falle wird zwar der Anfang geprüft, d. h. ob der Pfad mit :code:`/safe_dir/` beginnt, aber dies verhindert nicht, dass der Pfad im Weiteren :code:`../` verwendet und der Angreifer darüber zu einem höherliegenden Verzeichnis wechseln kann.
 
 
 .. class:: scriptsize
@@ -1000,7 +1000,7 @@ CWE-352: Cross-Site Request Forgery (CSRF)
 
     Die Webanwendung prüft nicht bzw. kann nicht prüfen, ob eine Anfrage absichtlich von dem Benutzer gestellt wurde, von dessen Browser sie übermittelt wurde.
 
-    D.h. eine CSRF Schwachstelle nutzt das Vertrauen aus, das eine Webseite in den Browser eines Nutzers hat. Bei einem CSRF-Angriff wird ein legitimer Nutzer von einem Angreifer dazu gebracht, ohne sein Wissen eine Anfrage zu übermitteln, die er nicht beabsichtigt hat und auch nicht bemerkt.
+    d. h. eine CSRF Schwachstelle nutzt das Vertrauen aus, das eine Webseite in den Browser eines Nutzers hat. Bei einem CSRF-Angriff wird ein legitimer Nutzer von einem Angreifer dazu gebracht, ohne sein Wissen eine Anfrage zu übermitteln, die er nicht beabsichtigt hat und auch nicht bemerkt.
 
 :Missbrauchswahrscheinlichkeit: Mittel
 :Auswirkung: Hängt von den Nutzerrechten ab
@@ -1045,7 +1045,7 @@ Standardtechniken, die CSRF verhindern *sollen*:
   
   - Einmalig pro Nutzersession
   - Geheim
-  - nicht vorhersagbar (z.B. eine sehr große, sicher erzeugte Zufallszahl)
+  - nicht vorhersagbar (z. B. eine sehr große, sicher erzeugte Zufallszahl)
  
 - Validierung des Referer-Header 
 - Custom Request Header, da diese nur vom JavaScript Code gesetzt werden können, der den gleichen Ursprung hat (siehe *Same Origin Policy* (SOP)).
@@ -1193,7 +1193,7 @@ CWE-122: Heap-based Buffer Overflow - Abhilfemaßnahmen und Erkennung
 - Verwendung einer sicheren Programmiersprache
 - Verwendung von sicheren APIs
 - Kompilierung unter Verwendung entsprechender Schutzmechanismen (Position-Independent Executables (PIE), Canaries, ...)
-- Härtung der Umgebung (z.B. ASLR)
+- Härtung der Umgebung (z. B. ASLR)
 - Statische Analyse Werkzeuge
 - Fuzzing
 
@@ -1301,7 +1301,7 @@ CWE-502: Deserialization of Untrusted Data - Abhilfemaßnahmen und Erkennung
 
 - ggf. Einsatz von Signaturen, um sicherzustellen, dass der serialisierte Code nicht manipuliert wurde 
 - Serialisiere nur Daten, die auch wirklich serialisiert werden müssen
-- Verwendung von sicheren Formaten (z.B. JSON)
+- Verwendung von sicheren Formaten (z. B. JSON)
 - statische Analyse
 
 .. class:: supplemental
@@ -1459,7 +1459,7 @@ CWE-843: Access of Resource Using Incompatible Type (Type Confusion)
 
 :Beschreibung: 
 
-        Eine Anwendung initialisiert eine Ressource mit einem bestimmten Typ (z.B. Zeiger (:eng:`Pointer`), Objekt, etc.). Später wird auf die Ressource (Variable) dann mit einem anderen Typ zugegriffen. 
+        Eine Anwendung initialisiert eine Ressource mit einem bestimmten Typ (z. B. Zeiger (:eng:`Pointer`), Objekt, etc.). Später wird auf die Ressource (Variable) dann mit einem anderen Typ zugegriffen. 
 
 :Sprachen: insbesondere (aber nicht ausschließlich) C/C++; im Prinzip in jeder Sprache, die automatische Typkonvertierungen durchführt. 
 :Ausmaß: Integrität, Verfügbarkeit, Vertraulichkeit
@@ -1591,7 +1591,7 @@ OWASP
 1. Benenne die Schwachstelle(n) entsprechend der CWEs (ohne ID).
 2. Identifiziere die für die Schwachstelle(n) relevanten Zeilen im Code.
 3. Gebe - falls möglich - einen Angriffsvektor an.
-4. Skizziere mögliche Auswirkung der Schwachstelle(n) (z.B. Verlust der Vertraulichkeit, Integrität oder Verfügbarkeit; Umgehung der Zugriffskontrolle; beliebige Codeausführung, ...) 
+4. Skizziere mögliche Auswirkung der Schwachstelle(n) (z. B. Verlust der Vertraulichkeit, Integrität oder Verfügbarkeit; Umgehung der Zugriffskontrolle; beliebige Codeausführung, ...) 
 
 .. code:: C
     :class: tiny
@@ -1613,7 +1613,7 @@ OWASP
 
 .. protected-exercise-solution:: Solution
 
-    Die Länge von :code:`str` wird nicht validiert. Es kommt somit potentiel zu einem "Out-of-bounds Write" (:code:`strcpy(buffer,str)`). Ein String wäre jeder String, der länger als 16 Zeichen ist. Ein Angriffsvektor wäre z.B. ein String, der 17 Zeichen lang ist und am Ende ein :code:`\0` enthält. Die Auswirkung wäre ein Pufferüberlauf, der ggf. zur Ausführung von beliebigem Code führt.
+    Die Länge von :code:`str` wird nicht validiert. Es kommt somit potentiel zu einem "Out-of-bounds Write" (:code:`strcpy(buffer,str)`). Ein String wäre jeder String, der länger als 16 Zeichen ist. Ein Angriffsvektor wäre z. B. ein String, der 17 Zeichen lang ist und am Ende ein :code:`\0` enthält. Die Auswirkung wäre ein Pufferüberlauf, der ggf. zur Ausführung von beliebigem Code führt.
 
 
 .. class:: integrated-exercise 
@@ -1649,7 +1649,7 @@ OWASP
 
 .. protected-exercise-solution:: Solution
 
-    Es handelt sich um eine *Reflected Cross-Site Scripting* Schwachstelle. Der Angreifer kann beliebigen Code ausführen, wenn er es schafft der angegriffenen Person den richtigen Link unterzuschieben. In diesem Fall wird der Code in der Variable :code:`comment` ausgeführt. Der Angreifer könnte also z.B. folgende Anfrage stellen:
+    Es handelt sich um eine *Reflected Cross-Site Scripting* Schwachstelle. Der Angreifer kann beliebigen Code ausführen, wenn er es schafft der angegriffenen Person den richtigen Link unterzuschieben. In diesem Fall wird der Code in der Variable :code:`comment` ausgeführt. Der Angreifer könnte also z. B. folgende Anfrage stellen:
 
     :code:`POST /post/comment HTTP/1.1 Host: important-website.com Content-Length: 100 postId=3&comment=<script>/*+Bad+stuff+here...+*/</script>&name=Karl+Gustav`
 
@@ -1725,6 +1725,6 @@ OWASP
 
 .. protected-exercise-solution:: Solution
 
-    Es handelt sich um eine *Reflected Cross-Site Scripting* Schwachstelle. Der Angreifer kann beliebigen Code ausführen, wenn er es schafft der angegriffenen Person den richtigen Link unterzuschieben. In diesem Fall wird der Code in der Variable :code:`term` ausgeführt. Der Angreifer könnte also z.B. folgende Anfrage stellen:
+    Es handelt sich um eine *Reflected Cross-Site Scripting* Schwachstelle. Der Angreifer kann beliebigen Code ausführen, wenn er es schafft der angegriffenen Person den richtigen Link unterzuschieben. In diesem Fall wird der Code in der Variable :code:`term` ausgeführt. Der Angreifer könnte also z. B. folgende Anfrage stellen:
 
     :code:`https://my-website.com/search?term=<script>/*+Bad+stuff+here...+*/</script>``

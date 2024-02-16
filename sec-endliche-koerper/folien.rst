@@ -100,7 +100,7 @@ Zyklische Gruppen
 
 .. container:: supplemental
 
-    Eine zyklische Gruppe ist z.B. :math:`{1,2,4,8,16,...}` mit :math:`a = 2` und :math:`e = 1` (:math:`k` muss nicht Teil der zyklischen Gruppe sein.)
+    Eine zyklische Gruppe ist z. B. :math:`{1,2,4,8,16,...}` mit :math:`a = 2` und :math:`e = 1` (:math:`k` muss nicht Teil der zyklischen Gruppe sein.)
 
 
 
@@ -157,7 +157,7 @@ Körper
 --------------------
 
 - Ein Feld :math:`F`, manchmal auch bezeichnet als :math:`\lbrace F, +, \times \rbrace`, ist eine Menge von Elementen mit zwei binären Operationen, genannt Addition und Multiplikation, so dass für alle :math:`a, b, c \in F` die Axiome (A1-M6) gelten. 
-- :math:`F` ist ein Integritätsbereich, d.h. :math:`F` erfüllt die Axiome A1 bis A5 und M1 bis M6 
+- :math:`F` ist ein Integritätsbereich, d. h. :math:`F` erfüllt die Axiome A1 bis A5 und M1 bis M6 
   
 .. class:: incremental 
     
@@ -648,7 +648,7 @@ ___________________________________________________________________
 Polynomarithmetik über :math:`GF(2^3)` 
 -----------------------------------------
 
-Um den endlichen Körper :math:`GF(2^3)` zu konstruieren, müssen wir ein irreduzibles Polynom vom Grad 3 wählen, d.h. entweder :math:`(x^3+x^2+1)` oder :math:`(x^3+x+1)`.
+Um den endlichen Körper :math:`GF(2^3)` zu konstruieren, müssen wir ein irreduzibles Polynom vom Grad 3 wählen, d. h. entweder :math:`(x^3+x^2+1)` oder :math:`(x^3+x+1)`.
 
 .. container:: incremental margin-top-1em
 
@@ -741,7 +741,7 @@ Multiplikation in :math:`GF(2^n)`
 
     Beobachtung: :math:`x^8\;mod\; m(x) = [m(x)-x^8] = x^4 +x^3 +x +1` 
 
-    Es folgt, dass die Multiplikation mit :math:`x` (d.h., :math:`0000\,0010`) als 1-Bit-Linksverschiebung gefolgt von einer bedingten bitweisen XOR-Operation mit :math:`0001\,1011` implementiert werden kann:
+    Es folgt, dass die Multiplikation mit :math:`x` (d. h., :math:`0000\,0010`) als 1-Bit-Linksverschiebung gefolgt von einer bedingten bitweisen XOR-Operation mit :math:`0001\,1011` implementiert werden kann:
 
     .. math::
         x \times f(x) =
@@ -869,7 +869,7 @@ Gegeben sei :math:`GF(2^5)` mit dem irreduziblen Polynom :math:`p(x) = x^5 + x^2
         3 = 0000 0011
         xor =>.. 0100
 
-    Die Lösung ist in beiden Fällen: 4 (d.h. Addition und Subtraktion sind gleich; jeder Wert ist sein additiver Kehrwert).
+    Die Lösung ist in beiden Fällen: 4 (d. h. Addition und Subtraktion sind gleich; jeder Wert ist sein additiver Kehrwert).
 
 - Berechne: :math:`(0x03\; \times\; 0x46)`
 

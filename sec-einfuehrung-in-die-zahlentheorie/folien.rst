@@ -145,7 +145,7 @@ Verfahren zur Bestimmung des größten gemeinsamen Teilers (GGT) von zwei positi
 
 .. admonition:: Definition
 
-    Zwei ganze Zahlen sind **relativ prim** (:eng:`relatively prime`), wenn ihr einziger gemeinsamer positiver ganzzahliger Faktor 1 ist (z.B. 7 und 9, aber auch 3 und 8).
+    Zwei ganze Zahlen sind **relativ prim** (:eng:`relatively prime`), wenn ihr einziger gemeinsamer positiver ganzzahliger Faktor 1 ist (z. B. 7 und 9, aber auch 3 und 8).
 
 
 
@@ -336,7 +336,7 @@ Wenn :math:`n|(a - b)`, dann gilt :math:`(a - b) = kn` für ein :math:`k`
 
     Im zweiten Schritt haben wir :math:`mod\; n` auf beide Seiten angewendet. 
     
-    D.h. :math:`(b + kn) mod\; n` :math:`\hat{=}` (Rest wenn :math:`b + kn` geteilt wird durch :math:`n`).
+    d. h. :math:`(b + kn) mod\; n` :math:`\hat{=}` (Rest wenn :math:`b + kn` geteilt wird durch :math:`n`).
 
 
 Eigenschaften der modularen Arithmetik
@@ -960,7 +960,7 @@ dass die bekannten Reste der Dezimalzahl :math:`x` :math:`r_2 = 0` und :math:`r_
 
 .. class:: incremental
 
-Daher ist :math:`x\; mod \;2 = 0`; d.h. :math:`x` muss eine gerade Zahl sein; außerdem ist :math:`x\; mod\; 5 = 3`.
+Daher ist :math:`x\; mod \;2 = 0`; d. h. :math:`x` muss eine gerade Zahl sein; außerdem ist :math:`x\; mod\; 5 = 3`.
 
 .. class:: incremental
 

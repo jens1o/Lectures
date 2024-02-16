@@ -408,7 +408,7 @@ Bei allen bisher betrachteten Scans kann der Scanner prinzipiell identifiziert w
 
     Sollte ein Intrusion Detection System vorhanden sein, so wird dieses den Zombie als Angreifer identifizieren.
 
-    **Grundlegende Idee**: Der Zombie sendet ein RST Paket zurück, da er kein SYN gesendet hat und kein SYN/ACK erwarte. Dadurch erfährt der Angreifer die aktuelle IP ID des Zombies. Über diesen Seitenkanal - d.h. die Veränderung der IP ID des Zombies - kann der Angreifer nun den Zustand des Ports auf dem Zielrechner ermitteln.
+    **Grundlegende Idee**: Der Zombie sendet ein RST Paket zurück, da er kein SYN gesendet hat und kein SYN/ACK erwarte. Dadurch erfährt der Angreifer die aktuelle IP ID des Zombies. Über diesen Seitenkanal - d. h. die Veränderung der IP ID des Zombies - kann der Angreifer nun den Zustand des Ports auf dem Zielrechner ermitteln.
 
 .. [#] `NMap Book <https://nmap.org/book/idlescan.html>`__
 
@@ -543,7 +543,7 @@ Denial-of-Service (DoS) Angriffe
 
 Ziel des Angreifers: Lahmlegen eines Dienstes oder des ganzen Systems ...
 
-- durch Ausnutzen von Schwachstellen (:eng:`vulnerabilities`, z.B. Buffer Overflow)
+- durch Ausnutzen von Schwachstellen (:eng:`vulnerabilities`, z. B. Buffer Overflow)
 - durch Generierung von Überlast (Ausschöpfen von RAM, CPU, Netzwerkbandbreite, ...)
 
 .. admonition:: Beispiel: Ping-of-Death
@@ -692,7 +692,7 @@ Distributed Denial-of-Service (DDoS) Angriff
 
 - Bot-Netze (Botnetze) werden verwendet, um DDoS-Angriffe durchzuführen.
 - Bot-Netze können viele 10.000 Rechner umfassen.
-- IoT Geräte sind besonders beliebt (z.B. IP-Kameras, Smart-TVs, Smart-Home Geräte, ...), da diese oft nicht ausreichend geschützt sind und trotzdem permanent mit dem Internet verbunden sind.
+- IoT Geräte sind besonders beliebt (z. B. IP-Kameras, Smart-TVs, Smart-Home Geräte, ...), da diese oft nicht ausreichend geschützt sind und trotzdem permanent mit dem Internet verbunden sind.
 - Beliebte Ziele:
 
   - Onlinespieleserver
@@ -708,7 +708,7 @@ Distributed-Reflected-Denial-of-Service (DRDoS) Angriff
 
   .. class:: incremental smaller
   
-  - Es wird eine Anfrage an einen Server gesendet, die eine große Antwort auslöst. (z.B. hat(te) der NTP Monlist Befehl eine Antwort, die ca. 200 Fach größer ist als die Anfrage!)
+  - Es wird eine Anfrage an einen Server gesendet, die eine große Antwort auslöst. (z. B. hat(te) der NTP Monlist Befehl eine Antwort, die ca. 200 Fach größer ist als die Anfrage!)
   - Mittels IP-Spoofing wird die IP-Adresse des Opfers als Absenderadresse verwendet.
   - Es werden insbesondere Dienste basierend auf UDP verwendet, da hier keine Verbindung aufgebaut werden muss.
 
@@ -761,7 +761,7 @@ Schutz vor DDoS-Angriffen - On-Site Robustheitsmaßnahmen
 
 .. class:: incremental
 
-- Aufrüsten der Ressourcen (z.B. Bandbreite, CPU, RAM, ...) 
+- Aufrüsten der Ressourcen (z. B. Bandbreite, CPU, RAM, ...) 
 - Exemplarische Sofortmaßnahmen bei aktivem Angriff: 
   
   .. class:: incremental smaller
@@ -787,7 +787,7 @@ Schutz vor DDoS-Angriffen - Off-Site Robustheitsmaßnahmen
   
 - Einbinden des ISP
 - Einbinden spezialisierter Dienstleister (im Angriffsfall wird mittels BGP-Rerouting der Traffic an den Dienstleister umgeleitet, der dann die DDos Attacke filtert.)
-- Content-Delivery-Networks (CDNs) für statische Inhalte (z.B. Cloudflare, Akamai, ...)
+- Content-Delivery-Networks (CDNs) für statische Inhalte (z. B. Cloudflare, Akamai, ...)
 - Distributed Clouds
 
 
@@ -801,7 +801,7 @@ Password Sniffing
 
 .. container:: supplemental
 
-    Unverschlüsselte Passworte können leicht mittels eines Sniffers, der den Netzwerkverkehr mitschneidet (z.B. Wireshark), abgefangen werden.
+    Unverschlüsselte Passworte können leicht mittels eines Sniffers, der den Netzwerkverkehr mitschneidet (z. B. Wireshark), abgefangen werden.
 
 
 Einmal-Passwörter
@@ -809,7 +809,7 @@ Einmal-Passwörter
 
 Die Idee ist, dass Passwörter nur genau einmal gültig sind und nicht wiederverwendbar sind.
 
-- Tokens (z.B. RSA SecurID)
+- Tokens (z. B. RSA SecurID)
 - Codebuch: Liste von Einmal-Passwörtern, die das gemeinsame Geheimnis sind.
 - S/Key: Passwort "wird mit einem Zähler kombiniert" und dann gehasht.
 
@@ -843,7 +843,7 @@ Das S/Key Verfahren
 
         .. class:: incremental
        
-        - Der Server fragt den Nutzer nach dem Passwort :math:`n-1` (d.h. :math:`H^{n-1}(W)`) und übermittelt ggf. auch den Salt. 
+        - Der Server fragt den Nutzer nach dem Passwort :math:`n-1` (d. h. :math:`H^{n-1}(W)`) und übermittelt ggf. auch den Salt. 
         - Der Server hasht das Passwort und vergleicht es mit dem gespeicherten Passwort :math:`H^n(W)`.
         - Ist das Passwort korrekt, dann wird der Nutzer angemeldet und der Server speichert das Passwort :math:`H^{n-1}(W)` als neues Passwort :math:`H^n(W)` und dekrementiert n.
 
@@ -929,7 +929,7 @@ Secure Shell (SSH) - Risiken durch mangelnde Schlüsselverwaltung
 SSH Tunneling
 -----------------------
 
-- ermöglicht die Übertragung beliebiger Netzwerkdaten über eine verschlüsselte SSH-Verbindung. Z.B. 
+- ermöglicht die Übertragung beliebiger Netzwerkdaten über eine verschlüsselte SSH-Verbindung. z. B. 
 
   - um ältere Anwendungen zu verschlüsseln. 
   - um VPNs (Virtual Private Networks) zu implementieren 
@@ -988,7 +988,7 @@ Schwachstellen in SSH
 
 .. Lösung:
    - Wenn der Port geschlossen ist, dann sendet der Zielrechner ein RST Paket an den Zombie. Dieses wird vom Zombie ignoriert. Daher erhöht sich die IP ID des Zombies nicht.
-   - Wenn der Port offen ist, dann sendet der Zielrechner ein SYN/ACK Paket an den Zombie. Dieser antwortet mit einem RST Paket und erhöht seine IP ID um 1. D.h. der Wert der IP ID des Zombies ist um 2 höher wenn der Port offen ist und "nur" eins höher sonst.
+   - Wenn der Port offen ist, dann sendet der Zielrechner ein SYN/ACK Paket an den Zombie. Dieser antwortet mit einem RST Paket und erhöht seine IP ID um 1. d. h. der Wert der IP ID des Zombies ist um 2 höher wenn der Port offen ist und "nur" eins höher sonst.
 
 
 .. class:: integrated-exercise transition-move-left
@@ -1145,14 +1145,14 @@ Zentraler Schutz des gesamten internen Netzwerks durch:
   - Blockieren bestimmter IP-Empfänger-Adressen (extern / intern)
   - Blockieren bestimmter IP-Absender-Adressen (extern / intern)
     
-    :minor:`(Z.B. aus dem Internet mit internen IP-Absender-Adressen.)`
+    :minor:`(z. B. aus dem Internet mit internen IP-Absender-Adressen.)`
   
   - Blockieren bestimmter Dienste; ggf. nur für bestimmte IP-Adressen
 
 - Filter auf Anwendungsebene (:eng:`Application-level Filtering`)
 
   - inhaltsbezogene Filterung der Verkehrsdaten eines Dienstes
-  - z.B. Virenfilter
+  - z. B. Virenfilter
   - wirkungslos bei verschlüsselten Verkehrsdaten
 
 - Protokollierungsmöglichkeit der Kommunikation von / nach extern
@@ -1261,14 +1261,14 @@ Screened Host
 
 - von extern nur Gate sichtbar 
 - Pakete von intern nur via Gate
-- Gate bietet Proxy-Server (z.B. für E-Mail)
+- Gate bietet Proxy-Server (z. B. für E-Mail)
 
 
 .. container:: supplemental
 
     Gibt es für eine bestimmte Anwendung kein Application-level Proxy, dann kann auf einen für TCP/UDP generischen Proxy zurückgegriffen werden. Dieser arbeitet auf dem Session Layer und kann nur die Header-Informationen auswerten. Es handelt sich dann um ein :eng:`Circuit-level Proxy/Gateway`. Im Vergleich zu einem Application-level Proxy ist die Sicherheit geringer, da der Circuit-level Proxy nicht in der Lage ist, die Daten zu interpretieren.
 
-    Ein allgemeines Problem ist, dass viele Anwendungen auf generische Protokolle wie HTTP aufsetzen. Weiterhin betreiben einige Anwendungen :ger-quote:`Port Hopping`, d.h. sie wechseln den Port wenn der Standardport nicht offen ist.
+    Ein allgemeines Problem ist, dass viele Anwendungen auf generische Protokolle wie HTTP aufsetzen. Weiterhin betreiben einige Anwendungen :ger-quote:`Port Hopping`, d. h. sie wechseln den Port wenn der Standardport nicht offen ist.
 
     Eine Anforderung an :ger-quote:`Next-generation Firewalls` ist, dass diese die Analyse von den Daten einer Anwendung unabhängig vom Port und Protokoll ermöglichen.
 
@@ -1316,7 +1316,7 @@ Intrusion Detection Systeme (IDS)
 
 .. admonition:: Definition
 
-    Ein IDS ist ein Gerät (meist ein speziell konfigurierter Rechner), das vielfältige Techniken zur Erkennung von Angriffen anwendet und Angriffe meldet und ggf. abwehrt, in dem (z.B.) die Firewall automatisch umkonfiguriert wird.
+    Ein IDS ist ein Gerät (meist ein speziell konfigurierter Rechner), das vielfältige Techniken zur Erkennung von Angriffen anwendet und Angriffe meldet und ggf. abwehrt, in dem (z. B.) die Firewall automatisch umkonfiguriert wird.
 
 .. container:: incremental
 
@@ -1369,7 +1369,7 @@ IDS-Erkennungstechniken
 
 1. Was sind Vorteile eines Dual Homed Host gegenüber einem Paketfilter? Was sind die Nachteile?
 
-2. Benennen Sie zwei konzeptionelle Grenzen von Firewalls. D.h. zwei Szenarien gegen die Firewalls nicht schützen können.
+2. Benennen Sie zwei konzeptionelle Grenzen von Firewalls. d. h. zwei Szenarien gegen die Firewalls nicht schützen können.
 
 3. Für welche der folgenden Cybersicherheitsstrategien können Firewalls eingesetzt werden:
    
@@ -1405,7 +1405,7 @@ Tor (The Onion Router)
 .. class:: incremental
 
 - Anwendungsunabhängiger **low-latency Anonymisierungsdienst für TCP-Verbindungen**, der den Standort und die IP des Nutzers verschleiert
-- Typische Anwendung: anonymes Surfen im Internet und Instant Messaging (z.B. Briar)
+- Typische Anwendung: anonymes Surfen im Internet und Instant Messaging (z. B. Briar)
 - Frei und Open Source
 - gegründet 2002, öffentlich nutzbar seit 2003, Code seit 2004 frei verfügbar
 - Baut ein *Overlay-Netzwerk* auf
@@ -1544,7 +1544,7 @@ Onion Routing
 
 .. container:: supplemental
 
-    :`Onion Routing`:eng:: bedeutet, dass die Datenpakete mehrfach verschlüsselt werden. Jeder Tor-Knoten kann nur die Verschlüsselungsschicht entfernen, für die er den Schlüssel hat. Die Schlüssel werden mit dem Client während des Aufbaus des Circuits ausgehandelt. Es gibt für jeden Tor-Knoten einen eigenen Schlüssel und die Nachrichten werden in umgekehrter Reihenfolge der Tor-Knoten entlang des Pfades verschlüsselt. D.h. die Verschlüsselung für den Entry Node wird als letztes angewendet, da diese als erstes entfernt wird.
+    :`Onion Routing`:eng:: bedeutet, dass die Datenpakete mehrfach verschlüsselt werden. Jeder Tor-Knoten kann nur die Verschlüsselungsschicht entfernen, für die er den Schlüssel hat. Die Schlüssel werden mit dem Client während des Aufbaus des Circuits ausgehandelt. Es gibt für jeden Tor-Knoten einen eigenen Schlüssel und die Nachrichten werden in umgekehrter Reihenfolge der Tor-Knoten entlang des Pfades verschlüsselt. d. h. die Verschlüsselung für den Entry Node wird als letztes angewendet, da diese als erstes entfernt wird.
 
     :Cells: sind die Datenpakete, die zwischen den Tor-Knoten ausgetauscht werden. Cells sind immer 512Byte groß, um es unmöglich zu machen anhand der Größe der Datenpakete Rückschlüsse auf die Daten zu ziehen.
 
@@ -1654,7 +1654,7 @@ Informationen über Tor Relays
 Tor Exit Nodes
 -----------------
 
-Die Anzahl der Exit nodes ist deutlich kleiner (2. Jan. 2024 - 1314 Einträge) als die Anzahl der Knoten. Dies liegt daran, dass die technischen Anforderungen höher sind (z.B. stabile IP Adressen) und insbesondere daran, dass die Betreiber der ``Exit nodes`` darauf vorbereitet sein müssen ggf. (zahlreiche) Anfragen von den Behörden zu bekommen. [#]_
+Die Anzahl der Exit nodes ist deutlich kleiner (2. Jan. 2024 - 1314 Einträge) als die Anzahl der Knoten. Dies liegt daran, dass die technischen Anforderungen höher sind (z. B. stabile IP Adressen) und insbesondere daran, dass die Betreiber der ``Exit nodes`` darauf vorbereitet sein müssen ggf. (zahlreiche) Anfragen von den Behörden zu bekommen. [#]_
 
 .. image:: images/tor-german-exit-node.png
     :alt: Deutscher Tor Exit Node von der TU Berlin
@@ -1677,7 +1677,7 @@ Jeder ``Node`` legt in seiner ``Exit Policy`` genau fest welchen Datenverkehr we
 
 - Es gibt offene Exit Nodes, die alle Anfragen weiterleiten.
 - Es gibt Knoten, die die Daten nur an weitere Tor-Knoten weiterleiten.
-- Es gibt Knoten, die nur bestimmte Dienste (z.B. HTTPs) weiterleiten.
+- Es gibt Knoten, die nur bestimmte Dienste (z. B. HTTPs) weiterleiten.
 - Es gibt :ger-quote:`private Exit Nodes`, die nur zu einem bestimmten Netz Verbindungen aufbauen.
 
 
@@ -1753,7 +1753,7 @@ Tor
 
     *Website Fingerprinting*
 
-    Website Fingerprinting ermöglicht es die besuchten Websites anhand des Datenverkehrs zu identifizieren. Dabei wird nicht der Inhalt der Datenpakete analysiert, sondern die statistischen Eigenschaften des Datenverkehrs. Wie groß sind die Datenpakete (d.h. die ausgelieferten Dateien)? Wie viele Datenpakete werden wann verschickt? Wie lange dauert es bis ein Datenpaket verschickt wird (d.h. Geschwindigkeit der Webseite)? Wie lange dauert es bis ein Datenpaket ankommt?
+    Website Fingerprinting ermöglicht es die besuchten Websites anhand des Datenverkehrs zu identifizieren. Dabei wird nicht der Inhalt der Datenpakete analysiert, sondern die statistischen Eigenschaften des Datenverkehrs. Wie groß sind die Datenpakete (d. h. die ausgelieferten Dateien)? Wie viele Datenpakete werden wann verschickt? Wie lange dauert es bis ein Datenpaket verschickt wird (d. h. Geschwindigkeit der Webseite)? Wie lange dauert es bis ein Datenpaket ankommt?
 
     *(Cross-)Browser Fingerprinting*
 
@@ -1780,7 +1780,7 @@ Tor
 
     *Ende-zu-Ende Korrelation von Datenverkehr* 
 
-    Auch als *Traffic Confirmation* bekannt. Diese Art von Attacke ist möglich, wenn *Relays* am Anfang und am Ende der Verbindung kontrolliert werden. Die Angreifer können dann den Datenverkehr an beiden Enden beobachten und die Datenpakete korrelieren z.B. basierend auf statistischen Informationen über die Zeitpunkte und Volumen von Datenflüssen. 
+    Auch als *Traffic Confirmation* bekannt. Diese Art von Attacke ist möglich, wenn *Relays* am Anfang und am Ende der Verbindung kontrolliert werden. Die Angreifer können dann den Datenverkehr an beiden Enden beobachten und die Datenpakete korrelieren z. B. basierend auf statistischen Informationen über die Zeitpunkte und Volumen von Datenflüssen. 
 
 
 

@@ -81,7 +81,7 @@ Beim Umleiten von Ausgaben an eine Datei, kann der Dateideskriptor angegeben wer
 
 .. container:: incremental
 
-    ``2>`` leitet z.B. die Fehlerausgaben (:eng:`stderr`) eines Programmes/Kommandos in eine Datei um; löscht bzw. legt die Zieldatei bei Bedarf an.
+    ``2>`` leitet z. B. die Fehlerausgaben (:eng:`stderr`) eines Programmes/Kommandos in eine Datei um; löscht bzw. legt die Zieldatei bei Bedarf an.
 
 .. container:: incremental small line-above margin-top-1em padding-top-1em
 
@@ -100,7 +100,7 @@ Grundlegende Prinzipien: Lesen aus einer Datei
 
 .. container:: incremental
 
-    ``<`` liest den Inhalt einer Datei und leitet diesen an das Programm/Kommando weiter; d.h. stellt den Inhalt über stdin zur Verfügung.
+    ``<`` liest den Inhalt einer Datei und leitet diesen an das Programm/Kommando weiter; d. h. stellt den Inhalt über stdin zur Verfügung.
 
 .. container:: incremental small line-above margin-top-1em padding-top-1em
 
@@ -164,7 +164,7 @@ Wichtige Linux Kommandozeilenwerkzeuge für die Verarbeitung von Passwortkandida
     :rev: Dreht die Reihenfolge der Zeichen einer Zeile um.
     :head: Zeigt die ersten (``-n``) Zeilen einer Datei an. 
     :tail: Zeigt die letzten (``-n``) Zeilen einer Datei an. :raw-html:`<br>`
-           (``-f`` folgt der Datei, d.h. wartet auf weitere Daten, die der Datei hinzugefügt werden.)
+           (``-f`` folgt der Datei, d. h. wartet auf weitere Daten, die der Datei hinzugefügt werden.)
 
 .. container:: supplemental
 
@@ -314,8 +314,8 @@ sort
 - Sortiert eine Liste gemäß der entsprechenden Felder.
 - ``-r`` sortiert in absteigender Reihenfolge.
 - ``-n`` der Wert des ersten Feldes wird als numerischer Wert interpretiert.
-- ``-k`` spezifiziert das Feld, nach dem sortiert werden soll. (z.B. -k 3)
-- ``-t`` spezifiziert das Trennzeichen, das die Felder trennt. (z.B. -t ',')
+- ``-k`` spezifiziert das Feld, nach dem sortiert werden soll. (z. B. -k 3)
+- ``-t`` spezifiziert das Trennzeichen, das die Felder trennt. (z. B. -t ',')
 
 .. container:: incremental line-above margin-top-1em padding-top-1em
 
@@ -385,7 +385,7 @@ Base64 kodierte Werte bestehen nur noch aus gültigen ASCII Zeichen und können 
 
 .. container:: incremental line-above margin-top-1em padding-top-1em
 
-    **Anwendungsfall**: In vielen Fällen können gehashte Passworte nicht roh (d.h. als Binärdaten) gespeichert werden sondern müssen `Base64 <https://datatracker.ietf.org/doc/html/rfc4648#section-4>`__ (oder vergleichbar) kodiert werden. 
+    **Anwendungsfall**: In vielen Fällen können gehashte Passworte nicht roh (d. h. als Binärdaten) gespeichert werden sondern müssen `Base64 <https://datatracker.ietf.org/doc/html/rfc4648#section-4>`__ (oder vergleichbar) kodiert werden. 
 
     .. code:: bash
         :class: smaller 
@@ -437,7 +437,7 @@ sed - Stromeditor
 - modifiziert die Eingabe gemäß der spezifizierten Kommandos in der angegebenen Reihenfolge.
 - ``-E`` zur Verwendung moderner regulärer Ausdrücke
 - Standardform: ``Funktion[Agrumente]``
-- Substitutionen: ``s/Regulärer Ausdruck/Ersatz/[Kennzeichen]``; das Kennzeichen "``g``" z.B. bewirkt, dass jedes Vorkommen ersetzt wird; sonst nur das erste Vorkommen.
+- Substitutionen: ``s/Regulärer Ausdruck/Ersatz/[Kennzeichen]``; das Kennzeichen "``g``" z. B. bewirkt, dass jedes Vorkommen ersetzt wird; sonst nur das erste Vorkommen.
   
 .. container:: incremental line-above margin-top-1em padding-top-1em
 
@@ -499,7 +499,7 @@ find
 Software nachinstallieren
 ---------------------------
 
-- Auf allen Linux und BSD Distributionen können Softwarepakete durch den Paketmanager des Betriebssystems nachinstalliert werden, z.B.:
+- Auf allen Linux und BSD Distributionen können Softwarepakete durch den Paketmanager des Betriebssystems nachinstalliert werden, z. B.:
 
   - ``apt`` (Debian, Ubuntu, Kali Linux, ...)
   
@@ -570,7 +570,7 @@ Fingerübungen
     $ echo -n "MySalt" | cat - /usr/share/wordlists/rockyou.txt | md5sum
     4e50fd427d675821b68c61a4c6099ea0  -
 
-4. Erzeugen Sie für eine Datei (z.B. ``/usr/bin/wc``) einen MD5 hash und stellen Sie diesen  der Datei selber voran bevor sie alles nach Base64 konvertieren.
+4. Erzeugen Sie für eine Datei (z. B. ``/usr/bin/wc``) einen MD5 hash und stellen Sie diesen  der Datei selber voran bevor sie alles nach Base64 konvertieren.
 
 .. 
     md5sum /usr/bin/wc | cat - /usr/bin/wc | base64

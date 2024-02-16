@@ -25,6 +25,7 @@
    :format: html
 
 
+
 Einführung in verteilte Systeme
 ================================================
 
@@ -32,7 +33,7 @@ Ein weitgefasster Überblick über verteilte Systeme.
 
 .. container:: line-above tiny
 
-    :Dozent: **Prof. Dr. Michael Eichberg**
+    :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
     :Version: |date|
     :Folien: 
@@ -52,15 +53,6 @@ Ein weitgefasster Überblick über verteilte Systeme.
     (b) Henning Pagnia (basierend auf seiner Vorlesung *Verteilte Systeme*). 
 
     Alle Fehler sind meine eigenen.
-    
-
-Lebenslauf - Prof. Dr. Michael Eichberg
---------------------------------------------
-
-:seit Okt. 2023: Professor an der DHBW Mannheim
-:4 Jahre: Bundeskriminalamt
-:12 Jahre: Postdoc am Fachgebiet Softwaretechnik der TU Darmstadt
-:2007: Promotion zum Dr. Ing. am Fachgebiet Softwaretechnik der TU Darmstadt
 
 
 
@@ -83,6 +75,7 @@ Verteilte Systeme - W3WI_110.2
   
       -  12 Punkte Präsentationen in Teams 
       -  36 Punkte Programmieraufgabe in Teams
+
 
 
 Verteilte Systeme - *Middleware Lösungen*
@@ -116,8 +109,7 @@ Für die Präsentationen stehen die folgenden Themen stehen zur Auswahl:
 
 
 
-  Die Präsentationen sind am letzten Termin zu halten. Die Präsentationen sollen sich insbesondere mit den Kerninhalten der Vorlesung beschäftigen und insbesondere konzeptioneller Natur sein. D.h. nach der Darstellung des Anwendungszweckes gilt es  die Architektur darzustellen, wie mit Fehlern umgegangen wird, welche Services angeboten werden, welche Garantien/Sicherheitsaspekte umgesetzt werden, wie wird die Skalierbarkeit erreicht, etc. 
-
+  Die Präsentationen sind am letzten Termin zu halten. Die Präsentationen sollen sich insbesondere mit den Kerninhalten der Vorlesung beschäftigen und insbesondere konzeptioneller Natur sein. D. h. nach der Darstellung des Anwendungszweckes gilt es  die Architektur darzustellen, wie mit Fehlern umgegangen wird, welche Services angeboten werden, welche Garantien/Sicherheitsaspekte umgesetzt werden, wie wird die Skalierbarkeit erreicht, etc. 
 
 
 
@@ -211,7 +203,7 @@ Häufige Missverständnisse bzgl. zentralisierter Systeme
     .. container:: scriptsize
    
       
-        Im Allgemeinen nicht zutreffend (z.B. DNS). 
+        Im Allgemeinen nicht zutreffend (z. B. DNS). 
         
         Ein einzelne mögliche Fehlerquelle ist weiterhin oft:
 
@@ -223,7 +215,7 @@ Häufige Missverständnisse bzgl. zentralisierter Systeme
     .. admonition:: Warnung 
         :class: warning
 
-        Es gibt viele, schlecht begründete Missverständnisse in Bezug auf, z.B. Skalierbarkeit, Fehlertoleranz oder Sicherheit. Wir müssen Fähigkeiten entwickeln, mit denen verteilte Systeme leicht verstanden werden können, um solche Missverständnisse zu vermeiden.
+        Es gibt viele, schlecht begründete Missverständnisse in Bezug auf, z. B. Skalierbarkeit, Fehlertoleranz oder Sicherheit. Wir müssen Fähigkeiten entwickeln, mit denen verteilte Systeme leicht verstanden werden können, um solche Missverständnisse zu vermeiden.
 
 
 
@@ -234,12 +226,12 @@ Sichtweisen auf verteilte Systeme
 
 .. class:: incremental
 
-- Welche Architekturen und Architekturellen Stile (:eng:`architectural styles`) gibt es?
+- Welche Architekturen und :ger-quote:`Architekturellen Stile` (:eng:`architectural styles`) gibt es?
 - Prozesse: Welche Art von Prozessen gibt es und wie sind deren Beziehungen?
 - Kommunikation: Welche Möglichkeiten zum Austausch von Daten gibt es?
 - Koordinierung: Wie erfolgt die Koordinierung der beteiligten Systeme?
 - Benennung: Wie identifiziert man Ressourcen?
-- Konsistenz und Replikation: Welcher Tradeoffs müssen in Hinblick auf die Konsistenz der Daten, der Replikation derselben und der Performance getroffen werden?
+- Konsistenz und Replikation: Welche Tradeoffs müssen in Hinblick auf die Konsistenz der Daten, der Replikation derselben und der Performance getroffen werden?
 - Fehlertoleranz: Wie kann eine Aufrechterhaltung des Betriebs auch bei Teilausfällen gewährleistet werden?
 - Sicherheit: Wie kann der autorisierte Zugriff auf Ressourcen gewährleistet werden?
 
@@ -264,8 +256,8 @@ Kanonische Beispiele:
 
 - Cloud-basierter gemeinsamer Speicher und Dateien
 - Peer-to-Peer-unterstütztes Multimedia-Streaming
-- Gemeinsame E-Mail-Dienste (z. B. ausgelagerte E-Mail-Systeme)
-- Gemeinsames Webhosting (z.B. *Content Distribution Networks*)
+- Gemeinsame E-Mail-Dienste (z. B. ausgelagerte E-Mail-Systeme)
+- Gemeinsames Webhosting (z. B. *Content Distribution Networks*)
 
 
 
@@ -294,7 +286,7 @@ Aspekte der Verteilungstransparenz
     Migration, "Verbergen, dass ein Objekt an einen anderen Ort verschoben werden kann" 
     Replikation, "Verbergen, dass ein Objekt repliziert wird"
     Nebenläufigkeit, "Verbergen, dass ein Objekt von mehreren unabhängigen Benutzern gemeinsam genutzt werden kann"
-    Fehlertransparenz, Verbergen des Ausfalls und der Wiederherstellung eines Objekts.
+    Fehlertransparenz, Verbergen des Ausfalls und der Wiederherstellung eines Objekts
 
 
 .. container:: supplemental
@@ -316,7 +308,7 @@ Jedoch kann auch eine sehr hohe Verteilungstransparenz bereits hohe Kosten nach 
 - Es gibt Kommunikationslatenzen, die nicht verborgen werden können.
 - Es ist (theoretisch und praktisch) unmöglich, Ausfälle von Netzen und Knoten vollständig zu verbergen.
 - Man kann einen langsamen Computer nicht von einem ausgefallenen Computer unterscheiden.
-- Man kann nie sicher sein, dass ein Server tatsächlich eine Operation durchgeführt hat bevor er abgestürzt ist.
+- Man kann nie sicher sein, dass ein Server tatsächlich eine Operation durchgeführt hat, bevor er abgestürzt ist.
 - Vollständige Transparenz kostet Performance und legt die Verteilung des Systems offen.
   
   - Die Replikate exakt auf dem Stand des Masters zu halten, kostet Zeit 
@@ -324,12 +316,12 @@ Jedoch kann auch eine sehr hohe Verteilungstransparenz bereits hohe Kosten nach 
 
 
 
-Die Verteilung offen zu legen kann Vorteile bringen
-----------------------------------------------------
+Die Verteilung offen zu legen, kann Vorteile bringen
+-----------------------------------------------------
 
 - Nutzung von standortbezogenen Diensten (Auffinden von Freunden in der Nähe)
 - Beim Umgang mit Benutzern in verschiedenen Zeitzonen
-- Wenn es für einen Benutzer einfacher ist, zu verstehen, was vor sich geht (wenn z. B. ein Server lange Zeit nicht antwortet kann er als ausgefallen gemeldet werden).
+- Wenn es für einen Benutzer einfacher ist, zu verstehen, was vor sich geht (wenn z. B. ein Server lange Zeit nicht antwortet, kann er als ausgefallen gemeldet werden).
 
 .. container:: assessment margin-top-2em
 
@@ -344,7 +336,7 @@ Offene verteilte Systeme
 
 .. admonition:: Definition
 
-    Ein offenes verteiltes System bietet Komponenten an, die leicht von anderen Systemen verwendet oder in andere Systeme integriert werden können. Ein offenes verteiltes System besteht selbst oft aus Komponenten, die von anderswoher stammen.
+    Ein offenes verteiltes System bietet Komponenten an, die leicht von anderen Systemen verwendet oder in andere Systeme integriert werden können. Ein offenes verteiltes System besteht selbst oft aus Komponenten, die von woanders stammen.
 
 .. container:: incremental smaller margin-top-1em
 
@@ -407,7 +399,7 @@ Verlässlichkeit verteilter Systeme
 
     Eine Komponente :math:`C` hängt von :math:`C^*` ab, wenn die Korrektheit des Verhaltens von :math:`C` von der Korrektheit des Verhaltens von :math:`C^*` abhängt. 
 
-.. [#] Komponenten sein Prozesse oder Kanäle.
+.. [#] Komponenten seien Prozesse oder Kanäle.
 
 
 Anforderungen an die Verlässlichkeit verteilter Systeme
@@ -435,7 +427,7 @@ Bedingte Wahrscheinlichkeit, dass :math:`C` während :math:`[0,t)` korrekt funkt
 
 .. rubric:: Traditionelle Metriken
 
-- Mittlere Zeit bis zum Versagen (:eng:`Mean Time to Failure` ((MTTF)): Die durchschnittliche Zeit bis zum Ausfall einer Komponente. 
+- Mittlere Zeit bis zum Versagen (:eng:`Mean Time to Failure` (MTTF)): Die durchschnittliche Zeit bis zum Ausfall einer Komponente. 
 - Mittlere Zeit bis zur Reparatur (:eng:`Mean Time to Repair` (MTTR)): Die durchschnittliche Zeit, die für die Reparatur einer Komponente benötigt wird.
 - Mittlere Zeit zwischen Ausfällen (:eng:`Mean Time Between Failures` (MTBF)): MTTF + MTTR.
 
@@ -463,8 +455,8 @@ Bedingte Wahrscheinlichkeit, dass :math:`C` während :math:`[0,t)` korrekt funkt
 
    (a) Bestimmen Sie die Intaktwahrscheinlichkeit eines einzelnen Rechners.
    (b) Ein Datensatz ist aus Gründen der Fehlertoleranz auf drei Rechnern identisch repliziert gespeichert. Wie hoch ist seine mittlere Zugriffsverfügbarkeit beim Lesen?
-   (c) Auf wievielen Rechnern müssen Sie identische Kopien dieses Datensatzes speichern, damit die mittlere Zugriffsverfügbarkeit beim Lesen bei 99,999% liegt 
-   (d) Für wieviele Minuten im Jahr ist im Mittel bei einer Verfügbarkeit von 99,999% *kein Lesen des Datensatzes* möglich?
+   (c) Auf wie vielen Rechnern müssen Sie identische Kopien dieses Datensatzes speichern, damit die mittlere Zugriffsverfügbarkeit beim Lesen bei 99,999 % liegt 
+   (d) Für wie viele Minuten im Jahr ist im Mittel bei einer Verfügbarkeit von 99,999 % *kein Lesen des Datensatzes* möglich?
 
 .. protected-exercise-solution:: Ausfallwahrscheinlichkeit
 
@@ -563,6 +555,7 @@ Es geht im Wesentlichen um das Ver- und Entschlüsseln von Daten (:math:`X`) mit
                     X = D(PU_{Alice},Y)
 
 
+
 Sicherheit - Sicheres Hashing (:eng:`Secure Hashing`)
 ------------------------------------------------------- 
 
@@ -591,12 +584,12 @@ Bob prüft die Nachricht :math:`X` auf Authentizität:
 Übung
 ----------------
 
-Wenn Alice eine mit Bob's öffentlichen Schlüssel verschlüsselte Nachricht an Ihn schickt, welches Sicherheitsproblem kann dann aufkommen?
+Wenn Alice eine mit Bobs öffentlichen Schlüssel verschlüsselte Nachricht an Ihn schickt, welches Sicherheitsproblem kann dann aufkommen?
 
 .. protected-exercise-solution:: Person-in-the-Middle-Angriff
    :class: smaller
 
-    Alice kann nicht sicher sein, dass Ihre Nachricht nicht verfälscht wurde! Jeder, der die Nachricht abfängt kann sie verändern und dann mit Bob's öffentlichen Schlüssel verschlüsseln.
+    Alice kann nicht sicher sein, dass Ihre Nachricht nicht verfälscht wurde! Jeder, der die Nachricht abfängt kann sie verändern und dann mit Bobs öffentlichen Schlüssel verschlüsseln.
 
 
 
@@ -619,7 +612,7 @@ Ursachen für Skalierbarkeitsprobleme bei zentralisierten Lösungen:
 
 .. container:: supplemental
 
-    Die Skalierbarkeit bzgl. der der Größe kann oft durch den Einsatz von mehr und leistungsstärkeren Servern, die parallel betrieben werden, erreicht werden.
+    Die Skalierbarkeit bzgl. der Größe kann oft durch den Einsatz von mehr und leistungsstärkeren Servern, die parallel betrieben werden, erreicht werden.
 
     Die geografische und administrative Skalierbarkeit ist häufig eine größere Herausforderung.
 
@@ -643,7 +636,7 @@ Ein zentralisierter Dienst kann als einfaches Warteschlangensystem modelliert we
 
         Annahmen:
 
-        Die Warteschlange hat eine unendliche Kapazität; d.h. die Ankunftsrate der Anfragen wird nicht durch die aktuelle Länge der Warteschlange oder durch das, was gerade bearbeitet wird, beeinflusst.
+        Die Warteschlange hat eine unendliche Kapazität; d. h.die Ankunftsrate der Anfragen wird nicht durch die aktuelle Länge der Warteschlange oder durch das, was gerade bearbeitet wird, beeinflusst.
 
     .. container:: layer incremental
 
@@ -669,7 +662,7 @@ Ein zentralisierter Dienst kann als einfaches Warteschlangensystem modelliert we
 
                     # Anfragen in Bearbeitung und Warteschlange
 
-                    (z.B. ist der Anteil der Zeit in der der Rechner *idle* ist (d.h. es gibt keine Anfragen) 90%, 60% und 30%.)
+                    (z. B. ist der Anteil der Zeit in der der Rechner *idle* ist (d. h.es gibt keine Anfragen) 90 %, 60 % und 30 %.)
 
 
     .. container:: layer incremental
@@ -724,7 +717,7 @@ Ein zentralisierter Dienst kann als einfaches Warteschlangensystem modelliert we
                 .. image:: images/response_time.svg
                    :width: 1100px
 
-        - Wenn :math:`U` klein ist, liegt die Antwortzeit nahe bei 1; d.h. eine Anfrage wird sofort bearbeitet.
+        - Wenn :math:`U` klein ist, liegt die Antwortzeit nahe bei 1; d. h.eine Anfrage wird sofort bearbeitet.
         - Wenn :math:`U` auf 1 ansteigt, kommt das System zum Stillstand. 
 
 .. container:: supplemental
@@ -744,7 +737,7 @@ Ein zentralisierter Dienst kann als einfaches Warteschlangensystem modelliert we
 Probleme der geografischen Skalierbarkeit
 --------------------------------------------
 
-- Viele verteilte Systeme gehen von synchronen Client-Server-Interaktionen aus und dies verhindert einen Übergang vom LAN zum WAN. Die Latenzzeiten können prohibitiv sein, wenn der Client auf eine Anfrage lange auf die Antwort warten muss.
+- Viele verteilte Systeme gehen von synchronen Client-Server-Interaktionen aus und dies verhindert einen Übergang vom LAN zum WAN. Die Latenzzeiten können prohibitiv sein, wenn der Client auf eine Anfrage lange warten muss.
 - WAN-Verbindungen sind oft von Natur aus unzuverlässig.
 
 
@@ -766,10 +759,10 @@ Probleme der administrativen Skalierbarkeit
 
     Verschiedene Peer-to-Peer-Netze [#]_ bei denen Endnutzer zusammenarbeiten und nicht Verwaltungseinheiten:
 
-    - File-Sharing-Systeme (z. B. auf der Grundlage von BitTorrent) 
+    - File-Sharing-Systeme (z. B. auf der Grundlage von BitTorrent) 
     - Peer-to-Peer-Telefonie (frühe Versionen von Skype) 
 
-.. [#] :eng:`Peer` ist im hier im Sinne von :ger-quote:`Gleichgestellter` zu verstehen. D.h. wir haben ein Netz von gleichgestellten Rechnern.
+.. [#] :eng:`Peer` ist im hier im Sinne von :ger-quote:`Gleichgestellter` zu verstehen. D. h. wir haben ein Netz von gleichgestellten Rechnern.
 
 Ansätze, um Skalierung zu erreichen
 ------------------------------------
@@ -823,7 +816,7 @@ Herausforderungen bei der Replikation
 
 .. container:: supplemental
 
-    Inwieweit Inkonsistenzen toleriert werden können ist anwendungsspezifisch. Können diese jedoch toleriert werden, dann kann der Bedarf an globaler Synchronisation verringert werden.
+    Inwieweit Inkonsistenzen toleriert werden können, ist anwendungsspezifisch. Können diese jedoch toleriert werden, dann kann der Bedarf an globaler Synchronisation verringert werden.
 
 
 Paralleles Rechnen (:eng:`Parallel Computing`)
@@ -930,7 +923,7 @@ Beschleunigung (Speedup) eines parallelisierten Programms relativ zu der nicht-p
         .. admonition:: Beispiel
             :class: tiny 
 
-            Sei der Parallelisierungsgrad ab einer relevanten Problemgröße n 80%. Dann ergibt sich für 4 CPUs ein Speedup von :math:`(1+0.8*3) = 3.4`, für 8 CPUs ein Speedup von 6.6 und für 16 CPUs ein Speedup von 13.
+            Sei der Parallelisierungsgrad ab einer relevanten Problemgröße n 80 %. Dann ergibt sich für 4 CPUs ein Speedup von :math:`(1+0.8*3) = 3.4`, für 8 CPUs ein Speedup von 6.6 und für 16 CPUs ein Speedup von 13.
 
 
 
@@ -939,14 +932,14 @@ Beschleunigung (Speedup) eines parallelisierten Programms relativ zu der nicht-p
 Übung
 ----------------
 
-Sie sind Pentester und versuchen in ein System einzudringen indem Sie die Passwörter der Administratoren angreifen. Momentan setzten Sie dazu 2 Grafikkarten mit je 2048 Compute Units ein. Der serielle Anteil des Angriffs beträgt 10%. Wie hoch ist der Speedup, den Sie erwarten können, wenn Sie zwei weitere vergleichbare Grafikkarten mit weiteren 2048 Compute Units je GPU hinzufügen?
+Sie sind Pentester und versuchen in ein System einzudringen indem Sie die Passwörter der Administratoren angreifen. Momentan setzten Sie dazu 2 Grafikkarten mit je 2048 Compute Units ein. Der serielle Anteil des Angriffs beträgt 10 %. Wie hoch ist der Speedup, den Sie erwarten können, wenn Sie zwei weitere vergleichbare Grafikkarten mit weiteren 2048 Compute Units je GPU hinzufügen?
 
    Hintergrund: Die Angriffe sind hochgradig parallelisierbar und hängen effektiv von der Anzahl an CUs ab. Die Grafikkarten sind in der Lage, die Angriffe effektiv zu beschleunigen.
 
 .. protected-exercise-solution:: Berechnung des Speedup
    :class: smaller
 
-   Es handelt sich hierbei um ein Problem mit sich strukturell wiederholenden Datensätzen, d.h.  Gustafsons Gesetz ist anwendbar. Der serielle Anteil beträgt 10%, d.h. der Parallelisierungsgrad beträgt 90%. Der Speedup beträgt dann:
+   Es handelt sich hierbei um ein Problem mit sich strukturell wiederholenden Datensätzen, d. h. Gustafsons Gesetz ist anwendbar. Der serielle Anteil beträgt 10 %, d. h.der Parallelisierungsgrad beträgt 90 %. Der Speedup beträgt dann:
 
    .. math::
 
@@ -969,16 +962,18 @@ Sie sind Pentester und versuchen in ein System einzudringen indem Sie die Passw�
 MapReduce - ein Programmiermodell für paralleles Rechnen
 ----------------------------------------------------------
 
-.. class:: incremental
+.. class:: incremental 
 
 - MapReduce ist ein Programmiermodel und eine entsprechende Implementierung (ein Framework entwickelt von Google) zur Verarbeitung sehr großer Datenmengen (ggf. TBytes).
 - Programme, die mit Hilfe von MapReduce implementiert werden, werden automatisch parallelisiert und auf einem großen Cluster von handelsüblichen Rechnern ausgeführt.
 
-  .. class:: smaller
+  .. container:: smaller dhbw-gray
 
-  - Die Laufzeitumgebung übernimmt die Partitionierung der Eingabedaten und Verteilung selbiger auf die Rechner des Clusters
-  - Einplanung und Ausführung der “Map”- und “Reduce”- Funktionen auf den Rechnern des Clusters
-  - Behandlung von Fehlern und die Kommunikation zwischen den Rechnern
+    Die Laufzeitumgebung übernimmt:
+
+    - Partitionierung der Eingabedaten und Verteilung selbiger auf die Rechner des Clusters
+    - Einplanung und Ausführung der “Map”- und “Reduce”- Funktionen auf den Rechnern des Clusters
+    - Behandlung von Fehlern und die Kommunikation zwischen den Rechnern
 
 .. admonition:: Hinweis
     :class: warning
@@ -1059,8 +1054,8 @@ Grundlegende Architektur für Grid-Computing
 
         
       :Fabric Layer: Bietet Schnittstellen zu lokalen Ressourcen (zur Abfrage von Status und Fähigkeiten, Sperren usw.)
-      :Konnektivitätsschicht: Kommunikations- / Transaktions- /Authentifizierungsprotokolle, z. B. für die Übertragung von Daten zwischen Ressourcen.
-      :Ressourcenschicht: Verwaltet eine einzelne Ressource, z. B. das Erstellen von Prozessen oder das Lesen von Daten.
+      :Konnektivitätsschicht: Kommunikations- / Transaktions- /Authentifizierungsprotokolle, z. B. für die Übertragung von Daten zwischen Ressourcen.
+      :Ressourcenschicht: Verwaltet eine einzelne Ressource, z. B. das Erstellen von Prozessen oder das Lesen von Daten.
       :Collective Layer: Verwaltet den Zugriff auf mehrere Ressourcen: Auffindung (:eng:`Discovery`), Einplanung (:eng:`Scheduling`) und Replikation.
       :Anwendungen: Enthält tatsächliche Grid-Anwendungen in einer einzelnen Organisation.
 
@@ -1127,7 +1122,7 @@ Integration von Anwendungen
 
     .. rubric:: Weiterentwicklung
 
-    Die direkte Kommunikation zwischen den Anwendung führt zur Integration von Unternehmensanwendungen (:eng:`Enterprise Application Integration (EAI)`).
+    Die direkte Kommunikation zwischen den Anwendungen führt zur Integration von Unternehmensanwendungen (:eng:`Enterprise Application Integration (EAI)`).
 
 
 .. container:: supplemental
@@ -1163,8 +1158,8 @@ Transaktionen
                     BEGINN DER TRANSAKTION, Zeigt den Beginn einer Transaktion an.
                     ENDE DER TRANSAKTION, Beendigung der Transaktion mit dem Versuch eines COMMIT.
                     ABBRUCH DER TRANSAKTION, Beenden der Transaktion und Wiederherstellung des alten Zustands.
-                    LESEN, "Lesen von Daten aus (z.B.) einer Datei oder einer Tabelle."
-                    SCHREIBEN, "Schreiben von Daten (z.B.) in eine Datei oder eine Tabelle."
+                    LESEN, "Lesen von Daten aus (z. B.) einer Datei oder einer Tabelle."
+                    SCHREIBEN, "Schreiben von Daten (z. B.) in eine Datei oder eine Tabelle."
 
             .. container:: layer incremental
         
@@ -1182,7 +1177,7 @@ Transaktionen
 
 .. container:: assessment
 
-    Daten, die im Rahmen einer Transaktion benötigt werden, sind of verteilt über mehrere Server. 
+    Daten, die im Rahmen einer Transaktion benötigt werden, sind oft verteilt über mehrere Server. 
 
 .. image:: images/transactions/tpm.svg
     :width: 80%
@@ -1198,7 +1193,7 @@ Transaktionen
 
     Insbesondere im Zusammenhang mit Microservices ist der Einsatz von TPMs und 2PC zum Zwecke der Koordination von Geschäftsprozessen häufig nicht die 1. Wahl. 
 
-    Nichtsdestotrotz sind verteilte Transaktionen ein wichtiger Bestandteil von verteilten Systemen und Google hat z.B. mit Spanner eine Lösung entwickelt, die Transaktionen im globalen Maßstab ermöglicht  (*Global Consistency*). (https://cloud.google.com/spanner?hl=en und https://www.youtube.com/watch?v=iKQhPwbzzxU).
+    Nichtsdestotrotz sind verteilte Transaktionen ein wichtiger Bestandteil von verteilten Systemen und Google hat z. B. mit Spanner eine Lösung entwickelt, die Transaktionen im globalen Maßstab ermöglicht  (*Global Consistency*). (https://cloud.google.com/spanner?hl=en und https://www.youtube.com/watch?v=iKQhPwbzzxU).
        
 
 
@@ -1216,7 +1211,7 @@ Middleware ermöglicht Kommunikation zwischen den Anwendungen.
 
     :Remote Procedure Call (RPC): Anfragen werden über einen lokalen Prozeduraufruf gesendet, als Nachricht verpackt, verarbeitet, von einer Nachricht beantwortet und das Ergebnis ist dann der Rückgabewert des Prozeduraufrufs.
 
-    :Nachrichtenorientierte Middleware `Message Oriented Middleware (MOM)`:eng:: Nachrichten werden an einen logischen Kontaktpunkt gesendet (d.h. veröffentlicht) und Anwendungen weitergeleitet, die diese Nachrichten abonnieren.
+    :Nachrichtenorientierte Middleware `Message Oriented Middleware (MOM)`:eng:: Nachrichten werden an einen logischen Kontaktpunkt gesendet (d. h.veröffentlicht) und Anwendungen weitergeleitet, die diese Nachrichten abonnieren.
 
 
 .. class:: smaller
@@ -1272,7 +1267,7 @@ Ubiquitous Systems - Kernbestandteile
 1. :eng:`Distribution`: Die Geräte sind vernetzt, verteilt und ohne Hürde zugänglich.
 2. :eng:`Interaction`: Die Interaktion zwischen Benutzern und Geräten ist in hohem Maße unaufdringlich 
 3. :eng:`Context Awareness`: Das System kennt den Kontext eines Benutzers, um die Interaktion zu optimieren.
-4. :eng:`Autonomy`: Die Geräte arbeiten autonom, ohne menschliches Eingreifen, und verwalten sich in hohem Maße selber.
+4. :eng:`Autonomy`: Die Geräte arbeiten autonom, ohne menschliches Eingreifen, und verwalten sich in hohem Maße eigenständig.
 5. :eng:`Intelligence`: Das System als Ganzes kann ein breites Spektrum dynamischer Aktionen und Interaktionen bewältigen.
 
 
@@ -1282,7 +1277,7 @@ Mobile Computing - Auszeichnende Merkmale
 .. class:: incremental smaller
 
 - Eine Vielzahl unterschiedlicher mobiler Geräte (Smartphones, Tablets, GPS-Geräte, Fernbedienungen, aktive Ausweise).
-- Mobil bedeutet, dass sich der Standort eines Geräts im Laufe der Zeit ändern kann mit Auswirkung, z.B., auf die lokalen Dienste oder die Erreichbarkeit.
+- Mobil bedeutet, dass sich der Standort eines Geräts im Laufe der Zeit ändern kann. Dies kann z. B. Auswirkung haben auf die lokalen Dienste oder die Erreichbarkeit.
 - Die Aufrechterhaltung einer stabilen Kommunikation kann zu ernsthaften Problemen führen.
 
 .. container:: stack incremental
@@ -1291,7 +1286,7 @@ Mobile Computing - Auszeichnende Merkmale
         
         .. container:: assessment
 
-            Aktueller stand ist, dass mobile Geräte Verbindungen zu stationären Servern herstellen, wodurch diese im Prinzip *Clients* von Cloud-basierten Diensten sind.
+            Aktueller Stand ist, dass mobile Geräte Verbindungen zu stationären Servern herstellen, wodurch diese im Prinzip *Clients* von Cloud-basierten Diensten sind.
 
     .. container:: layer incremental
 

@@ -68,7 +68,7 @@ Eigenerstellte Dokumente
 ------------------------------------
 
 • Editoren für Texte, Graphiken, Mails,... (Office, Outlook, AutoCAD, ....)
-• Dokumentenerzeugende Systeme (z.B. Rechnungen aus ERP-Systemen) (COLD)
+• Dokumentenerzeugende Systeme (z. B. Rechnungen aus ERP-Systemen) (COLD)
 • Übernahme von Bildern aus speziellen Verfahren wie Röntgen.
 
 .. container:: assessment
@@ -124,7 +124,7 @@ Fremderstellte Dokumente
 
 .. container:: supplemental
 
-    :NCI: *Non Coded Information* (z.B. Texte in Bildern)
+    :NCI: *Non Coded Information* (z. B. Texte in Bildern)
     :CI: *Coded Information*
 
 
@@ -326,7 +326,7 @@ Scanner
             Scanner unterscheiden sich in:
 
             - Zufuhr von Seiten 
-            - Vorlagengröße (z.B. A4, A3)
+            - Vorlagengröße (z. B. A4, A3)
             - Geschwindigkeit (bis zu mehrere hundert Seiten pro Minute)
             - Farbtiefe
             - Umschlagerkennung
@@ -355,7 +355,7 @@ Weiterverarbeitung gescannter Dokumente
   - automatisch
   
 • Automatisches Auslesen von Formulardaten
-• Automatisches Auslesen von Rechnungen oder ähnlichem (z.B. wenn Dokumentenklasse bekannt ist)
+• Automatisches Auslesen von Rechnungen oder ähnlichem (z. B. wenn Dokumentenklasse bekannt ist)
 
 
 
@@ -382,7 +382,7 @@ Umwandlung von NCI zu CI
 
 :Optical Mark Recognition (OMR):
 
-    Es werden Markierungen in vordefinierten Feldern/Bereichen ausgelesen (wie z.B. Selektionsfelder aus Fragebögen oder geprüft ob :ger-quote:`eine Unterschrift` in dem vorgesehenen Feld erfolgt ist. )
+    Es werden Markierungen in vordefinierten Feldern/Bereichen ausgelesen (wie z. B. Selektionsfelder aus Fragebögen oder geprüft ob :ger-quote:`eine Unterschrift` in dem vorgesehenen Feld erfolgt ist. )
 
 
 
@@ -419,10 +419,10 @@ Sicherstellung der Qualität
 
       **Problemfälle**
 
-      - Ligaturen (z.B. :monospaced:`ﬃ statt ffi oder ﬁ statt fi`)
-      - Bestimmte Zeichenkombinationen z.B. rn: ‚r‘ gefolgt von ‚n‘ oder ‚m‘
+      - Ligaturen (z. B. :monospaced:`ﬃ statt ffi oder ﬁ statt fi`)
+      - Bestimmte Zeichenkombinationen z. B. rn: ‚r‘ gefolgt von ‚n‘ oder ‚m‘
       - Großes I (wie Ida) und kleines l (wie lieb) bei serifenlosen Zeichensätzen
-      - Fremdsprachige Zeichen (z.B. $)
+      - Fremdsprachige Zeichen (z. B. $)
       - Optisch beschädigte Zeichen
 
     .. container:: layer incremental
@@ -435,7 +435,7 @@ Sicherstellung der Qualität
 
 .. container:: supplemental
 
-    Serifenlose Zeichensätze sind solche, bei denen die Zeichensätze keine Endstriche an Zeichen haben. Z.B. Arial oder Helvetica.
+    Serifenlose Zeichensätze sind solche, bei denen die Zeichensätze keine Endstriche an Zeichen haben. z. B. Arial oder Helvetica.
 
 
 
@@ -445,7 +445,7 @@ Barcode/ QR-Code
 • Wird im DMS-Umfeld zur Identifizierung von Dokumenten eingesetzt
 • 2 Einsatzgebiete
 
-  - Selbst erzeugte Dokumente (z.B. Anträge) mit Barcode-Aufdruck: Beim Rücklauf automatisch erkennbar
+  - Selbst erzeugte Dokumente (z. B. Anträge) mit Barcode-Aufdruck: Beim Rücklauf automatisch erkennbar
   - Für Fremddokumente: Barcode-Etiketten (Szenario „Spätes Archivieren“)
 
 • Sehr robust und etabliert
@@ -547,7 +547,7 @@ Szenario 3: Spätes Archivieren
 
 • Bar-/QR-Code:
 
-  - Registrierung: Dokument erhält eindeutigen Barcode z.B. im Posteingang oder durch Sachbearbeiter
+  - Registrierung: Dokument erhält eindeutigen Barcode z. B. im Posteingang oder durch Sachbearbeiter
   - Barcode-Erfassung mit Barcodestift oder Lesepistole
   - Erfassung des Papierdokuments
   
@@ -566,7 +566,7 @@ Szenario 3: Spätes Archivieren - Bewertung
 .. class:: positive-list
 
 - Arbeits- und Papierflüsse können weitgehend wie bisher abgewickelt werden
-- Papierdokumente (z.B. Rechnungen) können vor ihrer Erfassung noch geprüft und abgezeichnet werden: Stempel, Unterschrift, Korrekturen werden beim Scannen erfasst
+- Papierdokumente (z. B. Rechnungen) können vor ihrer Erfassung noch geprüft und abgezeichnet werden: Stempel, Unterschrift, Korrekturen werden beim Scannen erfasst
 - Arbeitsplätze der Sachbearbeiter erfordern keine spezielle Ausstattung
 
 **Nachteile**
@@ -599,7 +599,7 @@ COLD
 
 Begriff stammt aus der Zeit Mitte der 80er Jahre, hatte sich aber bereits zu Beginn/Mitte der 90er  technologieunabhängig verallgemeinert.
 
-Beschreibt **die direkte digitale Speicherung von  von Druck- und Listenausgaben  betrieblicher Softwaresysteme** (z.B. direkt von ERP Systemen oder von Office Anwendungen über spezielle Druckertreiber).
+Beschreibt **die direkte digitale Speicherung von  von Druck- und Listenausgaben  betrieblicher Softwaresysteme** (z. B. direkt von ERP Systemen oder von Office Anwendungen über spezielle Druckertreiber).
 
 • Die Recherche kann danach wie bei jedem anderen Dokument im DMS erfolgen.
 • COLD bei größeren Unternehmen bzw. DMS-Lösungen sehr verbreitet.
@@ -607,7 +607,7 @@ Beschreibt **die direkte digitale Speicherung von  von Druck- und Listenausgaben
 
 .. container:: supplemental
 
-    D.h. bei COLD werden die Daten nicht mehr - bzw. nur optional - auf Papier ausgegeben, sondern stattdessen direkt in ein DMS übernommen. Da kein OCR notwendig ist, sondern die Daten direkt :ger-quote:`beim Drucken` abgegriffen werden, ist die Qualität der Daten sehr hoch.
+    d. h. bei COLD werden die Daten nicht mehr - bzw. nur optional - auf Papier ausgegeben, sondern stattdessen direkt in ein DMS übernommen. Da kein OCR notwendig ist, sondern die Daten direkt :ger-quote:`beim Drucken` abgegriffen werden, ist die Qualität der Daten sehr hoch.
 
 
 COLD-Verfahren (historisch)
@@ -642,7 +642,7 @@ Metadaten
 • Beschreibende Merkmale für Dokumente
 • Ziel ist das möglichst exakte Wiederfinden der richtigen 
   Dokumente (strukturierte Suche!)
-• Metadaten sind strukturiert und möglichst exakt vordefiniert (z.B. Wertebereiche)
+• Metadaten sind strukturiert und möglichst exakt vordefiniert (z. B. Wertebereiche)
 • Quellen für Metadaten:
 
   - Manuelles Erfassen
@@ -654,11 +654,11 @@ Metadaten
 Manuelles Indizieren
 ---------------------------------
 
-- Freitexteingabe (z.B. Zusammenfassung, Notizen)
+- Freitexteingabe (z. B. Zusammenfassung, Notizen)
 - Unterstützung durch Auswahlmenüs, Formatvorgaben oder Defaultwerte, z.B
 
   - Schlagwortindizierung (definierter Wortschatz) 
-  - Formalisierte Eingabe (z.B. Datum)
+  - Formalisierte Eingabe (z. B. Datum)
   
 - **Probleme**:
 
@@ -684,7 +684,7 @@ gestellt.
 
 .. class:: negative-list
 
-- Suchraster ist vorgegeben (d.h. Metadatenschema ist fest) 
+- Suchraster ist vorgegeben (d. h. Metadatenschema ist fest) 
 
 **Volltextsuche**
 
