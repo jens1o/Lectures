@@ -15,7 +15,7 @@
 .. role:: blue 
 .. role:: smaller
 .. role:: much-smaller
-
+.. role:: ger-quote
 .. role:: raw-html(raw)
     :format: html
 
@@ -40,7 +40,7 @@ Arithmetik endlicher Körper (Rekapitulation)
 - Die Division ist mit der folgenden Regel definiert: :math:`a/b = a(b^{-1})`.
 
 .. admonition:: Beispiel
-    :class: example margin-top-2em
+    :class: example margin-top-2em incremental
 
     Ein endlicher Körper (mit einer endlichen Anzahl von Elementen) ist die Menge :math:`Z_p`, die aus allen ganzen Zahlen :math:`\lbrace 0,1,....,p-1 \rbrace` besteht, wobei p eine Primzahl ist und in der modulo :math:`p` gerechnet wird.
 
@@ -69,20 +69,27 @@ Arithmetik endlicher Körper (Rekapitulation)
     Every polynomial in :math:`GF(2^n)` can be represented by an n-bit number.
 
 
-Finite Field Arithmetic for AES
---------------------------------
+Arithmetik endlicher Körper in Hinblick auf AES
+------------------------------------------------
 
-- In the Advanced Encryption Standard (AES) all operations are performed on 8-bit bytes
+- Beim *Advanced Encryption Standard* (AES) werden alle Operationen mit 8-Bit-Bytes durchgeführt
     
-- The arithmetic operations of addition, multiplication, and division are performed over the finite field :math:`GF(2^8)`
-
-  AES uses the irreducible polynomial :math:`m(x) = x^8 + x^4 + x^3 +x +1` 
+- Die arithmetischen Operationen: Addition, Multiplikation und Division werden über den endlichen Körper :math:`GF(2^8)` durchgeführt.
 
 
-AES Key Elements
-----------------
+.. admonition:: Definition
 
-- AES uses a fixed block size of 128 bits.
+    AES verwendet das irreduzible Polynom:
+    
+    .. math::
+            
+            m(x) = x^8 + x^4 + x^3 +x +1
+
+
+AES Schlüsseleigenschaften
+----------------------------
+
+- AES verwendet eine feste Blockgröße von 128 Bit.
 - AES operates on a 4x4 column-major order array of 16 bytes/128 bits: :math:`b_0,b_1,\dots,b_{15}` termed the state:
   
   .. math::
@@ -92,27 +99,28 @@ AES Key Elements
 
 
 
-AES Encryption Process
------------------------
+AES Verschlüsselungsprozess
+-----------------------------
 
 .. image:: drawings/aes/encryption_process.svg
     :width: 1700px
-    :alt: AES Encryption Process
+    :alt: AES Verschlüsselungsprozess
     :align: center
 
-AES Parameters
+
+
+AES Parameter
 --------------
 
 .. csv-table::        
-    :align: center 
-    :width: 1650px
+    :width: 100%
     :class: highlight-line-on-hover
 
-    Key Size (words/bytes/bits), 4/16/128, 6/24/192, 8/32/256
-    Plaintext Block Size (words/bytes/bits), 4/16/128, 4/16/128, 4/16/128
-    Number of Rounds, 10, 12, 14
-    Round Key Size (words/bytes/bits), 4/16/128, 4/16/128, 4/16/128
-    Expanded Key Size (words/bytes), 44/176, 52/208, 60/240
+    Schlüsselgröße (words/bytes/bits), 4/16/128, 6/24/192, 8/32/256
+    Blockgröße (*Block Size*) (words/bytes/bits), 4/16/128, 4/16/128, 4/16/128
+    Anzahl der Runden, 10, 12, 14
+    Größe des Rundenschlüssels (*RoundKeys*) (words/bytes/bits), 4/16/128, 4/16/128, 4/16/128
+    Expandierte Schlüsselgröße (words/bytes), 44/176, 52/208, 60/240
 
 
 
@@ -629,24 +637,199 @@ Interchanging `AddRoundKey` and `InvMixColumns`
 
 
 
-Implementation Aspects
------------------------
+Aspekte der Umsetzung auf 8-bit Prozessoren
+----------------------------------------------
 
-AES can be implemented very efficiently on an 8-bit processor:
+AES kann sehr effizient auf einem 8-Bit-Prozessor implementiert werden:
  
-:AddRoundKey: is a bytewise XOR operation.
-:ShiftRows: is a simple byte-shifting operation.
-:SubBytes: operates at the byte level and only requires a table of 256 bytes.
-:MixColumns: requires matrix multiplication in the field :math:`GF(2^8)`, which means that all operations are carried out on bytes.
+:AddRoundKey: ist eine byteweise XOR-Operation.
+:ShiftRows: ist eine einfache Byte-Verschiebeoperation.
+:SubBytes: arbeitet auf Byte-Ebene und benötigt nur eine Tabelle von 256 Bytes.
+:MixColumns: erfordert eine Matrixmultiplikation im Körper :math:`GF(2^8)`, was bedeutet, dass alle Operationen mit Bytes durchgeführt werden.
 
 
-Implementation Aspects
------------------------
 
-Can be efficiently implemented on a 32-bit processor:
+Aspekte der Umsetzung auf 32-bit Prozessoren
+------------------------------------------------
 
-• Redefine steps to use 32-bit words
-• Can precompute 4 tables of 256-words
-• Then each column in each round can be computed using 4 table lookups + 4 XORs
-• At a cost of 4Kb to store tables
-• Designers believe this very efficient implementation was a key factor in its selection as the AES cipher
+AES kann effizient auf einem 32-Bit-Prozessor implementiert werden:
+
+- Die einzelnen Schritte können so umdefiniert werden, dass sie 32-Bit-Wörter verwenden.
+- Es ist möglich die 4 Tabellen mit je 256 Wörtern vorzuberechnen.
+  
+  - Dann kann jede Spalte in jeder Runde mit 4 Tabellen-Lookups + 4 XORs berechnet werden.
+  - Die Kosten für die Speicherung der Tabellen belaufen sich auf :ger-quote:`4Kb`.
+
+- Die Entwickler glauben, dass die Möglichkeit einer effizienten Implementierung ein Schlüsselfaktor für die Wahl der AES-Chiffre zum neuen Standard war.
+
+
+
+.. class:: integrated-exercise
+
+Übung (AES-128) - Berechnung des *RoundKey*
+--------------------------------------------
+
+Sei der folgende *RoundKey* gegeben: 
+
+:math:`rc_1=w[4]\,||\,w[5]\,||\,w[6]\,||\,w[7]` :math:`=` 
+
+``-w[4]------   -w[5]------   -w[6]------   -w[7]------``  
+
+``E2 32 FC F1   91 12 91 88   B1 59 E4 E6   D6 79 A2 93``  
+
+Berechne :math:`rc_2`; d.h. den Rundschlüssel (*Roundkey*) für die zweite Runde.
+
+1. Bevor Sie die konkrete Berechnung durchführen, schreiben Sie zunächst die Formeln auf:
+
+   :math:`w[8]\;\; =\; \ldots \oplus ... \quad w[9]\;\; =\; ... \oplus ...  \quad w[10] =\; ... \oplus ... \quad w[11] =\; ... \oplus ...`
+
+2. Berechne `w[8]` und `w[9]`.
+
+.. protected-exercise-solution:: Formeln für die Berechnung des *RoundKey*
+
+    .. math::
+
+        w[8] = w[4] \oplus g(w[7])
+
+        w[9] = w[5] \oplus w[8]
+
+        w[10] = w[6] \oplus w[9]
+
+        w[11] = w[7] \oplus w[10]
+      
+.. protected-exercise-solution:: Berechnung von :math:`w[8]` und :math:`w[9]`
+
+    :: 
+
+        g(w[7]): 
+            1. after left shift of w[7]:              79 A2 93 D6
+            2. after s-box substituion:               B6 3A DC F6
+            3. after add RoundConstant (02 00 00 00):  B4 3A DC F6
+
+        w[8] = E2 32 FC F1 xor B4 3A DC F6 = 56 08 20 07
+        w[9] = w[8]                      xor 91 12 91 88 = C7 1A B1 8F
+
+
+
+.. class:: integrated-exercise
+
+Übung (AES-128)
+---------------------
+
+Nehmen wir an, dass der Zustand (*State*) folgendermaßen sei:
+
+::   
+
+   00 3C 6E 47
+   1F 4E 22 74
+   0E 08 1B 31
+   54 59 0B 1A
+   
+1. Führen Sie den *Substitute Bytes* Schritt durch (Anwendung der S-box Transformation).
+
+   
+2. Führen Sie die *Shift Rows Transformation* auf dem Ergebnis des vorherigen Schrittes durch.
+
+
+.. protected-exercise-solution:: Substitute Bytes
+
+    ::
+
+        63 EB 9F A0
+        C0 2F 93 92
+        AB 30 AF C7
+        20 CB 2B A2
+
+.. protected-exercise-solution:: Shift Rows
+
+    ::
+
+        63 EB 9F A0
+        2F 93 92 C0
+        AF C7 AB 30
+        A2 20 CB 2B
+
+
+
+.. class:: integrated-exercise
+
+Übung (AES-128) - *Mix Columns Transformation*
+-------------------------------------------------
+
+Nehmen wir an, dass der Zustand (*State*) folgendermaßen sei:
+
+::
+
+   6A 59 CB BD
+   4E 48 12 A0
+   98 9E 30 9B
+   8B 3D F4 9B
+
+Führen Sie die *Mix Columns Transformation* durch für das fehlende Feld (:math:`S'_{0,0}`):
+
+::
+
+    ?? C9 7F 9D
+    CE 4D 4B C2
+    89 71 BE 88
+    65 47 97 CD
+
+.. protected-exercise-solution:: Mix Columns Transformation
+
+     .. math::
+
+        0x02 \times 0x6A = (simple\; left\; shift\; of\; 6A): 1101\, 0100_b
+
+        0x03 \times 0x4E = 0x4E \oplus (0x02 \times 0x4E) = 0100\, 1110_b \oplus 1001\, 1100_b = 1101 0010_b
+
+        S'_{0,0} = 1101\, 0100_b \oplus 1101\, 0010_b \oplus 0x98 \oplus 0x8B = 0x15
+
+
+
+.. class:: integrated-exercise
+
+Übung (AES-128) - *RoundKey* Anwendung
+-------------------------------------------
+
+Wenden Sie den folgenden *RoundKey*: 
+   
+``-w[x]------   -w[x+1]----   -w[x+2]----   -w[x+3]----``  
+
+``D2 60 0D E7   15 7A BC 68   63 39 E9 01   C3 03 1E FB`` 
+
+auf die folgende Zustandsmatrix (*State*):
+
+::
+
+    AA 65 FA 88
+    16 0C 05 3A
+    3D C1 DE 2A
+    B3 4B 5A 0A
+
+.. protected-exercise-solution:: RoundKey Anwendung
+
+    Denken Sie daran, dass der *RoundKey* auf die Spalte angewendet wird!
+    
+    ::
+
+        78 70 99 4B
+        76 76 3C 39
+        30 7D 37 34
+        54 23 5B F1
+
+
+
+.. class:: integrated-exercise
+
+Übung (AES-128)
+---------------------
+
+Fragen Sie sich, was passiert, wenn Sie einen Block, der nur aus ``0x00`` Werten besteht, mit einem Schlüssel verschlüsseln, der ebenfalls nur aus ``0x00`` Werten besteht?
+
+.. protected-exercise-solution:: 0x00 Schlüssel und Daten
+
+    - Die erste Substitution wird alle Werte auf denselben Wert abbilden: :math:`0x63`'.
+    - Die Zeilenverschiebung hat keine Auswirkung.
+    - Spalten mischen (weil die Werte nicht mehr :math:`0x00` sind, führt dies zu einer gewissen Diffusion :math:`0x02 \times 0x63` und :math:`0x03 \times 0x63` ist nicht :math:`0x63`. )
+    - *AddRoundKey* wirkt sich ebenfalls aus und führt (schon in der ersten Runde) zu einiger Konfusion.
+
