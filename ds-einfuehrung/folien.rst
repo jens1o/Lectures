@@ -172,7 +172,7 @@ Verteilte Systeme
     :class: definition
 
     - **Integrative Sichtweise**: Verbindung bestehender vernetzter Computersysteme zu einem größeren System.
-    - **Expansive Sichtweise**: ein bestehendes vernetztes Computersystem wird um zusätzliche Computer erweitert
+    - **Expansive Sichtweise**: ein bestehendes vernetztes Computersystem wird um zusätzliche Computer erweitert.
 
 .. admonition:: Zwei Definitionen
     :class: definition in
@@ -622,103 +622,84 @@ Ursachen für Skalierbarkeitsprobleme bei zentralisierten Lösungen:
 Formale Analyse der Skalierbarkeit zentralisierter Systeme
 ------------------------------------------------------------
 
-
 Ein zentralisierter Dienst kann als einfaches Warteschlangensystem modelliert werden:
 
-.. container:: stack
+.. image:: images/queuing-system.svg
+    :width: 75%
+    :align: center
 
-    .. container:: layer
+Annahmen:
 
-
-        .. image:: images/queuing-system.svg
-            :width: 75%
-            :align: center
-
-        Annahmen:
-
-        Die Warteschlange hat eine unendliche Kapazität; d. h.die Ankunftsrate der Anfragen wird nicht durch die aktuelle Länge der Warteschlange oder durch das, was gerade bearbeitet wird, beeinflusst.
-
-    .. container:: layer incremental
-
-        .. container:: two-columns no-default-width
-
-            .. container:: column no-separator
-
-                - Ankunftsrate der Anfragen: λ *(in Anfragen pro Sekunde)*
-                - Verarbeitungskapazität des Services: μ *(in Anfragen pro Sekunde)*
-
-                Anteil der Zeit mit :math:`x` Anfragen im System:
-
-                .. math::
-
-                    p_x  = \bigl(1 - \frac{\lambda}{\mu}\bigr)\bigl(\frac{\lambda}{\mu}\bigr)^x
-
-            .. container:: column
-
-                .. image:: images/number_of_requests_in_system.svg
-                    :width: 1200px
-
-                .. container:: text-align-center tiny
-
-                    # Anfragen in Bearbeitung und Warteschlange
-
-                    (z. B. ist der Anteil der Zeit in der der Rechner *idle* ist (d. h.es gibt keine Anfragen) 90 %, 60 % und 30 %.)
+Die Warteschlange hat eine unendliche Kapazität; d. h.die Ankunftsrate der Anfragen wird nicht durch die aktuelle Länge der Warteschlange oder durch das, was gerade bearbeitet wird, beeinflusst.
 
 
-    .. container:: layer incremental
 
-        .. container:: note width-30
+.. class:: smaller
 
-            **Hinweis**
-            
-            :math:`x` = # Anfragen im Sys.
+Formale Analyse der Skalierbarkeit zentralisierter Systeme
+------------------------------------------------------------
 
-            .. math::
-                p_x  = \bigl(1 - \frac{\lambda}{\mu}\bigr)\bigl(\frac{\lambda}{\mu}\bigr)^x
-         
+.. container:: two-columns no-default-width
 
-        :math:`U` ist der Anteil der Zeit, in der ein Dienst ausgelastet ist:
+    .. container:: column no-separator
+
+        - Ankunftsrate der Anfragen: λ *(in Anfragen pro Sekunde)*
+        - Verarbeitungskapazität des Services: μ *(in Anfragen pro Sekunde)*
+
+        Anteil der Zeit mit :math:`x` Anfragen im System:
 
         .. math::
 
-            U = \sum_{x > 0} p_x = 1 - p_0 = \frac{\lambda}{\mu} \Rightarrow p_x = (1-U) U^x
+            p_x  = \bigl(1 - \frac{\lambda}{\mu}\bigr)\bigl(\frac{\lambda}{\mu}\bigr)^x
 
-        Durchschnittliche Anzahl der Anfragen:
+    .. container:: column
 
-        .. math::
+        .. image:: images/number_of_requests_in_system.svg
+            :width: 1200px
 
-            \bar{N} = \sum_{x\geq 0} x \cdot p_x 
-            = \sum_{x \geq 0} x \cdot (1-U)U^x 
-            = (1-U)\sum_{x\geq 0} x\cdot U^x  
-            = \frac{(1-U)U}{(1-U)^2} = \frac{U}{1-U}
+        .. container:: text-align-center tiny
 
-        Durchschnittlicher Durchsatz:
+            # Anfragen in Bearbeitung und Warteschlange
 
-        .. math::
-
-            X = \underbrace{U \cdot \mu}_{\mbox{ausgelastet}} + \underbrace{(1-U) \cdot 0}_{\mbox{ungenutzt}} = \frac{\lambda}{\mu} \cdot \mu = \lambda 
+            (z. B. ist der Anteil der Zeit in der der Rechner *idle* ist (d. h.es gibt keine Anfragen) 90 %, 60 % und 30 %.)
 
 
-    .. container:: layer incremental
+.. class:: smaller
 
-        .. container:: two-columns no-default-width
+Formale Analyse der Skalierbarkeit zentralisierter Systeme
+------------------------------------------------------------
 
-            .. container:: column
+.. container:: note width-30
 
-                Die Antwortszeit (:eng:`response time`) ist die Gesamtzeit für die Bearbeitung einer Anfrage
+    **Hinweis**
+    
+    :math:`x` = # Anfragen im Sys.
 
+    .. math::
+        p_x  = \bigl(1 - \frac{\lambda}{\mu}\bigr)\bigl(\frac{\lambda}{\mu}\bigr)^x
+    
 
-                .. math::
-                    R = \frac{\bar{N}}{X} = \frac{S}{1-U} \Rightarrow \frac{R}{S} = \frac{1}{1-U} 
+:math:`U` ist der Anteil der Zeit, in der ein Dienst ausgelastet ist:
 
-                mit :math:`S = \frac{1}{\mu}` für die durchschnittliche Servicezeit. 
-            .. container:: column
-                    
-                .. image:: images/response_time.svg
-                   :width: 1100px
+.. math::
 
-        - Wenn :math:`U` klein ist, liegt die Antwortzeit nahe bei 1; d. h.eine Anfrage wird sofort bearbeitet.
-        - Wenn :math:`U` auf 1 ansteigt, kommt das System zum Stillstand. 
+    U = \sum_{x > 0} p_x = 1 - p_0 = \frac{\lambda}{\mu} \Rightarrow p_x = (1-U) U^x
+
+Durchschnittliche Anzahl der Anfragen:
+
+.. math::
+
+    \bar{N} = \sum_{x\geq 0} x \cdot p_x 
+    = \sum_{x \geq 0} x \cdot (1-U)U^x 
+    = (1-U)\sum_{x\geq 0} x\cdot U^x  
+    = \frac{(1-U)U}{(1-U)^2} = \frac{U}{1-U}
+
+Durchschnittlicher Durchsatz:
+
+.. math::
+
+    X = \underbrace{U \cdot \mu}_{\mbox{ausgelastet}} + \underbrace{(1-U) \cdot 0}_{\mbox{ungenutzt}} = \frac{\lambda}{\mu} \cdot \mu = \lambda 
+
 
 .. container:: supplemental
 
@@ -727,11 +708,38 @@ Ein zentralisierter Dienst kann als einfaches Warteschlangensystem modelliert we
     .. math::
         \sum_{k\geq 0} k\cdot U^k  = \frac{U}{(1-U)^2} 
 
-    Visualisierung der durchschnittlichen Anzahl der Anfragen im System in Abhängigkeit von der Auslastung :math:`U`:
+    Darstellung der durchschnittlichen Anzahl an Anfragen im System in Abhängigkeit von der Auslastung :math:`U`:
 
     .. image:: images/average_number_of_requests_in_system.svg
         :width: 1100px
         :align: center
+
+
+
+.. class:: smaller
+
+Formale Analyse der Skalierbarkeit zentralisierter Systeme
+------------------------------------------------------------
+
+.. container:: two-columns 
+
+    .. container:: 
+
+        Die Antwortszeit (:eng:`response time`) ist die Gesamtzeit für die Bearbeitung einer Anfrage
+
+
+        .. math::
+            R = \frac{\bar{N}}{X} = \frac{S}{1-U} \Rightarrow \frac{R}{S} = \frac{1}{1-U} 
+
+        mit :math:`S = \frac{1}{\mu}` für die durchschnittliche Servicezeit. 
+    
+    .. image:: images/response_time.svg
+        :width: 100%
+
+- Wenn :math:`U` klein ist, liegt die Antwortzeit nahe bei 1; d. h.eine Anfrage wird sofort bearbeitet.
+- Wenn :math:`U` auf 1 ansteigt, kommt das System zum Stillstand. 
+
+
 
 
 Probleme der geografischen Skalierbarkeit
@@ -799,7 +807,7 @@ Ansätze, um Skalierung zu erreichen
 
 **Einsatz von Replikation und Caching, um Kopien von Daten auf verschiedenen Rechnern verfügbar zu machen.**
 
-- Replizierte Dateiserver und Datenbanken 
+- replizierte Dateiserver und Datenbanken 
 - gespiegelte Websites
 - Web-Caches (in Browsern und Proxies) 
 - Datei-Caching (auf Server und Client)
@@ -860,7 +868,7 @@ Amdahls Gesetz - Grenzen der Skalierbarkeit
 
         - Lösen von **fixen Problemen** in möglichst kurzer Zeit
         
-          (Beispiel: Hochfahren(“Booten”) eines Rechners. In wie weit lässt sich durch mehr CPUs/Kerne die Zeit verkürzen?)
+          (Beispiel: Hochfahren (:eng:`Booten`) eines Rechners. Inwieweit lässt sich durch mehr CPUs/Kerne die Zeit verkürzen?)
         - Es modelliert die erwartete Beschleunigung (Speedup) eines zum Teil parallelisierten/parallelisierbaren Programms relativ zu der nicht-parallelisierten Variante
 
         .. container:: note width-40 tiny
@@ -879,11 +887,13 @@ Amdahls Gesetz - Grenzen der Skalierbarkeit
 
                 :math:`S(C) = \frac{1}{(1-P) + \frac{P}{C}}`
 
-    .. container:: layer incremental
 
-        .. image:: images/amdahl.svg
-            :height: 900px
-            :align: center
+Amdahls Gesetz visualisiert - Grenzen der Skalierbarkeit
+---------------------------------------------------------
+
+.. image:: images/amdahl.svg
+    :height: 900px
+    :align: center
 
 
 
@@ -894,7 +904,7 @@ Gustafsons Gesetz - Grenzen der Skalierbarkeit
 
 - Lösen von Problemen mit (sehr) großen, sich strukturell wiederholenden Datensätzen in **fixer Zeit**; der serielle Anteil des Programms wird als  konstant angenommen.
 
-  (Beispiel: Erstelle innerhalb der nächsten 24 Stunden die Wettervorhersage für übermorgen. In wie weit lässt sich durch mehr CPUs/Rechner die Präzision der Vorhersage verbessern?)
+  (Beispiel: Erstelle innerhalb der nächsten 24 Stunden die Wettervorhersage für übermorgen. Inwieweit lässt sich durch mehr CPUs/Rechner die Präzision der Vorhersage verbessern?)
 
 Beschleunigung (Speedup) eines parallelisierten Programms relativ zu der nicht-parallelisierten Variante:
 
@@ -932,7 +942,7 @@ Beschleunigung (Speedup) eines parallelisierten Programms relativ zu der nicht-p
 Übung
 ----------------
 
-Sie sind Pentester und versuchen in ein System einzudringen indem Sie die Passwörter der Administratoren angreifen. Momentan setzten Sie dazu 2 Grafikkarten mit je 2048 Compute Units ein. Der serielle Anteil des Angriffs beträgt 10 %. Wie hoch ist der Speedup, den Sie erwarten können, wenn Sie zwei weitere vergleichbare Grafikkarten mit weiteren 2048 Compute Units je GPU hinzufügen?
+Sie sind Pentester und versuchen in ein System einzudringen indem Sie die Passwörter der Administratoren angreifen. Momentan setzen Sie dazu 2 Grafikkarten mit je 2048 Compute Units ein. Der serielle Anteil des Angriffs beträgt 10 %. Wie hoch ist der Speedup, den Sie erwarten können, wenn Sie zwei weitere vergleichbare Grafikkarten mit weiteren 2048 Compute Units je GPU hinzufügen?
 
    Hintergrund: Die Angriffe sind hochgradig parallelisierbar und hängen effektiv von der Anzahl an CUs ab. Die Grafikkarten sind in der Lage, die Angriffe effektiv zu beschleunigen.
 
@@ -1070,7 +1080,7 @@ Peer-to-Peer-Systeme
 
    Selbstorganisierend, ohne zentrale Infrastruktur (Koordinator, Datenbestand, Teilnehmerverzeichnis).
 
-   Jeder Peer ist autonom und kann jederzeit off-line sein, Netzwerkadressen können sich beliebig ändern.
+   Jeder Peer ist autonom und kann jederzeit offline sein, Netzwerkadressen können sich beliebig ändern.
 
 :Hauptanwendung: 
    File-Sharing-Systeme (insbesondere BitTorrent)
@@ -1079,9 +1089,13 @@ Peer-to-Peer-Systeme
 
     Die große Zeit der klassischen Peer-to-Peer-Systeme war in den 2000er Jahren. 
 
-    Vorteile von P2P Systemen: billig, fehlertolerant, dynamisch, selbstkonfigurierend, immens hohe Speicherkapazität, hohe Datenzugriffsgeschwindigkeit
+    .. class:: positive-list
 
-    Probleme von P2P Systemen: Start-Up, schlecht angebundene, leistungsschwache Peers; *Free-Riders*; Copyright-Probleme
+    - Vorteile von P2P Systemen sind: billig, fehlertolerant, dynamisch, selbstkonfigurierend, immens hohe Speicherkapazität, hohe Datenzugriffsgeschwindigkeit.
+
+    .. class:: negative-list
+
+    - Probleme von P2P Systemen sind: Start-Up, schlecht angebundene, leistungsschwache Peers; *Free-Riders*; Copyright-Probleme.
 
 
 Cloud-Computing
@@ -1100,9 +1114,13 @@ Cloud-Computing
 
 .. container:: supplemental
 
-    Vorteile des Clous-Computings: Kosten, Aktualität von Daten und Diensten, keine eigene Infrastruktur notwendig, Unterstützung von mobilen Teilnehmern
+    .. class:: positive-list
 
-    Probleme des Clous-Computings: Sicherheit und Vertrauen, Verlust von eigenem Know-How, Umgang mit klassifizierten Daten
+    - Vorteile des Cloud-Computings: Kosten, Aktualität von Daten und Diensten, keine eigene Infrastruktur notwendig, Unterstützung von mobilen Teilnehmern
+
+    .. class:: negative-list
+
+    - Probleme des Cloud-Computings: Sicherheit und Vertrauen, Verlust von eigenem Know-How, Umgang mit klassifizierten Daten
 
 
 Integration von Anwendungen
@@ -1135,7 +1153,7 @@ Transaktionen
 
 .. container:: two-columns 
 
-    .. container:: column center-child-elements no-default-width no-separator
+    .. container:: column center-child-elements no-separator
 
         .. image:: images/transactions/transaction.svg
             :width: 750px
@@ -1280,50 +1298,47 @@ Mobile Computing - Auszeichnende Merkmale
 - Mobil bedeutet, dass sich der Standort eines Geräts im Laufe der Zeit ändern kann. Dies kann z. B. Auswirkung haben auf die lokalen Dienste oder die Erreichbarkeit.
 - Die Aufrechterhaltung einer stabilen Kommunikation kann zu ernsthaften Problemen führen.
 
-.. container:: stack incremental
-
-    .. container:: layer
         
-        .. container:: assessment
+.. container:: assessment margin-top-2em
 
-            Aktueller Stand ist, dass mobile Geräte Verbindungen zu stationären Servern herstellen, wodurch diese im Prinzip *Clients* von Cloud-basierten Diensten sind.
+    Aktueller Stand ist, dass mobile Geräte Verbindungen zu stationären Servern herstellen, wodurch diese im Prinzip *Clients* von Cloud-basierten Diensten sind.
 
-    .. container:: layer incremental
+Mobile Cloud Computing
+-------------------------------------------- 
 
-        .. image:: images/mobile_computing/mobile_cloud_computing.svg
-            :width: 1350px
-            :align: center
-
-    .. container:: layer incremental
-
-        .. image:: images/mobile_computing/mobile_edge_computing.svg
-            :width: 1350px
-            :align: center
+.. image:: images/mobile_computing/mobile_cloud_computing.svg
+    :width: 100%
 
 
-Sensor Networks als verteilte Datenbanken
------------------------------------------
+Mobile Edge Computing
+--------------------------------------------
+
+.. image:: images/mobile_computing/mobile_edge_computing.svg
+    :width: 100%
+                
+            
+
+
+*Sensor Networks* 
+--------------------------------------------
 
 Die Knoten, an denen Sensoren angebracht sind:
 
-- :ger-quote:`Viele`
-- Einfach (geringe Speicher- / Rechen- / Kommunikationskapazität) 
+- :ger-quote:`viele`
+- einfach (geringe Speicher- / Rechen- / Kommunikationskapazität) 
 - oft batteriebetrieben (oder sogar batterielos)
 
-.. container:: stack incremental
-
-    .. container:: layer
-
-        .. image:: images/sensor_networks/operator_stores_and_processes_data.svg
-            :width: 1625px
-            :align: center
+.. image:: images/sensor_networks/operator_stores_and_processes_data.svg
+    :width: 95%
 
 
-    .. container:: layer incremental
 
-        .. image:: images/sensor_networks/nodes_store_and_process_data.svg
-            :width: 1625px
-            :align: center
+*Sensor Networks* als verteilte Datenbanken
+--------------------------------------------
+
+.. image:: images/sensor_networks/nodes_store_and_process_data.svg
+    :width: 95%
+
 
 
 Das *Cloud-Edge Continuum*
@@ -1339,7 +1354,7 @@ Fallstricke bei der Entwicklung verteilter Systeme
 
 .. container:: assessment
 
-    Viele verteilte Systeme sind unnötig komplex aufgrund fehlerhafter Annahmen sowie von Architektur- und Design Fehlern, die später nachgebessert werden müssen.
+    Viele verteilte Systeme sind unnötig komplex aufgrund fehlerhafter Annahmen sowie von Architektur- und Designfehlern, die später nachgebessert werden müssen.
 
 .. container:: incremental
 
@@ -1351,8 +1366,8 @@ Fallstricke bei der Entwicklung verteilter Systeme
     - Das Netzwerk ist sicher
     - Das Netz ist homogen 
     - Die Topologie ändert sich nicht 
-    - Die Latenz ist gleich Null
+    - Die Latenz ist gleich null
     - Die Bandbreite ist unendlich
-    - Die Transportkosten sind gleich Null
+    - Die Transportkosten sind gleich null
     - Es gibt nur einen Administrator
 
