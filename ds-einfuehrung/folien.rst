@@ -83,18 +83,32 @@ Verteilte Systeme - *Middleware Lösungen*
 
 Für die Präsentationen stehen die folgenden Themen stehen zur Auswahl:
 
-1. Apache Kafka
-2. Apache Zookeeper
-3. (Scala) Akka
-4. Rabbit MQ
-5. (Twitter/X) Finagle
-6. Apache Hive
-7. Apache Cassandra
-8. Apache Spark
-9.  Hadoop HDFS
-10. Hadoop Yarn/MapReduce
-11. Apache Mahout
-12. `Zeebe <https://github.com/camunda/zeebe>`__
+.. container:: two-columns
+
+  .. container::
+
+    1. Apache Kafka
+    2. Apache Zookeeper
+    3. (Scala) Akka
+    4. Rabbit MQ
+    5. (Twitter/X) Finagle
+    6. Apache Hive
+    7. Apache Cassandra
+    8. Apache Spark
+    9. `Apache Pulsar <https://pulsar.apache.org>`__
+   
+  .. container::
+
+    10. Hadoop HDFS
+    11. Hadoop Yarn/MapReduce
+    12. Apache Mahout
+    13. `Apache Camel <https://camel.apache.org>`__
+    14. `Zeebe <https://github.com/camunda/zeebe>`__
+    15. `NATS <https://docs.nats.io>`__
+    16. Spring Framework 
+    17. `Eclipse Glassfish und Jakarta EE <https://glassfish.org>`__
+    18. `Tokio <https://tokio.rs>`__
+
 
 .. container:: supplemental
 
