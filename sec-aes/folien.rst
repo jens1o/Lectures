@@ -10,9 +10,10 @@
 
 .. role:: incremental
 .. role:: ger
-.. role:: red
+.. role:: eng
+.. role:: dhbw-red
 .. role:: green 
-.. role:: blue 
+.. role:: the-blue 
 .. role:: smaller
 .. role:: much-smaller
 .. role:: ger-quote
@@ -28,6 +29,7 @@ Advanced Encryption Standard (AES)
 :Dozent: **Prof. Dr. Michael Eichberg**
 :Version: |date|
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
+:Quellen: `NIST FIPS PUB 197, "Advanced Encryption Standard (AES)" <https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197.pdf>`_
 
 
 
@@ -42,31 +44,34 @@ Arithmetik endlicher Körper (Rekapitulation)
 .. admonition:: Beispiel
     :class: example margin-top-2em incremental
 
-    Ein endlicher Körper (mit einer endlichen Anzahl von Elementen) ist die Menge :math:`Z_p`, die aus allen ganzen Zahlen :math:`\lbrace 0,1,....,p-1 \rbrace` besteht, wobei p eine Primzahl ist und in der modulo :math:`p` gerechnet wird.
+    Ein endlicher Körper (mit einer endlichen Anzahl von Elementen) ist die Menge :math:`Z_p`, die aus allen ganzen Zahlen :math:`\lbrace 0,1,....,p-1 \rbrace` besteht, wobei p eine Primzahl ist und in dem modulo :math:`p` gerechnet wird.
+
 
 
 Arithmetik endlicher Körper (Rekapitulation)
 --------------------------------------------------
 
-.. class:: incremental
+.. class:: incremental list-with-explanations
 
-  - For convenience and for implementation efficiency, we would like to work with integers that fit exactly into a given number of bits with no wasted bit patterns.
+- Der Einfachheit halber und aus Gründen der Implementierungseffizienz möchten wir mit ganzen Zahlen arbeiten, die genau in eine bestimmte Anzahl von Bits passen, ohne dass Bitmuster verschwendet werden.
   
-    • Integers in the range 0 through :math:`2^n – 1`, which fit into an n-bit word.
-
-  - If one of the operations used in the algorithm is division, then we need to work in arithmetic defined over a field.
+  Ganze Zahlen im Bereich 0 bis :math:`2^n - 1`, die in ein n-Bit-Wort passen.
   
-    • Division requires that each nonzero element has a multiplicative inverse.
+- Wenn eine Operationen des verwendeten Algorithmus die Division ist, dann müssen wir Arithmetik anwenden, die über einem (ggf. endlichen) Körper definiert ist.
 
-  - The set of such integers, :math:`Z_{2^n}`, using modular arithmetic, is not a field!
+  Division erfordert, dass jedes nichtnull-Element ein multiplikatives Inverses hat.
   
-    • For example, the integer 2 has no multiplicative inverse in :math:`Z_{2^n}`, that is, there is no integer b, such that :math:`2b\; mod\; 2^n = 1`
-
-  - A finite field containing :math:`2^n` elements is referred to as :math:`GF(2^n)`.
+- Wenn wir modulare Arithmetik auf die Menge der ganzen Zahlen :math:`Z_{2^n}` (mit :math:`n > 1`) anwenden, dann erhalten wir keinen Körper!
+  
+  Zum Beispiel hat die ganze Zahl :math:`2` keine multiplikative Inverse in :math:`Z_{2^n}` (mit :math:`n > 1`), d.h. es gibt keine ganze Zahl :math:`b`, so dass :math:`2b\; mod\; 2^n = 1`
+    
+- Ein endlicher Körper der :math:`2^n` Elemente enthält, wird als :math:`GF(2^n)` bezeichnet.
+  
 
   .. container:: hint
 
-    Every polynomial in :math:`GF(2^n)` can be represented by an n-bit number.
+    Jedes Polynom in :math:`GF(2^n)` kann durch eine n-Bit-Zahl dargestellt werden.
+    
 
 
 Arithmetik endlicher Körper in Hinblick auf AES
@@ -86,16 +91,16 @@ Arithmetik endlicher Körper in Hinblick auf AES
             m(x) = x^8 + x^4 + x^3 +x +1
 
 
+
 AES Schlüsseleigenschaften
 ----------------------------
 
 - AES verwendet eine feste Blockgröße von 128 Bit.
-- AES operates on a 4x4 column-major order array of 16 bytes/128 bits: :math:`b_0,b_1,\dots,b_{15}` termed the state:
-  
+- AES arbeitet mit einem 4x4-Array von 16 Bytes/128 Bits in Spaltenhauptordnung (:eng:`column-major order`): :math:`b_0,b_1,\dots,b_{15}` genannt *State* (:ger:`Zustand`):
+
   .. math::
 
     \begin{bmatrix}b_{0}&b_{4}&b_{8}&b_{12}\\b_{1}&b_{5}&b_{9}&b_{13}\\b_{2}&b_{6}&b_{10}&b_{14}\\b_{3}&b_{7}&b_{11}&b_{15}\end{bmatrix}
-    
 
 
 
@@ -126,10 +131,8 @@ AES Parameter
 
 .. class:: vertical-title smaller-slide-title
 
-AES - Ver- und Entschlüsselungsprozess :raw-html:`<br>` :much-smaller:`(Key Size 128bits)`
----------------------------------------------------------------------------------------------
-
-    
+AES - Ver-/Entschlüsselungsprozess :raw-html:`<br>` :much-smaller:`(Key Size 128bits ⇒ 10 Runden)`
+--------------------------------------------------------------------------------------------------------------
 
 .. image:: drawings/aes/encryption_and_decryption_process.svg
     :height: 1150px
@@ -137,34 +140,37 @@ AES - Ver- und Entschlüsselungsprozess :raw-html:`<br>` :much-smaller:`(Key Siz
     :align: center
 
 
-AES Detailed Structure
------------------------
 
-- Processes the entire data block as a single matrix during each round using substitutions and permutation.
+.. class:: smaller
+
+AES Detaillierter Aufbau
+--------------------------
 
 .. class:: incremental
 
-- The key that is provided as input is expanded into an array of forty-four 32-bit words, :math:`w[i]` if 128 bits are used for the keysize.
-
-- The cipher begins and ends with an AddRoundKey stage.
-- Can view the cipher as alternating operations of XOR encryption (AddRoundKey) of a block, followed by scrambling of the block (the other three stages), followed by XOR encryption, and so on.
-- Each stage is easily reversible.
-- The decryption algorithm makes use of the expanded key in reverse order, however the decryption algorithm is not identical to the encryption algorithm.
-- State is the same for both encryption and decryption.
-- Final round of both encryption and decryption consists of only three stages.
-
-
-AES Uses Four Different Stages
--------------------------------
-
-:Substitute bytes: uses an S-box to perform a byte-by-byte substitution of the block
-:ShiftRows: is a simple permutation.
-:MixColumns: is a substitution that makes use of arithmetic over :math:`GF(2^8)`.
-:AddRoundKey: is a simple bitwise XOR of the current block with a portion of the expanded key.
+- Verarbeitet in jeder Runde den gesamten Datenblock als eine einzige Matrix unter Verwendung von Substitutionen und Permutationen.
+- Der als Eingabe bereitgestellte Schlüssel - bei 128 Bit Schlüsselgröße -  wird in ein Array von vierundvierzig 32-Bit-Wörtern expandiert (:math:`w[i]`)
+- Die Chiffre beginnt und endet mit der AddRoundKey-Operation.
+- Man kann sich die Chiffre als abwechselnde Operationen zwischen (a) der XOR-Verschlüsselung (AddRoundKey) eines Blocks vorstellen, gefolgt von (b) der Verwürfelung des Blocks (die anderen drei Stufen), gefolgt von der XOR-Verschlüsselung, und so weiter.
+- Jede Stufe ist leicht umkehrbar.
+- Der Entschlüsselungsalgorithmus verwendet den expandierten Schlüssel in umgekehrter Reihenfolge, wobei der Entschlüsselungsalgorithmus nicht mit dem Verschlüsselungsalgorithmus identisch ist.
+- Der Zustand (*State*) ist sowohl bei der Verschlüsselung als auch bei der Entschlüsselung derselbe.
+- Die letzte Runde sowohl der Verschlüsselung als auch der Entschlüsselung besteht aus nur drei Stufen.
 
 
-AES Substitute byte transformation
-----------------------------------
+
+AES verwendet vier verschiedene Stufen
+------------------------------------------
+
+:*Substitute Bytes*: verwendet eine S-Box, um eine byteweise Ersetzung des Blocks vorzunehmen.
+:*ShiftRows*: ist eine einfache Permutation.
+:*MixColumns*: ist eine Substitution, mit Hilfe von Polynomarithmetik über :math:`GF(2^8)`.
+:*AddRoundKey*: ist ein einfaches bitweises XOR des aktuellen Blocks mit einem Teil des expandierten Schlüssels.
+
+
+
+AES *Substitute Byte* Transformation
+--------------------------------------
 
 .. image:: drawings/aes/substitute_byte_transformation.svg
     :align: center
@@ -184,16 +190,16 @@ AES S-box
     0, 63, 7C, 77, 7B, F2, 6B, 6F, C5, 30, 01, 67, 2B, FE, D7, AB, 76
     1, CA, 82, C9, 7D, FA, 59, 47, FO, AD, D4, A2, AF, 9C, A4, 72, CO
     2, B7, FD, 93, 26, 36, 3F, F7, CC, 34, A5, E5, F1, 71, D8, 31, 15
-    3, 04, C7, 23, С3, 18, 96, 05, 9A, 07, 12, 80, E2, EB, 27, B2, 75
+    3, 04, C7, 23, C3, 18, 96, 05, 9A, 07, 12, 80, E2, EB, 27, B2, 75
     4, 09, 83, 2C, 1A, 1B, 6E, 5A, A0, 52, 3B, D6, B3, 29, E3, 2F, 84
-    5, 53, D1, 00, ED, 20, FC, B1, 5B, 6A, СВ, BE, 39, 4A, 4C, 58, CF
+    5, 53, D1, 00, ED, 20, FC, B1, 5B, 6A, CB, BE, 39, 4A, 4C, 58, CF
     6, DO, EF, AA, FB, 43, 4D, 33, 85, 45, F9, 02, 7F, 50, 3C, 9F, A8
     7, 51, A3, 40, 8F, 92, 9D, 38, F5, BC, B6, DA, 21, 10, FF, F3, D2
     8, CD, 0C, 13, EC, 5F, 97, 44, 17, C4, A7, 7E, 3D, 64, 5D, 19, 73
     9, 60, 81, 4F, DC, 22, 2A, 90, 88, 46, EE, B8, 14, DE, 5E, 0B, DB
-    A, E0, 32, ЗА, 0A, 49, 06, 24, 5C, C2, D3, AC, 62, 91, 95, E4, 79
+    A, E0, 32, 3A, 0A, 49, 06, 24, 5C, C2, D3, AC, 62, 91, 95, E4, 79
     B, E7, C8, 37, 6D, 8D, D5, 4E, A9, 6C, 56, F4, EA, 65, 7A, AE, 08
-    C, BA, 78, 25, 2E, 1C, A6, B4, С6, E8, DD, 74, 1F, 4B, BD, 8B, 8A
+    C, BA, 78, 25, 2E, 1C, A6, B4, C6, E8, DD, 74, 1F, 4B, BD, 8B, 8A
     D, 70, 3E, B5, 66, 48, 03, F6, 0E, 61, 35, 57, B9, 86, C1, 1D, 9E
     E, E1, F8, 98, 11, 69, D9, 8E, 94, 9B, 1E, 87, E9, CE, 55, 28, DF
     F, 8C, A1, 89, OD, BF, E6, 42, 68, 41, 99, 2D, OF, BO, 54, BB, 16
@@ -213,17 +219,17 @@ AES Inverse S-box
 
     :math:`_x\\^y`, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F
     0, 52, 09, 6A, D5, 30, 36, A5, 38, BF, 40, A3, 9E, 81, F3, D7, FB
-    1, 7C, E3, 39, 82, 9B, 2F, FF, 87, 34, 8E, 43, 44, C4, DE, E9, СВ
-    2, 54, 7B, 94, 32, A6, C2, 23, 3D, EE, 4C, 95, 0B, 42, FA, С3, 4E
+    1, 7C, E3, 39, 82, 9B, 2F, FF, 87, 34, 8E, 43, 44, C4, DE, E9, CB
+    2, 54, 7B, 94, 32, A6, C2, 23, 3D, EE, 4C, 95, 0B, 42, FA, C3, 4E
     3, 08, 2E, A1, 66, 28, D9, 24, B2, 76, 5B, A2, 49, 6D, 8B, D1, 25
     4, 72, F8, F6, 64, 86, 68, 98, 16, D4, A4, 5C, CC, 5D, 65, B6, 92
     5, 6C, 70, 48, 50, FD, ED, B9, DA, 5E, 15, 46, 57, A7, 8D, 9D, 84
-    6, 90, D8, AB, 00, 8C, ВС, D3, 0A, F7, E4, 58, 05, B8, B3, 45, 06
+    6, 90, D8, AB, 00, 8C, BC, D3, 0A, F7, E4, 58, 05, B8, B3, 45, 06
     7, DO, 2C, 1E, 8F, CA, 3F, OF, 02, C1, AF, BD, 03, 01, 13, 8A, 6B
-    8, ЗА, 91, 11, 41, 4F, 67, DC, EA, 97, F2, CF, CE, FO, B4, E6, 73
+    8, 3A, 91, 11, 41, 4F, 67, DC, EA, 97, F2, CF, CE, FO, B4, E6, 73
     9, 96, AC, 74, 22, E7, AD, 35, 85, E2, F9, 37, E8, 1C, 75, DF, 6E
     A, 47, FI, 1A, 71, 1D, 29, C5, 89, 6F, B7, 62, 0E, AA, 18, BE, 1B
-    B, FC, 56, 3E, 4B, С6, D2, 79, 20, 9A, DB, CO, FE, 78, CD, 5A, F4
+    B, FC, 56, 3E, 4B, C6, D2, 79, 20, 9A, DB, CO, FE, 78, CD, 5A, F4
     C, 1F, DD, A8, 33, 88, 07, C7, 31, B1, 12, 10, 59, 27, 80, EC, 5F
     D, 60, 51, 7F, A9, 19, B5, 4A, OD, 2D, E5, 7A, 9F, 93, С9, 9C, EF
     E, A0, E0, 3B, 4D, AE, 2A, F5, BO, C8, EB, BB, 3С, 83, 53, 99, 61
@@ -248,8 +254,8 @@ S-Box Design Grundlagen
 
 
 
-Shift Row Transformation
-------------------------
+*Shift Row* Transformation
+----------------------------
 
 .. image:: drawings/aes/shift_row_transformation.svg
     :width: 1600px 
@@ -258,8 +264,8 @@ Shift Row Transformation
 
 
 
-Shift Row Transformation - Begründung
---------------------------------------
+*Shift Row* Transformation - Begründung
+--------------------------------------------
 
 - Wesentlicher als es auf den ersten Blick scheint!
 
@@ -273,7 +279,7 @@ Shift Row Transformation - Begründung
 
 
 
-Mix Column Transformation
+*Mix Column* Transformation
 ---------------------------
 
 .. image:: drawings/aes/mix_column_transformation.svg 
@@ -283,8 +289,8 @@ Mix Column Transformation
 
 
 
-Inverse Mix Column Transformation
----------------------------------
+*Inverse Mix* Column Transformation
+--------------------------------------
 
 .. image:: drawings/aes/inv_mix_column_transformation.svg
     :alt: Inverse Mix Column Transformation
@@ -293,8 +299,8 @@ Inverse Mix Column Transformation
 
 
 
-Mix Colum Transformation - Beispiel
------------------------------------
+*Mix Colum* Transformation - Beispiel
+----------------------------------------
 
 .. container:: three-columns smaller margin-top-0em padding-top-0em
     
@@ -348,12 +354,12 @@ Mix Colum Transformation - Beispiel
 
 
 
-Mix Column Transformation - Begründung
---------------------------------------
+*Mix Column* Transformation - Begründung
+-----------------------------------------
 
 - Die Koeffizienten einer Matrix, die auf einem linearen Code mit maximalem Abstand zwischen den Codewörtern basiert, gewährleisten eine gute Mischung zwischen den Bytes jeder Spalte.
   
-- Die *Mix Column Transformation* (:ger:`Mischspaltentransformation`) kombiniert mit der *Shift Row Transformation* (:ger:`Zeilenverschiebungstransformation`) stellt sicher, dass nach einigen Runden alle Ausgangsbits von allen Eingangsbits abhängen.
+- Die *Mix Column Transformation* (~ :ger:`Vermischung der Spalten`) - kombiniert mit der *Shift Row Transformation* (:ger:`Zeilenverschiebung`) - stellt sicher, dass nach einigen Runden alle Ausgangsbits von allen Eingangsbits abhängen.
 
 
 
@@ -390,13 +396,14 @@ Eingabe für eine einzelne AES-Verschlüsselungsrunde
 AES Schlüsselexpansion
 --------------------------
 
-- Takes as input a four-word (16 byte) key and produces a linear array of 44 words (176) bytes.
-- This is sufficient to provide a four-word round key for the initial `AddRoundKey` stage and each of the 10 rounds of the cipher.
-- Key is copied into the first four words of the expanded key.
-- The remainder of the expanded key is filled in four words at a time.
-- Each added word :math:`w[i]` depends on the immediately preceding word, :math:`w[i – 1]`, and the word four positions back, :math:`w[i – 4]`
-- In three out of four cases a simple XOR is used.
-- For a word whose position in the w array is a multiple of 4, a more complex function :math:`g` is used.
+- Nimmt als Eingabe einen (hier: 128-Bit) Schlüssel mit vier Wörtern (16 Byte) und erzeugt ein lineares Array mit 44 Wörtern (176 Byte).
+- Dies liefert einen vier Worte umfassenden Rundenschlüssel für die initiale *AddRoundKey*-Stufe sowie für jede der folgenden 10 Runden der Chiffre.
+- Der Schlüssel wird in die ersten vier Wörter des erweiterten Schlüssels kopiert.
+- Der Rest des expandierten Schlüssels wird in Blöcken von jeweils vier Wörtern aufgefüllt.
+- Jedes hinzugefügte Wort :math:`w[i]` hängt vom unmittelbar vorangehenden Wort :math:`w[i - 1]`, und dem vier Positionen zurückliegenden Wort, :math:`w[i - 4]`, ab.
+- In drei von vier Fällen wird ein einfaches XOR verwendet.
+- Für ein Wort dessen Position im Array :math:`w` ein Vielfaches von 4 ist, wird die komplexere Funktion :math:`g` angewandt.
+
 
 
 
@@ -432,8 +439,8 @@ AES *Round Key* Berechnung
 
         y_7y_6y_5y_5y_4y_3y_2y_1y_0 =
         \begin{cases}
-        x_6x_5x_5x_4x_3x_2x_1x_00, & if x_7 = 0\\
-        x_6x_5x_5x_4x_3x_2x_1x_00 \oplus 0001 1011,& if x_7 = 1\\
+        x_6x_5x_5x_4x_3x_2x_1x_00, & if\; x_7 = 0\\
+        x_6x_5x_5x_4x_3x_2x_1x_00 \oplus 0001 1011,& if\; x_7 = 1\\
         \end{cases}
 
 .. admonition:: Die *Round Key* Werte sind:
@@ -443,6 +450,10 @@ AES *Round Key* Berechnung
     
     :math:`r_{c_{6}}=20,r_{c_{7}}=40,r_{c_{8}}=80,r_{c_{9}}=1B = 0001 1011, r_{c_{10}}=36`
 
+
+.. container:: supplemental
+
+    Die :math:`xtime` Funktion ist eine Multiplikation im endlichen Körper :math:`GF(2^8)` und ist die Polynommultiplikation mit dem Polynom :math:`x`.
 
 
 
@@ -477,29 +488,27 @@ AES Schlüsselexpansion - Beispiel (Runde 1)
 
 .. container:: incremental
 
-  - First roundkey is: :math:`w[4] || w[5] || w[6] || w[7]` 
+  - Der erste Rundenschlüssel ist: :math:`w[4] || w[5] || w[6] || w[7]` 
 
 
 
-AES Key Expansion - Rationale
-------------------------------
+AES Schlüsselexpansion - Begründung
+---------------------------------------
 
-.. container:: width-50 note incremental small
+.. container:: width-50 note incremental scriptsize
 
-    The specific criteria that were used are:
+    Designziele:
 
-    • Knowledge of a part of the cipher key or round key does not enable calculation of many other round-key bits
-    • An invertible transformation
-    • Speed on a wide range of processors
-    • Usage of round constants to eliminate symmetries
-    • Diffusion of cipher key differences into the round keys
-    • Enough nonlinearity to prohibit the full determination of round key differences from cipher key differences only
-    • Simplicity of description 
-    
-    
+    - Kenntnis eines Teils des Chiffrierschlüssels oder des Rundenschlüssels ermöglicht nicht die Berechnung vieler anderer Bits des Rundenschlüssels
+    - Eine invertierbare Transformation
+    - Performance auf einer breiten Palette von CPUs
+    - Verwendung von Rundenkonstanten zur Beseitigung von Symmetrien
+    - Diffusion der Chiffrierschlüsselunterschiede in die Rundenschlüssel
+    - Ausreichende Nichtlinearität, um die vollständige Bestimmung von Rundenschlüsselunterschieden nur aus Chiffrierschlüsselunterschieden zu verhindern
+    - Einfachheit der Beschreibung
 
-• The Rijndael developers designed the expansion key algorithm to be resistant to known cryptanalytic attacks
-• Inclusion of a round-dependent round constant eliminates the symmetry between the ways in which round keys are generated in different rounds
+- Die Rijndael-Entwickler haben den Expansionsschlüssel-Algorithmus so konzipiert, dass er gegen bekannte kryptoanalytische Angriffe resistent ist.
+- Die Einbeziehung einer rundenabhängigen Rundenkonstante beseitigt die Symmetrie, die sonst bei der Erzeugung der Rundenschlüssel in den verschiedenen Runden entstehen würde.
 
 
 .. class:: vertical-title smaller smaller-slide-title
@@ -582,44 +591,47 @@ Lawineneffekt in AES: Änderung im Schlüssel
 
 
 
-Equivalent Inverse Cipher
---------------------------
+Äquivalente inverse Chiffre
+-----------------------------
 
-AES decryption cipher is not identical to the encryption cipher.
+.. container:: assessment 
 
-• The sequence of transformations differs although the form of the key schedules is the same.
-• Has the disadvantage that two separate software or firmware modules are needed for applications that require both encryption and decryption.
+  AES-Entschlüsselung ist nicht identisch mit der Verschlüsselung.
+
+  - Die Abfolge der Umwandlungen ist unterschiedlich, obwohl die Schlüsselableitung die gleiche ist.
+  - Dies hat den Nachteil, dass für Anwendungen, die sowohl Verschlüsselung als auch Entschlüsselung erfordern, zwei separate Software- oder Firmware-Module benötigt werden.
 
 .. class:: incremental
 
-  Two separate changes are needed to bring the decryption structure in line with the encryption structure:
+  Zwei unabhängige, separate Änderungen sind erforderlich, um die Entschlüsselungsstruktur mit der Verschlüsselungsstruktur in Einklang zu bringen:
 
   .. class:: incremental
 
-    1. The first two stages of the decryption round need to be interchanged.
-    2. The second two stages of the decryption round need to be interchanged.
+    1. Die ersten beiden Stufen der Entschlüsselungsrunde müssen vertauscht werden.
+    2. Die zweiten beiden Stufen der Entschlüsselungsrunde müssen vertauscht werden.
 
 
-Interchanging `InvShiftRows` and `InvSubBytes`
+Vertausch von `InvShiftRows` und `InvSubBytes`
 ----------------------------------------------
 
-• `InvShiftRows` :red:`affects the sequence` of bytes in State but does not alter byte contents and does not depend on byte contents to perform its transformation
-• `InvSubBytes` :blue:`affects the contents` of bytes in State but does not alter byte sequence and does not depend on byte sequence to perform its transformation
+:*InvShiftRows*: :dhbw-red:`beeinflusst die Reihenfolge` der Bytes im Zustand (*State*), ändert aber nicht den Inhalt der Bytes und ist nicht vom Inhalt der Bytes abhängig, um seine Transformation durchzuführen.
+:*InvSubBytes*: :the-blue:`beeinflusst den Inhalt` von Bytes im Zutand (*State*), ändert aber nicht die Byte-Reihenfolge und hängt nicht von der Byte-Reihenfolge ab, um seine Transformation durchzuführen.
 
 
-.. admonition:: Important 
+.. container:: assessment
     
-    Thus, these two operations commute and can be interchanged.
+    Diese beiden Operationen sind kommutativ und soweit vertauschbar.
 
 
-Interchanging `AddRoundKey` and `InvMixColumns`
+
+Vertausch von *AddRoundKey* und *InvMixColumns*
 ------------------------------------------------
 
-- The transformations `AddRoundKey` and `InvMixColumns` do not alter the sequence of bytes in State.
-- If we view the key as a sequence of words, then both AddRoundKey and InvMixColumns operate on State one column at a time.
-- These two operations are linear with respect to the column input.
+- Die Transformationen *AddRoundKey* und *InvMixColumns* ändern die Reihenfolge der Bytes im Zustand (*State*) nicht.
+- Betrachtet man den Schlüssel als eine Folge von Wörtern, so wirken sowohl *AddRoundKey* als auch *InvMixColumns* jeweils nur auf eine Spalte des Zustands (*State*).
+- Diese beiden Operationen sind linear in Bezug auf die gegebene Spalte.
 
-  That is, for a given State :math:`S_i` and a given round key :math:`w_j`:
+  Das heißt, für einen bestimmten Zustand :math:`S_i` und einen bestimmten Rundenschlüssel :math:`w_j`:
   
   .. math:: 
 
@@ -655,13 +667,20 @@ Aspekte der Umsetzung auf 32-bit Prozessoren
 AES kann effizient auf einem 32-Bit-Prozessor implementiert werden:
 
 - Die einzelnen Schritte können so umdefiniert werden, dass sie 32-Bit-Wörter verwenden.
-- Es ist möglich die 4 Tabellen mit je 256 Wörtern vorzuberechnen.
+- Es ist möglich 4 Tabellen für die *MixColumns* Transformation mit je 256 Wörtern vorzuberechnen.
   
   - Dann kann jede Spalte in jeder Runde mit 4 Tabellen-Lookups + 4 XORs berechnet werden.
   - Die Kosten für die Speicherung der Tabellen belaufen sich auf :ger-quote:`4Kb`.
 
 - Die Entwickler glauben, dass die Möglichkeit einer effizienten Implementierung ein Schlüsselfaktor für die Wahl der AES-Chiffre zum neuen Standard war.
 
+
+.. container:: supplemental
+
+    .. image:: drawings/vorberechnung-von-mixcolumns.png
+        :width: 100%
+        :align: center
+        :alt: Vorberechnung von MixColumns
 
 
 .. class:: integrated-exercise
