@@ -183,16 +183,14 @@ Verteilte Systeme
 ------------------
 
 .. admonition:: Zwei Ansichten zur Realisierung verteilter Systeme
-    :class: definition
 
     - **Integrative Sichtweise**: Verbindung bestehender vernetzter Computersysteme zu einem größeren System.
     - **Expansive Sichtweise**: ein bestehendes vernetztes Computersystem wird um zusätzliche Computer erweitert.
 
 .. admonition:: Zwei Definitionen
-    :class: definition in
 
-    - Ein dezentrales System ist ein vernetztes Computersystem, in dem Prozesse und Ressourcen *notwendigerweise* über mehrere Computer verteilt sind.
-    - Ein verteiltes System ist ein vernetztes Computersystem, bei dem Prozesse und Ressourcen *hinreichend* über mehrere Computer verteilt sind.
+    - Ein **dezentrales System** ist ein vernetztes Computersystem, in dem Prozesse und Ressourcen *notwendigerweise* über mehrere Computer verteilt sind.
+    - Ein **verteiltes System** ist ein vernetztes Computersystem, bei dem Prozesse und Ressourcen *hinreichend* über mehrere Computer verteilt sind.
 
 
 
@@ -278,11 +276,11 @@ Kanonische Beispiele:
 Verteilungstransparenz (:eng:`Distribution Transparency`)
 ----------------------------------------------------------
 
-.. admonition:: Definition
-
+.. admonition:: Definition 
+    
     Transparenz beschreibt die Eigenschaft, dass ein verteiltes System versucht, die Tatsache zu verbergen, dass seine Prozesse und Ressourcen physisch auf mehrere Computer verteilt sind, die möglicherweise durch große Entfernungen voneinander getrennt sind.
 
-.. container:: incremental
+.. container:: incremental margin-top-2em
 
   Die Verteilungstransparenz wird durch viele verschiedene Techniken von der so genannten *Middleware* realisiert - einer Schicht zwischen Anwendungen und Betriebssystemen.
 
@@ -339,9 +337,7 @@ Die Verteilung offen zu legen, kann Vorteile bringen
 
 .. container:: assessment margin-top-2em
 
-    .. container:: 
-    
-        Verteilungstransparenz ist ein hehres Ziel, aber oft schwer zu erreichen, und häufig auch nicht erstrebenswert. 
+    Verteilungstransparenz ist ein hehres Ziel, aber oft schwer zu erreichen, und häufig auch nicht erstrebenswert. 
 
 
 
@@ -350,11 +346,15 @@ Offene verteilte Systeme
 
 .. admonition:: Definition
 
-    Ein offenes verteiltes System bietet Komponenten an, die leicht von anderen Systemen verwendet oder in andere Systeme integriert werden können. Ein offenes verteiltes System besteht selbst oft aus Komponenten, die von woanders stammen.
+    Ein offenes verteiltes System bietet Komponenten an, die leicht von anderen Systemen verwendet oder in andere Systeme integriert werden können. 
+    
+    Ein offenes verteiltes System besteht selbst oft aus Komponenten, die von woanders stammen.
 
-.. container:: incremental smaller margin-top-1em
+.. container:: incremental smaller margin-top-2em
 
     Offene verteilte Systeme müssen in der Lage sein, mit Diensten anderer (offener) Systeme zu interagieren, unabhängig von der zugrunde liegenden Umgebung:
+
+    .. class:: incremental
 
     - Sie sollten wohl-definierte Schnittstellen korrekt realisieren
     - Sie sollten leicht mit anderen Systemen interagieren können
@@ -410,17 +410,19 @@ Verlässlichkeit verteilter Systeme
     
     Eine **Komponente**\ [#]_ stellt ihren **Clients** **Dienste** zur Verfügung. Dafür kann die Komponente jedoch wiederum Dienste von anderen Komponenten benötigen und somit ist eine Komponente  von einer anderen Komponente abhängig (:eng:`depend`).
 
+.. admonition:: Definition
 
     Eine Komponente :math:`C` hängt von :math:`C^*` ab, wenn die Korrektheit des Verhaltens von :math:`C` von der Korrektheit des Verhaltens von :math:`C^*` abhängt. 
 
 .. [#] Komponenten seien Prozesse oder Kanäle.
 
 
+
 Anforderungen an die Verlässlichkeit verteilter Systeme
 ------------------------------------------------------------
 
 .. csv-table::
-    :class: highlight-line-on-hover
+    :class: highlight-line-on-hover incremental
     :header: "Anforderung", "Beschreibung"
 
     "Verfügbarkeit", "Das System ist nutzbar."
@@ -432,6 +434,8 @@ Anforderungen an die Verlässlichkeit verteilter Systeme
 .. [#] :eng:`Safety` und :eng:`Security` werden beide im Deutschen gleich mit Sicherheit übersetzt und sind daher leicht zu verwechseln. :eng:`Safety` bezieht sich auf die Sicherheit von Personen und Sachen, während :eng:`Security` sich auf die Sicherheit von Daten und Informationen bezieht.
 
 
+.. class:: smaller-slide-title smaller
+
 Zuverlässigkeit (:eng:`Reliability`) vs. Verfügbarkeit (:eng:`Availability`) in verteilten Systemen
 --------------------------------------------------------------------------------------------------------------
 
@@ -439,16 +443,29 @@ Zuverlässigkeit (:eng:`Reliability`) vs. Verfügbarkeit (:eng:`Availability`) i
 
 Bedingte Wahrscheinlichkeit, dass :math:`C` während :math:`[0,t)` korrekt funktioniert hat, wenn :math:`C` zum Zeitpunkt :math:`T = 0` korrekt funktionierte.
 
-.. rubric:: Traditionelle Metriken
+.. compound:: 
+    :class: incremental
 
-- Mittlere Zeit bis zum Versagen (:eng:`Mean Time to Failure` (MTTF)): Die durchschnittliche Zeit bis zum Ausfall einer Komponente. 
-- Mittlere Zeit bis zur Reparatur (:eng:`Mean Time to Repair` (MTTR)): Die durchschnittliche Zeit, die für die Reparatur einer Komponente benötigt wird.
-- Mittlere Zeit zwischen Ausfällen (:eng:`Mean Time Between Failures` (MTBF)): MTTF + MTTR.
+    .. rubric:: Traditionelle Metriken
 
-.. container:: supplemental
+    .. class:: incremental
 
-    - Zuverlässigkeit: Wie wahrscheinlich ist es, dass ein System *korrekt* arbeitet?
-    - Verfügbarkeit: Wie wahrscheinlich ist es, dass ein System zu einem bestimmten Zeitpunkt verfügbar ist?
+    - Mittlere Zeit bis zum Versagen (:eng:`Mean Time to Failure` (:math:`MTTF`)): 
+  
+      Die durchschnittliche Zeit bis zum Ausfall einer Komponente. 
+
+    - Mittlere Zeit bis zur Reparatur (:eng:`Mean Time to Repair` (:math:`MTTR`)): 
+  
+      Die durchschnittliche Zeit, die für die Reparatur einer Komponente benötigt wird.
+
+    - Mittlere Zeit zwischen Ausfällen (:eng:`Mean Time Between Failures` (:math:`MTBF`)): 
+     
+      :math:`MTTF + MTTR = MTBF`.
+
+    .. container:: supplemental
+
+        - Zuverlässigkeit: Wie wahrscheinlich ist es, dass ein System *korrekt* arbeitet?
+        - Verfügbarkeit: Wie wahrscheinlich ist es, dass ein System zu einem bestimmten Zeitpunkt verfügbar ist?
 
 
 
@@ -500,6 +517,11 @@ Grundlegende Schutzziele:
 :Integrität: Änderungen an den Werten eines Systems dürfen nur auf autorisierte Weise vorgenommen werden können.
 
 
+.. container:: supplemental
+
+    Zusammen mit dem dritten Schutzziel: Verfügbarkeit, bilden diese drei Schutzziele die CIA-Triade der Informationssicherheit (:eng:`Confidentiality, Integrity, and Availability`).
+
+
 Sicherheit in verteilten Systemen - Autorisierung, Authentifizierung, Vertrauen
 -------------------------------------------------------------------------------------
 
@@ -544,7 +566,7 @@ Es geht im Wesentlichen um das Ver- und Entschlüsseln von Daten (:math:`X`) mit
 
         .. rubric:: Asymmetrische Verschlüsselung
 
-        Wir unterscheiden zwischen einem privaten (:math:`PR`) und einem öffentlichen Schlüssel (:math:`PU`) (:math:`PU \neq PR`). Der private Schlüssel ist immer geheim zu halten.
+        Wir unterscheiden zwischen privaten (:math:`PR`) und öffentlichen Schlüsseln (:math:`PU`) (:math:`PU` :math:`\neq` :math:`PR`). Ein privater und ein öffentlicher Schlüssel bilden immer ein Paar. Der private Schlüssel ist immer geheim zu halten.
         
         .. container:: stack
 
@@ -552,7 +574,7 @@ Es geht im Wesentlichen um das Ver- und Entschlüsseln von Daten (:math:`X`) mit
 
                 **Verschlüsselung von Nachrichten**
                 
-                Alice sendet eine Nachricht an Bob und nutzt dazu den öffentlichen Schlüssel von Bob.
+                Alice sendet eine Nachricht an Bob mit Hilfe des öffentlichen Schlüssels von Bob.
 
                 .. math::
                     Y = E(PU_{Bob},X) \\
@@ -578,18 +600,19 @@ Eine sichere Hash-Funktion :math:`Digest(X)` gibt eine Zeichenkette fester Läng
 - Jede Änderung - noch so klein - der Eingabedaten führt zu einer völlig anderen Zeichenkette.
 - Bei einem Hash-Wert ist es rechnerisch unmöglich die ursprüngliche Nachricht X basierend auf :math:`Digest(X)` zu finden.
 
+.. container:: incremental
 
-**Signieren von Nachrichten**
+    .. rubric:: Signieren von Nachrichten
 
-Alice signiert eine Nachricht mit ihrem privaten Schlüssel.
+    Alice signiert eine Nachricht :math:`X` mit ihrem privaten Schlüssel.
 
-.. math::
-    Alice: [E(PR_{Alice},H=Digest(X)),X] \\
+    .. math::
+        Alice: [E(PR_{Alice},H=Digest(X)),X] \\
 
-Bob prüft die Nachricht :math:`X` auf Authentizität:
+    Bob prüft die Nachricht :math:`X` auf Authentizität:
 
-.. math::
-    Bob: D(PU_{Alice},H) \stackrel{?}{=} Digest(X)
+    .. math::
+        Bob: D(PU_{Alice},H) \stackrel{?}{=} Digest(X)
 
 
 
@@ -657,8 +680,12 @@ Formale Analyse der Skalierbarkeit zentralisierter Systeme
 
     .. container:: column no-separator
 
-        - Ankunftsrate der Anfragen: λ *(in Anfragen pro Sekunde)*
-        - Verarbeitungskapazität des Services: μ *(in Anfragen pro Sekunde)*
+        - Ankunftsrate der Anfragen: 
+       
+          :math:`\lambda` *(Anfragen pro Sekunde)*
+        - Verarbeitungskapazität des Services: 
+         
+          :math:`\mu` *(Anfragen pro Sekunde)*
 
         Anteil der Zeit mit :math:`x` Anfragen im System:
 
@@ -675,7 +702,14 @@ Formale Analyse der Skalierbarkeit zentralisierter Systeme
 
             # Anfragen in Bearbeitung und Warteschlange
 
-            (z. B. ist der Anteil der Zeit in der der Rechner *idle* ist (d. h.es gibt keine Anfragen) 90 %, 60 % und 30 %.)
+            Z. B. ist der Anteil der Zeit in der der Rechner *idle* ist (:math:`p_0`; d. h.es gibt keine/0 Anfragen): 90 %, 60 % und 30 %.
+
+
+.. container:: presenter-notes
+
+    Anschaulich kann man die Formel:
+    :math:`p_x  = \bigl(1 - \frac{\lambda}{\mu}\bigr)\bigl(\frac{\lambda}{\mu}\bigr)^x` so verstehen, dass die Wahrscheinlichkeit, dass sich :math:`x` Anfragen im System befinden, mit der Anzahl der Anfragen im System abnimmt. Deswegen gilt :math:`\bigl(\frac{\lambda}{\mu}\bigr)^x` weiterhin müssen wir modellieren, dass es :ger-quote:`nur` zwei Anfragen gibt (d.h. das System is sonst `idle`). Deswegen müssen wir noch mit :math:`p_0 = 1 - \frac{\lambda}{\mu}` multiplizieren.
+
 
 
 .. class:: smaller
@@ -699,20 +733,25 @@ Formale Analyse der Skalierbarkeit zentralisierter Systeme
 
     U = \sum_{x > 0} p_x = 1 - p_0 = \frac{\lambda}{\mu} \Rightarrow p_x = (1-U) U^x
 
-Durchschnittliche Anzahl der Anfragen:
 
-.. math::
+.. container:: incremental
+        
+    Durchschnittliche Anzahl der Anfragen:
 
-    \bar{N} = \sum_{x\geq 0} x \cdot p_x 
-    = \sum_{x \geq 0} x \cdot (1-U)U^x 
-    = (1-U)\sum_{x\geq 0} x\cdot U^x  
-    = \frac{(1-U)U}{(1-U)^2} = \frac{U}{1-U}
+    .. math::
 
-Durchschnittlicher Durchsatz:
+        \bar{N} = \sum_{x\geq 0} x \cdot p_x 
+        = \sum_{x \geq 0} x \cdot (1-U)U^x 
+        = (1-U)\sum_{x\geq 0} x\cdot U^x  
+        = \frac{(1-U)U}{(1-U)^2} = \frac{U}{1-U}
 
-.. math::
+.. container:: incremental
 
-    X = \underbrace{U \cdot \mu}_{\mbox{ausgelastet}} + \underbrace{(1-U) \cdot 0}_{\mbox{ungenutzt}} = \frac{\lambda}{\mu} \cdot \mu = \lambda 
+    Durchschnittlicher Durchsatz:
+
+    .. math::
+
+        X = \underbrace{U \cdot \mu}_{\mbox{ausgelastet}} + \underbrace{(1-U) \cdot 0}_{\mbox{ungenutzt}} = \frac{\lambda}{\mu} \cdot \mu = \lambda 
 
 
 .. container:: supplemental
@@ -763,6 +802,7 @@ Probleme der geografischen Skalierbarkeit
 - WAN-Verbindungen sind oft von Natur aus unzuverlässig.
 
 
+
 Probleme der administrativen Skalierbarkeit
 --------------------------------------------
 
@@ -770,12 +810,14 @@ Probleme der administrativen Skalierbarkeit
 
     Widersprüchliche Richtlinien in Bezug auf Nutzung (und damit Bezahlung), Verwaltung und Sicherheit
 
-.. container:: footnotesize
+.. container:: footnotesize incremental
 
     .. rubric:: Beispiele
 
     - Grid Computing: gemeinsame Nutzung teurer Ressourcen über verschiedene Domänen hinweg.
     - Gemeinsam genutzte Geräte: Wie kontrolliert, verwaltet und nutzt man ein gemeinsam genutztes Radioteleskop, das als groß angelegtes gemeinsames Sensornetz konstruiert wurde?
+
+.. container:: footnotesize incremental
 
     .. rubric:: Ausnahme 
 
@@ -784,7 +826,7 @@ Probleme der administrativen Skalierbarkeit
     - File-Sharing-Systeme (z. B. auf der Grundlage von BitTorrent) 
     - Peer-to-Peer-Telefonie (frühe Versionen von Skype) 
 
-.. [#] :eng:`Peer` ist im hier im Sinne von :ger-quote:`Gleichgestellter` zu verstehen. D. h. wir haben ein Netz von gleichgestellten Rechnern.
+    .. [#] :eng:`Peer` ist im hier im Sinne von :ger-quote:`Gleichgestellter` zu verstehen. D. h. wir haben ein Netz von gleichgestellten Rechnern.
 
 Ansätze, um Skalierung zu erreichen
 ------------------------------------
@@ -796,17 +838,19 @@ Ansätze, um Skalierung zu erreichen
     - Nutzung asynchroner Kommunikation
     - Verwendung separater *Handler* für eingehende Antworten 
 
-    .. container:: assessment
+    .. container:: assessment incremental
 
         Dieses Modell ist jedoch nicht immer anwendbar.
 
-.. container:: line-above margin-top-2em padding-top-1em
+.. container:: line-above margin-top-2em padding-top-1em incremental
 
     **Partitionierung von Daten und Berechnungen über mehrere Rechner.**
 
     - Verlagerung von Berechnungen auf Clients 
     - Dezentrale Namensgebungsdienste (DNS)
     - Dezentralisierte Informationssysteme (WWW)
+
+
 
 Verlagerung von Berechnungen auf Clients
 ------------------------------------------
@@ -820,6 +864,8 @@ Ansätze, um Skalierung zu erreichen
 ------------------------------------
 
 **Einsatz von Replikation und Caching, um Kopien von Daten auf verschiedenen Rechnern verfügbar zu machen.**
+
+.. class:: incremental
 
 - replizierte Dateiserver und Datenbanken 
 - gespiegelte Websites
@@ -865,7 +911,7 @@ Paralleles Rechnen (:eng:`Parallel Computing`)
 
 .. container:: supplemental
 
-    Das verteilte Hochleistungsrechnen begann mit dem parallelen Rechnen
+    Das verteilte Hochleistungsrechnen begann mit dem parallelen Rechnen.
 
     **Verteilte Systeme mit gemeinsamem Speicher** (:eng:`Multicomputer with shared memory`) als alternative Architektur haben die Erwartungen nicht erfüllt und sind daher nicht mehr relevant.
 
@@ -874,32 +920,29 @@ Paralleles Rechnen (:eng:`Parallel Computing`)
 Amdahls Gesetz - Grenzen der Skalierbarkeit
 -----------------------------------------------------
 
-.. container:: stack
 
-    .. container:: layer
+.. class:: list-with-explanations
 
-        .. class:: list-with-explanations
+- Lösen von **fixen Problemen** in möglichst kurzer Zeit
 
-        - Lösen von **fixen Problemen** in möglichst kurzer Zeit
-        
-          (Beispiel: Hochfahren (:eng:`Booten`) eines Rechners. Inwieweit lässt sich durch mehr CPUs/Kerne die Zeit verkürzen?)
-        - Es modelliert die erwartete Beschleunigung (Speedup) eines zum Teil parallelisierten/parallelisierbaren Programms relativ zu der nicht-parallelisierten Variante
+    (Beispiel: Hochfahren (:eng:`Booten`) eines Rechners. Inwieweit lässt sich durch mehr CPUs/Kerne die Zeit verkürzen?)
+- Es modelliert die erwartete Beschleunigung (*Speedup*) eines zum Teil parallelisierten/parallelisierbaren Programms relativ zu der nicht-parallelisierten Variante
 
-        .. container:: note width-40 tiny
+.. container:: note width-40 tiny
 
-            **Legende**
+    **Legende**
 
-            :math:`C` = Anzahl CPUs 
+    :math:`C` = Anzahl CPUs 
 
-            :math:`P` = Parallelisierungsgrad
-            
-            :math:`S` = Speedup 
+    :math:`P` = Parallelisierungsgrad in Prozent
+    
+    :math:`S` = Speedup 
 
-        .. admonition:: Definition 
-            
-            .. class:: huge
+.. admonition:: Definition 
+    
+    .. class:: huge
 
-                :math:`S(C) = \frac{1}{(1-P) + \frac{P}{C}}`
+        :math:`S(C) = \frac{1}{(1-P) + \frac{P}{C}}`
 
 
 Amdahls Gesetz visualisiert - Grenzen der Skalierbarkeit
@@ -988,7 +1031,7 @@ MapReduce - ein Programmiermodell für paralleles Rechnen
 
 .. class:: incremental 
 
-- MapReduce ist ein Programmiermodel und eine entsprechende Implementierung (ein Framework entwickelt von Google) zur Verarbeitung sehr großer Datenmengen (ggf. TBytes).
+- MapReduce ist ein Programmiermodel und eine entsprechende Implementierung (ein Framework ursprünglich entwickelt von Google) zur Verarbeitung sehr großer Datenmengen (ggf. TBytes).
 - Programme, die mit Hilfe von MapReduce implementiert werden, werden automatisch parallelisiert und auf einem großen Cluster von handelsüblichen Rechnern ausgeführt.
 
   .. container:: smaller dhbw-gray
@@ -1000,7 +1043,7 @@ MapReduce - ein Programmiermodell für paralleles Rechnen
     - Behandlung von Fehlern und die Kommunikation zwischen den Rechnern
 
 .. admonition:: Hinweis
-    :class: warning
+    :class: warning incremental
 
     Nicht alle Arten von Berechnungen können mit Hilfe von MapReduce durchgeführt werden.
 
@@ -1030,13 +1073,14 @@ MapReduce - Visualisierung und Beispiel
     Ein weiteres Beispiel ist die Berechnung eines invertierten Indexes.
 
 
+
 Cluster Computing
 --------------------
 
 Eine Gruppe von :ger-quote:`High-End-Systemen`, die über ein LAN verbunden sind.
 
 .. image:: images/cluster-computing.svg
-    :width: 60%
+    :width: 85%
     :align: center
 
 .. container:: supplemental
@@ -1061,6 +1105,7 @@ Weiterführung des Cluster Computing.
     https://scienceunited.org
 
     https://einsteinathome.org
+
 
 
 Grundlegende Architektur für Grid-Computing
@@ -1121,9 +1166,13 @@ Cloud-Computing
 
 :Varianten: 
 
-    - Public Cloud ( ⇒ Amazon EC2, Google Apps, Microsoft Azure, ...)
+    .. class:: list-with-explanations
+
+    - Public Cloud (z. B. Amazon EC2, Google Apps, Microsoft Azure, …)
     - Private Cloud
-    - Hybrid Cloud (Private Cloud wird bei Bedarf durch Public Cloud ergänzt)
+    - Hybrid Cloud 
+     
+      (Private Cloud wird bei Bedarf durch Public Cloud ergänzt.)
   
 
 .. container:: supplemental
@@ -1162,8 +1211,8 @@ Integration von Anwendungen
     Eine vernetzte Anwendung ist eine Anwendung, die auf einem Server läuft und ihre Dienste für entfernte Clients verfügbar macht. 
 
 
-Transaktionen
----------------------------------
+Transaktionen auf Geschäftsprozessebene
+-----------------------------------------
 
 .. container:: two-columns 
 
@@ -1201,6 +1250,8 @@ Transaktionen
                 :Dauerhaft `Durable`:eng:: Nach einem Commit sind die Änderungen dauerhaft
         
                 ≙ :eng:`ACID`\ -Eigenschaften
+
+
 
 .. class:: smaller
 
@@ -1259,7 +1310,7 @@ Wie kann die Anwendungsintegration erreicht werden?
 
   - Dateiformat und Layout herausfinden
   - Dateiverwaltung regeln
-  - Weitergabe von Aktualisierungen und Aktualisierungsbenachrichtigungen.
+  - Weitergabe von Aktualisierungen und Aktualisierungsbenachrichtigungen
  
 .. class:: incremental
 
@@ -1274,8 +1325,12 @@ Wie kann die Anwendungsintegration erreicht werden?
 :Nachrichtenübermittlung `Messaging`:eng:: Ermöglicht eine zeitliche und räumliche Entkopplung im Vergleich zu RPCs.
 
 
-Distributed Pervasive/Ubiquitous Systems (:ger:`verteilte, allgegenwärtige/durchdringende Systeme`)
-------------------------------------------------------------------------------------------------------------
+*Distributed Pervasive/Ubiquitous Systems* 
+------------------------------------------------------------------------
+
+.. container:: minor
+
+    (:ger:`verteilte, allgegenwärtige/alles durchdringende Systeme`)
 
 .. container:: assessment
 
@@ -1291,19 +1346,19 @@ Distributed Pervasive/Ubiquitous Systems (:ger:`verteilte, allgegenwärtige/durc
     :Sensor-/Actuator Networks: *allgegenwärtig*; Schwerpunkt liegt auf der tatsächlichen (kollaborativen) Erfassung (:eng:`sensing`) und Betätigung (:eng:`actuation`).
 
 
-Ubiquitous Systems - Kernbestandteile
+*Ubiquitous Systems* - Kernbestandteile
 --------------------------------------------
 
 .. class:: incremental
 
 1. :eng:`Distribution`: Die Geräte sind vernetzt, verteilt und ohne Hürde zugänglich.
-2. :eng:`Interaction`: Die Interaktion zwischen Benutzern und Geräten ist in hohem Maße unaufdringlich 
+2. :eng:`Interaction`: Die Interaktion zwischen Benutzern und Geräten ist in hohem Maße unaufdringlich. 
 3. :eng:`Context Awareness`: Das System kennt den Kontext eines Benutzers, um die Interaktion zu optimieren.
 4. :eng:`Autonomy`: Die Geräte arbeiten autonom, ohne menschliches Eingreifen, und verwalten sich in hohem Maße eigenständig.
 5. :eng:`Intelligence`: Das System als Ganzes kann ein breites Spektrum dynamischer Aktionen und Interaktionen bewältigen.
 
 
-Mobile Computing - Auszeichnende Merkmale
+*Mobile Computing* - Auszeichnende Merkmale
 --------------------------------------------
 
 .. class:: incremental smaller
@@ -1311,20 +1366,21 @@ Mobile Computing - Auszeichnende Merkmale
 - Eine Vielzahl unterschiedlicher mobiler Geräte (Smartphones, Tablets, GPS-Geräte, Fernbedienungen, aktive Ausweise).
 - Mobil bedeutet, dass sich der Standort eines Geräts im Laufe der Zeit ändern kann. Dies kann z. B. Auswirkung haben auf die lokalen Dienste oder die Erreichbarkeit.
 - Die Aufrechterhaltung einer stabilen Kommunikation kann zu ernsthaften Problemen führen.
-
         
-.. container:: assessment margin-top-2em
+.. container:: assessment margin-top-2em incremental
 
     Aktueller Stand ist, dass mobile Geräte Verbindungen zu stationären Servern herstellen, wodurch diese im Prinzip *Clients* von Cloud-basierten Diensten sind.
 
-Mobile Cloud Computing
+
+
+*Mobile Cloud Computing*
 -------------------------------------------- 
 
 .. image:: images/mobile_computing/mobile_cloud_computing.svg
     :width: 100%
 
 
-Mobile Edge Computing
+*Mobile Edge Computing*
 --------------------------------------------
 
 .. image:: images/mobile_computing/mobile_edge_computing.svg
