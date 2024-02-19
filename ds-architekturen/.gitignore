@@ -1,4 +1,12 @@
 images/sagas
 images/microservices
+images/rpcs
+images/web_services-vs-message_brokers
 
 external
+
+images/middleware.svg
+images/rmi_anatomy.svg
+images/rpc_vs_rmi.svg
+images/ws-protocol_stack.svg
+images/historic_middleware_technologies.svg

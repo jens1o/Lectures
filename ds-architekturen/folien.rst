@@ -1,6 +1,6 @@
 .. meta:: 
     :author: Michael Eichberg
-    :keywords: "Verteilte Anwendungen", "Modelle"
+    :keywords: "Verteilte Anwendungen", "Modelle", "Architekturen", "Architekturelle Stile"
     :description lang=de: Architekturen von verteilten Anwendungen
     :id: lecture-ds-architectures-of-distributed-applications
     :first-slide: last-viewed
@@ -120,6 +120,7 @@ Microservices und Conway's Law
       :height: 960px
        
 
+
 Microservices und Technologieeinsatz
 -------------------------------------
 
@@ -128,6 +129,7 @@ Microservices sind flexibel bzgl. des Technologieeinsatzes und ermöglichen den 
 .. image:: images/microservices/technologische-flexibilitaet.svg
    :height: 700px
    :align: center
+
 
 
 Microservices und Skalierbarkeit
@@ -182,8 +184,32 @@ Transaktionen mit Hilfe von Sagas
     .. image:: images/sagas/transaktion-mit-saga.svg
       :height: 1160px
 
+.. container:: supplemental
 
-Langlebige Transaktionen mit Hilfe orchestrierter Sagas
+  Eine *Saga* ist eine Sequenz von Aktionen, die ausgeführt werden, um eine langlebige Transaktion zu implementieren. 
+  
+  Sagas können keine Atomizität garantieren!. Jedes System für sich kann jedoch ggf. Atomizität garantieren (z. B. durch die Verwendung traditioneller Datenbanktransaktionen).
+
+  Sollte ein Abbruch der Transaktion notwendig sein, dann kann kein traditioneller *Rollback* erfolgen. Die Saga muss dann entsprechende kompensierende Transaktionen durchführen, die alle bisher erfolgreich durchgeführten Aktionen rückgängig machen.
+
+
+
+.. class:: smaller-slide-title vertical-title
+
+Optimierung der Abarbeitungsreihenfolge zwecks Minimierung von mgl. *Rollbacks*
+--------------------------------------------------------------------------------
+
+.. image:: images/sagas/transaktion-mit-saga-mit-weniger-rollbacks.svg
+   :height: 1160px
+   :align: center
+
+
+.. container:: supplemental
+
+  Die Abarbeitungsreihenfolge der Aktionen kann so optimiert werden, dass die Wahrscheinlichkeit von *Rollbacks* minimiert wird. In diesem Falle ist die Wahrscheinlichkeit, dass es zu einem *Rollback* während des Schritts :ger-quote:`Versand der Bestellung` kommt, wesentlich höher als beim Schritt :ger-quote:`Kundenbonus gutschreiben`.
+
+
+Langlebige Transaktionen mit orchestrierten Sagas
 --------------------------------------------------------
 
 .. image:: images/sagas/orchestrierte-saga.svg
@@ -207,13 +233,17 @@ Langlebige Transaktionen mit Hilfe orchestrierter Sagas
   - Gefahr, dass Funktionalität, die besser in den einzelnen Services (oder ggf. neuen Services) unterzubringen wäre, in den Bestellung Service wandert.
 
 
-Langlebige Transaktionen mit Hilfe choreografierter Sagas
+Langlebige Transaktionen mit choreografierten Sagas
 ----------------------------------------------------------
 
-.. image:: images/sagas/choreografierte-saga.svg
-   :height: 920px
+.. image:: images/sagas/choreographierte-saga.svg
+   :height: 975px
    :align: center
 
+
+.. container:: supplemental
+
+  Ein großes Problem bei choreografierten Sagas ist es den Überblick über den aktuellen Stand zu behalten. Durch die Verwendung einer "Korrelations-ID" kann diese Problem gemindert werden.
 
 
 .. class:: no-title center-child-elements
