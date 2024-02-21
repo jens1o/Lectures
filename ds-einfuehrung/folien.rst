@@ -1164,7 +1164,9 @@ Cloud-Computing
 
     Weiterentwicklung des Grid-Computing. Ziel ist die Bereitstellung von Rechenleistung, Speicher und Anwendungen als Dienstleistung.
 
-:Varianten: 
+.. container:: incremental margin-top-1em
+
+    .. rubric:: Varianten
 
     .. class:: list-with-explanations
 
@@ -1173,9 +1175,9 @@ Cloud-Computing
     - Hybrid Cloud 
      
       (Private Cloud wird bei Bedarf durch Public Cloud ergänzt.)
-  
+    - Virtual Private Cloud
 
-.. container:: supplemental
+.. supplemental:: 
 
     .. class:: positive-list
 
@@ -1183,7 +1185,33 @@ Cloud-Computing
 
     .. class:: negative-list
 
-    - Probleme des Cloud-Computings: Sicherheit und Vertrauen, Verlust von eigenem Know-How, Umgang mit klassifizierten Daten
+    - Probleme des Cloud-Computings: Sicherheit und Vertrauen, Verlust von eigenem Know-How, Umgang mit klassifizierten Daten.
+  
+      Ein Ausweg könnte `Hommomorphe Verschlüsselung <https://de.wikipedia.org/wiki/Homomorphe_Verschlüsselung>`_ sein, die es ermöglicht, Berechnungen auf verschlüsselten Daten durchzuführen. 
+
+
+*Serverless Computing*
+----------------------
+
+*Serverless Computing* ermöglicht es Entwicklern Anwendungen schneller zu erstellen, da sie sich nicht mehr um die Verwaltung der Infrastruktur kümmern müssen. 
+
+.. class:: positive-list incremental
+
+- Der Cloud-Service-Anbieter stellt die für die Ausführung des Codes erforderliche Infrastruktur automatisch bereit, skaliert und verwaltet sie.
+
+.. class:: negative-list incremental list-with-explanations
+
+  - Vendor-Lock-In
+  - Kaltstart-Latenz 
+  
+    Zeit bis der erste Code ausgeführt wird kann höher sein, da die Instanziierung der Serverless-Funktionen erst bei Bedarf erfolgt.
+  - Debugging und Monitoring
+
+    Klassische Tools und Methoden sind nicht mehr anwendbar.
+  - Kostentransparenz/-management
+
+    Die Kosten für Serverless-Computing sind schwer vorherzusagen und zu kontrollieren. 
+  
 
 
 Integration von Anwendungen

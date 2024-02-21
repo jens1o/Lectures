@@ -30,7 +30,7 @@
    :format: html
 
 
-Entwurfsprinzipien für moderne verteilte Anwendungen
+Entwurfsprinzipien für :raw-html:`<br>` Moderne Verteilte Anwendungen
 =================================================================================================
 
 (:eng:`Design Principles and Design Patterns for Distributed Applications`)
@@ -69,7 +69,7 @@ Die Entitäten (:dhbw-light-gray:`Klassen`, :dhbw-gray:`Module`, :dhbw-gray:`Kom
 
 .. container:: supplemental
 
-  Die Unabhängige Testbarkeit ersetzt aber nicht die Notwendigkeit von Integrationstests.
+  Die unabhängige Testbarkeit ersetzt aber nicht die Notwendigkeit von Integrationstests.
 
 
 .. class:: center-child-elements
@@ -161,7 +161,7 @@ Niedrige statische Kopplung (:eng:`low (static) coupling`)
 
   Keine Kopplung ist (auch) nicht wünschenswert, da dies zu Entitäten führt, die alle Arbeit durchführen; weiterhin führt dies auch dazu, dass sich ggf. die Arbeit sehr viel schlechter aufteilen lässt und dann eine agile Entwicklung mit einem kleinen Team nicht mehr möglich ist. 
 
-  Relevante Frage: Wer ist/sollte der Eigentümer der Schnittstellen sein? d. h. aus welcher Perspektive sollte die Schnittstelle entworfen werden?
+  Relevante Frage: Wer ist/sollte der Eigentümer der Schnittstellen sein? D. h. aus welcher Perspektive sollte die Schnittstelle entworfen werden?
 
 
 .. class:: vertical-title much-smaller
@@ -196,9 +196,9 @@ Niedrige vs. hohe dynamische Kopplung
 
   Beobachtungen:
 
-  Die Skalierbarkeit der ersten Lösung hängt direkt von der Performance von Zahlung und Inventarisierung ab. Für die Verfügbarkeit der Gesamtlösung gilt das Gleiche. PubSub ist hier deutlich mächtiger.
-
-  Nachteil von PubSub liegen im Bereich:
+  Die Skalierbarkeit der ersten Lösung hängt direkt von der Performance von Zahlung und Inventarisierung ab. Für die Verfügbarkeit der Gesamtlösung gilt das Gleiche. 
+  
+  PubSub ist hier deutlich mächtiger; Nachteile von PubSub liegen im Bereich:
 
   - Indirektion
   - garantierter Nachrichtenverbleib bzw. garantierte Nachrichtenverarbeitung
@@ -238,10 +238,11 @@ Ausgewählte Typen von Zusammenhalt:
 
 
 
-Geringer Zusammenhalt (:eng:`low cohesion`) 
+Geringer Zusammenhalt (:eng:`Low Cohesion`) 
 -----------------------------------------------------------------------
 
 Entitäten mit geringem Zusammenhalt sind nicht wünschenswert! 
+
 Sie sind:
 
 - schwer zu verstehen
@@ -255,7 +256,7 @@ Sie sind:
 
 
 
-Hoher Zusammenhalt / hohe Kohäsion (:eng:`high cohesion`)
+Hoher Zusammenhalt (:eng:`High Cohesion`)
 ----------------------------------------------------------------------
 
 Alle Funktionalität und alle Daten sollten :ger-quote:`natürlich` zum Konzept gehören, das von der Entität realisiert wird.
@@ -300,7 +301,7 @@ Alle Funktionalität und alle Daten sollten :ger-quote:`natürlich` zum Konzept 
 Zusammenfassung 
 --------------------------------------------- 
 
-.. container:: line-above padding-top-2em huge
+.. container:: line-above padding-top-1em margin-top-1em huge
 
   Kopplung und Kohäsion erlauben es uns einen Entwurf auf allen (Abstraktions-)ebenen zu beurteilen.
 
@@ -315,7 +316,8 @@ Von Verantwortung und Zuständigkeit
   
   \ 
 
-- Der Verteilung von Zuständigkeiten ist die zentrale Tätigkeit während des Entwurfs. Entwurfsmuster, Idiome und Prinzipien helfen dabei die Zuständigkeiten zu verteilen.
+- Der Verteilung von Zuständigkeiten ist die zentrale Tätigkeit während des Entwurfs. 
+- Entwurfsmuster, Idiome und Prinzipien helfen dabei die Zuständigkeiten zu verteilen.
 - Bei der Verteilung von Zuständigkeiten gibt es eine große Bandbreite:
 
   .. class:: incremental
@@ -325,13 +327,14 @@ Von Verantwortung und Zuständigkeit
 
 .. container:: supplemental
 
-  Bei der Verteilung der Zuständigkeiten gibt es eine große Bandbreite in Hinblick darauf, wie nicht-funktionalen - und die funktionalen Eigenschaften einer Software realisiert werden.
+  Bei der Verteilung der Zuständigkeiten gibt es eine große Bandbreite in Hinblick darauf, wie die nicht-funktionalen - und die funktionalen Eigenschaften einer Software realisiert werden.
 
 
-.. class:: center-child-elements
 
-\ 
----
+.. class:: center-child-elements no-title
+
+Leitgedanke bzgl. funktionaler Kohäsion
+--------------------------------------------
 
 **Leitgedanke bzgl. funktionaler Kohäsion:**
 
@@ -343,13 +346,13 @@ Fasse die Dinge zusammen, die sich aus dem gleichen Grund und zur selben Zeit ä
 -------------------------------------------------------------------------------------------------
 
 .. image:: images/ccp-and-srp.svg
-  :width: 1750px
-  :alt: An application of the Common Closure Principle and the Single Responsibility Principle.
+  :width: 100%
+  :alt: Anwendung des Common Closure Principle und des Single Responsibility Principle
 
 
 .. container:: supplemental
 
-  :Single Responsibility Principle (SRP): Ein Modul sollte nur einem einzigen Akteur gegenüber verantwortlich sein. d. h. es sollte nur eine wohldefinierte Gruppe von Personen geben, die eine Veränderung veranlassen/verlangen können. Code, von dem verschiedene Akteure abhängen, sollte aufgeteilt werden.
+  :Single Responsibility Principle (SRP): Ein Modul sollte nur einem einzigen Akteur gegenüber verantwortlich sein. D. h. es sollte nur eine wohldefinierte Gruppe von Akteuren geben, die eine Veränderung veranlassen/verlangen können. Code, von dem verschiedene Akteure abhängen, sollte aufgeteilt werden.
   
   :Common Closure Principle (CCP): Fasse in Komponenten solche Klassen zusammen, die sich aus dem gleichen Grund und zur gleichen Zeit ändern. z. B. weil sie die gleichen Stakeholder haben oder die gleichen rechtlichen Grundlagen haben.
 
@@ -393,7 +396,7 @@ Fasse die Dinge zusammen, die sich aus dem gleichen Grund und zur selben Zeit ä
 
   Je niedriger das Modul, desto detaillierter ist die Funktion, die es implementiert.
 
-  **Mögliches Fehldesign (Verletzt das DIP)**
+  **Ein Klassendesign, dass das DIP verletzt:**
 
   .. image:: images/dip-layers/traditionelle-schichtenabhaengigkeit.svg
     :width: 60%
@@ -417,16 +420,15 @@ Dependency Inversion Principle
 
   Gute Softwarekonzepte sind in Module gegliedert.
 
-  High-Level-Module enthalten die wichtigen politischen Entscheidungen und Geschäftsmodelle einer Anwendung - Die Identität der Anwendung.
+  High-Level-Module enthalten die wichtigen politischen Entscheidungen und Geschäftsmodelle einer Anwendung. Sie definieren die Identität der Anwendung.
 
   Low-Level-Module enthalten detaillierte Implementierungen einzelner Mechanismen, die zur Umsetzung der Richtlinie benötigt werden.
 
 
+.. class:: center-child-elements no-title
 
-.. class:: center-child-elements
-
-\ 
---
+Open-closed Principle (OCP)
+-----------------------------------
 
 .. container:: dhbw-red huge
 
@@ -442,7 +444,7 @@ Dependency Inversion Principle
 
 .. container:: supplemental
 
-  d. h. es sollte möglich sein neue Erweiterungen zu realisieren ohne dass man die Software verändern, rekompilieren, neu bereitstellen (:eng:`to deploy`) oder vergleichbare muss. Klassisches Beispiel ist ein Texteditor wie VS Code, welcher durch Extensions erweitert werden kann; d. h. es liegt eine Plug-in Architektur vor. 
+  D. h. es sollte möglich sein neue Erweiterungen zu realisieren ohne dass man die Software verändern, rekompilieren, neu bereitstellen (:eng:`to deploy`) oder vergleichbares muss. Klassisches Beispiel ist ein Texteditor wie VS Code, welcher durch *Extensions*/*Plug-Ins* erweitert werden kann; d. h. es die Software is erweiterbar ohne das man diese neu kompilieren muss.
 
 
 
@@ -482,7 +484,10 @@ Open-closed Principle - Case Study
 
   Das Problem ist, dass wir hier die Nachrichten - welche im Prinzip die Schnittstelle modellieren - relativ exakt an den Anforderungen des Services zur Bestimmung der Verfügbarkeit von Autos ausgerichtet haben. 
   
-  Wie sähe in diesem Fall z. B. eine Erweiterung um einen Dienst für Kundenprämienberechnung aus? Über die ``VereinbarungID`` bekommen wir Zugriff auf die Daten des Kunden aber dies fordert dann mehr als einen *Lookup* in einer Datenbank und ggf. auch das Einbinden mehrerer Dienste, was es zu vermeiden gilt, da die Kopplung unnötig ansteigen würde.
+  Wie sähe in diesem Fall z. B. eine Erweiterung um einen Dienst für Kundenprämienberechnung aus?
+  
+  Über die ``VereinbarungID`` bekommen wir Zugriff auf die Daten des Kunden aber dies fordert dann mehr als einen *Lookup* in einer Datenbank und ggf. auch das Einbinden mehrerer Dienste, was es zu vermeiden gilt, da die Kopplung unnötig ansteigen würde.
+
 
 
 .. class:: smaller transition-scale
@@ -509,17 +514,20 @@ Open-closed Principle - Case Study
 
   Eine Antwort darauf liefern ggf. *Bounded-Context* aus dem *Domain-driven Design*
   
-  Ein *Bounded Context* ist ein Gültigkeitsbereich eines Domänenmodells, einer `Ubiquitous Language <https://leanpub.com/ddd-referenz/read#ubiquitous-language>`_ und die Basis für die Organisation des Projekts.[...] Eine Modellierung nach den Daten führt nicht zu sinnvollen Bounded Contexts, sondern eher zu komplexen Modellen. Wichtig ist, die Daten als Folge der Funktionalitäten zu modellieren.
+  Ein *Bounded Context* ist ein Gültigkeitsbereich eines Domänenmodells, einer `Ubiquitous Language <https://leanpub.com/ddd-referenz/read#ubiquitous-language>`_ und die Basis für die Organisation des Projekts.[...] 
+  
+    :dhbw-red:`Eine Modellierung nach den Daten führt nicht zu sinnvollen Bounded Contexts, sondern eher zu komplexen Modellen. Wichtig ist, die Daten als Folge der Funktionalitäten zu modellieren.`
 
-  Domain-driven Design behandelt Beziehungen zwischen Bounded Contexts im Strategic Design.
+  Domain-driven Design behandelt Beziehungen zwischen *Bounded Contexts* im sogenannten *Strategic Design*.
   
   https://www.heise.de/hintergrund/Domain-driven-Design-und-Bounded-Context-Eigentlich-ganz-einfach-oder-4634258.html?seite=all
 
 
-.. class:: center-child-elements
 
-\ 
----
+.. class:: center-child-elements no-title
+
+Liskov Substitution Principle (LSP) 
+-------------------------------------
 
 .. container:: dhbw-red huge
 
@@ -559,26 +567,22 @@ Interface Segregation Principle & Common Reuse Principle
     Ausgangszustand:
 
     .. image:: images/segregation/no-segregation.svg
-      :width: 1750px
-      :align: center
-
-    
+      :width: 1700px
 
   .. container:: layer incremental
 
     Geplante Erweiterung:
 
     .. image:: images/segregation/no-segregation-2nd-service.svg
-      :width: 1750px
-      :align: center
+      :width: 1700px
+      :class: clearfix
 
   .. container:: layer incremental
 
     Teilung der Schnittstelle:
 
     .. image:: images/segregation/effective-segregation.svg
-      :width: 1750px
-      :align: center
+      :width: 1700px
 
 .. admonition:: Leitgedanke 
   :class: warning margin-top-1em incremental
@@ -592,10 +596,10 @@ Interface Segregation Principle & Common Reuse Principle
 
 
 
-.. class:: center-child-elements
+.. class:: center-child-elements no-title
 
-\ 
----
+Command-Query Separation (CQS)
+-------------------------------
 
 .. container:: dhbw-red huge
 
@@ -621,25 +625,26 @@ Interface Segregation Principle & Common Reuse Principle
 
 .. container:: supplemental
 
-  Ein Java Iterator mit der “next” Methode verletzt ganz klar dieses Prinzip!
+  Ein Java Iterator mit seiner :ger-quote:`next` Methode verletzt ganz klar dieses Prinzip!
+
 
 
 Traditionelle Interaktion mit Informationssystemen (CRUD) 
 -------------------------------------------------------------------------------------------------
 
-.. container:: two-columns no-default-width
+.. container:: two-columns
 
-  .. container:: column tiny
+  .. container:: tiny
 
     .. figure:: images/cqs_and_cqrs/crud.svg
        :width: 1400px
 
        Darstellung nach `Martin Fowler <https://martinfowler.com/bliki/CQRS.html>`_.
     
-  .. container:: column scriptsize
+  .. container:: scriptsize
 
     1. Modell liest von DB
-    2. Service stellt Information für Präsentations- schicht bereit
+    2. Service stellt Information für Präsentationsschicht bereit
     3. Nutzer hat Änderung vorgenommen
     4. Weiterleitung der Änderung
     5. Modell validiert
@@ -650,25 +655,26 @@ Traditionelle Interaktion mit Informationssystemen (CRUD)
   Darstellung einer Anwendung mit traditioneller Architektur.
 
 
-.. class:: center-child-elements
 
-\ 
----
+.. class:: center-child-elements no-title
+
+Command-Query Responsibility Segregation Principle
+-----------------------------------------------------------------------------
 
 .. container:: dhbw-red huge
   
   Command-Query Responsibility Segregation Principle
 
-.. container:: two-columns no-default-width margin-top-1em box-shadow
+.. container:: two-columns 
 
-  .. container:: column tiny
+  .. container:: tiny
 
-    .. image:: images/cqs_and_cqrs/crud.svg
+    .. image:: images/cqs_and_cqrs/cqrs.svg
        :width: 1400px
 
     Darstellung nach `Martin Fowler <https://martinfowler.com/bliki/CQRS.html>`_.
     
-  .. container:: column scriptsize
+  .. container:: scriptsize
 
     1. Abfrage-Modell liest von DB
     2. Abfrage-Service stellt Information für Präsentations- schicht bereit
@@ -676,9 +682,8 @@ Traditionelle Interaktion mit Informationssystemen (CRUD)
     4. Weiterleitung der Änderung
     5. Kommando-Modell validiert
     6. Kommando-Modell aktualisiert DB
-  
 
-.. container:: text-align-right serif italic smaller margin-0-5em
+.. container:: text-align-right serif italic smaller margin-0-5em padding-right-1em
 
   ⸺ Greg Young, 2010
 
@@ -697,34 +702,40 @@ Command-Query Responsibility Segregation Principle (CQRS)
 
 .. class:: incremental
 
-- Die Anzahl an Schreibe- und Leseoperationen ist extrem unterschiedlich
-- Die Datenmodelle bzgl. Abfragen und “Kommandos” unterscheiden sich deutlich und es kommen ggf. mehrere Datenbanken zum Einsatz
-- Die Validierung der Daten ist komplex 
+- Die Anzahl an Schreibe- und Leseoperationen ist extrem unterschiedlich.
+- Die Datenmodelle bzgl. Abfragen und :ger-quote:`Kommandos` unterscheiden sich deutlich und es kommen ggf. mehrere Datenbanken zum Einsatz.
+- Die Validierung der Daten ist komplex.
 
-.. rubric:: Vorteile/Möglichkeiten
+.. container:: incremental
 
-.. class:: incremental list-with-explanations
+  .. rubric:: Vorteile/Möglichkeiten
 
--  Die Modelle können von unterschiedlichen Teams entwickelt werden (im Rahmen einzelner Services)
-- Unterschiedliche Skalierung bzgl. Abfragen und Kommandos ist möglich
-- Passt sehr gut zu ereignisgetriebenen Programmiermodellen/Architekturen
-  
-  Erlaubt sehr einfache Unterstützung von *Event Sourcing*.
+  .. class:: incremental list-with-explanations
+
+  -  Die Modelle können von unterschiedlichen Teams entwickelt werden (im Rahmen einzelner Services).
+  - Unterschiedliche Skalierung bzgl. Abfragen und Kommandos ist möglich.
+  - Passt sehr gut zu ereignisgetriebenen Programmiermodellen/Architekturen.
+    
+    Erlaubt sehr einfache Unterstützung von *Event Sourcing*.
+
 
 
 .. class:: new-section
 
-Moderne Architekturprinzipien für verteilte Anwendungen
-------------------------------------------------------------
+Moderne Architekturprinzipien für :raw-html:`<br>` verteilte Anwendungen
+--------------------------------------------------------------------------
 
-.. class:: center-child-elements
 
-\ 
----
+
+.. class:: center-child-elements no-title
+
+Gute Anwendungsarchitekturen
+-----------------------------
 
 .. container:: foundations
 
   Die (technischen) Ziele einer guten Anwendungsarchitektur :incremental:`sollten der Minimierung des Aufwands dienen, der notwendig ist, um das System zu entwickeln und zu warten bzw. weiterzuentwickeln.`
+
 
 
 .. class:: smaller
@@ -739,9 +750,7 @@ Ein einfacher RESTful Web Service mit Spring
     package com.example.restservice;
 
     import java.util.concurrent.atomic.AtomicLong;
-    import org.springframework.web.bind.annotation.GetMapping;
-    import org.springframework.web.bind.annotation.RequestParam;
-    import org.springframework.web.bind.annotation.RestController;
+    import org.springframework.web.bind.annotation.*;
 
     @RestController
     public class GreetingController {
@@ -750,7 +759,9 @@ Ein einfacher RESTful Web Service mit Spring
       private final AtomicLong counter = new AtomicLong();
 
       @GetMapping("/greeting")
-      public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+      public Greeting greeting(
+          @RequestParam(value = "name", defaultValue = "World") String name
+      ) {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
       }
     }
@@ -758,6 +769,7 @@ Ein einfacher RESTful Web Service mit Spring
 .. container:: footer-left tiny 
 
   Beispiel von http://spring.io.
+
 
 
 .. class:: center-child-elements
@@ -786,7 +798,7 @@ Ein einfacher RESTful Web Service mit Spring
   Im RESTful-Beispiel hatten wir einen technischen Service for Augen - er implementiert keine wesentliche Geschäftslogik!
 
 
-Traditionelle n-Schichten Architektur
+Traditionelle n-Schichten Architektur (Wiederholung)
 -------------------------------------------------------------------------------------------------
 
 
@@ -798,7 +810,8 @@ Traditionelle n-Schichten Architektur
 
   Codeabhängigkeiten ergeben sich zum Beispiel beim Verwenden eines Object-relational Mappers (ORM). 
 
-  Solch eine Architektur war Ende der 90er/Anfang der 2000er Standard und ist für einfache Programme auch heute noch akzeptabel, da diese häufig sehr schnell zu entwickeln sind und viel Erfahrung mit dieser Architektur vorhanden ist.
+  Solch eine Architektur war Ende der 90er/Anfang der 2000er Standard und ist für einfache Programme auch heute noch akzeptabel, da diese häufig sehr schnell zu entwickeln sind und viel Erfahrung mit dieser Architektur vorhanden ist. Besser ist es jedoch gleich eine der folgenden Architekturen anzuwenden, um ggf. vorbereitet zu sein, wenn das System wächst.
+
 
 
 Hexagonal Architecture (Ports & Adapters) [#]_
@@ -880,20 +893,20 @@ Hexagonal Architecture (Ports & Adapters) [#]_
 
 .. container:: supplemental
 
-  Schlüssellehren der *Onion Architecture* (Zwiebelarchitektur)
+  Schlüssellehren der *Onion Architecture* (Zwiebelarchitektur):
 
   - Die Anwendung ist rund um ein unabhängiges Objektmodel gebaut.
-  - Innere Schichten definieren Schnittstellen 
-  - Äußere Schichten implementieren Schnittstellen
+  - Innere Schichten definieren Schnittstellen. 
+  - Äußere Schichten implementieren Schnittstellen.
   - Die Richtung der Kopplung ist immer in Richtung zum Zentrum!
-  - Der Anwendungskern (Application Core) kann immer ohne die Infrastruktur kompiliert und davon unabhängig ausgeführt werden.
+  - Der Anwendungskern (*Application Core*) kann immer ohne die Infrastruktur kompiliert und davon unabhängig ausgeführt werden.
 
 .. [#] https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/
 
 
-*Clean Architecture* [Martin2017]_
--------------------------------------------------------------------------------------------------
 
+*Clean Architecture* [Martin2017]_
+----------------------------------------------------------------
 
 .. container:: stack 
 
@@ -901,43 +914,31 @@ Hexagonal Architecture (Ports & Adapters) [#]_
   
     .. image:: images/clean-architecture/entities-ring.svg
       :height: 800px
-      :align: center
 
   .. container:: layer overlay incremental
 
     .. image:: images/clean-architecture/use-cases-ring.svg
       :height: 800px
-      :align: center
-
 
   .. container:: layer overlay incremental
 
       .. image:: images/clean-architecture/controllers-ring.svg
         :height: 800px
-        :align: center
 
   .. container:: layer overlay incremental
 
       .. image:: images/clean-architecture/web-ring.svg
         :height: 800px
-        :align: center
 
   .. container:: layer overlay incremental
 
       .. image:: images/clean-architecture/code-abhaengigkeiten.svg
         :height: 800px
-        :align: center
 
-  .. container:: layer overlay incremental
+  .. container:: layer overlay incremental 
 
       .. image:: images/clean-architecture/legende.svg
         :height: 800px
-        :align: center
-
-
-.. container:: text-align-right serif italic smaller margin-0-5em
-
-  ⸺ Robert C. Martin, 2018
 
 .. container:: supplemental
 
@@ -968,7 +969,7 @@ Hexagonal Architecture (Ports & Adapters) [#]_
 
   .. rubric:: Code Abhängigkeiten
 
-  Wie bei den anderen Architekturen auch, gehen auch hier die Abhängigkeiten immer von außen nach innen. d. h. die Entitäten sind von nichts abhängig, die Anwendungsfälle von den Entitäten, die Schnittstellen von den Anwendungsfällen und die externen Details von den Schnittstellen.
+  Wie bei den anderen Architekturen auch, gehen auch hier die Abhängigkeiten immer von außen nach innen. D. h. die Entitäten sind von nichts abhängig, die Anwendungsfälle von den Entitäten, die Schnittstellen von den Anwendungsfällen und die externen Details von den Schnittstellen.
 
 
 
@@ -991,7 +992,7 @@ Hexagonal Architecture (Ports & Adapters) [#]_
 
 .. container:: supplemental
 
-    Mit einer solchen Implementierung sind auch echte initiale Kosten verbunden - mehrere Interfaces müssen implementiert und gewartet werden. Partielle Lösungen sind denkbar müssen aber wohl überlegt sein, um ungewünschte Abhängigkeiten zu vermeiden, die häufig zu einer schlechten Wartbarkeit und langfristigen bzw. verzögerten Kosten führen.
+    Mit einer solchen Implementierung sind auch echte initiale Kosten verbunden - mehrere Interfaces müssen implementiert und gewartet werden. Partielle Lösungen sind denkbar, müssen aber wohl überlegt sein, um ungewünschte Abhängigkeiten zu vermeiden, die häufig zu einer schlechten Wartbarkeit und langfristigen bzw. verzögerten Kosten führen.
 
 
 Gemeinsamkeiten aktueller Architekturen
