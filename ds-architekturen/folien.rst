@@ -31,7 +31,7 @@
 
 
 Modelle und Architekturen verteilter Anwendungen
-=================================================================================================
+===============================================================================
 
 .. container:: line-above padding-bottom-1em
 
@@ -267,23 +267,27 @@ Middleware bietet (beim Programmieren) Transparenz in Bezug auf eine oder mehrer
 Middleware als Infrastruktur
 ---------------------------------
 
-.. class:: incremental 
+.. class:: incremental list-with-explanations
 
-- Hinter Programmierabstraktionen steht eine komplexe Infrastruktur, die diese Abstraktionen implementiert (Middleware-Plattformen sind sehr komplexe Softwaresysteme).
-- Da die Programmierabstraktionen immer höhere Ebenen erreichen, muss die zugrunde liegende Infrastruktur, die die Abstraktionen implementiert, entsprechend wachsen
+- Hinter Programmierabstraktionen steht eine komplexe Infrastruktur, die diese Abstraktionen implementiert 
+  
+  (Middleware-Plattformen können sehr komplexe Softwaresysteme sein).
+- Da die Programmierabstraktionen immer höhere Ebenen erreichen, muss die zugrunde liegende Infrastruktur, die die Abstraktionen implementiert, entsprechend wachsen.
 - Zusätzliche Funktionalität wird fast immer durch zusätzliche Softwareschichten implementiert.
 - Die zusätzlichen Softwareschichten erhöhen den Umfang und die Komplexität der für die Nutzung der neuen Abstraktionen erforderlichen Infrastruktur.
 
 .. supplemental::
 
-  Seit Jahrzehnten kann beobachtet werden, dass Middleware immer komplexer wird bzw. wurde bis zu dem Punkt an dem die Komplexität kaum mehr beherrschbar war. Zu diesen Zeitpunkten wurden dann häufig neue Ansätze entwickelt, die die Komplexität reduzierten bis diese wiederum Eingang in neue Middleware fand. Ansätze, wie z. B. REST, haben sich als recht erfolgreich erwiesen stellen aber Entwickler vor neue Herausforderungen.
+  Seit Jahrzehnten kann beobachtet werden, dass Middleware immer komplexer wird bzw. wurde bis zu dem Punkt an dem die Komplexität kaum mehr beherrschbar war. Zu diesen Zeitpunkten wurden dann häufig neue Ansätze entwickelt, die die Komplexität reduzierten bis diese wiederum Eingang in komplexere Middleware-Produkten Eingang fand. 
+  
+  Ansätze, wie z. B. REST, haben sich als recht erfolgreich erwiesen stellen aber Entwickler vor neue Herausforderungen.
 
 
 
 Middleware und nicht-funktionale Anforderungen
 ------------------------------------------------
 
-Die Infrastruktur kümmert sich um nicht-funktionalen Eigenschaften, die normalerweise von Datenmodellen, Programmiermodellen und Programmiersprachen ignoriert werden: 
+Die Infrastruktur kümmert sich um nicht-funktionale Eigenschaften, die normalerweise von Datenmodellen, Programmiermodellen und Programmiersprachen ignoriert werden: 
 
 - Leistung
 - Verfügbarkeit
@@ -302,8 +306,9 @@ Middleware unterstützt zusätzliche Funktionen die die Entwicklung, Wartung und
 
 - Protokollierung (:eng:`Logging`) 
 - Wiederherstellung (:eng:`Recovery`)
-- Sprachprimitive für transaktionale Abgrenzung, 
-- :minor:`fortgeschrittene Transaktionsmodelle (z.B. transaktionale RPC), transaktionales Dateisystem`
+- Sprachprimitive für transaktionale Abgrenzung 
+ 
+  :minor:`bzw. fortgeschrittene Transaktionsmodelle (z.B. transaktionale RPC), transaktionales Dateisystem`
 
 
 
@@ -323,6 +328,8 @@ Konzeptionelle Darstellung (historischer) Middleware
 .. supplemental::
 
   Insbesondere die explizite Erzeugung von Stubs und Skeletons durch einen IDL Compiler erfolgt so in der heutigen Zeit nicht mehr. Die Erzeugung von Stubs und Skeletons - wenn überhaupt erforderlich - erfolgt heute automatisch durch die Middleware.
+
+
 
 .. class:: vertical-title
 
@@ -349,6 +356,7 @@ Entwicklung von Middleware
   - RESTful Webservices und JSON
 
 
+
 .. class:: no-title center-child-elements
 
 Middleware - High-level View
@@ -358,6 +366,408 @@ Middleware - High-level View
 
   Eine Middleware stellt eine umfassende Plattform für die Entwicklung und den Betrieb komplexer verteilter Systeme zur Verfügung.
 
+
+
+.. class:: new-subsection transition-fade
+
+Remote Procedure Calls (RPCs)
+-------------------------------
+
+
+Remote Procedure Call (RPC)
+-------------------------------
+
+.. container:: huge text-align-center 
+
+  Schwerpunkt: verstecken der Netzkommunikation.
+
+.. container:: incremental margin-top-2em
+
+  Ein Prozess kann eine Prozedur aufrufen kann, deren Implementierung sich auf einem entfernten Rechner befindet:
+
+  - Der Programmierer von verteilten Systemen muss sich nicht mehr um alle Details der Netzwerkprogrammierung kümmern (d.h. keine "expliziten" Sockets mehr)
+  - Überbrückung der konzeptionellen Lücke zwischen dem Aufruf lokaler Funktionalität über Prozeduren und dem Aufruf entfernter Funktionalität über Sockets.
+
+
+RPCs konzeptionell (synchrone Kommunikation)
+------------------------------------------------
+
+.. container:: two-columns
+
+  .. container:: 
+
+    - Ein Server ist ein Programm, das bestimmte Dienste implementiert.
+    - Cients möchten diese Dienste in Anspruch nehmen:
+      
+      .. class:: incremental
+
+      - Die Kommunikation erfolgt durch das Senden von Nachrichten (kein gemeinsamer Speicher, keine gemeinsamen Festplatten usw.)
+      - Einige minimale Garantien müssen gegeben werden (Behandlung von Fehlern, Aufrufsemantik, usw.)
+
+
+  .. image:: images/rpc_konzeptionell.svg
+    :height: 900px
+    :align: center
+
+
+
+RPCs - zentrale Fragestellungen und Herausforderungen
+-------------------------------------------------------
+
+.. stack::
+
+  .. layer::
+
+    Sollen entfernte Aufrufe transparent oder nicht transparent für den Entwickler sein? 
+ 
+      Ein Fernaufruf ist etwas völlig anderes als ein lokaler Aufruf; sollte sich der Programmierer dessen bewusst sein?
+
+  .. layer:: incremental 
+  
+    Wie können Daten zwischen Maschinen ausgetauscht werden, die möglicherweise unterschiedliche Darstellungen für verschiedene Datentypen verwenden? 
+
+  .. layer:: incremental 
+  
+    Komplexe Datentypen müssen linearisiert werden:
+
+    - **Marshalling** - der Prozess des Aufbereitens der Daten in eine für die Übermittlung in einer Nachricht geeignete Form
+    - **Unmarshalling** - der Prozess der Wiederherstellung der Daten bei ihrer Ankunft am Zielort, um eine originalgetreue Repräsentation zu erhalten.
+
+  .. layer:: incremental
+
+    Wie findet und bindet man den Dienst, den man tatsächlich will, in einer potenziell großen Sammlung von Diensten und Servern? 
+    
+    Das Ziel ist, dass der Kunde nicht unbedingt wissen muss, wo sich der Server befindet oder sogar welcher Server den Dienst anbietet (Standorttransparenz).
+
+  .. layer:: incremental
+
+    Wie geht man mehr oder weniger elegant mit Fehlern um:
+
+    - Server ist ausgefallen
+    - Kommunikation ist gestört
+    - Server beschäftigt
+    - doppelte Anfragen ...
+
+
+.. supplemental::
+
+  Je nach System ist die Reihenfolge der Bytes unterschiedlich:
+
+  - Intel-CPUs sind Little-Endian.
+  - PowerPC ist Big-Endian.
+  - ARM kann beides und ist meistens Little-Endian.
+
+
+.. class:: smaller
+
+High-level View auf RPC
+---------------------------
+
+.. container:: assessment
+
+  Für Programmierer sieht ein :ger-quote:`entfernter` Prozeduraufruf fast identisch aus wie ein :ger-quote:`lokaler` Prozeduraufruf und funktioniert auch so - auf diese Weise wird Transparenz erreicht.
+
+.. container:: incremental margin-top-2em
+
+  Um Transparenz zu erreichen, führte RPC viele Konzepte von Middleware-Systemen ein:
+
+  .. class:: incremental list-with-explanations
+  
+  - *Interface Description Language* (IDL)
+  - Verzeichnis- und Benennungsdienste
+  - Dynamische Bindung
+  - Marshalling und Unmarshalling
+  - *Opaque References*, um bei verschiedenen Aufrufen auf dieselbe Datenstruktur oder Entität auf dem Server zu verweisen. 
+      
+    (Der Server ist für die Bereitstellung dieser undurchsichtigen Verweise verantwortlich.)
+
+
+RPC - Call Semantics
+-----------------------
+
+Nehmen wir an, ein Client stellt eine RPC-Anfrage an einen Dienst eines bestimmten Servers.
+Nachdem die Zeitüberschreitung abgelaufen ist, beschließt der Client die Anfrage erneut zu senden. Das finale Verhalten hängt von der Semantik des Aufrufs (:eng:`Call Semantics`) ab:
+
+.. stack:: margin-top-2em
+  
+  .. layer:: 
+
+    .. rubric:: Maybe (vielleicht; keine Garantie)
+
+    Die Zielmethode kann ausgeführt worden sein und die Antwortnachricht(en) ging(en) verloren oder die Methode wurde gar nicht erst ausgeführt da die Anfrage verloren ging.
+
+    .. container:: minor
+
+      ``XMLHTTPRequests`` in Webbrowsern verwenden diese Semantik.
+
+  .. layer:: incremental
+
+    .. rubric:: At least once (mindestens einmal)
+
+    Die Prozedur wird ausgeführt werden solange der Server nicht endgültig versagt. 
+    
+    Es ist jedoch möglich, dass sie mehr als einmal ausgeführt wird wenn der Client die Anfrage nach einer Zeitüberschreitung erneut gesendet hatte.
+
+  .. layer:: incremental
+
+    .. rubric:: At most once (höchstens einmal)
+
+    Die Prozedur wird entweder einmal oder gar nicht ausgeführt. Ein erneutes Senden der Anfrage führt nicht dazu, dass die Prozedur mehrmals ausgeführt wird.
+
+  .. layer:: incremental
+  
+    .. rubric:: Exactly once (genau einmal)
+
+    Das System garantiert die gleiche Semantik wie bei lokalen Aufrufen unter der Annahme, dass ein abgestürzter Server irgendwann wieder startet. 
+    
+    Verwaiste Aufrufe, d. h. Aufrufe auf abgestürzten Server-Rechnern, werden nachgehalten, damit sie später von einem neuen Server übernommen werden können.  
+
+
+
+Asynchrones RPC
+----------------
+
+.. container:: two-columns fade-to-white
+
+  .. container:: column
+
+    Die Verbindung zwischen Client und Server in einem traditionellen RPC. Der Client wird blockiert und wartet.
+
+  .. container:: column
+
+    .. image:: images/rpcs/synchronous_rpc.svg
+      :height: 425px
+      :align: center
+
+
+.. container:: two-columns fade-to-white line-above margin-top-1em padding-top-1em
+
+  .. container:: column
+
+    Die Verbindung zwischen Client und Server bei einem asynchronen RPC. Der Client wird nicht blockiert.
+
+  .. container:: column
+
+    .. image:: images/rpcs/asynchronous_rpc.svg
+      :height: 450px
+      :align: center
+
+
+.. supplemental::
+
+  Ein normaler Aufruf mittels ``XMLHTTPRequest`` (JavaScript) ist auch immer asynchron.
+
+
+
+RPC - Bewertung
+---------------------
+
+.. class:: incremental positive-list
+
+- RPC bot einen Mechanismus, um verteilte Anwendungen auf einfache und effiziente Weise zu implementieren.
+- RPC ermöglichte den modularen und hierarchischen Aufbau großer verteilter Systeme:
+
+  - Client und Server sind getrennte Einheiten
+  - Der Server kapselt und verbirgt die Details der Backend-Systeme (wie z.B. Datenbanken)
+
+.. class:: incremental negative-list
+
+- RPC ist kein Standard, sondern wurde auf viele verschiedene Arten umgesetzt wurde.
+- RPC ermöglicht Entwicklern den Aufbau verteilter Systeme, löst aber nur ausgewählte Aspekte.
+
+.. supplemental::
+
+  Wenn man moderne Ansätze wie RESTful WebServices mit RPC vergleicht, dann fällt auf, dass RPC eine deutlich bessere Tranzparenz bietet.
+
+
+.. presenter-notes::
+
+  Durch RPC nicht gelöst werden Fragen bzgl. langer Transaktionen, die über mehrere RPC-Aufrufe hinweggehen. Auch die Frage nach der Skalierbarkeit wird nicht gelöst.
+
+
+.. class:: new-subsection transition-fade
+
+Java Remote Method Invocation (RMI)
+------------------------------------
+
+
+
+Java RMI (Remote Method Invocation)
+-------------------------------------
+
+.. container:: large rounded-corners dhbw-light-gray-background padding-1em
+
+  Ermöglicht es einem Objekt, das in einer Java Virtual Machine (VM) läuft, Methoden eines Objekts aufzurufen, das in einer anderen Java VM läuft.
+
+.. container:: incremental
+
+  - Entfernte Objekte können ähnlich wie lokale Objekte behandelt werden.
+  - Übernimmt das Marshalling, den Transport und die Garbage Collection der entfernten Objekte.
+  - Teil von Java seit JDK 1.1
+
+
+Java RMI vs. RPC
+------------------
+
+.. image:: images/rpc_vs_rmi.svg
+   :height: 1000px
+   :align: center
+
+
+.. supplemental::
+
+  Java RMI ist eine spezielle Form von RPC, die in Java implementiert wurde. Der Unterschied ergibt sich im Prinzip aus dem Unterschied zwischen einem 
+  Prozeduraufruf und einem Methodenaufruf auf ein Objekt
+
+
+Java RMI implementiert ein *Distributed Object Model*
+------------------------------------------------------
+
+.. image:: images/java_rmi-distributed-object-model.svg
+   :height: 1000px
+   :align: center
+
+
+.. supplemental::
+
+  - Jeder Prozess enthält sowohl Objekte die entfernte Aufrufe empfangen können als auch solche, die nur lokale Aufrufe empfangen können.
+  
+    (Objekte die entfernte Aufrufe empfangen können, werden *Remote Objects* genannt).
+  - Objekte müssen die Remote-Objektreferenz eines Objekts in einem anderen Prozess kennen, um dessen Methoden aufrufen zu können (Remote Method Invocation; Remote Object References)
+
+
+
+Anatomie eine Java RMI Aufrufs
+---------------------------------
+
+.. image:: images/rmi_anatomy/rmi_anatomy.svg
+    :height: 1000px
+    :align: center
+
+
+.. supplemental::
+
+  Der Proxy versteckt für den Client, dass es sich um einen entfernten Aufrufe handelt.  Er implementiert die Remote-Schnittstelle und kümmert sich um das Marshalling und Unmarshalling der Parameter und des Ergebnisses.
+  
+  Der Skeleton ist für die Entgegennahme der Nachrichten verantwortlich und leitet die Nachricht an das eigentliche Objekt weiter. Er sorgt für die Transparenz auf Serverseite.
+
+  Referenzen auf *Remote Objects* sind systemweit eindeutig und können frei zwischen Prozessen weitergegeben werden (z.B. als Parameter). Die Implementierung der entfernten Objektreferenzen wird von der Middleware verborgen (*Opaque-Referenzen*).
+
+
+
+RMI Protocol Stack
+----------------------
+
+.. image:: images/rmi_anatomy/rmi_protocol_stack.svg
+   :height: 1000px
+   :align: center
+
+
+.. supplemental::
+
+  - *Remote Reference Layer*: RMI-spezifische Kommunikation über TCP/IP, Verbindungsinitialisierung, Serverstandort, Verarbeitung serialisierter Daten
+  - *RMI Transport Layer (TCP)*: Verbindungsverwaltung, Bereitstellung einer zuverlässigen Datenübertragung zwischen Endpunkten
+  - Internetprotokoll in IP-Paketen enthaltene Datenübertragung (unterste Ebene)
+
+
+Einfacher RMI Dienst und Aufruf
+--------------------------------
+
+.. stack:: scriptsize
+
+  .. layer::
+
+    **Schnittstelle des Zeitservers**
+
+    .. code:: Java
+
+      import java.rmi.Remote;
+      import java.rmi.RemoteException;
+      import java.util.Date;
+
+      public interface Time extends Remote {
+        public Date getTime() throws RemoteException;
+      }
+
+  .. layer:: incremental
+
+    **Implementierung der Schnittelle durch den Zeitserver**
+
+    .. code:: Java
+
+      import java.rmi.RemoteException;
+      import java.rmi.server.UnicastRemoteObject;
+      import java.util.Date;
+
+      public class TimeServer extends UnicastRemoteObject implements Time {
+        public TimeServer() throws RemoteException {
+          super();
+        }
+
+        public Date getTime() {
+          return new Date();
+        }
+      }
+    
+  .. layer:: incremental
+
+    **Registrierung des Zeitservers**
+
+    .. code:: Java
+
+      import java.rmi.Naming;
+
+      public class TimeRegistrar {
+
+        /** @param args args[0] has to specify the hostname. */
+        public static void main(String[] args) throws Exception {
+          String host = args[0];
+          TimeServer timeServer = new TimeServer();
+          Naming.rebind("rmi://" + host + "/ServerTime", timeServer);
+        }
+      }
+
+  .. layer:: incremental
+
+    **Client des Zeitservers**
+
+    .. code:: Java
+
+      import java.rmi.Naming;
+      import java.util.Date;
+
+      public class TimeClient {
+        public static void main(String[] args) throws Exception {
+          String host = args[0];
+          Time timeServer = (Time) Naming.lookup("rmi://" + host + "/ServerTime");
+          System.out.println("Time on " + host + " is " + timeServer.getTime());
+        }
+      }
+
+
+
+Java RMI - Tidbits
+---------------------
+
+.. class:: list-with-explanations
+
+- RMI verwendet einen referenzzählenden Garbage-Collection-Algorithmus. Netzwerkprobleme können dann zu einer verfrühten GC führen was wiederum bei Aufrufen zu Ausnahmen führn kann.
+- Die Aufrufsemantik (*Call Semantics*) von RMI ist *at most once*.
+- (Un)Marshalling ist in Java RMI automatisch und verwendet Java Object Serialization. 
+  
+  Der Overhead kann leicht ~25%-50% der Zeit für einen entfernten Aufruf ausmachen.
+
+
+
+.. class:: integrated-exercise
+
+Übung: 
+
+
+
+.. class:: new-section transition-fade
+TODO
+---------
 
 
 Klassische Architekturen
