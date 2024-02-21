@@ -1163,6 +1163,21 @@ Zentraler Schutz des gesamten internen Netzwerks durch:
     Firewalls (alleine) können die Struktur des Netzwerks nicht verbergen.
 
 
+.. class:: smaller
+
+DoS Attacke auf Anwendungsebene
+------------------------------------------------
+
+.. epigraph::
+
+    [...]
+
+    Angriff auf die Kleinen
+
+    Waren bei früheren Spamangriffen massenhaft Accounts auf der größten Mastodon-Instanz mastodon.social angelegt worden, die dann von dort ihre Inhalte verbreiteten, trifft es nun nicht die größte, sondern die kleinsten. Automatisiert werden dabei Instanzen ausgesucht, auf denen eine Registrierung ohne Überprüfung und sogar ohne ein Captcha möglich ist. Das können etwa solche mit wenigen Accounts sein, die von Enthusiasten etwa für eine Gemeinde betrieben werden. Waren die Verantwortlichen in den vergangenen Tagen nicht aufmerksam, wurden diese Instanzen dann regelrecht überrannt. Die Spam-Accounts verschickten massenhaft Nachrichten mit einem Bild des namensgebenden Frühstücksfleischs und Links zu Discord-Servern, die wohl lahmgelegt werden sollten.
+
+    -- `Mastodon: Spamwelle zeigt Schwächen auf [...] <https://www.heise.de/news/Mastodon-Spamwelle-zeigt-Schwaechen-auf-und-weckt-Sorge-vor-schlimmerer-Methode-9632055.html>`__
+
 
 Realisierungsmöglichkeiten von Firewalls
 ------------------------------------------------
