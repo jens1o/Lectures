@@ -17,10 +17,11 @@ Vorlesung "Verteilte Systeme"
 -----------------------------
 
 1. Einführung in verteilte Systeme (`<ds-einfuehrung/folien.rst.html>`__)
-2. Architekturen von verteilten Systemen (`<ds-architekturen/folien.rst.html>`__)
-3. Zusammenspiel von Agile Methoden und Entwurf verteilter Systeme (`<ds-se-agile/folien.rst.html>`__)
-4. Entwurfsprinzipien für verteilte Systeme (`<ds-se-entwurfsprinzipien/folien.rst.html>`__)
-5. RESTful Web Services (`<ds_restful/folien.rst.html>`_)
+2. HTTP und Sockets (`<ds-http-and-sockets/folien.rst.html>`__)
+3. Architekturen von verteilten Systemen (`<ds-architekturen/folien.rst.html>`__)
+4. Zusammenspiel von Agile Methoden und Entwurf verteilter Systeme (`<ds-se-agile/folien.rst.html>`__)
+5. Entwurfsprinzipien für verteilte Systeme (`<ds-se-entwurfsprinzipien/folien.rst.html>`__)
+6. RESTful Web Services (`<ds_restful/folien.rst.html>`_)
 
 
 
