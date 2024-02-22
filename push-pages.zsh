@@ -2,7 +2,7 @@
 
 setopt extendedglob
 
-rsync -v -R  **/**(.html|.rst.html.pdf|.webp|.svg|.png|.mov|.jpg)~**/*.dgraph/**~**/*.graffle/** ~/Sites/delors.github.io 
+rsync -v -R  **/**(.html|.rst.html.pdf|.webp|.svg|.png|.mov|.jpg)~**/*.dgraph/**~**/*.graffle/**~**/external/**~**/private/** ~/Sites/delors.github.io 
 rsync -v -R LectureDoc2/**/**~**/Icon?~**/*.rst ~/Sites/delors.github.io
 rsync -v -R reStructuredTextToLectureDoc2/**/**(.html|.rst.html.pdf|.webp|.svg|.png|.mov|.jpg) ~/Sites/delors.github.io
 
