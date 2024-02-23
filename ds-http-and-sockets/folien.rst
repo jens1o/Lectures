@@ -31,6 +31,7 @@
    :format: html
 
 
+
 HTTP und Sockets (in Java)
 ===============================================================================
 
@@ -164,6 +165,7 @@ Konzeptioneller Ablauf
     - ...
 
 
+
 .. class:: small
 
 Protokolldefinition
@@ -173,12 +175,13 @@ Aufbau der Dokumentenbezeichner *Uniform Resource Locator (URL)*
 
 .. container:: text-align-center rounded-corners padding-1em dhbw-light-gray-background
 
-  ``http://host[:port][abs_path[?query][#anchor]]``
+  ``scheme://host[:port][abs_path[?query][#anchor]]``
 
+:``scheme``: Protokoll (case-insensitive) (z. B. ``http``, ``https`` oder ``ftp``)
 :``host``: DNS-Name (oder IP-Adresse) des Servers (case-insensitive)
-:``port``: (optional) falls leer, 80 bei http
-:``abs_path``: (optional) Pfadausdruck relativ zum Server-Root (case-sensitive!)
-:``?query``: (optional) direkte Parameterübergabe
+:``port``: (optional) falls leer, 80 bei ``http`` und 443 bei ``https`` 
+:``abs_path``: (optional) Pfadausdruck relativ zum Server-Root (case-sensitive)
+:``?query``: (optional) direkte Parameterübergabe (case-sensitive) (``?from=…&to=…``)
 :``#anchor``: (optional) Sprungmarke innerhalb des Dokuments
 
 .. container:: incremental small
@@ -195,6 +198,7 @@ Aufbau der Dokumentenbezeichner *Uniform Resource Locator (URL)*
       <svg version="1.1" xmlns="http://www.w3.org/2000/svg">...</svg>
 
 
+
 .. class:: scriptsize
 
 Das GET Kommando
@@ -205,27 +209,22 @@ Das GET Kommando
   .. layer::
 
     - Dient dem Anfordern von HTML-Daten vom Server (Request-Methode).
-    - kurze Anfrage (wird von vielen Servern heute ignoriert!)
-
-      :Anfrage: ``GET url``
-      :Ergebnis: Server sendet nur HTML-Datei
-
-    - normale minimale Anfrage:
+    - Minimale Anfrage:
     
       :Anfrage:
 
         ::
 
-          GET url HTTP/1.1
-          Host: hostname
+          GET <Path> HTTP/1.1
+          Host: <Hostname>
           Connection: close
-          Leerzeile (CRLF)
+          <Leerzeile (CRLF)>
 
       :Optionen:     
-          - Client kann zusätzlich weitere Infos über die Anfrage sowie sich selbst senden
-          - Server sendet Status der Anfrage sowie Infos über sich selbst und ggf. die angeforderte HTML-Datei
+          - Client kann zusätzlich weitere Infos über die Anfrage sowie sich selbst senden.
+          - Server sendet Status der Anfrage sowie Infos über sich selbst und ggf. die angeforderte HTML-Datei.
 
-    - Fehlermeldungen werden ggf. vom Server ebenfalls als HTML-Daten verpackt und als Antwort gesendet
+    - Fehlermeldungen werden ggf. vom Server ebenfalls als HTML-Daten verpackt und als Antwort gesendet.
 
   .. layer:: incremental
 
@@ -233,24 +232,24 @@ Das GET Kommando
 
     .. code:: http
 
-      GET /index.html HTTP/1.1
-      Host: cruncher.dhbw−mannheim.de
-      ∗∗CRLF∗∗
+      GET /web/web.php HTTP/1.1
+      Host: archive.org
+      **CRLF**
 
     .. rubric:: Beispiel Antwort des Servers
 
     .. code:: http
 
       HTTP/1.1 200 OK
-      Date: Wed, 07 May 2008 07:40:55 GMT
-      Server: Apache/2.0.53 (Linux/SUSE)
-      Last-Modified: Mon, 12 Jun 2006 09:16:58 GMT
-      5 Accept-Ranges : bytes
-      Content-Length : 3737
-      Content-Type: text/html
-      ∗∗CRLF∗∗
-      <!DOCTYPE HTML . . .
-      10 </html>∗∗CRLF∗∗
+      Server: nginx/1.25.1
+      Date: Thu, 22 Feb 2024 19:47:11 GMT
+      Content-Type: text/html; charset=UTF-8
+      Transfer-Encoding: chunked
+      Connection: close
+      **CRLF**
+      <!DOCTYPE html>
+      … 
+      </html>**CRLF**
 
 
 
@@ -266,12 +265,13 @@ Sockets in Java
 
 **Sockets sind Kommunikationsendpunkte.**
 
-- Sockets werden adressiert über die IP-Adresse (InetAddress-Objekt) und eine interne Port-Nummer (int-Wert)
-- Sockets gibt es bei TCP und auch bei UDP, allerdings mit unterschiedlichen Eigenschaften
+- Sockets werden adressiert über die IP-Adresse (InetAddress-Objekt) und eine interne Port-Nummer (int-Wert).
+- Sockets gibt es bei TCP und auch bei UDP, allerdings mit unterschiedlichen Eigenschaften:
 
   :TCP: verbindungsorientierte Kommunikation über *Streams*
   :UDP: verbindungslose Kommunikation mittels *Datagrams*
 - Das Empfangen von Daten ist in jedem Fall blockierend, d. h. der empfangende Thread bzw. Prozess wartet, falls keine Daten vorliegen.
+
 
 
 TCP Sockets
@@ -289,6 +289,7 @@ TCP Sockets
   (3) Der Socket baut zum Server-Prozess eine Verbindung auf – falls der Server die Verbindung akzeptiert.
   (4) Die Kommunikation erfolgt Strom-orientiert: Für beide Parteien wird je ein Eingabestrom und ein Ausgabestrom eingerichtet, über den nun Daten ausgetauscht werden können.
   (5) Wenn alle Daten ausgetauscht wurden, schließen im Allg. beide Parteien die Verbindung.
+
 
 
 .. class:: smaller-slide-title
@@ -354,7 +355,7 @@ Austausch von Daten
       import java.io.*;
 
       public class EchoClient {
-        public static void main(String [] args) throws IOException {
+        public static void main(String[] args) throws IOException {
           BufferedReader userIn = new BufferedReader(new InputStreamReader(System.in));
           while (true) {
             String theLine = userIn.readLine();
@@ -377,7 +378,7 @@ Austausch von Daten
       import java.io.*;
 
       public class EchoServer {
-        public static void main(String [] args) {
+        public static void main(String[] args) {
           BufferedReader in = null ;
           try {
             ServerSocket server = new ServerSocket(7 /*DEFAULT PORT*/);
@@ -399,7 +400,7 @@ UPD Sockets
 
 .. container:: two-columns
 
-  .. container:: column
+  .. container:: column no-separator
 
     .. rubric:: Clientseitig
 
@@ -409,7 +410,7 @@ UPD Sockets
     4. ggf. Antwort empfangen und verarbeiten
 
 
-  .. container:: column
+  .. container:: column 
 
     .. rubric:: Serverseitig
 
@@ -419,6 +420,7 @@ UPD Sockets
     4. ``DatagramPacket`` empfangen
     5. ``DatagramPacket`` verarbeiten
     6. ggf. Antwort erstellen und absenden
+
 
 
 .. class:: smaller-slide-title
@@ -434,9 +436,9 @@ UDP basierter Echo Server
     import java.io.*;
 
     public class UDPEchoServer {
-      public final static int DEFAULT PORT = 7; // privileged port !
-      public static void main(String [] args) {
-        try (DatagramSocket server = new DatagramSocket(DEFAULT PORT)) {
+      public final static int DEFAULT_PORT = 7; // privileged port
+      public static void main(String[] args) {
+        try (DatagramSocket server = new DatagramSocket(DEFAULT_PORT)) {
           while(true) {
             try {
               byte[] buffer = new byte[65507]; // room for incoming message
@@ -475,6 +477,111 @@ UDP basierter Echo Server
     Kann Ihr Programm auch Bilddateien (z. B. "/images/logo_wayback_210x77.png") korrekt speichern?
 
 
+.. protected-exercise-solution:: Ein einfacher HTTP-Client
+
+  (a)
+
+  .. code:: Java
+  
+    import java.net.*;
+    import java.io.*;
+    public class HTTPClient {
+      public static void main(String [] args){
+        BufferedReader in = null ;
+        PrintWriter out = null ;
+        String hostname = "archive.org";
+        String filename = "/web/web.php";
+        try(Socket s = new Socket(hostname ,80) ;){
+          
+          in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+          out = new PrintWriter(s.getOutputStream());
+          out.println("GET "+ filename + " HTTP/1.1");
+          out.println("Host: " + hostname);
+          out.println("Connection: close");
+          out.println() ;
+          out.flush () ;
+          String line = null;
+          while ((line = in.readLine()) != null){
+            System.out.println (line);
+          }
+          
+        } catch(Exception e){e.printStackTrace();}
+      }
+    }
+
+  (b) und (c)
+
+  .. code:: Java
+
+    import java.net.*;
+    import java.io.*;
+
+    public class HTTPGet {
+        public static void getFile(URL url) {
+            int c;
+            FileOutputStream f = null;
+            System.err.println("Connecting to " + url.getHost());
+            try (Socket s = new Socket(url.getHost(), 80); // connect to server
+                    var in = new BufferedInputStream(s.getInputStream());
+                    var out = new PrintWriter(s.getOutputStream());) {
+                int pos = url.getFile().lastIndexOf("/");
+                System.err.println("-> new file: " + url.getFile().substring(pos + 1));
+                f = new FileOutputStream(url.getFile().substring(pos + 1));
+                System.err.print("** Anfordern von <" + url + "> ...");
+                out.println("GET " + url + " HTTP/1.0");
+                out.println("HOST: " + url.getHost());
+                out.println("Connection: close");
+                out.println("");
+                out.flush();
+                System.err.print(" request sent ");
+                // skip HTTP/1.x header data up to ’CR LF CR LF’
+                while (true) {
+                    if (in.read() == 13) // CR
+                        if (in.read() == 10) // LF
+                            if (in.read() == 13) // CR
+                                if (in.read() == 10) { // LF
+                                    System.err.println("... removing meta data ");
+                                    break; // CRLF CRLF found; content follows
+                                }
+                }
+                while ((c = in.read()) != -1) {
+                    f.write(c); // store data into local file
+                    System.err.print((char) c);
+                }
+                f.close();
+                System.err.println(" ... done.");
+
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        }
+
+        /**
+        * Downloads a file from a given URL. (Example: "java HTTPGet.java http://www.google.de/index.html")
+        * 
+        * @param args URL of the file to be downloaded. E.g.,
+        *             "http://archive.org/web/web.php".
+        *              
+        */
+        public static void main(String args[]) {
+            try {
+                if (args.length < 1) {
+                    System.err.println("[ERROR] URL missing.");
+                    System.out.println("java HttpGet.java <url>");
+                    System.exit(-1);
+                } else {
+                    URL myUrl = URI.create(args[0]).toURL();
+                    getFile(myUrl);
+                }
+            } catch (MalformedURLException e) {
+                System.err.println("Invalid URL: " + e);
+                System.exit(-2);
+            }
+        }
+    }
+
+
+
 .. class:: integrated-exercise
 
 Übung - Protokollaggregation
@@ -483,3 +590,67 @@ UDP basierter Echo Server
 Schreiben Sie ein UDP-basiertes Java-Programm mit dem sich Protokoll-Meldungen auf einem Server
 zentral anzeigen lassen. Das Programm soll aus mehreren Clients und einem Server bestehen. Jeder
 Client liest von der Tastatur eine Eingabezeile in Form eines Strings ein, der dann sofort zum Server gesendet wird. Der Server wartet auf Port 4999 und empfängt die Meldungen beliebiger Clients, die er dann unmittelbar auf den Bildschirm ausgibt.
+
+.. protected-exercise-solution:: UDP basierter Syslog-Server und Client
+    
+  .. code:: Java
+
+    import java.net.*;
+
+    public class SyslogServer {
+        public final static int DEFAULT_PORT = 4999;
+        public final static int MAX_PACKET_SIZE = 65507;
+
+        public static void main(String[] args) {
+            try (
+                    var socket = new DatagramSocket(DEFAULT_PORT);) {
+                System.out.println("∗∗∗ SyslogServer ***");
+                while (true) {
+                    try {
+                        byte[] buffer = new byte[MAX_PACKET_SIZE];
+                        DatagramPacket dp = new DatagramPacket(buffer, buffer.length);
+                        socket.receive(dp); // wait for new message
+                        String s = new String(dp.getData(), 0, dp.getLength());
+                        System.out.println("[" + dp.getAddress() +
+                                ":" + dp.getPort() + "] " + s);
+                    } catch (Exception e) {
+                        System.err.println(e);
+                    }
+                } // while
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        }
+    }
+
+  .. code:: Java
+
+    import java.net.*;
+    import java.io.*;
+
+    class SyslogClient {
+        public final static int DEFAULT_SERVER_PORT = 4999;
+        public final static int MAX_PACKET_SIZE = 65507;
+
+        public static void main(String[] args) {
+            final String hostname = "localhost";
+            try (final var socket = new DatagramSocket();) {
+                InetAddress host = InetAddress.getByName(hostname);
+                BufferedReader userIn = new BufferedReader(new InputStreamReader(System.in));
+                System.out.println("[INFO] SyslogClient: type message to send or <CTRL + d> for exit.");
+                do {
+                    System.out.print("> "); // user prompt
+                    String s = userIn.readLine();
+                    if (s == null)
+                        break; // CTRL+d has been pressed
+                    byte[] data = s.getBytes();
+                    if (data.length > MAX_PACKET_SIZE)
+                        System.err.println("Message too large.");
+                    DatagramPacket dp = new DatagramPacket(data, data.length, host, DEFAULT_SERVER_PORT);
+                    socket.send(dp);
+                } while (true);
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        }
+    }
