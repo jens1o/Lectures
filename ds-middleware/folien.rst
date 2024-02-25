@@ -387,8 +387,13 @@ Middleware - High-level View
   Eine Middleware stellt eine umfassende Plattform für die Entwicklung und den Betrieb komplexer verteilter Systeme zur Verfügung.
 
 
+.. class:: new-section transition-scale
 
-.. class:: new-subsection transition-fade
+Middleware-Technologien
+---------------------------------------------------------------------------
+
+
+.. class:: new-subsection transition-move-left
 
 Remote Procedure Calls (RPCs)
 -------------------------------
@@ -783,16 +788,221 @@ Java RMI - Tidbits
 
 .. class:: new-subsection transition-fade
 
-Klassische Web Services
--------------------------
+Klassische Web Services und SOAP
+----------------------------------
+
+
+Integration von Unternehmensanwendungen
+----------------------------------------
+
+Die Probleme unternehmensübergreifende Punkt-zu-Punkt-Integration zu ermöglichen führten zur Entwicklung der nächsten Generation von Middleware-Technologien. 
+
+.. image:: images/web_services-vs-message_brokers/message-brokers_and_adapters.svg
+   :height: 700px
+   :align: center
+
+.. container:: footer-left tiny
+  
+  Darstellung nach *Web Services - Concepts, Architectures and Applications; Alonso et al.; Springer 2004*
+
+
+.. supplemental::
+
+  Jedes Unternehmen verwendet(e) seinen eigenen :ger-quote:`konkreten`` Message-Broker - wenn wir mit mehreren Unternehmen kommunizieren wollen, müssen wir mehrere Adapter/Lösungen implementieren und pflegen.
+
+
+.. class:: no-title center-child-elements
+
+Web Services
+--------------
+
+.. epigraph::
+
+  Webservices are self-contained, modular business applications that have open, internet-oriented, standards-based interfaces.
+
+  -- UDDI Konsortium
+
+
+
+Web Services - konzeptionell
+-----------------------------
+
+.. image:: images/web_services-vs-message_brokers/webservices_vision.svg
+   :height: 1000px
+   :align: center
+
+
+
+Web Services - wesentliche Bestandteile
+----------------------------------------
+
+
+.. image:: images/web_services-vs-message_brokers/komponenten.svg
+   :height: 950px
+   :align: center
+
+.. supplemental::
+
+  - *Service Provider*: Die Einheit, die den Dienst implementiert und anbietet ihn im Namen des Anforderers auszuführen.
+  - *Service Requestor*: Der potenzielle Nutzer eines Dienstes.
+  - *Service Registry*: Auflistung der verfügbaren Dienste.
+
+.. container:: block-footer text-align-center dhbw-gray-background white
+
+   Konzeptionell hat sich somit im Vergleich zur RPC-Welt nicht viel geändert. 
+
+
+Web Services - Protokoll Stack  
+--------------------------------
+
+.. image:: images/ws-protocol_stack.svg
+  :height: 1000px
+  :align: center
+
+
+
+SOAP
+-------------------------------------
+
+.. class:: incremental
+
+- SOAP ist das Protokoll klassischer Web Services und ermöglicht die Kommunikation zwischen Anwendungen.
+- SOAP umfasst die folgenden Teile:
+
+  .. class:: smaller dhbw-gray
+
+  - Ein Nachrichtenformat, das beschreibt, wie eine Nachricht in ein XML-Dokument verpackt werden kann (Umschläge, Header, Body...)
+  - Ein Satz von Kodierungsregeln für Daten
+  - Eine Beschreibung wie eine SOAP-Nachricht mit dem zugrundeliegenden Transportprotokoll (HTTP oder SMTP) transportiert werden sollte. Wie eine SOAP-Nachricht in eine HTTP-Anfrage oder in eine E-Mail (SMTP) eingebettet werden kann.
+  - Eine Reihe von Regeln, die bei der Verarbeitung einer SOAP-Nachricht zu befolgen sind, und die an dieser Verarbeitung beteiligten Stellen; welche Teile der Nachrichten von wem gelesen werden sollten und welche Maßnahmen diese Stellen ergreifen sollten, wenn sie den Inhalt nicht verstehen.
+
+
+.. supplemental::
+
+  SOAP ist eine Weiterentwicklung von XML-RPC und stand ursprünglich für Simple Object Access Protocol. 
+  
+  SOAP (ab Version 1.2) ist ein Standard des W3C.
+
+
+
+
+Aufbau einer SOAP-Nachricht
+---------------------------
+
+.. container:: two-columns
+
+  .. image:: images/soap_message.svg
+     :height: 1000px
+     :align: center
+
+  .. container:: margin-left-1em
+
+    Nachrichten sind Umschläge, in die die Nutzdaten der Anwendung eingeschlossen werden.
+    
+    Eine Nachricht hat zwei Hauptbestandteile:
+    
+    :Header (optional): Für infrastrukturelle Daten wie Sicherheit oder Zuverlässigkeit vorgesehen.
+    :Body (obligatorisch): Für Daten auf Anwendungsebene vorgesehen. Jeder Teil kann in Blöcke unterteilt werden.
+
+
+
+Beispiel einer SOAP-Nachricht
+-------------------------------
+
+.. code:: xml
+  :class: scriptsize
+
+    <SOAP-ENV:Envelope
+      xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+      SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+
+    <SOAP-ENV:Header>
+      <t:Transaction xmlns:t="ws-transactions-URI" SOAP-ENV:mustUnderstand="1">
+        57539
+      </t:Transaction>
+    </SOAP-ENV:Header>
+
+    <SOAP-ENV:Body>
+      <m:GetLastTradePrice xmlns:m="Some-URI">
+        <symbol>DEF</symbol>
+      </m:GetLastTradePrice>
+    </SOAP-ENV:Body>
+
+    </SOAP-ENV:Envelope>
+
+
+Beispiel eines SOAP-Aufrufs
+---------------------------
+
+.. code:: http
+  :class: scriptsize
+
+  POST /StockQuote HTTP/1.1
+  Host: www.stockquoteserver.com
+  Content-Type: text/xml; charset="utf-8"
+  Content-Length: nnnn
+  SOAPAction: "Some-URI"
+
+  <SOAP-ENV:Envelope
+    xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+    SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+
+    <SOAP-ENV:Body>
+      <m:GetLastTradePrice xmlns:m="Some-URI">
+        <symbol>DIS</symbol>
+      </m:GetLastTradePrice>
+    </SOAP-ENV:Body>
+
+  </SOAP-ENV:Envelope>
+
+
+Beispiel einer SOAP-Antwort
+---------------------------
+
+.. code:: html
+  :class: scriptsize
+
+    HTTP/1.1 200 OK
+    Content-Type: text/xml; charset="utf-8"
+    Content-Length: nnnn
+
+    <SOAP-ENV:Envelope
+      xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+      SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+
+    <SOAP-ENV:Body>
+      <m:GetLastTradePriceResponse xmlns:m="Some-URI">
+        <Price>34.5</Price>
+      </m:GetLastTradePriceResponse>
+    </SOAP-ENV:Body>
+
+    </SOAP-ENV:Envelope>
+
+
+Web Services - Standardisierung
+--------------------------------
+
+.. stack::
+
+  .. layer::
+
+    .. image:: screenshots/ws_standards.png
+       :height: 900px
+       :align: right
+
+  .. layer:: overlay
+
+    .. image:: screenshots/ws_standards_w3c.png
+       :height: 900px
+       :align: left
 
 
 
 
 
-.. class:: no-title
+.. class:: vertical-title
 
-Summary
+Überblick 
 ---------------------
 
 
@@ -801,9 +1011,4 @@ Summary
    :align: center
 
 
-
-.. class:: integrated-exercise
-
-Übung: 
-----------  
 

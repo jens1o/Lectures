@@ -563,6 +563,25 @@ Best Practices
 - Verschachtelte Monitoraufrufe sollten vermieden werden, da die äußere Sperre nicht freigegeben wird, wenn der innere Monitor wartet. Dies kann leicht zum Auftreten eines Deadlocks führen.
 
 
+.. class:: no-title center-child-elements
+
+Ressourcen immer in der gleichen Reihenfolge sperren
+------------------------------------------------------------------
+
+.. class:: impressive
+
+- Wenn zwei (oder mehr) Threads auf die gleichen Ressourcen in unterschiedlicher Reihenfolge zugreifen, kann es zu einem Deadlock kommen.
+
+.. admonition:: Zu Beachten
+  :class: warning incremental
+
+  **Ressourcen immer in der gleichen Reihenfolge sperren**, um Deadlocks zu vermeiden.
+  
+
+
+
+
+
 .. class:: new-section
 
 Thread Safety 

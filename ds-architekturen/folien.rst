@@ -37,30 +37,92 @@
 :smaller:`Architekturen verteilter Anwendungen`
 ==========================================================================
 
+.. container:: small
+  
+  Ein erster Überblick.
+
 .. container:: line-above margin-top-1em padding-top-1em
 
   :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
   :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
   :`Folien`:smaller:: 
-        .. container:: smaller
+        .. container:: small
 
           https://delors.github.io/ds-architekturen/folien.rst.html :raw-html:`<br>`
           https://delors.github.io/ds-architekturen/folien.rst.html.pdf
   :`Fehler auf Folien melden`:smaller::
-        .. container:: smaller
+        .. container:: small
 
           https://github.com/Delors/delors.github.io/issues
   :`Version`:smaller:: 
-        .. container:: smaller
+        .. container:: small
 
           |date|
 
+.. container:: footer-left tiny incremental
+
+    Ausgewählte Folien basieren auf Folien von Maarten van Steen ( *Distributed Systems*)
+
+    Alle Fehler sind meine eigenen.
 
 
-.. class:: new-section transition-fade
+.. class:: transition-fade new-section
 
-TODO
----------
+Grundlegende Architekturen
+-------------------------------------
+
+
+
+Architekturstile (:eng:`Architectural Styles`)
+----------------------------------------------
+
+
+Ein Architekturstil wird formuliert in Form von
+
+.. class:: incremental list-with-explanations
+
+- (austauschbare) Komponenten mit klar definierten Schnittstellen
+- der Art und Weise, wie die Komponenten miteinander verbunden sind
+- die zwischen den Komponenten ausgetauschten Daten
+- der Art und Weise, wie diese Komponenten und Verbindungen gemeinsam zu einem System konfiguriert werden System.
+  
+
+.. supplemental::
+
+  .. rubric:: Konnektor
+
+  Ein Mechanismus der die Kommunikation, Koordination oder Kooperation zwischen Komponenten vermittelt. Beispiel: Einrichtungen für (entfernte) Prozeduraufrufe (RPC), Nachrichtenübermittlung oder Streaming.
+
+
+Schichtenarchitekturen
+----------------------
+
+.. container:: three-columns no-default-width
+
+  .. container:: column no-separator
+
+    .. image:: images/common_application_architectures/n-layered_architectures.svg
+       :height: 800px
+
+  .. container:: column no-separator incremental
+
+
+    .. image:: images/common_application_architectures/n-layered_architectures-jump_over_layers.svg
+       :height: 700px
+
+  .. container:: column no-separator incremental
+
+    .. image:: images/common_application_architectures/n-layered_architectures-and-callbacks.svg
+       :height: 700px
+       
+
+
+Beispiel einer 3-Schichtenarchitektur
+--------------------------------------
+
+.. image:: images/common_application_architectures/3-layered-example.svg
+   :height: 1000px
+   :align: center
 
 
 
@@ -70,6 +132,113 @@ Klassische Architekturen
 .. image:: images/common_application_architectures/common_architectures.svg
    :height: 800px
    :align: center
+
+
+.. supplemental::
+
+  .. rubric:: Traditionelle Dreischichtenarchitektur
+
+  Diese Architektur findet sich in vielen verteilten Informationssystemen mit traditioneller Datenbanktechnologie und zugehörigen Anwendungen.
+
+  - Die Präsentationsschicht stellt die Schnittstelle zu Benutzern oder externen Anwendungen dar.
+  - Die Verarbeitungsschicht implementiert die Geschäftslogik.
+  - Die Persistenz-/Datenschicht ist für die Datenhaltung verantwortlich.
+
+
+.. class:: smaller
+
+*Publish and Subscribe* Architekturen
+-------------------------------------
+
+Abhängigkeiten zwischen den Komponenten werden durch das *Publish and Subscribe* Paradigma realisiert mit dem Ziel der loosen Kopplung.
+
+
+.. stack:: margin-top-1em incremental 
+ 
+  .. layer:: smaller
+
+    **Taxonomie der Koordinierungsansätze in Hinblick auf Kommunikation und Koordination:**
+
+    .. csv-table::
+      :class: highlight-on-hover fake-header-column fake-header-row smaller
+      :widths: 12 40 40
+      
+      "", "Zeitlich gekoppelt", "Zeitlich entkoppelt"
+      :dhbw-light-gray:`Referentiell gekoppelt`, :dhbw-light-gray:`Direkt Koordination`, :dhbw-light-gray:`Mailboxkoordination`
+      "Referentiell entkoppelt", "ereignisbasierte Koordination 
+      
+      (:eng:`Event-based Coordination`)", "gemeinsam genutzter Datenspeicher 
+      
+      (:eng:`Shared Data Space`)"
+
+  .. layer:: incremental
+        
+    .. rubric:: Ereignisbasierte Koordination
+
+    .. image:: images/pubsub/event-based.svg
+       :height: 450px
+       :align: center
+
+
+  .. layer:: incremental
+        
+    .. rubric:: *Shared Data Space*
+
+    .. image:: images/pubsub/shared-data-space.svg
+       :height: 450px
+       :align: center
+
+.. container:: incremental margin-top-1em
+
+  Häufig wird die *ereignisbasierte Koordination* in Kombination mit *Shared Data Space* zur Realisierung von *Publish and Subscribe* Architekturen.
+
+
+.. supplemental::
+
+  .. rubric:: Direkte Koordination
+
+  Ein Prozess interagiert unmittelbar (⇒ zeitliche Kopplung) mit genau einem anderen wohl-definierten Prozess (⇒ referentielle Kopplung).
+
+  .. rubric:: Mailboxkoordination
+
+  Die miteinander kommunizierenden Prozesse interagieren nicht direkt miteinander, sondern über eine eindeutige Mailbox (⇒ referentielle Kopplung). Dies ermöglicht es, dass die Prozesse nicht zeitgleich verfügbar sein müssen.
+
+  .. rubric:: Ereignisbasierte Koordination
+
+  Ein Prozess löst Ereignisse aus, auf die *irgendein* anderer Prozesse direkt reagiert. Ein Prozess, der zum Zeitpunkt des Auftretens des Ereignisses nicht verfügbar ist, sieht das Ereignis nicht.
+
+  .. rubric:: Gemeinsam genutzter Datenspeicher
+
+  Prozesse kommunizieren über Tuples, die in einem gemeinsam genutzten Datenspeicher hinterlegt werden. Ein Prozess, der zum Zeitpunkt des Schreibens nicht verfügbar ist, kann das Tuple später lesen. Prozesse definieren Muster in Hinblick auf die Tuples, die sie lesen wollen.
+
+.. TODO Baue die Diskussion vo PubSub Architekturen weiter aus.
+
+
+Aufbau von Cloud Computing Anwendungen
+---------------------------------------------
+
+.. image:: images/cloud.svg
+   :width: 100%
+   :align: center 
+
+
+.. supplemental:: 
+
+  Es können vier Schichten unterschieden werden:
+
+  .. class:: list-with-explanations
+
+  - Hardware: Prozessoren, Router, Stromversorgungs- und Kühlsysteme. 
+   
+    Für Kunden normalerweise vollkommen transparent.
+  - Infrastruktur: Einsatz von Virtualisierungstechniken zum Zwecke der  Zuweisung und Verwaltung virtueller Speichere und virtueller Server.
+  - Plattformen: Bietet Abstraktionen auf höherer Ebene für Speicher und dergleichen. 
+   
+    Beispiel: Das Amazon S3-Speichersystem bietet eine API für (lokal erstellte) Dateien, die in sogenannten Buckets organisiert und gespeichert werden können.
+  - Anwendung: Tatsächliche Anwendungen, wie z. B. Office-Suiten (Textverarbeitungsprogramme, Tabellenkalkulationsprogramme, Präsentationsanwendungen). 
+   
+    Vergleichbar mit der Suite von Anwendungen, die mit Betriebssystemen ausgeliefert werden.
+
 
 
 
