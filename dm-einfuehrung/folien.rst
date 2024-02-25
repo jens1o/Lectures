@@ -74,6 +74,8 @@ Dokumentmanagement, Archivierungs- und Verschlüsselungsverfahren - W3WI_EH304.
     - Verfügbarkeit elektronischer Verwaltungsakten 
     - IT-Sicherheit von digital erzeugten und gescannten Dokumenten 
     - Elektronische Signaturen
+    - Archivierungsverfahren 
+    - Verschlüsselungsverfahren
 
 
 Literatur
@@ -99,11 +101,11 @@ Motivation
 
 .. class:: incremental
 
-- Die meisten strukturierten Daten liegen elektronisch vor (ERP, CRM, etc.) 
-- Dokumente liegen aber (noch immer) in Papierform vor (insbesondere in Deutschland) und es gilt dieses Rationalisierungspotential zu heben
+- Die meisten strukturierten Daten liegen elektronisch vor (ERP, CRM, etc.). 
+- Dokumente liegen aber (noch immer) in Papierform vor (insbesondere in Deutschland) und es gilt dieses Rationalisierungspotential zu heben.
 - Alle reden von elektronischen Geschäftsprozessen und Digitalisierung - Dokumente sind ein wesentlicher Bestandteil!
 - Wichtige gesetzliche und technische Grundlagen sind geschaffen.
-- Experten schätzen, dass 95% der Papierdokumente nach Ablage nicht mehr genutzt werden, da sie zu schwer zu finden sind
+- Experten schätzen, dass 95% der Papierdokumente nach Ablage nicht mehr genutzt werden, da sie zu schwer zu finden sind.
 - Ähnlich hohe Werte werden für digitale Dokumente genannt, die ohne weitere Strukturierungshilfen in Dateisystemen oder Datenbanken liegen. 
    
 
@@ -140,12 +142,12 @@ Digitalisierung - ein langwieriger nicht-aufzuhaltender Prozess...
 
 
 
-.. class:: center-child-elements
+.. class:: center-child-elements transition-scale
 
 \ 
 ---
 
-.. container:: incremental
+.. container:: 
 
     .. epigraph:: 
 
@@ -207,6 +209,8 @@ Grundlegende Voraussetzungen für Dokumentenmanagementorganisation
 
 In einer Organisation ist zu regeln:
 
+.. class:: incremental
+
 • Kennzeichnung und Beschreibung von Dokumenten
 • Fortschreibung und Historienverwaltung von Dokumenten
 • Ablage und Archivierung von Dokumenten
@@ -229,6 +233,7 @@ Dokumente - Beispiele
     :align: center
 
 
+
 Was ist ein Dokument aus logischer Sicht?
 -------------------------------------------
 
@@ -239,9 +244,10 @@ Was ist ein Dokument aus logischer Sicht?
     • Die Information ist für einen gewissen Zeitraum zu erhalten.
     • Dokumente dienen dem Nachweis von Tatsachen.
     
-.. container:: assessment
+.. container:: assessment incremental
     
     Das Dokument ist somit eigentlich der Träger, der die Informationen speichert, egal ob das Dokument ein Stück Papier, eine Datei auf einem Rechner, ein Videoband oder eine Tontafel ist etc.
+
 
 
 Was ist ein Dokument aus technischer Sicht?
@@ -259,12 +265,14 @@ Was ist ein Dokument aus technischer Sicht?
     Es ist somit eine reine Deklarationsfrage was ein Dokument ist!
 
 
+.. class:: vertical-title
+
 Elektronische Dokumente
 -------------------------
 
 
 .. image:: drawings/dokumente/elektronische_dokumente.svg
-    :height: 950px
+    :height: 1150px
     :align: center
 
 .. container:: supplemental
@@ -275,9 +283,9 @@ Elektronische Dokumente
 
     :OCR (Optical Character Recognition):  Text einer gedruckten Vorlage wird durch einfachen Mustervergleich automatisch in maschinenlesbare Zeichen transformiert. 
 
-    :ICR (Intelligent Character Recognition): Die Qualität der Texterkennung wird durch Kontextanalyse verbessert. Typische Fehler von OCR-Systemen wie zum Beispiel Fehlerkennungen von optisch nahe beieinanderliegenden Zeichen (z. B. "8 und B" oder "0 und O") werden vermieden. (Wie nahe Zeichen beieinander liegen ist stark vom verwendeten Schrifttyp abhängig.)
+    :ICR (Intelligent Character Recognition): Die Qualität der Texterkennung wird durch Kontextanalyse verbessert. Typische Fehler von OCR-Systemen wie zum Beispiel Fehlerkennungen von optisch nahe beieinanderliegenden Zeichen (z. B. „8 und B“ oder „0 und O“) werden vermieden. (Wie nahe Zeichen beieinander liegen ist stark vom verwendeten Schrifttyp abhängig.)
 
-    :OMR (Optical Mark Recognition): liest mit großer Sicherheit spezielle Markierungen in vordefinierten Feldern aus - zum Beispiel in Multiple-Choice-Tests und Vordrucken.
+    :OMR (Optical Mark Recognition): Liest mit großer Sicherheit spezielle Markierungen in vordefinierten Feldern aus - zum Beispiel in Multiple-Choice-Tests und Vordrucken.
 
 
 
@@ -293,7 +301,7 @@ Bestandteile eine Dokumentes
             :height: 950px
             :align: center
 
-    .. container:: layer overlay
+    .. container:: layer overlay incremental
 
         .. image:: drawings/dokumente/mit_stempel.svg
             :height: 950px
@@ -336,8 +344,8 @@ Dokumente annotieren
 .. class:: incremental
 
 - Man unterscheidet zwischen dem Originalformat des Dokuments (z. B. MS-Word oder LibreOffice Format) und Renditions (wie PDF/a und TIFF)
-- Formate wie PDF/a und TIFF sind in der Regel langlebiger, es gibt Viewer dafür und erhalten besser den ursprünglichen optischen Zustand.
-- Previewimages oft zusätzlich
+- Formate wie PDF/a und TIFF sind in der Regel langlebiger, es gibt Viewer dafür und sie erhalten besser den ursprünglichen optischen Zustand.
+- Previewimages sind oft zusätzlich eingebettet
 
 
 
@@ -352,11 +360,11 @@ Hashwerte und Signaturen [#]_
 
 
 
-.. [#] Hashwerte und Signaturen werden wir ausführlich im zweiten Teil der Vorlesung betrachten.
+.. [#] Hashwerte und Signaturen werden wir ausführlich im Zusammenhang mit Verschlüsselungsverfahren betrachten.
 
 
 
-Volltext
+Volltext(-indizierung)
 --------------------------------
 
 • Für Volltextindizierung wird oft der Volltext - insbesondere wenn er durch OCR/ICR gewonnen wurde - mit dem Dokument abgespeichert.
@@ -419,7 +427,7 @@ Arten von Meta-Daten
 
 
 
-Beispiel von Meta-Daten einer Verwaltungssoftware für Metadaten
+Beispiel von Meta-Daten einer Verwaltungssoftware für Metadaten für grafische Zeichnungen
 ----------------------------------------------------------------
 
 .. csv-table::
@@ -447,7 +455,7 @@ Ein Dokument in einem DMS ist ein komplexes Objekt, das aus verschiedenen Kompon
 • Vorschaubild
 • Volltext
 • Annotationen (Layer für Anmerkungen, Stempel, ...)
-• Hashwert um elektronische Signaturen zu erzeugen und/oder zu prüfen
+• Hashwert, um elektronische Signaturen zu erzeugen und/oder zu prüfen
 • Elektronische Signaturen
 • Versionen des Dokumentes
 • Metadaten des Dokumentes bzw. der Komponenten des Dokumentes
@@ -517,7 +525,7 @@ Erstellen von Dokumenten
 
 • Scannen von analogen Dokumenten (Papier, Mikrofilm, ..)
 • Neu erstellen von Dokumenten (Vorlagen im DMS,..)
-• Vorhandene Dokumente einstellen (drag and drop)
+• Vorhandene Dokumente einstellen (*drag and drop*)
 • Dokumente aus Applikationen übernehmen (SAP-Archive-Link, Mail-Archivierung, ...)
 • Spezielle Verfahren bei Migration und Massenimporten
 • Indizieren der Dokumente entweder automatisch oder manuell
@@ -526,6 +534,8 @@ Erstellen von Dokumenten
 
 Nutzen und bearbeiten von Dokumenten
 -----------------------------------------------
+
+.. class:: incremental
 
 - Suchen und Retrieval:
 
@@ -539,8 +549,10 @@ Nutzen und bearbeiten von Dokumenten
 
 
 
-Rahmenbedingungen die Lebensdauer von Dokumenten
---------------------------------------------------
+Rahmenbedingungen für die Lebensdauer von Dokumenten
+------------------------------------------------------
+
+.. class:: incremental
 
 • Betrieblichen Notwendigkeiten
 • Gesetzlichen Aufbewahrungspflichten 
@@ -568,8 +580,11 @@ Löschen von Dokumenten
 Langfristige Aufbewahrung von Dokumenten
 -----------------------------------------------
 
+Strategien:
 
-- Technikmuseum (Variante: Alte Umgebung emulieren)
+.. class:: incremental
+
+- *Technikmuseum* (Variante: Alte Umgebung emulieren)
 - Dauerhafte Formate nutzen
 - Migration der Dokumente auf neue Umgebung
 
@@ -582,7 +597,7 @@ Bewertung von Dateiformaten in Hinblick auf die Dauerhaftigkeit
 - vollständige und offene Dokumentation (am Besten mit Standardisierung)
 - Plattformunabhängigkeit
 - nicht-proprietär (herstellerunabhängig)
-- keine "verlustbehaftete" oder proprietäre Komprimierung
+- keine „verlustbehaftete“ oder proprietäre Komprimierung
 - keine eingebetteten Dateien, Programme oder Skripte
 - keine vollständige oder teilweise Verschlüsselung
 - kein Passwortschutz
