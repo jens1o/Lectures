@@ -21,6 +21,7 @@
 .. role:: huge
 .. role:: xxl
 .. role:: monospaced
+.. role:: serif
 
 .. role:: raw-html(raw)
    :format: html
@@ -28,7 +29,7 @@
 
 
 Dokumentenerfassung und -indizierung
-===================================================================
+=========================================================
 
 .. container:: smaller line-above
 
@@ -58,6 +59,8 @@ Quellen von Dokumenten
 Quellen von Dokumenten - Dimensionen
 ------------------------------------
 
+.. class:: incremental
+
 • Eigenerstellte und fremderstellte Dokumente
 • Papierdokumente und elektronische Dokumente 
 • Einmalige Übernahme und laufende Übernahme
@@ -67,11 +70,17 @@ Quellen von Dokumenten - Dimensionen
 Eigenerstellte Dokumente
 ------------------------------------
 
-• Editoren für Texte, Graphiken, Mails,... (Office, Outlook, AutoCAD, ....)
-• Dokumentenerzeugende Systeme (z. B. Rechnungen aus ERP-Systemen) (COLD)
-• Übernahme von Bildern aus speziellen Verfahren wie Röntgen.
+.. class:: incremental list-with-explanations
 
-.. container:: assessment
+• Editoren für Texte, Graphiken, Mails, etc. 
+
+  (Office, Outlook, AutoCAD, ....)
+• Dokumentenerzeugende Systeme 
+ 
+  (z. B. Rechnungen aus ERP-Systemen) (COLD)
+• Übernahme von Bildern aus speziellen Verfahren wie Röntgen
+
+.. container:: assessment incremental
 
     Anzustreben ist, dass beim Speichern automatisch Dokumente und Metadaten der Dokumente in das DMS übernommen werden.
 
@@ -87,13 +96,14 @@ Speichern von Dokumenten aus Anwendungen
         .. image:: screenshots/elo-office-ms-word-integration-2024-02-05.png
             :width: 95%
             :align: center
-
+            :class: picture
 
     .. container:: layer incremental
 
         .. image:: screenshots/elo-office-ms-word-speichern-in-archiv-2024-02-05.png
             :width: 95%
             :align: center
+            :class: picture
 
 
 Fremderstellte Dokumente
@@ -130,10 +140,18 @@ Fremderstellte Dokumente
 
 
 
-Analoge (NCI) oder elektronische(CI) Dokumente
+„Analoge“ (NCI) oder elektronische(CI) Dokumente
 -------------------------------------------------
 
 .. container:: 
+
+    .. rubric:: Papierdokument
+
+    • S/W oder farbig?
+    • Automatisch auszuwerten?
+    • Aufwand für manuelle Vorbereitung (Entheften, Glätten, ..)
+
+.. container:: incremental
 
     .. rubric:: Elektronische Dokumente
 
@@ -144,13 +162,7 @@ Analoge (NCI) oder elektronische(CI) Dokumente
     
       Strukturiertes Dokument oder Fließtext?
 
-.. container:: incremental
 
-    .. rubric:: Papierdokument
-
-    • S/W oder farbig?
-    • Automatisch auszuwerten?
-    • Aufwand für manuelle Vorbereitung (Entheften, Glätten, ..)
 
 
 
@@ -217,6 +229,8 @@ Erstmalige Übernahme von Dokumenten
 Laufende Übernahme
 ------------------------
 
+.. class:: incremental
+
 • Eingehende Papierpost 
 • Eingehende E-Mails
 • Ausgehende Dokumente 
@@ -272,11 +286,13 @@ Scanning von Dokumenten
 Scannen der Eingangspost
 --------------------------
 
-• Scanner: meist verbreitetes Erfassungsgerät für Dokumente auf Papier oder Film
+• **Scanner** sind die gängigsten Erfassungsgeräte für Dokumente auf Papier oder Film
 
   .. admonition:: Prozess
   
     Papierdokument → Scannen → Elektronisches Dokument
+
+.. class:: incremental
 
 • Scanning ist ein komplexer mehrstufiger Prozess zur Erfassung von Dokumenten
 • Scanning ist meist mit weiteren Verarbeitungsschritten eng verknüpft.
@@ -294,12 +310,14 @@ Scanprofile (hier in Elo Office)
         .. image:: screenshots/elo-office-vordefiniertes-scanprofil-2024-02-05.png
             :width: 1600px
             :align: center
+            :class: picture
 
     .. container:: layer incremental
 
         .. image:: screenshots/elo-office-scanprofil-2024-02-05.png
             :width: 1600px
             :align: center
+            :class: picture
 
 
 
@@ -336,10 +354,11 @@ Scanner
     
         .. container:: column
     
-            .. figure:: screenshots/hochleistungsscanner-140blatt_pro_min-canon-scanmachine-10000eur-2024.webp
-                :height: 800px
+            .. figure:: screenshots/hochleistungsscanner-140blatt_pro_min-canon-scanmachine-10000eur-2024.png
+                :height: 900px
+                :align: center
 
-            .. class:: text-align-center
+            .. container:: text-align-center width-100
             
                 `Scanmachine <https://www.scanmachine.de>`__
 
@@ -348,6 +367,8 @@ Scanner
 Weiterverarbeitung gescannter Dokumente
 ---------------------------------------
 
+.. class:: incremental list-with-explanations
+
 • Umwandlung von Images (NCI) im CI-Dokumente (wie Texte)
 • Klassifikation und Indizierung der Dokumente 
 
@@ -355,34 +376,36 @@ Weiterverarbeitung gescannter Dokumente
   - automatisch
   
 • Automatisches Auslesen von Formulardaten
-• Automatisches Auslesen von Rechnungen oder ähnlichem (z. B. wenn Dokumentenklasse bekannt ist)
+• Automatisches Auslesen von Rechnungen oder ähnlichem 
+ 
+  (Z. B. wenn die Dokumentenklasse bekannt ist.)
 
 
 
 Umwandlung von NCI zu CI
 ---------------------------------
 
-:Optical Charakter Recognition (OCR):
+:*Optical Character Recognition (OCR)*:
 
-    Primär auf Basis der Form der Zeichen der Maschinenschrift werden Pixelmuster in Zeichen umgesetzt
+    Primär auf Basis der Form der Zeichen der Maschinenschrift werden Pixelmuster in Zeichen umgesetzt.
 
 .. class:: incremental
 
-:Handprint Charakter Recognition (HCR):
+:*Handprint Character Recognition (HCR)*:
 
     Erkennen von handschriftlichen Texten.
 
 .. class:: incremental
 
-:Intelligent Charakter Recognition (ICR):
+:*Intelligent Character Recognition (ICR)*:
 
     Weiterentwicklung von OCR und HCR: Das Ergebnis wird verbessert durch modernste Algorithmen und KI-Verfahren.
 
 .. class:: incremental
 
-:Optical Mark Recognition (OMR):
+:*Optical Mark Recognition (OMR)*:
 
-    Es werden Markierungen in vordefinierten Feldern/Bereichen ausgelesen (wie z. B. Selektionsfelder aus Fragebögen oder geprüft ob :ger-quote:`eine Unterschrift` in dem vorgesehenen Feld erfolgt ist. )
+    Es werden Markierungen in vordefinierten Feldern/Bereichen ausgelesen (Z. B. Selektionsfelder aus Fragebögen oder es wird geprüft ob :ger-quote:`eine Unterschrift` in dem vorgesehenen Feld erfolgt ist.)
 
 
 
@@ -390,7 +413,7 @@ Arbeitsablauf beim Scannen
 ------------------------------
 
 .. image:: drawings/scannen.svg
-    :height: 900px
+    :height: 1000px
     :alt: Arbeitsabläufe beim Scannen unterschiedlicher Mengen von Dokumenten
     :align: center
 
@@ -420,14 +443,14 @@ Sicherstellung der Qualität
       **Problemfälle**
 
       - Ligaturen (z. B. :monospaced:`ﬃ statt ffi oder ﬁ statt fi`)
-      - Bestimmte Zeichenkombinationen z. B. rn: ‚r‘ gefolgt von ‚n‘ oder ‚m‘
+      - Bestimmte Zeichenkombinationen z. B. rn: „r“ gefolgt von „n“ oder „m“
       - Großes I (wie Ida) und kleines l (wie lieb) bei serifenlosen Zeichensätzen
-      - Fremdsprachige Zeichen (z. B. $)
+      - Fremdsprachige Zeichen (z. B. „$“, „¥“ oder „£“)
       - Optisch beschädigte Zeichen
 
     .. container:: layer incremental
 
-      Es muss **unterschieden werden** zwischen
+      Es muss **unterschieden werden** zwischen:
 
       - nicht erkannten Zeichen → werden von OCR-Software i.d.R. entsprechend markiert
       - falsch erkannten Zeichen → müssen im konvertierten Text mühsam gesucht werden
@@ -435,12 +458,16 @@ Sicherstellung der Qualität
 
 .. container:: supplemental
 
-    Serifenlose Zeichensätze sind solche, bei denen die Zeichensätze keine Endstriche an Zeichen haben. z. B. Arial oder Helvetica.
+    Serifenlose Zeichensätze sind solche, bei denen die Zeichensätze keine Endstriche an Zeichen haben. z. B. Arial oder Helvetica (dieser Foliensatz verwendet Helvetica).
+
+    :serif:`Schriftwarten mit Serifen sind z. B. Times New Roman oder Garamond`.
 
 
 
-Barcode/ QR-Code
------------------
+Barcodes und QR-Codes
+------------------------
+
+.. class:: incremental
 
 • Wird im DMS-Umfeld zur Identifizierung von Dokumenten eingesetzt
 • 2 Einsatzgebiete
@@ -451,10 +478,12 @@ Barcode/ QR-Code
 • Sehr robust und etabliert
 • Bar-/QR-Codes weisen sehr hohe Erkennungsraten auf
 
-.. image:: screenshots/lohnsteuer-mit-qr-code.jpeg
-    :width: 1000px
-    :align: center
-    :class: box-shadow
+• Beispiel: Lohnsteuerbescheinigung mit QR-Code
+
+  .. image:: screenshots/lohnsteuer-mit-qr-code.jpeg
+      :width: 1000px
+      :align: center
+      :class: box-shadow
 
 
 Szenarien: Zeitpunkt des Scannens
@@ -468,8 +497,10 @@ Drei typische Erfassungsszenarien für Eingangspost:
 
 
 
-Szenario 1: Erfassen beim Posteingang (*Frühes Archivieren*)
+Szenario 1: Frühes Archivieren / Erfassen beim Posteingang 
 --------------------------------------------------------------
+
+.. class:: incremental
 
 - Eingehende Dokumente werden vor der eigentlichen Bearbeitung gescannt
 
@@ -505,8 +536,8 @@ Szenario 1: Erfassen beim Posteingang (*Frühes Archivieren*)
 Szenario 2: Erfassung bei der Bearbeitung
 ------------------------------------------
 
-- Dokumente gelangen in Papierform zum Sachbearbeiter
-- Dort werden sie direkt vor oder gleich nach der Bearbeitung eingescannt, attributiert und abgelegt
+- Dokumente gelangen in Papierform zum Sachbearbeiter.
+- Dort werden sie direkt vor oder gleich nach der Bearbeitung eingescannt, attributiert und abgelegt.
 
 .. container:: small incremental
         
@@ -526,7 +557,7 @@ Szenario 2: Erfassung bei der Bearbeitung
 
     .. class:: negative-list
 
-    - Bearbeitungsplätze müssen mit Scanner ausgestattet sein.
+    - Bearbeitungsplätze müssen mit Scanner ausgestattet sein
     - Ständiger Wechsel zw. Dokumentenerfassung und Dokumentenbearbeitung stört Arbeitsfluss
     - Einsatz teurer Personalressourcen (Sachbearbeiter) für einfache Tätigkeiten (Scannen, Attributieren)
 
@@ -535,7 +566,9 @@ Szenario 2: Erfassung bei der Bearbeitung
 Szenario 3: Spätes Archivieren
 -------------------------------
 
-• Papierdokumente werden nach ihrer Bearbeitung an zentrale Erfassungsstelle geschickt und dort eingescannt.
+.. class:: incremental
+
+• Papierdokumente werden nach ihrer Bearbeitung an die zentrale Erfassungsstelle geschickt und dort eingescannt.
 • Zusätzlich wird ein Identifikator für das Papierdokument benötigt.
 
   .. class:: small
@@ -543,7 +576,7 @@ Szenario 3: Spätes Archivieren
   - für Zuordnung des Papierdokuments zu Vorgang während Bearbeitung 
   - Bar-/QR-Code oder Referenznummer/Belegnummer
   
-.. class:: small
+.. class:: small incremental
 
 • Bar-/QR-Code:
 
@@ -555,7 +588,7 @@ Szenario 3: Spätes Archivieren
     - Code auf der ersten Seite kann gleichzeitig für Dokumententrennung genutzt werden
     - Die Zuordnungstabelle zw. Code und Dokument ist regelmäßig zu prüfen, ob alle registrierten Dokumente zwischenzeitlich gescannt wurden.
 
-  - Code wird nach Erfassung des Dokuments nicht mehr benötigt; Wiederverwendung ist ca. nach 1 Jahr
+  - Code wird nach Erfassung des Dokuments nicht mehr benötigt; Wiederverwendung ist ca. nach einem Jahr möglich
 
 
 Szenario 3: Spätes Archivieren - Bewertung
@@ -565,21 +598,23 @@ Szenario 3: Spätes Archivieren - Bewertung
 
 .. class:: positive-list
 
-- Arbeits- und Papierflüsse können weitgehend wie bisher abgewickelt werden
-- Papierdokumente (z. B. Rechnungen) können vor ihrer Erfassung noch geprüft und abgezeichnet werden: Stempel, Unterschrift, Korrekturen werden beim Scannen erfasst
-- Arbeitsplätze der Sachbearbeiter erfordern keine spezielle Ausstattung
+- Arbeits- und Papierflüsse können weitgehend wie bisher abgewickelt werden.
+- Papierdokumente (z. B. Rechnungen) können vor ihrer Erfassung noch geprüft und abgezeichnet werden: Stempel, Unterschrift, Korrekturen werden beim Scannen erfasst.
+- Arbeitsplätze der Sachbearbeiter erfordern keine spezielle Ausstattung.
 
 **Nachteile**
 
 .. class:: negative-list
 
-- Eigentliches Potenzial elekt. Dokumente wird nicht genutzt
-- Gefahr des Verlusts oder der Beschädigung des Papierdoks höher
+- Eigentliches Potenzial elektronischer Dokumente wird nicht genutzt.
+- Gefahr des Verlusts oder der Beschädigung des Papierdokumentes höher.
 
 
 
-Zusammenfassung
------------------- 
+Scannen von Dokumenten - Zusammenfassung
+-----------------------------------------
+
+Entscheidungsdimensionen:
 
 • Frühes Scannen vs. Spätes Scannen oder Scannen bei der Sachbearbeitung
 • Zentrales Scannen vs. dezentrales Scannen
@@ -590,7 +625,7 @@ Zusammenfassung
 
 .. class:: new-section
 
-COLD-Verfahren (Computer Output on Laser Disk)
+COLD-Verfahren :raw-html:`<br>` (Computer Output on Laser Disk)
 -------------------------------------------------------------------------------
 
 
@@ -599,7 +634,7 @@ COLD
 
 Begriff stammt aus der Zeit Mitte der 80er Jahre, hatte sich aber bereits zu Beginn/Mitte der 90er  technologieunabhängig verallgemeinert.
 
-Beschreibt **die direkte digitale Speicherung von  von Druck- und Listenausgaben  betrieblicher Softwaresysteme** (z. B. direkt von ERP Systemen oder von Office Anwendungen über spezielle Druckertreiber).
+Beschreibt **die direkte digitale Speicherung von Druck- und Listenausgaben  betrieblicher Softwaresysteme** (z. B. direkt von ERP Systemen oder von Office Anwendungen über spezielle Druckertreiber).
 
 • Die Recherche kann danach wie bei jedem anderen Dokument im DMS erfolgen.
 • COLD bei größeren Unternehmen bzw. DMS-Lösungen sehr verbreitet.
@@ -615,7 +650,7 @@ COLD-Verfahren (historisch)
 
 .. container:: two-columns
 
-    .. container:: column
+    .. container:: column no-separator
 
         .. image:: drawings/cold.svg
             :height: 900px
@@ -623,11 +658,13 @@ COLD-Verfahren (historisch)
 
     .. container:: column
 
-        **Verarbeitung COLD-Server**
+        **Verarbeitung auf COLD-Server**
 
-        1. Zerlegung des Datenstrom in einzelne Dokumente
-        2. Extrahiert die für die Ablage bzw. spätere Recherche der Dokumente notwendigen Index-Daten automatisch + evtl. Bezug zu Overlays (Trennung zwischen fachlichen und layout Daten)
-        3. Konvertierung bringt die Dokumente in eine für die Ablage geeignete Form
+        1. Zerlegung des Datenstrom in einzelne Dokumente.
+        2. Extrahiert die für die Ablage bzw. spätere Recherche der Dokumente notwendigen Index-Daten automatisch + evtl. Bezug zu Overlays 
+         
+           :minor:`(Trennung zwischen fachlichen und layout Daten möglich.)`
+        3. Konvertierung bringt die Dokumente in eine für die Ablage geeignete Form.
 
 
 .. class:: new-section
@@ -638,6 +675,7 @@ Metadaten für Dokumente
 Metadaten
 ---------------------------------
 
+.. class:: incremental
 
 • Beschreibende Merkmale für Dokumente
 • Ziel ist das möglichst exakte Wiederfinden der richtigen 
@@ -653,6 +691,8 @@ Metadaten
 
 Manuelles Indizieren
 ---------------------------------
+
+.. class:: incremental
 
 - Freitexteingabe (z. B. Zusammenfassung, Notizen)
 - Unterstützung durch Auswahlmenüs, Formatvorgaben oder Defaultwerte, z.B
@@ -684,7 +724,7 @@ gestellt.
 
 .. class:: negative-list
 
-- Suchraster ist vorgegeben (d. h. Metadatenschema ist fest) 
+- Suchraster ist vorgegeben (d. h. Metadatenschema ist fest). 
 
 **Volltextsuche**
 
@@ -693,9 +733,9 @@ Evtl. ergänzt um semantische Hilfsmittel (Thesaurus, etc. ).
 
 .. class:: positive-list
 
-- Vorteil: Man kann jedes Wort wiederfinden.
+- Man kann jedes Wort wiederfinden.
 
 .. class:: negative-list
 
-- Unstrukturiert, :ger-quote:`langsam`, Ressourcenbedarf, keine semantisch zusammenfassenden Informationen abfragbar
+- Unstrukturiert, :ger-quote:`langsam`, Ressourcenbedarf, keine semantisch zusammenfassenden Informationen abfragbar.
 
