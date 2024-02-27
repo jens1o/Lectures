@@ -298,7 +298,7 @@ TCP Sockets
 --------------------------------------
 
 .. code:: java
-  :class: tiny
+  :class: tiny copy-to-clipboard
 
   import java.net.*;
   import java.io.*;
@@ -310,7 +310,7 @@ TCP Sockets
       for (int i = 1; i < 1024; i++) {
         try {
           Socket s = new Socket(host, i);
-          System.out.println ("There is a server on port "+ i + "at "+host);
+          System.out.println("There is a server on port "+ i + "at "+host);
           s.close();
         } catch (UnknownHostException e) {
           System.err.println(e);
@@ -350,6 +350,7 @@ Austausch von Daten
   .. layer::
         
     .. code:: Java
+      :class: copy-to-clipboard
 
       import java.net.*;
       import java.io.*;
@@ -373,6 +374,7 @@ Austausch von Daten
   .. layer:: incremental
 
     .. code:: Java
+      :class: copy-to-clipboard
 
       import java.net.*;
       import java.io.*;
@@ -431,6 +433,7 @@ UDP basierter Echo Server
 .. stack:: tiny
 
   .. code:: Java
+    :class: copy-to-clipboard
 
     import java.net.*;
     import java.io.*;
@@ -482,6 +485,7 @@ UDP basierter Echo Server
   (a)
 
   .. code:: Java
+    :class: copy-to-clipboard
   
     import java.net.*;
     import java.io.*;
@@ -512,6 +516,7 @@ UDP basierter Echo Server
   (b) und (c)
 
   .. code:: Java
+    :class: copy-to-clipboard
 
     import java.net.*;
     import java.io.*;
@@ -594,6 +599,7 @@ Client liest von der Tastatur eine Eingabezeile in Form eines Strings ein, der d
 .. protected-exercise-solution:: UDP basierter Syslog-Server und Client
     
   .. code:: Java
+    :class: copy-to-clipboard
 
     import java.net.*;
 
@@ -624,6 +630,7 @@ Client liest von der Tastatur eine Eingabezeile in Form eines Strings ein, der d
     }
 
   .. code:: Java
+    :class: copy-to-clipboard
 
     import java.net.*;
     import java.io.*;
