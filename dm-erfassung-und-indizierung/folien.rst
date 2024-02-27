@@ -452,7 +452,7 @@ Sicherstellung der Qualität
 
       Es muss **unterschieden werden** zwischen:
 
-      - nicht erkannten Zeichen → werden von OCR-Software i.d.R. entsprechend markiert
+      - nicht erkannten Zeichen → werden von OCR-Software i. d. R. entsprechend markiert
       - falsch erkannten Zeichen → müssen im konvertierten Text mühsam gesucht werden
 
 
