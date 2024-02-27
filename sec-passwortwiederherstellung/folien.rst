@@ -34,28 +34,27 @@ Passwortwiederherstellung
 
 .. class:: footnotesize margin-top-1em padding-top-1em
 
-:Dozent: **Prof. Dr. Michael Eichberg**
+:Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
 :Kontakt: michael.eichberg@dhbw-mannheim.de
 :Version: |date|
 
 
-Vorerfahrungen?
--------------------
+.. supplemental::
 
-.. class:: incremental more-space-between-list-items
-
-- Wer hat schon einmal Passworte wiederhergestellt?
-- Wer hat Erfahrung mit Linux?
-- Wer hat Erfahrung mit Linux Kommandozeilenwerkzeugen für die Textverarbeitung?
-- Wer hat Erfahrung mit regulären Ausdrücken?
-- Wer hat Erfahrung mit Python?
-- Wer hat Erfahrung mit Java (Reverse Engineering)?
+    - Wer hat schon einmal Passworte wiederhergestellt?
+    - Wer hat Erfahrung mit Linux?
+    - Wer hat Erfahrung mit Linux Kommandozeilenwerkzeugen für die Textverarbeitung?
+    - Wer hat Erfahrung mit regulären Ausdrücken?
+    - Wer hat Erfahrung mit Python?
+    - Wer hat Erfahrung mit Java (Reverse Engineering)?
 
 
 Was ist Passwortwiederherstellung?
 ----------------------------------
 
-Passwortwiederherstellung ist der Prozess, der dazu dient ein nicht (mehr) vorhandenes Passwort wiederzuerlangen.
+.. container:: smaller
+
+    Passwortwiederherstellung ist der Prozess, der dazu dient ein nicht (mehr) vorhandenes Passwort wiederzuerlangen.
 
 .. topic:: Haftungsausschluss
     :class: line-above red incremental small
@@ -198,6 +197,37 @@ Beurteilen Sie die Qualität der folgenden Passwörter in Hinblick darauf wie au
 11. password123 
 
 
+
+Quellen für Passwortkandidaten
+--------------------------------
+
+.. class:: incremental
+
+- Wörterbücher
+- Verzeichnisse (z. B. Postleitzahlen, Städte, Straßennamen)
+- Leaks (Sammlungen von realen Passwörtern, die meist von Hackern veröffentlicht wurden.)
+  
+  - Rockyou
+  - LinkedIn
+  - Sony
+  - etc.
+
+
+Raum der Passwortkandidaten
+--------------------------------
+
+.. class:: incremental
+
+- Eine vierstellige PIN: 10.000 mögliche Kombinationen. 
+- „Normales“ Passworte mit 8 Zeichen und 70 Zeichen im Zeichensatz (a-z, A-Z, 0-9 und ausgewählte Sonderzeichen): :math:`70^8 = 576.480.100.000.000` Kombinationen.
+- Eine einfache Passphrase mit 4 Wörtern aus einem Wörterbuch mit 100.000 Wörtern: :math:`100.000^4 = 10^{20}` Kombinationen.
+- Ein komplexes Passwort mit 16 Zeichen und 84 Zeichen im Zeichensatz (a-z, A-Z, 0-9 und die meisten Sonderzeichen): :math:`84^{16} = 6,14 \times 10^{30}` Kombinationen.
+
+.. supplemental::
+
+    Eine vierstellige PIN kann niemals als sicher angesehen werden. Selbst wenn ein Bruteforce nur auf 4 oder 5 Versuche pro Stunde kommt, so ist es dennoch in wenigen Monaten möglich die PIN zu ermitteln.
+
+
 .. class:: center-child-elements
 
 \ 
@@ -242,7 +272,7 @@ Kryptografische Hashfunktionen für Passworte
 - Bekannte Funktion zur Schlüsselableitung: PBKDF2, ...
 - Beim Hashing von Passwörtern werden die Basisalgorithmen in der Regel mehrfach (ggf. viele hunderttausend Male) angewendet, um die Laufzeit zu verlängern und es für Angreifer schwieriger zu machen.
 - Mehrere Hash-Algorithmen/Schlüsselableitungsfunktionen wurden ausdrücklich für das Hashing von Passwörtern entwickelt, um gängigen Angriffen zu widerstehen. z. B. bcrypt, scrypt, Argon2.
-- Einige dieser Algorithmen sind so rechenintensiv, dass sie nicht für Webanwendungen/Situationen geeignet sind, in denen viele Benutzer gleichzeitig autorisiert werden müssen. Diese Algorithmen werden in der Regel zum Schutz von Dateien, Containern oder lokaler Festplatten verwendet.
+- Einige dieser Algorithmen sind so rechenintensiv, dass sie nicht für Webanwendungen bzw. Situationen geeignet sind, in denen viele Benutzer gleichzeitig autorisiert werden müssen. Diese Algorithmen werden in der Regel zum Schutz von Dateien, Containern oder lokaler Festplatten verwendet.
 
 
 Vom Salzen (:eng:`Salt`) ...
@@ -328,6 +358,15 @@ Vom Salzen (:eng:`Salt`)...
 - Der *Secret Key* sollte pro Instanziierung einer Anwendung einmalig sein. 
 
 
+Sichere Hashfunktionen für Passworte
+-------------------------------------
+
+- Argon2 (z. B. verwendete von LUKS2)
+- bcrypt (basierend auf Blowfish)
+- scrypt (z. B. ergänzend verwendet für das Hashing von Passwörtern auf Smartphones)
+- yescrypt (z. B. modernen Linux Distributionen)
+
+
 `PBKDF2 <https://datatracker.ietf.org/doc/html/rfc2898.html#section-5.2>`__ (Password-Based Key Derivation Function 2)
 ----------------------------------------------------------------------------------------------------------------------------
 
@@ -363,7 +402,7 @@ Im Fall von PBKDF2 ist der Schlüssel :math:`K` also das Passwort und die Nachri
     :class: black smaller
 
     from passlib.crypto.digest import pbkdf2_hmac
-    pbkdf2_hmac( "sha256",
+    pbkdf2_hmac("sha256",
         secret=b"MyPassword",
         salt=b"JustASalt",
         rounds=1,   # a real value should be >> 500.000
@@ -454,7 +493,7 @@ Beispiel - Wiederherstellung eines Linux Login Passwortes
 
     **Finden eines Hashes**
 
-    Im Falle von Linux Login Passworten ist genau spezifiziert wo die Passworte (``/etc/shadow``) und in welcher Form die Passworte gespeichert werden. Nach dem Namen des Nutzers (im Beispiel ``john``) ist der verwendete Hashingalgorithmus vermerkt. Dieser unterscheidet sich zwischen den Distributionen. Aktuell setzen die meisten Distributionen jedoch auf yescrypt. Danach folgen die Parameter. Insbesondere der Salt.
+    Im Falle von Linux Login Passworten ist genau spezifiziert wo die Passworte (``/etc/shadow``) und in welcher Form die Passworte gespeichert werden. Nach dem Namen des Nutzers (im Beispiel ``john``) ist der verwendete Hashingalgorithmus vermerkt. Dieser unterscheidet sich zwischen den Distributionen. Aktuell setzen die meisten Distributionen auf ``yescrypt``. Danach folgen die Parameter. Insbesondere der Salt.
 
     .. csv-table::
         :header: ID, Mode
@@ -630,8 +669,8 @@ Eine gute Quelle für das Studium von Passwörtern sind sogenannte *Leaks* oder 
     - Die Methodik ist oft fragwürdig.
 
 
-Herausforderung: Hashraten auf aktueller Hardware
-----------------------------------------------------
+Herausforderung: Hashraten in MH/s auf aktueller Hardware
+------------------------------------------------------------
 
 .. csv-table::
     :class: incremental scriptsize no-table-borders
@@ -657,6 +696,8 @@ Herausforderung: Hashraten auf aktueller Hardware
     :3090: https://gist.github.com/Chick3nman/e4fcee00cb6d82874dace72106d73fef
     :1080Ti: https://www.onlinehashcrack.com/tools-benchmark-hashcat-nvidia-gtx-1080-ti.php
     :2080Ti: https://gist.github.com/binary1985/c8153c8ec44595fdabbf03157562763e
+
+
 
 Herausforderung: Unmöglichkeit eines Brute-Force Angriffs auf Luks2
 -------------------------------------------------------------------
@@ -703,7 +744,7 @@ Gedankenexperiment
 
 .. container:: task 
 
-    Wie viel Geld wird es Sie kosten, ein 10-stelliges Passwort zu knacken (worst case) (1kW ~ 0,25ct)?
+    Wie viel Geld wird es Sie kosten, ein 10-stelliges Passwort zu knacken (Worst Case) (1kW ~ 0,25ct)?
 
 .. container:: task 
 
@@ -728,13 +769,13 @@ Gedankenexperiment
 
 .. container:: transition-move-left conditions
 
-    Sie haben ganz viele Grafikkarten und einen sehr schnellen Hash. Sie kommen auf eine Hashrate von 1THash/Sekunde (:math:`1 \times 10^{12}`). Sie haben einen Monat Zeit für das Knacken des Passworts.
+    Sie haben ganz viele Grafikkarten und einen sehr schnellen Hash. Sie kommen auf eine Hashrate von 1 THash/Sekunde (:math:`1 \times 10^{12}`). Sie haben einen Monat Zeit für das Knacken des Passworts.
     Gehen Sie davon aus, dass Ihr Zeichensatz 100 Zeichen umfasst. 
 
 
 .. container:: task
 
-    Berechnen Sie den Anteil des Suchraums, den Sie abgesucht haben, wenn das Passwort 32 Zeichen lang sein sollte. Drücken Sie den Anteil des abgesuchten Raums in Relation der Sandkörner der Sahara aus. Gehen Sie davon aus, dass die Sahara ca. 70 Trilliarden (:math:`70 \times 10^{21}`) Sankörner hat.
+    Berechnen Sie den Anteil des Suchraums, den Sie abgesucht haben, wenn das Passwort 32 Zeichen lang sein sollte. Drücken Sie den Anteil des abgesuchten Raums in Relation zu der Anzahl der Sandkörner der Sahara aus. Gehen Sie davon aus, dass die Sahara ca. 70 Trilliarden (:math:`70 \times 10^{21}`) Sandkörner hat.
 
 .. admonition:: Lösung
     :class: supplemental exercise-solution
@@ -1959,6 +2000,15 @@ Ihnen liegt folgender MD5 Hash vor, Stellen Sie das Passwort wieder her:
     
         password1
 
+
+
+Sichere Passwörter
+--------------------------
+
+- Nehmen Sie kein Passwort, dass 1:1 in einem Wörterbuch oder Verzeichnis vorkommt.
+- Nehmen Sie keine Szenepasswörter (zum Beispiel: acab, 1312, 88, ...).
+- Je länger desto besser, aber keine ganz einfachen Sätze.
+- Wählen Sie ein Passwort, dass sie sich merken können. Kombinieren Sie z. B. Dinge aus Ihrem privaten Umfeld, die aber niemand direkt mit Ihnen in Verbindung bringen kann. (D. h. die Namen Ihrer Kinder, Haustiere, etc. sind keine gute Wahl, aber ggf. das Modell Ihres Fernsehers in Kombination mit einer PIN und dem Namen Ihres ersten Smartphones getrennt durch ein paar Sonderzeichen).
 
 
 Literaturverzeichnis

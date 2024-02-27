@@ -29,7 +29,7 @@ Dokumentmanagement Lösungen
 
 .. container:: smaller line-above
 
-    :Dozent: **Prof. Dr. Michael Eichberg**
+    :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
     :Version: |date|
 

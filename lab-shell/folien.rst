@@ -28,7 +28,7 @@
 Die Linux Shell - kurz Wiederholung 
 =====================================================
 
-:Dozent: **Prof. Dr. Michael Eichberg**
+:Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
 :Kontakt: michael.eichberg@dhbw-mannheim.de
 :Version: |date|
 

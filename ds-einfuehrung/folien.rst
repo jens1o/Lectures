@@ -155,14 +155,26 @@ Empfohlene Literatur
         :class: box-shadow 
 
 
+.. class:: smaller-slide-title
 
-Empfohlener Podcast
----------------------
+Empfohlener Podcast: `SE-Radio <https://se-radio.net>`__
+-----------------------------------------------------------
 
 .. image:: screenshots/se-radio.net.png
     :height: 1000px
     :align: center
-    
+
+
+
+.. class:: smaller-slide-title
+
+Empfohlener Podcast: `Thoughtworks Technology Podcast <https://www.thoughtworks.com/en-de/insights/podcasts/technology-podcasts>`__
+-------------------------------------------------------------------------------------------------------------------------------------
+
+.. image:: screenshots/thoughtworks-technology-podcast.png  
+    :height: 1000px
+    :align: center
+    :class: picture
     
 
 Verteilt vs. Dezentralisiert (:eng:`Distributed vs Decentralized`)
@@ -1010,17 +1022,17 @@ Sie sind Pentester und versuchen in ein System einzudringen indem Sie die Passw�
 
    .. math::
 
-        S(4096) = 1 + 0.9 * 4096 = 3.687,4
+        S(2*2048=4096) = 1 + 0.9 * 4096 = 3.687,4
 
-        S(2048) = 1 + 0.9 * 2048 = 1844,2
+        S(2*(2*2048)=8192) = 1 + 0.9 * 8182 = 7.373,8
 
     Das Rechnen mit den GPUs als solches führt somit zu einem etwas geringeren Speedup, da der serielle Anteil des Angriffs noch mehr in Gewicht fällt.
 
     .. math::
 
-        S(4096) / S(2048) \approx 1.9995 
+        S(4096) / S(2048) \approx 1,9994577595
 
-        S(4) / S(2) \approx 1,9474 
+        S(8192) / S(4096) \approx 1,9997288062
 
 
 

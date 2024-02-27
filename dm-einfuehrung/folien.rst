@@ -29,7 +29,7 @@ Dokumentmanagement, Archivierungs- und Verschlüsselungsverfahren
 
 .. container:: smaller line-above
 
-    :Dozent: **Prof. Dr. Michael Eichberg**
+    :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
     :Version: |date|
 
@@ -427,8 +427,8 @@ Arten von Meta-Daten
 
 
 
-Beispiel von Meta-Daten einer Verwaltungssoftware für Metadaten für grafische Zeichnungen
-----------------------------------------------------------------
+Beispiele von Meta-Daten einer Verwaltungssoftware für grafische Zeichnungen
+----------------------------------------------------------------------------------------------
 
 .. csv-table::
     :class: highlight-line-on-hover footnotesize incremental
@@ -590,7 +590,7 @@ Strategien:
 
 
 Bewertung von Dateiformaten in Hinblick auf die Dauerhaftigkeit
----------------------------------------------------------------
+-----------------------------------------------------------------
 
 .. class:: incremental
 

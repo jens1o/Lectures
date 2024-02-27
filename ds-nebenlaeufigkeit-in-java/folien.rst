@@ -37,7 +37,7 @@ Nebenläufigkeit (:eng:`Concurrency`) :raw-html:`<br>` (in Java)
 
 .. container:: line-above padding-bottom-1em
 
-  :Dozent: **Prof. Dr. Michael Eichberg**
+  :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
   :Kontakt: michael.eichberg@dhbw-mannheim.de
   :Version: |date|
 

@@ -24,7 +24,7 @@
 Einführung in die Zahlentheorie
 ================================
 
-:Dozent: **Prof. Dr. Michael Eichberg**
+:Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
 :Version: |date|
 :Quelle: Im Wesentlichen *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 
