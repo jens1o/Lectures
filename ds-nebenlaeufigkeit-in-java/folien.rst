@@ -665,7 +665,7 @@ Thread Safety Level
     :pwd: MyVirtualBuffer
 
     .. code:: Java
-      :class: copy-to-clipboard
+      :class: tiny copy-to-clipboard
 
       Thread thread = Thread.ofVirtual().start(
           () -> {
@@ -687,10 +687,10 @@ Thread Safety Level
         );
       return thread;
 
-.. supplemental::
+.. supplemental:: tiny
 
   .. code:: Java
-    :class: tiny copy-to-clipboard
+    :class: smaller copy-to-clipboard
 
     import java.util.ArrayList;
     import java.util.List;
@@ -735,7 +735,7 @@ Thread Safety Level
 .. exercise:: Thread-sichere Programmierung
   :class: tiny
 
-  Implementieren Sie eine Klasse ``ThreadsafeArray`` zum Speichern von nicht-``null`` Objekten (``java.lang.Object``) an ausgewählten Indizes — vergleichbar mit einem normalen Array. Im Vergleich zu einem normalen Array sollen die Aufrufer jedoch ggf. blockiert werden, wenn der Zustand des Arrays nicht den Anforderungen des Aufrufers genügt. Die Klasse soll folgende Methoden bereitstellen:
+  Implementieren Sie eine Klasse ``ThreadsafeArray`` zum Speichern von nicht-``null`` Objekten (``java.lang.Object``) an ausgewählten Indizes — vergleichbar mit einem normalen Array. Im Vergleich zu einem normalen Array sollen die Aufrufer jedoch ggf. blockiert werden, wenn die Zelle belegt ist. Die Klasse soll folgende Methoden bereitstellen:
 
   :``get(int index)``: Liefert den Wert an der Position ``index`` zurück. Der aufrufende Thread wird ggf. blockiert, bis ein Wert an der Position ``index`` gespeichert wurde. (Die ``get``-Methode entfernt den Wert nicht aus dem Array.) 
   :``set(int index, Object value)``: Speichert den Wert ``value`` an der Position ``index``. Falls an der Position ``index`` bereits ein Wert gespeichert wurde, wird der aufrufende Thread blockiert, bis der Wert an der Position ``index`` gelöscht wurde.
