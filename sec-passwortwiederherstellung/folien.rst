@@ -417,12 +417,14 @@ Im Fall von PBKDF2 ist der Schlüssel :math:`K` also das Passwort und die Nachri
     In der konkreten Anwendung ist es ggf. möglich das *Secret* auch zu Salzen und den *Salt* aus einer anderen Quellen abzuleiten.
 
 
+
 .. class:: transition-move-left integrated-exercise
 
-Nachgehakt
+Übung
 -----------
 
-.. container:: conditions 
+.. exercise:: Schwachstellenbewertung
+    :class: small
 
     Ihnen liegt eine externer Festplatte/SSD mit USB Anschluss vor, die die folgenden Eigenschaften hat:
 
@@ -433,20 +435,19 @@ Nachgehakt
     - Das Passwort wird von der Software gehasht und dann als Hash an den Controller der externen FP/SSD übertragen. 
     - Im Controller wird der übermittelte Hash direkt zur Autorisierung des Nutzers verwendet. Dazu wird der Hash mit dem im EPROM hinterlegten verglichen.
 
-.. container:: task 
-
     Wie bewerten Sie die Sicherheit des Produkts?
 
-.. container:: supplemental exercise-solution
+    .. solution::
+        :pwd: Kleine aber feine Unterschiede sind relevant!
 
-    **Lösung**
+        Wie in (A) dargestellt, ist die Sicherheit hier ausschließlich durch den Hardwareschutz gegeben. Sobald der Hash aus dem EPROM ausgelesen werden konnte, ist keine Sicherheit mehr gegeben. 
+        
+        In (B) wird der Hash erst auf dem Gerät berechnet. Die gleiche Attacke würde hier nicht mehr funktionieren, da ein Übertagen des Hashes zu einem Hashen des Hashes führen würde und danach der Test fehlschlagen würde.
 
-    Wie in (A) dargestellt, ist die Sicherheit hier ausschließlich durch den Hardwareschutz gegeben. Sobald der Hash aus dem EPROM ausgelesen werden konnte, ist keine Sicherheit mehr gegeben. In (B) wird der Hash erst auf dem Gerät berechnet. Die gleiche Attacke würde hier nicht mehr funktionieren, da ein Übertagen des Hashes zu einem Hashen des Hashes führen würde und danach der Test fehlschlagen würde.
-
-    .. image:: graffles/unsichere_passwort_validierung.svg 
-        :alt: Unsichere Passwortvalidierung
-        :width: 800px
-        :align: center
+        .. image:: graffles/unsichere_passwort_validierung.svg 
+            :alt: Unsichere Passwortvalidierung
+            :width: 800px
+            :align: center
 
 
 
@@ -454,6 +455,7 @@ Nachgehakt
 
 Passwortwiederherstellung 101
 ------------------------------
+
 
 
 Passwortwiederherstellung
@@ -501,6 +503,7 @@ Beispiel - Wiederherstellung eines Linux Login Passwortes
         $5$, Sha256crypt (veraltet)
         $6$, SHA512crypt (in Ablösung)
         $y$ (or $7$), yescrypt
+
 
 
 Systematisches Testen aller Kandidaten 
@@ -734,31 +737,26 @@ Herausforderung: stets neue Algorithmen
 Gedankenexperiment
 ---------------------
 
-.. container:: conditions 
+.. exercise:: Kosten und Aufwand für Passwortwiederherstellung 
 
     Sie wollen einen SHA 256 angreifen und sie haben 100 Nvidia 4090 GPUs. Jede GPU hat eine Hash-Rate von ~22GH/s (mit Hashcat 6.2.6) und benötigt ~500 Watt. Der verwendete Zeichensatz besteht aus 84 verschiedenen Zeichen (z. B. a-z, A-Z, 0-9, <einige Sonderzeichen>).
 
-.. container:: task 
+    1. Wie lange dauert es, ein 10-stelliges Passwort zu ermitteln (Worst Case)?
 
-    Wie lange dauert es, ein 10-stelliges Passwort zu ermitteln (Worst Case)?
+    2. Wie viel Geld wird es Sie kosten, ein 10-stelliges Passwort zu knacken (Worst Case) (1kW ~ 0,25ct)?
 
-.. container:: task 
+    3. Werden Sie im Laufe Ihres Lebens in der Lage sein, ein Passwort mit 12 Zeichen zu ermitteln?
 
-    Wie viel Geld wird es Sie kosten, ein 10-stelliges Passwort zu knacken (Worst Case) (1kW ~ 0,25ct)?
+    .. solution:: 
+        :pwd: Schnell oder langsam?
 
-.. container:: task 
+        Es dauert ca. 3 Monate (~2200 Stunden), um ein Passwort mit 10 Ziffern zu ermitteln!
+            
+        Es wird im schlimmsten Fall 27.000€ Stromkosten verursachen.
 
-    Werden Sie im Laufe Ihres Lebens in der Lage sein, ein Passwort mit 12 Zeichen zu ermitteln?
+        Um ein Passwort mit 11 Ziffern zu finden, brauchen Sie 21 Jahre (worst-case).
 
-.. container:: supplemental exercise-solution
-
-    Es dauert ca. 3 Monate (~2200 Stunden), um ein Passwort mit 10 Ziffern zu ermitteln!
-        
-    Es wird im schlimmsten Fall 27.000€ Stromkosten verursachen.
-
-    Um ein Passwort mit 11 Ziffern zu finden, brauchen Sie 21 Jahre (worst-case).
-
-    Um ein Passwort mit 12 Ziffern zu finden, brauchen Sie 21*84 Jahre (worst case).
+        Um ein Passwort mit 12 Ziffern zu finden, brauchen Sie 21*84 Jahre (worst case).
 
 
 .. class:: transition-move-left integrated-exercise 
@@ -767,46 +765,44 @@ Gedankenexperiment
 ---------------------
 
 
-.. container:: transition-move-left conditions
+.. exercise:: Verstehen des Suchraums
 
     Sie haben ganz viele Grafikkarten und einen sehr schnellen Hash. Sie kommen auf eine Hashrate von 1 THash/Sekunde (:math:`1 \times 10^{12}`). Sie haben einen Monat Zeit für das Knacken des Passworts.
     Gehen Sie davon aus, dass Ihr Zeichensatz 100 Zeichen umfasst. 
 
-
-.. container:: task
-
     Berechnen Sie den Anteil des Suchraums, den Sie abgesucht haben, wenn das Passwort 32 Zeichen lang sein sollte. Drücken Sie den Anteil des abgesuchten Raums in Relation zu der Anzahl der Sandkörner der Sahara aus. Gehen Sie davon aus, dass die Sahara ca. 70 Trilliarden (:math:`70 \times 10^{21}`) Sandkörner hat.
 
-.. admonition:: Lösung
-    :class: supplemental exercise-solution
+    .. solution::
+        :pwd: Fast nichts!
 
-    Suchraum: :math:`100^{32} = 10^{64}` 
+        Suchraum: :math:`100^{32} = 10^{64}` 
 
-    Passworte in einem Monat: 
-    
-    .. math:: 
+        Passworte in einem Monat: 
         
-        (1 \times 10^{12} {H \over s}) \times 60sec \times 60min \times 24h \times 30d = \
+        .. math:: 
+            
+            (1 \times 10^{12} {H \over s}) \times 60sec \times 60min \times 24h \times 30d = \
 
-        2.592.000.000.000.000.000 = \
+            2.592.000.000.000.000.000 = \
 
-        2,592 \times 10^{18} \
-    
-    da:
+            2,592 \times 10^{18} \
+        
+        da:
 
-    .. math:: 
+        .. math:: 
 
-        2.592.000.000.000.000.000 \times (4 \times 10^{45}) \approx 10^{64}
+            2.592.000.000.000.000.000 \times (4 \times 10^{45}) \approx 10^{64}
 
-    haben wir somit ca.
-    
-    .. math::
+        haben wir somit ca.
+        
+        .. math::
 
-        1 \over 4 \times 10^{45}
+            1 \over 4 \times 10^{45}
 
-    des Suchraums berechnet. Da die Sahara wohl nur ca. :math:`7 \times 10^{22}` Sandkörner hat, haben wir somit nicht mal ansatzweise ein Sandkorn berechnet. Sondern lediglich: :math:`1,75 \times 10^{-23}`.
+        des Suchraums berechnet. Da die Sahara wohl nur ca. :math:`7 \times 10^{22}` Sandkörner hat, haben wir somit nicht mal ansatzweise ein Sandkorn berechnet. Sondern lediglich: :math:`1,75 \times 10^{-23}`.
 
-    Oder ganz praktisch ausgedrückt: wir sind - je nach Theroie - frühestens **nach dem Ende des Universums** fertig - `Ende des Universums <https://www.welt.de/kmpkt/article177740494/Weltall-Wie-das-Ende-des-Universums-aussehen-koennte.html#:~:text=Das%20All%20dehnt%20sich%20immer,Gut%20zu%20wissen!>`__.
+        Oder ganz praktisch ausgedrückt: wir sind - je nach Theroie - frühestens **nach dem Ende des Universums** fertig - `Ende des Universums <https://www.welt.de/kmpkt/article177740494/Weltall-Wie-das-Ende-des-Universums-aussehen-koennte.html#:~:text=Das%20All%20dehnt%20sich%20immer,Gut%20zu%20wissen!>`__.
+
 
 
 Herausforderung: Passwortrichtlinien 
@@ -950,7 +946,7 @@ Aufbau von Passwörtern - Zusammenfassung
 
 
 Herausforderungen beim Testen/Generieren von Passwörtern
----------------------------------------------------------------
+-----------------------------------------------------------
 
 Aufgrund der :ger-quote:`Unmöglichkeit` eines Brute-Force-Angriffs stellen sich folgende Herausforderungen:
 
@@ -1977,27 +1973,31 @@ Passwörter angreifen - Zusammenfassung
 
 .. class:: integrated-exercise
 
-Übung
--------
-
-Ihnen liegt folgender MD5 Hash vor, Stellen Sie das Passwort wieder her: 
+Übung - Stellen Sie die Passwörter wieder her...
+--------------------------------------------------
    
-1. ``81dc9bdb52d04dc20036dbd8313ed055``
+.. exercise:: MD5 Hash eines trivialen Passworts
+    
+     ``81dc9bdb52d04dc20036dbd8313ed055``
  
-  Hinweise: Das Passwort ist kurz, besteht nur aus Ziffern und ist sehr häufig.
+    Hinweise: Das Passwort ist kurz, besteht nur aus Ziffern und ist sehr häufig.
 
-  .. protected-exercise-solution:: Lösung 1
-      
-      1234
+    .. solution::
+       :pwd: 1234
 
-2. ``7c6a180b36896a0a8c02787eeafb0e4c``
+       1234
+
+.. exercise:: MD5 Hash eines einfachen Passworts
+
+    ``7c6a180b36896a0a8c02787eeafb0e4c``
+        
+    Hinweise: Das Passwort besteht aus Buchstaben gefolgt von Ziffern und ist sehr häufig.
     
-  Hinweise: Das Passwort besteht aus Buchstaben gefolgt von Ziffern und ist sehr häufig.
-   
-  Sie können Hashcat (https://hashcat.net/hashcat/) verwenden oder ein Bash-Skript schreiben oder eine kleine Lösung in einer Programmiersprache Ihrer Wahl entwickeln.
-   
-  .. protected-exercise-solution:: Lösung 2
+    Sie können Hashcat (https://hashcat.net/hashcat/) verwenden oder ein Bash-Skript schreiben oder eine kleine Lösung in einer Programmiersprache Ihrer Wahl entwickeln.
     
+    .. solution:: 
+        :pwd: password1
+
         password1
 
 
