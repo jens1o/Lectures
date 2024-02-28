@@ -560,7 +560,7 @@ Implementieren Sie eine Feistel Chiffre in einer Programmiersprache Ihrer Wahl (
 
     **Hinweis**
 
-    Kümmern Sie sich nicht um Nachrichten, die größer oder kleiner als die Blockgröße sind. Dies ist nicht notwendig, um die Auswirkungen von "f" oder der Verwendung eines runden Schlüssels zu verstehen. Kümmern Sie sich nicht um einen Schlüssel, der nicht die richtige Größe hat. d. h. verwenden Sie eine Nachricht und einen Schlüssel mit der entsprechenden Größe.
+    Kümmern Sie sich nicht um Nachrichten, die größer oder kleiner als die Blockgröße sind. Dies ist nicht notwendig, um die Auswirkungen von "f" oder der Verwendung eines Rundenschlüssels zu verstehen. Kümmern Sie sich nicht um einen Schlüssel, der nicht die richtige Größe hat. d. h. verwenden Sie eine Nachricht und einen Schlüssel mit der entsprechenden Größe.
 
 
 
