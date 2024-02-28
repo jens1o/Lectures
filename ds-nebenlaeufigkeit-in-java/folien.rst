@@ -26,6 +26,7 @@
 .. role:: black
 .. role:: dark-red
 .. role:: huge
+.. role:: smaller  
 
 .. role:: raw-html(raw)
    :format: html
@@ -35,22 +36,26 @@
 Nebenläufigkeit (:eng:`Concurrency`) :raw-html:`<br>` (in Java)
 ===============================================================================
 
-.. container:: line-above padding-bottom-1em
+.. container:: line-above 
 
   :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
   :Kontakt: michael.eichberg@dhbw-mannheim.de
-  :Version: |date|
+ 
+.. container::  
 
-.. container:: small line-above padding-bottom-1em
+  :`Folien`:smaller:: 
+    .. container:: smaller
 
-  :Folien: 
       https://delors.github.io/ds-nebenlaeufigkeit-in-java/folien.rst.html :raw-html:`<br>`
       https://delors.github.io/ds-nebenlaeufigkeit-in-java/folien.rst.html.pdf
-  :Fehler auf Folien melden:
-      https://github.com/Delors/delors.github.io
-      :raw-html:`<br>`
+  :`Fehler auf Folien melden`:smaller::
+    .. container:: smaller
+
       https://github.com/Delors/delors.github.io/issues
 
+.. container:: footer-left tiny minor
+   
+   Version: |date|
 
 
 .. class:: no-title center-child-elements
@@ -192,6 +197,7 @@ Beispiel: Synchronisierte Methode
   .. layer::
 
     .. code:: Java
+      :class: copy-to-clipboard
 
       public class SynchronizedCounter {
 
@@ -209,6 +215,7 @@ Beispiel: Synchronisierte Methode
   .. layer:: incremental
 
     .. code:: Java
+      :class: copy-to-clipboard
       
         public class SharedLong {
 
@@ -232,6 +239,7 @@ Beispiel: Synchronisierte Methode
   .. layer:: incremental
 
     .. code:: Java
+      :class: copy-to-clipboard
 
       public class SynchronizedCounter {
 
@@ -265,7 +273,7 @@ Komplexe Rückgabewerte
 ------------------------------
 
 .. code:: Java
-  :class: tiny
+  :class: tiny copy-to-clipboard
 
   public class SharedCoordinate {
     
@@ -296,6 +304,7 @@ Komplexe Rückgabewerte
   Kann sichergestellt werden, dass ein auslesender Thread die Instanz in einem ``synchronized`` Block benennt, dann kann die Auslesung eines konsistenten Zustands auch bei mehreren Methodenaufrufen hintereinander sichergestellt werden.
 
   .. code:: Java
+    :class: copy-to-clipboard
 
     SharedCoordinate point = new SharedCoordinate(0,0);
     synchronized (point1) {
@@ -361,7 +370,7 @@ Ein *BoundedBuffer* hat z. B. traditionell zwei Bedingungsvariablen: *BufferNo
   .. layer:: incremental tiny
 
     .. code:: Java
-      :class: smaller
+      :class: smaller copy-to-clipboard
 
         public class BoundedBuffer {
           private final int buffer[];
@@ -382,7 +391,7 @@ Ein *BoundedBuffer* hat z. B. traditionell zwei Bedingungsvariablen: *BufferNo
   .. layer:: incremental tiny
 
     .. code:: Java
-      :class: smaller
+      :class: smaller copy-to-clipboard
 
         public synchronized void put(int item) throws InterruptedException {
           while (numberInBuffer == size)
@@ -396,7 +405,7 @@ Ein *BoundedBuffer* hat z. B. traditionell zwei Bedingungsvariablen: *BufferNo
   .. layer:: incremental tiny
 
     .. code:: Java
-      :class: smaller
+      :class: smaller copy-to-clipboard
 
         public synchronized int get() throws InterruptedException {
           while (numberInBuffer == 0)
@@ -415,7 +424,7 @@ Ein *BoundedBuffer* hat z. B. traditionell zwei Bedingungsvariablen: *BufferNo
       Fehlersituation, die bei der Verwendung von ``notify`` (statt ``notifyAll``) auftreten könnte.
 
     .. code:: Java
-      :class: smaller
+      :class: smaller copy-to-clipboard
 
       BoundedBuffer bb = new BoundedBuffer(1); 
       Thread g1,g2 = new Thread(() => { bb.get(); } );
@@ -464,7 +473,7 @@ Ein *BoundedBuffer* hat z. B. traditionell zwei Bedingungsvariablen: *BufferNo
   .. layer::
 
     .. code:: Java
-      :class: smaller
+      :class: smaller copy-to-clipboard
 
       public class BoundedBuffer<T> {
 
@@ -483,7 +492,7 @@ Ein *BoundedBuffer* hat z. B. traditionell zwei Bedingungsvariablen: *BufferNo
   .. layer:: incremental
 
     .. code:: Java
-      :class: smaller
+      :class: smaller copy-to-clipboard
 
         public BoundedBuffer(int length) { /* Normaler Constructor. */
           size = length;
@@ -497,7 +506,7 @@ Ein *BoundedBuffer* hat z. B. traditionell zwei Bedingungsvariablen: *BufferNo
   .. layer:: incremental
 
     .. code:: Java
-      :class: smaller
+      :class: smaller copy-to-clipboard
 
         public void put(T item) throws InterruptedException {
           lock.lock();
@@ -518,7 +527,7 @@ Ein *BoundedBuffer* hat z. B. traditionell zwei Bedingungsvariablen: *BufferNo
   .. layer:: incremental
 
     .. code:: Java
-      :class: smaller
+      :class: smaller copy-to-clipboard
 
         public T get() ... {
           lock.lock();
@@ -634,14 +643,97 @@ Thread Safety Level
 :Thread-kompatibel: Objekte die keinerlei Synchronisierung aufweisen. Der Aufrufer kann die Synchronisierung jedoch ggf. extern übernehmen.
 :Thread-hostile `Thread-schädlich`:ger-quote:: Objekte, die nicht thread-sicher sind und auch nicht thread-sicher gemacht werden können, da sie zum Beispiel globalen Zustand manipulieren.
 
+.. class:: integrated-exercise
+
+Übung
+---------------------
+
+.. exercise:: Virtueller Puffer
+  :class: tiny
+
+  Implementieren Sie einen virtuellen Puffer, der Tasks (Instanzen von ``java.lang.Runable``) entgegennimmt und nach einer bestimmten Zeit ausführt. Der Puffer darf währenddessen nicht blockieren bzw. gesperrt sein.
+
+  Nutzen Sie ggf. virtuelle Threads, um auf ein explizites Puffern zu verzichten. Ein virtueller Thread kann zum Beispiel mit: ``Thread.ofVirtual()`` erzeugt werden. Danach kann an die Methode ``start`` ein ``Runnable`` Objekt übergeben werden.
+
+  Verzögern Sie die Ausführung (``Thread.sleep()``) im Schnitt um 100ms mit einer Standardabweichung von 20ms. (Nutzen Sie ``Random.nextGaussian(mean,stddev)``)
+
+  Starten Sie 100 000 virtuelle Threads. Wie lange dauert die Ausführung? Wie lange dauert die Ausführung bei 100 000 platform (*native*) Threads.
+
+  Nutzen Sie ggf. die Vorlage.
+
+  .. solution::
+    :pwd: MyVirtualBuffer
+
+    .. code:: Java
+      :class: copy-to-clipboard
+
+      Thread thread = Thread.ofVirtual().start(
+          () -> {
+              try {
+                  var sleepTime =  (long) random.nextGaussian(100,20);
+                  if (sleepTime < 0 ) {
+                      // we found a gremlin...
+                      return;
+                  }
+                  System.out.println(
+                    "delaying " + id + 
+                    " by " + sleepTime + "ms");
+                  Thread.sleep(sleepTime);
+              } catch (InterruptedException e) {
+                  Thread.currentThread().interrupt();
+              }
+              task.run();
+          }
+        );
+      return thread;
+
+.. supplemental::
+
+  .. code:: Java
+    :class: tiny copy-to-clipboard
+
+    import java.util.ArrayList;
+    import java.util.List;
+    import java.util.Random;
+
+    public class VirtualBuffer {
+
+        private final Random random = new Random();
+
+        private Thread runDelayed(int id, Runnable task) {
+          // TODO
+        }
+
+        public static void main(String[] args) throws Exception {
+            var start = System.nanoTime();
+            VirtualBuffer buffer = new VirtualBuffer();
+            List<Thread> threads = new ArrayList<>();
+            for (int i = 0; i < 100000; i++) {
+                final var no = i;
+                var thread = buffer.runDelayed(
+                    i, 
+                    () -> System.out.println("i'm no.: " + no));
+                threads.add(thread);
+            }
+            System.out.println("finished starting all threads");
+            for (Thread thread : threads) {
+                thread.join();
+            }
+            var runtime = (System.nanoTime() - start)/1_000_000;
+            System.out.println(
+                "all threads finished after: " + runtime + "ms"
+            );
+        }
+    }
 
 
 .. class:: integrated-exercise 
 
-Übung: *Thread-sichere Programmierung*
+Übung
 ----------------------------------------------
 
-.. container:: tiny 
+.. exercise:: Thread-sichere Programmierung
+  :class: tiny
 
   Implementieren Sie eine Klasse ``ThreadsafeArray`` zum Speichern von nicht-``null`` Objekten (``java.lang.Object``) an ausgewählten Indizes — vergleichbar mit einem normalen Array. Im Vergleich zu einem normalen Array sollen die Aufrufer jedoch ggf. blockiert werden, wenn der Zustand des Arrays nicht den Anforderungen des Aufrufers genügt. Die Klasse soll folgende Methoden bereitstellen:
 
@@ -655,13 +747,121 @@ Thread Safety Level
   (c) Implementieren Sie die Klasse ``ThreadsafeArray`` unter Verwendung von ``ReentrantLock``\ s und ``Condition``\ s. Nutzen Sie die Vorlage. 
   (d) Welche Vorteile hat die Verwendung von ``ReentrantLock``\ s?
 
+  .. solution:: 
+    :pwd: ThreadSafeArrays
+
+    (a) 
+
+      .. code:: Java
+        :class: copy-to-clipboard
+
+        public synchronized Object get(int index) throws InterruptedException {
+            var v = array[index];
+            while (v == null) {
+                /*DEBUG*/ out.println(Thread.currentThread().getName() + " will go to sleep");
+                wait();
+                v = array[index];
+            }
+            return v;
+        }
+
+        public synchronized void set(int index, Object value) throws InterruptedException {
+            while (array[index] != null) {
+                /*DEBUG*/ out.println(Thread.currentThread().getName() + " will go to sleep");
+                wait();
+            }
+            array[index] = value;
+            notifyAll();
+        }
+
+        public synchronized void delete(int index) throws InterruptedException {
+            while (array[index] == null) {
+                /*DEBUG*/ out.println(Thread.currentThread().getName() + " will go to sleep");
+                wait();
+            }
+            array[index] = null;
+            notifyAll();
+        }
+
+    (b) ``notify`` kann nicht verwendet werden, da wir unterschiedliche Bedingungen haben und es bei der Verwendung von ``notify`` somit zum Aufwecken eines ungeeigneten Threads kommen könnte. Dies könnte dazu führen könnte, dass alle Threads im Wartezustand sind obwohl Fortschritt möglich wäre. 
+
+    (c) 
+        .. code:: Java
+          :class: copy-to-clipboard
+
+          private final Object[] array;
+          private final ReentrantLock[] locks;
+          private final Condition[] notEmptyConditions;
+          private final Condition[] notFullConditions;
+
+          public ThreadsafeArrayWithConditionVariables(int size) {
+              this.array = new Object[size];
+              this.locks = new ReentrantLock[size];
+              this.notEmptyConditions = new Condition[size];
+              this.notFullConditions = new Condition[size];
+              for (int i = 0; i < size; i++) {
+                  locks[i] = new ReentrantLock(true);
+                  notEmptyConditions[i] = locks[i].newCondition(); 
+                  notFullConditions[i] = locks[i].newCondition();
+              }
+          }
+
+          public Object get(int index) throws InterruptedException {
+              locks[index].lock();
+              try {
+                  var v = array[index];
+                  while (v == null) {
+                      out.println(Thread.currentThread().getName() + " will go to sleep");
+                      notEmptyConditions[index].await();
+                      out.println(Thread.currentThread().getName() + " awakened");
+                      v = array[index];
+                  }
+                  return v;
+              } finally {
+                  locks[index].unlock();
+              }
+          }
+
+          public void set(int index, Object value) throws InterruptedException {
+              locks[index].lock();
+              try {
+                  while (array[index] != null) {
+                      out.println(Thread.currentThread().getName() + " will go to sleep");
+                      notFullConditions[index].await();
+                      out.println(Thread.currentThread().getName() + " awakened");
+                  }
+                  array[index] = value;
+                  notEmptyConditions[index].signalAll(); // otherwise, it may happen that we "just" wake up a getter thread...
+              } finally {
+                  locks[index].unlock();
+              }
+          }
+
+          public void delete(int index) throws InterruptedException{
+              locks[index].lock();
+              try {
+                  while (array[index] == null) {
+                      out.println(Thread.currentThread().getName() + " will go to sleep");
+                      notEmptyConditions[index].await();
+                      out.println(Thread.currentThread().getName() + " awakened");
+                  }
+                  array[index] = null;
+                  notFullConditions[index].signal();
+              } finally {
+                  locks[index].unlock();
+              }
+          }
+
+
+    (d) Wir können zumindest für die Bedingung *notFull* ``signal`` verwenden, da auf der Bedingungsvariable *notFull* ggf. nur die ``set``-Methode wartet. Für die Bedigung *notEmpty* können wir jedoch nur ``signalAll`` verwenden, da auf der Bedingungsvariable *notEmpty* sowohl die ``get``- als auch die ``delete``-Methode warten können und es sonst passieren können, dass nach einem ``set`` Aufruf kein ``delete`` aufgeweckt wird.
+
 
 .. supplemental:: tiny
 
   Sie können sich die Klasse ``ThreadsafeArray`` auch als ein Array von BoundedBuffers mit der Größe 1 vorstellen.
 
   .. code:: Java
-    :class: smaller
+    :class: smaller copy-to-clipboard
 
       public class ThreadsafeArray {
 
@@ -738,107 +938,3 @@ Thread Safety Level
         }
       }
 
-.. protected-exercise-solution:: ThreadSafeArray mit Standardprimitiven
-
-  (a) 
-
-    .. code:: Java
-
-      public synchronized Object get(int index) throws InterruptedException {
-          var v = array[index];
-          while (v == null) {
-              out.println(Thread.currentThread().getName() + " will go to sleep");
-              wait();
-              v = array[index];
-          }
-          return v;
-      }
-
-      public synchronized void set(int index, Object value) throws InterruptedException {
-          while (array[index] != null) {
-              out.println(Thread.currentThread().getName() + " will go to sleep");
-              wait();
-          }
-          array[index] = value;
-          notifyAll();
-      }
-
-      public synchronized void delete(int index) throws InterruptedException {
-          while (array[index] == null) {
-              out.println(Thread.currentThread().getName() + " will go to sleep");
-              wait();
-          }
-          array[index] = null;
-          notifyAll();
-      }
-
-  (b) ``notify`` kann nicht verwendet werden, da wir unterschiedliche Bedingungen haben und es bei der Verwendung von ``notify`` somit zum Aufwecken eines ungeeigneten Threads kommen könnte. Dies könnte dazu führen könnte, dass alle Threads im Wartezustand sind obwohl Fortschritt möglich wäre. 
-
-  (c) 
-      .. code:: Java
-
-        private final Object[] array;
-        private final ReentrantLock[] locks;
-        private final Condition[] notEmptyConditions;
-        private final Condition[] notFullConditions;
-
-        public ThreadsafeArrayWithConditionVariables(int size) {
-            this.array = new Object[size];
-            this.locks = new ReentrantLock[size];
-            this.notEmptyConditions = new Condition[size];
-            this.notFullConditions = new Condition[size];
-            for (int i = 0; i < size; i++) {
-                locks[i] = new ReentrantLock(true);
-                notEmptyConditions[i] = locks[i].newCondition(); 
-                notFullConditions[i] = locks[i].newCondition();
-            }
-        }
-
-        public Object get(int index) throws InterruptedException {
-            locks[index].lock();
-            try {
-                var v = array[index];
-                while (v == null) {
-                    out.println(Thread.currentThread().getName() + " will go to sleep");
-                    notEmptyConditions[index].await();
-                    out.println(Thread.currentThread().getName() + " awakened");
-                    v = array[index];
-                }
-                return v;
-            } finally {
-                locks[index].unlock();
-            }
-        }
-
-        public void set(int index, Object value) throws InterruptedException {
-            locks[index].lock();
-            try {
-                while (array[index] != null) {
-                    out.println(Thread.currentThread().getName() + " will go to sleep");
-                    notFullConditions[index].await();
-                    out.println(Thread.currentThread().getName() + " awakened");
-                }
-                array[index] = value;
-                notEmptyConditions[index].signalAll(); // otherwise, it may happen that we "just" wake up a getter thread...
-            } finally {
-                locks[index].unlock();
-            }
-        }
-
-        public void delete(int index) throws InterruptedException{
-            locks[index].lock();
-            try {
-                while (array[index] == null) {
-                    out.println(Thread.currentThread().getName() + " will go to sleep");
-                    notEmptyConditions[index].await();
-                    out.println(Thread.currentThread().getName() + " awakened");
-                }
-                array[index] = null;
-                notFullConditions[index].signal();
-            } finally {
-                locks[index].unlock();
-            }
-        }
-
-
-  (d) Wir können zumindest für die Bedingung *notFull* ``signal`` verwenden, da auf der Bedingungsvariable *notFull* ggf. nur die ``set``-Methode wartet. Für die Bedigung *notEmpty* können wir jedoch nur ``signalAll`` verwenden, da auf der Bedingungsvariable *notEmpty* sowohl die ``get``- als auch die ``delete``-Methode warten können und es sonst passieren können, dass nach einem ``set`` Aufruf kein ``delete`` aufgeweckt wird.
