@@ -483,35 +483,45 @@ Bedingte Wahrscheinlichkeit, dass :math:`C` während :math:`[0,t)` korrekt funkt
 
 .. class:: integrated-exercise smaller-slide-title
 
-Übung - Verfügbarkeit und Ausfallwahrscheinlichkeit
+Übung: Verfügbarkeit und Ausfallwahrscheinlichkeit
 ------------------------------------------------------
 
-1. Wenn die MTTF einer Komponente 100 Stunden beträgt und die MTTR 10 Stunden beträgt, wie hoch ist dann die MTBF?
+.. exercise:: MTTF, MTTR und MTBF
+    :class: smaller
 
-.. protected-exercise-solution:: Berechnung des MTBF
-   :class: smaller
-    
-    .. math::
-        MTBF = MTTF + MTTR = 100 + 10 = 110
+    Wenn die MTTF einer Komponente 100 Stunden beträgt und die MTTR 10 Stunden beträgt, wie hoch ist dann die MTBF?
 
-2. Gegeben sei ein größeres verteiltes System bestehend aus 500 unabhängigen Rechnern, die auch unabhängig voneinander ausfallen. Im Mittel ist jeder Rechner innerhalb von zwei Tagen zwölf Stunden lang nicht erreichbar.
+    .. solution:: Berechnung des MTBF
+        :class: smaller
+        :pwd: MTBF=MTTF+MTTR
 
-   (a) Bestimmen Sie die Intaktwahrscheinlichkeit eines einzelnen Rechners.
-   (b) Ein Datensatz ist aus Gründen der Fehlertoleranz auf drei Rechnern identisch repliziert gespeichert. Wie hoch ist seine mittlere Zugriffsverfügbarkeit beim Lesen?
-   (c) Auf wie vielen Rechnern müssen Sie identische Kopien dieses Datensatzes speichern, damit die mittlere Zugriffsverfügbarkeit beim Lesen bei 99,999 % liegt 
-   (d) Für wie viele Minuten im Jahr ist im Mittel bei einer Verfügbarkeit von 99,999 % *kein Lesen des Datensatzes* möglich?
+        .. math::
+            MTBF = MTTF + MTTR = 100 + 10 = 110
 
-.. protected-exercise-solution:: Ausfallwahrscheinlichkeit
+.. exercise:: Ausfallwahrscheinlichkeit
+    :class: smaller
 
-    (a) Die Verfügbarkeit eines einzelnen Rechners beträgt p = 36h/48h = 0,75 (MTBF = 36H, MTTR = 12H)
-    (b) Die mittlere Zugriffsverfügbarkeit (für :math:`p = 0.75`) beim Lesen beträgt :math:`1 - (1 - p)^3 = 0,984375`; :math:`(1-p)` ist die Ausfallwahrscheinlichkeit.
-    (c) (Erinnerung: :math:`log_a(u^v) = v \cdot log_a(u)`).
-        
-        Wahrscheinlichkeit, dass alle gleichzeitig ausfallen muss kleiner(gleich) der erlaubten Nichtverfügbarkeit sein:  :math:`(1-p)^x \leq (1-0,99999) \Leftrightarrow x \cdot log(1-p) \geq log(1-0,99999)`
+    Gegeben sei ein größeres verteiltes System bestehend aus 500 unabhängigen Rechnern, die auch unabhängig voneinander ausfallen. Im Mittel ist jeder Rechner innerhalb von zwei Tagen zwölf Stunden lang nicht erreichbar.
 
-        :math:`\Rightarrow x \geq log(1-0,99999)/log(1-p) \approx 8,3`
-        
-        Die Anzahl der Rechner, auf denen der Datensatz repliziert werden muss, beträgt :math:`\lceil \frac{log(1-0,99999)}{log(1-p)} \rceil = 9`
+    (a) Bestimmen Sie die Intaktwahrscheinlichkeit eines einzelnen Rechners.
+    (b) Ein Datensatz ist aus Gründen der Fehlertoleranz auf drei Rechnern identisch repliziert gespeichert. Wie hoch ist seine mittlere Zugriffsverfügbarkeit beim Lesen?
+    (c) Auf wie vielen Rechnern müssen Sie identische Kopien dieses Datensatzes speichern, damit die mittlere Zugriffsverfügbarkeit beim Lesen bei 99,999 % liegt 
+    (d) Für wie viele Minuten im Jahr ist im Mittel bei einer Verfügbarkeit von 99,999 % *kein Lesen des Datensatzes* möglich?
+
+    .. solution:: Lösung
+        :class: smaller
+        :pwd: Laufend?
+
+        (a) Die Verfügbarkeit eines einzelnen Rechners beträgt p = 36h/48h = 0,75 (MTBF = 36H, MTTR = 12H)
+        (b) Die mittlere Zugriffsverfügbarkeit (für :math:`p = 0.75`) beim Lesen beträgt :math:`1 - (1 - p)^3 = 0,984375`; :math:`(1-p)` ist die Ausfallwahrscheinlichkeit.
+        (c) (Erinnerung: :math:`log_a(u^v) = v \cdot log_a(u)`).
+            
+            Wahrscheinlichkeit, dass alle gleichzeitig ausfallen muss kleiner(gleich) der erlaubten Nichtverfügbarkeit sein:  :math:`(1-p)^x \leq (1-0,99999) \Leftrightarrow x \cdot log(1-p) \geq log(1-0,99999)`
+
+            :math:`\Rightarrow x \geq log(1-0,99999)/log(1-p) \approx 8,3`
+            
+            Die Anzahl der Rechner, auf denen der Datensatz repliziert werden muss, beträgt :math:`\lceil \frac{log(1-0,99999)}{log(1-p)} \rceil = 9`
+        (d) Bei 365 Tagen im Jahr: (1-0,99999) * 365 * 24 * 60 = 5,256 Minuten
 
 
 
@@ -633,12 +643,14 @@ Eine sichere Hash-Funktion :math:`Digest(X)` gibt eine Zeichenkette fester Läng
 Übung
 ----------------
 
-Wenn Alice eine mit Bobs öffentlichen Schlüssel verschlüsselte Nachricht an Ihn schickt, welches Sicherheitsproblem kann dann aufkommen?
+.. exercise:: Verschlüsselung mit Public-Private-Key Verfahren
 
-.. protected-exercise-solution:: Person-in-the-Middle-Angriff
-   :class: smaller
+    Wenn Alice eine mit Bobs öffentlichen Schlüssel verschlüsselte Nachricht an Ihn schickt, welches Sicherheitsproblem kann dann aufkommen?
 
-    Alice kann nicht sicher sein, dass Ihre Nachricht nicht verfälscht wurde! Jeder, der die Nachricht abfängt kann sie verändern und dann mit Bobs öffentlichen Schlüssel verschlüsseln.
+    .. solution:: 
+        :pwd: nicht sicher
+
+        Alice kann nicht sicher sein, dass Ihre Nachricht nicht verfälscht wurde! Jeder, der die Nachricht abfängt kann sie verändern und dann mit Bobs öffentlichen Schlüssel verschlüsseln.
 
 
 
@@ -1011,28 +1023,29 @@ Beschleunigung (Speedup) eines parallelisierten Programms relativ zu der nicht-p
 Übung
 ----------------
 
-Sie sind Pentester und versuchen in ein System einzudringen indem Sie die Passwörter der Administratoren angreifen. Momentan setzen Sie dazu 2 Grafikkarten mit je 2048 Compute Units ein. Der serielle Anteil des Angriffs beträgt 10 %. Wie hoch ist der Speedup, den Sie erwarten können, wenn Sie zwei weitere vergleichbare Grafikkarten mit weiteren 2048 Compute Units je GPU hinzufügen?
+.. exercise:: Speedup berechnen
+    :class: smaller
 
-   Hintergrund: Die Angriffe sind hochgradig parallelisierbar und hängen effektiv von der Anzahl an CUs ab. Die Grafikkarten sind in der Lage, die Angriffe effektiv zu beschleunigen.
+    Sie sind Pentester und versuchen in ein System einzudringen indem Sie die Passwörter der Administratoren angreifen. Momentan setzen Sie dazu 2 Grafikkarten mit je 2048 Compute Units ein. Der serielle Anteil des Angriffs beträgt 10 %. Wie hoch ist der Speedup, den Sie erwarten können, wenn Sie zwei weitere vergleichbare Grafikkarten mit weiteren 2048 Compute Units je GPU hinzufügen?
 
-.. protected-exercise-solution:: Berechnung des Speedup
-   :class: smaller
+      Hintergrund: Die Angriffe sind hochgradig parallelisierbar und hängen effektiv von der Anzahl an CUs ab. Die Grafikkarten sind in der Lage, die Angriffe effektiv zu beschleunigen.
 
-   Es handelt sich hierbei um ein Problem mit sich strukturell wiederholenden Datensätzen, d. h. Gustafsons Gesetz ist anwendbar. Der serielle Anteil beträgt 10 %, d. h.der Parallelisierungsgrad beträgt 90 %. Der Speedup beträgt dann:
+    .. solution:: Berechnung des Speedup
+        :pwd: so schnell wird's
 
-   .. math::
+        Es handelt sich hierbei um ein Problem mit sich strukturell wiederholenden Datensätzen, d. h. Gustafsons Gesetz ist anwendbar. Der serielle Anteil beträgt 10 %, d. h.der Parallelisierungsgrad beträgt 90 %. Der Speedup beträgt dann:
 
-        S(2*2048=4096) = 1 + 0.9 * 4096 = 3.687,4
+        .. math::
 
-        S(2*(2*2048)=8192) = 1 + 0.9 * 8182 = 7.373,8
+                S(2*2048=4096) = 1 + 0.9 * 4096 = 3.687,4
 
-    Das Rechnen mit den GPUs als solches führt somit zu einem etwas geringeren Speedup, da der serielle Anteil des Angriffs noch mehr in Gewicht fällt.
+                S((2*2048)+(2*2048)=8192) = 1 + 0.9 * 8182 = 7.373,8
 
-    .. math::
+                S(4096) / S(2048) \approx 1,9994577595
 
-        S(4096) / S(2048) \approx 1,9994577595
+                S(8192) / S(4096) \approx 1,9997288062
 
-        S(8192) / S(4096) \approx 1,9997288062
+            Das Rechnen mit GPUs als solches, d. h. mit "2-GPUs" vs. "4-GPUs" führt zu einem geringeren Speedup, da der serielle Anteil des Angriffs noch mehr in Gewicht fällt.
 
 
 
