@@ -774,7 +774,6 @@ Multiplikation in :math:`GF(2^n)`
 
 - Die Modulo-Reduktion erfolgt durch wiederholtes Ersetzen der höchsten Potenz durch den Rest des irreduziblen Polynoms (auch Shift und XOR)
 
- 
 
 
 .. class:: integrated-exercise transition-fade
@@ -782,29 +781,32 @@ Multiplikation in :math:`GF(2^n)`
 Übung
 ------
 
-Füllen Sie die fehlenden Werte aus (:math:`GF(2^m)`)
+.. exercise::
 
-.. csv-table::
-    :header: Polynomial, Binary, Decimal
-
-    :math:`x^7 +x^6 +x^4 +x+1`, , 
-    , 11001001, 
-    , , 133
-    :math:`x^4 +x^2 +x`, , 
-    , 00011001
-    , , 10
-
-.. protected-exercise-solution:: Fehlende Werte
+    Füllen Sie die fehlenden Werte aus (:math:`GF(2^m)`)
 
     .. csv-table::
         :header: Polynomial, Binary, Decimal
 
-        :math:`x^7 +x^6 +x^4 +x+1`, 11010011, 211
-        :math:`x^7 +x^6 +x^3 +1`, 11001001, 201
-        :math:`x^7 +x^2 +1` , 10000101, 133
-        :math:`x^4 +x^2 +x`, 00010110 , 22
-        :math:`x^4 +x^3 +1`, 00011001, 25
-        :math:`x^3 +x`, 00001010, 10     
+        :math:`x^7 +x^6 +x^4 +x+1`, , 
+        , 11001001, 
+        , , 133
+        :math:`x^4 +x^2 +x`, , 
+        , 00011001
+        , , 10
+
+    .. solution::
+        :pwd: Fehlende Werte
+
+        .. csv-table::
+            :header: Polynomial, Binary, Decimal
+
+            :math:`x^7 +x^6 +x^4 +x+1`, 11010011, 211
+            :math:`x^7 +x^6 +x^3 +1`, 11001001, 201
+            :math:`x^7 +x^2 +1` , 10000101, 133
+            :math:`x^4 +x^2 +x`, 00010110 , 22
+            :math:`x^4 +x^3 +1`, 00011001, 25
+            :math:`x^3 +x`, 00001010, 10     
 
 
 
@@ -813,41 +815,32 @@ Füllen Sie die fehlenden Werte aus (:math:`GF(2^m)`)
 Übung
 ------
 
-Gegeben sei :math:`GF(2^5)` mit dem irreduziblen Polynom :math:`p(x) = x^5 + x^2 + 1`
+.. exercise::
+
+    Gegeben sei :math:`GF(2^5)` mit dem irreduziblen Polynom :math:`p(x) = x^5 + x^2 + 1`
    
-- Berechne: :math:`(x^3 + x^2 + x + 1) - (x+1)` 
+   .. class:: list-with-explanations
 
-  .. protected-exercise-solution:: Subtraktion im :math:`GF(2^5)`
-    
-     :math:`x^3 + x^2`
+    1. Berechne: :math:`(x^3 + x^2 + x + 1) - (x+1)` 
+    2. Berechne: :math:`(x^4 + x) \times (x^3 + x^2)` 
+    3. Berechne:  :math:`(x^3) \times (x^2 + x^1 + 1)`
+    4. Berechne: :math:`(x^4+x)/(x^3+x^2)` geben :math:`(x^3+x^2)^{-1} =(x^2+x+1)`
 
-- Berechne: :math:`(x^4 + x) \times (x^3 + x^2)` 
+        Zur Erinnerung: Division kann als Multiplikation definiert werden. Seien :math:`a, b \in F`, dann ist :math:`a/b = a \times (b^{-1})`, wobei :math:`b^{-1}` die Umkehrung von :math:`b` ist.
+    5. Verifiziere: :math:`(x^3+x^2)^{-1}=(x^2+x+1)`
 
-  .. protected-exercise-solution:: Addition im :math:`GF(2^5)`
-    
-     :math:`f(x)=(x^4+x)·(x^3+x^2)\; mod\; p(x)=x^7+x^6+x^4+x^3\; mod\; p(x)=x^2+x`
-
-- Berechne:  :math:`(x^3) \times (x^2 + x^1 + 1)`
-
-  .. protected-exercise-solution:: Multiplikation im :math:`GF(2^5)`
-
-     :math:`x^4 +x^3 +x^2 +1`
-
-- Berechne: :math:`(x^4+x)/(x^3+x^2)` geben :math:`(x^3+x^2)^{-1} =(x^2+x+1)`
-
-  Zur Erinnerung: Division kann als Multiplikation definiert werden. Seien :math:`a, b \in F`, dann ist :math:`a/b = a \times (b^{-1})`, wobei :math:`b^{-1}` die Umkehrung von :math:`b` ist.
-
-  .. protected-exercise-solution:: Division im :math:`GF(2^5)`: 
-    
-     :math:`x^4 + 1`
-
-- Verifiziere: :math:`(x^3+x^2)^{-1}=(x^2+x+1)`
-
-  .. protected-exercise-solution:: Verifikation des Multiplikativen Inversen.
-
-    1. Muliplikation von :math:`(x^3+x^2) \times (x^2+x+1) = x^5 + x^2`
-    2. Module :math:`p(x) = x^5 + x^2 + 1`
-    3. Das Resultat ist Rest 1.
+    .. solution::
+        :pwd: 5 Lösungen
+        
+        1. :math:`x^3 + x^2`
+        2. :math:`f(x)=(x^4+x)·(x^3+x^2)\; mod\; p(x)=x^7+x^6+x^4+x^3\; mod\; p(x)=x^2+x`
+        3. :math:`x^4 +x^3 +x^2 +1`
+        4. :math:`x^4 + 1`
+        5. Verifikation:
+   
+           1. Multiplikation von :math:`(x^3+x^2) \times (x^2+x+1) = x^5 + x^2`
+           2. Modulo :math:`p(x) = x^5 + x^2 + 1`
+           3. Das Resultat ist Rest 1. (D. h. die multiplikative Inverse von :math:`(x^3+x^2)^{-1}` ist :math:`(x^2+x+1)`)
 
 
 
@@ -856,37 +849,43 @@ Gegeben sei :math:`GF(2^5)` mit dem irreduziblen Polynom :math:`p(x) = x^5 + x^2
 Übung - :math:`GF(2^8)`
 ----------------------------
 
-- Nehmen wir an, dass 7 und 3 stellvertretend für die Bitmuster der Koeffizienten des Polynoms stehen.
+.. exercise:: 
+
+    Nehmen wir an, dass 7 und 3 stellvertretend für die Bitmuster der Koeffizienten des Polynoms stehen.
  
-  - Berechne: :math:`7d - 3d`
-  - Berechne: :math:`7d + 3d`
+    - Berechne: :math:`7d - 3d`
+    - Berechne: :math:`7d + 3d`
 
-  .. protected-exercise-solution:: Subtraktion und Addition im :math:`GF(2^8)`
+    .. solution::
+        :pwd: 0x04
 
-    ::
+        ::
 
-        7 = 0000 0111
-        3 = 0000 0011
-        xor =>.. 0100
+            7 = 0000 0111
+            3 = 0000 0011
+            xor =>.. 0100
 
-    Die Lösung ist in beiden Fällen: 4 (d. h. Addition und Subtraktion sind gleich; jeder Wert ist sein additiver Kehrwert).
+        Die Lösung ist in beiden Fällen: 4 (d. h. Addition und Subtraktion sind gleich; jeder Wert ist sein additiver Kehrwert).
 
-- Berechne: :math:`(0x03\; \times\; 0x46)`
+.. exercise::
 
-  .. protected-exercise-solution:: Multiplikation im :math:`GF(2^8)`
+    Berechne: :math:`(0x03\; \times\; 0x46)`
 
-    ::
+    .. solution::
+        :pwd: 0xCA
 
-        0x03 = 0000 0011
-        0x46 = 0100 0110
+        ::
 
-        0x03 * 0x46 =      0x46 ⊕ (0x02 * 0x46) = 
-                      0100 0110 ⊕   1000 1100   = 1100 1010 
-                                                = 202 
-                                                = 0xCA
-    
-    .. math::
+            0x03 = 0000 0011
+            0x46 = 0100 0110
 
-        0x03 \times 0x46 = 0x46 \oplus (0x02 \times 0x46)
+            0x03 * 0x46 =      0x46 ⊕ (0x02 * 0x46) = 
+                          0100 0110 ⊕   1000 1100   = 1100 1010 
+                                                    = 202 
+                                                    = 0xCA
+        
+        .. math::
 
-        = 0100\, 0110_b \oplus 1000\, 1100_b = 1100\,1010_b = 202_d = 0xCA
+            0x03 \times 0x46 = 0x46 \oplus (0x02 \times 0x46)
+
+            = 0100\, 0110_b \oplus 1000\, 1100_b = 1100\,1010_b = 202_d = 0xCA

@@ -611,7 +611,7 @@ Erweiterter Euklidischer Algorithmus
 
     Notwendigerweise haben :math:`x` und :math:`y` gegensätzliche Vorzeichen, da sonst :math:`(x \times a + y \times b) > a\; ( > b )` gelten würde und somit nicht den GGT darstellen könnte.
 
-    Der erweiterte euklidische Algorithmus kann auf jeden Ring angewandt werden, in welchem eine Division mit kleinstem Rest durchgeführt werden kann. Ein Beispiel ist der Polynomring in einer Variablen mit rationalen oder reellen Koeffizienten wie sie bei der Verschlüsselung angewandt werden.
+    Der erweiterte euklidische Algorithmus kann auf jeden Ring angewandt werden, in welchem eine Division mit kleinstem Rest durchgeführt werden kann. Ein Beispiel ist der Polynomring in einer Variablen mit rationalen oder reellen Koeffizienten wie sie bei der Verschlüsselung angewandt werden. Wir werden dies später wieder aufgreifen.
     
     Der erweiterte Algo. dient insbesondere der Berechnung der inversen Elemente in ganzzahligen Restklassenringen. :minor:`(Beides werden wir später in der Vorlesung betrachten).`
   
@@ -933,7 +933,7 @@ Chinesischer Restsatz :eng:`Chinese Remainder Theorem (CRT)`
 
 .. container:: note scriptsize
      
-  Bietet eine Möglichkeit, (potenziell sehr große) Zahlen :math:`mod M` in Form von Tupeln kleinerer Zahlen zu manipulieren.
+  Bietet eine Möglichkeit, (potenziell sehr große) Zahlen :math:`mod\; M` in Form von Tupeln kleinerer Zahlen zu manipulieren.
    
   - Dies kann nützlich sein, wenn :math:`M` 150 Ziffern oder mehr hat.
   - Es ist jedoch notwendig, die Faktorisierung von :math:`M` im Voraus zu kennen.
@@ -950,7 +950,6 @@ Chinesischer Restsatz :eng:`Chinese Remainder Theorem (CRT)`
 
 Chinesischer Restsatz - Beispiel in :math:`Z_{10}` 
 -------------------------------------------------------------
-
 
 Nehmen wir an, die (relativ prim/koprimalen) Faktoren einer Zahl :math:`x` sind :math:`2` und :math:`5` und 
 
@@ -980,79 +979,110 @@ Die eindeutige Lösung ist: :math:`8` (:math:`3` ist keine Lösung, da 3 ungerad
 Übung
 --------------------------------- 
 
-
-1. Berechne :math:`5^9\, mod\, 7` ohne die Zuhilfenahme eines Taschenrechners.
-
-   .. protected-exercise-solution:: :math:`5^9\, mod\, 7`
-
-      :math:`(5^9)\, mod\, 7 = (5^2 \times 5^2 \times 5^2 \times 5^2 \times 5) \, mod\, 7`
-
-      :math:`= (5^2 \times 5^2 \times 5^2 \times 5^2 \times 5) \, mod\, 7 = (((5^2) \, mod\, 7)^4 \times (5\, mod\, 7))\, mod\, 7`
-
-      :math:`= ((25 \, mod\, 7)^4 \times (5))\, mod \, 7`
-
-      :math:`= (4^4 \times 5)\, mod \, 7`
-
-      :math:`= (4^2 \times 4^2 \times 5)\, mod \, 7`
-
-      :math:`= (2 \times 2 \times 5)\, mod \, 7`
-
-      :math:`= (20)\, mod \, 7`
-
-      :math:`= 6` 
-
-
-2. Welche Zahlen sind relativ prim zu :math:`21`?
-
-   .. protected-exercise-solution:: Relativ Prim zu 21
-        
-      :math:`|\lbrace 1,2,4,5,8,10,11,13,16,17,19,20 \rbrace| = 12`
-        
-      (Erinnere: :math:`ggt(6,21)` ist 3 und deshalb sind 6 und 21 nicht relativ prim!) 
+1. \ 
+  
+   .. exercise:: 
    
-3. Berechne :math:`ggt(1037,768)` mit Hilfe des Euklidischen Algorithmus.
+    Berechne :math:`5^9\, mod\, 7` ohne die Zuhilfenahme eines Taschenrechners.
 
-   .. protected-exercise-solution::  :math:`ggt(1037,768)`
+    .. solution:: 
+        :pwd: KeinTaschenrechner
 
-      .. csv-table::
-        :header: step, a,b,q,r
+        :math:`(5^9)\, mod\, 7 = (5^2 \times 5^2 \times 5^2 \times 5^2 \times 5) \, mod\, 7`
 
-        1, 1037, 768, 1, 269
-        2, 768, 269, 2, 230
-        3, 269, 230, 1, 39
-        4, 230, 39, 5, 35
-        5, 39, 35, 1, 4
-        6, 35, 4, 8, 3
-        7, 4, 3, 1, 1
-        8, 3, 1, 3, 0
+        :math:`= (5^2 \times 5^2 \times 5^2 \times 5^2 \times 5) \, mod\, 7 = (((5^2) \, mod\, 7)^4 \times (5\, mod\, 7))\, mod\, 7`
 
+        :math:`= ((25 \, mod\, 7)^4 \times (5))\, mod \, 7`
 
+        :math:`= (4^4 \times 5)\, mod \, 7`
 
-4. Bestimme das Ergebnis von Euler's Totient Funktion :math:`\phi` für den Wert :math:`37` ohne das Ergebnis nachzuschlagen.
+        :math:`= (4^2 \times 4^2 \times 5)\, mod \, 7`
 
-   .. protected-exercise-solution:: :math:`\phi(37)`
+        :math:`= (2 \times 2 \times 5)\, mod \, 7`
 
-      Das Ergebnis ist 36, da 37 eine Primzahl ist und deswegen alle Zahlen von 2 bis 36 relativ prim zu 37 sind.
+        :math:`= (20)\, mod \, 7`
 
-5. Überzeugen Sie sich davon, dass der (kleine) Satz von Fermat gilt. Zum Beispiel für die Zahlen: :math:`a = 9, p = 7`.
+        :math:`= 6` 
 
-   .. protected-exercise-solution:: Fermats Kleines Theorem
-        
-      :math:`9^6\, mod\, 7 = 531441\, mod\, 7 = 1` 
+2. \ 
 
-6. Überzeugen Sie sich davon, dass der Satz von Euler gilt. Zum Beispiel für die Werte :math:`a=7` und :math:`n=9`.
+   .. exercise:: 
+    
+      Welche Zahlen sind relativ prim zu :math:`21`?
+
+      .. solution:: 
+        :pwd: ganz viele
+            
+        :math:`|\lbrace 1,2,4,5,8,10,11,13,16,17,19,20 \rbrace| = 12`
+            
+        (Erinnere: :math:`ggt(6,21)` ist 3 und deshalb sind 6 und 21 nicht relativ prim.) 
+
+3. \ 
+ 
+   .. exercise:: 
+
+      Berechne :math:`ggt(1037,768)` mit Hilfe des Euklidischen Algorithmus.
+
+      .. solution::
+        :pwd: der ggt ist
+
+        .. csv-table::
+            :header: step, a,b,q,r
+
+            1, 1037, 768, 1, 269
+            2, 768, 269, 2, 230
+            3, 269, 230, 1, 39
+            4, 230, 39, 5, 35
+            5, 39, 35, 1, 4
+            6, 35, 4, 8, 3
+            7, 4, 3, 1, 1
+            8, 3, 1, 3, 0
+
+4. \ 
    
-   .. protected-exercise-solution:: Satz von Euler
+   .. exercise:: 
+ 
+    Bestimme das Ergebnis von Euler's Totient Funktion :math:`\phi` für den Wert :math:`37` ohne das Ergebnis nachzuschlagen.
 
-      :math:`\phi(9) = 6 = |\lbrace 1,2,4,5,7,8 \rbrace|`
+    .. solution:: 
+        :pwd: 36-ist-das-Ergebnis
 
-      :math:`7^6\, mod\, 9 = 1`
+        Das Ergebnis ist 36, da 37 eine Primzahl ist und deswegen alle Zahlen von 2 bis 36 relativ prim zu 37 sind.
 
-7. Führen Sie den Miller-Rabin Algorithmus für :math:`n = 37` aus.
+5. \ 
+ 
+   .. exercise:: 
+    
+     Überzeugen Sie sich davon, dass der (kleine) Satz von Fermat gilt. Zum Beispiel für die Zahlen: :math:`a = 9` und :math:`p = 7`.
 
-   .. protected-exercise-solution:: Miller-Rabin Algorithmus für :math:`n = 37`
+     .. solution:: 
+        :pwd: _1_ 
+        
+        :math:`9^6\, mod\, 7 = 531441\, mod\, 7 = 1` 
 
-      ::
+6. \ 
+
+   .. exercise:: 
+    
+       Überzeugen Sie sich davon, dass der Satz von Euler gilt. Zum Beispiel für die Werte :math:`a=7` und :math:`n=9`.
+   
+       .. solution::
+            :pwd: Satz von Euler
+
+            :math:`\phi(9) = 6 = |\lbrace 1,2,4,5,7,8 \rbrace|`
+
+            :math:`7^6\, mod\, 9 = 1`
+
+7. \ 
+
+   .. exercise:: 
+   
+      Führen Sie den Miller-Rabin Algorithmus für :math:`n = 37` aus.
+
+      .. solution:: 
+        :pwd: Wahrscheinlich prim
+
+        ::
 
             Primzahltest für  37:
 
@@ -1069,4 +1099,4 @@ Die eindeutige Lösung ist: :math:`8` (:math:`3` ist keine Lösung, da 3 ungerad
             _____________________________
             Wahrscheinlich prim
     
-      `Miller-Rabin Algorithm: <https://github.com/Delors/Course_W3M20014/blob/main/1-miller-rabin-algorithm.ipynb>`__
+        `Miller-Rabin Algorithm: <https://github.com/Delors/Course_W3M20014/blob/main/1-miller-rabin-algorithm.ipynb>`__

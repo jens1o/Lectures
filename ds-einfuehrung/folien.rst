@@ -525,7 +525,6 @@ Bedingte Wahrscheinlichkeit, dass :math:`C` während :math:`[0,t)` korrekt funkt
 
 
 
-
 Sicherheit in verteilten Systemen - Schutzziele
 -------------------------------------------------
 

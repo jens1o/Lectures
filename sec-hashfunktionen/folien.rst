@@ -19,13 +19,17 @@
     
     
 
-Cryptographic Hash Functions
+Kryptografische Hash Funktionen
 ===============================================
 
-:Lecturer: **Prof. Dr. Michael Eichberg**
-:Version: |date|
-:Based on: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
+:Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
+:Kontakt: michael.eichberg@dhbw-mannheim.de
+:Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 
+
+.. container:: footer-left tiny minor
+
+    Version: |date|
 
 
 Hashfunktionen
@@ -247,7 +251,7 @@ HMAC (Hash-based Message Authentication Code)
 
 
 
-HMAC Computation in Python
+HMAC Berechnung in Python
 ---------------------------
     
 **Implementierung**
@@ -300,15 +304,22 @@ HMAC Computation in Python
 Übung
 -------
 
-1. Warum ist eine einfache Hash-Funktion, die einen 256-Bit-Hash-Wert berechnet, indem sie ein XOR über alle Blöcke einer Nachricht durchführt, im Allgemeinen ungeeignet?
+.. exercise:: XOR als Hashfunktion
 
-  .. protected-exercise-solution:: XOR als Hashfunktion
+    
+    Warum ist eine einfache Hash-Funktion, die einen 256-Bit-Hash-Wert berechnet, indem sie ein XOR über alle Blöcke einer Nachricht durchführt, im Allgemeinen ungeeignet?
 
-        Je nach Beschaffenheit der zugrunde liegenden Daten können wir die ursprüngliche Nachricht wiederherstellen. Stellen Sie sich z. B. vor, dass nur der erste Block sinnvolle Daten enthält und alle anderen Blöcke einfach "0" sind; außerdem können wir nicht alle Bits verwenden.
+    .. solution:: 
+        :pwd: alles nichts
 
-2. Warum sind Second-Preimage-Resistenz und Kollisionssicherheit nicht relevant, wenn der Hash-Algorithmus zum Hashing von Passwörtern verwendet wird?
+        Je nach Beschaffenheit der zugrunde liegenden Daten können wir die ursprüngliche Nachricht ggf. wiederherstellen. Stellen Sie sich z. B. vor, dass nur der erste Block sinnvolle Daten enthält und alle anderen Blöcke einfach "0" sind; außerdem können wir nicht alle Bits verwenden.
 
-  .. protected-exercise-solution:: Irrelevanz von Second-Preimage-Resistenz und Kollisionssicherheit
+.. exercise:: Irrelevanz von Second-Preimage-Resistenz und Kollisionssicherheit
+
+    Warum sind *Second-Preimage-Resistenz* und Kollisionssicherheit von nachgeordneter Relevanz, wenn der Hash-Algorithmus zum Hashing von Passwörtern verwendet wird?
+
+    .. solution::
+        :pwd: kein Startpunkt
 
         Wir haben keinen Block der Nachricht, mit dem wir arbeiten können, und wir haben keinen Vorteil davon, zwei verschiedene Nachrichten zu finden, die denselben Hash haben.
 

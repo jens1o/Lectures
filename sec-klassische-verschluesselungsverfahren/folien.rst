@@ -14,6 +14,7 @@
 .. role:: eng
 
 
+
 Klassische Verschlüsselungsmethoden
 ====================================
 
@@ -549,7 +550,8 @@ Beispiel einer Vigenère-Verschüsselung
         Klartext:   wearediscoveredsaveyourself
         Geheimtext: ZICVTWQNGRZGVTWAVZHCQYGLMGJ
 
-    
+
+
 Vigenère *Autokey System*
 --------------------------
 
@@ -622,6 +624,7 @@ Schwierigkeiten bei der Verwendung eines One-Time-Pads
 - Aufgrund dieser Schwierigkeiten ist das One-Time-Pad nur von begrenztem Nutzen; es eignet sich vor allem für Kanäle mit geringer Bandbreite, die eine sehr hohe Sicherheit erfordern.
 
 - Das One-Time-Pad ist das einzige Kryptosystem, das eine perfekte Geheimhaltung bietet. 
+
 
 
 Rail Fence Chiffre
@@ -698,8 +701,8 @@ Verwenden Sie Spammimic https://www.spammimic.com/, um die Nachricht einzublende
 
 
 
-Andere Steganographie-Techniken
---------------------------------
+Auswahl anderer Steganographie-Techniken 
+------------------------------------------
 
 .. class:: incremental list-with-explanations smaller
 
@@ -717,9 +720,7 @@ Andere Steganographie-Techniken
 
 - **Sehr helle Tinte**
 
-  Druckerhersteller drucken auf winzige Punktmuster in sehr hellen Farben auf die Seiten, um die Seiten zu verfolgen und zu identifizieren.
-
-- ...
+  Druckerhersteller drucken winzige Punktmuster in sehr hellen Farben auf die Seiten, um Dokumente ggf. rückverfolgen zu können zu dem Drucker auf dem sie gedruckt wurden.
 
 
 
@@ -743,40 +744,45 @@ Steganographie vs. Verschlüsselung
 Übung
 --------
 
-- Playfair Chiffre: Entschlüsseln Sie: ``XGAWMGAZ``. Das Passwort ist ``MONARCHY`` (wie auf den Folien.)
+.. exercise:: Playfair Chiffre
 
-  .. protected-exercise-solution:: Playfair Chiffre
+    Entschlüsseln Sie: ``XGAWMGAZ``. Das Passwort ist ``MONARCHY`` (wie auf den Folien.)
 
-     ``w(i/j)nXnerX => winner``
+    .. solution::
+        :pwd: winner
 
+        ``w(i/j)nXnerX => winner``
 
-- Vigenère Chiffre: Sie haben das folgende Klartext-Chiffretext-Paar:
+.. exercise:: Vigenère Chiffre
 
-  :P: ``secret``
-  :C: ``HSFGSW``
+    Sie haben das folgende Klartext-Chiffretext-Paar:
 
-  1. Wie ist der Schlüssel?
+    :P: ``secret``
+    :C: ``HSFGSW``
+
+    1. Wie ist der Schlüssel?
+
+    2. Welche Art von Angriff haben Sie durchgeführt?
+    
+    .. solution::
+        :pwd: PODPOD
+
+        1. Der Schlüss ist: PODPOD.
+        2. Einen Klartextangriffe (:eng:`plaintext attack`).
+
+.. exercise:: Rail-fence Chiffre
+    
+    Verschlüsseln Sie "i love crypto" mit dem Schlüssel/der Tiefe 3.
+
+    .. solution:: 
+        :pwd: ILOVECRYPTO
    
-     .. protected-exercise-solution:: Schlüsselbestimmung bei Vigenère Chiffre
+        :: 
 
-        Der Schlüss ist: PODPOD.
+            P = I L O V E C R Y P T O
+                1 2 3 1 2 3 1 2 3 1 2    
 
-  2. Welche Art von Angriff haben Sie durchgeführt?
-
-     .. protected-exercise-solution:: Art des Angriffs auf Vigenère Chiffre
-        
-        Einen Klartextangriffe (:eng:`plaintext attack`).
-
-- Rail-fence Chiffre: Verschlüsseln Sie "i love crypto" mit dem Schlüssel/der Tiefe 3.
-
-  .. protected-exercise-solution:: Rail-fence Chiffre
-   
-     :: 
-
-        P = I L O V E C R Y P T O
-            1 2 3 1 2 3 1 2 3 1 2    
-
-        C = I V R T L E Y O O C P
+            C = I V R T L E Y O O C P
 
 
 
@@ -785,50 +791,50 @@ Steganographie vs. Verschlüsselung
 Übung
 --------
 
-- Zeilenverschiebungs-Chiffre (:eng:`Row Transposition Cipher`)
+.. exercise::  Zeilenverschiebungs-Chiffre 
 
-  Sie haben die folgende Nachricht erhalten:
+    Sie haben die folgende Nachricht erhalten:
 
-  .. class:: monospaced
+    .. class:: monospaced
 
-     YSFRITTUNCOSPJU
+    YSFRITTUNCOSPJU
 
-  Außerdem konnten Sie den Schlüssel bis auf einen Wert ermitteln: 4153.
+    Außerdem konnten Sie den Schlüssel bis auf einen Wert ermitteln: 4153.
 
-  1. Wie viele Entschlüsselungsmöglichkeiten gibt es (noch)?
+    (a) Wie viele Entschlüsselungsmöglichkeiten gibt es (noch)?
 
-   .. protected-exercise-solution:: Zeilenverschiebungs-Chiffre - Anzahl der Möglichkeiten
+    (b) Bestimmen Sie den richtigen Schlüssel und entschlüsseln Sie den Text?
+
+
+    .. solution:: Enschlüsselungsmöglichkeiten
+        :pwd: Fünf Möglichkeiten
    
-      5: 24153, 42153, 41253, 41523, 41532
+        (a) 5: 24153, 42153, 41253, 41523, 41532
 
-  2. Bestimmen Sie den richtigen Schlüssel und entschlüsseln Sie den Text?
-   
-   .. protected-exercise-solution:: Zeilenverschiebungs-Chiffre - Entschlüsselung
+        (b) Wir haben fünf Spalten (basierend auf der Länge des Schlüssels) und daher drei Zeilen.
 
-      Wir haben fünf Spalten (basierend auf der Länge des Schlüssels) und daher drei Zeilen.
+            Aufgeteilt in 5 Abschnitte mit je drei Buchstaben.
+            YSF RIT TUN COS PJU
 
-      Aufgeteilt in 5 Abschnitte mit je drei Buchstaben.
-      YSF RIT TUN COS PJU
+            In einer Tabelle aufgeschrieben:
 
-      In einer Tabelle aufgeschrieben:
+            ::
 
-      ::
+                y r t c p   => Sieht unmittelbar wie "crypt" aus
+                s i u o j   
+                f t n s u   
 
-         y r t c p   => Sieht unmittelbar wie "crypt" aus
-         s i u o j   
-         f t n s u   
+            Umsortiert gemäß dem vorhandenen Schlüssel:
 
-      Umsortiert gemäß dem vorhandenen Schlüssel:
+            ::
+                
+                c y p t
+                o s j u
+                s f u n
 
-      ::
-        
-         c y p t
-         o s j u
-         s f u n
-
-      Jetzt die 2. Spalte entsprechend einsetzten und prüfen wann ein gültiger Text herauskommt.
+            Jetzt die 2. Spalte entsprechend einsetzten und prüfen wann ein gültiger Text herauskommt.
 
 
-      P = ``crypto is just fun`` (Leerzeichen zur besseren Lesbarkeit hinzugefügt.)
+            P = ``crypto is just fun`` (Leerzeichen zur besseren Lesbarkeit hinzugefügt.)
 
-      ``K = 42153``
+            ``K = 42153``
