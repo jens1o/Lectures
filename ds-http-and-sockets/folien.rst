@@ -460,204 +460,210 @@ UDP basierter Echo Server
 
 .. class:: integrated-exercise transition-fade
 
-Übung - Ein einfacher HTTP-Client
+Übung 
 ------------------------------------------------------
 
-.. class:: list-with-explanations
+.. exercise:: Ein einfacher HTTP-Client
 
-(a) Schreiben Sie einen HTTP-Client der den Server ``archive.org`` kontaktiert, die Datei ``/web/web.php`` anfordert und die Antwort des Servers auf dem Bildschirm ausgibt.
+  .. class:: list-with-explanations
 
-    Verwenden Sie HTTP/1.1 und eine Struktur ähnlich dem in der Vorlesung vorgestellten Echo-Client.
+  (a) Schreiben Sie einen HTTP-Client der den Server ``archive.org`` kontaktiert, die Datei ``/web/web.php`` anfordert und die Antwort des Servers auf dem Bildschirm ausgibt.
 
-    Senden Sie das GET-Kommando, die Host-Zeile sowie eine Leerzeile als Strings an den Server.
-(b) Modifizieren Sie Ihren Client, so dass eine URL als Kommandozeilenparameter akzeptiert wird.
+      Verwenden Sie HTTP/1.1 und eine Struktur ähnlich dem in der Vorlesung vorgestellten Echo-Client.
 
-    Verwenden Sie die (existierende) Klasse URL, um die angegebene URL zu zerlegen.
-(c) Modifizieren Sie Ihr Programm, so dass die Antwort des Servers als lokale Datei abgespeichert wird. Laden Sie die Datei zum Anzeigen in einen Browser.
+      Senden Sie das GET-Kommando, die Host-Zeile sowie eine Leerzeile als Strings an den Server.
+  (b) Modifizieren Sie Ihren Client, so dass eine URL als Kommandozeilenparameter akzeptiert wird.
 
-    Nutzen Sie die Klasse ``FileOutputStream`` oder ``FileWriter`` zum Speichern der Datei.
+      Verwenden Sie die (existierende) Klasse URL, um die angegebene URL zu zerlegen.
+  (c) Modifizieren Sie Ihr Programm, so dass die Antwort des Servers als lokale Datei abgespeichert wird. Laden Sie die Datei zum Anzeigen in einen Browser.
 
-    Kann Ihr Programm auch Bilddateien (z. B. "/images/logo_wayback_210x77.png") korrekt speichern?
+      Nutzen Sie die Klasse ``FileOutputStream`` oder ``FileWriter`` zum Speichern der Datei.
+
+      Kann Ihr Programm auch Bilddateien (z. B. "/images/logo_wayback_210x77.png") korrekt speichern?
 
 
-.. protected-exercise-solution:: Ein einfacher HTTP-Client
+  .. solution:: 
+    :pwd: Das ist die Lösung.
 
-  (a)
+    (a)
 
-  .. code:: Java
-    :class: copy-to-clipboard
-  
-    import java.net.*;
-    import java.io.*;
-    public class HTTPClient {
-      public static void main(String [] args){
-        BufferedReader in = null ;
-        PrintWriter out = null ;
-        String hostname = "archive.org";
-        String filename = "/web/web.php";
-        try(Socket s = new Socket(hostname ,80) ;){
-          
-          in = new BufferedReader(new InputStreamReader(s.getInputStream()));
-          out = new PrintWriter(s.getOutputStream());
-          out.println("GET "+ filename + " HTTP/1.1");
-          out.println("Host: " + hostname);
-          out.println("Connection: close");
-          out.println() ;
-          out.flush () ;
-          String line = null;
-          while ((line = in.readLine()) != null){
-            System.out.println (line);
-          }
-          
-        } catch(Exception e){e.printStackTrace();}
+    .. code:: Java
+      :class: copy-to-clipboard
+    
+      import java.net.*;
+      import java.io.*;
+      public class HTTPClient {
+        public static void main(String [] args){
+          BufferedReader in = null ;
+          PrintWriter out = null ;
+          String hostname = "archive.org";
+          String filename = "/web/web.php";
+          try(Socket s = new Socket(hostname ,80) ;){
+            
+            in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            out = new PrintWriter(s.getOutputStream());
+            out.println("GET "+ filename + " HTTP/1.1");
+            out.println("Host: " + hostname);
+            out.println("Connection: close");
+            out.println() ;
+            out.flush () ;
+            String line = null;
+            while ((line = in.readLine()) != null){
+              System.out.println (line);
+            }
+            
+          } catch(Exception e){e.printStackTrace();}
+        }
       }
-    }
 
-  (b) und (c)
+    (b) und (c)
 
-  .. code:: Java
-    :class: copy-to-clipboard
+    .. code:: Java
+      :class: copy-to-clipboard
 
-    import java.net.*;
-    import java.io.*;
+      import java.net.*;
+      import java.io.*;
 
-    public class HTTPGet {
-        public static void getFile(URL url) {
-            int c;
-            FileOutputStream f = null;
-            System.err.println("Connecting to " + url.getHost());
-            try (Socket s = new Socket(url.getHost(), 80); // connect to server
-                    var in = new BufferedInputStream(s.getInputStream());
-                    var out = new PrintWriter(s.getOutputStream());) {
-                int pos = url.getFile().lastIndexOf("/");
-                System.err.println("-> new file: " + url.getFile().substring(pos + 1));
-                f = new FileOutputStream(url.getFile().substring(pos + 1));
-                System.err.print("** Anfordern von <" + url + "> ...");
-                out.println("GET " + url + " HTTP/1.0");
-                out.println("HOST: " + url.getHost());
-                out.println("Connection: close");
-                out.println("");
-                out.flush();
-                System.err.print(" request sent ");
-                // skip HTTP/1.x header data up to ’CR LF CR LF’
-                while (true) {
-                    if (in.read() == 13) // CR
-                        if (in.read() == 10) // LF
-                            if (in.read() == 13) // CR
-                                if (in.read() == 10) { // LF
-                                    System.err.println("... removing meta data ");
-                                    break; // CRLF CRLF found; content follows
-                                }
-                }
-                while ((c = in.read()) != -1) {
-                    f.write(c); // store data into local file
-                    System.err.print((char) c);
-                }
-                f.close();
-                System.err.println(" ... done.");
+      public class HTTPGet {
+          public static void getFile(URL url) {
+              int c;
+              FileOutputStream f = null;
+              System.err.println("Connecting to " + url.getHost());
+              try (Socket s = new Socket(url.getHost(), 80); // connect to server
+                      var in = new BufferedInputStream(s.getInputStream());
+                      var out = new PrintWriter(s.getOutputStream());) {
+                  int pos = url.getFile().lastIndexOf("/");
+                  System.err.println("-> new file: " + url.getFile().substring(pos + 1));
+                  f = new FileOutputStream(url.getFile().substring(pos + 1));
+                  System.err.print("** Anfordern von <" + url + "> ...");
+                  out.println("GET " + url + " HTTP/1.0");
+                  out.println("HOST: " + url.getHost());
+                  out.println("Connection: close");
+                  out.println("");
+                  out.flush();
+                  System.err.print(" request sent ");
+                  // skip HTTP/1.x header data up to ’CR LF CR LF’
+                  while (true) {
+                      if (in.read() == 13) // CR
+                          if (in.read() == 10) // LF
+                              if (in.read() == 13) // CR
+                                  if (in.read() == 10) { // LF
+                                      System.err.println("... removing meta data ");
+                                      break; // CRLF CRLF found; content follows
+                                  }
+                  }
+                  while ((c = in.read()) != -1) {
+                      f.write(c); // store data into local file
+                      System.err.print((char) c);
+                  }
+                  f.close();
+                  System.err.println(" ... done.");
 
-            } catch (Exception e) {
-                System.err.println(e);
-            }
-        }
+              } catch (Exception e) {
+                  System.err.println(e);
+              }
+          }
 
-        /**
-        * Downloads a file from a given URL. (Example: "java HTTPGet.java http://www.google.de/index.html")
-        * 
-        * @param args URL of the file to be downloaded. E.g.,
-        *             "http://archive.org/web/web.php".
-        *              
-        */
-        public static void main(String args[]) {
-            try {
-                if (args.length < 1) {
-                    System.err.println("[ERROR] URL missing.");
-                    System.out.println("java HttpGet.java <url>");
-                    System.exit(-1);
-                } else {
-                    URL myUrl = URI.create(args[0]).toURL();
-                    getFile(myUrl);
-                }
-            } catch (MalformedURLException e) {
-                System.err.println("Invalid URL: " + e);
-                System.exit(-2);
-            }
-        }
-    }
+          /**
+          * Downloads a file from a given URL. (Example: "java HTTPGet.java http://www.google.de/index.html")
+          * 
+          * @param args URL of the file to be downloaded. E.g.,
+          *             "http://archive.org/web/web.php".
+          *              
+          */
+          public static void main(String args[]) {
+              try {
+                  if (args.length < 1) {
+                      System.err.println("[ERROR] URL missing.");
+                      System.out.println("java HttpGet.java <url>");
+                      System.exit(-1);
+                  } else {
+                      URL myUrl = URI.create(args[0]).toURL();
+                      getFile(myUrl);
+                  }
+              } catch (MalformedURLException e) {
+                  System.err.println("Invalid URL: " + e);
+                  System.exit(-2);
+              }
+          }
+      }
 
 
 
 .. class:: integrated-exercise
 
-Übung - Protokollaggregation
+Übung 
 ------------------------------------------------------
 
-Schreiben Sie ein UDP-basiertes Java-Programm mit dem sich Protokoll-Meldungen auf einem Server
-zentral anzeigen lassen. Das Programm soll aus mehreren Clients und einem Server bestehen. Jeder
-Client liest von der Tastatur eine Eingabezeile in Form eines Strings ein, der dann sofort zum Server gesendet wird. Der Server wartet auf Port 4999 und empfängt die Meldungen beliebiger Clients, die er dann unmittelbar auf den Bildschirm ausgibt.
+.. exercise:: Protokollaggregation
 
-.. protected-exercise-solution:: UDP basierter Syslog-Server und Client
-    
-  .. code:: Java
-    :class: copy-to-clipboard
+  Schreiben Sie ein UDP-basiertes Java-Programm mit dem sich Protokoll-Meldungen auf einem Server
+  zentral anzeigen lassen. Das Programm soll aus mehreren Clients und einem Server bestehen. Jeder
+  Client liest von der Tastatur eine Eingabezeile in Form eines Strings ein, der dann sofort zum Server gesendet wird. Der Server wartet auf Port 4999 und empfängt die Meldungen beliebiger Clients, die er dann unmittelbar auf den Bildschirm ausgibt.
 
-    import java.net.*;
+  .. solution:: 
+    :pwd: Nun mit UDP.
+      
+    .. code:: Java
+      :class: copy-to-clipboard
 
-    public class SyslogServer {
-        public final static int DEFAULT_PORT = 4999;
-        public final static int MAX_PACKET_SIZE = 65507;
+      import java.net.*;
 
-        public static void main(String[] args) {
-            try (
-                    var socket = new DatagramSocket(DEFAULT_PORT);) {
-                System.out.println("∗∗∗ SyslogServer ***");
-                while (true) {
-                    try {
-                        byte[] buffer = new byte[MAX_PACKET_SIZE];
-                        DatagramPacket dp = new DatagramPacket(buffer, buffer.length);
-                        socket.receive(dp); // wait for new message
-                        String s = new String(dp.getData(), 0, dp.getLength());
-                        System.out.println("[" + dp.getAddress() +
-                                ":" + dp.getPort() + "] " + s);
-                    } catch (Exception e) {
-                        System.err.println(e);
-                    }
-                } // while
-            } catch (Exception e) {
-                System.err.println(e);
-            }
-        }
-    }
+      public class SyslogServer {
+          public final static int DEFAULT_PORT = 4999;
+          public final static int MAX_PACKET_SIZE = 65507;
 
-  .. code:: Java
-    :class: copy-to-clipboard
+          public static void main(String[] args) {
+              try (
+                      var socket = new DatagramSocket(DEFAULT_PORT);) {
+                  System.out.println("∗∗∗ SyslogServer ***");
+                  while (true) {
+                      try {
+                          byte[] buffer = new byte[MAX_PACKET_SIZE];
+                          DatagramPacket dp = new DatagramPacket(buffer, buffer.length);
+                          socket.receive(dp); // wait for new message
+                          String s = new String(dp.getData(), 0, dp.getLength());
+                          System.out.println("[" + dp.getAddress() +
+                                  ":" + dp.getPort() + "] " + s);
+                      } catch (Exception e) {
+                          System.err.println(e);
+                      }
+                  } // while
+              } catch (Exception e) {
+                  System.err.println(e);
+              }
+          }
+      }
 
-    import java.net.*;
-    import java.io.*;
+    .. code:: Java
+      :class: copy-to-clipboard
 
-    class SyslogClient {
-        public final static int DEFAULT_SERVER_PORT = 4999;
-        public final static int MAX_PACKET_SIZE = 65507;
+      import java.net.*;
+      import java.io.*;
 
-        public static void main(String[] args) {
-            final String hostname = "localhost";
-            try (final var socket = new DatagramSocket();) {
-                InetAddress host = InetAddress.getByName(hostname);
-                BufferedReader userIn = new BufferedReader(new InputStreamReader(System.in));
-                System.out.println("[INFO] SyslogClient: type message to send or <CTRL + d> for exit.");
-                do {
-                    System.out.print("> "); // user prompt
-                    String s = userIn.readLine();
-                    if (s == null)
-                        break; // CTRL+d has been pressed
-                    byte[] data = s.getBytes();
-                    if (data.length > MAX_PACKET_SIZE)
-                        System.err.println("Message too large.");
-                    DatagramPacket dp = new DatagramPacket(data, data.length, host, DEFAULT_SERVER_PORT);
-                    socket.send(dp);
-                } while (true);
-            } catch (Exception e) {
-                System.err.println(e);
-            }
-        }
-    }
+      class SyslogClient {
+          public final static int DEFAULT_SERVER_PORT = 4999;
+          public final static int MAX_PACKET_SIZE = 65507;
+
+          public static void main(String[] args) {
+              final String hostname = "localhost";
+              try (final var socket = new DatagramSocket();) {
+                  InetAddress host = InetAddress.getByName(hostname);
+                  BufferedReader userIn = new BufferedReader(new InputStreamReader(System.in));
+                  System.out.println("[INFO] SyslogClient: type message to send or <CTRL + d> for exit.");
+                  do {
+                      System.out.print("> "); // user prompt
+                      String s = userIn.readLine();
+                      if (s == null)
+                          break; // CTRL+d has been pressed
+                      byte[] data = s.getBytes();
+                      if (data.length > MAX_PACKET_SIZE)
+                          System.err.println("Message too large.");
+                      DatagramPacket dp = new DatagramPacket(data, data.length, host, DEFAULT_SERVER_PORT);
+                      socket.send(dp);
+                  } while (true);
+              } catch (Exception e) {
+                  System.err.println(e);
+              }
+          }
+      }
