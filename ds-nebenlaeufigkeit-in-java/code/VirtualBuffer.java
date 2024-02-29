@@ -27,6 +27,7 @@ public class VirtualBuffer {
         // Der Wechsel von native Threads zu virtuellen Threads führt hier zu
         // einer deutlich besseren Performance; das Programm ist in ca. 50% 
         // der Zeit fertig (MacBook Pro M2 Max - 2023) 7sek für 100 000 vs. 3sek.
+        // und das bei massiven Logging auf der Konsole.
     }
 
     public static void main(String[] args) throws Exception {
