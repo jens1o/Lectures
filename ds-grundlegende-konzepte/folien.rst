@@ -230,7 +230,7 @@ Beispiel zur Berechnung des Gangunterschieds
 
   Somit ergibt sich der Gangunterschied zu:
   
-  :math:`x = \frac{(100-110) - (122-102)}{2} = (-10 - 20) = -15` ms.
+  :math:`x = \frac{(100-110) - (122-102)}{2} = \frac{(-10 - 20)}{2} = -15` ms.
 
 
 .. class:: center-child-elements 
