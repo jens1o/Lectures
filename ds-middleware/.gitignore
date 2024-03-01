@@ -9,6 +9,7 @@ images/rpcs
 images/web_services-vs-message_brokers
 images/common_application_architectures
 images/rmi_anatomy
+images/zeromq
 
 images/genealogy-of-middleware.svg
 images/middleware.svg
@@ -18,3 +19,4 @@ images/historic_middleware_technologies.svg
 images/historische-middleware-konzeptuell.svg
 images/rpc_konzeptionell.svg
 images/java_rmi-distributed-object-model.svg
+images/message-queueing.svg

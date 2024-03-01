@@ -56,6 +56,14 @@ Ein weitgefasster Überblick über verteilte Systeme.
 
 
 
+.. class:: hide-slide
+
+TODO
+----------
+
+TODO
+
+
 Verteilte Systeme - W3WI_110.2
 ----------------------------------
 
@@ -1004,7 +1012,7 @@ Beschleunigung (Speedup) eines parallelisierten Programms relativ zu der nicht-p
         
         .. admonition:: Definition 
                     
-            .. class:: huge
+            .. class:: large
 
                 :math:`S(C) = 1 + P(n) \cdot (C-1)`
 

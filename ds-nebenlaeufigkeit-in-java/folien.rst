@@ -58,6 +58,7 @@ Nebenläufigkeit (:eng:`Concurrency`) :raw-html:`<br>` (in Java)
    Version: |date|
 
 
+
 .. class:: no-title center-child-elements
 
 Nebenläufigkeit 
@@ -76,8 +77,8 @@ Prozesse vs. Threads
 
 .. supplemental::
 
-  - Prozesse sind voneinander isoliert und können nur über explizite Mechanismen miteinander kommunizieren; Prozesse teilen sich nicht den selben Adressraum.
-  - Alle Threads eines Prozesses teilen sich den selben Adressraum. *Native Threads* sind vom Betriebssystem unterstützte Threads, die direkt vom Betriebssystem verwaltet werden. Standard Java Threads sind *Native Threads*. 
+  - Prozesse sind voneinander isoliert und können nur über explizite Mechanismen miteinander kommunizieren; Prozesse teilen sich nicht denselben Adressraum.
+  - Alle Threads eines Prozesses teilen sich denselben Adressraum. *Native Threads* sind vom Betriebssystem unterstützte Threads, die direkt vom Betriebssystem verwaltet werden. Standard Java Threads sind *Native Threads*. 
 
   - *Fibres* (auch *Coroutines*) nutzen immer kooperatives Multitasking. D.h. ein Fibre gibt die Kontrolle an eine andere Fibre explizit ab. (Früher auch als *Green Threads* bezeichnet.) Diese sind für das Betriebssystem unsichtbar.
 
@@ -98,7 +99,7 @@ Ein *Monitor* ist ein Objekt, bei dem die Methoden im wechselseitigen Ausschluss
 
     Bedingungs-Synchronisation
     
-    - drückt eine Bedingung für die Reihenfolge der Ausführung von Operationen aus,
+    - drückt eine Bedingung für die Reihenfolge der Ausführung von Operationen aus.
     - z. B. können Daten erst dann aus einem Puffer entfernt werden, wenn Daten in den Puffer eingegeben wurden.
     - Java unterstützt pro Monitor nur eine (anonyme) Bedingungs-Variable, mit den klassischen Methoden ``wait`` und ``notify`` bzw. ``notifyAll``.
    
@@ -111,7 +112,7 @@ Ein *Monitor* ist ein Objekt, bei dem die Methoden im wechselseitigen Ausschluss
      In Java findet der wechselseitige Ausschluss nur zwischen solchen Methoden statt, die explizit als ``synchronized`` deklariert wurden. 
      
 
-  *Monitore* sind nur ein Model (Alternativen: *Semaphores*, *Message Passing*), dass die Kommunikation und Synchronisation von Threads ermöglicht. Es ist das Standardmodel in Java und wird von der Java Virtual Machine (JVM) unterstützt.
+  *Monitore* sind nur ein Modell (Alternativen: *Semaphores*, *Message Passing*), das die Kommunikation und Synchronisation von Threads ermöglicht. Es ist das Standardmodell in Java und wird von der Java Virtual Machine (JVM) unterstützt.
 
 
 
@@ -122,7 +123,7 @@ Kommunikation zwischen Threads mit Hilfe von Monitoren
 - Jedes Objekt ist implizit von der Klasse ``Object`` abgeleitet, welche eine gegenseitige Ausschlusssperre definiert.
 - Methoden in einer Klasse können als ``synchronized`` gekennzeichnet werden. Die Methode wird erst dann ausgeführt, wenn die Sperre vorliegt. Bis dahin wird gewartet. Dieser Prozess geschieht automatisch.
 - Die Sperre kann auch über eine ``synchronized`` Anweisung erworben werden, die das Objekt benennt.
-- Ein Thread kann auf eine einzelne (anonyme) Bedingungsvariable warten und diese benachrichtigen 
+- Ein Thread kann auf eine einzelne (anonyme) Bedingungsvariable warten und diese benachrichtigen. 
 
 
 
@@ -146,7 +147,7 @@ Nebenfäufigkeit in Java
     implementiert werden und an ein Thread-Objekt übergeben werden.
   - Threads beginnen ihre Ausführung erst, wenn die ``start``-Methode in der Thread-Klasse aufgerufen wird. Die ``Thread.start``-Methode ruft die ``run``-Methode auf. Ein Aufruf der ``run``-Methode direkt führt nicht zu einer parallelen Ausführung.
   - Der aktuelle Thread kann mittels der statischen Methode ``Thread.currentThread()`` ermittelt werden.
-  - Ein Thread wird beendet wenn die Ausführung seiner Run-Methode entweder normal oder als Ergebnis einer unbehandelten Ausnahme endet.
+  - Ein Thread wird beendet, wenn die Ausführung seiner Run-Methode entweder normal oder als Ergebnis einer unbehandelten Ausnahme endet.
 
   - Java unterscheidet *User*-Threads und *Daemon*-Threads.
 
@@ -297,7 +298,7 @@ Komplexe Rückgabewerte
 
 .. supplemental::
 
-  Die beiden Methoden: ``readX`` und ``readY`` sind nicht synchronisiert, da das Lesen von ``int``-Werten atomar ist. Allerdings erlauben sie das Auslesen eines inkonsistenten Zustands! Es ist denkbar, dass direkt nach einem ``readX`` der entsprechende Thread unterbrochen wird und ein anderer Thread die Werte von ``x`` und ``y`` verändert. Wird dann der ursprüngliche Thread fortgesetzt, und ruft ``readY`` auf, so erhält er den neuen Werte von ``y`` und hat somit ein paar ``x``, ``y`` vorliegen, dass in dieser Form nie existiert hat.
+  Die beiden Methoden: ``readX`` und ``readY`` sind nicht synchronisiert, da das Lesen von ``int``-Werten atomar ist. Allerdings erlauben sie das Auslesen eines inkonsistenten Zustands! Es ist denkbar, dass direkt nach einem ``readX`` der entsprechende Thread unterbrochen wird und ein anderer Thread die Werte von ``x`` und ``y`` verändert. Wird dann der ursprüngliche Thread fortgesetzt, und ruft ``readY`` auf, so erhält er den neuen Wert von ``y`` und hat somit ein paar ``x``, ``y`` vorliegen, dass in dieser Form nie existiert hat.
 
   Ein konsistenter Zustand kann nur durch die Methode ``read`` ermittelt werden, die die Werte von ``x`` und ``y`` in einem Schritt ausliest und als Paar zurückgibt.
 
@@ -313,7 +314,7 @@ Komplexe Rückgabewerte
     }
     // do something with x and y
 
-  Diese :ger-quote:`Lösung` muss jedoch als sehr kritisch betrachtet werden, da die Wahrscheinlichkeit von Programmierfehlern *sehr hoch* ist und es dann entweder zur *Race Conditions* oder zu *Deadlocks* kommen kann.scheme
+  Diese :ger-quote:`Lösung` muss jedoch als sehr kritisch betrachtet werden, da die Wahrscheinlichkeit von Programmierfehlern *sehr hoch* ist und es dann entweder zur *Race Conditions* oder zu *Deadlocks* kommen kann.
 
 
 
@@ -339,7 +340,7 @@ Bedingte Synchronisation
       ``notify`` gibt die Sperre nicht frei; daher muss der aufgeweckte Thread warten, bis er die Sperre erhalten kann, bevor er fortfahren kann.
     - Um alle wartenden Threads aufzuwecken, muss die Methode ``notifyAll`` verwendet werden. 
     
-      Warten die Threads aufgrund unterschiedlicher Bedingungen so ist immer ``notifyAll`` zu verwenden.
+      Warten die Threads aufgrund unterschiedlicher Bedingungen, so ist immer ``notifyAll`` zu verwenden.
     - Wenn kein Thread wartet, dann haben ``notify`` und ``notifyAll`` keine Wirkung.
 
   .. layer:: incremental
@@ -365,7 +366,7 @@ Ein *BoundedBuffer* hat z. B. traditionell zwei Bedingungsvariablen: *BufferNo
 
     Wenn ein Thread auf eine Bedingung wartet, kann kein anderer Thread auf die andere Bedingung warten. 
 
-    :minor:`Mit den bisher vorstellten Primitiven ist eine direkte Modellierung dieses Szenarios so nicht möglich. Stattdessen müssen immer alle Threads aufgeweckt werden, um sicherzustellen, dass auch der intendierte Thread aufgeweckt wird. Deswegen ist auch das Überprüfen der Bedingung in einer Schleife notwendig.`
+    :minor:`Mit den bisher vorgestellten Primitiven ist eine direkte Modellierung dieses Szenarios so nicht möglich. Stattdessen müssen immer alle Threads aufgeweckt werden, um sicherzustellen, dass auch der intendierte Thread aufgeweckt wird. Deswegen ist auch das Überprüfen der Bedingung in einer Schleife notwendig.`
 
   .. layer:: incremental tiny
 
@@ -445,7 +446,7 @@ Ein *BoundedBuffer* hat z. B. traditionell zwei Bedingungsvariablen: *BufferNo
 
 .. supplemental::
 
-  In Schritt 5 wurde von der VM - aufgrund des Aufrufs von ``notify`` durch ``g1`` - der Thread ``g2`` aufgeweckt - anstatt des Threads ``p2``. Der aufgeweckete Thread ``g2`` prüft die Bedingung (Schritt 6) und stellt fest, dass der Buffer leer ist. Er geht wieder in den Wartezustand. Jetzt warten sowohl ein Thread, der ein Wert schreiben möchte als auch ein Thread, der einen Wert lesen möchte. 
+  In Schritt 5 wurde von der VM - aufgrund des Aufrufs von ``notify`` durch ``g1`` - der Thread ``g2`` aufgeweckt - anstatt des Threads ``p2``. Der aufgeweckte Thread ``g2`` prüft die Bedingung (Schritt 6) und stellt fest, dass der Buffer leer ist. Er geht wieder in den Wartezustand. Jetzt warten sowohl ein Thread, der ein Wert schreiben möchte als auch ein Thread, der einen Wert lesen möchte. 
  
 
 .. class:: new-section
@@ -458,7 +459,7 @@ Java API für nebenläufige Programmierung
 
 :java.util.concurrent: Bietet verschiedene Klassen zur Unterstützung gängiger nebenläufiger Programmierparadigmen, z. B. Unterstützung für *BoundedBuffers* oder Thread-Pools.
 :java.util.concurrent.atomic: Bietet Unterstützung für sperrfreie (*lock-free*), thread-sichere Programmierung auf einfachen Variablen — wie zum Beispiel atomaren Integern — an.
-:java.util.concurrent.locks: Bietet verschiedene Sperralgorithmen an, die die Java-Sprachmechanismen ergänzen, z. B. Schreib-Lese-Sperren und Bedingungsvariablen. Dies ermöglicht zum Beispiel: "Hand-over-Hand" oder "Chain Locking".
+:java.util.concurrent.locks: Bietet verschiedene Sperralgorithmen an, die die Java-Sprachmechanismen ergänzen, z. B. Schreib-Lese-Sperren und Bedingungsvariablen. Dies ermöglicht zum Beispiel: :ger-quote:`Hand-over-Hand` oder :ger-quote:`Chain Locking`.
 
 
 .. class:: smaller
@@ -552,7 +553,7 @@ Thread Prioritäten
 .. class:: incremental
 
 - Obwohl den Java-Threads Prioritäten zugewiesen werden können (``setPriority``), dienen sie dem zugrunde liegenden Scheduler nur als Richtschnur für die Ressourcenzuweisung.
-- Sobald eine Thread läuft, kann er die Prozessorressourcen explizit aufgeben, indem er die ``yield``-Methode aufruft.
+- Sobald ein Thread läuft, kann er die Prozessorressourcen explizit aufgeben, indem er die ``yield``-Methode aufruft.
 - ``yield`` setzt den Thread an das Ende der Warteschlange für seine Prioritätsstufe.
 - Die Scheduling- und Prioritätsmodelle von Java sind jedoch schwach:
 
@@ -637,10 +638,10 @@ Damit eine Klasse thread-sicher ist, muss sie sich in einer single-threaded Umge
 Thread Safety Level
 --------------------------------------------------------------------------------
 
-:Immutable `Unveränderlich`:ger:: die Objekt sind konstant und können nicht geändert werden.
+:Immutable `Unveränderlich`:ger:: Die Objekt sind konstant und können nicht geändert werden.
 :Thread-sicher: Die Objekte sind veränderbar, unterstützen aber nebenläufigen Zugriff, da die Methoden entsprechend synchronisiert sind.
-:Bedingt Thread-sicher: Objekte bei denen jede einzelne Operation thread-sicher ist, aber bestimmte Sequenzen von Operationen eine externe Synchronisierung erfordern können.
-:Thread-kompatibel: Objekte die keinerlei Synchronisierung aufweisen. Der Aufrufer kann die Synchronisierung jedoch ggf. extern übernehmen.
+:Bedingt Thread-sicher: All solche Objekte bei denen jede einzelne Operation thread-sicher ist, aber bestimmte Sequenzen von Operationen eine externe Synchronisierung erfordern können.
+:Thread-kompatibel: Alle Objekte die keinerlei Synchronisierung aufweisen. Der Aufrufer kann die Synchronisierung jedoch ggf. extern übernehmen.
 :Thread-hostile `Thread-schädlich`:ger-quote:: Objekte, die nicht thread-sicher sind und auch nicht thread-sicher gemacht werden können, da sie zum Beispiel globalen Zustand manipulieren.
 
 .. class:: integrated-exercise
@@ -739,7 +740,7 @@ Thread Safety Level
 
   :``get(int index)``: Liefert den Wert an der Position ``index`` zurück. Der aufrufende Thread wird ggf. blockiert, bis ein Wert an der Position ``index`` gespeichert wurde. (Die ``get``-Methode entfernt den Wert nicht aus dem Array.) 
   :``set(int index, Object value)``: Speichert den Wert ``value`` an der Position ``index``. Falls an der Position ``index`` bereits ein Wert gespeichert wurde, wird der aufrufende Thread blockiert, bis der Wert an der Position ``index`` gelöscht wurde.
-  :``delete(int index)``: Löscht ggf. den Wert an der Position ``index`` wenn ein Wert vorhanden ist. Andernfalls wird der Thread blockiert bis es einen Wert gibt, der gelöscht werden kann.
+  :``delete(int index)``: Löscht ggf. den Wert an der Position ``index`` wenn ein Wert vorhanden ist. Andernfalls wird der Thread blockiert, bis es einen Wert gibt, der gelöscht werden kann.
 
   (a) Implementieren Sie die Klasse ``ThreadsafeArray`` nur unter Verwendung der Standardprimitive: ``synchronized``, ``wait``, ``notify`` und ``notifyAll``. Nutzen Sie die Vorlage. 
   (b) Können Sie sowohl ``notify`` als auch ``notifyAll`` verwenden?

@@ -89,7 +89,7 @@ Von der Bedeutung der Zeit in verteilten Systemen
 
 .. supplemental::
 
-  Die logische Zeit ermöglicht es uns eine wohldefinierte Reihenfolge zwischen Ereignisse (vgl. :eng:`happened before` Relation) zu bestimmen.
+  Die logische Zeit ermöglicht es uns, eine wohldefinierte Reihenfolge zwischen Ereignissen (vgl. :eng:`happened before` Relation) zu bestimmen.
 
 
 
@@ -173,7 +173,7 @@ Zeit: Berechung der Round-Trip-Time und der Zeitdifferenz/des Gangunterschieds
   Origin :math:`T_1`, Systemzeit des Clients beim Absenden der Anfrage
   Receive :math:`T_2`, Systemzeit des Servers beim Empfang der Anfrage
   Transmit :math:`T_3`, Systemzeit des Servers beim Absenden der Antwort
-  Destination :math:`T_4`, Systemzeit des Clients beim Empfang der Antwor
+  Destination :math:`T_4`, Systemzeit des Clients beim Empfang der Antwort
 
 .. math::
 
@@ -195,7 +195,7 @@ Zeit: Berechung der Round-Trip-Time und der Zeitdifferenz/des Gangunterschieds
 
   :math:`(T3 - T2)` ist die Zeit, die der Server zum Bearbeiten benötigt.
   
-  Die Round-Trip-Time (RTT) ist die Zeit, die ein Signal benötigt, um von einem Rechner zum anderen und zurück zu gelangen. 
+  Die Round-Trip-Time (RTT) ist die Zeit, die ein Signal benötigt, um von einem Rechner zum anderen und zurückzugelangen. 
   
   Der Gangunterschied ist die Differenz zwischen der Zeit auf dem Server und der Zeit auf dem Client. 
 
@@ -206,7 +206,7 @@ Zeit: Berechung der Round-Trip-Time und der Zeitdifferenz/des Gangunterschieds
   - Zeit bis zur Interrupt-Annahme im Betriebssystem (kontextabhängig)
   - Zeit zum Kopieren von Puffern (lastabhängig)
   
-  Aufgrund der Probleme ist ein konsistenter, realistischer globaler Schnappschuss ist nicht realisierbar.
+  Aufgrund der Probleme ist ein konsistenter, realistischer globaler Schnappschuss nicht realisierbar.
 
 
 Beispiel zur Berechnung des Gangunterschieds
@@ -248,7 +248,7 @@ Logische Zeit
 
 .. supplemental::
 
-  Es ist wichtig zu wissen was vorher und was nachher passiert ist, aber es ist nicht wichtig, dass wir wissen wann genau (Uhrzeit) etwas passiert ist.
+  Es ist wichtig zu wissen, was vorher und was nachher passiert ist, aber es ist nicht wichtig, dass wir wissen wann genau (Uhrzeit) etwas passiert ist.
 
 
 Lamport-Uhren (*logical clocks*)
@@ -367,7 +367,7 @@ Verteilte Transaktionen
 
   .. rubric:: Fehlertoleranz
   
-  Das Ziel ist es zu ermöglichen, dass ein zuverlässiges System aus unzuverlässigen Komponenten aufzubauen.
+  Das Ziel ist es zu ermöglichen, ein zuverlässiges System aus unzuverlässigen Komponenten aufzubauen.
 
   Drei grundsätzliche Schritte:
 
@@ -381,7 +381,7 @@ Verteilte Transaktionen
 Two-Phase Commit Protocol - 2PC
 --------------------------------------------------------------------------------
 
-Teilnehmer sind (1) die Partizipanten (:math:`P_i`) welche die verteilten Daten  verwalten und (2) ein Koordinator (:math:`K`) der die Steuerung des Protokolls übernimmt. (:math:`K` darf selbst einer der :math:`P_i` sein)
+Teilnehmer sind (1) die Partizipanten (:math:`P_i`), welche die verteilten Daten verwalten, und (2) ein Koordinator, (:math:`K`) der die Steuerung des Protokolls übernimmt. (:math:`K` darf selbst einer der :math:`P_i` sein)
 
 .. class:: incremental
 

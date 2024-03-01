@@ -1005,10 +1005,325 @@ Web Services - Standardisierung
 Überblick 
 ---------------------
 
-
 .. image:: images/genealogy-of-middleware.svg
    :height: 1140px
    :align: center
 
 
 
+.. class:: new-section transition-move-to-top
+  
+Messaging  and Message-oriented Communication/Middleware)
+-----------------------------------------------------------
+
+
+ZeroMQ
+--------------------------------
+
+.. class:: incremental
+
+- ZeroMQ ist eine Messaging-Infrastruktur ohne explizite Server (:ger-quote:`Broker`).
+- ZeroMQ unterstützt verbindungsorientierte aber asynchrone Kommunikation.
+- ZeroMQ basiert auf klassischen Sockets, fügt aber neue Abstraktionen hinzu, um folgende Messaging Patterns zu ermöglichen:
+  
+  - *request-reply*
+  - *pub-sub* (:eng:`publish-subscribe`)
+  - pipeplining (:ger:`parallele Verarbeitung`)
+  
+- ZeroMQ ermöglicht N-zu-N Kommunikation.
+- ZeroMQ unterstützt sehr viele Programmiersprachen; der Nutzer ist für das passend Marshalling bzw. Unmarshalling verantwortlich.
+
+.. supplemental::
+
+  Sollte zum Beispiel der Server in Java und der Client in C geschrieben sein, dann ist ggf. das Verständnis darüber wie ein String übertragen wird unterschiedlich (z. B. mit ``null`` terminiert oder mit einer Länge versehen).
+
+
+ZeroMQ - Messaging Patterns 
+----------------------------
+
+.. stack::
+
+  .. layer:: 
+
+    .. image:: images/zeromq/client-server.svg
+      :height: 700px
+      :align: center
+
+  .. layer:: incremental
+
+    .. image:: images/zeromq/pub-sub.svg
+      :height: 700px
+      :align: center
+
+  .. layer:: incremental
+
+    .. image:: images/zeromq/pipeline.svg
+      :height: 900px
+      :align: center
+
+.. supplemental::
+
+  :*Client-Server*: Ermöglicht die :ger-quote:`übliche` Kommunikation zwischen einem Client und einem Server. Allerdings findet ggf. eine Pufferung statt, wenn der Server nicht erreichbar ist.
+
+  :*Publish-Subscribe*: Ermöglicht es den Clients sich für ein bestimmtes Thema zu registrieren und dann alle Nachrichten zu erhalten, die zu diesem Thema veröffentlicht werden. Ein Nachricht mit einem bestimmten Thema wird an alle dafür registrierten Clients gesendet.
+
+  :*Pipeline*: Ermöglicht es eine Aufgabe an genau einen beliebigen Worker aus einer Menge von (homogenen) Workern zu senden.
+
+
+ZeroMQ - Beispiel *Publish-Subscribe*
+--------------------------------------------
+
+.. container:: two-columns tiny
+
+  .. container:: column
+
+    .. code:: Java
+      :class: smaller
+
+      import static java.lang.Thread.currentThread
+      import org.zeromq.SocketType;
+      import org.zeromq.ZMQ;
+      import org.zeromq.ZContext;
+
+      public class Publisher {
+        public static void main(String[] args) 
+            throws Exception {
+          try (ZContext context = new ZContext()) {
+            ZMQ.Socket publisher = 
+                context.createSocket(SocketType.PUB);
+            publisher.bind("tcp://*:5556");
+            publisher.bind("ipc://" + <endpoint>);
+
+            while (!currentThread().isInterrupted()) {
+              int zipcode = <some zipcode>
+              //  Send to all subscribers
+              String update = String.format("%05d %s", 
+                  zipcode, <some msg>);
+              publisher.send(update, 0);
+            }
+      } } }
+
+
+  .. container:: column
+
+    .. code:: Java
+      :class: smaller
+
+      import java.util.StringTokenizer;
+
+      import org.zeromq.SocketType;
+      import org.zeromq.ZMQ;
+      import org.zeromq.ZContext;
+
+      public class Subscriber{
+        public static void main(String[] args) {
+          try (ZContext context = new ZContext()) {
+            ZMQ.Socket subscriber = 
+                context.createSocket(SocketType.SUB);
+            subscriber.connect("tcp://localhost:5556");
+            subscriber.subscribe(
+                <zipcode(Str)>.getBytes(ZMQ.CHARSET));
+            while(true) {
+              String string = subscriber.recvStr(0);
+              // e.g. take string apart:
+              //   part1: zipcode
+              //   part2: message
+              System.out.println(string);
+            }
+      } } }
+
+
+
+
+MOM - Message Oriented Middleware
+-----------------------------------
+
+.. class:: incremental list-with-explanations
+
+- MOM bzw. Message-queueing Systems unterstützen persistente asynchrone Kommunikation.
+- Sehr große Nachrichten werden unterstützt.
+- Es wird nur die Garantie gegeben, dass Nachrichten letztendlich in die Warteschlange des Empfängers gelegt werden und die Nachrichten in der richtigen Reihenfolge ankommen.
+
+  (Insbesondere wird keine Garantie gegeben, dass die Nachricht gelesen wird.)
+- Der Sender und Empfänger sind nicht notwendigerweise gleichzeitig aktiv.
+- Nachrichten haben immer einen eindeutigen Empfänger und quasi beliebigen Inhalt.
+
+
+
+MOM - Grundlegendes Interface
+--------------------------------
+
+.. csv-table:: 
+   :header: "Operation", "Beschreibung"
+   :class: highlight-line-on-hover
+   
+   PUT, "Legt eine Nachricht in eine bestimmte Warteschlange."
+   GET, "Blockiert an einer bestimmten Warteschlange bis eine Nachricht verfügbar ist. Entfernt die erste Nachricht."
+   POLL, "Prüft ob eine Nachricht in einer bestimmten Warteschlange verfügbar ist. Entfernt ggf.  die erste Nachricht. POLL blockiert niemals"
+   NOTIFY, "Registriert einen Handler (*Callback*) der aufgerufen wird, wenn eine Nachricht einer bestimmten Warteschlange hinzugefügt wird."
+
+
+MOM - Queue Managers
+----------------------
+
+.. image:: images/message-queueing.svg
+    :height: 1000px
+    :align: center
+
+.. supplemental::
+  
+  *Queue Managers* sind der Zentrale Baustein von Message-queueing Systemen. Im Allgemeinen gibt es (mindestens konzeptionell) einen lokalen *Queue Manager* pro Prozess. Ein *Queue Manager* ist ein Prozess, der Nachrichten in Warteschlangen speichert und verwaltet. Bei Bedarf kann er mehrere Warteschlangen verwalten und an andere *Queue Manager* weiterleiten.
+
+
+.. class:: integrated-exercise
+
+Übung 
+----------------------------------------------------------
+
+.. exercise::  Asynchrone, verbindungsorientierte Kommunikation
+
+  Entwickeln Sie einen Client für einen Logging Server, der Lognachrichten an den Server sendet. Im Fehlerfall, z. B. wenn der Server nicht verfügbar ist oder es zu einer Netzwerkpartitionierung kam, sollen die Nachrichten zwischengepuffert werden und bei Serververfügbarkeit wieder zugestellt werden. Mit anderen worten: Im Fehlerfall soll der Client nicht blockieren, sondern weiter funktionieren. Der Client stellt stattdessen die Nachrichten dann zu, wenn der Server wieder verfügbar wird.
+
+  Stellen Sie sicher, dass Nachrichten immer in der richtigen Reihenfolge am Server ankommen. D. h. stellen Sie zum Beispiel sicher, dass eine gepufferte Nachricht nie nach einer neueren Nachricht ankommt.
+
+  Verwenden Sie den Code im Anhang als Schablone.
+
+
+.. supplemental:: tiny
+
+
+  .. rubric:: Einfacher TCP basierter SyslogServer
+
+  .. code:: Java
+    :class: smaller
+
+    import java.net.*;
+    import java.io.*;
+
+    public class SyslogServer {
+      public static void main(String[] args) {
+        BufferedReader in = null;
+        try {
+          ServerSocket server = new ServerSocket(9999);
+          while (true) {
+            try (Socket con = server.accept()) {
+                in = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()));
+                System.out.println("[Logging] " + in.readLine());
+            } catch (IOException e) {
+                System.err.println(e);
+            }
+          }
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+      }
+    }
+
+
+  .. rubric:: Schablone für den Client
+
+  .. code:: Java
+    :class: smaller
+
+    import java.net.*;
+    import java.io.*;
+
+    public class Client {
+
+      /**
+      * Versendet die Nachricht an den Server (wenn möglich).
+      */
+      private static void sendMsg(String msg) throws IOException{
+        try (Socket s = new Socket("localhost", 9999)) {
+          BufferedReader networkIn = 
+              new BufferedReader(
+                  new InputStreamReader(s.getInputStream()));
+          PrintWriter networkOut = 
+              new PrintWriter(s.getOutputStream());
+          networkOut.println(msg);
+          networkOut.flush();
+        } 
+      }
+
+      > Datenstruktur zum Zwischenspeichern der 
+      > bisher nicht erfolgreich versendeten Nachrichten!
+
+      public static void log(String msg) {
+          > Schicke Nachricht an den Server (wenn möglich).
+          > Blockiert nicht, wenn der Server nicht verfügbar ist.
+      }
+
+      public static void startThread() throws Exception {
+          Thread.ofVirtual().start(() -> {
+              while (true) {
+                  try {
+                    // Alle 5 Sekunden prüfen wir ob wir noch 
+                    // nicht versendete Nachrichten haben:
+                    Thread.sleep(5000);
+                  } catch (InterruptedException e) { }
+                  > Versende Nachrichten, 
+                  > die noch nicht versendet wurden 
+              }
+          });
+      }
+
+      public static void main(String[] args) throws Exception {
+          startThread();
+          BufferedReader userIn = 
+              new BufferedReader(
+                  new InputStreamReader(System.in));
+          while (true) {
+              String theLine = userIn.readLine();
+              if (theLine == null)
+                  break;
+              log(theLine);
+          }
+      }
+    }
+
+
+  .. solution::
+    :pwd: NurEinBischenCode
+
+    .. code:: Java
+      :class: smaller
+
+      private final static ArrayList<String> queue = new ArrayList<>();
+
+      public static void log(String msg) {
+        try {
+          synchronized (queue) {
+            if (!queue.isEmpty()) {
+              queue.add(msg); // we never want to sent them out of order
+            } else {
+              sendMsg(msg);
+            }
+          }
+        } catch (IOException ioe) {
+          System.err.println("[Info]: can't log: " + ioe);
+          queue.add(msg);
+        }
+      }
+
+      public static void startThread() throws Exception {
+        Thread.ofVirtual().start(() -> {
+          while (true) {
+            try {
+              Thread.sleep(5000);
+            } catch (InterruptedException e) { /* HERE, we don't care! */ }
+            synchronized (queue) {
+              while (!queue.isEmpty()) {
+                var msg = queue.peek(); // we have to keep the message in the queue
+                try {
+                  sendMsg(msg);
+                  queue.poll(); // remove the message from the queue
+                } catch (IOException ioe) {
+                  System.err.println("[Info]: still can't log: " + ioe);
+                  break;
+                }
+              }
+            }
+          }
+        });
+      }

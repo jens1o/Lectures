@@ -467,7 +467,7 @@ UDP basierter Echo Server
 
   .. class:: list-with-explanations
 
-  (a) Schreiben Sie einen HTTP-Client der den Server ``archive.org`` kontaktiert, die Datei ``/web/web.php`` anfordert und die Antwort des Servers auf dem Bildschirm ausgibt.
+  (a) Schreiben Sie einen HTTP-Client, der den Server ``archive.org`` kontaktiert, die Datei ``/web/web.php`` anfordert und die Antwort des Servers auf dem Bildschirm ausgibt.
 
       Verwenden Sie HTTP/1.1 und eine Struktur ähnlich dem in der Vorlesung vorgestellten Echo-Client.
 
@@ -597,7 +597,7 @@ UDP basierter Echo Server
 
 .. exercise:: Protokollaggregation
 
-  Schreiben Sie ein UDP-basiertes Java-Programm mit dem sich Protokoll-Meldungen auf einem Server
+  Schreiben Sie ein UDP-basiertes Java-Programm, mit dem sich Protokoll-Meldungen auf einem Server
   zentral anzeigen lassen. Das Programm soll aus mehreren Clients und einem Server bestehen. Jeder
   Client liest von der Tastatur eine Eingabezeile in Form eines Strings ein, der dann sofort zum Server gesendet wird. Der Server wartet auf Port 4999 und empfängt die Meldungen beliebiger Clients, die er dann unmittelbar auf den Bildschirm ausgibt.
 
