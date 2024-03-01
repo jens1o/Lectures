@@ -2,7 +2,8 @@ package async_tcp;
 
 import java.net.*;
 import java.io.*;
-import java.util.ArrayList;
+import java.util.Queue;
+import java.util.ArrayDeque;
 
 public class Client {
 
@@ -15,7 +16,7 @@ public class Client {
         }
     }
 
-    private static ArrayList<String> queue = new ArrayList<>();
+    private static Queue<String> queue = new ArrayDeque<>();
 
     public static void log(String msg) {
         try {
