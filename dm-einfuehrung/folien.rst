@@ -33,13 +33,6 @@ Dokumentmanagement, Archivierungs- und Verschlüsselungsverfahren
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
     :Version: |date|
 
-.. container:: tiny line-above incremental
-
-    :seit Okt. 2023: Professor an der DHBW Mannheim
-    :4 Jahre: Bundeskriminalamt
-    :12 Jahre: Postdoc am Fachgebiet Softwaretechnik der TU Darmstadt
-    :2007: Promotion zum Dr. Ing. am Fachgebiet Softwaretechnik der TU Darmstadt
-
 .. container:: footer-left x-tiny incremental
 
     Dieser Foliensatz basiert auf Folien von: Klaus Götzer.
@@ -56,7 +49,7 @@ Dokumentmanagement, Archivierungs- und Verschlüsselungsverfahren - W3WI_EH304.
 ----------------------------------------------------------------------------------
 
 :Verortung: 3. Studienjahr (5. oder 6. Semester)
-:Umfang: 25 Vorlesungsstunden und 50 Stunden Selbststudium (2,5 ECTS)
+:Umfang: 25 Vorlesungsstunden und 50 Stunden Selbststudium (2,5 ECTS) 
 :Übergeordnetes Modul: Fortgeschrittene Konzepte des Informationsmanagements im Gesundheitswesen (W3WI_EH304)
 :Prüfungsleistung: **Klausur** (60 min/60 Punkte) :obsolete:`oder Portfolio``
 
@@ -141,6 +134,18 @@ Digitalisierung - ein langwieriger nicht-aufzuhaltender Prozess...
    -- The Register, Mon 29 Jan 2024 // 19:00 UTC
 
 
+.. class:: vertical-title
+
+.. class:: smaller
+
+Digitalisierung - ein Prozess mit Stilblüten...
+-------------------------------------------------
+
+.. image:: images/sparkasse-verschickt-usb-sticks.2024-03-03.png
+    :height: 1175px
+    :align: center
+
+
 
 .. class:: center-child-elements transition-scale
 
@@ -161,6 +166,8 @@ Digitalisierung - ein langwieriger nicht-aufzuhaltender Prozess...
 
 Was kan ein Dokumentenmanagement System (DMS) leisten?
 -------------------------------------------------------------------------------
+
+.. class:: incremental
 
 • Beschleunigung der Prozesse
 
@@ -187,7 +194,7 @@ Gegenüberstellung konventionelles Archiv zu DMS
     :class: highlight-line-on-hover small incremental
     :header: " ", "Konventionell","DMS"
 
-    Ablagestruktur, "hierarchisch, meist nach Dokumententypen getrennt", "datenbankgestützt,Suchbeginn nach jedem Suchkriterium möglich, Suche wahlweise z. B. je Kunde, Vorgang oder Beleg"
+    Ablagestruktur, "hierarchisch, meist nach Dokumententypen getrennt", "datenbankgestützt, Suchbeginn nach jedem Suchkriterium möglich, Suche wahlweise z. B. je Kunde, Vorgang oder Beleg"
     Auskunftsbereitschaft,"zeitverzögert, nach Sichtung/ Entnahme aller Dokumente", "unmittelbar durch vorgangsbezogene, bzw. dokumentenübergreifende Suche"
     Auskunftsaufwand, "für Beleg Suche, Entnahme und wieder einordnen, evtl. kopieren und Versand", "nur für Recherche am Bildschirm, gegebenenfalls direkter Versand per EMail"
     Redundanz, "Abteilungsablagen = mehrfacher Aufwand", Einmalablage
@@ -231,6 +238,7 @@ Dokumente - Beispiele
 .. image:: drawings/dokumente/dokumente.svg
     :height: 950px
     :align: center
+    :class: incremental
 
 
 
@@ -511,6 +519,8 @@ Dokumentenlebenszyklus
 
 Dokumente ...
 
+.. class:: incremental
+
 • entstehen
 • verändern sich
 • werden festgeschrieben
@@ -522,6 +532,8 @@ Dokumente ...
 
 Erstellen von Dokumenten
 -----------------------------------------------
+
+.. class:: incremental
 
 • Scannen von analogen Dokumenten (Papier, Mikrofilm, ..)
 • Neu erstellen von Dokumenten (Vorlagen im DMS,..)
@@ -572,21 +584,24 @@ Löschen von Dokumenten
 -----------------------------------------------
 
 • Falsche Dokumente (z. B. Fehler beim Indizieren)
+• Nicht mehr benötigte Dokumente
+
+.. class:: incremental
+
 • Logisches Löschen
 • Physikalisches Löschen
 
 
 
-Langfristige Aufbewahrung von Dokumenten
------------------------------------------------
-
-Strategien:
+Strategien für die langfristige Aufbewahrung von Dokumenten
+------------------------------------------------------------
 
 .. class:: incremental
 
 - *Technikmuseum* (Variante: Alte Umgebung emulieren)
 - Dauerhafte Formate nutzen
 - Migration der Dokumente auf neue Umgebung
+
 
 
 Bewertung von Dateiformaten in Hinblick auf die Dauerhaftigkeit
@@ -620,9 +635,16 @@ Langfristige Aufbewahrung von Dokumenten
             :class:  overflow-y-scroll
             :header: "Content Type", High probability for long-term preservation, Medium probability for long-term preservation, Low probability for long-term preservation
 
-            Text, "• Plain text (encoding: USASCII, UTF-8, UTF-16 with BOM) 
+            
+            Text, "
+            .. class:: incremental 
+            
+            • Plain text (encoding: USASCII, UTF-8, UTF-16 with BOM) 
             • XML (includes XSD/XSL/XHTML, etc.; with included or accessible schema)
-            • PDF/A-1 (ISO 19005-1) (\*.pdf)", "• Cascading Style Sheets (\*.css)
+            • PDF/A-1 (ISO 19005-1) (\*.pdf)", "
+            .. class:: incremental 
+            
+            • Cascading Style Sheets (\*.css)
             • DTD (\*.dtd)
             • Plain text (ISO 8859-1 encoding)
             • PDF (\*.pdf) (embedded fonts)
@@ -630,10 +652,15 @@ Langfristige Aufbewahrung von Dokumenten
             • HTML (include a DOCTYPE declaration)
             • SGML (\*.sgml)
             • Open Office (\*.sxw/\*.odt)
-            • OOXML (ISO/IEC DIS 29500) (\*.docx)", "• PDF (\*.pdf) (encrypted)
+            • OOXML (ISO/IEC DIS 29500) (\*.docx)", "
+            .. class:: incremental 
+            
+            • PDF (\*.pdf) (encrypted)
             • Microsoft Word (\*.doc)
             • WordPerfect (\*.wpd)
-            • All other text formats not listed here"
+            • All other text formats not listed here
+            
+            "
 
 
     .. container:: layer incremental
@@ -642,14 +669,23 @@ Langfristige Aufbewahrung von Dokumenten
             :class:  overflow-y-scroll
             :header: "Content Type", High probability for long-term preservation, Medium probability for long-term preservation, Low probability for long-term preservation
 
-            Raster Image, "• TIFF (uncompressed)
+            Raster Image, "
+            .. class:: incremental 
+            
+            • TIFF (uncompressed)
             • JPEG2000 (lossless) (\*.jp2)
-            • PNG (\*.png)", "• BMP (\*.bmp)
+            • PNG (\*.png)", "
+            .. class:: incremental 
+            
+            • BMP (\*.bmp)
             • JPEG/JFIF (\*.jpg)
             • JPEG2000 (lossy) (\*.jp2)
             • TIFF (compressed)
             • GIF (\*.gif)
-            • Digital Negative DNG (\*.dng)", "• MrSID (\*.sid)
+            • Digital Negative DNG (\*.dng)", "
+            .. class:: incremental 
+            
+            • MrSID (\*.sid)
             • TIFF (in Planar format)
             • FlashPix (\*.fpx)
             • PhotoShop (\*.psd)
@@ -663,7 +699,16 @@ Langfristige Aufbewahrung von Dokumenten
             :class:  overflow-y-scroll
             :header: "Content Type", High probability for long-term preservation, Medium probability for long-term preservation, Low probability for long-term preservation
 
-            Vector Graphics, • SVG (no Java script binding) (\*.svg), "• Computer Graphic Metafile (CGM, WebCGM) (\*.cgm)", "• Encapsulated Postscript (EPS)
+            Vector Graphics, "
+            .. class:: incremental 
+            
+            • SVG (no Java script binding) (\*.svg)", "
+            .. class:: incremental 
+            
+            • Computer Graphic Metafile (CGM, WebCGM) (\*.cgm)", "
+            .. class:: incremental 
+            
+            • Encapsulated Postscript (EPS)
             • Macromedia Flash (\*.swf)
             • All other vector image formats not listed here"
 
@@ -673,13 +718,22 @@ Langfristige Aufbewahrung von Dokumenten
             :class:  overflow-y-scroll
             :header: "Content Type", High probability for long-term preservation, Medium probability for long-term preservation, Low probability for long-term preservation
 
-            Audio, "• AIFF (PCM) (\*.aif, \*.aiff)
-            • WAV (PCM) (\*.wav)", "• SUN Audio (uncompressed) (\*.au)
+            Audio, "
+            .. class:: incremental 
+            
+            • AIFF (PCM) (\*.aif, \*.aiff)
+            • WAV (PCM) (\*.wav)", "
+            .. class:: incremental 
+            
+            • SUN Audio (uncompressed) (\*.au)
             • Standard MIDI (\*.mid, \*.midi)
             • Ogg Vorbis (\*.ogg)
             • Free Lossless Audio Codec (\*.flac)
             • Advance Audio Coding (\*.mp4, \*.m4a, \*.aac)
-            • MP3 (MPEG-1/2, Layer 3) (\*.mp3)", "• AIFC (compressed) (\*.aifc)
+            • MP3 (MPEG-1/2, Layer 3) (\*.mp3)", "
+            .. class:: incremental 
+            
+            • AIFC (compressed) (\*.aifc)
             • NeXT SND (\*.snd)
             • RealNetworks 'Real Audio' (\*.ra, \*.rm, \*.ram)
             • Windows Media Audio (\*.wma)
@@ -693,11 +747,20 @@ Langfristige Aufbewahrung von Dokumenten
             :class:  overflow-y-scroll
             :header: "Content Type", High probability for long-term preservation, Medium probability for long-term preservation, Low probability for long-term preservation
 
-            Video, "• Motion JPEG 2000 (ISO/IEC 15444-4)(\*.mj2)
+            Video, "
+            .. class:: incremental 
+            
+            • Motion JPEG 2000 (ISO/IEC 15444-4)(\*.mj2)
             • AVI (uncompressed, motion JPEG) (\*.avi)
-            • QuickTime Movie (uncompressed, motion JPEG) (\*.mov)", "• Ogg Theora (\*.ogg)
+            • QuickTime Movie (uncompressed, motion JPEG) (\*.mov)", "
+            .. class:: incremental 
+            
+            • Ogg Theora (\*.ogg)
             • MPEG-1, MPEG-2 (\*.mpg, \*.mpeg, wrapped in AVI, MOV)
-            • MPEG-4 (H.263, H.264) (\*.mp4, wrapped in AVI, MOV)", "• AVI (others) (\*.avi)
+            • MPEG-4 (H.263, H.264) (\*.mp4, wrapped in AVI, MOV)", "
+            .. class:: incremental 
+            
+            • AVI (others) (\*.avi)
             • QuickTime Movie (others) (\*.mov)
             • RealNetworks 'Real Video' (\*.rv)
             • Windows Media Video (\*.wmv)
@@ -709,11 +772,20 @@ Langfristige Aufbewahrung von Dokumenten
             :class:  overflow-y-scroll
             :header: "Content Type", High probability for long-term preservation, Medium probability for long-term preservation, Low probability for long-term preservation
 
-            Spreadsheet/ Database, "• Comma Separated Values (\*.csv)
+            Spreadsheet/ Database, "
+            .. class:: incremental 
+            
+            • Comma Separated Values (\*.csv)
             • Delimited Text (\*.txt)
-            • SQL DDL", "• DBF (\*.dbf)
+            • SQL DDL", "
+            .. class:: incremental 
+            
+            • DBF (\*.dbf)
             • OpenOffice (\*.sxc/\*.ods)
-            • OOXML (ISO/IEC DIS 29500) (\*.xlsx)", "• Excel (\*.xls)
+            • OOXML (ISO/IEC DIS 29500) (\*.xlsx)", "
+            .. class:: incremental 
+            
+            • Excel (\*.xls)
             • All other spreadsheet/ database formats not listed here"
 
     .. container:: layer incremental
@@ -722,8 +794,17 @@ Langfristige Aufbewahrung von Dokumenten
             :class:  overflow-y-scroll
             :header: "Content Type", High probability for long-term preservation, Medium probability for long-term preservation, Low probability for long-term preservation
 
-            Virtual Reality, • X3D (\*.x3d), "• VRML (\*.wrl, \*.vrml)
-            • U3D (Universal 3D file format)", • All other virtual reality formats not listed here
+            Virtual Reality, "
+            .. class:: incremental 
+            
+            • X3D (\*.x3d)", "
+            .. class:: incremental 
+            
+            • VRML (\*.wrl, \*.vrml)
+            • U3D (Universal 3D file format)", "
+            .. class:: incremental 
+            
+            • All other virtual reality formats not listed here"
 
     .. container:: layer incremental
 
@@ -731,7 +812,13 @@ Langfristige Aufbewahrung von Dokumenten
             :class:  overflow-y-scroll
             :header: "Content Type", High probability for long-term preservation, Medium probability for long-term preservation, Low probability for long-term preservation
 
-            Computer Programs,"• Computer program source code, uncompiled (\*.c, \*.c++, \*.java, \*.js, \*.jsp, \*.php, \*.pl, etc.)", ,"• Compiled / Executable files (EXE, \*.class, COM, DLL, BIN, DRV, OVL, SYS, PIF)"
+            Computer Programs,"
+            .. class:: incremental 
+            
+            • Computer program source code, uncompiled (\*.c, \*.c++, \*.java, \*.js, \*.jsp, \*.php, \*.pl, etc.)", ,"
+            .. class:: incremental 
+            
+            • Compiled / Executable files (EXE, \*.class, COM, DLL, BIN, DRV, OVL, SYS, PIF)"
 
     .. container:: layer incremental
 
@@ -739,8 +826,14 @@ Langfristige Aufbewahrung von Dokumenten
             :class:  overflow-y-scroll
             :header: "Content Type", High probability for long-term preservation, Medium probability for long-term preservation, Low probability for long-term preservation
 
-            Presentation, , "• OpenOffice (\*.sxi/\*.odp)
-            • OOXML (ISO/IEC DIS 29500) (\*.pptx)", "• PowerPoint (\*.ppt)
+            Presentation, , "
+            .. class:: incremental 
+            
+            • OpenOffice (\*.sxi/\*.odp)
+            • OOXML (ISO/IEC DIS 29500) (\*.pptx)", "
+            .. class:: incremental 
+            
+            • PowerPoint (\*.ppt)
             • All other presentation formats not listed here"
 
 
@@ -774,7 +867,7 @@ Regelmäßiges Umkopieren der Bestände ist häufig notwendig:
 • Datenträger altern (Sicherheit)
 
 .. admonition:: Hinweis
-  :class: incremental margin-top-2em
+  :class: warning incremental margin-top-2em
 
   • Kann mit einer Migration auf andere Formate bzw. Formatversionen verbunden sein! 
 
@@ -791,9 +884,14 @@ DMS als Infrastruktur
 -----------------------------------------------
 
 - DMS kann nie sinnvoll für sich allein stehen
+
+.. class:: incremental
+
 - DMS bietet Dienste für andere Applikationen an, um Dokumente zu verwalten.
 - Integration in:
  
+  .. class:: incremental
+
   - Standardsysteme (wie MS-Office)
   - Mail-Systeme
   - ERP- / CRM- / PLM-Systeme und andere 
@@ -831,6 +929,7 @@ Typische (Web-) Dienste eines DMS
         • ...
 
 
+
 Beispiel: Anlagendokumentation
 -----------------------------------------------
 
@@ -845,8 +944,11 @@ Beispiel: Anlagendokumentation
     (Vgl. https://www.fme.de/blog/redlining-spezielle-anwendungsfaelle-auf-basis-von-opentext-documentum-for-life-sciences-teil-5/)
 
 
+
 Beispiel: Anlagendokumentation
 -----------------------------------------------
+
+.. class:: incremental
 
 • Integrierte und konsistente Gesamtsicht auf alle Anlagen und ihre Bestandteile (Pläne und sonstige Dokumente)
 • SAP als führendes System für Schlüssel (Datenqualität)
@@ -856,8 +958,11 @@ Beispiel: Anlagendokumentation
 • DMS wird für weitere Bereiche genutzt (z. B. SAP-Eingangs- und Ausgangsrechnungen, Magazin, E-Mail-Archivierung).
 
 
+
 Typische Fragestellungen bei Integration
 --------------------------------------------
+
+.. class:: incremental
 
 • Welches System ist bezüglich der Schlüssel das führende System
 • Einheitliche Nutzer- und Zugriffsrechte
