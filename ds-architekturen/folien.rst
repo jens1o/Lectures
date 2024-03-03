@@ -468,6 +468,75 @@ Langlebige Transaktionen mit choreografierten Sagas
   Ein großes Problem bei choreografierten Sagas ist es den Überblick über den aktuellen Stand zu behalten. Durch die Verwendung einer "Korrelations-ID" kann diese Problem gemindert werden.
 
 
+*Dual-write Problem*
+---------------------
+
+.. stack:: small
+
+  .. layer:: 
+
+    .. container:: two-columns
+
+      .. container:: column no-separator
+          
+        .. image:: images/dual-write/no-crash-no-problem.svg
+          :height: 800px
+          :align: center
+        
+      .. container:: column
+
+        An welcher Stelle könnte es zu einem Problem kommen?
+
+        .. admonition:: Warnung
+          :class: warning incremental
+          
+          Das :ger-quote:`Schreiben` auf zwei unterschiedliche Systeme (hier: Datenbank und Event-processing Middleware) erfordert immer einen transaktionalen Kontext. 
+          
+          Kann dieser nicht hergestellt werden, dann kann es zu Inkonsistenzen kommen (:eng:`Dual-write Problem`).
+
+  .. layer:: incremental
+
+    .. container:: two-columns
+
+      .. container:: column no-separator
+ 
+        .. image:: images/dual-write/crash.svg
+          :height: 800px
+          :align: center
+
+      .. container:: column
+
+        .. rubric:: Lösungsideen
+
+        .. class:: incremental
+        
+        - 2PC ist im Kontext von Microservices keine Option (zu langsam, zu komplex)
+        - Änderung der Reihenfolge der Aktionen (1. *publish* dann 2. *update*) führt noch immer zu Inkonsistenzen
+        - die Event Processing Middleware (synchron) zu notifizieren, als Teil des Datenbankupdates ist auch keine Option:
+        
+          - Was passiert wenn die Middleware nicht erreichbar ist?
+          - Was passiert wenn das Event nicht verarbeitet werden kann? 
+  
+        .. container:: incremental assessment
+          
+         Strikte Konsistenz ist nicht erreichbar.
+
+  .. layer:: incremental
+
+    .. container:: two-columns
+
+      .. image:: images/dual-write/outbox-pattern.svg
+         :height: 800px
+         :align: center
+
+      .. container:: 
+
+        .. rubric:: *(eine) Lösung: Outbox Pattern*
+
+        - Die Aktionen werden (zusätzlich) in einer Outbox-Tabelle gespeichert und dann **asynchron** verarbeitet.
+
+        - Damit kann *Eventual Consistency* erreicht werden.
+
 
 .. class:: no-title center-child-elements
 

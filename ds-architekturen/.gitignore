@@ -1,6 +1,7 @@
 images/sagas
 images/microservices
 images/common_application_architectures
+images/dual-write
 
 external
 
