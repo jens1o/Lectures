@@ -52,11 +52,9 @@ Teilbarkeit
 .. admonition:: Beispiel
     :class: incremental
 
-    Die positiven Teiler von: :math:`24` 
+    Die positiven Teiler von: :math:`24`:  :math:`1`, :math:`2`, :math:`3`, :math:`4`, :math:`6`, :math:`8`, :math:`12` and :math:`24`
     
-    sind: :math:`1`, :math:`2`, :math:`3`, :math:`4`, :math:`6`, :math:`8`, :math:`12` and :math:`24`
-    
-    :math:`13 | 182`; :math:`-5 | 30`; :math:`17 | 289`; :math:`-3 | 33`; :math:`17 | 0`.
+    Weitere Beispiele: :math:`13 | 182`; :math:`-5 | 30`; :math:`17 | 289`; :math:`-3 | 33`; :math:`17 | 0`.
 
 
 
@@ -104,7 +102,7 @@ Wenn :math:`b | g` und :math:`b|h`, dann :math:`b|(mg+nh)` für beliebige ganze 
 Teilungsalgorithmus
 ---------------------
 
-Sei gegeben eine beliebige positive ganze Zahl :math:`n` und eine beliebige nichtnegative ganze Zahl :math:`a`, so erhält man bei der Division von :math:`a` durch :math:`n` einen ganzzahligen Quotienten :math:`q` und einen nicht negativen, ganzzahligen Rest :math:`r`, die der folgenden Beziehung gehorchen:
+Sei  eine beliebige positive ganze Zahl :math:`n` gegeben und eine beliebige nichtnegative ganze Zahl :math:`a`, so erhält man bei der Division von :math:`a` durch :math:`n` einen ganzzahligen Quotienten :math:`q` und einen nicht negativen, ganzzahligen Rest :math:`r`, die der folgenden Beziehung gehorchen:
 
 .. math:: 
 
@@ -174,7 +172,7 @@ Alternative Definition des :ab:`GGT`
 
 .. math:: 
 
-    ggt(a,b) = max[k, so\;dass k|a \; und \; k|b]
+    ggt(a,b) = max[k, so\;dass\; k|a \; und \; k|b]
 
 .. admonition:: Beispiel
 
@@ -199,7 +197,11 @@ Wir stellten fest:
 
     Zwei ganze Zahlen :math:`a` und :math:`b` sind relativ prim, wenn ihr einziger gemeinsamer positiver ganzzahliger Faktor 1 ist.
 
-:math:`\Leftrightarrow` :math:`a` und :math:`b` sind relativ prim wenn :math:`ggt(a,b)=1` 
+.. container:: width-100 text-align-center huge margin-top-1em margin-bottom-1em
+
+  :math:`\Leftrightarrow` 
+
+:math:`a` und :math:`b` sind relativ prim wenn :math:`ggt(a,b)=1` 
 
 
 
@@ -209,7 +211,7 @@ Berechnung des GGT mit Hilfe des euklidischen Algorithmus
 ----------------------------------------------------------
 
 .. image:: drawings/euclidean_algorithm/algorithm.svg
-    :width: 1600
+    :width: 100%
 
 
 
@@ -229,6 +231,7 @@ Euklidischer Algorithmus
 .. csv-table:: 
     :header: "Schritt", "Dividend", "Divisor", "Quotient", "Rest" 
     :width: 100%
+    :class: highlight-line-on-hover
 
     1, 1160718174, 316258250, 3, 211943424
     2, 316258250, 211943424, 1, 104314826
@@ -293,7 +296,15 @@ Modulare Arithmetik (*kongruent modulo* :math:`n`)
     :class: incremental
 
     Der Operator :math:`mod` wird (a) als binärer Operator verwendet, der einen Rest erzeugt, und (b) als Kongruenzrelation, die die Gleichwertigkeit zweier ganzer Zahlen anzeigt.
-    
+
+.. supplemental::
+
+    Hinweis: 
+
+    :math:`21 \equiv -9 (mod\, 10) \Leftrightarrow 21\, mod\, 10 = -9\, mod\, 10 = 1`
+
+    :math:`-9\, mod\, 10 \rightarrow -9 = n * 10 + 1`
+
 
 
 Eigenschaften der Kongruenz
@@ -325,11 +336,18 @@ Wenn :math:`n|(a - b)`, dann gilt :math:`(a - b) = kn` für ein :math:`k`
 .. admonition:: Beispiel
   :class: incremental
 
-  :math:`23 = 8(mod\; 5)`, da :math:`23 - 8 = 15 = 5 \times 3`
 
-  :math:`-11 = 5(mod\; 8)`, da :math:`-11 - 5 = -16 = 8 \times (-2)`
+  :math:`23 \equiv 8(mod\; 5)`, da :math:`23 - 8 = 15 = 5 \times 3`
 
-  :math:`81 = 0(mod\; 27)`, da :math:`81 - 0 = 81 = 27 \times 3`
+  .. class:: incremental
+
+  :math:`-11 \equiv 5(mod\; 8)`, da :math:`-11 - 5 = -16 = 8 \times -2`
+
+  .. \qquad 5 \equiv -11(mod\; 8), 5 - (-11) = 8 \times 2
+
+  .. class:: incremental
+
+  :math:`81 \equiv 0(mod\; 27)`, da :math:`81 - 0 = 81 = 27 \times 3`
 
 
 .. container:: supplemental
@@ -341,6 +359,8 @@ Wenn :math:`n|(a - b)`, dann gilt :math:`(a - b) = kn` für ein :math:`k`
 
 Eigenschaften der modularen Arithmetik
 ----------------------------------------
+
+.. class:: incremental
 
 1. :math:`[(a\; mod\; n) + (b\; mod\; n)]\; mod\; n = (a + b)\; mod\; n`
 2. :math:`[(a\; mod\; n) - (b\; mod\; n)]\; mod\; n = (a - b)\; mod\; n`
@@ -383,24 +403,29 @@ Modulare Arithmetik (Beispiele für Eigenschaften)
 
 .. admonition:: Beispiele
     
+    .. container:: margin-bottom-2em
     
-    .. math::
+        .. math::
 
-        11\; mod\; 8 = 3;\qquad 15\; mod\; 8 = 7
+            11\; mod\; 8 = 3;\qquad 15\; mod\; 8 = 7
+    
+    .. container:: margin-bottom-1em line-below
 
-    .. math::
-        :class: incremental
-        
-        [(11\; mod\; 8) + (15\; mod\; 8)]\; mod\; 8 = 10\; mod\; 8 = 2 
-        
-        (11 + 15)\; mod\; 8 = 26\; mod\; 8 = 2
+        .. math::
+            :class: incremental 
+            
+            [(11\; mod\; 8) + (15\; mod\; 8)]\; mod\; 8 = 10\; mod\; 8 = 2 
+            
+            (11 + 15)\; mod\; 8 = 26\; mod\; 8 = 2
 
-    .. math::
-        :class: incremental
+    .. container:: margin-bottom-1em  line-below
 
-        [(11\; mod\; 8) - (15\; mod\; 8)]\; mod\; 8 = - 4\; mod\; 8 = 4 
-        
-        (11 - 15)\; mod\; 8 = -4\; mod\; 8 = 4
+        .. math::
+            :class: incremental 
+
+            [(11\; mod\; 8) - (15\; mod\; 8)]\; mod\; 8 = - 4\; mod\; 8 = 4 
+            
+            (11 - 15)\; mod\; 8 = -4\; mod\; 8 = 4
 
     .. math::
         :class: incremental
@@ -644,8 +669,8 @@ Werfen wir einen Blick auf :math:`x \times a + y \times b` für einige :math:`x`
     Der GGT :math:`6` erscheint in der Tabelle (:math:`x = -2` und :math:`y = 3`).
 
 
-Erweiterter Euklidischer Algorithmus :raw-html:`<br>` :scriptsize:`systematische Berechnung`
---------------------------------------------------------------------------------------------------
+Erweiterter Euklidischer Algorithmus :raw-html:`<br>` :scriptsize:`Systematische Berechnung für ggt(710,310)`
+------------------------------------------------------------------------------------------------------------------
 
 .. container:: two-columns
 
@@ -660,6 +685,12 @@ Erweiterter Euklidischer Algorithmus :raw-html:`<br>` :scriptsize:`systematische
 
         .. image:: drawings/euclidean_algorithm/example-umgestellt.svg
             :width: 850px
+
+
+.. supplemental::
+
+    Aufgrund der Umstellung z. B. von :math:`710 = 2 \times 310 + 90` nach :math:`90 = 710 - 2 \times 310` können wir dann im nächsten Schritt/der nächsten Formel die :math:`90` durch :math:`710 - 2 \times 310` ersetzen und werden dann :math:`310 - 3 \times(710 - 2 \times 310) = 40` erhalten.
+
 
 Erweiterter Euklidischer Algorithmus - systematische Berechnung
 -------------------------------------------------------------------
@@ -765,11 +796,23 @@ Primzahlen
 .. admonition:: Beispiel
     :class: incremental smaller
 
-    .. math:: 
+    .. container:: inline-block
+    
+        :math:`50 =`
+    
+    .. container:: incremental inline-block
+    
+        :math:`2^1 \times 5^2`
 
-        50 = 2^1 \times 5^2
+    .. container:: incremental
 
-        60 = 2^2 \times 3^1 \times 5^1 
+        .. container:: inline-block
+
+            :math:`60 =` 
+
+        .. container:: incremental inline-block
+
+            :math:`2^2 \times 3^1 \times 5^1`
 
 
 .. container:: supplemental
@@ -802,6 +845,10 @@ Besagt folgendes:
 
         (2^6 = 64) \equiv 1 (mod\; 7),\qquad da\; 64/7 = 9\; Rest\; 1
 
+
+.. supplemental::
+
+    Mit anderen Worten: :math:`a` ist kein vielfaches von :math:`p`.
 
 
 .. class:: smaller
@@ -897,9 +944,11 @@ Miller-Rabin Algorithmus
 -------------------------
 
 .. code:: pseudocode
+    :class: smaller
 
-    TEST(n, k) # n > 2, an odd integer to be tested for primality
-               # k, the number of rounds of testing to perform
+    TEST(n, k) # n > 2, eine ungerade ganze Zahl, 
+               #        die auf Primalität geprüft wird
+               # k,     die Anzahl der Testrunden
 
     let s > 0 and d odd > 0 such that n−1 = pow(2,s)*d  
     repeat k times:
@@ -951,30 +1000,75 @@ Chinesischer Restsatz :eng:`Chinese Remainder Theorem (CRT)`
 Chinesischer Restsatz - Beispiel in :math:`Z_{10}` 
 -------------------------------------------------------------
 
-Nehmen wir an, die (relativ prim/koprimalen) Faktoren einer Zahl :math:`x` sind :math:`2` und :math:`5` und 
+Nehmen wir an, die (*relativ prim/koprimalen*) Faktoren einer Zahl :math:`x`:  :math:`m_1 = 2` und :math:`m_2 = 5` sind und 
 
 .. class:: incremental
 
-dass die bekannten Reste der Dezimalzahl :math:`x` :math:`r_2 = 0` und :math:`r_5 = 3` sind. 
+dass die bekannten Reste der Dezimalzahl :math:`x`: :math:`a_1 = r_{m_1} = 0` und :math:`a_2 = r_{m_2} = 3` sind. 
+
+D. h. :math:`x\; mod \;2 = 0` und :math:`x\; mod\; 5 = 3`; bzw. :math:`x \equiv 0 (mod\; 2)` und :math:`x \equiv 3 (mod\; 5)`.
 
 .. class:: incremental
 
-Daher ist :math:`x\; mod \;2 = 0`; d. h. :math:`x` muss eine gerade Zahl sein; außerdem ist :math:`x\; mod\; 5 = 3`.
+Da :math:`x\; mod \;2 = 0` ist muss :math:`x` eine gerade Zahl sein; außerdem ist :math:`x\; mod\; 5 = 3`.
 
 .. class:: incremental
 
-Die eindeutige Lösung ist: :math:`8` (:math:`3` ist keine Lösung, da 3 ungerade ist!)
-
-.. admonition:: Zusammenfassung
-    :class: incremental
-
-    Der chinesische Restsatz wird häufig für Berechnungen mit großen ganzen Zahlen verwendet, da er es ermöglicht, eine Berechnung, für die man eine Grenze für die Größe des Ergebnisses kennt, durch mehrere ähnliche Berechnungen mit kleinen ganzen Zahlen zu ersetzen.
-
-    Das CRT findet in der Public-Key-Kryptographie Einsatz.
+Die eindeutige Lösungn in :math:`Z_{10}` ist: :math:`8`.
 
 
+.. container:: incremental
 
-.. class:: integrated-exercise
+    Berechnung einer Lösung in :math:`Z`:
+
+    .. container:: three-columns no-default-width
+
+        .. container:: column no-separator incremental
+
+            .. math::
+
+                5 \times x_1 \equiv 1 (mod\; 2) \\
+                2 \times x_2 \equiv 1 (mod\; 5)
+
+        .. container:: column incremental
+            
+            .. math::
+
+                x_1 = 1 \\
+                x_2 = 3
+
+        .. container:: column incremental
+            
+            .. math::
+
+                \begin{matrix}
+                    x & = & a_1 \times m_2 \times x_1 + a_2 \times m_1 \times x_2 & \\
+                    x & = & 0 \times 5 \times 1 + 3 \times 2 \times 3 & = 18 \\
+                \end{matrix}
+
+
+.. supplemental::
+    :class: larger
+
+    Man könnte auch folgendes Problem versuchen zu lösen: Wir haben x Schokoladentafeln. Wenn wir diese fair auf zwei Personen verteilen, dann haben wir keinen Rest. Wenn wir diese jedoch auf 5 Personen aufteilen, dann haben wir 3 Tafeln übrig.  Wieviele Schokoladentafeln haben wir?
+
+    (Zur Erinnerung: zwei Zahlen :math:`x` und :math:`y` sind relativ prim, wenn ihr größter gemeinsamer Teiler 1 ist.)
+
+
+
+
+.. class:: center-child-elements
+
+Chinesische Restsatz - Zusammenfassung
+-----------------------------------------
+
+Der chinesische Restsatz wird häufig für Berechnungen mit großen ganzen Zahlen verwendet, da er es ermöglicht, eine Berechnung, für die man eine Grenze für die Größe des Ergebnisses kennt, durch mehrere ähnliche Berechnungen mit kleinen ganzen Zahlen zu ersetzen.
+
+Das CRT findet in der Public-Key-Kryptographie Einsatz.
+
+
+
+.. class:: integrated-exercise smaller
 
 Übung
 --------------------------------- 
@@ -1047,7 +1141,7 @@ Die eindeutige Lösung ist: :math:`8` (:math:`3` ist keine Lösung, da 3 ungerad
     .. solution:: 
         :pwd: 36-ist-das-Ergebnis
 
-        Das Ergebnis ist 36, da 37 eine Primzahl ist und deswegen alle Zahlen von 2 bis 36 relativ prim zu 37 sind.
+        Das Ergebnis ist 36, da 37 eine Primzahl ist und deswegen alle Zahlen von 1 bis 36 relativ prim zu 37 sind.
 
 5. \ 
  
@@ -1100,3 +1194,19 @@ Die eindeutige Lösung ist: :math:`8` (:math:`3` ist keine Lösung, da 3 ungerad
             Wahrscheinlich prim
     
         `Miller-Rabin Algorithm: <https://github.com/Delors/Course_W3M20014/blob/main/1-miller-rabin-algorithm.ipynb>`__
+
+8. \ 
+
+   .. exercise:: 
+   
+    In einer Tüte sind x Gummibärchen. Wenn Sie diese auf 4 Personen verteilen haben Sie einen Rest von 2. Wenn Sie diese auf 7 Personen verteilen haben Sie einen Rest von 3. Wieviele Gummibärchen sind in der Tüte? Wenden Sie den chinesischen Restsatz an.
+
+    .. solution::
+        :pwd: CRT!
+
+        0. :math:`x \equiv 2 (mod\; 4)` und :math:`x \equiv 3 (mod\; 7)`
+        1. Bestimme :math:`x_1` und :math:`x_2`
+     
+           :math:`x_1 = 3` und :math:`x_2 = 2`
+
+        2. Berechne :math:`x = 2 \times 7 \times 3 + 3 \times 4 \times 2 = 66`

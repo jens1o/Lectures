@@ -92,7 +92,7 @@ Warum Dokumentenmanagement?
 Motivation
 ----------------------------------------------------------------------------------
 
-.. class:: incremental
+.. class:: incremental list-with-explanations
 
 - Die meisten strukturierten Daten liegen elektronisch vor (ERP, CRM, etc.). 
 - Dokumente liegen aber (noch immer) in Papierform vor (insbesondere in Deutschland) und es gilt dieses Rationalisierungspotential zu heben.
@@ -100,6 +100,9 @@ Motivation
 - Wichtige gesetzliche und technische Grundlagen sind geschaffen.
 - Experten schätzen, dass 95% der Papierdokumente nach Ablage nicht mehr genutzt werden, da sie zu schwer zu finden sind.
 - Ähnlich hohe Werte werden für digitale Dokumente genannt, die ohne weitere Strukturierungshilfen in Dateisystemen oder Datenbanken liegen. 
+- Die Menge an Dokumenten, die heute entstehen kann durch eine einzelne Person nicht mehr bewältigt werden.
+
+  (Zum  Beispiel fallen für ein einzelnes konventionelles Kraftwerk bereits ca. 500  000 Dokumente.)
    
 
 .. class:: smaller
@@ -225,6 +228,10 @@ In einer Organisation ist zu regeln:
 • Suche nach Dokumenten bzw. Dokumenteninhalten
 • Vernichtung von Dokumenten
 • Regelung von Verantwortlichkeiten für Inhalt und Verwaltung von Dokumenten
+
+.. container:: assessment incremental
+    
+    Ein Dokumentenmanagementsystem ist ein IT System zur Unterstützung der Dokumentenmanagementorganisation.
 
 
 .. class:: new-section
@@ -484,7 +491,9 @@ Dokumentenstrukturen
   2. solche die optional da sind und
   3. in nicht vorhersehbare Exoten.
    
-
+.. supplemental::
+     
+    Ein Beispiel einer Mappe wäre eine Vorgangsakte mit einem Antrag,   (am Ende) einem Gutachten, ggf. E-Mails aber auch handschriftlichen Notizen ...
 
 Zusammengesetzte Dokumente (:eng:`Compound Documents`)
 -------------------------------------------------------
@@ -590,6 +599,18 @@ Löschen von Dokumenten
 
 • Logisches Löschen
 • Physikalisches Löschen
+
+
+
+.. class:: center-child-elements
+
+Archivierung (von Dokumenten)
+-----------------------------------------------
+
+.. admonition:: Archiv
+    :class: definition    
+
+    Ein Archiv ist ein realer oder elektronischer Ort in dem Dokumente, die zur laufenden Aufgabenerfüllung nicht mehr benötigt werden, erfasst, ausgewertet und zugänglich gemacht werden.
 
 
 
@@ -970,3 +991,12 @@ Typische Fragestellungen bei Integration
 • Schnittstellenrealisierung
 • ...
 
+
+.. class:: no-title
+
+Zusammenfassung: Dokumenten-Management-Lösung
+-----------------------------------------------
+
+.. image:: drawings/dokumente/dokumenten-management-loesung.svg
+    :height: 1150px
+    :align: center
