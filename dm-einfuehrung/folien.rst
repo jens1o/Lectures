@@ -24,7 +24,7 @@
 .. role:: raw-html(raw)
    :format: html
 
-Dokumentmanagement, Archivierungs- und Verschlüsselungsverfahren
+Dokumentenmanagement, Archivierungs- und Verschlüsselungsverfahren
 ===================================================================
 
 .. container:: smaller line-above
@@ -167,7 +167,7 @@ Digitalisierung - ein Prozess mit Stilblüten...
 
 .. class:: smaller
 
-Was kan ein Dokumentenmanagement System (DMS) leisten?
+Was kann ein Dokumentenmanagement System (DMS) leisten?
 -------------------------------------------------------------------------------
 
 .. class:: incremental
@@ -304,7 +304,7 @@ Elektronische Dokumente
 
 
 
-Bestandteile eine Dokumentes
+Bestandteile eines Dokumentes
 --------------------------------
 
 .. the following is necessary, because we can't have local svgs that reference local pngs... (browser security)
@@ -369,7 +369,7 @@ Hashwerte und Signaturen [#]_
 
 .. class:: incremental
 
-- Hashwert ist wie ein mathematischer Fingerabdruck des Dokumentes
+- Hashwert ist wie ein mathematischer Fingerabdruck des Dokumentes.
   
 - Dieser Hashwert verknüpft mit einer persönlichen Signatur zeigt, dass dieses Dokument von dem Absender der Signatur stammt und das Dokument nicht verändert wurde.
 

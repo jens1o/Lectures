@@ -1002,11 +1002,11 @@ Chinesischer Restsatz - Beispiel in :math:`Z_{10}`
 
 Nehmen wir an, die (*relativ prim/koprimalen*) Faktoren einer Zahl :math:`x`:  :math:`m_1 = 2` und :math:`m_2 = 5` sind und 
 
-.. class:: incremental
+.. container:: incremental
 
-dass die bekannten Reste der Dezimalzahl :math:`x`: :math:`a_1 = r_{m_1} = 0` und :math:`a_2 = r_{m_2} = 3` sind. 
+    dass die bekannten Reste der Dezimalzahl :math:`x`: :math:`a_1 = r_{m_1} = 0` und :math:`a_2 = r_{m_2} = 3` sind. 
 
-D. h. :math:`x\; mod \;2 = 0` und :math:`x\; mod\; 5 = 3`; bzw. :math:`x \equiv 0 (mod\; 2)` und :math:`x \equiv 3 (mod\; 5)`.
+    D. h. :math:`x\; mod \;2 = 0` und :math:`x\; mod\; 5 = 3`; bzw. :math:`x \equiv 0 (mod\; 2)` und :math:`x \equiv 3 (mod\; 5)`.
 
 .. class:: incremental
 
@@ -1132,6 +1132,8 @@ Das CRT findet in der Public-Key-Kryptographie Einsatz.
             7, 4, 3, 1, 1
             8, 3, 1, 3, 0
 
+            Ergebnis ist: 1
+
 4. \ 
    
    .. exercise:: 
@@ -1178,7 +1180,7 @@ Das CRT findet in der Public-Key-Kryptographie Einsatz.
 
         ::
 
-            Primzahltest für  37:
+            Primzahltest für 37:
 
             k      s      a      x      y
             Runde 0:
