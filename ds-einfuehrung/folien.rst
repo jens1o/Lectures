@@ -4,7 +4,8 @@
     :description lang=de: Verteilte Systeme
     :id: lecture-ds-einfuehrung
     :first-slide: last-viewed
-
+    :exercises-master-password: 2024-WirklichSchwierig!
+    
 .. |date| date::
 .. |at| unicode:: 0x40
 
@@ -54,14 +55,6 @@ Ein weitgefasster Überblick über verteilte Systeme.
 
     Alle Fehler sind meine eigenen.
 
-
-
-.. class:: hide-slide
-
-TODO
-----------
-
-TODO
 
 
 Verteilte Systeme - W3WI_110.2
