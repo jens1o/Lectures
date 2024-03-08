@@ -458,9 +458,9 @@ Sicherstellung der Qualität
 
 .. container:: supplemental
 
-    Serifenlose Zeichensätze sind solche, bei denen die Zeichensätze keine Endstriche an Zeichen haben. z. B. Arial oder Helvetica (dieser Foliensatz verwendet Helvetica).
+    Serifenlose Zeichensätze sind solche, bei denen die Zeichensätze keine Endstriche an Zeichen haben, z. B. Arial oder Helvetica (dieser Foliensatz verwendet Helvetica).
 
-    :serif:`Schriftwarten mit Serifen sind z. B. Times New Roman oder Garamond`.
+    :serif:`Schriftarten mit Serifen sind z. B. Times New Roman oder Garamond`.
 
 
 
@@ -660,7 +660,7 @@ COLD-Verfahren (historisch)
 
         **Verarbeitung auf COLD-Server**
 
-        1. Zerlegung des Datenstrom in einzelne Dokumente.
+        1. Zerlegung des Datenstroms in einzelne Dokumente.
         2. Extrahiert die für die Ablage bzw. spätere Recherche der Dokumente notwendigen Index-Daten automatisch + evtl. Bezug zu Overlays 
          
            :minor:`(Trennung zwischen fachlichen und layout Daten möglich.)`
