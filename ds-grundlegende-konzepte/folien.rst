@@ -1,10 +1,11 @@
 .. meta:: 
     :author: Michael Eichberg
-    :keywords: "Java", "Concurrency"
-    :description lang=de: Nebenläufigkeit in Java
-    :description lang=en: Concurrency in Java
-    :id: lecture-ds-nebenlaeufigkeit
+    :keywords: "Lamport Clock", "2PC"
+    :description lang=de: Grundlegende Konzepte verteilter Systeme: Lamport-Uhren und 2PC
+    :description lang=en: Basic concepts of distributed systems: Lamport Clocks and 2PC
+    :id: lecture-ds-2pc-und-zeit
     :first-slide: last-viewed
+    :exercises-master-password: 2024-WirklichSchwierig!
 
 .. |date| date::
 .. |at| unicode:: 0x40
@@ -397,16 +398,14 @@ Teilnehmer sind (1) die Partizipanten (:math:`P_i`), welche die verteilten Daten
 
    .. class:: incremental
 
-   - Falls alle :math:`P_i` mit READY geantwortet haben, sendet :math:`K` COMMIT an alle :math:`P_i`; anderenfalls sendet K eine ABORT-Nachricht an alle :math:`P_i`
+   - Falls alle :math:`P_i` mit READY geantwortet haben, sendet :math:`K` COMMIT an alle :math:`P_i`; anderenfalls sendet :math:`K` eine ABORT-Nachricht an alle :math:`P_i`
    - Falls die Entscheidung COMMIT war, machen alle :math:`P_i` die Transaktion *stabil*
    - Falls die Entscheidung ABORT war, setzen alle :math:`P_i` die Transaktion zurück.
    - Alle :math:`P_i` senden schließlich eine OK-Nachricht an :math:`K`
 
-
 .. supplemental::
 
   Das 2-PC Protokoll ist nicht Fehlerresistent. D.h. es kann Fehler erkennen, aber nicht zwangsläufig korrigieren. Um einige Fehlerszenarien zu behandeln, müssen Ergebnisse (insbesondere READY und COMMIT) in einem persistenten *write-ahead* Log-File festgehalten werden.
-
 
 
 
@@ -415,20 +414,20 @@ Teilnehmer sind (1) die Partizipanten (:math:`P_i`), welche die verteilten Daten
 Übung
 ----------
 
-.. exercise:: Two-Phase-Commit-Protokoll
+.. exercise:: Two-Phase-Commit
 
   Analysieren Sie, wie das Two-Phase-Commit-Protokoll mit Fehlersituationen umgeht.
 
   Welche Fehler können zu welchen Zeitpunkten auftreten und welche kann das Protokoll beheben?
 
   .. solution::
-    :pwd: 2PC kann nicht alles
+    :pwd: 2PC kann alles?
 
     Szenarien: Es können Nachrichten verloren gehen, es können Knoten ausfallen und es kann zu einer Netzpartitionierung kommen.
 
     Verlorengegangene Nachrichten können mittels Timeouts erkannt und nochmals gesendet werden.
     
-    Eine andauernde Netzpartitionierung während der ersten Phase, die dazu führt, dass ein oder mehrere Teilnehmer des Protollablaufs nicht mehr mit dem Koordinator kommunizieren können, wird dazu führen, dass der Koordinator ABORT entscheidet.
+    Eine andauernde Netzpartitionierung während der ersten Phase, die dazu führt, dass ein oder mehrere Teilnehmer des Protokollablaufs nicht mehr mit dem Koordinator kommunizieren können, wird dazu führen, dass der Koordinator ABORT entscheidet.
 
     Fällt ein Teilnehmer in der ersten Phase aus, so antwortet er nicht. Der Koordinator wertet dies als ABORT und entscheidet ABORT.
 
