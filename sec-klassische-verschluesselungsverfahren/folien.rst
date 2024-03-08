@@ -177,7 +177,7 @@ Sicherheit von Verschlüsselungsschemata
 
    *Bedingungslos Sicher* (:eng:`Unconditionally Secure`)
 
-   - Egal wie viel Zeit ein Gegner hat, es ist ihm unmöglich, den Geheimtext zu entschlüsseln, weil die erforderlichen Informationen nicht vorhanden sind.
+   - Unabhängig davon wie viel Zeit ein Gegner hat ist es ihm unmöglich, den Geheimtext zu entschlüsseln, weil die erforderlichen Informationen nicht vorhanden sind.
 
 .. container:: incremental
 
@@ -220,7 +220,7 @@ Caesar Cipher
 
 - Einfachste und früheste bekannte Verwendung einer Substitutions-Chiffre; verwendet von Julius Cäsar.
 - Dabei wird jeder Buchstabe des Alphabets durch einen Buchstaben ersetzt, der drei Stellen weiter hinten im Alphabet steht.
-- Am Ende des Alphabets wird wieder mit dem Anfang angefangen, somit folgt auf den Buchstabe Z der Buchstabe A.
+- Am Ende des Alphabets wird wieder am Anfang begonnen. Somit folgt auf den Buchstabe Z der Buchstabe A.
 
     :: 
 
@@ -439,7 +439,7 @@ Die Verschlüsselung wird für jedes Buchstabenpaar des Klartextes durchgeführt
 .. class:: smaller incremental
 
 1. Wenn beide Buchstaben gleich sind (oder nur ein Buchstabe übrig ist), fügen Sie ein "X" hinter dem ersten Buchstaben ein. Verschlüsseln Sie das neue Paar und fahren Sie fort. (z. B. würde statt "ballon" "ba lx lo on" verschlüsselt werden.)
-2. Wenn die Buchstaben in der gleichen Zeile stehen, ersetzen sie sie durch die Buchstaben unmittelbar rechts davon (ggf. umbrechen). (z. B. wird `ar` als `RM` verschlüsselt.)
+2. Wenn die Buchstaben in der gleichen Zeile stehen, ersetzen Sie sie durch die Buchstaben unmittelbar rechts davon (ggf. umbrechen). (z. B. wird `ar` als `RM` verschlüsselt.)
 3. Tauchen die Buchstaben in derselben Spalte auf, so sind sie durch die unmittelbar darunter liegenden Buchstaben zu ersetzen (ggf. umbrechen). (z. B. wird "mu" als "CM" verschlüsselt.)
 4. Befinden sich die Buchstaben nicht in derselben Zeile oder Spalte, so werden sie durch die Buchstaben in derselben Zeile bzw. in dem anderen Paar von Ecken des durch das ursprüngliche Paar definierten Rechtecks ersetzt. (z. B. wird `hs` als `BP` und `ea` als `IM` verschlüsselt.)
 
@@ -450,10 +450,10 @@ Hill Chiffre
 
 Entwickelt von dem Mathematiker Lester Hill im Jahr 1929.
 
-- Die Stärke ist, dass sie Häufigkeit von einzelnen Buchstaben vollständig ausgeblendet wird.
+- Die Stärke ist, dass die Häufigkeit von einzelnen Buchstaben vollständig ausgeblendet wird.
   
-  - Durch die Verwendung einer größeren Matrix werden mehr weitere Frequenzinformationen verborgen.
-  - Eine 3 x 3 Hill-Chiffre verbirgt nicht nur die Häufigkeiten einzelner Buchstabend sondern auch von Digrammen.
+  - Durch die Verwendung einer größeren Matrix werden mehr Frequenzinformationen verborgen.
+  - Eine 3 x 3 Hill-Chiffre verbirgt nicht nur die Häufigkeiten einzelner Buchstaben sondern auch von Digrammen.
 
 - Stark gegen einen einen Angriff auf den Geheimtext, aber leicht zu brechen sobald ein Klartext vorliegt (*known plaintext attack*).
 
@@ -720,7 +720,7 @@ Auswahl anderer Steganographie-Techniken
 
 - **Sehr helle Tinte**
 
-  Druckerhersteller drucken winzige Punktmuster in sehr hellen Farben auf die Seiten, um Dokumente ggf. rückverfolgen zu können zu dem Drucker auf dem sie gedruckt wurden.
+  Druckerhersteller drucken winzige Punktmuster in sehr hellen Farben auf die Seiten. Dies erlaubt es Dokumente zu dem Drucker zurückzuverfolgen, auf dem sie gedruckt wurden.
 
 
 
