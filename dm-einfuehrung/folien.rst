@@ -51,7 +51,9 @@ Dokumentmanagement, Archivierungs- und Verschlüsselungsverfahren - W3WI_EH304.
 :Verortung: 3. Studienjahr (5. oder 6. Semester)
 :Umfang: 25 Vorlesungsstunden und 50 Stunden Selbststudium (2,5 ECTS) 
 :Übergeordnetes Modul: Fortgeschrittene Konzepte des Informationsmanagements im Gesundheitswesen (W3WI_EH304)
-:Prüfungsleistung: **Klausur** (60 min/60 Punkte) :obsolete:`oder Portfolio``
+:Prüfungsleistung: :obsolete:`Klausur (60 min/60 Punkte)` oder 
+
+    **Portfolio** (hier mündl. Prüfungsgespräche mit 12min pro Person.)
 
 
 .. container:: supplemental
@@ -198,7 +200,7 @@ Gegenüberstellung konventionelles Archiv zu DMS
     :header: " ", "Konventionell","DMS"
 
     Ablagestruktur, "hierarchisch, meist nach Dokumententypen getrennt", "datenbankgestützt, Suchbeginn nach jedem Suchkriterium möglich, Suche wahlweise z. B. je Kunde, Vorgang oder Beleg"
-    Auskunftsbereitschaft,"zeitverzögert, nach Sichtung/ Entnahme aller Dokumente", "unmittelbar durch vorgangsbezogene, bzw. dokumentenübergreifende Suche"
+    Auskunftsbereitschaft,"zeitverzögert, nach Sichtung/ Entnahme aller Dokumente", "unmittelbar durch vorgangsbezogene bzw. dokumentenübergreifende Suche"
     Auskunftsaufwand, "für Beleg Suche, Entnahme und wieder einordnen, evtl. kopieren und Versand", "nur für Recherche am Bildschirm, gegebenenfalls direkter Versand per EMail"
     Redundanz, "Abteilungsablagen = mehrfacher Aufwand", Einmalablage
     Vollständigkeit, "leidet unter jeder Entnahme", bleibt immer gewahrt
@@ -261,7 +263,7 @@ Was ist ein Dokument aus logischer Sicht?
     
 .. container:: assessment incremental
     
-    Das Dokument ist somit eigentlich der Träger, der die Informationen speichert, egal ob das Dokument ein Stück Papier, eine Datei auf einem Rechner, ein Videoband oder eine Tontafel ist etc.
+    Das Dokument ist somit eigentlich der Träger, der die Informationen speichert, unabhängig davon ob das Dokument ein Stück Papier, eine Datei auf einem Rechner, ein Videoband oder eine Tontafel ist etc.
 
 
 
@@ -298,7 +300,7 @@ Elektronische Dokumente
 
     :OCR (Optical Character Recognition):  Text einer gedruckten Vorlage wird durch einfachen Mustervergleich automatisch in maschinenlesbare Zeichen transformiert. 
 
-    :ICR (Intelligent Character Recognition): Die Qualität der Texterkennung wird durch Kontextanalyse verbessert. Typische Fehler von OCR-Systemen wie zum Beispiel Fehlerkennungen von optisch nahe beieinanderliegenden Zeichen (z. B. „8 und B“ oder „0 und O“) werden vermieden. (Wie nahe Zeichen beieinander liegen ist stark vom verwendeten Schrifttyp abhängig.)
+    :ICR (Intelligent Character Recognition): Die Qualität der Texterkennung wird durch Kontextanalyse verbessert. Typische Fehler von OCR-Systemen, wie zum Beispiel Fehlerkennungen von optisch nahe beieinanderliegenden Zeichen (z. B. „8 und B“ oder „0 und O“), werden vermieden. (Wie nahe Zeichen beieinander liegen ist stark vom verwendeten Schrifttyp abhängig.)
 
     :OMR (Optical Mark Recognition): Liest mit großer Sicherheit spezielle Markierungen in vordefinierten Feldern aus - zum Beispiel in Multiple-Choice-Tests und Vordrucken.
 
@@ -358,9 +360,9 @@ Dokumente annotieren
 
 .. class:: incremental
 
-- Man unterscheidet zwischen dem Originalformat des Dokuments (z. B. MS-Word oder LibreOffice Format) und Renditions (wie PDF/a und TIFF)
-- Formate wie PDF/a und TIFF sind in der Regel langlebiger, es gibt Viewer dafür und sie erhalten besser den ursprünglichen optischen Zustand.
-- Previewimages sind oft zusätzlich eingebettet
+- Man unterscheidet zwischen dem Originalformat des Dokuments (z. B. MS-Word oder LibreOffice Format) und Renditions (wie PDF/a und TIFF).
+- Formate wie PDF/a und TIFF sind in der Regel langlebiger. Für beide Formate gibt es weitverbreitete Viewer und sie erhalten besser den ursprünglichen optischen Zustand.
+- Previewimages sind oft zusätzlich eingebettet.
 
 
 
@@ -424,7 +426,7 @@ Meta-Daten
 
 .. container:: supplemental
 
-    Dies ist insbesondere ein Thema der Datenmodellierung. d. h. welche Daten möchte man wie erfassen.
+    Dies ist insbesondere ein Thema der Datenmodellierung, d. h. welche Daten möchte man wie erfassen.
 
 
 
@@ -451,10 +453,10 @@ Beispiele von Meta-Daten einer Verwaltungssoftware für grafische Zeichnungen
 
     1, Zeichnungsnummer, M, Eindeutiger Schlüssel, Manuelle Vergabe durch Benutzer, Identifiziert Zeichnung
     2,"Zeichnungsmappen- nummer", M, Fremdschlüssel, , 
-    3a, Version, M, Version der Zeichnung verwalten, Automatische Vergabe durch DMS Bei Check In, Benutzer entscheidet ob minor oder major
-    3b, Check-In-Datum, M, Datum des Checkin der Version, Automatische Vergabe durch DMS, Check in Datum
+    3a, Version, M, Version der Zeichnung verwalten, Automatische Vergabe durch DMS bei Check-in, Benutzer entscheidet ob minor oder major
+    3b, Check-In-Datum, M, Datum des Check-in der Version, Automatische Vergabe durch DMS, Check-in Datum
     3c, Dokumenten-Owner, M, Gruppe aus letzten Bearbeiter, Aus USER-ID abgeleitet
-    3d, Letzter Bearbeiter, M, Identifikation, USER-ID, Beim Check In
+    3d, Letzter Bearbeiter, M, Identifikation, USER-ID, Beim Check-in
 
 
 
@@ -488,12 +490,14 @@ Dokumentenstrukturen
 • Der Inhalt einer Mappe unterteilt sich in:
 
   1. Dokumente, die immer da sein müssen, 
-  2. solche die optional da sind und
+  2. solche, die optional da sind und
   3. in nicht vorhersehbare Exoten.
    
 .. supplemental::
      
-    Ein Beispiel einer Mappe wäre eine Vorgangsakte mit einem Antrag,   (am Ende) einem Gutachten, ggf. E-Mails aber auch handschriftlichen Notizen ...
+    Ein Beispiel einer Mappe wäre eine Vorgangsakte mit einem Antrag, (am Ende) einem Gutachten, ggf. E-Mails aber auch handschriftlichen Notizen ...
+
+
 
 Zusammengesetzte Dokumente (:eng:`Compound Documents`)
 -------------------------------------------------------
@@ -503,6 +507,7 @@ Komplexes Objekt aus mehreren Dokumenten mit eigener Verwaltungsstruktur:
 - Metadaten
 - Versionen 
 - Rechte
+
 
 
 .. class:: new-section
@@ -553,7 +558,7 @@ Erstellen von Dokumenten
 
 
 
-Nutzen und bearbeiten von Dokumenten
+Nutzen und Bearbeiten von Dokumenten
 -----------------------------------------------
 
 .. class:: incremental
@@ -566,7 +571,7 @@ Nutzen und bearbeiten von Dokumenten
   
 - Ausgabe der Dokumente auf Bildschirm, Drucker, Mail
   
-- Check out / bearbeiten / Check in
+- Check-out / bearbeiten / Check-in
 
 
 
@@ -575,17 +580,17 @@ Rahmenbedingungen für die Lebensdauer von Dokumenten
 
 .. class:: incremental
 
-• Betrieblichen Notwendigkeiten
-• Gesetzlichen Aufbewahrungspflichten 
+• Betriebliche Notwendigkeiten
+• Gesetzliche Aufbewahrungspflichten 
 • Datenschutzbestimmungen
 
 
 .. container:: supplemental
 
     - Konzept zur intelligenten Verwaltung, Bewertung und Nutzung von Daten bei möglichst geringen Kosten (Geschäftsregeln, ServiceLevel, ..)
-    - Betrachtung der Daten und Dokumente über ihren gesamten Lebenslauf aber nicht in Abhängigkeit vom Alter sondern von der Wichtigkeit 
+    - Betrachtung der Daten und Dokumente über ihren gesamten Lebenslauf, aber nicht in Abhängigkeit vom Alter sondern von der Wichtigkeit
     - Entwicklung optimaler Verwaltungsstrategien in Abhängigkeit von der aktuellen Wichtigkeit und Nutzung 
-    - Enge Verzahnung von Speicherhardware, Archivierung und Daten-, Dokumenten- und Content-Management. 
+    - Enge Verzahnung von Speicherhardware, Archivierung und Daten-, Dokumenten- und Content-Management
 
 
 
@@ -985,11 +990,11 @@ Typische Fragestellungen bei Integration
 
 .. class:: incremental
 
-• Welches System ist bezüglich der Schlüssel das führende System
+• Welches System ist bezüglich der Schlüssel das führende System?
 • Einheitliche Nutzer- und Zugriffsrechte
-• Wie werden die Systeme synchronisiert (permanent-online oder zyklisch im Batch)
+• Wie werden die Systeme synchronisiert (permanent-online oder zyklisch im Batch)?
 • Schnittstellenrealisierung
-• ...
+• …
 
 
 .. class:: no-title
