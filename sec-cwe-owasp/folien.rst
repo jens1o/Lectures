@@ -59,6 +59,7 @@ CWE-787: Out-of-bounds Write
 :Technische Auswirkungen: Speichermodifikation; DoS: Crash, Beendigung oder Neustart; Ausführen von nicht autorisiertem Code oder Befehlen
 
 
+
 .. class:: scriptsize
 
 CWE-787: Out-of-bounds Write - Beispiel 1
@@ -77,32 +78,37 @@ CWE-787: Out-of-bounds Write - Beispiel 1
     id_sequence[3] = 456;
 
 
+
 .. class:: scriptsize
 
 CWE-787: Out-of-bounds Write - Beispiel 2
 --------------------------------------------------------
 
-.. code:: C
+.. exercise::
 
-    int returnChunkSize(void *) {
+    .. code:: C
 
-        /* if chunk info is valid, return the size of usable memory,
+        int returnChunkSize(void *) {
 
-        * else, return -1 to indicate an error
+            /* if chunk info is valid, return the size of usable memory,
 
-        */
-        ...
-    }
+            * else, return -1 to indicate an error
 
-    int main() {
-        ...
-        memcpy(destBuf, srcBuf, (returnChunkSize(destBuf)-1));
-        ...
-    }
+            */
+            ...
+        }
 
-.. protected-exercise-solution:: Solution
+        int main() {
+            ...
+            memcpy(destBuf, srcBuf, (returnChunkSize(destBuf)-1));
+            ...
+        }
 
-    `memcpy` erwartet als dritten Parameter einen :code:`unsigned int`. Wenn :code:`returnChunkSize -1 zurückgibt, dann wird :code:`MAX_INT-1` verwendet.
+    .. solution:: Solution
+        :pwd: memcpy...
+
+        `memcpy` erwartet als dritten Parameter einen :code:`unsigned int`. Wenn :code:`returnChunkSize -1 zurückgibt, dann wird :code:`MAX_INT-1` verwendet.
+
 
 
 .. class:: scriptsize
@@ -110,27 +116,30 @@ CWE-787: Out-of-bounds Write - Beispiel 2
 CWE-787: Out-of-bounds Write - Beispiel 3
 --------------------------------------------------------
 
-.. code:: C
+.. exercise::
 
-    void host_lookup(char *user_supplied_addr){
-        struct hostent *hp;
-        in_addr_t *addr;
-        char hostname[64];
-        in_addr_t inet_addr(const char *cp); // function prototype
+    .. code:: C
 
-        /* routine that ensures user_supplied_addr is in the right format for 
-           conversion */
+        void host_lookup(char *user_supplied_addr){
+            struct hostent *hp;
+            in_addr_t *addr;
+            char hostname[64];
+            in_addr_t inet_addr(const char *cp); // function prototype
 
-        validate_addr_form(user_supplied_addr);
-        addr = inet_addr(user_supplied_addr);
-        hp = gethostbyaddr( addr, sizeof(struct in_addr), AF_INET);
-        strcpy(hostname, hp->h_name);
-    }
+            /* routine that ensures user_supplied_addr is in the right format for 
+            conversion */
 
-.. protected-exercise-solution:: Solution
+            validate_addr_form(user_supplied_addr);
+            addr = inet_addr(user_supplied_addr);
+            hp = gethostbyaddr( addr, sizeof(struct in_addr), AF_INET);
+            strcpy(hostname, hp->h_name);
+        }
 
-    - Problem 1: hostname hat nur 64 Bytes, aber der Name des Hosts kann länger sein.
-    - Problem 2: `gethostbyaddr` kann NULL zurückgeben, wenn der Host nicht gefunden werden kann. (Null pointer dereference)
+    .. solution:: 
+        :pwd: gethostbyaddr
+
+        - Problem 1: hostname hat nur 64 Bytes, aber der Name des Hosts kann länger sein.
+        - Problem 2: `gethostbyaddr` kann NULL zurückgeben, wenn der Host nicht gefunden werden kann. (Null pointer dereference)
 
 
 .. class:: scriptsize
@@ -138,30 +147,33 @@ CWE-787: Out-of-bounds Write - Beispiel 3
 CWE-787: Out-of-bounds Write - Beispiel 4
 --------------------------------------------------------
 
-.. code:: C
+.. exercise::
 
-    char * copy_input(char *user_supplied_string){
-      int i, dst_index;
-      char *dst_buf = (char*)malloc(4*sizeof(char) * MAX_SIZE);
-      if ( MAX_SIZE <= strlen(user_supplied_string) ) die("string too long");
-      dst_index = 0;
-      for ( i = 0; i < strlen(user_supplied_string); i++ ){
-        if( '&' == user_supplied_string[i] ){
-          dst_buf[dst_index++] = '&';
-          dst_buf[dst_index++] = 'a';
-          dst_buf[dst_index++] = 'm';
-          dst_buf[dst_index++] = 'p';
-          dst_buf[dst_index++] = ';';
+    .. code:: C
+
+        char * copy_input(char *user_supplied_string){
+        int i, dst_index;
+        char *dst_buf = (char*)malloc(4*sizeof(char) * MAX_SIZE);
+        if ( MAX_SIZE <= strlen(user_supplied_string) ) die("string too long");
+        dst_index = 0;
+        for ( i = 0; i < strlen(user_supplied_string); i++ ){
+            if( '&' == user_supplied_string[i] ){
+            dst_buf[dst_index++] = '&';
+            dst_buf[dst_index++] = 'a';
+            dst_buf[dst_index++] = 'm';
+            dst_buf[dst_index++] = 'p';
+            dst_buf[dst_index++] = ';';
+            }
+            else if ( '<' == user_supplied_string[i] ){ /* encode to &lt; */ }
+            else dst_buf[dst_index++] = user_supplied_string[i];
         }
-        else if ( '<' == user_supplied_string[i] ){ /* encode to &lt; */ }
-        else dst_buf[dst_index++] = user_supplied_string[i];
-      }
-      return dst_buf;
-    }
+        return dst_buf;
+        }
 
-.. protected-exercise-solution:: Solution
+    .. solution:: 
+        :pwd: dst_buf
 
-    - Problem: :code:`dst_buf` hat nur :code:`4*sizeof(char) * MAX_SIZE`` Bytes. Wenn der Nutzer einen sehr langen String mit (fast) nur `&` übermittelt, dann wird der Puffer überlaufen, da das Encoding 5 Zeichen benötigt.
+        Das Problem ist, dass :code:`dst_buf` nur :code:`4*sizeof(char) * MAX_SIZE`` Bytes hat. Wenn der Nutzer einen sehr langen String mit (fast) nur `&` übermittelt, dann wird der Puffer überlaufen, da das Encoding 5 Zeichen benötigt.
 
 
 .. class:: scriptsize
@@ -190,14 +202,16 @@ CWE-787: Out-of-bounds Write - Beispiel 5
       return retMessage;                         // return trimmed string
     }
 
+
+    .. solution:: 
+        :pwd: Whitespace
+
+        Das Problem ist, dass Zeichenketten, die nur aus Whitespace bestehen, nicht korrekt behandelt werden. In diesem Fall kommt es zu einem Buffer-Underflow (d. h. es wird auf den Speicherbereich vor dem Puffer zugegriffen).
+
+
 .. container:: supplemental
 
     :isspace: If an argument (character) passed to the isspace() function is a white-space character, it returns non-zero integer. If not, it returns 0.
-
-.. protected-exercise-solution:: Solution
-
-    - Problem: Zeichenketten, die nur aus Whitespace bestehen, werden nicht korrekt behandelt. In diesem Fall kommt es zu einem Buffer-Underflow (d. h. es wird auf den Speicherbereich vor dem Puffer zugegriffen).
-    
 
 
 .. class:: scriptsize
@@ -205,29 +219,32 @@ CWE-787: Out-of-bounds Write - Beispiel 5
 CWE-787: Out-of-bounds Write - Beispiel 6
 --------------------------------------------------------
 
-.. code:: C
+.. exercise::
 
-    int i;
-    unsigned int numWidgets;
-    Widget **WidgetList;
+    .. code:: C
 
-    numWidgets = GetUntrustedSizeValue();
-    if ((numWidgets == 0) || (numWidgets > MAX_NUM_WIDGETS)) {
-      ExitError("Incorrect number of widgets requested!");
-    }
-    WidgetList = (Widget **)malloc(numWidgets * sizeof(Widget *));
-    printf("WidgetList ptr=%p\n", WidgetList);
-    for(i=0; i<numWidgets; i++) {
-      WidgetList[i] = InitializeWidget();
-    }
-    WidgetList[numWidgets] = NULL;
-    showWidgets(WidgetList);
+        int i;
+        unsigned int numWidgets;
+        Widget **WidgetList;
+
+        numWidgets = GetUntrustedSizeValue();
+        if ((numWidgets == 0) || (numWidgets > MAX_NUM_WIDGETS)) {
+        ExitError("Incorrect number of widgets requested!");
+        }
+        WidgetList = (Widget **)malloc(numWidgets * sizeof(Widget *));
+        printf("WidgetList ptr=%p\n", WidgetList);
+        for(i=0; i<numWidgets; i++) {
+        WidgetList[i] = InitializeWidget();
+        }
+        WidgetList[numWidgets] = NULL;
+        showWidgets(WidgetList);
 
 
-.. protected-exercise-solution:: Solution
+    .. solution::
+        :pwd: malloc!!
 
-    - Problem 1: Der Rückgabewert von :code:`malloc` wird nicht überprüft.
-    - Problem 2: :code:`WidgetList[numWidgets] = NULL;` schreibt außerhalb des Puffers. (Buffer-Overflow)
+        - Problem 1: Der Rückgabewert von :code:`malloc` wird nicht überprüft.
+        - Problem 2: :code:`WidgetList[numWidgets] = NULL;` schreibt außerhalb des Puffers. (Buffer-Overflow)
     
 
 CWE-787: Out-of-bounds Write - Mögliche Abhilfemaßnahmen
@@ -269,6 +286,8 @@ CWE-79: Improper Neutralization of Input During Web Page Generation
 
     Durch eine XSS Lücke werden häufig Informationen abgegriffen (z. B. Session Cookies). Allerdings ist es ggf. auch möglich, dass der Angreifer die Session des Nutzers übernimmt und sich als dieser ausgibt. 
 
+
+
 Stored XSS (Typ 2)
 -------------------
 
@@ -276,6 +295,7 @@ Stored XSS (Typ 2)
    :alt: Stored XSS
    :width: 1700px
    :align: center
+
 
 
 Reflected XSS (Typ 1)
@@ -289,6 +309,7 @@ Reflected XSS (Typ 1)
 .. container:: supplemental
 
     Reflected XSS ist häufig schwerer auszunutzen, da der Angreifer den Nutzer dazu bringen muss, einen Link zu klicken, der den Angriffsvektor enthält. Bei Stored XSS ist dies nicht notwendig, da der Angriffsvektor bereits auf dem Server gespeichert ist.
+
 
 
 Dom-based XSS (Typ 0)
@@ -305,25 +326,25 @@ Dom-based XSS (Typ 0)
 
 
 
-
 .. class:: scriptsize
 
 CWE-79: XSS - Beispiel 1 - XSS Typ 1 (Php)
 --------------------------------------------------------
 
+.. exercise::
 
-.. code:: php
+    .. code:: php
 
-    # Rückgabe einer Willkommensnachricht basierend auf dem 
-    # HTTP Get username Parameter
-    $username = $_GET['username'];
-    echo '<div class="header"> Welcome, ' . $username . '</div>';
+        # Rückgabe einer Willkommensnachricht basierend auf dem 
+        # HTTP Get username Parameter
+        $username = $_GET['username'];
+        echo '<div class="header"> Welcome, ' . $username . '</div>';
 
+    .. solution:: 
+        :pwd: beliebig_lange
 
+        Das Problem ist, dass der Nutzername "beliebig lange" sein kann und insbesondere beliebigen JavaScript Code enthalten. Beispiel :code:`http://trustedSite.example.com/welcome.php?username=<Script Language="Javascript">alert("You've been attacked!");</Script>`. Komplexerer Code könnte zum Beispiel ein Fakelogin nachbauen und so die Zugangsdaten des Nutzers abgreifen. Entsprechende Links könnten mit Hilfe von Werkzeugen so verschleiert werden, dass der Nutzer nicht bemerkt, dass er auf einen Link mit Schadfunktion klickt.
 
-.. protected-exercise-solution:: Solution
-
-    - Problem: der Nutzername kann "beliebig lange" sein und insbesondere beliebigen JavaScript Code enthalten. Beispiel :code:`http://trustedSite.example.com/welcome.php?username=<Script Language="Javascript">alert("You've been attacked!");</Script>`. Komplexerer Code könnte zum Beispiel ein Fakelogin nachbauen und so die Zugangsdaten des Nutzers abgreifen. Entsprechende Links könnten mit Hilfe von Werkzeugen so verschleiert werden, dass der Nutzer nicht bemerkt, dass er auf einen Link mit Schadfunktion klickt.
 
 
 .. class:: scriptsize
@@ -331,23 +352,26 @@ CWE-79: XSS - Beispiel 1 - XSS Typ 1 (Php)
 CWE-79: XSS - Beispiel 2 - XSS Typ 2 (JSP)
 --------------------------------------------------------
 
-.. code:: jsp
+.. exercise::
 
-    <%  String eid = request.getParameter("eid");
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("select * from emp where id="+eid);
-        if (rs != null) {
-          rs.next();
-          String name = rs.getString("name");
-        }
-    %>
+    .. code:: jsp
 
-    Employee Name: <%= name %>
+        <%  String eid = request.getParameter("eid");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from emp where id="+eid);
+            if (rs != null) {
+            rs.next();
+            String name = rs.getString("name");
+            }
+        %>
 
-.. protected-exercise-solution:: Solution
+        Employee Name: <%= name %>
 
-    - Problem: Falls der Nutzer in der Lage war seinen Namen selber zu wählen und beim Anlegen keine ausreichenden Prüfungen stattgefunden haben, ist ggf. ein XSS Angriff möglich. 
-    - Weiteres Problem : In dem Beispiel wird der Parameter :code:`eid` nicht validiert. Der Angreifer kann beliebige SQL-Statements ausführen. 
+    .. solution:: 
+        :pwd: Mein Name
+
+        - Problem: Falls der Nutzer in der Lage war seinen Namen selber zu wählen und beim Anlegen keine ausreichenden Prüfungen stattgefunden haben, ist ggf. ein XSS Angriff möglich. 
+        - Weiteres Problem : In dem Beispiel wird der Parameter :code:`eid` nicht validiert. Der Angreifer kann beliebige SQL-Statements ausführen. 
 
 
 .. class:: scriptsize
@@ -355,20 +379,23 @@ CWE-79: XSS - Beispiel 2 - XSS Typ 2 (JSP)
 CWE-79: XSS - Beispiel 3 - XSS Typ 2 (PHP)
 --------------------------------------------------------
 
-.. code:: php
+.. exercise:: 
 
-    $username = mysql_real_escape_string($username);
-    $fullName = mysql_real_escape_string($fullName);
-    $query = sprintf('Insert Into users (uname,pwd,fname) Values ("%s","%s","%s")', 
-                     $username, 
-                     crypt($password),
-                     $fullName) ;
-    mysql_query($query);
-    ...
+    .. code:: php
 
-.. protected-exercise-solution:: Solution
+        $username = mysql_real_escape_string($username);
+        $fullName = mysql_real_escape_string($fullName);
+        $query = sprintf('Insert Into users (uname,pwd,fname) Values ("%s","%s","%s")', 
+                        $username, 
+                        crypt($password),
+                        $fullName) ;
+        mysql_query($query);
+        ...
 
-    - Problem: Hier wird zwar die Eingabe validiert (mysql_real_escape_string) aber *nur* in Hinblick auf SQL Injections! Der Angreifer kann so einen Nutzer anlegen, der HTML code enthält.
+    .. solution::
+        :pwd: HTML code
+
+        Hier wird zwar die Eingabe validiert (mysql_real_escape_string) aber *nur* in Hinblick auf SQL Injections! Der Angreifer kann so einen Nutzer anlegen, der HTML code enthält.
 
 
 
@@ -410,19 +437,21 @@ CWE-89: Improper Neutralization of Special Elements used in an SQL Command
 CWE-89: SQL Injection - Beispiel 1 (MS SQl)
 --------------------------------------------------------
 
-.. code:: sql
+.. exercise:: 
 
-    SELECT ITEM,PRICE FROM PRODUCT WHERE ITEM_CATEGORY='$user_input' ORDER BY PRICE
+    .. code:: sql
 
-.. admonition:: Hintergrund
-    :class: margin-top-2em
+        SELECT ITEM,PRICE FROM PRODUCT WHERE ITEM_CATEGORY='$user_input' ORDER BY PRICE
 
-    MS SQL hat eine eingebaute Funktion, die es erlaubt Shell Befehle auszuführen. Diese Funktion kann auch in einem SQL Statement verwendet werden.
+    .. admonition:: Hintergrund
+        :class: margin-top-2em
 
+        MS SQL hat eine eingebaute Funktion, die es erlaubt Shell Befehle auszuführen. Diese Funktion kann auch in einem SQL Statement verwendet werden.
 
-.. protected-exercise-solution:: Solution   
+    .. solution:: 
+        :pwd: Kommando_frei   
 
-    - Problem: Sollte der Nutzername :code:`'; exec master..xp_cmdshell 'dir' --` sein, dann wird das entsprechende Kommando ausgeführt.
+        Sollte der Nutzername :code:`'; exec master..xp_cmdshell 'dir' --` sein, dann wird das entsprechende Kommando ausgeführt.
 
 
 .. class:: scriptsize
@@ -430,16 +459,20 @@ CWE-89: SQL Injection - Beispiel 1 (MS SQl)
 CWE-89: SQL Injection - Beispiel 2 (PHP)
 --------------------------------------------------------
 
-.. code:: php
+.. exercise::
 
-    $id = $_COOKIE["mid"];
-    mysql_query("SELECT MessageID, Subject FROM messages WHERE MessageID = '$id'");
+    .. code:: php
+
+        $id = $_COOKIE["mid"];
+        mysql_query("SELECT MessageID, Subject FROM messages WHERE MessageID = '$id'");
 
 
-.. protected-exercise-solution:: Solution   
+    .. solution::
+        :pwd: Cookies
 
-    - Problem: Der Wert von :code:`$id`, welcher aus einem Cookie ausgelesen wird, wird nicht validiert. Auch wenn Cookies nicht trivial von einem Nutzer bzw. Angreifer manipuliert werden können, so ist es dennoch möglich. Der Angreifer kann so beliebige SQL Statements ausführen. Deswegen gilt: *Alle* Eingaben müssen validiert werden.
-    - 
+        Das Problem ist, dass der Wert von :code:`$id`, welcher aus einem Cookie ausgelesen wird,  nicht validiert wird. Auch wenn Cookies nicht trivial von einem Nutzer bzw. Angreifer manipuliert werden können, so ist es dennoch möglich. Der Angreifer kann so beliebige SQL Statements ausführen. Deswegen gilt: *Alle* Eingaben müssen validiert werden.
+  
+
 
 CWE-89: Improper Neutralization of Special Elements used in an SQL Command - Abhilfemaßnahmen und Erkennung
 --------------------------------------------------------------------------------------------------------------
@@ -452,7 +485,6 @@ CWE-89: Improper Neutralization of Special Elements used in an SQL Command - Abh
 - Sollte es notwendig sein einen dynamischen SQL Befehl zu erstellen, dann sollten geprüfte Escapefunktionen verwendet werden.
 - Statische Analyse Werkzeuge
 - ggf. Application-level Firewall einsetzen
-
 
 
 
@@ -497,88 +529,92 @@ CWE-416: Use After Free - Triviales Beispiel
     Ziel ist es im Allgemeinen eine Referenz auf einen interessanten Speicherbereich zu erhalten, der bereits freigegeben wurde und dann den Inhalt dieses Speicherbereichs auszulesen bzw. zu manipulieren, um die nächste Verwendung zu kontrollieren.
 
 
+
 .. class:: scriptsize
 
 CWE-416: Use After Free - Beispiel
 ----------------------------------------------------------------------------
 
-.. container:: two-columns
+.. exercise::
 
-    .. container:: column
+    .. container:: two-columns
 
-        .. code:: C
+        .. container:: column
 
-            #include <stdlib.h>
-            #include <stdio.h>
-            #include <string.h>
-            #define BUFSIZER1 512
-            int main(int argc, char **argv) {
-              char *buf1R1, *buf2R1, *buf2R2;
-              buf1R1 = (char *) malloc(BUFSIZER1);
-              buf2R1 = (char *) malloc(BUFSIZER1);
-              printf("buf2R1 -> %p\n",buf2R1); 
-              free(buf2R1);
-              buf2R2 = (char *) malloc(BUFSIZER1);
-              strncpy(buf2R1, argv[1], BUFSIZER1-1);
-              printf("[FREED]   %p\n",buf2R1);
-              printf("buf2R2 -> %p\n",buf2R2);
-              printf("buf2R2  = %s\n",buf2R2);
-              free(buf1R1);
-              free(buf2R2);
-            }
+            .. code:: C
 
-    .. container:: column
+                #include <stdlib.h>
+                #include <stdio.h>
+                #include <string.h>
+                #define BUFSIZER1 512
+                int main(int argc, char **argv) {
+                char *buf1R1, *buf2R1, *buf2R2;
+                buf1R1 = (char *) malloc(BUFSIZER1);
+                buf2R1 = (char *) malloc(BUFSIZER1);
+                printf("buf2R1 -> %p\n",buf2R1); 
+                free(buf2R1);
+                buf2R2 = (char *) malloc(BUFSIZER1);
+                strncpy(buf2R1, argv[1], BUFSIZER1-1);
+                printf("[FREED]   %p\n",buf2R1);
+                printf("buf2R2 -> %p\n",buf2R2);
+                printf("buf2R2  = %s\n",buf2R2);
+                free(buf1R1);
+                free(buf2R2);
+                }
 
-        **Fragen**:
+        .. container:: column
 
-        Wird dieses Program bis zum Ende laufen oder abstürzen? 
+            **Fragen**:
+
+            Wird dieses Program bis zum Ende laufen oder abstürzen? 
+            
+            Welche Ausgabe erzeugt das Programm?
+
+            Ist die Ausgabe bei jedem Lauf gleich?
+
+    .. solution::
+        :pwd: Das Ende wir kommen.   
+
+        Das Programm wird (immer) bis zum Ende laufen!
+
+        Ausgabe - 1. Lauf:
+
+        .. code:: text
+
+            buf2R1 -> 0xaaaabc1fc4b0
+            [FREED]   0xaaaabc1fc4b0
+            buf2R2 -> 0xaaaabc1fc4b0
+            buf2R2  = Test
+
+        Ausgabe - 2. Lauf:
+
+        .. code:: text
+
+            buf2R1 -> 0xaaaad5de54b0
+            [FREED]   0xaaaad5de54b0
+            buf2R2 -> 0xaaaad5de54b0
+            buf2R2  = Test
+
+
+        Der Inhalt von :code:`buf2R2` ist :code:`Test`, obwohl dort nie explizit etwas hineinkopiert wurde. Die Ausgabe ist bei jedem Lauf anders, da wir Position-Independent-Code haben und der Kernel ASLR verwendet.
+
+        Die Ausgabe wird bei jedem Lauf gleich, wenn man beides explizit unterbindet.
+
+        .. code:: bash
         
-        Welche Ausgabe erzeugt das Programm?
-
-        Ist die Ausgabe bei jedem Lauf gleich?
-
-.. protected-exercise-solution:: Solution   
-
-    Das Programm wird (immer) bis zum Ende laufen!
-
-    Ausgabe - 1. Lauf:
-
-    .. code:: text
-
-        buf2R1 -> 0xaaaabc1fc4b0
-        [FREED]   0xaaaabc1fc4b0
-        buf2R2 -> 0xaaaabc1fc4b0
-        buf2R2  = Test
-
-    Ausgabe - 2. Lauf:
-
-    .. code:: text
-
-        buf2R1 -> 0xaaaad5de54b0
-        [FREED]   0xaaaad5de54b0
-        buf2R2 -> 0xaaaad5de54b0
-        buf2R2  = Test
-
-
-    Der Inhalt von :code:`buf2R2` ist :code:`Test`, obwohl dort nie explizit etwas hinkopiert wurde. Die Ausgabe ist bei jedem Lauf anders, da wir Position-Independent-Code haben und der Kernel ASLR verwendet.
-
-    Die Ausgabe wird bei jedem Lauf gleich, wenn man beides explizit unterbindet.
-
-    .. code:: bash
-    
-        gcc uaf.c -fno-stack-protector -D_FORTIFY_SOURCE=0 -no-pie -fno-pic
-        echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
-    
-        $ ./a.out Test
-        buf2R1 -> 0x4214b0
-        [FREED]   0x4214b0
-        buf2R2 -> 0x4214b0
-        buf2R2  = Test
-        $ ./a.out Test
-        buf2R1 -> 0x4214b0
-        [FREED]   0x4214b0
-        buf2R2 -> 0x4214b0
-        buf2R2  = Test
+            gcc uaf.c -fno-stack-protector -D_FORTIFY_SOURCE=0 -no-pie -fno-pic
+            echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
+        
+            $ ./a.out Test
+            buf2R1 -> 0x4214b0
+            [FREED]   0x4214b0
+            buf2R2 -> 0x4214b0
+            buf2R2  = Test
+            $ ./a.out Test
+            buf2R1 -> 0x4214b0
+            [FREED]   0x4214b0
+            buf2R2 -> 0x4214b0
+            buf2R2  = Test
 
 
 
@@ -587,29 +623,31 @@ CWE-416: Use After Free - Beispiel
 CWE-416: CVE-2006-4997 IP over ATM clip_mkip dereference freed pointer (Linux Kernel)
 ---------------------------------------------------------------------------------------
 
+.. exercise::
 
-.. code:: c
+    .. code:: c
 
-   // clip_mkip (clip.c):
-      198 static void clip_push(struct atm_vcc *vcc,struct sk_buff *skb) {
-      ...
-      234         memset(ATM_SKB(skb), 0, sizeof(struct atm_skb_data));
-      235         netif_rx(skb);
-      236 }
-      ...
-      510         clip_push(vcc,skb);
-      511         PRIV(skb->dev)->stats.rx_packets--;
-      512         PRIV(skb->dev)->stats.rx_bytes -= len;
+        // clip_mkip (clip.c):
+            198 static void clip_push(struct atm_vcc *vcc,struct sk_buff *skb) {
+            ...
+            234         memset(ATM_SKB(skb), 0, sizeof(struct atm_skb_data));
+            235         netif_rx(skb);
+            236 }
+            ...
+            510         clip_push(vcc,skb);
+            511         PRIV(skb->dev)->stats.rx_packets--;
+            512         PRIV(skb->dev)->stats.rx_bytes -= len;
 
-   // netif_rx (dev.c):
-      1392 int netif_rx(struct sk_buff *skb) {
-      ...
-      1428        kfree_skb(skb);	//drop skb
-      1429        return NET_RX_DROP;
+        // netif_rx (dev.c):
+            1392 int netif_rx(struct sk_buff *skb) {
+            ...
+            1428        kfree_skb(skb);	//drop skb
+            1429        return NET_RX_DROP;
 
-.. protected-exercise-solution:: Solution   
+    .. solution:: 
+        :pwd: 511_1428   
 
-    - Problem: In Zeile 511 wird auf den Speicherbereich von :code:`skb->dev` zugegriffen, obwohl dieser bereits freigegeben wurde in ``netif_rx`` in Zeile 1428.
+        In Zeile 511 wird auf den Speicherbereich von :code:`skb->dev` zugegriffen, obwohl dieser bereits freigegeben wurde in ``netif_rx`` in Zeile 1428.
 
 
 CWE-416: Use After Free - Abhilfemaßnahmen und Erkennung
@@ -655,22 +693,25 @@ CWE-78: Improper Neutralization of Special Elements used in an OS Command
 CWE-78: Improper Neutralization of Special Elements used in an OS Command - Beispiel (Java)
 -------------------------------------------------------------------------------------------
 
-.. code:: java
+.. exercise:: 
 
-    ...
-    String btype = request.getParameter("backuptype");
-    String cmd = new String("cmd.exe /K \"
-    c:\\util\\rmanDB.bat "
-    +btype+
-    "&&c:\\utl\\cleanup.bat\"")
+    .. code:: java
 
-    System.Runtime.getRuntime().exec(cmd);
-    ...
+        ...
+        String btype = request.getParameter("backuptype");
+        String cmd = new String("cmd.exe /K \"
+        c:\\util\\rmanDB.bat "
+        +btype+
+        "&&c:\\utl\\cleanup.bat\"")
+
+        System.Runtime.getRuntime().exec(cmd);
+        ...
 
 
-.. protected-exercise-solution:: Solution   
+    .. solution:: 
+        :pwd: Improper
 
-    - Problem: Der Wert von :code:`btype` wird nicht validiert und dewegen kann der Angreifer  beliebige Befehle ausführen, da die Shell (:code:`cmd.exe``) mehrere Befehle, die mit :code:`&&` verknüpft sind hintereinander ausführt.
+        Der Wert von :code:`btype` wird nicht validiert und dewegen kann der Angreifer  beliebige Befehle ausführen, da die Shell (:code:`cmd.exe``) mehrere Befehle, die mit :code:`&&` verknüpft sind hintereinander ausführt.
 
 
 CWE-78: Improper Neutralization of Special Elements used in an OS Command - Abhilfemaßnahmen und Erkennung
@@ -741,39 +782,42 @@ CWE-20: Improper Input Validation - zu verifizierende Werte und Eigenschaften
     Die Validierung muss immer in Hinblick auf den Kontext erfolgen.
 
 
+
 .. class:: scriptsize
 
 CWE-20: Improper Input Validation - Beispiel partielle Validierung
 ---------------------------------------------------------------------
 
-C:
+.. exercise::
 
-.. code:: c
+    C:
 
-    #define MAX_DIM 100   
-    int m,n, error; /* m,n = board dimensions */
-    board_square_t *board;
-    printf("Please specify the board height: \n");
-    error = scanf("%d", &m);
-    if ( EOF == error ) die("No integer passed!\n");
-    printf("Please specify the board width: \n");
-    error = scanf("%d", &n);
-    if ( EOF == error ) die("No integer passed!\n");
-    if ( m > MAX_DIM || n > MAX_DIM ) die("Value too large!\n");
+    .. code:: c
 
-    board = (board_square_t*) malloc( m * n * sizeof(board_square_t));
-    ...
+        #define MAX_DIM 100   
+        int m,n, error; /* m,n = board dimensions */
+        board_square_t *board;
+        printf("Please specify the board height: \n");
+        error = scanf("%d", &m);
+        if ( EOF == error ) die("No integer passed!\n");
+        printf("Please specify the board width: \n");
+        error = scanf("%d", &n);
+        if ( EOF == error ) die("No integer passed!\n");
+        if ( m > MAX_DIM || n > MAX_DIM ) die("Value too large!\n");
 
-.. admonition:: Warnung
-    :class: incremental margin-top-1em
+        board = (board_square_t*) malloc( m * n * sizeof(board_square_t));
+        ...
 
-    Ein vergleichbares Problem ist auch in sicheren Programmiersprachen möglich.
+    .. admonition:: Warnung
+        :class: incremental margin-top-1em
 
-.. protected-exercise-solution:: Solution   
+        Ein vergleichbares Problem ist auch in sicheren Programmiersprachen möglich.
 
-    - Problem: n und m werden nicht vollständig validiert. Sind die Werte negativ, dann wird ggf. sehr viel Speicher alloziiert oder das Programm stürzt ab. 
+    .. solution::
+        :pwd: Allokation
 
-    
+        Das Problem ist, dass n und m nicht vollständig validiert werden. Sind die Werte negativ, dann wird ggf. sehr viel Speicher alloziert oder das Programm stürzt ab. 
+
 
 
 CWE-20: Improper Input Validation - Abhilfemaßnahmen und Erkennung
@@ -788,9 +832,7 @@ CWE-20: Improper Input Validation - Abhilfemaßnahmen und Erkennung
 
 
 
-
 .. No 7 in CWE Top 2023
-
 .. class:: new-subsection transition-move-to-top
 
 CWE-125: Out-of-bounds Read
@@ -821,31 +863,35 @@ CWE-125: Out-of-bounds Read
 CWE-125: Out-of-bounds Read - Beispiel: partielle Validierung
 -------------------------------------------------------------
 
-C:
-
-.. code:: C
-
-    int getValueFromArray(int *array, int len, int index) {
-      int value;
-
-      // check that the array index is less than the maximum length of the array
-      if (index < len) {
-        // get the value at the specified index of the array
-        value = array[index];
-      }
-      // if array index is invalid then output error message
-      // and return value indicating error
-      else {
-        printf("Value is: %d\n", array[index]);
-        value = -1;
-      }
-      return value;
-    }
+.. exercise::
 
 
-.. protected-exercise-solution:: Solution   
+    C:
 
-    - Problem: Der Wert von :code:`index` wird nicht gegen zu kleine Werte validiert. Der Angreifer kann so beliebige Speicherbereiche auslesen.
+    .. code:: C
+
+        int getValueFromArray(int *array, int len, int index) {
+        int value;
+
+        // check that the array index is less than the maximum length of the array
+        if (index < len) {
+            // get the value at the specified index of the array
+            value = array[index];
+        }
+        // if array index is invalid then output error message
+        // and return value indicating error
+        else {
+            printf("Value is: %d\n", array[index]);
+            value = -1;
+        }
+        return value;
+        }
+
+
+    .. solution::
+        :pwd: index   
+
+        Der Wert von :code:`index` wird nicht gegen zu kleine Werte validiert. Der Angreifer kann so beliebige Speicherbereiche auslesen.
 
 
 CWE-125: Out-of-bounds Read - Abhilfemaßnahmen und Erkennung
@@ -884,18 +930,21 @@ CWE-22: Improper Limitation of a Pathname to a Restricted Directory
 CWE-22: Path Traversal - Beispiel: fehlende Validierung
 --------------------------------------------------------
 
-PHP:
+.. exercise::
 
-.. code:: php
+    PHP:
 
-    <?php
-    $file = $_GET['file'];
-    include("/home/www-data/$file");
-    ?>
+    .. code:: php
 
-.. protected-exercise-solution:: Solution
+        <?php
+        $file = $_GET['file'];
+        include("/home/www-data/$file");
+        ?>
 
-    - Problem: Der Wert von :code:`file` wird nicht validiert. Der Angreifer kann so beliebige Dateien auslesen.
+    .. solution:: 
+        :pwd: no_validation_of_file
+
+        Das Problem ist, dass der Wert von :code:`file` nicht validiert wird. Der Angreifer kann so beliebige Dateien auslesen.
 
 
 .. class:: scriptsize
@@ -903,32 +952,36 @@ PHP:
 CWE-22: Path Traversal - Beispiel: partielle Validierung
 --------------------------------------------------------
 
-Perl:
+.. exercise::
 
-.. code:: Perl
+    Perl:
 
-    my $Username = GetUntrustedInput();
-    $Username =~ s/\.\.\///;                # Remove ../
-    my $filename = "/home/user/" . $Username;
-    ReadAndSendFile($filename);
+    .. code:: Perl
 
-.. container:: incremental margin-top-2em
+        my $Username = GetUntrustedInput();
+        $Username =~ s/\.\.\///;                # Remove ../
+        my $filename = "/home/user/" . $Username;
+        ReadAndSendFile($filename);
 
-    Java: 
+    .. container:: incremental margin-top-2em
 
-    .. code:: Java
+        Java: 
 
-        String path = getInputPath();
-        if (path.startsWith("/safe_dir/")) {
-          File f = new File(path);
-          f.delete()
-        }
+        .. code:: Java
 
-.. protected-exercise-solution:: Solution
+            String path = getInputPath();
+            if (path.startsWith("/safe_dir/")) {
+            File f = new File(path);
+            f.delete()
+            }
 
-    - Problem im Perl Beispiel: :code:`Username` wird nur bzgl. ../ am Anfang der Zeichenkette gesäubert. Beginnt der Nutzername mit :code:`../../` dann kann der Angreifer dennoch zum darüber liegenden Verzeichnis wechseln. Es fehlt im Wesentlichen das :code:`g` Flag (vgl. Reguläre Ausdrücke in ``sed``)
+    .. solution::
+        :pwd: Perl-oh-Perl!
 
-    - Problem im Java Beispiel: Auch in diesem Falle wird zwar der Anfang geprüft, d. h. ob der Pfad mit :code:`/safe_dir/` beginnt, aber dies verhindert nicht, dass der Pfad im Weiteren :code:`../` verwendet und der Angreifer darüber zu einem höherliegenden Verzeichnis wechseln kann.
+        - Problem im Perl Beispiel: :code:`Username` wird nur bzgl. ../ am Anfang der Zeichenkette gesäubert. Beginnt der Nutzername mit :code:`../../` dann kann der Angreifer dennoch zum darüber liegenden Verzeichnis wechseln. Es fehlt im Wesentlichen das :code:`g` Flag (vgl. Reguläre Ausdrücke in ``sed``)
+
+        - Problem im Java Beispiel: Auch in diesem Falle wird zwar der Anfang geprüft, d. h. ob der Pfad mit :code:`/safe_dir/` beginnt, aber dies verhindert nicht, dass der Pfad im Weiteren :code:`../` verwendet und der Angreifer darüber zu einem höherliegenden Verzeichnis wechseln kann.
+
 
 
 .. class:: scriptsize
@@ -1088,47 +1141,51 @@ CWE-434: Unrestricted Upload of File with Dangerous Type
 CWE-434: Unrestricted Upload of File with Dangerous Type - Beispiel
 ----------------------------------------------------------------------------
 
-HTML:
+.. exercise::
 
-.. code:: HTML
+    HTML:
 
-    <form action="upload_picture.php" method="post" enctype="multipart/form-data">
-        Choose a file to upload:
-        <input type="file" name="filename"/>
-        <br/>
-        <input type="submit" name="submit" value="Submit"/>
-    </form>
+    .. code:: HTML
 
-
-PHP:
-
-.. code:: PHP
-
-    // Define the target location where the picture being
-    // uploaded is going to be saved.
-    $target = "pictures/" . basename($_FILES['uploadedfile']['name']);
-
-    // Move the uploaded file to the new location.
-    move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target)
+        <form action="upload_picture.php" method="post" enctype="multipart/form-data">
+            Choose a file to upload:
+            <input type="file" name="filename"/>
+            <br/>
+            <input type="submit" name="submit" value="Submit"/>
+        </form>
 
 
-.. protected-exercise-solution:: Solution
-
-   Problem: Die Datei :code:`$_FILES['uploadedfile']['name']` wird nicht validiert. Sollte der Nutzer statt einem Bild eine PHP Datei hochladen, dann wird diese beim einem späteren Aufruf im Kontext der Anwendung ausgeführt.
-  
-   Eine einfache Möglichkeit die Schwachstelle auszunutzen wäre die Datei:
+    PHP:
 
     .. code:: PHP
 
-        // malicious.php
-   
-        <?php
-        system($_GET['cmd']);
-        ?>
+        // Define the target location where the picture being
+        // uploaded is going to be saved.
+        $target = "pictures/" . basename($_FILES['uploadedfile']['name']);
 
-    Mit einer Anfrage wie:
+        // Move the uploaded file to the new location.
+        move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target)
 
-        ``...malicious.php?cmd=ls%20-l``
+
+    .. solution:: 
+        :pwd: upload
+
+        Problem: Die Datei :code:`$_FILES['uploadedfile']['name']` wird nicht validiert. Sollte der Nutzer statt einem Bild eine PHP Datei hochladen, dann wird diese beim einem späteren Aufruf im Kontext der Anwendung ausgeführt.
+    
+        Eine einfache Möglichkeit die Schwachstelle auszunutzen wäre die Datei:
+
+            .. code:: PHP
+
+                // malicious.php
+        
+                <?php
+                system($_GET['cmd']);
+                ?>
+
+            Mit einer Anfrage wie:
+
+                ``...malicious.php?cmd=ls%20-l``    
+
 
 
 CWE-434: Unrestricted Upload of File with Dangerous Type - Abhilfemaßnahmen und Erkennung
@@ -1169,21 +1226,24 @@ CWE-122: Heap-based Buffer Overflow
 CWE-122: Heap-based Buffer Overflow
 -------------------------------------------------------------------
 
-:ger-quote:`Basisbeispiel` in C:
+.. exercise::
 
-.. code:: C
+    :ger-quote:`Basisbeispiel` in C:
 
-    #define BUFSIZE 256
-    int main(int argc, char **argv) {
-        char *buf;
-        buf = (char *)malloc(sizeof(char)*BUFSIZE);
-        strcpy(buf, argv[1]);
-    }
+    .. code:: C
+
+        #define BUFSIZE 256
+        int main(int argc, char **argv) {
+            char *buf;
+            buf = (char *)malloc(sizeof(char)*BUFSIZE);
+            strcpy(buf, argv[1]);
+        }
 
 
-.. protected-exercise-solution:: Solution
+    .. solution:: 
+        :pwd: buf-to-small
 
-    Problem: Die Größe von buf ist unabhängig von der Größe von :code:`argv[1]`. 
+        Problem: Die Größe von buf ist unabhängig von der Größe von :code:`argv[1]`. 
 
 
 
@@ -1253,45 +1313,49 @@ Java
     In diesem Beispiel wird ein Objekt aus einer Datei gelesen und in eine Variable vom Typ :code:`javax.swing.JButton` geschrieben. Der Typ des Objekts wird nicht geprüft. Es ist möglich, dass die Datei ein Objekt enthält, welches vom Typ :code:`javax.swing.JButton` ist, aber nicht die Eigenschaften hat, die ein Button haben sollte. In diesem Fall wird keine Exception geworfen, aber das Objekt kann nicht wie erwartet verwendet werden bzw. es kommt zur Ausführung von beliebigem Code.
 
 
+
 .. class:: scriptsize
 
 CWE-502: Deserialization of Untrusted Data - Beispiel
 -------------------------------------------------------------------
 
-Python
+.. exercise:: 
 
-.. code:: Python
+    Python
 
-    
-    class ExampleProtocol(protocol.Protocol):
+    .. code:: Python
 
-        def dataReceived(self, data):
-            # ... parse the incoming data and 
-            # after receiving headers, call confirmAuth() to authenticate
+        
+        class ExampleProtocol(protocol.Protocol):
 
-        def confirmAuth(self, headers):
-            try:
-                token = cPickle.loads(base64.b64decode(headers['AuthToken']))
-                if not check_hmac(token['signature'], token['data'], getSecretKey()):
+            def dataReceived(self, data):
+                # ... parse the incoming data and 
+                # after receiving headers, call confirmAuth() to authenticate
+
+            def confirmAuth(self, headers):
+                try:
+                    token = cPickle.loads(base64.b64decode(headers['AuthToken']))
+                    if not check_hmac(token['signature'], token['data'], getSecretKey()):
+                        raise AuthFail
+                    self.secure_data = token['data']
+                except:
                     raise AuthFail
-                self.secure_data = token['data']
-            except:
-                raise AuthFail
-    
+        
 
 
-.. protected-exercise-solution:: Solution
+    .. solution::
+        :pwd: PicklingAtItsBest
 
-    In diesem Fall könnte man der Funktion ein Objekt unterschieben, dass bei der Deserialisierung beliebigen Code ausführt (zum Beispiel um einen weitere Prozess zu starten.).
+        In diesem Fall könnte man der Funktion ein Objekt unterschieben, dass bei der Deserialisierung beliebigen Code ausführt (zum Beispiel, um einen weitere Prozess zu starten.).
 
-    Dieses Problem wird in der Dokumentation  auch explizit erwähnt:
+        Dieses Problem wird in der Dokumentation  auch explizit erwähnt:
 
-    .. epigraph::
+        .. epigraph::
 
-        Warning The pickle module is not secure. Only unpickle data you trust.
-        It is possible to construct malicious pickle data which will execute arbitrary code during unpickling. Never unpickle data that could have come from an untrusted source, or that could have been tampered with.
+            Warning The pickle module is not secure. Only unpickle data you trust.
+            It is possible to construct malicious pickle data which will execute arbitrary code during unpickling. Never unpickle data that could have come from an untrusted source, or that could have been tampered with.
 
-        -- `Python 3.12 <https://docs.python.org/3/library/pickle.html>`__
+            -- `Python 3.12 <https://docs.python.org/3/library/pickle.html>`__
 
     
 
@@ -1403,6 +1467,7 @@ JavaScript:
 .. [#] `Exploiting URL Parsers <https://www.blackhat.com/docs/us-17/thursday/us-17-Tsai-A-New-Era-Of-SSRF-Exploiting-URL-Parser-In-Trending-Programming-Languages.pdf>`__
 
 
+
 .. class:: scriptsize
 
 CWE-918: Server-Side Request Forgery - Beispiel: URL Parser vs. Abfrage der URL
@@ -1424,6 +1489,8 @@ Ergebnis:
 
     ``curl`` fragt die URL ``127.0.0.1:11211`` abfragen.
 
+
+
 CWE-918: Server-Side Request Forgery - Variante: Blind SSRF
 -----------------------------------------------------------------------------
 
@@ -1432,6 +1499,7 @@ Bei *Blind SSRF*-Schwachstellen werden auch Back-End-HTTP-Anfragen an eine berei
 .. container:: supplemental
 
     Empfohlene Lektüre: `Blind Server-Side Request Forgery (SSRF) <https://portswigger.net/web-security/ssrf/blind>`__
+
 
 
 CWE-918: Server-Side Request Forgery - Abhilfemaßnahmen und Erkennung
@@ -1470,29 +1538,32 @@ CWE-843: Access of Resource Using Incompatible Type (Type Confusion)
 CWE-843: Access of Resource Using Incompatible Type - Beispiel in C
 ----------------------------------------------------------------------
 
-.. code:: c
+.. exercise::
 
-    #define NAME_TYPE 1
-    #define ID_TYPE 2
-    struct MessageBuffer {
-        int msgType;
-        union {
-            char *name;
-            int nameID;
-    };  };
-    int main (int argc, char **argv) {
-        struct MessageBuffer buf;
-        char *defaultMessage = "Hello World";
-        buf.msgType = NAME_TYPE;
-        buf.name = defaultMessage;              // printf("*buf.name %p", buf.name);
-        buf.nameID = (int)(defaultMessage + 1); // printf("*buf.name %p", buf.name);
-        if (buf.msgType == NAME_TYPE) printf("%s\n", buf.name);
-        else                          printf("ID %d\n", buf.nameID);
-    }
+    .. code:: c
 
-.. protected-exercise-solution:: Solution
+        #define NAME_TYPE 1
+        #define ID_TYPE 2
+        struct MessageBuffer {
+            int msgType;
+            union {
+                char *name;
+                int nameID;
+        };  };
+        int main (int argc, char **argv) {
+            struct MessageBuffer buf;
+            char *defaultMessage = "Hello World";
+            buf.msgType = NAME_TYPE;
+            buf.name = defaultMessage;              // printf("*buf.name %p", buf.name);
+            buf.nameID = (int)(defaultMessage + 1); // printf("*buf.name %p", buf.name);
+            if (buf.msgType == NAME_TYPE) printf("%s\n", buf.name);
+            else                          printf("ID %d\n", buf.nameID);
+        }
 
-    Der Zugriff auf ``buf.nameId`` manipuliert den Zeiger auf ``buf.name``. Dieser zeigt nun auf die Speicherstelle ``defaultMessage +1`` weswegen der nachfolgende Zugriff ``buf.name`` :ger-quote:`nur` noch ``ello World`` ausgibt und nicht mehr ``Hello World``.
+    .. solution:: 
+        :pwd: bufbuf
+
+        Der Zugriff auf ``buf.nameId`` manipuliert den Zeiger auf ``buf.name``. Dieser zeigt nun auf die Speicherstelle ``defaultMessage +1`` weswegen der nachfolgende Zugriff ``buf.name`` :ger-quote:`nur` noch ``ello World`` ausgibt und nicht mehr ``Hello World``.
 
 
 
@@ -1501,23 +1572,26 @@ CWE-843: Access of Resource Using Incompatible Type - Beispiel in C
 CWE-843: Access of Resource Using Incompatible Type - Beispiel in Perl
 ------------------------------------------------------------------------
 
-.. code:: perl
+.. exercise::
 
-    my $UserPrivilegeArray = ["user", "user", "admin", "user"];
-    my $userID = get_current_user_ID();
-    if ($UserPrivilegeArray eq "user") {
-        print "Regular user!\n";
-    }
-    else {
-        print "Admin!\n";
-    }
+    .. code:: perl
 
-    print "\$UserPrivilegeArray = $UserPrivilegeArray\n";
+        my $UserPrivilegeArray = ["user", "user", "admin", "user"];
+        my $userID = get_current_user_ID();
+        if ($UserPrivilegeArray eq "user") {
+            print "Regular user!\n";
+        }
+        else {
+            print "Admin!\n";
+        }
+
+        print "\$UserPrivilegeArray = $UserPrivilegeArray\n";
 
 
-.. protected-exercise-solution:: Solution
+    .. solution:: 
+        :pwd: Zuviel ist zuviel
 
-    In der Zeile: :code:`if ($UserPrivilegeArray eq "user")` wurde vergesen die Indizierung (:code:`$userID`) zu verwenden (:code:`$UserPrivilegeArray->{$userID}`). Es wird also das Array als Ganzes mit dem String ``user`` verglichen und der Vergleich ist immer ``falsch (:eng:`false`)``.
+        In der Zeile: :code:`if ($UserPrivilegeArray eq "user")` wurde vergesen die Indizierung (:code:`$userID`) zu verwenden (:code:`$UserPrivilegeArray->{$userID}`). Es wird also das Array als Ganzes mit dem String ``user`` verglichen und der Vergleich ist immer ``falsch (:eng:`false`)``.
 
 
 
@@ -1548,7 +1622,16 @@ CWE-306: Missing Authentication for Critical Function - Abhilfemaßnahmen und Er
 
 - manuelle Code Reviews 
 - statische Analyse (Binärcode und/oder Quellcode)
-- 
+
+
+.. class:: no-title
+
+Dump C /  C++
+---------------------
+
+.. image:: screenshots/dump_c_c++_2024_02_27.svg
+    :alt: Dump C /  C++
+    :height: 1175px
 
 
 .. class:: new-section
@@ -1586,42 +1669,46 @@ OWASP
 Übung: Schwachstelle(n) (1)
 -----------------------------------------------------------------------
 
-.. class:: scriptsize
+.. exercise:: 
+    :class: scriptsize
 
-1. Benenne die Schwachstelle(n) entsprechend der CWEs (ohne ID).
-2. Identifiziere die für die Schwachstelle(n) relevanten Zeilen im Code.
-3. Gebe - falls möglich - einen Angriffsvektor an.
-4. Skizziere mögliche Auswirkung der Schwachstelle(n) (z. B. Verlust der Vertraulichkeit, Integrität oder Verfügbarkeit; Umgehung der Zugriffskontrolle; beliebige Codeausführung, ...) 
+    1. Benenne die Schwachstelle(n) entsprechend der CWEs (ohne ID).
+    2. Identifiziere die für die Schwachstelle(n) relevanten Zeilen im Code.
+    3. Gebe - falls möglich - einen Angriffsvektor an.
+    4. Skizziere mögliche Auswirkung der Schwachstelle(n) (z. B. Verlust der Vertraulichkeit, Integrität oder Verfügbarkeit; Umgehung der Zugriffskontrolle; beliebige Codeausführung, ...) 
 
-.. code:: C
-    :class: tiny
-    :number-lines:
-    
-    #include <stdio.h>
-    #include <string.h>
-    void process(char *str) {
-        char *buffer = malloc(16);
-        strcpy(buffer, str);
-        ...
-        // ... definitively executed in the future: free(buffer);
-    }
-    int main(int argc, char *argv[]) {
-        if (argc < 2) { printf("Usage: %s <string>\n", argv[0]); return 1; }
-        process(argv[1]);
-        return 0;
-    }
+    .. code:: C
+        :class: tiny
+        :number-lines:
+        
+        #include <stdio.h>
+        #include <string.h>
+        void process(char *str) {
+            char *buffer = malloc(16);
+            strcpy(buffer, str);
+            ...
+            // ... definitively executed in the future: free(buffer);
+        }
+        int main(int argc, char *argv[]) {
+            if (argc < 2) { printf("Usage: %s <string>\n", argv[0]); return 1; }
+            process(argv[1]);
+            return 0;
+        }
 
-.. protected-exercise-solution:: Solution
+    .. solution:: 
+        :pwd: 1. Schwachstelle
 
-    Die Länge von :code:`str` wird nicht validiert. Es kommt somit potentiel zu einem "Out-of-bounds Write" (:code:`strcpy(buffer,str)`). Ein String wäre jeder String, der länger als 16 Zeichen ist. Ein Angriffsvektor wäre z. B. ein String, der 17 Zeichen lang ist und am Ende ein :code:`\0` enthält. Die Auswirkung wäre ein Pufferüberlauf, der ggf. zur Ausführung von beliebigem Code führt.
+        Die Länge von :code:`str` wird nicht validiert. Es kommt somit potentiel zu einem "Out-of-bounds Write" (:code:`strcpy(buffer,str)`). Ein String wäre jeder String, der länger als 16 Zeichen ist. Ein Angriffsvektor wäre z. B. ein String, der 17 Zeichen lang ist und am Ende ein :code:`\0` enthält. Die Auswirkung wäre ein Pufferüberlauf, der ggf. zur Ausführung von beliebigem Code führt.
+
 
 
 .. class:: integrated-exercise 
 
 Übung: Schwachstelle(n) (2)
------------------------------------------------------------------------
+-------------------------------------------------
 
-.. container:: scriptsize
+.. exercise:: 
+    :class: scriptsize
 
     Sie analysieren eine REST API die folgendes Verhalten aufweist, wenn man einem Blog einen Kommentar hinzufügen möchte:
 
@@ -1646,12 +1733,12 @@ OWASP
 
     Bewerten Sie die Schwachstelle: CWE Name, problematische Codestelle(n), möglicher Angriffsvektor und mögliche Auswirkung.
 
+    .. solution::
+        :pwd: StoredXXS
 
-.. protected-exercise-solution:: Solution
+        Es handelt sich um eine *Stored Cross-Site Scripting* Schwachstelle. Der Angreifer kann beliebigen Code ausführen, wenn er es schafft der angegriffenen Person den richtigen Link unterzuschieben. In diesem Fall wird der Code in der Variable :code:`comment` ausgeführt. Der Angreifer könnte also z. B. folgende Anfrage stellen:
 
-    Es handelt sich um eine *Reflected Cross-Site Scripting* Schwachstelle. Der Angreifer kann beliebigen Code ausführen, wenn er es schafft der angegriffenen Person den richtigen Link unterzuschieben. In diesem Fall wird der Code in der Variable :code:`comment` ausgeführt. Der Angreifer könnte also z. B. folgende Anfrage stellen:
-
-    :code:`POST /post/comment HTTP/1.1 Host: important-website.com Content-Length: 100 postId=3&comment=<script>/*+Bad+stuff+here...+*/</script>&name=Karl+Gustav`
+        :code:`POST /post/comment HTTP/1.1 Host: important-website.com Content-Length: 100 postId=3&comment=<script>/*+Bad+stuff+here...+*/</script>&name=Karl+Gustav`
 
 
 
@@ -1661,7 +1748,8 @@ OWASP
 -----------------------------------------------------------------------
 
 
-.. container:: scriptsize
+.. exercise:: 
+    :class: scriptsize
 
     Java:
 
@@ -1678,6 +1766,7 @@ OWASP
         }
 
     Bewerten Sie die Schwachstelle: CWE Name, problematische Codestelle(n), möglicher Angriffsvektor und mögliche Auswirkung.
+
 
 
 .. class:: integrated-exercise 
@@ -1701,7 +1790,8 @@ OWASP
     :%2F: /
 
 
-.. container:: scriptsize
+.. exercise:: 
+    :class: scriptsize
 
     Sie beobachten folgendes Verhalten einer Webseite:
 
@@ -1722,9 +1812,9 @@ OWASP
 
     Bewerten Sie die Schwachstelle: CWE Name, problematische Codestelle(n), möglicher Angriffsvektor und mögliche Auswirkung.
 
+    .. solution::
+        :pwd: reflectedXXS
 
-.. protected-exercise-solution:: Solution
+        Es handelt sich um eine *Reflected Cross-Site Scripting* Schwachstelle. Der Angreifer kann beliebigen Code ausführen, wenn er es schafft der angegriffenen Person den richtigen Link unterzuschieben. In diesem Fall wird der Code in der Variable :code:`term` ausgeführt. Der Angreifer könnte also z. B. folgende Anfrage stellen:
 
-    Es handelt sich um eine *Reflected Cross-Site Scripting* Schwachstelle. Der Angreifer kann beliebigen Code ausführen, wenn er es schafft der angegriffenen Person den richtigen Link unterzuschieben. In diesem Fall wird der Code in der Variable :code:`term` ausgeführt. Der Angreifer könnte also z. B. folgende Anfrage stellen:
-
-    :code:`https://my-website.com/search?term=<script>/*+Bad+stuff+here...+*/</script>``
+        :code:`https://my-website.com/search?term=<script>/*+Bad+stuff+here...+*/</script>``
