@@ -1180,7 +1180,7 @@ MOM - Queue Managers
 Übung 
 ----------------------------------------------------------
 
-.. exercise::  Asynchrone, verbindungsorientierte Kommunikation
+.. exercise:: Asynchrone, verbindungsorientierte Kommunikation
 
   Entwickeln Sie einen Client für einen Logging Server, der Lognachrichten an den Server sendet. Im Fehlerfall, z. B. wenn der Server nicht verfügbar ist oder es zu einer Netzwerkpartitionierung kam, sollen die Nachrichten zwischengepuffert werden und bei Serververfügbarkeit wieder zugestellt werden. Mit anderen Worten: Im Fehlerfall soll der Client nicht blockieren, sondern weiter funktionieren. Der Client stellt stattdessen die Nachrichten dann zu, wenn der Server wieder verfügbar wird.
 
@@ -1193,6 +1193,8 @@ MOM - Queue Managers
 
     .. code:: Java
       :class: smaller
+
+      ...
 
       private final static ArrayList<String> queue = new ArrayList<>();
 
@@ -1232,6 +1234,8 @@ MOM - Queue Managers
           }
         });
       }
+
+      ...
 
 .. supplemental:: tiny
 

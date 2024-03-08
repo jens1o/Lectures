@@ -574,15 +574,14 @@ Implementieren Sie eine Feistel Chiffre in einer Programmiersprache Ihrer Wahl (
   1. Was passiert, wenn f nur 0x00-Werte zurückgibt (unabhängig vom Rundenschlüssel)?
   2. Was passiert, wenn f nur 0x01-Werte zurückgibt (unabhängig vom Rundenschlüssel)?
   3. Was passiert, wenn f einfach die entsprechende Hälfte mit dem Ergebnis der Verschiebung des Schlüssels xor?
-  4. Teste, was passiert, wenn du deine Nachricht änderst. Testen Sie insbesondere, was passiert wenn die Nachricht nur aus 0x00 besteht (und Sie eine :ger-quote:`vernünftigere` f-Funktion verwenden.)
-  5. Teste, was passiert, wenn du deinen Schlüssel änderst. Was passiert in extremen Fällen (z. B. wenn das Passwort nur aus "0 "s besteht?
-
+  4. Was passiert, wenn du deine Nachricht änderst? Testen Sie insbesondere, was passiert wenn die Nachricht nur aus 0x00 besteht (und Sie eine :ger-quote:`vernünftigere` f-Funktion verwenden.)
+  5. Was passiert, wenn du deinen Schlüssel änderst? Was passiert in extremen Fällen (z. B. wenn das Passwort nur aus "0 "s besteht?
 
   .. solution:: 
-    :pwd: Feistelchiffre verstehen
+    :pwd: OhFeistel
 
     Eine naive Python-Implementierung des Algorithmus ist hier zu finden:
 
     `Jupyter Notebook <https://github.com/Delors/Lectures/blob/main/sec-blockchiffre/resources/feistel.ipynb>`__
 
-    Wenn man die obige Implementierung anpasst und testet, wird sofort deutlich, dass die Verwendung einer ungeeigneten :math:`f`-Funktion zu keinerlei Sicherheit führt und dass der Entwurf einer solchen Funktion nicht trivial ist. Außerdem ist es notwendig, alle möglichen Extremfälle zu berücksichtigen.
+    Wenn man die obige Implementierung anpasst und testet, wird sofort deutlich, dass die Verwendung einer ungeeigneten f-Funktion zu keinerlei Sicherheit führt und dass der Entwurf einer solchen Funktion nicht trivial ist. Außerdem ist es notwendig, alle möglichen Extremfälle zu berücksichtigen.

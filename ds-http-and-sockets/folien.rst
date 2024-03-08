@@ -482,13 +482,13 @@ UDP basierter Echo Server
       Kann Ihr Programm auch Bilddateien (z. B. "/images/logo_wayback_210x77.png") korrekt speichern?
 
 
-  .. solution:: 
-    :pwd: Das ist die Lösung.
+  .. solution::
+    :pwd: a-b-c 
 
-    (a)
+    Zu (a):
 
     .. code:: Java
-      :class: copy-to-clipboard
+      :class: copy-to-clipboard smaller
     
       import java.net.*;
       import java.io.*;
@@ -516,10 +516,10 @@ UDP basierter Echo Server
         }
       }
 
-    (b) und (c)
+    Zu (b) und (c):
 
     .. code:: Java
-      :class: copy-to-clipboard
+      :class: copy-to-clipboard smaller
 
       import java.net.*;
       import java.io.*;
@@ -597,73 +597,74 @@ UDP basierter Echo Server
 
 .. exercise:: Protokollaggregation
 
-  Schreiben Sie ein UDP-basiertes Java-Programm, mit dem sich Protokoll-Meldungen auf einem Server
-  zentral anzeigen lassen. Das Programm soll aus mehreren Clients und einem Server bestehen. Jeder
-  Client liest von der Tastatur eine Eingabezeile in Form eines Strings ein, der dann sofort zum Server gesendet wird. Der Server wartet auf Port 4999 und empfängt die Meldungen beliebiger Clients, die er dann unmittelbar auf den Bildschirm ausgibt.
+  Schreiben Sie ein UDP-basiertes Java-Programm, mit dem sich Protokoll-Meldungen auf einem Server zentral anzeigen lassen. Das Programm soll aus mehreren Clients und einem Server bestehen. Jeder Client liest von der Tastatur eine Eingabezeile in Form eines Strings ein, der dann sofort zum Server gesendet wird. Der Server wartet auf Port 4999 und empfängt die Meldungen beliebiger Clients, die er dann unmittelbar ausgibt.
 
   .. solution:: 
     :pwd: Nun mit UDP.
-      
+    
     .. code:: Java
-      :class: copy-to-clipboard
+      :class: copy-to-clipboard smaller
 
       import java.net.*;
 
       public class SyslogServer {
-          public final static int DEFAULT_PORT = 4999;
-          public final static int MAX_PACKET_SIZE = 65507;
+        public final static int DEFAULT_PORT = 4999;
+        public final static int MAX_PACKET_SIZE = 65507;
 
-          public static void main(String[] args) {
-              try (
-                      var socket = new DatagramSocket(DEFAULT_PORT);) {
-                  System.out.println("∗∗∗ SyslogServer ***");
-                  while (true) {
-                      try {
-                          byte[] buffer = new byte[MAX_PACKET_SIZE];
-                          DatagramPacket dp = new DatagramPacket(buffer, buffer.length);
-                          socket.receive(dp); // wait for new message
-                          String s = new String(dp.getData(), 0, dp.getLength());
-                          System.out.println("[" + dp.getAddress() +
-                                  ":" + dp.getPort() + "] " + s);
-                      } catch (Exception e) {
-                          System.err.println(e);
-                      }
-                  } // while
+        public static void main(String[] args) {
+          try (
+                var socket = new DatagramSocket(DEFAULT_PORT);) {
+            System.out.println("∗∗∗ SyslogServer ***");
+            while (true) {
+              try {
+                byte[] buffer = new byte[MAX_PACKET_SIZE];
+                DatagramPacket dp = new DatagramPacket(buffer, buffer.length);
+                socket.receive(dp); // wait for new message
+                String s = new String(dp.getData(), 0, dp.getLength());
+                System.out.println("[" + dp.getAddress() +
+                        ":" + dp.getPort() + "] " + s);
               } catch (Exception e) {
-                  System.err.println(e);
+                System.err.println(e);
               }
+            } // while
+          } catch (Exception e) {
+            System.err.println(e);
           }
+        }
       }
 
     .. code:: Java
-      :class: copy-to-clipboard
+      :class: copy-to-clipboard smaller
 
       import java.net.*;
       import java.io.*;
 
       class SyslogClient {
-          public final static int DEFAULT_SERVER_PORT = 4999;
-          public final static int MAX_PACKET_SIZE = 65507;
+        public final static int DEFAULT_SERVER_PORT = 4999;
+        public final static int MAX_PACKET_SIZE = 65507;
 
-          public static void main(String[] args) {
-              final String hostname = "localhost";
-              try (final var socket = new DatagramSocket();) {
-                  InetAddress host = InetAddress.getByName(hostname);
-                  BufferedReader userIn = new BufferedReader(new InputStreamReader(System.in));
-                  System.out.println("[INFO] SyslogClient: type message to send or <CTRL + d> for exit.");
-                  do {
-                      System.out.print("> "); // user prompt
-                      String s = userIn.readLine();
-                      if (s == null)
-                          break; // CTRL+d has been pressed
-                      byte[] data = s.getBytes();
-                      if (data.length > MAX_PACKET_SIZE)
-                          System.err.println("Message too large.");
-                      DatagramPacket dp = new DatagramPacket(data, data.length, host, DEFAULT_SERVER_PORT);
-                      socket.send(dp);
-                  } while (true);
-              } catch (Exception e) {
-                  System.err.println(e);
-              }
+        public static void main(String[] args) {
+          final String hostname = "localhost";
+          try (final var socket = new DatagramSocket();) {
+            InetAddress host = InetAddress.getByName(hostname);
+            BufferedReader userIn = 
+                new BufferedReader(new InputStreamReader(System.in));
+            System.out.println(
+                "[INFO] SyslogClient: type message to send or <CTRL + d> to exit.");
+            do {
+              System.out.print("> "); // user prompt
+              String s = userIn.readLine();
+              if (s == null)
+                break; // CTRL+d has been pressed
+              byte[] data = s.getBytes();
+              if (data.length > MAX_PACKET_SIZE)
+                System.err.println("Message too large.");
+              DatagramPacket dp = 
+                  new DatagramPacket(data, data.length, host, DEFAULT_SERVER_PORT);
+              socket.send(dp);
+            } while (true);
+          } catch (Exception e) {
+            System.err.println(e);
           }
+        }
       }

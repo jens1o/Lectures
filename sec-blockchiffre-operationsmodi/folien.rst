@@ -5,6 +5,7 @@
     :description lang=de: Betriebsmodi bei Blockchiffren
     :id: sec-blockchiffre-operationsmodi
     :first-slide: last-viewed
+    :exercises-master-password: 20-Operationsmodi-24
 
 .. |date| date::
 
@@ -13,6 +14,10 @@
 .. role:: red
 .. role:: green 
 .. role:: blue 
+.. role:: smaller
+.. role:: eng
+.. role:: raw-html(raw)
+    :format: html
     
     
 
@@ -23,9 +28,26 @@ Betriebsmodi bei Blockchiffren
 :Version: |date|
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 
+.. supplemental::
+
+   :Folien: 
+        
+          https://delors.github.io/sec-blockchiffre-operationsmodi/folien.rst.html :raw-html:`<br>`
+          https://delors.github.io/sec-blockchiffre-operationsmodi/folien.rst.html.pdf
+   :Fehler auf Folien melden:
+  
+          https://github.com/Delors/delors.github.io/issues
+  
 
 
-Double Encryption
+.. class:: new-section transition-fade
+
+Einschub: Mehrfachverschlüsselung
+----------------------------------- 
+
+
+
+Doppelte Verschlüsselung
 -------------------------------
 
 .. image:: 
@@ -34,82 +56,99 @@ Double Encryption
     :align: center
 
 
-Meet-in-the-Middle Attack
---------------------------
 
-- Observation: :math:`E(K_2,E(K_1,P)) = E(K_3,P)` does not hold. I.e., the use of double DES results in a mapping that is not equivalent to a single DES encryption. 
+*Meet-in-the-Middle*-Angriff
+-----------------------------
+
+- Beobachtung: :math:`E(K_2,E(K_1,P)) = E(K_3,P)` ist nicht gültig. D. h. die zweifache Anwendung  von DES führt zu einer Abbildung, die nicht äquivalent zu einer einfachen DES-Verschlüsselung ist.
 
 .. class:: incremental
 
-- The meet-in-the-middle algorithm will attack this scheme. It does not depend on any particular property of DES but will work against any block encryption cipher.
-- The result is that a known plaintext attack against double-DES will succeed with an effort on the order :math:`2^{56}` compared to :math:`2^{55}` for a single DES.
+- Der Meet-in-the-Middle-Algorithmus greift dieses Verfahren an. Er hängt nicht von einer bestimmten Eigenschaft von DES ab, sondern funktioniert gegen jede Blockchiffre.
+- Das Ergebnis ist, dass ein bekannter Klartextangriff gegen Doppel-DES mit einem Aufwand in der Größenordnung von :math:`2^{56}` erfolgreich ist, verglichen mit :math:`2^{55}` für einen einfachen DES.
   
 
-Triple Encryption (E.g., Triple-DES with Three-Keys)
------------------------------------------------------
+Dreifache Verschlüsselung 
+-----------------------------------------------------------------------
+
+**(Z. B. Triple-DES (3DES) mit drei Schlüsseln)**
 
 .. image:: drawings/operationsmodi/triple_encryption.svg
-    :width: 1500px
+    :width: 100%
     :align: center  
 
 
-Triple-DES with Two Keys
--------------------------
 
-Obvious counter to the meet-in-the-middle attack is to use three stages of encryption with three different keys.
+Triple-DES mit zwei Schlüsseln
+---------------------------------
 
-- This raises the cost of the meet-in-the-middle attack to :math:`2^{112}`, which is beyond what is practical.
-- Has the drawback of requiring a key length of :math:`56\,bits \times 3 = 168\,bits`, which may be somewhat unwieldy.
-- As an alternative Tuchman proposed a triple encryption method that uses only two keys.
-- 3DES with two keys is a relatively popular alternative to DES and has been adopted for use in the key management standards ANSI X9.17 and ISO 8732.
+Die offensichtliche Antwort auf den *Meet-in-the-middle*-Angriff ist die dreifache Verschlüsselung mit drei verschiedenen Schlüsseln.
 
-
-Triple-DES with Three Keys
---------------------------
-
-- Several attacks against 3DES with 2 keys have been developed, which are - however - still not practical.
-- Many researchers now feel that three-key 3DES is the preferred alternative.
-- Three-key 3DES has an effective key length of 168 bits and is defined as: :math:`C=E(K_3,D(K_2,E(K_1, P)))` 
-- Backward compatibility with DES is provided by putting: :math:`K_3 =K_2` or :math:`K_1 =K_2`.
+- Dies erhöht die Kosten des *Meet-in-the-Middle*-Angriffs auf :math:`2^{112}`, was jenseits dessen liegt, was praktikabel ist.
+- Das hat den Nachteil, dass eine Schlüssellänge von :math:`56\,bits \times 3 = 168\,bits` erforderlich ist, was etwas unhandlich sein kann.
+- Als Alternative schlug Tuchman eine dreifache Verschlüsselungsmethode vor, die nur zwei Schlüssel verwendet.
+- 3DES mit zwei Schlüsseln war eine Alternative zu DES und wurde in die Schlüsselverwaltungsstandards ANSI X9.17 und ISO 8732 aufgenommen.
 
 
 
-Modes of Operation
+
+Triple-DES mit drei Schlüsseln
+--------------------------------
+
+- Es wurden mehrere Angriffe gegen 3DES mit 2 Schlüsseln entwickelt, die jedoch (noch) nicht praktikabel sind.
+- Viele Forscher sind inzwischen der Meinung, dass 3DES mit drei Schlüsseln die bevorzugte Alternative ist.
+- 3DES mit drei Schlüsseln hat eine effektive Schlüssellänge von 168 Bit und ist definiert als: 
+  
+  .. math:: C=E(K_3,D(K_2,E(K_1, P)))
+- Rückwärtskompatibilität mit DES ist gegeben, wenn man :math:`K_3 = K_2` oder :math:`K_1 = K_2` einsetzt.
+
+
+
+Betriebsmodi
 --------------------
 
-• A technique for enhancing the effect of a cryptographic algorithm or adapting the algorithm for an application.
-• To apply a block cipher in a variety of applications, five modes of operation have been defined by NIST.
+- Eine Technik zur Verbesserung der Wirkung eines kryptografischen Algorithmus oder zur Anpassung des Algorithmus an ein Anwendungsszenario. Insbesondere in Abhängigkeit von der Länge des Klartexts.
 
-  • The five modes are intended to cover a wide variety of applications of encryption for which a block cipher could be used
-  • These modes are intended for use with any symmetric block cipher, including 3DES and AES.
+.. class:: incremental
 
-Modes of Operation - Overview
+- Um eine Blockchiffre in einer Vielzahl von Anwendungen einsetzen zu können, hat das NIST fünf Betriebsmodi definiert.
+
+  - Die fünf Modi decken eine breite Palette von Verschlüsselungsanwendungen ab, für die eine Blockchiffre verwendet werden kann.
+  - Diese Modi sind für die Verwendung mit jeder symmetrischen Blockchiffre vorgesehen, einschließlich 3DES und AES.
+
+
+
+Betriebsmodi - Übersicht
 ------------------------------
 
-.. csv-table::
-    :class: small
-    :width: 100%
-    :header: Mode, Description, Typical Application
+.. container:: scrollable
 
-    Electronic Codebook (ECB), Each block of plaintext bits is encoded independently using the same key., "
-    • Secure transmission of single values (e.g., an encryption key) 
-    "
-    Cipher Block Chaining (CBC), The input to the encryption algorithm is the XOR of the next block of plaintext and the preceding block of ciphertext., " 
-    • General-purpose block-oriented transmission 
-    • Authentication
-    "
-    Cipher Feedback (CFB), "Input is processed s bits at a time.
-    Preceding ciphertext is used as input to the encryption algorithm to produce pseudorandom output, which is XORed with plaintext to produce next unit of ciphertext.", " 
-    • General-purpose stream-oriented transmission
-    • Authentication
-    " 
-    Output Feedback (OFB), "Similar to CFB, except that the input to the encryption algorithm is the preceding encryption output, and full blocks are used.", " 
-    • Stream-oriented transmission over noisy channel (e.g., satellite communication) 
-    "
-    "Counter (CTR)", "Each block of plaintext is XORed with an encrypted counter. The counter is incremented for each subsequent block.", " 
-    • General-purpose block-oriented transmission
-    • Useful for high-speed requirements
-    "
+    .. csv-table::
+        :class: smaller highlight-line-on-hover 
+        :width: 100%
+        :header: Modus, Beschreibung, Typische Anwendung
+
+        **Electronic Codebook (ECB)**, Jeder Block von Klartextbits wird unabhängig voneinander mit demselben Schlüssel verschlüsselt., "
+        • Sichere Übertragung einzelner Werte (z. B. eines Verschlüsselungsschlüssels)
+        "
+        **Cipher Block Chaining (CBC)**, Die Eingabe für den Verschlüsselungsalgorithmus ist die XOR-Verknüpfung des nächsten Klartextblocks mit dem vorangegangenen Chiffretextblock., " 
+        - Universelle blockorientierte Übertragung 
+        - Authentifizierung
+        "
+        **Cipher Feedback (CFB)**, "Die Eingabe wird Bit für Bit verarbeitet.
+        Der vorhergehende Chiffretext wird als Eingabe für den Verschlüsselungsalgorithmus verwendet, um eine pseudozufällige Ausgabe zu erzeugen, die mit dem Klartext XOR-verknüpft wird, um die nächste Einheit des Chiffretextes zu erzeugen.", " 
+        - Allgemeine stromorientierte Übertragung
+        - Authentifizierung
+        " 
+        **Output Feedback (OFB)**, "Ähnlich wie CFB, mit dem Unterschied, dass die Eingabe für den Verschlüsselungsalgorithmus die vorangegangene Verschlüsselungsausgabe ist, und volle Blöcke verwendet werden.", " 
+        • Stromorientierte Übertragung über verrauschte Kanäle (z. B. Satellitenkommunikation) 
+        "
+        "**Counter (CTR**)", "Jeder Klartextblock wird mit einem verschlüsselten Zähler XOR-verknüpft. Der Zähler wird für jeden nachfolgenden Block erhöht.", " 
+        - Blockorientierte Übertragung für allgemeine Zwecke
+        - Nützlich für Hochgeschwindigkeitsanforderungen
+        "
+
+
 
 Electronic Codebook
 --------------------
@@ -124,31 +163,31 @@ Electronic Codebook
 
 .. container:: small
     
-    Author: https://commons.wikimedia.org/wiki/User:WhiteTimberwolf
+    Autor: https://commons.wikimedia.org/wiki/User:WhiteTimberwolf
 
 
 
-Problems when using ECB Mode Encryption
-----------------------------------------
+Probleme bei der Verwendung der Verschlüsselung im ECB-Modus
+----------------------------------------------------------------
 
-*ECB-Tux* - the linux pinguin encrypted using ECB mode.
+.. container:: two-columns
 
-.. image:: opensource-drawings/tux.ecb.from_robert_david_graham.png
+    .. container:: column no-separator
 
-.. container:: small
+        *ECB-Tux* - der Linux-Pinguin verschlüsselt im ECB-Modus:
 
-    Source: https://github.com/robertdavidgraham/ecb-penguin
+        Quelle: https://github.com/robertdavidgraham/ecb-penguin
 
-
-Criteria and properties for evaluating and constructing block cipher modes of operation that are superior to ECB.
+    .. image:: opensource-drawings/tux.ecb.from_robert_david_graham.png
+        :align: center
+  
+Kriterien und Eigenschaften für die Bewertung und Konstruktion von Blockchiffre-Betriebsarten, die ECB überlegen sind.
 
 - Overhead
-- Error recovery 
-- Error propagation
-- Diffusion
-- Security
-
-
+- Fehlerbehebung 
+- Fehlerfortpflanzung
+- Streuung
+- Sicherheit
 
 
 
@@ -167,35 +206,35 @@ Cipher Block Chaining
 
     .. container:: small
         
-        Author: https://commons.wikimedia.org/wiki/User:WhiteTimberwolf
+        Autor: https://commons.wikimedia.org/wiki/User:WhiteTimberwolf
 
 
 
 
-Converting Block Ciphers into Stream Ciphers
---------------------------------------------
+Konvertierung von Blockchiffren in Stromchiffre
+------------------------------------------------
 
-.. note::
-    :class: smaller
+.. admonition:: Hinweis
+    :class: note smaller
 
-    There are three modes that make it possible to convert a block cipher into a character-oriented stream cipher:
+    Es gibt drei Modi, die es ermöglichen, eine Blockchiffre in eine zeichenorientierte Stromchiffre umzuwandeln:
 
     - Cipher Feedback Mode (CFB)
     - Output Feedback Mode (OFB)
     - Counter Mode (CTR)
 
-    I.e., no padding is required when the message is not a multiple of the block size.
+    D. h., es ist kein Auffüllen (:eng:`Padding`) erforderlich, wenn die Nachricht nicht ein Vielfaches der Blockgröße ist.
 
-For AES, DES, or any block cipher, encryption is performed on a block of b bits:
+Bei AES, DES oder jeder anderen Blockchiffre erfolgt die Verschlüsselung immer Block-für-Block mit Blockgrößen von b Bits:
 
-- In the case of (3)DES :math:`b=64` 
-- In the case of AES :math:`b=128`
-
-
+- Im Fall von (3)DES: :math:`b=64` 
+- Im Fall von AES: :math:`b=128`
 
 
-Cipher Feedback Mode
----------------------
+
+
+*Cipher Feedback Mode*
+-----------------------
 
 .. image:: opensource-drawings/cfb_encryption.svg
     :width: 1200px
@@ -209,21 +248,21 @@ Cipher Feedback Mode
 
     .. container:: small
         
-        Author: https://commons.wikimedia.org/wiki/User:WhiteTimberwolf
+        Autor: https://commons.wikimedia.org/wiki/User:WhiteTimberwolf
 
 
 
-Cipher Feedback Mode used as a Stream Cipher
+*Cipher Feedback Mode* als Stromchiffre
 --------------------------------------------
 
 .. image:: drawings/operationsmodi/cfb_s_bits.svg
-    :width: 1200px
+    :width: 100%
     :align: center 
 
 
 
-Output Feedback Mode
----------------------
+*Output Feedback Mode*
+------------------------
 
 .. image:: opensource-drawings/ofb_encryption.svg
     :width: 1200px
@@ -237,14 +276,14 @@ Output Feedback Mode
 
     .. container:: small
         
-        Author: https://commons.wikimedia.org/wiki/User:WhiteTimberwolf
+        Autor: https://commons.wikimedia.org/wiki/User:WhiteTimberwolf
 
 .. When used as a Stream Cipher we can simply discard the last bytes of the encrypted block cipher.
 
 
 
-Counter Mode
--------------
+*Counter Mode*
+-----------------
 
 .. image:: opensource-drawings/ctr_encryption.svg
     :width: 1200px
@@ -258,107 +297,118 @@ Counter Mode
 
     .. container:: small
         
-        Author: https://commons.wikimedia.org/wiki/User:WhiteTimberwolf
+        Autor: https://commons.wikimedia.org/wiki/User:WhiteTimberwolf
 
 
 
-Counter Mode - Advantages
+*Counter Mode* - Vorteile
 -------------------------
 
-:Hardware efficiency: can make use of hardware parallelization.
-:Software efficiency: easily parallelizable in software.
-:Preprocessing: the  encryption of the counters
-:Random access: The i-th block of plaintext of ciphertext can be processed in random-access fashion.
-:Provable security: as secure as the other modes 
-:Simplicity: only the encryption algorithm is required.
+:Hardware-Effizienz: kann von der Parallelisierung der Hardware profitieren
+:Software-Effizienz: leicht parallelisierbar in Software
+:Vorverarbeitung: die Verschlüsselung der Zähler
+:Zufälliger Zugriff: Der i-te Block des Klartextes/des Chiffretextes kann im Zufallszugriff verarbeitet werden
+:Nachweisbare Sicherheit: genauso sicher wie die anderen Verfahren.
+:Einfachheit: Es wird nur der Verschlüsselungsalgorithmus benötigt.
 
 
 
-Feedback Characteristics of Modes of Operation
------------------------------------------------
+Rückkopplungseigenschaften\ [#]_  der Betriebsmodi
+-------------------------------------------------------------------------------
 
 .. image:: drawings/operationsmodi/feedback_characteristics.svg
     :width: 1750px
     :align: center 
 
+.. [#] (:eng:`Feedback Characteristics`)
 
-XTS-AES Mode for Block-Oriented Storage Devices
--------------------------------------------------
 
-Approved as an additional block cipher mode of operation by NIST in 2010 Mode is also an IEEE Standard, IEEE Std 1619-2007
+XTS-AES Modus für blockorientierte Speichergeräte
+---------------------------------------------------
+
+2010 vom NIST als zusätzlicher Blockchiffre-Betriebsmodus genehmigt.
+
+Modus ist auch ein IEEE-Standard, IEEE Std 1619-2007
  
-.. note::
+.. admonition:: Frage
+    :class: note
 
-    Which potential threats are relevant?
+    Welche potenziellen Bedrohungen sind relevant?
 
     .. many similar blocks
     .. data is freely accessible
 
-- Standard describes a method of encryption for data stored in sector- based devices where the threat model includes possible access to stored data by the adversary. 
+- Die Norm beschreibt eine Verschlüsselungsmethode für Daten, die in sektorbasierten Geräten gespeichert sind, wobei das Bedrohungsmodell einen möglichen Zugriff des Gegners auf die gespeicherten Daten beinhaltet.
   
-- Has received widespread industry support
+- Hat breite Unterstützung der Industrie erhalten.
 
 
-Tweakable Block Ciphers
+
+Tweakable Blockchiffren
 ------------------------
 
-- XTS-AES mode is based on the concept of a tweakable block cipher 
-- General structure:
+- Der XTS-AES-Modus basiert auf dem Konzept einer veränderbaren (:eng:`tweakable`) Blockchiffre.
+- Allgemeine Struktur:
   
-  To compute the ciphertext a:
+  Um Chiffriertextes a zu berechnen, wird benötigt:
 
-  - **Plaintext**
-  - **Symmetric key**
+  - **Klartext**
+  - **Symmetrischer Schlüssel**
   - **Tweak**
-  
-  is required.
 
-- Tweak need not be kept secret; purpose is to provide variability.
+- Der *Tweak* muss nicht geheim gehalten werden; der Zweck ist, Variabilität zu bieten.
 
 
-Tweakable Block Ciphers
+Tweakable Blockchiffren
 ------------------------
 
 .. image:: drawings/operationsmodi/tweakable_block_cipher.svg
     :width: 1750px
     :align: center 
 
-Storage Encryption Requirements
---------------------------------
-
-The requirements for encrypting stored data, also referred to as “data at rest”, differ somewhat from those for transmitted data.
-
-The P1619 standard was designed to have the following characteristics:
-
-.. class:: incremental
-
-- The ciphertext is freely available for an attacker.
-- The data layout is not changed on the storage medium and in transit.
-- Data are accessed in fixed sized blocks, independently from each other.
-- Encryption is performed in 16-byte blocks, independently from each other.
-- There are no other metadata used, except the location of the data blocks within the whole data set.
-- The same plaintext is encrypted to different ciphertexts at different locations, but always to the same ciphertext when written to the same location again.
-- A standard conformant device can be constructed for decryption of data encrypted by another standard conformant device.
 
 
-XTS-AES Operation on a Single Block
+Anforderungen an die Speicherverschlüsselung
+-----------------------------------------------
+
+Die Anforderungen an die Verschlüsselung gespeicherter Daten, die auch als *data at rest* bezeichnet werden, unterscheiden sich von denen für übertragene Daten.
+
+Die Norm P1619 wurde in Hinblick auf folgende Eigenschaften entwickelt:
+
+.. class:: incremental smaller
+
+- Der Chiffretext ist für einen Angreifer frei verfügbar.
+- Das Datenlayout wird auf dem Speichermedium und beim Transport nicht verändert.
+- Der Zugriff auf die Daten erfolgt in Blöcken fester Größe und unabhängig voneinander.
+- Die Verschlüsselung erfolgt in 16-Byte-Blöcken, die unabhängig voneinander sind.
+- Es werden keine weiteren Metadaten verwendet, außer der Position der Datenblöcke innerhalb des gesamten Datensatzes.
+- Derselbe Klartext wird an verschiedenen Stellen in verschiedene Chiffretexte verschlüsselt, aber immer in denselben Chiffretext, wenn er wieder an dieselbe Stelle geschrieben wird.
+- Ein standardkonformes Gerät kann für die Entschlüsselung von Daten konstruiert werden, die von einem anderen standardkonformen Gerät verschlüsselt wurden.
+
+
+XTS-AES Operation auf einem Block
 ------------------------------------
 
 .. image:: drawings/operationsmodi/xts_aes.svg
     :width: 1750px
     :align: center 
 
-.. container:: small two-columns
+.. container:: tiny two-columns
+    
+    .. container:: column no-separator
 
-    - Key: The key where: :math:`Key = Key_1\, ||\, Key_2` 
-    - :math:`P_j`: The jth block of plaintext. All blocks have length 128 bits. A plaintext data unit, typically a disk sector, consists of a sequence of plaintext blocks.
-    - :math:`C_j`: The jth block of ciphertext.
-    - :math:`j`: The sequential number of the 128bit block inside the data unit.
-    - :math:`i`: The value of the 128bit tweak. 
-    - :math:`\alpha`: A primitive element of GF(2^{128}) that corresponds to the polynomial :math:`x` (i.e., 0000...0010)
-    - :math:`\alpha^j`: :math:`\alpha` multiplied by itself :math:`j` times in :math:`GF(2^{128})`  
-    - :math:`\oplus` Bitwise XOR
-    - :math:`\otimes` Modular multiplication with binary coefficients modulo :math:`x^{128}+x^7+x^2+x+1`.  
+      - Key: Der Schlüssel wobei gilt: :math:`Key = Key_1\, ||\, Key_2` 
+      - :math:`P_j`: Der j-te Block des Klartexts. Alle Blöcke haben eine Länge von 128 bits. Eine Klartextdateneinheit - in der Regel ein Festplattensektor - besteht aus einer Folge von Klartextblöcken.
+      - :math:`C_j`: Der j-te Block des Chiffretextes.
+      - :math:`j`: Die fortlaufende Nummer des 128-Bit-Blocks innerhalb der Dateneinheit.
+      - :math:`i`: Der Wert des 128-Bit-Tweaks.
+    
+    .. container:: column
+
+      - :math:`\alpha`: Ein primitives Element des :math:`GF(2^{128})` welches dem Polynom :math:`x` (d. h. 0000...0010) entspricht.
+      - :math:`\alpha^j`: :math:`\alpha` :math:`j` mal mit sich selbst multipliziert im Körper :math:`GF(2^{128})`  
+      - :math:`\oplus` Bitwise XOR
+      - :math:`\otimes` Modulare Multiplikation mit Binärkoeffizienten modulo :math:`x^{128}+x^7+x^2+x+1`.  
 
 
 
@@ -367,100 +417,153 @@ XTS-AES Operation on a Single Block
 Übung
 ---------------------
 
-1. Why is it important in CBC to protect the IV?
-
-  .. admonition:: Solution 
-    
-     If the IV is sent as is, we may be able in certain scenarios to flip some bytes of the plaintext (of the first block) when we change the IV. 
-
-
-2. In which operation modes is padding necessary?
-
-  .. admonition:: Solution
-     
-     ECB and CBC (the input to the encryption is a full plaintext block).
-
-3. What happens in case of a transmission error (single bit flip in the ciphertext) in ECB, CBC, CFB, OFB, CTR?
-   
-   .. admonition:: Solution
-
-      :ECB: one block is affected (in case of DES and AES approx. 50% of the bits).
-      :CBC: in the next block we will have one flipped bit in the plaintext and approx. 50% in the current block.
-      :CFB: The flipped bit will affect the corresponding plaintext bit and all subsequent bits with a probability of approx. 50% as long the flipped bit is used as input to the encryption.
-      :OFB, CTR: In the plaintext one bit will be flipped.
-
-
-4. Why does the IV in OFB has to be a nonce (i.e., unique to each execution of the encryption algorithm)?
-
-  .. admonition:: Solution
-
-     The O_i only depend on the key and the IV, if the IV is reused with the same key and we happen to know a specific plaintext we may be able to decrypt a corresponding ciphertext in a different message.
-
-5. You want to determine if a program for encrypting files uses ECB mode. What do you need to do?
-
-   .. admonition:: One Solution
-
-      Use a document that consists of more than one block where each block has the size of the underlying cipher and each block has the same content. If ECB mode is used all blocks are encrypted in the same way.
-
-6. A friend of yours invented a new block cipher. You are **very** skeptical. Think about some very simple tests to invalidate the cipher.
-      
-
-7. Use the OFB mode in combination with a Caesar cipher. The block size is a single character. The key is the number of characters you are going to shift a character - as before. The IV is some character. To make the XOR work we map every character to a value and extend the alphabet with the digits 1 to 3, "!", "?" and the "_". This way it is always possible to output a meaningful character. 
-
-    Hence, we will have the following encoding:
-
-    .. csv-table::
-        :header: Index, Character, Binary Representation
-
-        0, A, 00000 
-        1, B, 00001 
-        2, C, 00010 
-        3, D, 00011 
-        4, E, 00100 
-        5, F, 00101 
-        6, G, 00110 
-        7, H, 00111 
-        8, I, 01000 
-        9, J, 01001 
-        10, K, 01010 
-        11, L, 01011 
-        12, M, 01100 
-        13, N, 01101 
-        14, O, 01110 
-        15, P, 01111 
-        16, Q, 10000 
-        17, R, 10001 
-        18, S, 10010 
-        19, T, 10011 
-        20, U, 10100 
-        21, V, 10101 
-        22, W, 10110 
-        23, X, 10111 
-        24, Y, 11000 
-        25, Z, 11001 
-        26, 1, 11010
-        27, 2, 11011
-        28, 3, 11100
-        29, !, 11101
-        30, ?, 11110
-        31, "_", 11111
-
-    Now encode some messages using your new cipher. What will you realize?
-
-    .. admonition:: Solution 
-
-      The same character is no longer (necessarily) mapped to the same target when it reappears in the original message; i.e, we have some diffusion.
-
-      .. admonition:: Example
-        
-         .. math::
-         
-            IV = A, k = 3, M = AA
-
-            .. 1. I_1 = IV = A; E(I_1) = D; C_1 = A \oplus D = D
-
-            .. 2. I_2 = D; E(I_2) = G, C_2 = A \oplus G = G
-    
-    .. example: M = T
-    .. IV Z, E(IV) = 3, C_1 = T \oplus 3 = "P" (10011 \oplus 11100 = 01111 = P) 
+- \
   
+  .. exercise:: 
+
+    Warum ist es bei CBC wichtig, den Initialisierungsvektor (IV) zu schützen?
+
+    .. solution::
+        :pwd: IV und CBC
+    
+        Wenn der IV im Klartext gesendet wird, können wir in bestimmten Szenarien einige Bytes des Klartextes (des ersten Blocks) umdrehen, wenn wir den IV ändern. 
+
+- \
+  
+  .. exercise:: 
+    
+    In welchen Betriebsarten ist eine Auffüllung (:eng:`Padding`) notwendig?
+
+    .. solution::
+     
+        ECB und CBC (die Eingabe für die Verschlüsselung ist ein vollständiger Klartextblock).
+
+- \
+  
+  .. exercise::
+
+    Was geschieht im Falle eines Übertragungsfehlers (einzelner Bitflip im Chiffretext) bei ECB, CBC, CFB, OFB, CTR?
+   
+    .. solution::
+        :pwd: bitFlip
+
+        :ECB: ein Block ist betroffen (im Falle von DES und AES ca. 50% der Bits).
+        :CBC: im nächsten Block haben wir ein gespiegeltes Bit im Klartext und ca. 50% im aktuellen Block.
+        :CFB: Das umgedrehte Bit beeinflusst das entsprechende Klartextbit und alle nachfolgenden Bits mit einer Wahrscheinlichkeit von ca. 50%, solange das umgedrehte Bit als Eingabe für die Verschlüsselung verwendet wird.
+        :OFB, CTR: Im Klartext wird ein Bit umgedreht.
+
+- \
+  
+  .. exercise::
+ 
+    Warum muss der IV im Falle von OFB eine Nonce (:eng:`Number used ONCE`) sein (d. h. eine Zahl, die nur einmal für die Ausführung des Verschlüsselungsalgorithmus verwendet wird)?
+
+    .. solution::
+        :pwd: nOnce
+ 
+        Die O_i hängen nur vom Schlüssel und dem Initialisierungsvektor ab. Wenn der IV mit demselben Schlüssel wiederverwendet wird und wir zufällig einen bestimmten Klartext kennen, können wir möglicherweise einen entsprechenden Chiffretext in einer anderen Nachricht entschlüsseln.
+
+- \
+  
+  .. exercise::
+
+    Sie möchten feststellen, ob ein Programm zur Verschlüsselung von Dateien den ECB-Modus verwendet. Was müssen Sie tun?
+
+    .. solution::
+        :pwd: ecb_erkennung
+
+        Verwenden Sie ein Dokument, das aus mehreren Blöcken besteht, wobei jeder Block die Größe der zugrunde liegenden Chiffre hat und jeder Block den gleichen Inhalt hat. Bei Verwendung des ECB-Modus werden alle Blöcke auf die gleiche Weise verschlüsselt.
+
+
+
+.. class:: integrated-exercise
+
+
+Übung
+---------------------
+
+.. container:: tiny
+
+    .. exercise:: 
+        
+        Verwenden Sie den OFB-Modus in Kombination mit einer Caesar-Chiffre. Die Blockgröße ist ein einzelnes Zeichen. Der Schlüssel ist die Anzahl der Zeichen, um die Sie ein Zeichen verschieben wollen - wie zuvor. Die IV ist ein Zeichen. Damit sie ein XOR durchführen können, ordnen wir jedem Zeichen einen Wert zu und erweitern das Alphabet um die Ziffern 1 bis 3, "!", "?" und das "_". Auf diese Weise ist es immer möglich, ein sinnvolles Zeichen auszugeben. 
+
+        Daraus ergibt sich die folgende Kodierung:
+
+        .. container:: three-columns smaller
+
+            .. container:: column  no-separator
+                        
+                .. csv-table::
+                    :header: Index, Zeichen, Binärdarstellung
+
+                    0, A, 00000 
+                    1, B, 00001 
+                    2, C, 00010 
+                    3, D, 00011 
+                    4, E, 00100 
+                    5, F, 00101 
+                    6, G, 00110 
+                    7, H, 00111 
+                    8, I, 01000 
+                    9, J, 01001 
+                    10, K, 01010
+
+            .. container:: column no-separator
+                        
+                .. csv-table::
+                    :header: Index, Zeichen, Binärdarstellung
+ 
+                    11, L, 01011 
+                    12, M, 01100 
+                    13, N, 01101 
+                    14, O, 01110 
+                    15, P, 01111 
+                    16, Q, 10000 
+                    17, R, 10001 
+                    18, S, 10010 
+                    19, T, 10011 
+                    20, U, 10100 
+                    21, V, 10101 
+
+            .. container:: column
+                        
+                .. csv-table::
+                    :header: Index, Zeichen, Binärdarstellung
+                    
+                    22, W, 10110 
+                    23, X, 10111 
+                    24, Y, 11000 
+                    25, Z, 11001 
+                    26, 1, 11010
+                    27, 2, 11011
+                    28, 3, 11100
+                    29, !, 11101
+                    30, ?, 11110
+                    31, "_", 11111
+
+        Verschlüsseln Sie nun einige Nachrichten mit dieser Chiffre. Welchen Effekt hat die Anwendung des OFB-Modus auf die Nachrichten?
+
+        .. solution::
+            :pwd: caesar_ofb
+
+            Das gleiche Klartextzeichen wird nicht mehr (notwendigerweise) dem gleichen Chiffretextzeichen zugeordnet, wenn es in der ursprünglichen Nachricht wieder auftaucht, d. h. es liegt eine gewisse Diffusion vor.
+
+            .. admonition:: Beispiel - Verschlüsselung
+            
+                .. math::
+            
+                    IV = A, k = 3, M = AA
+
+                    1. I_1 = IV = A; E(I_1) = D; C_1 = A \oplus D = D
+
+                    2. I_2 = D; E(I_2) = G, C_2 = A \oplus G = G
+        
+            .. admonition:: Beispiel - Entschlüsselung
+            
+                .. math:: 
+                    
+                    IV = 7, k = 3, C = T
+                
+                    E(IV) = 3, M = T \oplus 3 = P\qquad (10011_b \oplus 11100_b = 01111_b = P) 
+    

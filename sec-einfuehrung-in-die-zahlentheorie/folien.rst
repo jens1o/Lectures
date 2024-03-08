@@ -29,10 +29,12 @@ Einführung in die Zahlentheorie
 :Quelle: Im Wesentlichen *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 
 
+
 .. class:: new-section transition-scale
 
 Teilbarkeit
 -------------
+
 
 
 Teilbarkeit
@@ -1132,7 +1134,7 @@ Das CRT findet in der Public-Key-Kryptographie Einsatz.
             7, 4, 3, 1, 1
             8, 3, 1, 3, 0
 
-            Ergebnis ist: 1
+        *Ergebnis ist: 1*
 
 4. \ 
    
@@ -1201,13 +1203,13 @@ Das CRT findet in der Public-Key-Kryptographie Einsatz.
 
    .. exercise:: 
    
-    In einer Tüte sind x Gummibärchen. Wenn Sie diese auf 4 Personen verteilen haben Sie einen Rest von 2. Wenn Sie diese auf 7 Personen verteilen haben Sie einen Rest von 3. Wieviele Gummibärchen sind in der Tüte? Wenden Sie den chinesischen Restsatz an.
+    In einer Tüte sind x Gummibärchen. Wenn Sie diese auf 4 Personen verteilen, dann haben Sie einen Rest von 2. Wenn Sie diese auf 7 Personen verteilen, dann haben Sie einen Rest von 3. Wie viele Gummibärchen sind in der Tüte? Wenden Sie den chinesischen Restsatz an.
 
     .. solution::
         :pwd: CRT!
 
         0. :math:`x \equiv 2 (mod\; 4)` und :math:`x \equiv 3 (mod\; 7)`
-        1. Bestimme :math:`x_1` und :math:`x_2`
+        1. Bestimme :math:`x_1` und :math:`x_2`:
      
            :math:`x_1 = 3` und :math:`x_2 = 2`
 
