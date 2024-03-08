@@ -54,7 +54,7 @@ Stromchiffre
 - Aus praktischen Gründen muss der Bitstromgenerator als algorithmisches Verfahren implementiert werden, damit der kryptografische Bitstrom von beiden Benutzern erzeugt werden kann.
   
   - Es muss rechnerisch praktisch unmöglich sein, zukünftige Teile des Bitstroms auf der Grundlage früherer Teile des Bitstroms vorherzusagen.
-  - Die beiden Benutzer müssen nur den erzeugenden Schlüssel sicher miteinander teilen damit jeder den Schlüsselstrom erzeugen kann.
+  - Die beiden Benutzer müssen nur den erzeugenden Schlüssel sicher miteinander teilen, damit jeder den Schlüsselstrom erzeugen kann.
 
 
 
@@ -64,7 +64,7 @@ Blockchiffre
 - Ein Klartextblock wird als Ganzes behandelt und verwendet, um einen gleich langen Chiffretextblock zu erzeugen.
 - In der Regel wird eine Blockgröße von 64 oder 128 Bit verwendet.
 - Wie bei einer Stromchiffre teilen sich die beiden Benutzer einen symmetrischen Chiffrierschlüssel.
-- Die meisten netzbasierten symmetrischen kryptografischen Anwendungen verwenden Blockchiffren.
+- Die meisten netzbasierten Anwendungen, die auf symmetrische Verschlüsselung setzen, verwenden Blockchiffren.
 
 
 
@@ -539,7 +539,7 @@ Entwurfsprinzipien für Blockchiffre - Schlüsselableitung
 .. class:: incremental
 
 - Bei jeder Feistel-Blockchiffre wird der Hauptschlüssel verwendet, um einen Unterschlüssel für jede Runde zu erzeugen.
-- Im Allgemeinen möchten wir die Unterschlüssel so wählen, dass die Schwierigkeit, einzelne Unterschlüssel abzuleiten, und die Schwierigkeit, den Hauptschlüssel wieder zurück zu erhalten, maximiert werden.
+- Im Allgemeinen möchten wir die Unterschlüssel so wählen, dass die Schwierigkeit, einzelne Unterschlüssel abzuleiten, und die Schwierigkeit, den Hauptschlüssel wieder zurückzuerhalten, maximiert werden.
 - Es wird vorgeschlagen, dass die Schlüsselableitungsfunktion für die Unterschlüssel (:eng:`Key Schedule`) zumindest das **Strenge Lawinenkriterium** und das **Bit-Unabhängigkeitskriterium** für Schlüssel/Ciphertext garantieren sollte.
 
 
