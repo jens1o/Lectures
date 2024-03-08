@@ -590,7 +590,7 @@ Arithmetik in :math:`GF(2^3)`: Addition
     
     .. rubric:: Wiederholung
 
-    Die Subtraktion zweier Element des Körpers kann über die Addition definiert werden. Seien :math:`a, b \in F` dann ist :math:`a - b = a + (-b)` , wobei :math:`-b` das einzige Element in :math:`F` ist, für das :math:`b + (-b) = 0` gilt (:math:`-b` wird als das Negativ von :math:`b` bezeichnet).
+    Die Subtraktion zweier Elemente des Körpers kann über die Addition definiert werden. Seien :math:`a, b \in F` dann ist :math:`a - b = a + (-b)` , wobei :math:`-b` das einzige Element in :math:`F` ist, für das :math:`b + (-b) = 0` gilt (:math:`-b` wird als das Negativ von :math:`b` bezeichnet).
 
 
 
