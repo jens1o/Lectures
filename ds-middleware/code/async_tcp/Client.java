@@ -9,7 +9,6 @@ public class Client {
 
     private static void sendMsg(String msg) throws IOException {
         try (Socket s = new Socket("localhost"/* hostname */, 9999/* serverPort */)) {
-            BufferedReader networkIn = new BufferedReader(new InputStreamReader(s.getInputStream()));
             PrintWriter networkOut = new PrintWriter(s.getOutputStream());
             networkOut.println(msg);
             networkOut.flush();
@@ -39,7 +38,8 @@ public class Client {
                 try {
                     Thread.sleep(5000);
                 } catch (InterruptedException e) {
-                    /* HERE, we don't care! */ }
+                    /* HERE, we don't care! */ 
+                }
                 synchronized (queue) {
                     while (!queue.isEmpty()) {
                         var msg = queue.peek(); // we have to keep the message in the queue
