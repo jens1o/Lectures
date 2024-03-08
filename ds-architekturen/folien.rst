@@ -91,7 +91,7 @@ Ein Architekturstil wird formuliert in Form von
 
   .. rubric:: Konnektor
 
-  Ein Mechanismus der die Kommunikation, Koordination oder Kooperation zwischen Komponenten vermittelt. Beispiel: Einrichtungen für (entfernte) Prozeduraufrufe (RPC), Nachrichtenübermittlung oder Streaming.
+  Ein Mechanismus, der die Kommunikation, Koordination oder Kooperation zwischen Komponenten vermittelt. Beispiel: Einrichtungen für (entfernte) Prozeduraufrufe (RPC), Nachrichtenübermittlung oder Streaming.
 
 
 Schichtenarchitekturen
@@ -273,7 +273,7 @@ Microservice mit REST Schnittstelle
 
 .. supplemental::
 
-  Ein große Herausforderung ist das Design der Schnittstellen. Um wirkliche Unabhängigkeit zu erreichen, müssen die Schnittstellen sehr gut definiert sein. Sind die Schnittstellen nicht klar definiert oder unzureichend, dann kann das zu viel Arbeit und Koordination zwischen den Teams führen, die eigentlich unerwünscht ist!
+  Eine große Herausforderung ist das Design der Schnittstellen. Um wirkliche Unabhängigkeit zu erreichen, müssen die Schnittstellen sehr gut definiert sein. Sind die Schnittstellen nicht klar definiert oder unzureichend, dann kann das zu viel Arbeit und Koordination zwischen den Teams führen, die eigentlich unerwünscht ist!
 
 
 
@@ -410,7 +410,7 @@ Transaktionen mit Hilfe von Sagas
 
   Eine *Saga* ist eine Sequenz von Aktionen, die ausgeführt werden, um eine langlebige Transaktion zu implementieren. 
   
-  Sagas können keine Atomizität garantieren!. Jedes System für sich kann jedoch ggf. Atomizität garantieren (z. B. durch die Verwendung traditioneller Datenbanktransaktionen).
+  Sagas können keine Atomizität garantieren. Jedes System für sich kann jedoch ggf. Atomizität garantieren (z. B. durch die Verwendung traditioneller Datenbanktransaktionen).
 
   Sollte ein Abbruch der Transaktion notwendig sein, dann kann kein traditioneller *Rollback* erfolgen. Die Saga muss dann entsprechende kompensierende Transaktionen durchführen, die alle bisher erfolgreich durchgeführten Aktionen rückgängig machen.
 
@@ -508,12 +508,14 @@ Langlebige Transaktionen mit choreografierten Sagas
 
         .. rubric:: Lösungsideen
 
-        .. class:: incremental
+        .. class:: incremental negative-list
         
         - 2PC ist im Kontext von Microservices keine Option (zu langsam, zu komplex)
         - Änderung der Reihenfolge der Aktionen (1. *publish* dann 2. *update*) führt noch immer zu Inkonsistenzen
-        - die Event Processing Middleware (synchron) zu notifizieren, als Teil des Datenbankupdates ist auch keine Option:
+        - die Event Processing Middleware (synchron) zu notifizieren - d. h. als Teil des Datenbankupdates - ist auch keine Option:
         
+          .. class:: negative-list
+
           - Was passiert wenn die Middleware nicht erreichbar ist?
           - Was passiert wenn das Event nicht verarbeitet werden kann? 
   
