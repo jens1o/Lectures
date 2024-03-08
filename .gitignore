@@ -13,6 +13,7 @@ TODO
 Readme.pdf
 *.rst.html
 *.rst.html.pdf
+*.rst.html.passwords.txt
 
 
 # Folders with generated files TODO put these in local .gitignore files!
