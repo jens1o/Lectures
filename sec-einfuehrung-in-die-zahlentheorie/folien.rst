@@ -102,7 +102,7 @@ Wenn :math:`b | g` und :math:`b|h`, dann :math:`b|(mg+nh)` für beliebige ganze 
 Teilungsalgorithmus
 ---------------------
 
-Sei  eine beliebige positive ganze Zahl :math:`n` gegeben und eine beliebige nichtnegative ganze Zahl :math:`a`, so erhält man bei der Division von :math:`a` durch :math:`n` einen ganzzahligen Quotienten :math:`q` und einen nicht negativen, ganzzahligen Rest :math:`r`, die der folgenden Beziehung gehorchen:
+Sei eine beliebige positive ganze Zahl :math:`n` gegeben und eine beliebige ganze Zahl :math:`a \geq 0`, so erhält man bei der Division von :math:`a` durch :math:`n` einen ganzzahligen Quotienten :math:`q` und einen nicht negativen, ganzzahligen Rest :math:`r`, die der folgenden Beziehung gehorchen:
 
 .. math:: 
 
