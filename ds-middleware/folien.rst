@@ -1172,7 +1172,7 @@ MOM - Queue Managers
 
 .. supplemental::
   
-  *Queue Managers* sind der Zentrale Baustein von Message-queueing Systemen. Im Allgemeinen gibt es (mindestens konzeptionell) einen lokalen *Queue Manager* pro Prozess. Ein *Queue Manager* ist ein Prozess, der Nachrichten in Warteschlangen speichert und verwaltet. Bei Bedarf kann er mehrere Warteschlangen verwalten und an andere *Queue Manager* weiterleiten.
+  *Queue Managers* sind der zentrale Baustein von Message-queueing Systemen. Im Allgemeinen gibt es (mindestens konzeptionell) einen lokalen *Queue Manager* pro Prozess. Ein *Queue Manager* ist ein Prozess, der Nachrichten in Warteschlangen speichert und verwaltet. Bei Bedarf kann er mehrere Warteschlangen verwalten und an andere *Queue Manager* weiterleiten.
 
 
 .. class:: integrated-exercise
@@ -1182,15 +1182,58 @@ MOM - Queue Managers
 
 .. exercise::  Asynchrone, verbindungsorientierte Kommunikation
 
-  Entwickeln Sie einen Client für einen Logging Server, der Lognachrichten an den Server sendet. Im Fehlerfall, z. B. wenn der Server nicht verfügbar ist oder es zu einer Netzwerkpartitionierung kam, sollen die Nachrichten zwischengepuffert werden und bei Serververfügbarkeit wieder zugestellt werden. Mit anderen worten: Im Fehlerfall soll der Client nicht blockieren, sondern weiter funktionieren. Der Client stellt stattdessen die Nachrichten dann zu, wenn der Server wieder verfügbar wird.
+  Entwickeln Sie einen Client für einen Logging Server, der Lognachrichten an den Server sendet. Im Fehlerfall, z. B. wenn der Server nicht verfügbar ist oder es zu einer Netzwerkpartitionierung kam, sollen die Nachrichten zwischengepuffert werden und bei Serververfügbarkeit wieder zugestellt werden. Mit anderen Worten: Im Fehlerfall soll der Client nicht blockieren, sondern weiter funktionieren. Der Client stellt stattdessen die Nachrichten dann zu, wenn der Server wieder verfügbar wird.
 
   Stellen Sie sicher, dass Nachrichten immer in der richtigen Reihenfolge am Server ankommen. D. h. stellen Sie zum Beispiel sicher, dass eine gepufferte Nachricht nie nach einer neueren Nachricht ankommt.
 
   Verwenden Sie den Code im Anhang als Schablone.
 
+  .. solution::
+    :pwd: NurEinBisschenCode
+
+    .. code:: Java
+      :class: smaller
+
+      private final static ArrayList<String> queue = new ArrayList<>();
+
+      public static void log(String msg) {
+        try {
+          synchronized (queue) {
+            if (!queue.isEmpty()) {
+              queue.add(msg); // we never want to sent them out of order
+            } else {
+              sendMsg(msg);
+            }
+          }
+        } catch (IOException ioe) {
+          System.err.println("[Info]: can't log: " + ioe);
+          queue.add(msg);
+        }
+      }
+
+      public static void startThread() throws Exception {
+        Thread.ofVirtual().start(() -> {
+          while (true) {
+            try {
+              Thread.sleep(5000);
+            } catch (InterruptedException e) { /* HERE, we don't care! */ }
+            synchronized (queue) {
+              while (!queue.isEmpty()) {
+                var msg = queue.peek(); // we have to keep the message in the queue
+                try {
+                  sendMsg(msg);
+                  queue.poll(); // remove the message from the queue
+                } catch (IOException ioe) {
+                  System.err.println("[Info]: still can't log: " + ioe);
+                  break;
+                }
+              }
+            }
+          }
+        });
+      }
 
 .. supplemental:: tiny
-
 
   .. rubric:: Einfacher TCP basierter SyslogServer
 
@@ -1283,47 +1326,3 @@ MOM - Queue Managers
     }
 
 
-  .. solution::
-    :pwd: NurEinBischenCode
-
-    .. code:: Java
-      :class: smaller
-
-      private final static ArrayList<String> queue = new ArrayList<>();
-
-      public static void log(String msg) {
-        try {
-          synchronized (queue) {
-            if (!queue.isEmpty()) {
-              queue.add(msg); // we never want to sent them out of order
-            } else {
-              sendMsg(msg);
-            }
-          }
-        } catch (IOException ioe) {
-          System.err.println("[Info]: can't log: " + ioe);
-          queue.add(msg);
-        }
-      }
-
-      public static void startThread() throws Exception {
-        Thread.ofVirtual().start(() -> {
-          while (true) {
-            try {
-              Thread.sleep(5000);
-            } catch (InterruptedException e) { /* HERE, we don't care! */ }
-            synchronized (queue) {
-              while (!queue.isEmpty()) {
-                var msg = queue.peek(); // we have to keep the message in the queue
-                try {
-                  sendMsg(msg);
-                  queue.poll(); // remove the message from the queue
-                } catch (IOException ioe) {
-                  System.err.println("[Info]: still can't log: " + ioe);
-                  break;
-                }
-              }
-            }
-          }
-        });
-      }
