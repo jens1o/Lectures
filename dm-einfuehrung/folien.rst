@@ -33,13 +33,23 @@ Dokumentenmanagement, Archivierungs- und Verschlüsselungsverfahren
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
     :Version: |date|
 
-.. container:: footer-left x-tiny incremental
+.. supplemental::
+
+  :Folien: 
+      :HTML: https://delors.github.io/dm-einfuehrung/folien.rst.html 
+
+      :PDF: https://delors.github.io/dm-einfuehrung/folien.rst.html.pdf
+  :Fehler auf Folien melden:
+      https://github.com/Delors/delors.github.io/issues
+
+
+.. container:: footer-left smallest incremental
 
     Dieser Foliensatz basiert auf Folien von: Klaus Götzer.
     
-    Alle Fehler sind meine eigenen.
-
     Dokumenten-Management von *Klaus Götzer, Patrick Maué, und Ulrich Emmert*, dpunkt.verlag, 2023.
+
+    Alle Fehler sind meine eigenen.
 
     
 
@@ -104,7 +114,9 @@ Motivation
 - Ähnlich hohe Werte werden für digitale Dokumente genannt, die ohne weitere Strukturierungshilfen in Dateisystemen oder Datenbanken liegen. 
 - Die Menge an Dokumenten, die heute entstehen kann durch eine einzelne Person nicht mehr bewältigt werden.
 
-  (Zum  Beispiel fallen für ein einzelnes konventionelles Kraftwerk bereits ca. 500  000 Dokumente.)
+.. supplemental::
+
+  Zum  Beispiel fallen für ein einzelnes konventionelles Kraftwerk bereits ca. 500  000 Dokumente.
    
 
 .. class:: smaller
@@ -140,8 +152,6 @@ Digitalisierung - ein langwieriger nicht-aufzuhaltender Prozess...
 
 
 .. class:: vertical-title
-
-.. class:: smaller
 
 Digitalisierung - ein Prozess mit Stilblüten...
 -------------------------------------------------
@@ -192,6 +202,8 @@ Was kann ein Dokumentenmanagement System (DMS) leisten?
 
     Revisionssichere Archivsysteme stellen sicher, dass Informationen wieder auffindbar, nachvollziehbar, unveränderbar und verfälschungssicher archiviert sind.
 
+
+
 Gegenüberstellung konventionelles Archiv zu DMS
 -------------------------------------------------------------------------------
 
@@ -207,11 +219,14 @@ Gegenüberstellung konventionelles Archiv zu DMS
     Sicherheit, "Ordner u. Dokumente lassen sich leicht entfernen oder kopieren", "klare Regelung der Zugriffsrechte, keine ungewollte Entnahme möglich"
 
 
+
+.. class:: vertical-title
+
 Zyklus von Dokumenten
--------------------------------------------------------------------------------
+---------------------------------------
 
 .. image:: drawings/dokumente/lebenszyklus.svg
-    :height: 975px
+    :height: 1150px
     :align: center
 
 
@@ -499,7 +514,7 @@ Dokumentenstrukturen
 
 
 
-Zusammengesetzte Dokumente (:eng:`Compound Documents`)
+Zusammengesetzte Dokumente 
 -------------------------------------------------------
 
 Komplexes Objekt aus mehreren Dokumenten mit eigener Verwaltungsstruktur:
@@ -508,6 +523,9 @@ Komplexes Objekt aus mehreren Dokumenten mit eigener Verwaltungsstruktur:
 - Versionen 
 - Rechte
 
+.. supplemental::
+
+    Zusammengesetzte Dokumente ≘ :eng:`Compound Documents`
 
 
 .. class:: new-section
@@ -587,7 +605,7 @@ Rahmenbedingungen für die Lebensdauer von Dokumenten
 
 .. container:: supplemental
 
-    - Konzept zur intelligenten Verwaltung, Bewertung und Nutzung von Daten bei möglichst geringen Kosten (Geschäftsregeln, ServiceLevel, ..)
+    - Konzept zur intelligenten Verwaltung, Bewertung und Nutzung von Daten bei möglichst geringen Kosten (Geschäftsregeln, Servicelevel, ..)
     - Betrachtung der Daten und Dokumente über ihren gesamten Lebenslauf, aber nicht in Abhängigkeit vom Alter sondern von der Wichtigkeit
     - Entwicklung optimaler Verwaltungsstrategien in Abhängigkeit von der aktuellen Wichtigkeit und Nutzung 
     - Enge Verzahnung von Speicherhardware, Archivierung und Daten-, Dokumenten- und Content-Management
@@ -612,9 +630,10 @@ Löschen von Dokumenten
 Archivierung (von Dokumenten)
 -----------------------------------------------
 
-.. admonition:: Archiv
-    :class: definition    
-
+.. admonition:: Definition
+    
+    **Archiv**
+    
     Ein Archiv ist ein realer oder elektronischer Ort in dem Dokumente, die zur laufenden Aufgabenerfüllung nicht mehr benötigt werden, erfasst, ausgewertet und zugänglich gemacht werden.
 
 
@@ -646,14 +665,11 @@ Bewertung von Dateiformaten in Hinblick auf die Dauerhaftigkeit
 
 
 
-.. class:: tiny
 
 Langfristige Aufbewahrung von Dokumenten
-----------------------------------------------------------------
+--------------------------------------------
 
-.. rubric:: `Recommended File Formats for Long-Term Data Curation - Georgia Southern University | University Libraries <https://georgiasouthern.libguides.com/c.php?g=833713&p=5953146>`__
-
-.. container:: stack
+.. container:: stack far-far-smaller
 
     .. container:: layer
 
@@ -862,6 +878,11 @@ Langfristige Aufbewahrung von Dokumenten
             • PowerPoint (\*.ppt)
             • All other presentation formats not listed here"
 
+.. container:: minor far-smaller margin-top-1em
+    
+    `Recommended File Formats for Long-Term Data Curation - Georgia Southern University | University Libraries <https://georgiasouthern.libguides.com/c.php?g=833713&p=5953146>`__
+
+
 
 
 Dateiformate und ihre Eignung für die Langzeitarchivierung
@@ -895,7 +916,7 @@ Regelmäßiges Umkopieren der Bestände ist häufig notwendig:
 .. admonition:: Hinweis
   :class: warning incremental margin-top-2em
 
-  • Kann mit einer Migration auf andere Formate bzw. Formatversionen verbunden sein! 
+  Kann mit einer Migration auf andere Formate bzw. Formatversionen verbunden sein! 
 
 
 
@@ -934,7 +955,7 @@ Typische (Web-) Dienste eines DMS
 
 .. container:: two-columns
 
-    .. container:: column
+    .. container:: column no-separator
                 
         • Create document 
         • Move document

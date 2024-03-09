@@ -37,14 +37,22 @@ Dokumentenerfassung und -indizierung
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
     :Version: |date|
 
+.. supplemental::
 
-.. container:: footer-left x-tiny 
+  :Folien: 
+      :HTML: https://delors.github.io/dm-erfassung-und-indizierung/folien.rst.html 
+
+      :PDF: https://delors.github.io/dm-erfassung-und-indizierung/folien.rst.html.pdf
+  :Fehler auf Folien melden:
+      https://github.com/Delors/delors.github.io/issues
+
+.. container:: footer-left smallest
 
     Dieser Foliensatz basiert auf Folien von: Klaus Götzer.
     
-    Alle Fehler sind meine eigenen.
-
     Dokumenten-Management von *Klaus Götzer, Patrick Maué, und Ulrich Emmert*, dpunkt.verlag, 2023.
+
+    Alle Fehler sind meine eigenen.
 
 
 
@@ -113,6 +121,8 @@ Fremderstellte Dokumente
 
     .. rubric:: Herkunft der Dokumente 
 
+    .. class:: incremental
+
     • Posteingang (Papier)
     • Übersendete Dateien
     • E-Mail-Eingang
@@ -121,13 +131,17 @@ Fremderstellte Dokumente
 
     .. rubric:: Typische Problemstellungen
 
+    .. class:: incremental
+
     • Unterschiedliche Formate
     • Ermittlung und Erfassung der Metadaten
 
 .. container:: incremental
 
     .. rubric:: Probleme beim Eingang als Papier 
-        
+    
+    .. class:: incremental
+
     • Aufbereitung des Eingangs
     • Qualitätsunterschiede
     • Umsetzung in ein CI-Format
@@ -136,7 +150,6 @@ Fremderstellte Dokumente
 
     :NCI: *Non Coded Information* (z. B. Texte in Bildern)
     :CI: *Coded Information*
-
 
 
 
@@ -165,7 +178,6 @@ Fremderstellte Dokumente
 
 
 
-
 .. class:: vertical-title smaller-slide-title 
 
 Beispiel für Eingangspostbearbeitung
@@ -182,22 +194,22 @@ Beispiel für Eingangspostbearbeitung
     .. container:: column
 
         .. figure:: drawings/eingangspostbearbeitung.svg
-            :height: 1175px
+            :height: 1140px
             :align: center
 
 
 
-.. class:: smaller-slide-title
+.. class:: smaller-slide-title vertical-title
 
-Unterstützung für Workflowdefinitionen in ECM Systemen
--------------------------------------------------------
+Unterstützung für Workflowdefinitionen in ECM Systemenv - z. B. `DocuWare <https://start.docuware.com>`__
+-----------------------------------------------------------------------------------------------------------
 
-.. figure:: screenshots/docuware-workflow-manager-2024-02.webp
-    :height: 900px
+.. image:: screenshots/docuware-workflow-manager-2024-02.webp
+    :height: 1140px
     :align: center
     :class: box-shadow
 
-    https://start.docuware.com
+    
 
 
 .. container:: supplemental
@@ -212,6 +224,8 @@ Erstmalige Übernahme von Dokumenten
 
     .. rubric:: Quellen
 
+    .. class:: incremental
+
     • Altsystem (Archiv, DMS) 
     • Filesystem
     • Mikrofilm, Mikrofish etc. 
@@ -220,6 +234,8 @@ Erstmalige Übernahme von Dokumenten
 .. container:: incremental
 
     .. rubric:: Zu Klären
+
+    .. class:: incremental
 
     • Was ist wirklich sinnvoll zu übernehmen?
     • Automatisierbare Übernahme möglich? (Zeitaufwand!) 
@@ -279,7 +295,7 @@ Automatisierung des Posteinganges (Papier)
 .. class:: new-section
 
 Scanning von Dokumenten
--------------------------------------------------------------------------------
+---------------------------------------------------------
 
 
 
@@ -467,21 +483,29 @@ Sicherstellung der Qualität
 Barcodes und QR-Codes
 ------------------------
 
-.. class:: incremental
+.. container:: two-columns
 
-• Wird im DMS-Umfeld zur Identifizierung von Dokumenten eingesetzt
-• 2 Einsatzgebiete
+  .. container:: column
 
-  - Selbst erzeugte Dokumente (z. B. Anträge) mit Barcode-Aufdruck: Beim Rücklauf automatisch erkennbar
-  - Für Fremddokumente: Barcode-Etiketten (Szenario „Spätes Archivieren“)
+    .. class:: incremental
 
-• Sehr robust und etabliert
-• Bar-/QR-Codes weisen sehr hohe Erkennungsraten auf
+    • Werden  zur Identifizierung von Dokumenten eingesetzt.
+    • 2 Einsatzgebiete:
 
-• Beispiel: Lohnsteuerbescheinigung mit QR-Code
+      1. Selbst erzeugte Dokumente (z. B. Anträge) mit Barcode-Aufdruck: Beim Rücklauf automatisch erkennbar.
+      2. Für Fremddokumente: Barcode-Etiketten (Szenario: „Spätes Archivieren“).
 
-  .. image:: screenshots/lohnsteuer-mit-qr-code.jpeg
-      :width: 1000px
+    • Sehr robust und etabliert.
+    • Bar-/QR-Codes weisen sehr hohe Erkennungsraten auf.
+
+  .. container:: column padding-left-1em incremental
+
+    Beispiel: 
+    
+    Lohnsteuerbescheinigung mit QR-Code
+
+    .. image:: screenshots/lohnsteuer-mit-qr-code.jpeg
+      :width: 800px
       :align: center
       :class: box-shadow
 
@@ -490,6 +514,8 @@ Szenarien: Zeitpunkt des Scannens
 ---------------------------------
 
 Drei typische Erfassungsszenarien für Eingangspost:
+
+.. class:: incremental
 
 - Scannen im Posteingang (frühes Archivieren)
 - Scannen zum Zeitpunkt der Bearbeitung
@@ -509,7 +535,7 @@ Szenario 1: Frühes Archivieren / Erfassen beim Posteingang
   
 - Vor elektronischer Weiterleitung: evlt. Klassifikation + evtl. Attributierung
 
-.. container:: two-columns  small incremental
+.. container:: two-columns slightly-more-smaller incremental
 
     .. container:: column
 
@@ -533,22 +559,23 @@ Szenario 1: Frühes Archivieren / Erfassen beim Posteingang
       - ggf. aufwändiger Einstieg
 
 
+
 Szenario 2: Erfassung bei der Bearbeitung
 ------------------------------------------
 
 - Dokumente gelangen in Papierform zum Sachbearbeiter.
 - Dort werden sie direkt vor oder gleich nach der Bearbeitung eingescannt, attributiert und abgelegt.
 
-.. container:: small incremental
+.. container:: slightly-more-smaller incremental
         
     **Einsatzgebiet**
 
     .. class:: list-with-explanations
 
     - Erfassung, Nachbearbeitung oder Attributierung ist aufwendig oder erfordert spezielle Sachkenntnis
-    - Fehlgeleitete Belege werden in das DMS eingebracht 
+    - fehlgeleitete Belege werden in das DMS eingebracht
 
-      (ggf. in Ergänzung zum „Frühen Archivieren“)
+      (Ggf. in Ergänzung zum „Frühen Archivieren“.)
 
     - kleine Dokumentenmengen, nicht für Massenbearbeitung geeignet
 
@@ -558,7 +585,7 @@ Szenario 2: Erfassung bei der Bearbeitung
     .. class:: negative-list
 
     - Bearbeitungsplätze müssen mit Scanner ausgestattet sein
-    - Ständiger Wechsel zw. Dokumentenerfassung und Dokumentenbearbeitung stört Arbeitsfluss
+    - ständiger Wechsel zw. Dokumentenerfassung und Dokumentenbearbeitung stört Arbeitsfluss
     - Einsatz teurer Personalressourcen (Sachbearbeiter) für einfache Tätigkeiten (Scannen, Attributieren)
 
 
@@ -571,12 +598,10 @@ Szenario 3: Spätes Archivieren
 • Papierdokumente werden nach ihrer Bearbeitung an die zentrale Erfassungsstelle geschickt und dort eingescannt.
 • Zusätzlich wird ein Identifikator für das Papierdokument benötigt.
 
-  .. class:: small
-
   - für Zuordnung des Papierdokuments zu Vorgang während Bearbeitung 
   - Bar-/QR-Code oder Referenznummer/Belegnummer
   
-.. class:: small incremental
+.. class:: far-smaller incremental
 
 • Bar-/QR-Code:
 
@@ -661,7 +686,7 @@ COLD-Verfahren (historisch)
         **Verarbeitung auf COLD-Server**
 
         1. Zerlegung des Datenstroms in einzelne Dokumente.
-        2. Extrahiert die für die Ablage bzw. spätere Recherche der Dokumente notwendigen Index-Daten automatisch + evtl. Bezug zu Overlays 
+        2. Extrahiert die für die Ablage bzw. spätere Recherche der Dokumente notwendigen Index-Daten automatisch + evtl. Bezug zu Overlays. 
          
            :minor:`(Trennung zwischen fachlichen und layout Daten möglich.)`
         3. Konvertierung bringt die Dokumente in eine für die Ablage geeignete Form.
