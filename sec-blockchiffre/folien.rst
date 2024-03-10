@@ -64,7 +64,8 @@ Stromchiffre
 
         **Beispielimplementierung in Python**
 
-        .. code-block:: python
+        .. code:: python
+            :class: smaller
 
             def vernam(plaintext: bytes, key: bytes) -> bytes:
                 return bytes([p ^ k for p, k in zip(plaintext, key)])
@@ -303,32 +304,28 @@ Feistel Chiffre - Beispiel
 Feistel Chiffre - Eigenschaften 
 --------------------------------
 
-.. container:: stack small 
+.. container:: scrollable
 
-    .. container:: layer 
+    :**Rundenfunktion F**:
+        Größere Komplexität bedeutet in der Regel größere Resistenz gegen Kryptoanalyse.
 
-        :**Rundenfunktion F**:
-            Größere Komplexität bedeutet in der Regel größere Resistenz gegen Kryptoanalyse.
-        
-        :**Schnelle Ver-/Entschlüsselung in Software**: 
-            Häufig ist die Verschlüsselung so in Anwendungen oder Dienstprogramme eingebettet, dass eine Hardwareimplementierung nicht möglich ist; dementsprechend ist die Geschwindigkeit des Algorithmus relevant.
+    :**Schnelle Ver-/Entschlüsselung in Software**: 
+        Häufig ist die Verschlüsselung so in Anwendungen oder Dienstprogramme eingebettet, dass eine Hardwareimplementierung nicht möglich ist; dementsprechend ist die Geschwindigkeit des Algorithmus relevant.
 
-        :**Einfachheit der Analyse**: 
-            Wenn der Algorithmus kurz und klar erklärt werden kann, ist es einfacher den Algorithmus auf kryptoanalytische Schwachstellen hin zu analysieren und somit ein höheres Maß an Sicherheit in Bezug auf seine Stärke zu entwickeln.
+    :**Einfachheit der Analyse**: 
+        Wenn der Algorithmus kurz und klar erklärt werden kann, ist es einfacher den Algorithmus auf kryptoanalytische Schwachstellen hin zu analysieren und somit ein höheres Maß an Sicherheit in Bezug auf seine Stärke zu entwickeln.
 
-        :**Algorithmus für die Ableitung der (Unter-)Schlüssel**: 
-            Eine höhere Komplexität dieses Algorithmus sollte zu einer größeren Schwierigkeit der Kryptoanalyse führen.
+    :**Algorithmus für die Ableitung der (Unter-)Schlüssel**: 
+        Eine höhere Komplexität dieses Algorithmus sollte zu einer größeren Schwierigkeit der Kryptoanalyse führen.
 
-    .. container:: layer incremental
+    :**Blockgröße**:
+        Größere Blockgrößen bedeuten mehr Sicherheit, aber eine geringere Verschlüsselungs-/Entschlüsselungsgeschwindigkeit für einen bestimmten Algorithmus.
 
-        :**Blockgröße**:
-            Größere Blockgrößen bedeuten mehr Sicherheit, aber eine geringere Verschlüsselungs-/Entschlüsselungsgeschwindigkeit für einen bestimmten Algorithmus.
+    :**Schlüsselgröße**:
+        Ein größerer Schlüssel bedeutet mehr Sicherheit, kann aber die Verschlüsselungs-/Entschlüsselungsgeschwindigkeit verringern.
 
-        :**Schlüsselgröße**:
-            Ein größerer Schlüssel bedeutet mehr Sicherheit, kann aber die Verschlüsselungs-/Entschlüsselungsgeschwindigkeit verringern.
-
-        :**Anzahl der Runden**: 
-            Das Wesen der Feistel-Chiffre besteht darin, dass eine einzige Runde unzureichende Sicherheit bietet, während mehrere Runden zunehmende Sicherheit bieten.
+    :**Anzahl der Runden**: 
+        Das Wesen der Feistel-Chiffre besteht darin, dass eine einzige Runde unzureichende Sicherheit bietet, während mehrere Runden zunehmende Sicherheit bieten.
 
 
 Data Encryption Standard (DES)

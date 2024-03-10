@@ -41,23 +41,18 @@ Grundlegende Konzepte verteilter Systeme
 
   :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
   :Kontakt: michael.eichberg@dhbw-mannheim.de
+  :Version: |date|
  
-.. container::  
+.. supplemental::  
 
-  :`Folien`:smaller:: 
-    .. container:: smaller
-
-      https://delors.github.io/ds-grundlegende-konzepte/folien.rst.html :raw-html:`<br>`
+  :Folien: 
+    
+      https://delors.github.io/ds-grundlegende-konzepte/folien.rst.html 
+      
       https://delors.github.io/ds-grundlegende-konzepte/folien.rst.html.pdf
-  :`Fehler auf Folien melden`:smaller::
-    .. container:: smaller
+  :Fehler auf Folien melden:
 
       https://github.com/Delors/delors.github.io/issues
-
-.. container:: footer-left tiny minor
-   
-   Version: |date|
-
 
 
 .. class:: center-child-elements

@@ -52,7 +52,7 @@
   :Folien: 
         
           https://delors.github.io/ds-architekturen/folien.rst.html 
-          
+
           https://delors.github.io/ds-architekturen/folien.rst.html.pdf
   :Fehler auf Folien melden:
 
@@ -470,7 +470,7 @@ Langlebige Transaktionen mit choreografierten Sagas
 *Dual-write Problem*
 ---------------------
 
-.. stack:: small
+.. stack::
 
   .. layer:: 
 
@@ -503,7 +503,7 @@ Langlebige Transaktionen mit choreografierten Sagas
           :height: 800px
           :align: center
 
-      .. container:: column
+      .. container:: column slightly-more-smaller
 
         .. rubric:: Lösungsideen
 
@@ -522,21 +522,23 @@ Langlebige Transaktionen mit choreografierten Sagas
           
          Strikte Konsistenz ist nicht erreichbar.
 
-  .. layer:: incremental
 
-    .. container:: two-columns
+*Dual-write Problem* - Outbox Pattern
+-----------------------------------------
 
-      .. image:: images/dual-write/outbox-pattern.svg
-         :height: 800px
-         :align: center
+.. container:: two-columns
 
-      .. container:: 
+  .. image:: images/dual-write/outbox-pattern.svg
+      :height: 800px
+      :align: center
 
-        .. rubric:: *(eine) Lösung: Outbox Pattern*
+  .. container:: 
 
-        - Die Aktionen werden (zusätzlich) in einer Outbox-Tabelle gespeichert und dann **asynchron** verarbeitet.
+    .. rubric:: *(eine) Lösung: Outbox Pattern*
 
-        - Damit kann *Eventual Consistency* erreicht werden.
+    - Die Aktionen werden (zusätzlich) in einer Outbox-Tabelle gespeichert und dann **asynchron** verarbeitet.
+
+    - Damit kann *Eventual Consistency* erreicht werden.
 
 
 .. class:: no-title center-child-elements

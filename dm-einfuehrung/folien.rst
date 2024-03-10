@@ -463,7 +463,7 @@ Beispiele von Meta-Daten einer Verwaltungssoftware für grafische Zeichnungen
 ----------------------------------------------------------------------------------------------
 
 .. csv-table::
-    :class: highlight-line-on-hover footnotesize incremental
+    :class: highlight-line-on-hover far-smaller incremental
     :header: Nr., Attribut, Muss, Funktion, Quelle, Bemerkung
 
     1, Zeichnungsnummer, M, Eindeutiger Schlüssel, Manuelle Vergabe durch Benutzer, Identifiziert Zeichnung
