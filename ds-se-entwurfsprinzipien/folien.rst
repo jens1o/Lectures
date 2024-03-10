@@ -164,7 +164,7 @@ Niedrige statische Kopplung (:eng:`low (static) coupling`)
   Relevante Frage: Wer ist/sollte der Eigentümer der Schnittstellen sein? D. h. aus welcher Perspektive sollte die Schnittstelle entworfen werden?
 
 
-.. class:: vertical-title much-smaller
+.. class:: vertical-title far-smaller
 
 Niedrige vs. hohe dynamische Kopplung
 -------------------------------------------------------------------------------------------------

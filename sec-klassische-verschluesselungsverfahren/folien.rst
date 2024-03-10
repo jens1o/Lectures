@@ -12,6 +12,7 @@
 .. role:: ger
 .. role:: ger-quote
 .. role:: eng
+.. role:: minor
 
 
 
@@ -22,6 +23,15 @@ Klassische Verschlüsselungsmethoden
 :Version: |date|
 :Quelle: Im Wesentlichen: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 
+.. supplemental::
+
+  :Folien: 
+          https://delors.github.io/sec-klassische-verschluesselungsverfahren/folien.rst.html 
+
+          https://delors.github.io/sec-klassische-verschluesselungsverfahren/folien.rst.html.pdf
+  :Fehler auf Folien melden:
+
+          https://github.com/Delors/delors.github.io/issues
 
 
 Definitionen
@@ -32,7 +42,7 @@ Definitionen
 
     Die Originalnachricht, die verschlüsselt werden soll.
 
-:Geheimtext oder Chiffretext oder Krytogramm: 
+:Geheimtext oder Chiffretext oder `Krytogramm`:minor:: 
     :eng:`Ciphertext`
 
     Die kodierte/verschlüsselte Nachricht.
@@ -115,15 +125,21 @@ Kryptografische Systeme können entlang dreier unabhängiger Dimensionen charakt
 
 1. Die Art der Operationen, die zur Umwandlung von Klartext in Chiffretext verwendet werden.
 
+   .. class:: incremental
+
    - Substitution
    - Transposition (Vertauschungen)
 
 2. Die Anzahl der verwendeten Schlüssel.
  
+   .. class:: incremental
+
    Symmetrisch: Ein-Schlüssel-, **Secret-Key**-, konventionelle Verschlüsselung
    Asymmetrisch: Zwei-Schlüssel- oder **Public-Key**-Verschlüsselung
 
-3. Die Art und Weise, in der der Klartext verarbeitet wird.
+3. Die Art und Weise, in der der Klartext verarbeitet wird:
+
+   .. class:: incremental
 
    - Blockchiffre
    - Stromchiffre
@@ -177,7 +193,7 @@ Sicherheit von Verschlüsselungsschemata
 
    *Bedingungslos Sicher* (:eng:`Unconditionally Secure`)
 
-   - Unabhängig davon wie viel Zeit ein Gegner hat ist es ihm unmöglich, den Geheimtext zu entschlüsseln, weil die erforderlichen Informationen nicht vorhanden sind.
+   - Unabhängig davon wie viel Zeit ein Gegner hat, ist es ihm unmöglich, den Geheimtext zu entschlüsseln, weil die erforderlichen Informationen nicht vorhanden sind.
 
 .. container:: incremental
 
@@ -202,7 +218,7 @@ Brute-Force Angriff
 
 - Im Durchschnitt muss die Hälfte aller möglichen Schlüssel ausprobiert werden, um Erfolg zu haben.
 
-- Zur Ergänzung des Brute-Force-Ansatzes ist ein gewisses Maß an Wissen über den zu erwartenden Klartext erforderlich. Es werden Mittel zur automatischen Unterscheidung von Klartext und :ger-quote:`Müll` benötigt.
+- Zur Durchführung des Brute-Force-Ansatzes ist ein gewisses Maß an Wissen über den zu erwartenden Klartext erforderlich. Es werden Mittel zur automatischen Unterscheidung von Klartext und :ger-quote:`Müll` benötigt.
 
 
 
@@ -345,7 +361,7 @@ Monoalphabetische Chiffren
 
 .. class:: incremental
 
-  - Wenn die "Chiffre"-Zeile (siehe Cäsar-Chiffre) eine beliebige Permutation der 26 alphabetischen Zeichen sein kann, dann gibt es :math:`26!` oder mehr als :math:`4 \times 10^{26}` mögliche Schlüssel.
+  - Wenn die :ger-quote:`Chiffre`-Zeile (siehe Cäsar-Chiffre) eine beliebige Permutation der 26 alphabetischen Zeichen sein kann, dann gibt es :math:`26!` oder mehr als :math:`4 \times 10^{26}` mögliche Schlüssel.
 
     - Dies ist um 10 Größenordnungen größer als der Schlüsselraum für DES!
     - Der Ansatz wird als monoalphabetische Substitutions-Chiffre bezeichnet, da pro Nachricht ein einziges Chiffre-Alphabet verwendet wird.
@@ -367,7 +383,7 @@ Häufigkeit der englischen Buchstaben [#]_
 Angriffe auf Monoalphabetische Chiffren
 -----------------------------------------
 
-Sie sind leicht zu knacken, da sie die Häufigkeitsdaten des ursprünglichen Alphabets widerspiegeln.
+Sie sind leicht zu knacken, da sie die Häufigkeitsdaten des ursprünglichen Alphabets wiederspiegeln.
 
 .. container:: incremental
 
@@ -392,8 +408,10 @@ Erfunden vom britischen Wissenschaftler Sir Charles Wheatstone im Jahr 1854.
     - Drei-Buchstaben-Kombination
     - am häufigsten im Englischen: "*the*"
 
-- Bekannteste Chiffrierung mit mehreren Buchstaben
-- Behandelt Digramme im Klartext als einzelne Einheiten und übersetzt diese Einheiten in Digramme des Geheimtextes
+.. class:: incremental
+
+- Bekannteste Chiffrierung mit mehreren Buchstaben.
+- Behandelt Digramme im Klartext als einzelne Einheiten und übersetzt diese Einheiten in Digramme des Geheimtextes.
 - Basiert auf der Verwendung einer 5 x 5 Buchstabenmatrix, die mit Hilfe eines Schlüsselworts konstruiert wird. 
 - Wurde von der britischen Armee im ersten Weltkrieg und von der US-Armee und anderen alliierten Streitkräften im zweiten Weltkrieg als Standardfeldsystem verwendet.
 
@@ -410,6 +428,7 @@ Sei das Schlüsselwort MONARCHY:
 .. csv-table:: 
     :delim: space
     :align: center
+    :class: highlight-cell-on-hover
 
     *M* *O* *N* *A* *R*
     *C* *H* *Y* B D
@@ -429,6 +448,7 @@ Die Verschlüsselung wird für jedes Buchstabenpaar des Klartextes durchgeführt
     .. csv-table:: 
         :delim: space
         :align: center
+        :class: highlight-cell-on-hover
 
         M O N A R
         C H Y B D
@@ -438,10 +458,10 @@ Die Verschlüsselung wird für jedes Buchstabenpaar des Klartextes durchgeführt
 
 .. class:: smaller incremental
 
-1. Wenn beide Buchstaben gleich sind (oder nur ein Buchstabe übrig ist), fügen Sie ein "X" hinter dem ersten Buchstaben ein. Verschlüsseln Sie das neue Paar und fahren Sie fort. (z. B. würde statt "ballon" "ba lx lo on" verschlüsselt werden.)
-2. Wenn die Buchstaben in der gleichen Zeile stehen, ersetzen Sie sie durch die Buchstaben unmittelbar rechts davon (ggf. umbrechen). (z. B. wird `ar` als `RM` verschlüsselt.)
-3. Tauchen die Buchstaben in derselben Spalte auf, so sind sie durch die unmittelbar darunter liegenden Buchstaben zu ersetzen (ggf. umbrechen). (z. B. wird "mu" als "CM" verschlüsselt.)
-4. Befinden sich die Buchstaben nicht in derselben Zeile oder Spalte, so werden sie durch die Buchstaben in derselben Zeile bzw. in dem anderen Paar von Ecken des durch das ursprüngliche Paar definierten Rechtecks ersetzt. (z. B. wird `hs` als `BP` und `ea` als `IM` verschlüsselt.)
+1. Wenn beide Buchstaben gleich sind (oder nur ein Buchstabe übrig ist), fügen Sie ein "X" hinter dem ersten Buchstaben ein. Verschlüsseln Sie das neue Paar und fahren Sie fort. (Z. B. würde statt "ballon" "ba lx lo on" verschlüsselt werden.)
+2. Wenn die Buchstaben in der gleichen Zeile stehen, ersetzen Sie sie durch die Buchstaben unmittelbar rechts davon (ggf. umbrechen). (Z. B. wird `ar` als `RM` verschlüsselt.)
+3. Tauchen die Buchstaben in derselben Spalte auf, so sind sie durch die unmittelbar darunter liegenden Buchstaben zu ersetzen (ggf. umbrechen). (Z. B. wird "mu" als "CM" verschlüsselt.)
+4. Befinden sich die Buchstaben nicht in derselben Zeile oder Spalte, so werden sie durch die Buchstaben in derselben Zeile bzw. in dem anderen Paar von Ecken des durch das ursprüngliche Paar definierten Rechtecks ersetzt. (Z. B. wird `hs` als `BP` und `ea` als `IM` verschlüsselt.)
 
 
 
@@ -494,14 +514,17 @@ Vigenère-Tableau
     - 1\ . Spalte: Schlüsselbuchstabe
     - Tableau: Verschlüsselter Buchstabe
 
-    **Beispiel**
+    .. container:: incremental
 
-    Nehmen wir an, der Schlüssel ist "D" und der Klartextbuchstabe sei "b". Dann ist der Chiffretextbuchstabe "E".
+        **Beispiel**
+
+        Nehmen wir an, der Schlüssel ist "D" und der Klartextbuchstabe sei "b". Dann ist der Chiffretextbuchstabe "E".
 
 .. csv-table::
     :delim: space
     :align: right
-    :class: scriptsize compact compact-cells highlight-on-hover 
+    :width: 1100px
+    :class: scriptsize compact compact-cells highlight-on-hover monospaced text-align-center
 
     / **a** **b** **c** **d** **e** **f** **g** **h** **i** **j** **k** **l** **m** **n** **o** **p** **q** **r** **s** **t** **u** **v** **w** **x** **y** **z** 
     **A** A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 
@@ -584,12 +607,12 @@ Vernam Chiffre
 
 
 
-.. class:: smaller
+
 
 One-Time Pad
 ------------
 
-.. class:: incremental
+.. class:: incremental just-a-bit-smaller
 
 - Verbesserung der Vernam-Chiffre, vorgeschlagen von dem Offizier Joseph Mauborgne des Army Signal Corp.
 - Verwendung eines Zufallsschlüssels, der so lang wie die Nachricht ist, so dass der Schlüssel nicht wiederholt werden muss.
@@ -597,17 +620,17 @@ One-Time Pad
 - Jede neue Nachricht erfordert einen neuen Schlüssel mit der gleichen Länge wie die neue Nachricht.
 - Das Schema ist beweisbar unknackbar.
 
+  .. class:: far-smaller incremental
+
   - Erzeugt eine zufällige Ausgabe, die in keinem statistischen Zusammenhang mit dem Klartext steht.
   - Da der Chiffriertext keinerlei Informationen über den Klartext enthält, gibt es keine Möglichkeit, den Code zu knacken.
 
 
 
-.. class:: smaller
-
-Schwierigkeiten bei der Verwendung eines One-Time-Pads
+Schwierigkeiten von One-Time-Pads
 ---------------------------------------------------------
 
-.. class:: incremental
+.. class:: incremental just-a-bit-smaller
 
 - Das One-Time-Pad bietet vollständige Sicherheit, hat aber in der Praxis zwei grundlegende Schwierigkeiten:
 
@@ -615,11 +638,11 @@ Schwierigkeiten bei der Verwendung eines One-Time-Pads
 
   1. Es gibt das praktische Problem der Herstellung großer Mengen von Zufallsschlüsseln.
 
-     Jedes stark genutzte System könnte regelmäßig Millionen von zufälligen Zeichen benötigen
+     Jedes stark genutzte System könnte regelmäßig Millionen von zufälligen Zeichen benötigen.
 
   2. Ein :ger-quote:`gigantisches` Schlüsselverteilungsproblem
 
-     Für jede zu übermittelnde Nachricht benötigen Sender und Empfänger einen gleich langen Schlüssel
+     Für jede zu übermittelnde Nachricht benötigen Sender und Empfänger einen gleich langen Schlüssel.
 
 - Aufgrund dieser Schwierigkeiten ist das One-Time-Pad nur von begrenztem Nutzen; es eignet sich vor allem für Kanäle mit geringer Bandbreite, die eine sehr hohe Sicherheit erfordern.
 
@@ -636,7 +659,7 @@ Rail Fence Chiffre
 .. admonition:: Beispiel
     :class: incremental
 
-    Um die Nachricht "Wir treffen uns nach der Toga-Party" mit einer Rail Fence Chiffre der Tiefe 2 (Schlüssel) zu verschlüsseln, würden wir schreiben:
+    Um die Nachricht: :ger-quote:`Wir treffen uns nach der Toga-Party` mit einer Rail Fence Chiffre der Tiefe 2 (Schlüssel) zu verschlüsseln, würden wir schreiben:
     
     ::
 
@@ -647,64 +670,70 @@ Rail Fence Chiffre
 
 
 
-.. class:: smaller
-
-Zeilenverschiebungs-Chiffre (:eng:`Row Transposition Cipher`)
+Zeilenverschiebungs-Chiffre 
 ---------------------------------------------------------------
 
 - Ist eine komplexere Transposition.
 - Schreiben Sie die Nachricht zeilenweise in ein Rechteck mit wohldefinierter Breite und lesen Sie die Nachricht spaltenweise ab, aber vertauschen Sie die Reihenfolge der Spalten.
 - Die Reihenfolge der Spalten ist dann der Schlüssel.
 
-.. admonition:: Beispiel
+.. admonition:: Beispiel - Verschlüsselung von *attack postpone until two am*
     :class: incremental
 
-    ::
+    .. container:: slightly-more-smaller
+            
+        ::
 
-        Schlüssel:  4312567
-        Klartext:   attackp
-                    ostpone 
-                    duntilt 
-                    woamxyz
-        
-        Geheimtext: TTNA APTM TSUO AODW COIX KNLY PETZ
-        (Spalte:    3--- 4--- 2--- 1--- 5--- 6--- 7---)
+            Schlüssel:  4312567
+            Klartext:   attackp  
+                        ostpone 
+                        duntilt 
+                        woamxyz
+            
+            Geheimtext: TTNA APTM TSUO AODW COIX KNLY PETZ
+            (Spalte:    3--- 4--- 2--- 1--- 5--- 6--- 7---)
 
+.. supplemental::
+
+   Zeilenverschiebungs-Chiffre ≘ :eng:`Row Transposition Cipher`
 
 
 Steganografie
 -------------
 
-.. code:: Text
-    :class: footnotesize copy-to-clipboard
+.. exercise::
 
-    Dear Friend ; We know you are interested in receiving cutting-edge 
-    announcement . If you are not interested in our publications and wish to be 
-    removed from our lists, simply do NOT respond and ignore this mail . This mail
-    is being sent in compliance with Senate bill 1626 ; Title 4 , Section 305 . 
-    This is a ligitimate business proposal ! Why work for somebody else when you 
-    can become rich in 96 months . Have you ever noticed nobody is getting any 
-    younger & nobody is getting any younger . Well, now is your chance to 
-    capitalize on  this ! We will help you decrease perceived waiting time by 170%
-    and use credit cards on your website ! You are guaranteed to succeed because 
-    we take all the risk ! But don't believe us . Mrs Anderson of Indiana tried us 
-    and says "I was skeptical but it worked for me" . We assure you that we 
-    operate within all applicable laws . You will blame yourself forever if you 
-    don't order now . Sign up a friend and you'll get a discount of 10% ! 
-    Thank-you for your serious consideration of our offer ! 
+    .. code:: Text
+        :class: slightly-more-smaller copy-to-clipboard
 
-Verwenden Sie Spammimic https://www.spammimic.com/, um die Nachricht einzublenden.
+        Dear Friend ; We know you are interested in receiving cutting-edge 
+        announcement . If you are not interested in our publications and wish to be 
+        removed from our lists, simply do NOT respond and ignore this mail . This mail
+        is being sent in compliance with Senate bill 1626 ; Title 4 , Section 305 . 
+        This is a ligitimate business proposal ! Why work for somebody else when you 
+        can become rich in 96 months . Have you ever noticed nobody is getting any 
+        younger & nobody is getting any younger . Well, now is your chance to 
+        capitalize on  this ! We will help you decrease perceived waiting time by 170%
+        and use credit cards on your website ! You are guaranteed to succeed because 
+        we take all the risk ! But don't believe us . Mrs Anderson of Indiana tried us 
+        and says "I was skeptical but it worked for me" . We assure you that we 
+        operate within all applicable laws . You will blame yourself forever if you 
+        don't order now . Sign up a friend and you'll get a discount of 10% ! 
+        Thank-you for your serious consideration of our offer ! 
 
-.. container:: supplemental
+    Mit Spammimic https://www.spammimic.com/, kann die Nachricht extrahiert werden.
 
-    Die Nachricht ist: "Success!"
+    .. solution:: Steganografie
+        :pwd: Success!
+
+        Die Nachricht ist: "Success!"
 
 
 
 Auswahl anderer Steganographie-Techniken 
 ------------------------------------------
 
-.. class:: incremental list-with-explanations smaller
+.. class:: incremental list-with-explanations just-a-bit-smaller
 
 - **Zeichenmarkierung** 
 
@@ -727,12 +756,20 @@ Auswahl anderer Steganographie-Techniken
 Steganographie vs. Verschlüsselung
 -----------------------------------
 
+
 - Steganografie hat eine Reihe von *Nachteilen* im Vergleich zur Verschlüsselung:
+
+  .. class:: incremental negative-list
 
   - Es erfordert einen hohen Overhead, um relativ wenige Bits an Informationen zu verbergen.
   - Sobald das System entdeckt wird, wird es praktisch wertlos.
 
+.. class:: incremental
+
 - Der *Vorteil* der Steganografie:
+
+
+  .. class:: incremental positive-list
 
   - Sie kann von Parteien eingesetzt werden, die etwas zu verlieren haben, wenn die Tatsache ihrer geheimen Kommunikation (nicht unbedingt der Inhalt) entdeckt wird.
   - Verschlüsselung kennzeichnet den Verkehr als wichtig oder geheim oder kann den Sender oder Empfänger als jemanden identifizieren, der etwas zu verbergen hat.
@@ -751,7 +788,7 @@ Steganographie vs. Verschlüsselung
     .. solution::
         :pwd: winner
 
-        ``w(i/j)nXnerX => winner``
+        ``w(i/j)nXnerX`` ⇒ ``winner``
 
 .. exercise:: Vigenère Chiffre
 
@@ -807,7 +844,7 @@ Steganographie vs. Verschlüsselung
 
 
     .. solution:: Enschlüsselungsmöglichkeiten
-        :pwd: Fünf Möglichkeiten
+        :pwd: FuenfMGL
    
         (a) 5: 24153, 42153, 41253, 41523, 41532
 
@@ -820,7 +857,7 @@ Steganographie vs. Verschlüsselung
 
             ::
 
-                y r t c p   => Sieht unmittelbar wie "crypt" aus
+                y r t c p   ⇒ Sieht unmittelbar wie "crypt" aus
                 s i u o j   
                 f t n s u   
 
@@ -835,6 +872,18 @@ Steganographie vs. Verschlüsselung
             Jetzt die 2. Spalte entsprechend einsetzten und prüfen wann ein gültiger Text herauskommt.
 
 
-            P = ``crypto is just fun`` (Leerzeichen zur besseren Lesbarkeit hinzugefügt.)
+            ``P = crypto is just fun`` (Leerzeichen zur besseren Lesbarkeit hinzugefügt.)
 
             ``K = 42153``
+
+
+.. exercise:: Eigenschaften von Chiffren
+
+    1. Wie unterscheiden sich Transpositions- und Substitutions-Chiffren? 
+    2. Handelt es sich bei Monoalphabetischen Chiffren um Transpositions- oder Substitutions-Chiffren? 
+    3. Kann man Transpositions- und Substitutions-Chiffren kombinieren?
+
+
+
+
+    

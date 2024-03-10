@@ -1197,20 +1197,20 @@ Das CRT findet in der Public-Key-Kryptographie Einsatz.
             _____________________________
             Wahrscheinlich prim
     
-        `Miller-Rabin Algorithm: <https://github.com/Delors/Course_W3M20014/blob/main/1-miller-rabin-algorithm.ipynb>`__
+        `Jupyter Notebook mit Miller-Rabin Algorithm. <https://github.com/Delors/Course_W3M20014/blob/main/1-miller-rabin-algorithm.ipynb>`__
 
 8. \ 
 
    .. exercise:: 
    
-    In einer Tüte sind x Gummibärchen. Wenn Sie diese auf 4 Personen verteilen, dann haben Sie einen Rest von 2. Wenn Sie diese auf 7 Personen verteilen, dann haben Sie einen Rest von 3. Wie viele Gummibärchen sind in der Tüte? Wenden Sie den chinesischen Restsatz an.
+    In einer Tüte sind x Gummibärchen. Wenn Sie diese auf 4 Personen verteilen, dann haben Sie einen Rest von 2, verteilen Sie diese auf 7 Personen, dann haben Sie einen Rest von 3. Wie viele Gummibärchen sind in der Tüte? Wenden Sie den chinesischen Restsatz an.
 
     .. solution::
         :pwd: CRT!
 
-        0. :math:`x \equiv 2 (mod\; 4)` und :math:`x \equiv 3 (mod\; 7)`
-        1. Bestimme :math:`x_1` und :math:`x_2`:
+        1. :math:`x \equiv 2 (mod\; 4)` und :math:`x \equiv 3 (mod\; 7)`
+        2. Bestimme :math:`x_1` und :math:`x_2`:
      
            :math:`x_1 = 3` und :math:`x_2 = 2`
 
-        2. Berechne :math:`x = 2 \times 7 \times 3 + 3 \times 4 \times 2 = 66`
+        3. Berechne :math:`x = 2 \times 7 \times 3 + 3 \times 4 \times 2 = 66`

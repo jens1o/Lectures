@@ -15,7 +15,7 @@
 .. role:: green 
 .. role:: the-blue 
 .. role:: smaller
-.. role:: much-smaller
+.. role:: far-smaller
 .. role:: ger-quote
 .. role:: raw-html(raw)
     :format: html
@@ -131,7 +131,7 @@ AES Parameter
 
 .. class:: vertical-title smaller-slide-title
 
-AES - Ver-/Entschlüsselungsprozess :raw-html:`<br>` :much-smaller:`(Key Size 128bits ⇒ 10 Runden)`
+AES - Ver-/Entschlüsselungsprozess :raw-html:`<br>` :far-smaller:`(Key Size 128bits ⇒ 10 Runden)`
 --------------------------------------------------------------------------------------------------------------
 
 .. image:: drawings/aes/encryption_and_decryption_process.svg

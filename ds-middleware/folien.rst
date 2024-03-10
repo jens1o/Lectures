@@ -42,20 +42,20 @@ Middleware
 
   :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
   :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
-  :`Folien`:smaller:: 
-        .. container:: smaller
-
-          https://delors.github.io/ds-middleware/folien.rst.html :raw-html:`<br>`
-          https://delors.github.io/ds-middleware/folien.rst.html.pdf
-  :`Fehler auf Folien melden`:smaller::
-        .. container:: smaller
-
-          https://github.com/Delors/delors.github.io/issues
+  
   :`Version`:smaller:: 
         .. container:: smaller
 
           |date|
 
+.. supplemental::
+
+  :Folien: 
+          https://delors.github.io/ds-middleware/folien.rst.html :raw-html:`<br>`
+          https://delors.github.io/ds-middleware/folien.rst.html.pdf
+  :Fehler auf Folien melden:
+
+          https://github.com/Delors/delors.github.io/issues
 
 
 .. class:: new-section transition-fade
@@ -88,6 +88,7 @@ Ein einfacher Server mit Sockets
   .. container:: layer
 
     .. code:: C
+      :class: copy-to-clipboard
 
       /* A simple TCP based server. The port number is passed as an argument */
       #include <stdio.h>
@@ -114,6 +115,7 @@ Ein einfacher Server mit Sockets
   .. container:: layer incremental
 
     .. code:: C
+      :class: copy-to-clipboard
 
         serv_addr.sin_family = AF_INET;
         serv_addr.sin_addr.s_addr = INADDR_ANY;
@@ -152,6 +154,7 @@ Ein einfacher Client mit Sockets
     .. layer::
     
       .. code:: c
+        :class: copy-to-clipboard
 
         #include <stdio.h>
         #include <sys/types.h>

@@ -13,7 +13,7 @@
 .. role:: eng
 .. role:: bold
 .. role:: smaller
-.. role:: much-smaller
+.. role:: far-smaller
 
 .. role:: raw-html(raw)
    :format: html 
@@ -26,6 +26,16 @@ Block Chiffre und der *Data Encryption Standard (DES)*
 :Version: |date|
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 
+.. supplemental::
+
+  :Folien: 
+          https://delors.github.io/sec-blockchiffre/folien.rst.html 
+
+          https://delors.github.io/sec-blockchiffre/folien.rst.html.pdf
+  :Fehler auf Folien melden:
+
+          https://github.com/Delors/delors.github.io/issues
+
 
 
 Stromchiffre
@@ -33,18 +43,36 @@ Stromchiffre
 
 - Verschlüsselt einen digitalen Datenstrom ein Bit oder ein Byte nach dem anderen. 
   
-  Beispiele: Autokeyed Vigenère-Chiffre und Vernam-Chiffre
+  Beispiele: Autokeyed Vigenère-Chiffre und Vernam-Chiffre.
 
-- Im Idealfall wird eine One-Time-Pad-Version der Vernam-Chiffre verwendet, bei der der Schlüsselstrom genauso lang ist wie der Bitstrom des Klartextes.
+.. class:: incremental
 
-    .. class:: smaller
+- Im Idealfall wird (würde) ein One-Time-Pad verwendet werden. Der Schlüsselstrom wäre genauso lang wie der Bitstrom des Klartextes.
 
-    - Wenn der kryptografische Schlüsselstrom zufällig ist, kann diese Chiffre auf keine andere Weise als durch die Beschaffung des Schlüsselstroms geknackt werden
+  .. stack:: incremental
 
-      .. class:: smaller
+    .. layer::
 
-      - Der Schlüsselstrom muss beiden Nutzern im Voraus über einen unabhängigen und sicheren Kanal zur Verfügung gestellt werden.
-      - Dies führt zu unüberwindbaren logistischen Problemen, wenn der vorgesehene Datenverkehr sehr groß ist.
+        - Wenn der kryptografische Schlüsselstrom zufällig ist, kann diese Chiffre auf keine andere Weise als durch die Beschaffung des Schlüsselstroms geknackt werden.
+
+        .. class:: smaller
+
+        - Der Schlüsselstrom muss beiden Nutzern im Voraus über einen unabhängigen und sicheren Kanal zur Verfügung gestellt werden.
+        - Dies führt zu unüberwindbaren logistischen Problemen, wenn der vorgesehene Datenverkehr sehr groß ist.    
+
+    .. layer:: incremental
+
+        **Beispielimplementierung in Python**
+
+        .. code-block:: python
+
+            def vernam(plaintext: bytes, key: bytes) -> bytes:
+                return bytes([p ^ k for p, k in zip(plaintext, key)])
+
+
+.. container:: block-footer white dhbw-gray-background text-align-center
+
+    Wiederholung
 
 
 
@@ -53,6 +81,8 @@ Stromchiffre
 
 - Aus praktischen Gründen muss der Bitstromgenerator als algorithmisches Verfahren implementiert werden, damit der kryptografische Bitstrom von beiden Benutzern erzeugt werden kann.
   
+  .. class:: incremental
+
   - Es muss rechnerisch praktisch unmöglich sein, zukünftige Teile des Bitstroms auf der Grundlage früherer Teile des Bitstroms vorherzusagen.
   - Die beiden Benutzer müssen nur den erzeugenden Schlüssel sicher miteinander teilen, damit jeder den Schlüsselstrom erzeugen kann.
 
@@ -60,6 +90,8 @@ Stromchiffre
 
 Blockchiffre
 -------------
+
+.. class:: incremental
 
 - Ein Klartextblock wird als Ganzes behandelt und verwendet, um einen gleich langen Chiffretextblock zu erzeugen.
 - In der Regel wird eine Blockgröße von 64 oder 128 Bit verwendet.
@@ -72,12 +104,13 @@ Stromchiffre vs. Blockchiffre
 ------------------------------
 
 .. image:: drawings/chiffren/stromchiffre.svg
-    :height: 500px
+    :height: 520px
     :align: left
+    :class: margin-none padding-none
 
 .. image:: drawings/chiffren/blockchiffre.svg
     :align: right
-    :height: 500px
+    :height: 520px
     :class: incremental
    
 
@@ -91,7 +124,6 @@ Allgemeine n-Bit-n-Bit-Blocksubstitution (n = 4)
 
 
 
-.. class:: tiny
 
 Verschlüsselungs- und Entschlüsselungstabelle für eine Substitutions-Chiffre
 ----------------------------------------------------------------------------
@@ -100,7 +132,7 @@ Verschlüsselungs- und Entschlüsselungstabelle für eine Substitutions-Chiffre
 
 .. list-table:: 
     :align: center
-    :class: smaller
+    :class: smallest
         
     * - Klartext
       - 0000
@@ -141,7 +173,7 @@ Verschlüsselungs- und Entschlüsselungstabelle für eine Substitutions-Chiffre
 
 .. list-table:: 
     :align: center
-    :class: smaller incremental
+    :class: smallest incremental
 
     * - Geheimtext
       - 0000
@@ -203,7 +235,7 @@ Feistel-Chiffre - Hintergrund
 
 - Hierbei handelt es sich um eine praktische Anwendung eines Vorschlags von Claude Shannon zur Entwicklung einer Chiffre, bei der sich *Konfusions- und Diffusionsfunktionen* abwechseln.
 
-- Dieser Aufbau wird von vielen bedeutenden symmetrischen Blockchiffren verwendet, die derzeit im Einsatz sind.
+- Dieser Aufbau wird von vielen bedeutenden, im Einsatz befindlichen symmetrischen Blockchiffren verwendet.
 
 .. container:: incremental margin-top-2em 
 
@@ -218,7 +250,12 @@ Diffusion
 ---------------------------
 
 - Die statistische Struktur des Klartextes wird in weitreichende Statistiken des Chiffretextes überführt, d. h. die statistische Beziehung zwischen Klartext und Chiffretext wird so komplex wie möglich.
-- :bold:`Dies wird dadurch erreicht, dass jede Klartextziffer den Wert *vieler* Chiffretextziffern beeinflusst.` (:ger-quote:`Lawineneffekt`)
+  
+.. class:: incremental
+
+- Dies wird dadurch erreicht, dass jede Klartextziffer *den Wert* **vieler** *Chiffretextziffern* beeinflusst.` 
+  
+  (:ger-quote:`Lawineneffekt`)
 - Die Diffusion kann z. B. durch *Permutationen* erreicht werden.
 
 
@@ -226,7 +263,10 @@ Diffusion
 Konfusion
 ---------------------------
 
-- Versucht, die Beziehung zwischen den Statistiken des Chiffriertextes und dem Wert des Chiffrierschlüssels so komplex wie möglich zu gestalten, d. h. :bold:`eine einzige Änderung des Chiffrierschlüssels sollte viele Bits des Chiffriertextes beeinflussen.`
+- Versucht, die Beziehung zwischen den Statistiken des Chiffriertextes und dem Wert des Chiffrierschlüssels so komplex wie möglich zu gestalten, d. h. eine einzige Änderung des Chiffrierschlüssels sollte viele Bits des Chiffriertextes beeinflussen.
+
+.. class:: incremental
+
 - Selbst wenn der Angreifer die Statistik des Chiffretextes einigermaßen in den Griff bekommt, ist die Art und Weise, wie der Schlüssel verwendet wurde, um diesen Chiffretext zu erzeugen, so komplex, dass es schwierig ist, den Schlüssel abzuleiten.
 - Die Verwirrung kann z. B. durch *Substitutionen* realisiert werden.
 
@@ -282,7 +322,7 @@ Feistel Chiffre - Eigenschaften
     .. container:: layer incremental
 
         :**Blockgröße**:
-            Größere Blockgrößen bedeuten mehr Sicherheit, aber eine geringere Verschlüsselungs-/Entschlüsselungsgeschwindigkeit für einen bestimmten Algorithmus
+            Größere Blockgrößen bedeuten mehr Sicherheit, aber eine geringere Verschlüsselungs-/Entschlüsselungsgeschwindigkeit für einen bestimmten Algorithmus.
 
         :**Schlüsselgröße**:
             Ein größerer Schlüssel bedeutet mehr Sicherheit, kann aber die Verschlüsselungs-/Entschlüsselungsgeschwindigkeit verringern.
@@ -296,11 +336,17 @@ Data Encryption Standard (DES)
 
 - Wurde 1977 vom National Bureau of Standards (heute NIST) als Federal Information Processing Standard 46 herausgegeben.
 - War das am häufigsten verwendete Verschlüsselungsverfahren bis zur Einführung des Advanced Encryption Standard (AES) im Jahr 2001
-- Der Algorithmus selbst wird als Data Encryption Algorithm (DEA) bezeichnet:
+- Der Algorithmus selbst wird als Data Encryption Algorithm (DEA) bezeichnet.
 
-   - Die Daten werden in 64-Bit-Blöcken mit einem 56-Bit-Schlüssel verschlüsselt.
-   - Der Algorithmus wandelt die 64-Bit-Eingabe in einer Reihe von Schritten in eine 64-Bit-Ausgabe um.
-   - Dieselben Schritte werden mit demselben Schlüssel verwendet, um die Verschlüsselung rückgängig zu machen.
+  .. container:: incremental text-align-center width-100
+   
+     **Eigenschaften**
+
+  .. class:: incremental
+
+  - Die Daten werden in 64-Bit-Blöcken mit einem 56-Bit-Schlüssel verschlüsselt.
+  - Der Algorithmus wandelt die 64-Bit-Eingabe in einer Reihe von Schritten in eine 64-Bit-Ausgabe um.
+  - Dieselben Schritte werden mit demselben Schlüssel verwendet, um die Verschlüsselung rückgängig zu machen.
 
 
 
@@ -340,7 +386,7 @@ DES Beispiel
 .. container:: width-100
 
     .. csv-table::
-        :class: footnotesize monospaced
+        :class: footnotesize monospaced highlight-line-on-hover
         :align: center
         
         Round, Ki, Li, Ri
@@ -363,22 +409,22 @@ DES Beispiel
         16, 2921080b13143025, 75e8fd8f, 25896490
         IP-1, , da02ce3a, 89ecac3b
 
-    .. class:: small
+.. container:: margin-left-1em
 
-    DES subkeys are shown as eight 6-bit values in hex format (max value for :math:`k_i` is   :math:`2^6-1=63=0x3F`)
+    DES-Unterschlüssel werden als acht 6-Bit-Werte im Hexadezimalformat angezeigt (der Höchstwert für :math:`k_i` ist :math:`2^6-1=63=0x3F`)
 
 
 
 .. class:: vertical-title smaller
 
 Lawineneffekt in DES 
-----------------------------------------------------------------------------------
+---------------------------------------------------
 
 .. container:: width-100
         
     .. container:: smaller text-align-center
     
-        Kleine Änderung im Klartext
+        Kleine Änderung im Klartext (erster Wert +1)
 
     .. csv-table::
         :class: scriptsize monospaced highlight-line-on-hover
@@ -418,7 +464,7 @@ Lawineneffekt in DES
 .. class:: vertical-title smaller
 
 Lawineneffekt in DES 
---------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------
 
 .. container:: width-100
 
@@ -582,6 +628,6 @@ Implementieren Sie eine Feistel Chiffre in einer Programmiersprache Ihrer Wahl (
 
     Eine naive Python-Implementierung des Algorithmus ist hier zu finden:
 
-    `Jupyter Notebook <https://github.com/Delors/Lectures/blob/main/sec-blockchiffre/resources/feistel.ipynb>`__
+    `Jupyter Notebook <https://github.com/Delors/delors.github.io/blob/main/sec-blockchiffre/resources/feistel.ipynb>`__
 
     Wenn man die obige Implementierung anpasst und testet, wird sofort deutlich, dass die Verwendung einer ungeeigneten f-Funktion zu keinerlei Sicherheit führt und dass der Entwurf einer solchen Funktion nicht trivial ist. Außerdem ist es notwendig, alle möglichen Extremfälle zu berücksichtigen.

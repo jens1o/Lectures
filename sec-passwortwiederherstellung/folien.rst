@@ -12,7 +12,7 @@
 .. role:: eng
 .. role:: ger
 .. role:: red
-.. role:: green
+.. role:: shiny-green
 .. role:: the-blue
 .. role:: minor
 .. role:: ger-quote
@@ -20,6 +20,7 @@
 .. role:: line-above
 .. role:: huge
 .. role:: xxl
+.. role:: far-smaller
 
 .. role:: raw-html(raw)
    :format: html
@@ -28,25 +29,23 @@
 Passwortwiederherstellung 
 =====================================================
 
-.. container:: line-below 
+.. container:: margin-top-1em padding-top-1em line-above
 
-     a.k.a. Password-Cracking
-
-.. class:: footnotesize margin-top-1em padding-top-1em
-
-:Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
-:Kontakt: michael.eichberg@dhbw-mannheim.de
-:Version: |date|
+    :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
+    :Kontakt: michael.eichberg@dhbw-mannheim.de
+    :Version: |date|
 
 
 .. supplemental::
 
-    - Wer hat schon einmal Passworte wiederhergestellt?
-    - Wer hat Erfahrung mit Linux?
-    - Wer hat Erfahrung mit Linux Kommandozeilenwerkzeugen für die Textverarbeitung?
-    - Wer hat Erfahrung mit regulären Ausdrücken?
-    - Wer hat Erfahrung mit Python?
-    - Wer hat Erfahrung mit Java (Reverse Engineering)?
+  :Folien: 
+          https://delors.github.io/sec-passwortwiederherstellung/folien.rst.html 
+
+          https://delors.github.io/sec-passwortwiederherstellung/folien.rst.html.pdf
+  :Fehler auf Folien melden:
+
+          https://github.com/Delors/delors.github.io/issues
+
 
 
 Was ist Passwortwiederherstellung?
@@ -54,7 +53,7 @@ Was ist Passwortwiederherstellung?
 
 .. container:: smaller
 
-    Passwortwiederherstellung ist der Prozess, der dazu dient ein nicht (mehr) vorhandenes Passwort wiederzuerlangen.
+    Passwortwiederherstellung ist der Prozess, der dazu dient, ein nicht (mehr) vorhandenes Passwort wiederzuerlangen.
 
 .. topic:: Haftungsausschluss
     :class: line-above red incremental small
@@ -78,6 +77,16 @@ Was ist Passwortwiederherstellung?
                 [...] Vor dem Amtsgericht wurde ein Prozess verhandelt, der die Gefahren verdeutlicht, denen sich Menschen mitunter aussetzen, die versuchen, Sicherheitslücken in der Software deutscher Firmen zu finden. Das Amtsgericht hat einen Programmierer verurteilt, der im Auftrag eines Kunden eine Software analysiert und darin eine Sicherheitslücke gefunden hatte, welche die Daten von Einkäufern in Online-Shops im Internet offengelegt hatte. Der Programmierer kontaktierte [...] die betroffene Firma, die daraufhin die Sicherheitslücke schloss und ihn anzeigte. Aufgrund dieses Umstandes wurde der Programmierer nun wegen unbefugten Zugriffs auf fremde Computersysteme und Ausspähens von Daten – welches unter dem sogenannten Hacker-Paragrafen 202a StGB unter Strafe gestellt ist – [...] verurteilt[...].
 
                 -- Heise.de - 19.01.2024 12:54 Uhr
+
+
+.. supplemental::
+
+    - Wer hat schon einmal Passworte wiederhergestellt?
+    - Wer hat Erfahrung mit Linux?
+    - Wer hat Erfahrung mit Linux Kommandozeilenwerkzeugen für die Textverarbeitung?
+    - Wer hat Erfahrung mit regulären Ausdrücken?
+    - Wer hat Erfahrung mit Python?
+    - Wer hat Erfahrung mit Java (Reverse Engineering)?
 
 
 Ist Passwortwiederherstellung noch relevant?
@@ -162,19 +171,23 @@ Ist Passwortwiederherstellung noch relevant?
 
 
 
+.. class:: vertical-title
+
 Ist Passwortwiederherstellung nicht :ger-quote:`trivial`?
 ----------------------------------------------------------
 
 .. image:: logos/home_security_heroes.webp 
     :align: center
-    :height: 800
-    :class: picture
+    :height: 1152px
+    :class: picture margin-left-1em margin-right-1em
     :alt: An AI just cracked your password.
 
+.. container::
 
-:line-above:`An AI just cracked your password.`
+    An AI just cracked your password.
 
-`Home Security Heroes <https://www.homesecurityheroes.com/ai-password-cracking/assets/pdf/hsh-an-ai-just-cracked-your-password-infographic.pdf>`__
+    `Home Security Heroes <https://www.homesecurityheroes.com/ai-password-cracking/assets/pdf/hsh-an-ai-just-cracked-your-password-infographic.pdf>`__
+
 
 
 Wiederherstellung von Passwörtern mit unterschiedlicher Komplexität
@@ -221,17 +234,18 @@ Raum der Passwortkandidaten
 - Eine vierstellige PIN: 10.000 mögliche Kombinationen. 
 - „Normales“ Passworte mit 8 Zeichen und 70 Zeichen im Zeichensatz (a-z, A-Z, 0-9 und ausgewählte Sonderzeichen): :math:`70^8 = 576.480.100.000.000` Kombinationen.
 - Eine einfache Passphrase mit 4 Wörtern aus einem Wörterbuch mit 100.000 Wörtern: :math:`100.000^4 = 10^{20}` Kombinationen.
-- Ein komplexes Passwort mit 16 Zeichen und 84 Zeichen im Zeichensatz (a-z, A-Z, 0-9 und die meisten Sonderzeichen): :math:`84^{16} = 6,14 \times 10^{30}` Kombinationen.
+- Eine Passphrase mit 6 Wörtern aus einem Wörterbuch mit 2.000 Wörtern: :math:`2.000^6 = 64 \times 10 ^{18}` Kombinationen.
+- Ein :ger-quote:`komplexes` Passwort mit 16 Zeichen und 84 Zeichen im Zeichensatz (a-z, A-Z, 0-9 und die meisten Sonderzeichen): :math:`84^{16} = 6,14 \times 10^{30}` Kombinationen.
 
 .. supplemental::
 
     Eine vierstellige PIN kann niemals als sicher angesehen werden. Selbst wenn ein Bruteforce nur auf 4 oder 5 Versuche pro Stunde kommt, so ist es dennoch in wenigen Monaten möglich die PIN zu ermitteln.
 
 
-.. class:: center-child-elements
+.. class:: center-child-elements not-title
 
-\ 
-----
+Passwörter nicht im Klartext speichern
+---------------------------------------
 
 .. admonition:: Warnung
     :class: warning 
@@ -271,7 +285,7 @@ Kryptografische Hashfunktionen für Passworte
 - Bekannte kryptografische Hash-Funktionen: :obsolete:`MD4`, :obsolete:`MD5`, SHA-256, SHA-512, RIPE-MD, ...
 - Bekannte Funktion zur Schlüsselableitung: PBKDF2, ...
 - Beim Hashing von Passwörtern werden die Basisalgorithmen in der Regel mehrfach (ggf. viele hunderttausend Male) angewendet, um die Laufzeit zu verlängern und es für Angreifer schwieriger zu machen.
-- Mehrere Hash-Algorithmen/Schlüsselableitungsfunktionen wurden ausdrücklich für das Hashing von Passwörtern entwickelt, um gängigen Angriffen zu widerstehen. z. B. bcrypt, scrypt, Argon2.
+- Mehrere Hash-Algorithmen/Schlüsselableitungsfunktionen wurden ausdrücklich für das Hashing von Passwörtern entwickelt, um gängigen Angriffen zu widerstehen. z. B. bcrypt, scrypt oder die Argon2 Familie.
 - Einige dieser Algorithmen sind so rechenintensiv, dass sie nicht für Webanwendungen bzw. Situationen geeignet sind, in denen viele Benutzer gleichzeitig autorisiert werden müssen. Diese Algorithmen werden in der Regel zum Schutz von Dateien, Containern oder lokaler Festplatten verwendet.
 
 
@@ -326,7 +340,7 @@ Vom Salzen (:eng:`Salt`)...
 
 - Ein *Salt* sollte ausreichend lang sein (zum Beispiel 16 Zeichen oder 16 Byte).
 - Ein *Salt* darf nicht wiederverwendet werden.
-- Ein *Salt* kann zum Beispiel (am Anfang oder) am Ende an das Passwort angehängt werden bevor selbiges gehasht wird.
+- Ein *Salt* wird am Anfang oder am Ende an das Passwort angehängt bevor selbiges gehasht wird.
 - Ein *Salt* unterliegt (eigentlich) keinen Geheimhaltungsanforderungen. 
 
 .. admonition:: Problem 
@@ -346,15 +360,20 @@ Vom Salzen (:eng:`Salt`)...
 
 .. container:: small
 
-    (In Normen/Teilen der Literatur wird statt *Pepper* auch *Secret Key*\ s verwendet.)
+    (In Normen bzw. in anderer Literatur wird statt *Pepper* auch *Secret Key*\ s verwendet.)
 
 .. class:: incremental more-space-between-list-items
 
 - Wie ein *Salt* geht auch der *Secret Key* in den Hashvorgang des Passworts ein.
 - Der *Secret Key* wird jedoch **nicht** mit den Hashwerten der Passworte gespeichert.
-- Ein *Secret key* kann zum Beispiel in einem Hardwaresicherheitsmodul (z. B. Secure Element oder TPM Chip) gespeichert werden. Gel. wird der *Secret Key* bzw. ein Teil davon auch im Code gespeichert.
-- Wie ein Salt sollte auch auch *Secret Key* mind. 16 Byte lang sein, um ggf. ein Brute-Force Angriff auf den *Secret Key* zu verhindern sollte dem Angreifer zu einem Hash und Salt auch noch das Klartext Passwort bekannt sein.
+  
+  .. class:: incremental
+
+  - Ein *Secret key* kann zum Beispiel in einem Hardwaresicherheitsmodul (z. B. Secure Element oder TPM Chip) gespeichert werden. 
+  - Gel. wird der *Secret Key* bzw. ein Teil davon auch im Code gespeichert.
+
 - Der *Secret Key* sollte zufällig sein. 
+- Wie ein Salt sollte auch auch *Secret Key* mind. 16 Byte lang sein. Um ein Brute-Force Angriff auf den *Secret Key* zu verhindern, sollte dem Angreifer zu einem Hash und Salt auch noch das Klartext Passwort bekannt sein.
 - Der *Secret Key* sollte pro Instanziierung einer Anwendung einmalig sein. 
 
 
@@ -364,7 +383,7 @@ Sichere Hashfunktionen für Passworte
 - Argon2 (z. B. verwendete von LUKS2)
 - bcrypt (basierend auf Blowfish)
 - scrypt (z. B. ergänzend verwendet für das Hashing von Passwörtern auf Smartphones)
-- yescrypt (z. B. modernen Linux Distributionen)
+- yescrypt (z. B. moderne Linux Distributionen)
 
 
 `PBKDF2 <https://datatracker.ietf.org/doc/html/rfc2898.html#section-5.2>`__ (Password-Based Key Derivation Function 2)
@@ -376,11 +395,11 @@ Sichere Hashfunktionen für Passworte
 - Das Ergebnis der Anwendung der PBKDF2 wird zusammen mit dem *Salt* und dem Iterationszähler für die anschließende Passwortverifizierung gespeichert.
 - die :math:`PBKDF2` Schlüsselableitungsfunktion hat 5 Parameter :math:`DK = PBKDF2(`\ PRF, Password, Salt, c, dkLen\ :math:`)`:
 
-    :PRF: Eine Pseudozufallsfunktion; typischer Weise ein HMAC.
-    :Password: Das Masterpasswort.
-    :Salt: der zu verwendende Salt.
-    :c: Zähler für die Anzahl an Runden.
-    :dkLen: Die Bitlänge des abgeleiteten Schlüssels.
+    :PRF: eine Pseudozufallsfunktion; typischer Weise ein HMAC
+    :Password: das Masterpasswort
+    :Salt: der zu verwendende Salt
+    :c: Zähler für die Anzahl an Runden
+    :dkLen: die Bitlänge des abgeleiteten Schlüssels.
 
 
 .. container:: supplemental
@@ -391,8 +410,120 @@ Sichere Hashfunktionen für Passworte
 
 
 
-PBKDF2-HMAC (Hash-based Message Authentication Code)
+HMAC (Hash-based Message Authentication Code)
+----------------------------------------------
+
+.. container:: small
+
+    Auch als *keyed-hash message authentication code* bezeichnet.
+
+    .. math::
+
+        \begin{array}{rcl}
+        HMAC(K,m) & = & H( (K' \oplus opad) || H( ( K' \oplus ipad) || m) ) \\
+        K' & = &\begin{cases}
+                H(K) & \text{falls K größer als die Blockgröße ist}\\
+                K & \text{andernfalls}
+                \end{cases}
+        \end{array}
+    
+    :math:`H` is eine kryptografische Hashfunktion.
+
+    :math:`m` ist die Nachricht.
+
+    :math:`K` ist der geheime Schlüssel (*Secret Key*).
+
+    :math:`K'` ist vom Schlüssel K abgeleiteter Schlüssel mit Blockgröße (ggf. *padded* oder *gehasht*).
+
+    :math:`||` ist die Konkatenation.
+
+    :math:`\oplus` ist die XOR Operation.
+
+    :math:`opad` ist das äußere Padding bestehend aus Wiederholungen von 0x5c in Blockgröße.
+
+    :math:`ipad` ist das innere Padding bestehend aus Wiederholungen von 0x36 in Blockgröße.
+
+
+\ 
+----------------------------------------------
+
+.. image:: graffles/hmac_i_o_key_derivation.svg
+        :alt: Schlüsselableitung für den inneren und äußeren Schlüssel K'
+        :align: left
+        :height: 450px
+
+.. image:: graffles/hmac_message_hashing.svg
+        :alt: Schlüsselableitung für den inneren und äußeren Schlüssel K'
+        :align: right
+        :height: 625px
+        :class: incremental margin-top-1em
+
+.. container:: supplemental
+
+    **Padding und Hashing**
+
+    Im Rahmen der Speicherung von Passwörtern und *Secret Keys* ist die Verwendung von Padding Operationen bzw. das Hashing von Passwörtern, um Eingaben in einer wohl-definierten Länge zu bekommen, üblich. Neben dem hier gesehenen Padding, bei dem 0x00 Werte angefügt werden, ist zum Beispiel auch das einfache Wiederholen des ursprünglichen Wertes, bis man auf die notwendige Länge kommt, ein Ansatz. 
+    
+    Diese Art Padding darf jedoch nicht verwechselt werden mit dem Padding, dass ggf. im Rahmen der Verschlüsselung von Nachrichten notwendig ist, um diese ggf. auf eine bestimmte Blockgröße zu bringen (zum Beispiel bei ECB bzw. CBC Block Mode Operations.)
+
+
+
+HMAC Computation in Python
+---------------------------
+    
+**Implementierung PBKDF2 mit einer Runde**
+
+.. code:: python
+    :class: slightly-more-smaller
+
+    import hashlib
+    pwd = b"MyPassword"
+    stretched_pwd = pwd + (64-len(pwd)) * b"\x00" 
+    
+    ikeypad = bytes(map(lambda x : x ^ 0x36 , stretched_pwd)) # xor with ipad 
+    okeypad = bytes(map(lambda x : x ^ 0x5c , stretched_pwd)) # xor with opad 
+    
+    hash1 = hashlib.sha256(ikeypad+b"JustASalt"+b"\x00\x00\x00\x01").digest()
+    hmac  = hashlib.sha256(okeypad+hash1).digest()
+
+
+.. container:: incremental
+
+    **Ergebnis**
+
+    .. code:: python
+        :class: slightly-more-smaller
+
+        hmac =
+        b'h\x88\xc2\xb6X\xb7\xcb\x9c\x90\xc2R...
+          \x16\x87\x87\x0e\xad\xa1\xe1:9\xca'
+
+
+.. container:: supplemental
+    
+    HMAC ist auch direkt als Bibliotheksfunktion verfügbar.
+
+    .. code:: python
+        :class: slightly-more-smaller
+
+        import hashlib
+        import hmac
+        
+        hash_hmac = hmac.new(
+            b"MyPassword",
+            b"JustASalt"+b"\x00\x00\x00\x01",
+            hashlib.sha256).digest()
+
+        hash_hmac = 
+            b'h\x88\xc2\xb6X\xb7\xcb\x9c\x90\xc2R...
+              \x16\x87\x87\x0e\xad\xa1\xe1:9\xca'
+
+
+
+PBKDF2-HMAC 
 -----------------------------------------------------
+
+(HMAC = Hash-based Message Authentication Code)
 
 Im Fall von PBKDF2 ist der Schlüssel :math:`K` also das Passwort und die Nachricht :math:`M` das Salz.
 
@@ -423,13 +554,14 @@ Im Fall von PBKDF2 ist der Schlüssel :math:`K` also das Passwort und die Nachri
 Übung
 -----------
 
-.. exercise:: Schwachstellenbewertung
-    :class: small
+.. container:: slightly-more-smaller
 
+  .. exercise:: Schwachstellenbewertung
+  
     Ihnen liegt eine externer Festplatte/SSD mit USB Anschluss vor, die die folgenden Eigenschaften hat:
 
-    - Die Daten auf der SSD/FP sind hardwareverschlüsselte Festplatte
-    - Die Verschlüsselung erfolgt mit XTS-AES 256
+    - Die Daten auf der SSD/FP sind hardwareverschlüsselte Festplatte.
+    - Die Verschlüsselung erfolgt mit XTS-AES 256.
     - Es gibt eine spezielle Software, die der Kunde installieren muss, um das Passwort zu setzen. Erst danach wird die Festplatte :ger-quote:`freigeschaltet` und kann in das Betriebssystem eingebunden werden. Davor erscheint die SSD/FP wie ein CD Laufwerk auf dem die Software liegt.
     - Die SSD/FP ist FIPS zertifiziert und gegen Hardwaremanipulation geschützt; zum Beispiel eingegossen mit Epox. 
     - Das Passwort wird von der Software gehasht und dann als Hash an den Controller der externen FP/SSD übertragen. 
@@ -438,7 +570,7 @@ Im Fall von PBKDF2 ist der Schlüssel :math:`K` also das Passwort und die Nachri
     Wie bewerten Sie die Sicherheit des Produkts?
 
     .. solution::
-        :pwd: Kleine aber feine Unterschiede sind relevant!
+        :pwd: NichtSicher
 
         Wie in (A) dargestellt, ist die Sicherheit hier ausschließlich durch den Hardwareschutz gegeben. Sobald der Hash aus dem EPROM ausgelesen werden konnte, ist keine Sicherheit mehr gegeben. 
         
@@ -446,7 +578,7 @@ Im Fall von PBKDF2 ist der Schlüssel :math:`K` also das Passwort und die Nachri
 
         .. image:: graffles/unsichere_passwort_validierung.svg 
             :alt: Unsichere Passwortvalidierung
-            :width: 800px
+            :height: 300px
             :align: center
 
 
@@ -509,7 +641,7 @@ Beispiel - Wiederherstellung eines Linux Login Passwortes
 Systematisches Testen aller Kandidaten 
 ---------------------------------------------------------------
 
-konzeptionell führt die Software Hashcat die folgenden Schritte durch:
+Konzeptionell führt die Software Hashcat die folgenden Schritte durch:
 
 .. container:: monospaced small
 
@@ -557,13 +689,18 @@ konzeptionell führt die Software Hashcat die folgenden Schritte durch:
 .. container:: supplemental 
 
     Der folgende Code könnte als Grundlage genutzt werden, um das Passwort wiederherzustellen.
+
     (Linux nutzt standardmäßig 5000 Runden.)
 
     .. code:: python
+        :class: slightly-smaller
 
         from passlib.hash import sha512_crypt
 
-        sha512_crypt.hash("123456",salt="zElzjLsMqi36JXWG",rounds=5000)
+        sha512_crypt.hash(
+            "123456",
+            salt="zElzjLsMqi36JXWG",
+            rounds=5000)
 
 
 
@@ -573,6 +710,7 @@ Passworte Verstehen
 -------------------
 
 
+
 Aufbau von Passworten
 -----------------------
 
@@ -580,14 +718,15 @@ Von Menschen vergebene Passwörter basieren häufig auf Kombinationen von Wörte
 
 .. class:: incremental more-space-between-list-items
 
-- Pins: 1111, 1234, 123456, …
+- Pins: ``1111``, ``1234``, ``123456``, …
 - Tastaturwanderungen (:eng:`keyboard walks`): ``asdfg``, ``q2w3e4r5t``, …
-- Patterns: aaaaa, ababab, abcabcabc, …
+- Patterns: ``aaaaa``, ``ababab``, ``abcabcabc``, …
 - Reguläre Wörter aus Wörterbüchern: Duden, Webster, …
 - Kontextinformationen:
   
-  - Szenespezifisch: ``acab``, …
+  - Szenespezifisch: ``acab``, szenetypischen Marken (z. B. Gucci, Ferrari), …
   - Privates Umfeld: Namen von Kindern, Eltern, Hunden, Geburtsort, Adresse, …
+
 
 
 Häufige Passworte
@@ -598,7 +737,7 @@ Eine gute Quelle für das Studium von Passwörtern sind sogenannte *Leaks* oder 
 
 .. container:: three-columns small 
 
-    .. container:: compact-ps
+    .. container:: column text-align-center
 
         123456
 
@@ -620,7 +759,7 @@ Eine gute Quelle für das Studium von Passwörtern sind sogenannte *Leaks* oder 
         
         123123
 
-    .. container:: compact-ps
+    .. container:: column text-align-center
     
         abc123
 
@@ -642,7 +781,7 @@ Eine gute Quelle für das Studium von Passwörtern sind sogenannte *Leaks* oder 
         
         sunshine
         
-    .. container:: compact-ps
+    .. container:: column text-align-center
 
         princess
 
@@ -664,25 +803,21 @@ Eine gute Quelle für das Studium von Passwörtern sind sogenannte *Leaks* oder 
         
         asdfghjkl
 
-.. container:: supplemental
+.. supplemental::
 
     **Hinweise**
 
     - Die Listen ändern sich in der Regel von Jahr zu Jahr nicht wesentlich.
-    - Die Methodik ist oft fragwürdig.
+    - Die konkrete Methodik ist oft fragwürdig; in der Gesamtheit aber dennoch aussagekräftig.
 
 
 Herausforderung: Hashraten in MH/s auf aktueller Hardware
 ------------------------------------------------------------
 
 .. csv-table::
-    :class: incremental scriptsize no-table-borders
-    
-    **Hashcat Mode (Hashcat 6.2.6)**, **Hash**, "**RTX 1080Ti
-    250 W**", "**RTX 2080TI 
-    260 W**", "**RTX 3090 
-    350 W**", "**RTX 4090 
-    450 W**"
+    :class: incremental scriptsize no-table-borders 
+    :header: **Hashcat Mode (Hashcat 6.2.6)**, **Hash**, **RTX 1080Ti (250 W)**, "**RTX 2080TI (260 W)**", "**RTX 3090 (350 W)**", "**RTX 4090 (450 W)**"
+
     25700, Murmur, , , , "643700.0 (643 GH/s)"
     23, Skype, 21330.1 , 27843.1 , 37300.7 , 84654.8 
     1400, SHA2-256, 4459.7 , 7154.8 , 9713.2 , 21975.5 
@@ -691,14 +826,14 @@ Herausforderung: Hashraten in MH/s auf aktueller Hardware
     13723, Veracrypt SHA2- 512 + XTX 1536Bit, 0.0004 , 0.0006  , 0.0009 , "0.002
     (2000 H/s)"
 
-.. container:: tiny
+.. supplemental:: smaller
 
     **Quellen:**
 
-    :4090: https://gist.github.com/Chick3nman/e4fcee00cb6d82874dace72106d73fef
-    :3090: https://gist.github.com/Chick3nman/e4fcee00cb6d82874dace72106d73fef
-    :1080Ti: https://www.onlinehashcrack.com/tools-benchmark-hashcat-nvidia-gtx-1080-ti.php
-    :2080Ti: https://gist.github.com/binary1985/c8153c8ec44595fdabbf03157562763e
+    - 4090: :far-smaller:`https://gist.github.com/Chick3nman/e4fcee00cb6d82874dace72106d73fef`
+    - 3090: :far-smaller:`https://gist.github.com/Chick3nman/e4fcee00cb6d82874dace72106d73fef`
+    - 1080Ti: :far-smaller:`https://www.onlinehashcrack.com/tools-benchmark-hashcat-nvidia-gtx-1080-ti.php`
+    - 2080Ti: :far-smaller:`https://gist.github.com/binary1985/c8153c8ec44595fdabbf03157562763e`
 
 
 
@@ -748,7 +883,11 @@ Gedankenexperiment
     3. Werden Sie im Laufe Ihres Lebens in der Lage sein, ein Passwort mit 12 Zeichen zu ermitteln?
 
     .. solution:: 
-        :pwd: Schnell oder langsam?
+        :pwd: Schlangsam
+
+        Die Hashrate beträgt: :math:`100 \times (22 \times 10^9) H/s = 2.200.000.000.000 H/s`
+
+        Die Dauer ist also: :math:`\frac{84^{10}H}{2.200.000.000.000 H/s} = 84^{10}H/(100 \times 22 \times 10^9 H/s)/(3600 \times 24 s/d) \approx 92d`
 
         Es dauert ca. 3 Monate (~2200 Stunden), um ein Passwort mit 10 Ziffern zu ermitteln!
             
@@ -773,7 +912,7 @@ Gedankenexperiment
     Berechnen Sie den Anteil des Suchraums, den Sie abgesucht haben, wenn das Passwort 32 Zeichen lang sein sollte. Drücken Sie den Anteil des abgesuchten Raums in Relation zu der Anzahl der Sandkörner der Sahara aus. Gehen Sie davon aus, dass die Sahara ca. 70 Trilliarden (:math:`70 \times 10^{21}`) Sandkörner hat.
 
     .. solution::
-        :pwd: Fast nichts!
+        :pwd: Fast-nichts!
 
         Suchraum: :math:`100^{32} = 10^{64}` 
 
@@ -781,7 +920,7 @@ Gedankenexperiment
         
         .. math:: 
             
-            (1 \times 10^{12} {H \over s}) \times 60sec \times 60min \times 24h \times 30d = \
+            (1 \times 10^{12} {H \over s}) \times 60s \times 60min \times 24h \times 30d = \
 
             2.592.000.000.000.000.000 = \
 
@@ -897,8 +1036,9 @@ Die Zusammensetzung von Passwörtern verstehen
             *<Rest>*, 204.618, "1,72%", j4**9c+p, i(L)you, p\ |at|\ 55w0rd, sk8er4life
 
 
-.. admonition:: Hinweis
-    :class: supplemental
+.. supplemental::
+
+    .. rubric:: Hinweise
 
     Die Sprachen, die bei der Identifizierung der Wörter berücksichtigt wurden, waren: "de, en, fr, es, pt, nl".
     
@@ -923,6 +1063,7 @@ Reale Passwortrichtlinie:
     d. h. die Passworte werden mit möglichst geringem Aufwand erweitert.
 
 
+
 Aufbau von Passwörtern - Zusammenfassung
 ------------------------------------------
 
@@ -943,6 +1084,7 @@ Aufbau von Passwörtern - Zusammenfassung
         ~13.000.000 Passworte / 5 Hashes/Sekunde ≈ 1 Monat
 
         ~13.000.000 Passworte / 5 Hashes/Stunde ≈ ~297 Jahre
+
 
 
 Herausforderungen beim Testen/Generieren von Passwörtern
@@ -968,7 +1110,7 @@ Aufgrund der :ger-quote:`Unmöglichkeit` eines Brute-Force-Angriffs stellen sich
 Ansätze und Werkzeuge zum Generieren von Passwortlisten
 ---------------------------------------------------------- 
     
-- Grundlegende Werkzeuge zum :ger-quote:`vermischen von Wörtern` (:eng:`Word-mangling`)
+- Grundlegende Werkzeuge zum :ger-quote:`vermischen von Wörtern` (:eng:`word mangling`)
    - Prince
    - Markov-Modelle (OMEN)
    - Hashcat 
@@ -988,14 +1130,14 @@ Markov-Ketten
 .. admonition:: Hintergrund
     :class: note smaller incremental 
 
-    Eine Markov-Kette beschreibt eine Sequenz möglicher Ereignisse in welcher die Wahrscheinlichkeit des Nächsten nur vom Zustand des vorherigen abhängt.
+    Eine Markov-Kette beschreibt eine Sequenz möglicher Ereignisse in welcher die Wahrscheinlichkeit des nächsten Ereignisses nur vom Zustand des vorherigen Ereignis abhängt.
 
 OMEN lernt - zum Beispiel basierend auf Leaks - die Wahrscheinlichkeiten für das Aufeinanderfolgen von Bigrammen und Trigrammen und nutzt diese, um neue Passwortkandidaten zu generieren.
 
 .. admonition:: Grundlegende Idee
-    :class: small incremental
+    :class: smaller incremental
 
-    Gegeben: ``lachen, Sachen, Last, Muster``
+    Gegeben: ``lachen, sachen, last, muster``
 
     Bigramme: ``2*la, 2*ch, 2*en, sa, 2*st, mu, er``
     
@@ -1097,7 +1239,7 @@ PCFG+
 
 :Next Gen PCFG Password Cracking [NGPCFG]_:
 
-    Unterstützt Tastaturwanderungen (zum Beispiel asdf oder qwerty12345), Passworte bestehend aus mehrerern Worten und wiederholten Worten (zum Beispiel qpqpqpq).
+    Unterstützt Tastaturwanderungen (zum Beispiel ``asdf`` oder ``qwerty12345``) und Passworte bestehend aus mehrerern Worten und wiederholten Worten (zum Beispiel ``qpqpqpq``).
 
 .. class:: incremental margin-top-1em line-above padding-top-1em
 
@@ -1115,27 +1257,27 @@ PCFG+
 SePass: Semantic Password Guessing Using k-nn Similarity Search in Word Embeddings [SePass]_
 ---------------------------------------------------------------------------------------------
 
-Zusätzliche Wortkandidaten werden mithilfe von *Worteinbettungen* identifiziert. Ermöglicht es, automatisch verwandte Wörter zu finden.
+Zusätzliche Wortkandidaten werden mithilfe von *Worteinbettungen* identifiziert. Ermöglicht es verwandte Wörter automatisch zu finden.
 
 **Example**
 
 .. container:: two-columns smaller
 
-    .. container:: column
+    .. container:: column padding-right-1em
 
         Gegeben:
 
-            :green:`Ferrari`\ 01
+            :shiny-green:`Ferrari`\ 01
         
-            !\ :green:`Audi`\ !
+            !\ :shiny-green:`Audi`\ !
         
-            :green:`Mercedes`\ 88
+            :shiny-green:`Mercedes`\ 88
         
-            :green:`Bugatti` 666
+            :shiny-green:`Bugatti` 666
 
-    .. container:: column
+    .. container:: column margin-left-1em
 
-        "Offensichtliche" Kandidaten für Basiswörter:
+        :ger-quote:`Offensichtliche` Kandidaten für Basiswörter:
 
             .. container:: incremental
 
@@ -1158,19 +1300,19 @@ Vermeidet menschliche Voreingenommenheit.
 
 .. container:: two-columns smaller
 
-    .. container:: column
+    .. container:: column padding-right-1em
 
         Gegeben:
 
-            :green:`Luke`\ 2017
+            :shiny-green:`Luke`\ 2017
 
-            :green:`John`\ 1976
+            :shiny-green:`John`\ 1976
 
-            01\ :green:`Mark`\ !
+            01\ :shiny-green:`Mark`\ !
 
-    .. container:: column
+    .. container:: column margin-left-1em
 
-        "Offensichtliche" Kandidaten für Basiswörter:
+        :ger-quote:`Offensichtliche` Kandidaten für Basiswörter:
 
             .. container:: incremental
 
@@ -1189,19 +1331,19 @@ Vermeidet menschliche Voreingenommenheit.
 
 .. container:: two-columns smaller
 
-    .. container:: column
+    .. container:: column padding-right-1em
 
         Gegeben:
 
-            :green:`Luke`\ 2017
+            :shiny-green:`Luke`\ 2017
 
-            :green:`John`\ 1976
+            :shiny-green:`John`\ 1976
 
-            01\ :green:`Mark`\ !
+            01\ :shiny-green:`Mark`\ !
 
-    .. container:: column
+    .. container:: column margin-left-1em
 
-        "Offensichtliche" Kandidaten für Basiswörter:
+        :ger-quote:`Offensichtliche` Kandidaten für Basiswörter:
 
             .. container:: incremental
 
@@ -1247,7 +1389,7 @@ Bewertung von Passworten
         
         **Zeichensatz**
 
-        Auf einer deutschen Standardtastatur für Macs können in Kombination mit :ger-quote:`Shift`, :ger-quote:`Alt` und :ger-quote:`Alt+Shift` zum Beispiel 192 verschiedene Zeichen eingegeben werden ohne auf Unicode oder Zeichentabellen zurückgreifen zu müssen.
+        Auf einer deutschen Standardtastatur für Macs können in Kombination mit :ger-quote:`Shift`, :ger-quote:`Alt` und :ger-quote:`Alt+Shift` zum Beispiel 192 verschiedene Zeichen eingegeben werden – ohne auf Unicode oder Zeichentabellen zurückgreifen zu müssen.
 
 
 Wörterbuchgenerierung - Evaluation von Werkzeugen
@@ -1270,9 +1412,9 @@ Werkzeuge und Methoden zur Wiederherstellung von Passwörtern
 Grundlegende Werkzeuge
 -------------------------
 
-- `Linux Shell <../shell/shell.rst.html>`__
+- `Linux Shell <../lab-shell/folien.rst.html>`__
 
-- `Reguläre Ausdrücke <../regexp/regexp.rst.html>`__
+- `Reguläre Ausdrücke <../lab-regexp/folien.rst.html>`__
 
 
 .. class:: new-subsection transition-fade
@@ -1392,7 +1534,7 @@ Verschlüsselter USB Stick (APFS Volume)
 -----------------------------------------
 
 1. Installation von `apfs2hashcat <https://github.com/Banaanhangwagen/apfs2hashcat>`__ (umfasst das Kompilieren der Sourcen)
-2. Hash extrahieren durch "Copy-and-Paste" aus dem Logfile/der Konsole.
+2. Hash extrahieren durch :ger-quote:`Copy-and-Paste` aus dem Logfile/der Konsole.
 
    .. code:: bash
 
@@ -1420,7 +1562,7 @@ Passwortwiederherstellung mit Hashcat
 Hashcat - Einführung
 --------------------
 
-Hashcat ist - Stand 2023 - das Tool zum Wiederherstellen von Passwörtern.
+Hashcat ist – Stand 2024 – das Tool zum Wiederherstellen von Passwörtern.
 
 Liest ein(e Liste von) Hash(es) ein und prüft, ob einer der angegebenen Passwortkandidaten nach dem Hashen mit einem gegeben Hash übereinstimmt.
 
@@ -1442,7 +1584,7 @@ Hashcat - relevante Parameter
 
 .. container:: two-columns smaller
 
-    .. container:: column 
+    .. container:: column padding-right-1em
 
         Angriffsmodi:
 
@@ -1461,7 +1603,7 @@ Hashcat - relevante Parameter
               Wörterbuch und Maske
 
 
-    .. container:: column 
+    .. container:: column margin-left-1em
 
         Brute-force - Eingebaute Zeichensätze:
 
@@ -1480,8 +1622,9 @@ Hashcat - relevante Parameter
         Definition von bis zu 4 eigenen Zeichensätzen ist möglich.
 
 
-`Hashcat - Ausgewählte Regeln <https://hashcat.net/wiki/doku.php?id=rule_based_attack>`__
--------------------------------------------------------------------------------------------
+
+`Hashcat - Ausgewählte Regeln <https://hashcat.net/wiki/doku.php?id=rule_based_attack>`__ (Teilweise John kompatibel)
+---------------------------------------------------------------------------------------------------------------------------------------------
 
 .. csv-table::
     :header: "Name", "Function", Description, Input, Output
@@ -1606,8 +1749,9 @@ Ein MD5 Hash ist gegeben: ``c84b5c34c9ff7d3431018d795b5975e5``. Weiterhin ist be
       hashcat -m10 salted.md5.hash  -a3 '?a?a?a?a'
 
 
-.. admonition:: Lösung
-    :class: supplemental
+.. supplemental::
+
+    **Lösung**
 
     Das Passwort ist ``Test``. In diesem Fall wäre es auch möglich gewesen direkt zu Prüfen ob das Passwort ``Test`` ist, indem man Hashcat im Modus -m0 (für reinen MD5) startet und als Kandidaten ``TestSALT`` vorgibt.
 
@@ -1655,7 +1799,7 @@ Szenario 5: Kombination von Wörterbuch mit eigenem Regelsatz
 
     **Zu Bedenken**
 
-    Die gezeigte Operation löst die Ordnung in der Datei auf und sortiert diese alphabetisch. Dies ist aber häufig nicht gewünscht - insbesondere wenn der Leak nach Verwendungshäufigkeit sortiert ist!
+    Die gezeigte Operation löst die Ordnung in der Datei auf und sortiert diese alphabetisch. Dies ist aber häufig nicht gewünscht – insbesondere wenn der Leak nach Verwendungshäufigkeit sortiert ist!
 
 
 .. class:: small
@@ -1788,7 +1932,7 @@ Szenario 8: Passwörter mit Muster
 
 **Ausgangssituation**
 
-Wir möchten ein Wörterbuch erstellen mit :ger-quote:`Wörtern`, die Buchstabenvervielfältigungen enthalten, aber nicht länger als 16 Zeichen sind. Zum Beispiel: "aaaaBBBBcccc" oder auch "AFFFFFE". 
+Wir möchten ein Wörterbuch erstellen mit :ger-quote:`Wörtern`, die Buchstabenvervielfältigungen enthalten, aber nicht länger als 16 Zeichen sind. Zum Beispiel: ``aaaaBBBBcccc`` oder auch ``AFFFFFE``. 
 Weiterhin soll die Liste nach der Länge der gefundenen Einträge aufsteigend sortiert sein und Zeichen, die keine Buchstaben sind, einfach gelöscht werden.
 
 **Lösung**
@@ -1912,6 +2056,8 @@ Zu Generierung aller Kombinationen aus den Fragmenten verwenden wir den Princepr
 
     Wie zu erkennen ist, führen zum Beispiel die Regeln ``$1:`` und ``:$1`` jeweils zum gleichen Ergebnis und wären deswegen nicht effektiv.   
 
+
+
 .. class:: small
 
 Szenario 10: Hashcat als Werkzeug zur Wörterbuchgenerierung
@@ -1924,7 +2070,7 @@ Gegeben sein 3 Wörterbücher [#]_: ``base1.txt``, ``base2.txt`` und ``base3.txt
 .. container:: incremental 
 
     **Beispiel**
-    Sei ``base1.txt``: "Kuh", "Schwein"; ``base2.txt``: "Haus", "Villa" und ``base3.txt``: "Baum", "Busch". Dann wäre das gesuchte Wörterbuch: "Kuh-Haus-Baum", "Kuh-Haus-Busch", ..., "Schwein-Villa-Busch".
+    Sei ``base1.txt``: *Kuh*, *Schwein*; ``base2.txt``: *Haus*, *Villa* und ``base3.txt``: *Baum*, *Busch*. Dann wäre das gesuchte Wörterbuch: *Kuh-Haus-Baum*, *Kuh-Haus-Busch*, ..., *Schwein-Villa-Busch*.
 
 .. container:: incremental 
 
@@ -1965,7 +2111,7 @@ Passwörter angreifen - Zusammenfassung
 - Passwörter können vielfach effizient angegriffen werden.
 - (gute bis exzellente) Kenntnisse über die Zielpersonen sind häufig notwendig.
 - Viele Werkzeuge sind verfügbar (siehe auch Hashcat Werkzeuge, Princeprocessor, John the Ripper, etc.)
-- Kleine etablierte Kommandozeilenwerkzeuge (tr, greb, sed, awk, ...) oder selbstentwickelte Werkzeuge (zum Beispiel in Python) sind häufig ergänzend notwendig und führen oft  schneller zum Ziel als die Suche nach **dem** Tool. 
+- Kleine etablierte Kommandozeilenwerkzeuge (``tr``, ``greb``, ``sed``, ``awk``, ...) oder selbstentwickelte Werkzeuge (zum Beispiel in Python) sind häufig ergänzend notwendig und führen oft  schneller zum Ziel als die Suche nach *dem* Tool. 
 - Insbesondere wenn es um die semantische Anreicherung von Wörterbüchern geht, dann sind (bisher) keine etablierten Werkzeuge vorhanden.
 - Häufig führen nur Kombinationen von etablierten und eigenen Werkzeugen zum gewünschten Ziel.
 
@@ -2005,10 +2151,10 @@ Passwörter angreifen - Zusammenfassung
 Sichere Passwörter
 --------------------------
 
-- Nehmen Sie kein Passwort, dass 1:1 in einem Wörterbuch oder Verzeichnis vorkommt.
-- Nehmen Sie keine Szenepasswörter (zum Beispiel: acab, 1312, 88, ...).
-- Je länger desto besser, aber keine ganz einfachen Sätze.
-- Wählen Sie ein Passwort, dass sie sich merken können. Kombinieren Sie z. B. Dinge aus Ihrem privaten Umfeld, die aber niemand direkt mit Ihnen in Verbindung bringen kann. (D. h. die Namen Ihrer Kinder, Haustiere, etc. sind keine gute Wahl, aber ggf. das Modell Ihres Fernsehers in Kombination mit einer PIN und dem Namen Ihres ersten Smartphones getrennt durch ein paar Sonderzeichen).
+- Nehmen Sie kein Passwort, dass 1:1 in einem Wörterbuch, Verzeichnis oder Leak (vgl. https://haveibeenpwned.com) vorkommt.
+- Nehmen Sie keine Szenepasswörter (zum Beispiel: admin, root, acab, 1312, 88, ...).
+- Je länger desto besser, aber keine trivialen Sätze.
+- Wählen Sie ein Passwort, dass sie sich merken können. Kombinieren Sie z. B. Dinge aus Ihrem privaten Umfeld, die aber niemand direkt mit Ihnen in Verbindung bringen kann. (D. h. die Namen Ihrer Kinder, Haustiere, etc. sind keine gute Wahl, aber ggf. das Modell Ihres Fernsehers in Kombination mit einer Pin und dem Namen Ihres ersten Smartphones getrennt durch ein paar Sonderzeichen).
 
 
 Literaturverzeichnis

@@ -103,6 +103,11 @@ Triple-DES mit drei Schlüsseln
 - Rückwärtskompatibilität mit DES ist gegeben, wenn man :math:`K_3 = K_2` oder :math:`K_1 = K_2` einsetzt.
 
 
+.. class:: new-section transition-scale
+
+Betriebsmodi bei Blockchiffren
+--------------------------------
+
 
 Betriebsmodi
 --------------------

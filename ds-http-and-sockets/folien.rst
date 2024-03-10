@@ -41,11 +41,14 @@ HTTP und Sockets (in Java)
   :Kontakt: michael.eichberg@dhbw-mannheim.de
   :Version: |date|
 
+.. supplemental::
+
   :Folien: 
-      https://delors.github.io/ds-http-and-sockets/folien.rst.html :raw-html:`<br>`
-      https://delors.github.io/ds-http-and-sockets/folien.rst.html.pdf
+      :HTML: https://delors.github.io/ds-http-and-sockets/folien.rst.html 
+
+      :PDF: https://delors.github.io/ds-http-and-sockets/folien.rst.html.pdf
   :Fehler auf Folien melden:
-      https://github.com/Delors/delors.github.io bzw. https://github.com/Delors/delors.github.io/issues
+      https://github.com/Delors/delors.github.io/issues
 
 .. container:: footer-left tiny 
 
@@ -54,8 +57,6 @@ HTTP und Sockets (in Java)
     Alle Fehler sind meine eigenen.
 
 
-
-.. class:: smaller
 
 IP - Wiederholung
 --------------------------------------
@@ -430,7 +431,7 @@ UPD Sockets
 UDP basierter Echo Server
 ------------------------------------------------------
 
-.. stack:: tiny
+.. container:: tiny
 
   .. code:: Java
     :class: copy-to-clipboard
@@ -465,7 +466,7 @@ UDP basierter Echo Server
 
 .. exercise:: Ein einfacher HTTP-Client
 
-  .. class:: list-with-explanations
+  .. class:: list-with-explanations smaller
 
   (a) Schreiben Sie einen HTTP-Client, der den Server ``archive.org`` kontaktiert, die Datei ``/web/web.php`` anfordert und die Antwort des Servers auf dem Bildschirm ausgibt.
 
@@ -565,12 +566,13 @@ UDP basierter Echo Server
           }
 
           /**
-          * Downloads a file from a given URL. (Example: "java HTTPGet.java http://www.google.de/index.html")
-          * 
-          * @param args URL of the file to be downloaded. E.g.,
-          *             "http://archive.org/web/web.php".
-          *              
-          */
+           * Downloads a file from a given URL. 
+           * (Example: "java HTTPGet.java http://www.google.de/index.html")
+           * 
+           * @param args URL of the file to be downloaded. E.g.,
+           *             "http://archive.org/web/web.php".
+           *              
+           */
           public static void main(String args[]) {
               try {
                   if (args.length < 1) {

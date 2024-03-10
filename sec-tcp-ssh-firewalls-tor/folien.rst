@@ -1264,7 +1264,7 @@ Dual-Homed Host
 .. image:: images/firewalls/dual-homed-host.png 
     :alt: Dual-Homed Host
     :align: right
-    :class: border-transparent-1em
+    :class: margin-1em
 
 **Aufbau**
 
@@ -1278,40 +1278,47 @@ Dual-Homed Host
 Screening Router
 ---------------------
 
-.. image:: images/firewalls/screening-router.png 
-    :alt: Screening Router
-    :align: right
-    :class: border-transparent-1em 
-
-**Aufbau**
-
-- programmierbarer Hardwarerouter 
-- simple Filterfunktionen:
-
-  - nur Paket-Header prüfen  
-  - schnelle Auswertung ermöglicht hohen Durchsatz
-
-- Realisierung eines Packet Filters
-
-**Bewertung**
-
 .. container:: two-columns no-default-width
 
+    .. container:: column no-separator
+
+        **Aufbau**
+
+        - programmierbarer Hardwarerouter 
+        - simple Filterfunktionen:
+
+        - nur Paket-Header prüfen  
+        - schnelle Auswertung ermöglicht hohen Durchsatz
+
+        - Realisierung eines Packet Filters
+
+        **Bewertung**
+
+        .. container:: two-columns width-60
+
+            .. container:: column
+                
+                .. class:: positive-list
+
+                - einfach und billig
+                - flexibel
+                
+            .. container:: column
+
+                .. class:: negative-list
+
+                - schwer zu testen
+                - Protokollierung
+                - Fernwartung 
+                - keine Inhaltsfilterung 
+
     .. container:: column
-        
-        .. class:: positive-list
 
-        - einfach und billig
-        - flexibel
-        
-    .. container:: column
+        .. image:: images/firewalls/screening-router.png 
+            :alt: Screening Router
+            :class: margin-1em
+            :align: center
 
-        .. class:: negative-list
-
-        - schwer zu testen
-        - Protokollierung
-        - Fernwartung 
-        - keine Inhaltsfilterung 
 
 
 Screened Host
@@ -1320,7 +1327,7 @@ Screened Host
 .. image:: images/firewalls/screened-host.png 
     :alt: Screened Host
     :align: right
-    :class: border-transparent-1em
+    :class: margin-1em padding-left-1em
 
 **Aufbau**
 

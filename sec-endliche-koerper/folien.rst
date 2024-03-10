@@ -13,7 +13,7 @@
 .. role:: eng
 .. role:: red
 .. role:: smaller
-.. role:: much-smaller
+.. role:: far-smaller
 
 .. role:: raw-html(raw)
    :format: html
@@ -185,7 +185,7 @@ Körper
 
 .. class:: vertical-title smaller-slide-title
 
-Eigenschaften von Gruppen, Ringen und Körpern :raw-html:`<br>` :much-smaller:`Zusammenfassung`
+Eigenschaften von Gruppen, Ringen und Körpern :raw-html:`<br>` :far-smaller:`Zusammenfassung`
 ------------------------------------------------------------------------------------------------------------------
 
 .. image:: drawings/algebraische_strukturen/algebraische_strukturen.svg
@@ -584,7 +584,7 @@ Arithmetik in :math:`GF(2^3)`: Addition
     *110*,  *6*, 6, 7, 4, 5, 2, 3, :red:`0`, 1
     *111*,  *7*, 7, 6, 5, 4, 3, 2, 1, :red:`0`
 
-:much-smaller:`(Die Definition der Addition des endlichen Körpers GF(2^3) wird in Kürze behandelt.)`
+:far-smaller:`(Die Definition der Addition des endlichen Körpers GF(2^3) wird in Kürze behandelt.)`
 
 .. container:: supplemental
     
