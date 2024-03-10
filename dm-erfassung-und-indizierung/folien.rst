@@ -421,7 +421,7 @@ Umwandlung von NCI zu CI
 
 :*Optical Mark Recognition (OMR)*:
 
-    Es werden Markierungen in vordefinierten Feldern/Bereichen ausgelesen (Z. B. Selektionsfelder aus Fragebögen oder es wird geprüft ob :ger-quote:`eine Unterschrift` in dem vorgesehenen Feld erfolgt ist.)
+    Es werden Markierungen in vordefinierten Feldern/Bereichen ausgelesen. Z. B. Selektionsfelder aus Fragebögen oder es wird geprüft, ob :ger-quote:`eine Unterschrift` in dem vorgesehenen Feld erfolgt ist.
 
 
 
@@ -519,7 +519,7 @@ Drei typische Erfassungsszenarien für Eingangspost:
 
 - Scannen im Posteingang (frühes Archivieren)
 - Scannen zum Zeitpunkt der Bearbeitung
-- Scannen nach der Bearbeitung (Spätes Archivieren)
+- Scannen nach der Bearbeitung (spätes Archivieren)
 
 
 
@@ -641,9 +641,9 @@ Scannen von Dokumenten - Zusammenfassung
 
 Entscheidungsdimensionen:
 
-• Frühes Scannen vs. Spätes Scannen oder Scannen bei der Sachbearbeitung
-• Zentrales Scannen vs. dezentrales Scannen
-• Scannen und indizieren gleichzeitig oder zeitlich versetzt
+• frühes Scannen vs. spätes Scannen oder Scannen bei der Sachbearbeitung
+• zentrales Scannen vs. dezentrales Scannen
+• scannen und indizieren gleichzeitig oder zeitlich versetzt
 • Selbst scannen oder Outsourcing (externer Dienstleister)
 
 
@@ -688,7 +688,7 @@ COLD-Verfahren (historisch)
         1. Zerlegung des Datenstroms in einzelne Dokumente.
         2. Extrahiert die für die Ablage bzw. spätere Recherche der Dokumente notwendigen Index-Daten automatisch + evtl. Bezug zu Overlays. 
          
-           :minor:`(Trennung zwischen fachlichen und layout Daten möglich.)`
+           :minor:`(Die Fachdaten und das Layout sind getrennt.)`
         3. Konvertierung bringt die Dokumente in eine für die Ablage geeignete Form.
 
 

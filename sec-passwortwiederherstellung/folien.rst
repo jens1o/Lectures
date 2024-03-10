@@ -1024,7 +1024,7 @@ Die Zusammensetzung von Passwörtern verstehen
             :header: "Kategorie", "Absolut", "Prozentual", "Beispiele"
             
             
-            Emails, 26.749, "0,22%", me\ |at|\ me.com, , , 
+            E-Mails, 26.749, "0,22%", me\ |at|\ me.com, , , 
             Zahlen gerahmt von Buchstaben, 35696, "0,30%", a123456a, , , 
             Leetspeak, 64.672, "0,54%", G3tm0n3y, , , 
             Patterns, 124.347, "1,04%", lalala, , , 

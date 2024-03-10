@@ -454,7 +454,7 @@ Polynomarithmetik mit Koeffizienten in :math:`Z_p`
     - Wenn wir versuchen, eine Polynomdivision über eine Koeffizientenmenge durchzuführen, die kein Körper ist, dann ist die Division nicht immer definiert.
 
       - Auch wenn die Koeffizientenmenge ein Körper ist, ist die Polynomdivision nicht unbedingt exakt.
-      - Unter der Voraussetzung, dass Reste erlaubt sind, dann ist die Polynomdivision möglich  wenn die Koeffizientenmenge ein Körper bildet.
+      - Unter der Voraussetzung, dass Reste erlaubt sind, dann ist die Polynomdivision möglich, wenn die Koeffizientenmenge ein Körper bildet.
 
 
 

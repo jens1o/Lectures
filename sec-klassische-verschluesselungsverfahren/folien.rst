@@ -413,7 +413,7 @@ Erfunden vom britischen Wissenschaftler Sir Charles Wheatstone im Jahr 1854.
 - Bekannteste Chiffrierung mit mehreren Buchstaben.
 - Behandelt Digramme im Klartext als einzelne Einheiten und übersetzt diese Einheiten in Digramme des Geheimtextes.
 - Basiert auf der Verwendung einer 5 x 5 Buchstabenmatrix, die mit Hilfe eines Schlüsselworts konstruiert wird. 
-- Wurde von der britischen Armee im ersten Weltkrieg und von der US-Armee und anderen alliierten Streitkräften im zweiten Weltkrieg als Standardfeldsystem verwendet.
+- Wurde von der britischen Armee im Ersten Weltkrieg und von der US-Armee und anderen alliierten Streitkräften im zweiten Weltkrieg als Standardfeldsystem verwendet.
 
 
 
@@ -618,7 +618,7 @@ One-Time Pad
 - Verwendung eines Zufallsschlüssels, der so lang wie die Nachricht ist, so dass der Schlüssel nicht wiederholt werden muss.
 - Der Schlüssel wird zum Ver- und Entschlüsseln einer einzigen Nachricht verwendet und dann verworfen.
 - Jede neue Nachricht erfordert einen neuen Schlüssel mit der gleichen Länge wie die neue Nachricht.
-- Das Schema ist beweisbar unknackbar.
+- Das Schema ist nachweislich nicht zu knacken.
 
   .. class:: far-smaller incremental
 

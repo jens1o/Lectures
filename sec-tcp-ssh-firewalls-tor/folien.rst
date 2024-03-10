@@ -1910,7 +1910,7 @@ Tor
    Es macht meistens mehr Sinn Tor über ein VPN zu betreiben.
    => + VPN then Tor: In this method, also known as “Tor over VPN,” you’ll connect with a VPN and then download and  use the Tor browser. This grants you all of the privacy perks of the Tor network and additional IP address protection from your VPN, preventing your ISP from knowing that you use Tor and keeping any Tor node from seeing your IP address.
 
-- Was passiert wenn eine Angreifer in der Lage ist :math:`50\% + 1` der ``Directory Authority`` Server zu kontrollieren?
+- Was passiert, wenn eine Angreifer in der Lage ist :math:`50\% + 1` der ``Directory Authority`` Server zu kontrollieren?
 
 .. **Antwort**
    "Hell breaks loose." Er kann zum Beispiel auf die Entry und Exitnodes verweisen, die er kontrolliert. Damit kann er den Datenverkehr entschlüsseln. Er kann auch die Onion Services verweisen, die er kontrolliert. Damit kann er die Identität der Nutzer der Onion Services ermitteln.

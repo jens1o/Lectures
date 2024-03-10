@@ -45,19 +45,18 @@
 
   :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
   :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
-  :`Folien`:smaller:: 
-        .. container:: small
+  :Version: |date|
 
-          https://delors.github.io/ds-architekturen/folien.rst.html :raw-html:`<br>`
+.. supplemental::
+
+  :Folien: 
+        
+          https://delors.github.io/ds-architekturen/folien.rst.html 
+          
           https://delors.github.io/ds-architekturen/folien.rst.html.pdf
-  :`Fehler auf Folien melden`:smaller::
-        .. container:: small
+  :Fehler auf Folien melden:
 
           https://github.com/Delors/delors.github.io/issues
-  :`Version`:smaller:: 
-        .. container:: small
-
-          |date|
 
 .. container:: footer-left tiny incremental
 
@@ -516,8 +515,8 @@ Langlebige Transaktionen mit choreografierten Sagas
         
           .. class:: negative-list
 
-          - Was passiert wenn die Middleware nicht erreichbar ist?
-          - Was passiert wenn das Event nicht verarbeitet werden kann? 
+          - Was passiert, wenn die Middleware nicht erreichbar ist?
+          - Was passiert, wenn das Event nicht verarbeitet werden kann? 
   
         .. container:: incremental assessment
           

@@ -171,7 +171,7 @@ Digitalisierung - ein Prozess mit Stilblüten...
 
     .. epigraph:: 
 
-        Wie die zahlreichste Bibliothek, wenn ungeordnet, nicht so viel nutzen schafft, als eine sehr mäßige, sorgfältig geordnete; eben so ist die größte Menge von Kenntnissen, die nicht gehörig durch eigenes Denken bearbeitet werden, viel weniger Wert als eine viel geringere Menge von Kenntnissen, die gehörig durchdacht werden.
+        Wie die zahlreichste Bibliothek, wenn ungeordnet, nicht so viel Nutzen schafft, als eine sehr mäßige, sorgfältig geordnete; eben so ist die größte Menge von Kenntnissen, die nicht gehörig durch eigenes Denken bearbeitet werden, viel weniger Wert als eine viel geringere Menge von Kenntnissen, die gehörig durchdacht werden.
 
         -- Arthur Schopenhauer (mutmaßlich)
 
@@ -213,7 +213,7 @@ Gegenüberstellung konventionelles Archiv zu DMS
 
     Ablagestruktur, "hierarchisch, meist nach Dokumententypen getrennt", "datenbankgestützt, Suchbeginn nach jedem Suchkriterium möglich, Suche wahlweise z. B. je Kunde, Vorgang oder Beleg"
     Auskunftsbereitschaft,"zeitverzögert, nach Sichtung/ Entnahme aller Dokumente", "unmittelbar durch vorgangsbezogene bzw. dokumentenübergreifende Suche"
-    Auskunftsaufwand, "für Beleg Suche, Entnahme und wieder einordnen, evtl. kopieren und Versand", "nur für Recherche am Bildschirm, gegebenenfalls direkter Versand per EMail"
+    Auskunftsaufwand, "für Belegsuche, Entnahme und wieder einordnen, evtl. kopieren und Versand", "nur für Recherche am Bildschirm, gegebenenfalls direkter Versand per E-Mail"
     Redundanz, "Abteilungsablagen = mehrfacher Aufwand", Einmalablage
     Vollständigkeit, "leidet unter jeder Entnahme", bleibt immer gewahrt
     Sicherheit, "Ordner u. Dokumente lassen sich leicht entfernen oder kopieren", "klare Regelung der Zugriffsrechte, keine ungewollte Entnahme möglich"
@@ -294,7 +294,7 @@ Was ist ein Dokument aus technischer Sicht?
 
 .. container:: supplemental
 
-    Es ist somit eine reine Deklarationsfrage was ein Dokument ist!
+    Es ist somit eine reine Deklarationsfrage, was ein Dokument ist!
 
 
 .. class:: vertical-title
@@ -315,7 +315,7 @@ Elektronische Dokumente
 
     :OCR (Optical Character Recognition):  Text einer gedruckten Vorlage wird durch einfachen Mustervergleich automatisch in maschinenlesbare Zeichen transformiert. 
 
-    :ICR (Intelligent Character Recognition): Die Qualität der Texterkennung wird durch Kontextanalyse verbessert. Typische Fehler von OCR-Systemen, wie zum Beispiel Fehlerkennungen von optisch nahe beieinanderliegenden Zeichen (z. B. „8 und B“ oder „0 und O“), werden vermieden. (Wie nahe Zeichen beieinander liegen ist stark vom verwendeten Schrifttyp abhängig.)
+    :ICR (Intelligent Character Recognition): Die Qualität der Texterkennung wird durch Kontextanalyse verbessert. Typische Fehler von OCR-Systemen, wie zum Beispiel Fehlerkennungen von optisch nahe beieinanderliegenden Zeichen (z. B. „8 und B“ oder „0 und O“), werden vermieden. (Wie nahe Zeichen beieinander liegen, ist stark vom verwendeten Schrifttyp abhängig.)
 
     :OMR (Optical Mark Recognition): Liest mit großer Sicherheit spezielle Markierungen in vordefinierten Feldern aus - zum Beispiel in Multiple-Choice-Tests und Vordrucken.
 
@@ -375,9 +375,9 @@ Dokumente annotieren
 
 .. class:: incremental
 
-- Man unterscheidet zwischen dem Originalformat des Dokuments (z. B. MS-Word oder LibreOffice Format) und Renditions (wie PDF/a und TIFF).
+- Man unterscheidet zwischen dem Originalformat des Dokuments (z. B. von MS-Word oder LibreOffice) und Renditions (wie PDF/a und TIFF).
 - Formate wie PDF/a und TIFF sind in der Regel langlebiger. Für beide Formate gibt es weitverbreitete Viewer und sie erhalten besser den ursprünglichen optischen Zustand.
-- Previewimages sind oft zusätzlich eingebettet.
+- Preview Images sind oft zusätzlich eingebettet.
 
 
 
@@ -388,7 +388,7 @@ Hashwerte und Signaturen [#]_
 
 - Hashwert ist wie ein mathematischer Fingerabdruck des Dokumentes.
   
-- Dieser Hashwert verknüpft mit einer persönlichen Signatur zeigt, dass dieses Dokument von dem Absender der Signatur stammt und das Dokument nicht verändert wurde.
+- Dieser Hashwert – verknüpft mit einer persönlichen Signatur – zeigt, dass dieses Dokument von dem Absender der Signatur stammt und das Dokument nicht verändert wurde.
 
 
 
@@ -468,9 +468,9 @@ Beispiele von Meta-Daten einer Verwaltungssoftware für grafische Zeichnungen
 
     1, Zeichnungsnummer, M, Eindeutiger Schlüssel, Manuelle Vergabe durch Benutzer, Identifiziert Zeichnung
     2,"Zeichnungsmappen- nummer", M, Fremdschlüssel, , 
-    3a, Version, M, Version der Zeichnung verwalten, Automatische Vergabe durch DMS bei Check-in, Benutzer entscheidet ob minor oder major
+    3a, Version, M, Version der Zeichnung verwalten, Automatische Vergabe durch DMS bei Check-in, Benutzer entscheidet, ob *minor* oder *major*
     3b, Check-In-Datum, M, Datum des Check-in der Version, Automatische Vergabe durch DMS, Check-in Datum
-    3c, Dokumenten-Owner, M, Gruppe aus letzten Bearbeiter, Aus USER-ID abgeleitet
+    3c, Dokumenten-Owner, M, Gruppe aus letzten Bearbeitern, Aus USER-ID abgeleitet
     3d, Letzter Bearbeiter, M, Identifikation, USER-ID, Beim Check-in
 
 
@@ -557,7 +557,7 @@ Dokumente ...
 • verändern sich
 • werden festgeschrieben
 • dienen als Nachweis / Infoquelle
-• müssen bestimmt Zeit aufbewahrt werden
+• müssen bestimmte Zeit aufbewahrt werden
 • können bzw. müssen gelöscht werden.
 
 
@@ -567,8 +567,8 @@ Erstellen von Dokumenten
 
 .. class:: incremental
 
-• Scannen von analogen Dokumenten (Papier, Mikrofilm, ..)
-• Neu erstellen von Dokumenten (Vorlagen im DMS,..)
+• Scannen analoger Dokumente (Papier, Mikrofilm, ..)
+• Neuerstellung von Dokumenten (Vorlagen im DMS,..)
 • Vorhandene Dokumente einstellen (*drag and drop*)
 • Dokumente aus Applikationen übernehmen (SAP-Archive-Link, Mail-Archivierung, ...)
 • Spezielle Verfahren bei Migration und Massenimporten
@@ -634,7 +634,7 @@ Archivierung (von Dokumenten)
     
     **Archiv**
     
-    Ein Archiv ist ein realer oder elektronischer Ort in dem Dokumente, die zur laufenden Aufgabenerfüllung nicht mehr benötigt werden, erfasst, ausgewertet und zugänglich gemacht werden.
+    Ein Archiv ist ein realer oder elektronischer Ort, in dem Dokumente, die zur laufenden Aufgabenerfüllung nicht mehr benötigt werden, erfasst, ausgewertet und zugänglich gemacht werden.
 
 
 
@@ -654,7 +654,7 @@ Bewertung von Dateiformaten in Hinblick auf die Dauerhaftigkeit
 
 .. class:: incremental
 
-- vollständige und offene Dokumentation (am Besten mit Standardisierung)
+- vollständige und offene Dokumentation (am besten mit Standardisierung)
 - Plattformunabhängigkeit
 - nicht-proprietär (herstellerunabhängig)
 - keine „verlustbehaftete“ oder proprietäre Komprimierung
@@ -910,7 +910,7 @@ Pflege des Systems
 Regelmäßiges Umkopieren der Bestände ist häufig notwendig:
 
 • Datensätze müssen gelöscht werden (Datenschutz)
-• Dokumente und Mappen zusammengefasst werden sollen (Performance)
+• Dokumente und Mappen sollen zusammengefasst werden (Performance)
 • Datenträger altern (Sicherheit)
 
 .. admonition:: Hinweis

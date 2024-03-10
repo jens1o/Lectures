@@ -1068,9 +1068,9 @@ ZeroMQ - Messaging Patterns
 
   :*Client-Server*: Ermöglicht die :ger-quote:`übliche` Kommunikation zwischen einem Client und einem Server. Allerdings findet ggf. eine Pufferung statt, wenn der Server nicht erreichbar ist.
 
-  :*Publish-Subscribe*: Ermöglicht es den Clients sich für ein bestimmtes Thema zu registrieren und dann alle Nachrichten zu erhalten, die zu diesem Thema veröffentlicht werden. Ein Nachricht mit einem bestimmten Thema wird an alle dafür registrierten Clients gesendet.
+  :*Publish-Subscribe*: Ermöglicht es den Clients, sich für ein bestimmtes Thema zu registrieren und dann alle Nachrichten zu erhalten, die zu diesem Thema veröffentlicht werden. Ein Nachricht mit einem bestimmten Thema wird an alle dafür registrierten Clients gesendet.
 
-  :*Pipeline*: Ermöglicht es eine Aufgabe an genau einen beliebigen Worker aus einer Menge von (homogenen) Workern zu senden.
+  :*Pipeline*: Ermöglicht die Versendung einer Aufgabe an genau einen beliebigen Worker aus einer Menge von (homogenen) Workern.
 
 
 ZeroMQ - Beispiel *Publish-Subscribe*
@@ -1162,7 +1162,7 @@ MOM - Grundlegendes Interface
    
    PUT, "Legt eine Nachricht in eine bestimmte Warteschlange."
    GET, "Blockiert an einer bestimmten Warteschlange bis eine Nachricht verfügbar ist. Entfernt die erste Nachricht."
-   POLL, "Prüft ob eine Nachricht in einer bestimmten Warteschlange verfügbar ist. Entfernt ggf.  die erste Nachricht. POLL blockiert niemals"
+   POLL, "Prüft, ob eine Nachricht in einer bestimmten Warteschlange verfügbar ist. Entfernt ggf.  die erste Nachricht. POLL blockiert niemals"
    NOTIFY, "Registriert einen Handler (*Callback*) der aufgerufen wird, wenn eine Nachricht einer bestimmten Warteschlange hinzugefügt wird."
 
 
