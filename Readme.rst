@@ -36,7 +36,7 @@ Vorlesung "IT Sicherheit (IT Infrastrukturen)"
 4. Blockchiffre (`<sec-blockchiffre/folien.rst.html>`__)
 5. Endliche Körper (`<sec-endliche-koerper/folien.rst.html>`__)
 6. AES (`<sec-aes/folien.rst.html>`__)
-7. Operationsmodi von Blockchiffren (`<sec-blockchiffre-operationsmodi/folien.rst.html>`__)
+7. Betriebsmodi von Blockchiffren (`<sec-blockchiffre-operationsmodi/folien.rst.html>`__)
 8. Stromchiffren (`<sec-stromchiffre/folien.rst.html>`__)
 9. Public-Key-Kryptographie (`<sec-public-key-kryptographie/folien.rst.html>`__)
 10. Hashfunktionen (`<sec-hashfunktionen/folien.rst.html>`__)
