@@ -34,6 +34,7 @@ Klassische Verschlüsselungsmethoden
           https://github.com/Delors/delors.github.io/issues
 
 
+
 Definitionen
 -------------
 
@@ -166,6 +167,7 @@ Kryptoanalyse und Brute-Force-Angriff
     - Im Durchschnitt muss die Hälfte aller möglichen Schlüssel ausprobiert werden, um Erfolg zu haben.
 
 
+
 .. class:: smaller-slide-title
 
 Klassifizierung von Angriffen
@@ -233,6 +235,13 @@ Substitutionsverfahren
 
 
 
+.. class:: new-subsection transition-fade
+    
+Substitutions-Chiffren
+-------------------------
+
+
+
 Caesar Cipher
 -------------
 
@@ -259,7 +268,9 @@ Die Transformation kann wie folgt ausgedrückt werden:
 
 .. csv-table:: 
     :delim: space
-    :class: small
+    :class: far-smaller
+    :align: center
+    :width: 1860px
     
         a b c d e f g h i j k l m n o p q r s t u v w x y z 
         D E F G H I J K L M N O P Q R S T U V W X Y Z A B C
@@ -268,7 +279,9 @@ Mathematisch, wenn wir jedem Buchstaben einen Wert zuweisen:
 
 .. csv-table:: 
     :delim: space
-    :class: small
+    :class: far-smaller
+    :align: center
+    :width: 1840px
 
         a b c d e f g h i j k l m n o p q r s t u v w x y z
         0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
@@ -498,8 +511,8 @@ Polyalphabetische Substitutions-Chiffren verbessern einfache monoalphabetische C
 Vigenère Chiffre
 ------------------
 
-- Die bekannteste und eine der einfachsten polyalphabetischen Substitutions-Chiffren
-- In diesem Schema besteht die Menge der verwandten monoalphabetischen Substitutionsregeln aus den 26 Caesar-Chiffren mit Verschiebungen von 0 bis 25
+- Die bekannteste und eine der einfachsten polyalphabetischen Substitutions-Chiffren.
+- In diesem Schema besteht die Menge der verwandten monoalphabetischen Substitutionsregeln aus den 26 Caesar-Chiffren mit Verschiebungen von 0 bis 25.
 - Jede Chiffre wird durch einen Schlüsselbuchstaben identifiziert, der den Klartextbuchstaben durch den Chiffretextbuchstaben ersetzt.
 
 
@@ -622,7 +635,7 @@ One-Time Pad
 - Jede neue Nachricht erfordert einen neuen Schlüssel mit der gleichen Länge wie die neue Nachricht.
 - Das Schema ist nachweislich nicht zu knacken.
 
-  .. class:: far-smaller incremental
+  .. class:: smaller incremental
 
   - Erzeugt eine zufällige Ausgabe, die in keinem statistischen Zusammenhang mit dem Klartext steht.
   - Da der Chiffriertext keinerlei Informationen über den Klartext enthält, gibt es keine Möglichkeit, den Code zu knacken.
@@ -651,6 +664,11 @@ Schwierigkeiten von One-Time-Pads
 - Das One-Time-Pad ist das einzige Kryptosystem, das eine perfekte Geheimhaltung bietet. 
 
 
+.. class:: new-subsection transition-fade
+    
+Transpositions-Chiffren
+-------------------------
+
 
 Rail Fence Chiffre
 -------------------
@@ -670,6 +688,18 @@ Rail Fence Chiffre
 
     Die verschlüsselte Nachricht ist: MEMATRHTGPRYETEFETEOAAT
 
+
+Sktale
+--------
+
+- Ältestes bekannte (militärische) Verschlüsselungsverfahren. 
+- Vor mehr als 2500 Jahren (vermutlich) von den Spartanern entwickelt. 
+- Die Verschlüsselung erfolgte mit einen (Holz-)Stab mit einem bestimmten Durchmesser (:ger-quote:`Schlüssel`) (Skytale).
+
+.. image:: drawings/skytale.svg
+    :alt: Skytale
+    :align: right
+    :height: 600px
 
 
 Zeilenverschiebungs-Chiffre 
@@ -700,8 +730,14 @@ Zeilenverschiebungs-Chiffre
    Zeilenverschiebungs-Chiffre ≘ :eng:`Row Transposition Cipher`
 
 
+.. class:: new-subsection transition-fade
+    
 Steganografie
--------------
+-------------------------
+
+
+Steganografie - Beispiel
+--------------------------
 
 .. exercise::
 
