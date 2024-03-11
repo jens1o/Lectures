@@ -98,7 +98,9 @@ Es gibt zwei Voraussetzungen für die sichere Verwendung der herkömmlichen Vers
 .. class:: incremental
 
 1. Ein starker Verschlüsselungsalgorithmus.
-2. (a) Sender und Empfänger müssen Kopien des geheimen Schlüssels auf sichere Weise erhalten haben und 
+2. Effektive Schlüsselverwaltung:
+
+   (a) Sender und Empfänger müssen Kopien des geheimen Schlüssels auf sichere Weise erhalten haben und 
    
    (b) :incremental:`den Schlüssel sicher aufbewahren.`
 
@@ -296,7 +298,7 @@ Wobei :math:`k` einen Wert im Bereich von 1 bis 25 annimmt; der Entschlüsselung
 
 
 Brute-Force-Kryptoanalyse der Caesar-Chiffre
---------------------------------------------
+------------------------------------------------------
 
 
 .. csv-table:: 
@@ -325,8 +327,8 @@ Brute-Force-Kryptoanalyse der Caesar-Chiffre
     25 QIIX QI EJXIV XLI XSKE TEVXC
 
 
-Brute-Force-Kryptoanalyse der Caesar-Chiffre
----------------------------------------------
+Brute-Force-Kryptoanalyse (z. B. der Caesar-Chiffre)
+-----------------------------------------------------
 
 Die Entschlüsselung ist komplizierter, wenn der Klartext bereits eine sehr hohe Entropie aufweist, wie z. B. im Falle einer komprimierten Datei:
 
@@ -458,7 +460,7 @@ Die Verschlüsselung wird für jedes Buchstabenpaar des Klartextes durchgeführt
 
 .. class:: smaller incremental
 
-1. Wenn beide Buchstaben gleich sind (oder nur ein Buchstabe übrig ist), fügen Sie ein "X" hinter dem ersten Buchstaben ein. Verschlüsseln Sie das neue Paar und fahren Sie fort. (Z. B. würde statt "ballon" "ba lx lo on" verschlüsselt werden.)
+1. Wenn beide Buchstaben gleich sind (oder nur ein Buchstabe übrig ist), fügen Sie ein "X" hinter dem ersten Buchstaben ein. Verschlüsseln Sie das neue Paar und fahren Sie fort. (Z. B. würde statt "ballon" "ba lx lo nX" verschlüsselt werden.)
 2. Wenn die Buchstaben in der gleichen Zeile stehen, ersetzen Sie sie durch die Buchstaben unmittelbar rechts davon (ggf. umbrechen). (Z. B. wird `ar` als `RM` verschlüsselt.)
 3. Tauchen die Buchstaben in derselben Spalte auf, so sind sie durch die unmittelbar darunter liegenden Buchstaben zu ersetzen (ggf. umbrechen). (Z. B. wird "mu" als "CM" verschlüsselt.)
 4. Befinden sich die Buchstaben nicht in derselben Zeile oder Spalte, so werden sie durch die Buchstaben in derselben Zeile bzw. in dem anderen Paar von Ecken des durch das ursprüngliche Paar definierten Rechtecks ersetzt. (Z. B. wird `hs` als `BP` und `ea` als `IM` verschlüsselt.)
@@ -659,7 +661,7 @@ Rail Fence Chiffre
 .. admonition:: Beispiel
     :class: incremental
 
-    Um die Nachricht: :ger-quote:`Wir treffen uns nach der Toga-Party` mit einer Rail Fence Chiffre der Tiefe 2 (Schlüssel) zu verschlüsseln, würden wir schreiben:
+    Um die Nachricht: :ger-quote:`Meet me after the Toga-Party` mit einer Rail Fence Chiffre der Tiefe 2 (Schlüssel) zu verschlüsseln, würden wir schreiben:
     
     ::
 
