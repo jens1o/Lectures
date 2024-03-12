@@ -728,6 +728,7 @@ Thread Safety Level
     }
 
 
+
 .. class:: integrated-exercise 
 
 Übung
@@ -857,12 +858,12 @@ Thread Safety Level
     (d) Wir können zumindest für die Bedingung *notFull* ``signal`` verwenden, da auf der Bedingungsvariable *notFull* ggf. nur die ``set``-Methode wartet. Für die Bedigung *notEmpty* können wir jedoch nur ``signalAll`` verwenden, da auf der Bedingungsvariable *notEmpty* sowohl die ``get``- als auch die ``delete``-Methode warten können und es sonst passieren können, dass nach einem ``set`` Aufruf kein ``delete`` aufgeweckt wird.
 
 
-.. supplemental:: tiny
+.. supplemental:: 
 
   Sie können sich die Klasse ``ThreadsafeArray`` auch als ein Array von BoundedBuffers mit der Größe 1 vorstellen.
 
   .. code:: Java
-    :class: smaller copy-to-clipboard
+    :class: far-smaller copy-to-clipboard
 
       public class ThreadsafeArray {
 
