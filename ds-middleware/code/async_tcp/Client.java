@@ -28,7 +28,9 @@ public class Client {
             }
         } catch (IOException ioe) {
             System.err.println("[Info]: can't log: " + ioe);
-            queue.add(msg);
+            synchronized (queue) { // ArrayDeque is NOT thread-safe
+                queue.add(msg); 
+            }
         }
     }
 
