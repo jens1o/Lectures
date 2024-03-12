@@ -1,6 +1,6 @@
 .. meta:: 
     :author: Michael Eichberg
-    :keywords: "Middleware", "RPC", "RMI"
+    :keywords: "Middleware", "RPC", "RMI", "MoM"
     :description lang=de: Middleware
     :description lang=en: Middleware
     :id: lecture-ds-middleware
@@ -42,26 +42,25 @@ Middleware
 
   :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
   :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
-  
-  :`Version`:smaller:: 
-        .. container:: smaller
-
-          |date|
+  :Version: |date|
 
 .. supplemental::
 
   :Folien: 
-          https://delors.github.io/ds-middleware/folien.rst.html :raw-html:`<br>`
+          https://delors.github.io/ds-middleware/folien.rst.html
+        
           https://delors.github.io/ds-middleware/folien.rst.html.pdf
   :Fehler auf Folien melden:
 
           https://github.com/Delors/delors.github.io/issues
 
 
+
 .. class:: new-section transition-fade
 
 Einführung in Middleware
 ------------------------
+
 
 
 .. class:: center-child-elements
@@ -1195,7 +1194,6 @@ MOM - Queue Managers
     :pwd: NurEinBisschenCode
 
     .. code:: Java
-      :class: smaller
 
       ...
 
@@ -1212,7 +1210,9 @@ MOM - Queue Managers
           }
         } catch (IOException ioe) {
           System.err.println("[Info]: can't log: " + ioe);
-          queue.add(msg);
+          synchronized (queue) {
+            queue.add(msg);
+          }
         }
       }
 
@@ -1240,13 +1240,14 @@ MOM - Queue Managers
 
       ...
 
-.. supplemental:: tiny
+
+.. supplemental:: 
 
   .. rubric:: Einfacher TCP basierter SyslogServer
 
   .. code:: Java
-    :class: smaller
-
+    :class: far-smaller
+  
     import java.net.*;
     import java.io.*;
 
@@ -1274,7 +1275,7 @@ MOM - Queue Managers
   .. rubric:: Schablone für den Client
 
   .. code:: Java
-    :class: smaller
+    :class: far-smaller
 
     import java.net.*;
     import java.io.*;
