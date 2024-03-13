@@ -702,37 +702,45 @@ Sei der folgende *RoundKey* gegeben:
 
 ``E2 32 FC F1   91 12 91 88   B1 59 E4 E6   D6 79 A2 93``  
 
-Berechne :math:`rc_2`; d.h. den Rundschlüssel (*Roundkey*) für die zweite Runde.
+In Hinblick auf die Berechnung von :math:`rc_2`; d. h. den Rundschlüssel (*Roundkey*) für die zweite Runde, führe folgende Schritte durch.
 
-1. Bevor Sie die konkrete Berechnung durchführen, schreiben Sie zunächst die Formeln auf:
+.. exercise:: 
+    
+    .. rubric:: Formeln für die Berechnung des *RoundKey*
 
-   :math:`w[8]\;\; =\; \ldots \oplus ... \quad w[9]\;\; =\; ... \oplus ...  \quad w[10] =\; ... \oplus ... \quad w[11] =\; ... \oplus ...`
+    Bevor Sie die konkrete Berechnung durchführen, schreiben Sie zunächst die Formeln für: 
+    :math:`w[8]\;\; =\; \ldots \oplus ... \quad w[9]\;\; =\; ... \oplus ...  \quad w[10] =\; ... \oplus ... \quad w[11] =\; ... \oplus ...` auf.
 
-2. Berechne `w[8]` und `w[9]`.
+    .. solution:: Formeln für die Berechnung des *RoundKey*
+        :pwd: CalcRoundKey
 
-.. protected-exercise-solution:: Formeln für die Berechnung des *RoundKey*
+        .. math::
 
-    .. math::
+            w[8] = w[4] \oplus g(w[7])
 
-        w[8] = w[4] \oplus g(w[7])
+            w[9] = w[5] \oplus w[8]
 
-        w[9] = w[5] \oplus w[8]
+            w[10] = w[6] \oplus w[9]
 
-        w[10] = w[6] \oplus w[9]
+            w[11] = w[7] \oplus w[10]
 
-        w[11] = w[7] \oplus w[10]
-      
-.. protected-exercise-solution:: Berechnung von :math:`w[8]` und :math:`w[9]`
 
-    :: 
+.. exercise:: 
+    
+    .. rubric:: Berechne :math:`w[8]` und :math:`w[9]`.
+    
+    .. solution:: :math:`w[8]` und :math:`w[9]`:
+        :pwd: w8undw9
 
-        g(w[7]): 
-            1. after left shift of w[7]:              79 A2 93 D6
-            2. after s-box substituion:               B6 3A DC F6
-            3. after add RoundConstant (02 00 00 00):  B4 3A DC F6
+        :: 
 
-        w[8] = E2 32 FC F1 xor B4 3A DC F6 = 56 08 20 07
-        w[9] = w[8]                      xor 91 12 91 88 = C7 1A B1 8F
+            g(w[7]): 
+                1. after left shift of w[7]:              79 A2 93 D6
+                2. after s-box substituion:               B6 3A DC F6
+                3. after add RoundConstant (02 00 00 00):  B4 3A DC F6
+
+            w[8] = E2 32 FC F1 xor B4 3A DC F6 = 56 08 20 07
+            w[9] = w[8]                      xor 91 12 91 88 = C7 1A B1 8F
 
 
 
@@ -750,97 +758,107 @@ Nehmen wir an, dass der Zustand (*State*) folgendermaßen sei:
    0E 08 1B 31
    54 59 0B 1A
    
-1. Führen Sie den *Substitute Bytes* Schritt durch (Anwendung der S-box Transformation).
+.. exercise:: 
 
+    .. rubric:: Führen Sie den *Substitute Bytes* Schritt durch (Anwendung der S-box Transformation).
+
+    .. solution:: Substitute Bytes
+        :pwd: subBytes
+            
+        ::
+
+            63 EB 9F A0
+            C0 2F 93 92
+            AB 30 AF C7
+            20 CB 2B A2
    
-2. Führen Sie die *Shift Rows Transformation* auf dem Ergebnis des vorherigen Schrittes durch.
+.. exercise::
+    
+    .. rubric:: Führen Sie die *Shift Rows Transformation* auf dem Ergebnis des vorherigen Schrittes durch.
 
+    .. solution:: 
+        :pwd: ShiftIt
 
-.. protected-exercise-solution:: Substitute Bytes
+        ::
 
-    ::
-
-        63 EB 9F A0
-        C0 2F 93 92
-        AB 30 AF C7
-        20 CB 2B A2
-
-.. protected-exercise-solution:: Shift Rows
-
-    ::
-
-        63 EB 9F A0
-        2F 93 92 C0
-        AF C7 AB 30
-        A2 20 CB 2B
+            63 EB 9F A0
+            2F 93 92 C0
+            AF C7 AB 30
+            A2 20 CB 2B
 
 
 
 .. class:: integrated-exercise
 
-Übung (AES-128) - *Mix Columns Transformation*
+Übung (AES-128) 
 -------------------------------------------------
 
-Nehmen wir an, dass der Zustand (*State*) folgendermaßen sei:
+.. exercise:: Mix Columns Transformation
 
-::
+    Nehmen wir an, dass der Zustand (*State*) folgendermaßen sei:
 
-   6A 59 CB BD
-   4E 48 12 A0
-   98 9E 30 9B
-   8B 3D F4 9B
+    ::
 
-Führen Sie die *Mix Columns Transformation* durch für das fehlende Feld (:math:`S'_{0,0}`):
+        6A 59 CB BD
+        4E 48 12 A0
+        98 9E 30 9B
+        8B 3D F4 9B
 
-::
-
-    ?? C9 7F 9D
-    CE 4D 4B C2
-    89 71 BE 88
-    65 47 97 CD
-
-.. protected-exercise-solution:: Mix Columns Transformation
-
-     .. math::
-
-        0x02 \times 0x6A = (simple\; left\; shift\; of\; 6A): 1101\, 0100_b
-
-        0x03 \times 0x4E = 0x4E \oplus (0x02 \times 0x4E) = 0100\, 1110_b \oplus 1001\, 1100_b = 1101 0010_b
-
-        S'_{0,0} = 1101\, 0100_b \oplus 1101\, 0010_b \oplus 0x98 \oplus 0x8B = 0x15
-
-
-
-.. class:: integrated-exercise
-
-Übung (AES-128) - *RoundKey* Anwendung
--------------------------------------------
-
-Wenden Sie den folgenden *RoundKey*: 
-   
-``-w[x]------   -w[x+1]----   -w[x+2]----   -w[x+3]----``  
-
-``D2 60 0D E7   15 7A BC 68   63 39 E9 01   C3 03 1E FB`` 
-
-auf die folgende Zustandsmatrix (*State*):
-
-::
-
-    AA 65 FA 88
-    16 0C 05 3A
-    3D C1 DE 2A
-    B3 4B 5A 0A
-
-.. protected-exercise-solution:: RoundKey Anwendung
-
-    Denken Sie daran, dass der *RoundKey* auf die Spalte angewendet wird!
+    Führen Sie die *Mix Columns Transformation* durch für das fehlende Feld (:math:`S'_{0,0}`):
     
     ::
 
-        78 70 99 4B
-        76 76 3C 39
-        30 7D 37 34
-        54 23 5B F1
+        ?? C9 7F 9D
+        CE 4D 4B C2
+        89 71 BE 88
+        65 47 97 CD
+
+    .. solution:: 
+        :pwd: MixColumnsS00
+
+        .. math::
+
+            0x02 \times 0x6A = (simple\; left\; shift\; of\; 6A): 1101\, 0100_b
+
+            0x03 \times 0x4E = 0x4E \oplus (0x02 \times 0x4E) = 0100\, 1110_b \oplus 1001\, 1100_b = 1101 0010_b
+
+            S'_{0,0} = 1101\, 0100_b \oplus 1101\, 0010_b \oplus 0x98 \oplus 0x8B = 0x15
+
+
+
+.. class:: integrated-exercise
+
+Übung (AES-128) 
+-------------------------------------------
+
+.. exercise:: RoundKey Anwendung
+
+    Wenden Sie den folgenden *RoundKey*: 
+    
+    ``-w[x]------   -w[x+1]----   -w[x+2]----   -w[x+3]----``  
+
+    ``D2 60 0D E7   15 7A BC 68   63 39 E9 01   C3 03 1E FB`` 
+
+    auf die folgende Zustandsmatrix (*State*):
+
+    ::
+
+        AA 65 FA 88
+        16 0C 05 3A
+        3D C1 DE 2A
+        B3 4B 5A 0A
+
+    .. solution:: RoundKey Anwendung
+        :pwd: !RoundKeyApplication
+
+        Denken Sie daran, dass der *RoundKey* auf die Spalte angewendet wird!
+        
+        ::
+
+            78 70 99 4B
+            76 76 3C 39
+            30 7D 37 34
+            54 23 5B F1
 
 
 
@@ -849,12 +867,15 @@ auf die folgende Zustandsmatrix (*State*):
 Übung (AES-128)
 ---------------------
 
-Fragen Sie sich, was passiert, wenn Sie einen Block, der nur aus ``0x00`` Werten besteht, mit einem Schlüssel verschlüsseln, der ebenfalls nur aus ``0x00`` Werten besteht?
+.. exercise:: Nachgehakt
 
-.. protected-exercise-solution:: 0x00 Schlüssel und Daten
+    Fragen Sie sich, was passiert, wenn Sie einen Block, der nur aus ``0x00`` Werten besteht, mit einem Schlüssel verschlüsseln, der ebenfalls nur aus ``0x00`` Werten besteht?
 
-    - Die erste Substitution wird alle Werte auf denselben Wert abbilden: :math:`0x63`'.
-    - Die Zeilenverschiebung hat keine Auswirkung.
-    - Spalten mischen (weil die Werte nicht mehr :math:`0x00` sind, führt dies zu einer gewissen Diffusion :math:`0x02 \times 0x63` und :math:`0x03 \times 0x63` ist nicht :math:`0x63`. )
-    - *AddRoundKey* wirkt sich ebenfalls aus und führt (schon in der ersten Runde) zu einiger Konfusion.
+    .. solution:: Wenn Daten und Schlüssel 0x00 sind, dann ...
+        :pwd: nicht0x00
+
+        - Die erste Substitution wird alle Werte auf denselben Wert abbilden: :math:`0x63`.
+        - Die Zeilenverschiebung hat keine Auswirkung.
+        - Spalten mischen (weil die Werte nicht mehr :math:`0x00` sind, führt dies zu einer gewissen Diffusion :math:`0x02 \times 0x63` und :math:`0x03 \times 0x63` ist nicht :math:`0x63`. )
+        - *AddRoundKey* wirkt sich ebenfalls aus und führt (schon in der ersten Runde) zu einiger Konfusion.
 

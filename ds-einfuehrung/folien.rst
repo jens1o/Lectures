@@ -178,7 +178,7 @@ Empfohlener Podcast: `Thoughtworks Technology Podcast <https://www.thoughtworks.
     :class: picture
     
 
-Verteilt vs. Dezentralisiert (:eng:`Distributed vs Decentralized`)
+Verteilt vs. Dezentralisiert 
 -------------------------------------------------------------------
 
 .. image:: images/distributed-vs-decentralized.svg
@@ -190,6 +190,10 @@ Verteilt vs. Dezentralisiert (:eng:`Distributed vs Decentralized`)
 
     Wann wird ein dezentralisiertes System zu einem verteilten System?
 
+.. supplemental:: 
+
+    :eng:`Distributed vs Decentralized`
+
 
 
 Verteilte Systeme
@@ -197,7 +201,7 @@ Verteilte Systeme
 
 .. admonition:: Zwei Ansichten zur Realisierung verteilter Systeme
 
-    - **Integrative Sichtweise**: Verbindung bestehender vernetzter Computersysteme zu einem größeren System.
+    - **Integrative Sichtweise**: Verbindung bestehender (lokal) vernetzter Computersysteme zu einem größeren System.
     - **Expansive Sichtweise**: ein bestehendes vernetztes Computersystem wird um zusätzliche Computer erweitert.
 
 .. admonition:: Zwei Definitionen
@@ -487,42 +491,40 @@ Bedingte Wahrscheinlichkeit, dass :math:`C` während :math:`[0,t)` korrekt funkt
 Übung: Verfügbarkeit und Ausfallwahrscheinlichkeit
 ------------------------------------------------------
 
-.. exercise:: MTTF, MTTR und MTBF
-    :class: smaller
+.. container:: smaller
 
-    Wenn die MTTF einer Komponente 100 Stunden beträgt und die MTTR 10 Stunden beträgt, wie hoch ist dann die MTBF?
+    .. exercise:: MTTF, MTTR und MTBF
 
-    .. solution:: Berechnung des MTBF
-        :class: smaller
-        :pwd: MTBF=MTTF+MTTR
+        Wenn die MTTF einer Komponente 100 Stunden beträgt und die MTTR 10 Stunden beträgt, wie hoch ist dann die MTBF?
 
-        .. math::
-            MTBF = MTTF + MTTR = 100 + 10 = 110
+        .. solution:: Berechnung des MTBF
+            :pwd: MTTBFR
 
-.. exercise:: Ausfallwahrscheinlichkeit
-    :class: smaller
+            .. math::
+                MTBF = MTTF + MTTR = 100 + 10 = 110
 
-    Gegeben sei ein größeres verteiltes System bestehend aus 500 unabhängigen Rechnern, die auch unabhängig voneinander ausfallen. Im Mittel ist jeder Rechner innerhalb von zwei Tagen zwölf Stunden lang nicht erreichbar.
+    .. exercise:: Ausfallwahrscheinlichkeit
 
-    (a) Bestimmen Sie die Intaktwahrscheinlichkeit eines einzelnen Rechners.
-    (b) Ein Datensatz ist aus Gründen der Fehlertoleranz auf drei Rechnern identisch repliziert gespeichert. Wie hoch ist seine mittlere Zugriffsverfügbarkeit beim Lesen?
-    (c) Auf wie vielen Rechnern müssen Sie identische Kopien dieses Datensatzes speichern, damit die mittlere Zugriffsverfügbarkeit beim Lesen bei 99,999 % liegt 
-    (d) Für wie viele Minuten im Jahr ist im Mittel bei einer Verfügbarkeit von 99,999 % *kein Lesen des Datensatzes* möglich?
+        Gegeben sei ein größeres verteiltes System bestehend aus 500 unabhängigen Rechnern, die auch unabhängig voneinander ausfallen. Im Mittel ist jeder Rechner innerhalb von zwei Tagen zwölf Stunden lang nicht erreichbar.
 
-    .. solution:: Lösung
-        :class: smaller
-        :pwd: Laufend?
+        (a) Bestimmen Sie die Intaktwahrscheinlichkeit eines einzelnen Rechners.
+        (b) Ein Datensatz ist aus Gründen der Fehlertoleranz auf drei Rechnern identisch repliziert gespeichert. Wie hoch ist seine mittlere Zugriffsverfügbarkeit beim Lesen?
+        (c) Auf wie vielen Rechnern müssen Sie identische Kopien dieses Datensatzes speichern, damit die mittlere Zugriffsverfügbarkeit beim Lesen bei 99,999 % liegt 
+        (d) Für wie viele Minuten im Jahr ist im Mittel bei einer Verfügbarkeit von 99,999 % *kein Lesen des Datensatzes* möglich?
 
-        (a) Die Verfügbarkeit eines einzelnen Rechners beträgt p = 36h/48h = 0,75 (MTBF = 36H, MTTR = 12H)
-        (b) Die mittlere Zugriffsverfügbarkeit (für :math:`p = 0.75`) beim Lesen beträgt :math:`1 - (1 - p)^3 = 0,984375`; :math:`(1-p)` ist die Ausfallwahrscheinlichkeit.
-        (c) (Erinnerung: :math:`log_a(u^v) = v \cdot log_a(u)`).
-            
-            Wahrscheinlichkeit, dass alle gleichzeitig ausfallen muss kleiner(gleich) der erlaubten Nichtverfügbarkeit sein:  :math:`(1-p)^x \leq (1-0,99999) \Leftrightarrow x \cdot log(1-p) \geq log(1-0,99999)`
+        .. solution:: Lösung
+            :pwd: Laufend?
 
-            :math:`\Rightarrow x \geq log(1-0,99999)/log(1-p) \approx 8,3`
-            
-            Die Anzahl der Rechner, auf denen der Datensatz repliziert werden muss, beträgt :math:`\lceil \frac{log(1-0,99999)}{log(1-p)} \rceil = 9`
-        (d) Bei 365 Tagen im Jahr: (1-0,99999) * 365 * 24 * 60 = 5,256 Minuten
+            (a) Die Verfügbarkeit eines einzelnen Rechners beträgt p = 36h/48h = 0,75 (MTBF = 36H, MTTR = 12H)
+            (b) Die mittlere Zugriffsverfügbarkeit (für :math:`p = 0.75`) beim Lesen beträgt :math:`1 - (1 - p)^3 = 0,984375`; :math:`(1-p)` ist die Ausfallwahrscheinlichkeit.
+            (c) (Erinnerung: :math:`log_a(u^v) = v \cdot log_a(u)`).
+                
+                Wahrscheinlichkeit, dass alle gleichzeitig ausfallen muss kleiner(gleich) der erlaubten Nichtverfügbarkeit sein:  :math:`(1-p)^x \leq (1-0,99999) \Leftrightarrow x \cdot log(1-p) \geq log(1-0,99999)`
+
+                :math:`\Rightarrow x \geq log(1-0,99999)/log(1-p) \approx 8,3`
+                
+                Die Anzahl der Rechner, auf denen der Datensatz repliziert werden muss, beträgt :math:`\lceil \frac{log(1-0,99999)}{log(1-p)} \rceil = 9`
+            (d) Bei 365 Tagen im Jahr: (1-0,99999) * 365 * 24 * 60 = 5,256 Minuten
 
 
 
@@ -614,7 +616,7 @@ Es geht im Wesentlichen um das Ver- und Entschlüsseln von Daten (:math:`X`) mit
 
 
 
-Sicherheit - Sicheres Hashing (:eng:`Secure Hashing`)
+Sicherheit - Sicheres Hashing 
 ------------------------------------------------------- 
 
 Eine sichere Hash-Funktion :math:`Digest(X)` gibt eine Zeichenkette fester Länge (:math:`H`) zurück.
@@ -636,6 +638,10 @@ Eine sichere Hash-Funktion :math:`Digest(X)` gibt eine Zeichenkette fester Läng
     .. math::
         Bob: D(PU_{Alice},H) \stackrel{?}{=} Digest(X)
 
+
+.. supplemental::
+
+    Sicheres Hashing ≘ :eng:`Secure Hashing`
 
 
 .. class:: integrated-exercise
@@ -987,34 +993,24 @@ Gustafsons Gesetz - Grenzen der Skalierbarkeit
 
   (Beispiel: Erstelle innerhalb der nächsten 24 Stunden die Wettervorhersage für übermorgen. Inwieweit lässt sich durch mehr CPUs/Rechner die Präzision der Vorhersage verbessern?)
 
-Beschleunigung (Speedup) eines parallelisierten Programms relativ zu der nicht-parallelisierten Variante:
+.. container:: note width-50 tiny
 
-.. container:: stack
+    **Legende**
 
-    .. container:: layer
+    :math:`C` = Anzahl CPUs 
 
-        .. container:: note width-50 tiny
+    :math:`P` = Parallelisierungsgrad in Abhängigkeit von der Problemgröße n
+    
+    :math:`S` = Speedup 
 
-            **Legende**
+Beschleunigung (Speedup) eines parallelisierten Programms relativ zu der nicht-parallelisierten Variante: :math:`S(C) = 1 + P(n) \cdot (C-1)`
 
-            :math:`C` = Anzahl CPUs 
+.. container:: incremental
 
-            :math:`P` = Parallelisierungsgrad in Abhängigkeit von der Problemgröße n
-            
-            :math:`S` = Speedup 
-        
-        .. admonition:: Definition 
-                    
-            .. class:: large
+    .. admonition:: Beispiel
+       :class: tiny 
 
-                :math:`S(C) = 1 + P(n) \cdot (C-1)`
-
-    .. container:: layer incremental
-
-        .. admonition:: Beispiel
-            :class: tiny 
-
-            Sei der Parallelisierungsgrad ab einer relevanten Problemgröße n 80 %. Dann ergibt sich für 4 CPUs ein Speedup von :math:`(1+0.8*3) = 3.4`, für 8 CPUs ein Speedup von 6.6 und für 16 CPUs ein Speedup von 13.
+       Sei der Parallelisierungsgrad ab einer relevanten Problemgröße n 80 %. Dann ergibt sich für 4 CPUs ein Speedup von :math:`(1+0.8*3) = 3.4`, für 8 CPUs ein Speedup von 6.6 und für 16 CPUs ein Speedup von 13.
 
 
 
@@ -1024,7 +1020,6 @@ Beschleunigung (Speedup) eines parallelisierten Programms relativ zu der nicht-p
 ----------------
 
 .. exercise:: Speedup berechnen
-    :class: smaller
 
     Sie sind Pentester und versuchen in ein System einzudringen indem Sie die Passwörter der Administratoren angreifen. Momentan setzen Sie dazu 2 Grafikkarten mit je 2048 Compute Units ein. Der serielle Anteil des Angriffs beträgt 10 %. Wie hoch ist der Speedup, den Sie erwarten können, wenn Sie zwei weitere vergleichbare Grafikkarten mit weiteren 2048 Compute Units je GPU hinzufügen?
 

@@ -1629,7 +1629,7 @@ CWE-306: Missing Authentication for Critical Function - Abhilfemaßnahmen und Er
 Dump C /  C++
 ---------------------
 
-.. image:: screenshots/dump_c_c++_2024_02_27.svg
+.. image:: screenshots/dump_c_c++_2024_02_27.png
     :alt: Dump C /  C++
     :height: 1175px
 
@@ -1669,16 +1669,17 @@ OWASP
 Übung: Schwachstelle(n) (1)
 -----------------------------------------------------------------------
 
-.. exercise:: 
-    :class: scriptsize
+.. container:: far-smaller
 
+  .. exercise:: 
+    
     1. Benenne die Schwachstelle(n) entsprechend der CWEs (ohne ID).
     2. Identifiziere die für die Schwachstelle(n) relevanten Zeilen im Code.
     3. Gebe - falls möglich - einen Angriffsvektor an.
     4. Skizziere mögliche Auswirkung der Schwachstelle(n) (z. B. Verlust der Vertraulichkeit, Integrität oder Verfügbarkeit; Umgehung der Zugriffskontrolle; beliebige Codeausführung, ...) 
 
     .. code:: C
-        :class: tiny
+        :class: smaller
         :number-lines:
         
         #include <stdio.h>
@@ -1696,7 +1697,7 @@ OWASP
         }
 
     .. solution:: 
-        :pwd: 1. Schwachstelle
+        :pwd: AVuln
 
         Die Länge von :code:`str` wird nicht validiert. Es kommt somit potentiel zu einem "Out-of-bounds Write" (:code:`strcpy(buffer,str)`). Ein String wäre jeder String, der länger als 16 Zeichen ist. Ein Angriffsvektor wäre z. B. ein String, der 17 Zeichen lang ist und am Ende ein :code:`\0` enthält. Die Auswirkung wäre ein Pufferüberlauf, der ggf. zur Ausführung von beliebigem Code führt.
 
@@ -1707,13 +1708,14 @@ OWASP
 Übung: Schwachstelle(n) (2)
 -------------------------------------------------
 
-.. exercise:: 
-    :class: scriptsize
+.. container:: far-smaller
+
+  .. exercise:: 
 
     Sie analysieren eine REST API die folgendes Verhalten aufweist, wenn man einem Blog einen Kommentar hinzufügen möchte:
 
     .. code:: HTTP
-        :class: tiny
+        :class: smaller
 
         POST /post/comment HTTP/1.1
         Host: important-website.com
@@ -1724,7 +1726,7 @@ OWASP
     Fragt man danach den Webservice nach dem Kommentar, dann erhält man folgendes zurück:
 
     .. code:: HTML
-        :class: tiny
+        :class: smaller
 
         <div class="comment">
             <div class="name">Karl Gustav</div>
@@ -1747,14 +1749,14 @@ OWASP
 Übung: Schwachstelle(n) (3)
 -----------------------------------------------------------------------
 
+.. container:: far-smaller
 
-.. exercise:: 
-    :class: scriptsize
+  .. exercise:: 
 
     Java:
 
     .. code:: Java
-        :class: tiny
+        :class: smaller
         :number-lines:
 
         String query = 
@@ -1774,8 +1776,10 @@ OWASP
 Übung: Schwachstelle(n) (4)
 -----------------------------------------------------------------------
 
-.. note::  
-    :class: tiny the-blue-background
+.. container:: far-smaller
+
+  .. note::  
+    :class: the-blue-background
 
     **URL Encoding**
 
@@ -1790,8 +1794,7 @@ OWASP
     :%2F: /
 
 
-.. exercise:: 
-    :class: scriptsize
+  .. exercise:: 
 
     Sie beobachten folgendes Verhalten einer Webseite:
 
