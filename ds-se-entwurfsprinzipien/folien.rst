@@ -564,25 +564,24 @@ Interface Segregation Principle & Common Reuse Principle
 
   .. container:: layer
 
-    Ausgangszustand:
-
-    .. image:: images/segregation/no-segregation.svg
+    .. figure:: images/segregation/no-segregation.svg
       :width: 1700px
+
+      (Ausgangszustand)
 
   .. container:: layer incremental
 
-    Geplante Erweiterung:
-
-    .. image:: images/segregation/no-segregation-2nd-service.svg
+    .. figure:: images/segregation/no-segregation-2nd-service.svg
       :width: 1700px
-      :class: clearfix
+
+      (Geplante Erweiterung)
 
   .. container:: layer incremental
 
-    Teilung der Schnittstelle:
-
-    .. image:: images/segregation/effective-segregation.svg
+    .. figure:: images/segregation/effective-segregation.svg
       :width: 1700px
+
+      (Teilung der Schnittstelle)
 
 .. admonition:: Leitgedanke 
   :class: warning margin-top-1em incremental
