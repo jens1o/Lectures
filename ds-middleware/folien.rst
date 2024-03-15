@@ -412,7 +412,7 @@ Remote Procedure Call (RPC)
 
   Ein Prozess kann eine Prozedur aufrufen deren Implementierung sich auf einem entfernten Rechner befindet:
 
-  - Programmierer von verteilten Systemen müssen sich nicht mehr um alle Details der Netzwerkprogrammierung kümmern (d.h. keine :ger-quote:`expliziten` Sockets mehr).
+  - Programmierer von verteilten Systemen müssen sich nicht mehr um alle Details der Netzwerkprogrammierung kümmern (d. h. keine :ger-quote:`expliziten` Sockets mehr).
   - Überbrückung der konzeptionellen Lücke zwischen dem Aufruf lokaler Funktionalität über Prozeduren und dem Aufruf entfernter Funktionalität über Sockets.
 
 
@@ -1000,8 +1000,6 @@ Web Services - Standardisierung
 
 
 
-
-
 .. class:: vertical-title
 
 Überblick 
@@ -1040,10 +1038,11 @@ ZeroMQ
   Sollte zum Beispiel der Server in Java und der Client in C geschrieben sein, dann ist ggf. das Verständnis darüber wie ein String übertragen wird unterschiedlich (z. B. mit ``null`` terminiert oder mit einer Länge versehen).
 
 
+
 ZeroMQ - Messaging Patterns 
 ----------------------------
 
-.. stack::
+.. stack:: 
 
   .. layer:: 
 
@@ -1051,13 +1050,13 @@ ZeroMQ - Messaging Patterns
       :height: 700px
       :align: center
 
-  .. layer:: incremental
+  .. layer:: incremental 
 
     .. image:: images/zeromq/pub-sub.svg
       :height: 700px
       :align: center
 
-  .. layer:: incremental
+  .. layer:: incremental 
 
     .. image:: images/zeromq/pipeline.svg
       :height: 900px
@@ -1070,6 +1069,7 @@ ZeroMQ - Messaging Patterns
   :*Publish-Subscribe*: Ermöglicht es den Clients, sich für ein bestimmtes Thema zu registrieren und dann alle Nachrichten zu erhalten, die zu diesem Thema veröffentlicht werden. Ein Nachricht mit einem bestimmten Thema wird an alle dafür registrierten Clients gesendet.
 
   :*Pipeline*: Ermöglicht die Versendung einer Aufgabe an genau einen beliebigen Worker aus einer Menge von (homogenen) Workern.
+
 
 
 ZeroMQ - Beispiel *Publish-Subscribe*

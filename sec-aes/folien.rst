@@ -33,7 +33,7 @@ Advanced Encryption Standard (AES)
 
 
 
-Arithmetik endlicher Körper (Rekapitulation)
+Arithmetik endlicher Körper 
 ----------------------------------------------
 
 .. class:: incremental
@@ -46,9 +46,13 @@ Arithmetik endlicher Körper (Rekapitulation)
 
     Ein endlicher Körper (mit einer endlichen Anzahl von Elementen) ist die Menge :math:`Z_p`, die aus allen ganzen Zahlen :math:`\lbrace 0,1,....,p-1 \rbrace` besteht, wobei p eine Primzahl ist und in dem modulo :math:`p` gerechnet wird.
 
+.. container:: block-footer white dhbw-gray-background text-align-center
+
+    Wiederholung
 
 
-Arithmetik endlicher Körper (Rekapitulation)
+
+Arithmetik endlicher Körper 
 --------------------------------------------------
 
 .. class:: incremental list-with-explanations
@@ -57,13 +61,13 @@ Arithmetik endlicher Körper (Rekapitulation)
   
   Ganze Zahlen im Bereich 0 bis :math:`2^n - 1`, die in ein n-Bit-Wort passen.
   
-- Wenn eine Operationen des verwendeten Algorithmus die Division ist, dann müssen wir Arithmetik anwenden, die über einem (ggf. endlichen) Körper definiert ist.
+- Wenn eine Operation des verwendeten Algorithmus die Division ist, dann müssen wir Arithmetik anwenden, die über einem (ggf. endlichen) Körper definiert ist.
 
   Division erfordert, dass jedes nichtnull-Element ein multiplikatives Inverses hat.
   
-- Wenn wir modulare Arithmetik auf die Menge der ganzen Zahlen :math:`Z_{2^n}` (mit :math:`n > 1`) anwenden, dann erhalten wir keinen Körper!
+- Wenn wir modulare Arithmetik auf die Menge der ganzen Zahlen :math:`Z_{2^n}` (mit :math:`n > 1`) anwenden, dann erhalten wir :dhbw-red:`keinen` Körper!
   
-  Zum Beispiel hat die ganze Zahl :math:`2` keine multiplikative Inverse in :math:`Z_{2^n}` (mit :math:`n > 1`), d.h. es gibt keine ganze Zahl :math:`b`, so dass :math:`2b\; mod\; 2^n = 1`
+  Zum Beispiel hat die ganze Zahl :math:`2` keine multiplikative Inverse in :math:`Z_{2^n}` (mit :math:`n > 1`), d. h. es gibt keine ganze Zahl :math:`b`, so dass :math:`2b\; mod\; 2^n = 1`
     
 - Ein endlicher Körper der :math:`2^n` Elemente enthält, wird als :math:`GF(2^n)` bezeichnet.
   
@@ -72,6 +76,10 @@ Arithmetik endlicher Körper (Rekapitulation)
 
     Jedes Polynom in :math:`GF(2^n)` kann durch eine n-Bit-Zahl dargestellt werden.
     
+.. container:: block-footer white dhbw-gray-background text-align-center
+
+    Wiederholung
+
 
 
 Arithmetik endlicher Körper in Hinblick auf AES
