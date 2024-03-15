@@ -87,6 +87,10 @@ Stromchiffre
   - Es muss rechnerisch praktisch unmöglich sein, zukünftige Teile des Bitstroms auf der Grundlage früherer Teile des Bitstroms vorherzusagen.
   - Die beiden Benutzer müssen nur den erzeugenden Schlüssel sicher miteinander teilen, damit jeder den Schlüsselstrom erzeugen kann.
 
+.. container:: block-footer white dhbw-gray-background text-align-center
+
+    Wiederholung
+
 
 
 Blockchiffre
@@ -133,7 +137,7 @@ Verschlüsselungs- und Entschlüsselungstabelle für eine Substitutions-Chiffre
 
 .. list-table:: 
     :align: center
-    :class: smallest
+    :class: smallest highlight-cell-on-hover
         
     * - Klartext
       - 0000
@@ -174,7 +178,7 @@ Verschlüsselungs- und Entschlüsselungstabelle für eine Substitutions-Chiffre
 
 .. list-table:: 
     :align: center
-    :class: smallest incremental
+    :class: smallest incremental highlight-cell-on-hover
 
     * - Geheimtext
       - 0000
@@ -212,6 +216,7 @@ Verschlüsselungs- und Entschlüsselungstabelle für eine Substitutions-Chiffre
       - 0101
  
 
+
 Feistel-Chiffre
 ------------------
 
@@ -229,14 +234,12 @@ Feistel schlug die Verwendung einer Chiffre vor, bei der sich Substitutionen und
 
 
 
-
-
 Feistel-Chiffre - Hintergrund
 -------------------------------
 
 - Hierbei handelt es sich um eine praktische Anwendung eines Vorschlags von Claude Shannon zur Entwicklung einer Chiffre, bei der sich *Konfusions- und Diffusionsfunktionen* abwechseln.
 
-- Dieser Aufbau wird von vielen bedeutenden, im Einsatz befindlichen symmetrischen Blockchiffren verwendet.
+- Dieser Aufbau wird von vielen bedeutenden - im Einsatz befindlichen - symmetrischen Blockchiffren verwendet.
 
 .. container:: incremental margin-top-2em 
 
@@ -252,9 +255,9 @@ Diffusion
 
 - Die statistische Struktur des Klartextes wird in weitreichende Statistiken des Chiffretextes überführt, d. h. die statistische Beziehung zwischen Klartext und Chiffretext wird so komplex wie möglich.
   
-.. class:: incremental
+.. class:: incremental list-with-explanations
 
-- Dies wird dadurch erreicht, dass jede Klartextziffer *den Wert* **vieler** *Chiffretextziffern* beeinflusst.` 
+- Dies wird dadurch erreicht, dass jede Klartextziffer *den Wert* **vieler** *Chiffretextziffern* beeinflusst.
   
   (:ger-quote:`Lawineneffekt`)
 - Die Diffusion kann z. B. durch *Permutationen* erreicht werden.
@@ -304,28 +307,34 @@ Feistel Chiffre - Beispiel
 Feistel Chiffre - Eigenschaften 
 --------------------------------
 
-.. container:: scrollable
+.. stack:: 
 
-    :**Rundenfunktion F**:
-        Größere Komplexität bedeutet in der Regel größere Resistenz gegen Kryptoanalyse.
+    .. layer:: border-none padding-none box-shadow-none no-number
 
-    :**Schnelle Ver-/Entschlüsselung in Software**: 
-        Häufig ist die Verschlüsselung so in Anwendungen oder Dienstprogramme eingebettet, dass eine Hardwareimplementierung nicht möglich ist; dementsprechend ist die Geschwindigkeit des Algorithmus relevant.
+        :**Rundenfunktion F**:
+            Größere Komplexität bedeutet in der Regel größere Resistenz gegen Kryptoanalyse.
 
-    :**Einfachheit der Analyse**: 
-        Wenn der Algorithmus kurz und klar erklärt werden kann, ist es einfacher den Algorithmus auf kryptoanalytische Schwachstellen hin zu analysieren und somit ein höheres Maß an Sicherheit in Bezug auf seine Stärke zu entwickeln.
+        :**Schnelle Ver-/Entschlüsselung in Software**: 
+            Häufig ist die Verschlüsselung so in Anwendungen oder Dienstprogramme eingebettet, dass eine Hardwareimplementierung nicht möglich ist; dementsprechend ist die Geschwindigkeit des Algorithmus relevant.
 
-    :**Algorithmus für die Ableitung der (Unter-)Schlüssel**: 
-        Eine höhere Komplexität dieses Algorithmus sollte zu einer größeren Schwierigkeit der Kryptoanalyse führen.
+        :**Einfachheit der Analyse**: 
+            Wenn der Algorithmus kurz und klar erklärt werden kann, ist es einfacher den Algorithmus auf kryptoanalytische Schwachstellen hin zu analysieren und somit ein höheres Maß an Sicherheit in Bezug auf seine Stärke zu entwickeln.
 
-    :**Blockgröße**:
-        Größere Blockgrößen bedeuten mehr Sicherheit, aber eine geringere Verschlüsselungs-/Entschlüsselungsgeschwindigkeit für einen bestimmten Algorithmus.
 
-    :**Schlüsselgröße**:
-        Ein größerer Schlüssel bedeutet mehr Sicherheit, kann aber die Verschlüsselungs-/Entschlüsselungsgeschwindigkeit verringern.
+    .. layer:: border-none padding-none box-shadow-none no-number incremental
 
-    :**Anzahl der Runden**: 
-        Das Wesen der Feistel-Chiffre besteht darin, dass eine einzige Runde unzureichende Sicherheit bietet, während mehrere Runden zunehmende Sicherheit bieten.
+        :**Algorithmus für die Ableitung der (Unter-)Schlüssel**: 
+            Eine höhere Komplexität dieses Algorithmus sollte zu einer größeren Schwierigkeit der Kryptoanalyse führen.
+
+        :**Blockgröße**:
+            Größere Blockgrößen bedeuten mehr Sicherheit, aber eine geringere Verschlüsselungs-/Entschlüsselungsgeschwindigkeit für einen bestimmten Algorithmus.
+
+        :**Schlüsselgröße**:
+            Ein größerer Schlüssel bedeutet mehr Sicherheit, kann aber die Verschlüsselungs-/Entschlüsselungsgeschwindigkeit verringern.
+
+        :**Anzahl der Runden**: 
+            Das Wesen der Feistel-Chiffre besteht darin, dass eine einzige Runde unzureichende Sicherheit bietet, während mehrere Runden zunehmende Sicherheit bieten.
+
 
 
 Data Encryption Standard (DES)
