@@ -66,7 +66,8 @@ Doppelte Verschlüsselung
 
 - Der Meet-in-the-Middle-Algorithmus greift dieses Verfahren an. Er hängt nicht von einer bestimmten Eigenschaft von DES ab, sondern funktioniert gegen jede Blockchiffre.
 - Das Ergebnis ist, dass ein bekannter Klartextangriff gegen Doppel-DES mit einem Aufwand in der Größenordnung von :math:`2^{56}` erfolgreich ist, verglichen mit :math:`2^{55}` für einen einfachen DES.
-  
+
+
 
 Dreifache Verschlüsselung 
 -----------------------------------------------------------------------
@@ -571,4 +572,5 @@ XTS-AES Operation auf einem Block
                     IV = 7, k = 3, C = T
                 
                     E(IV) = 3, M = T \oplus 3 = P\qquad (10011_b \oplus 11100_b = 01111_b = P) 
-    
+
+.. TODO: Diskussion von AES GCM hinzufügen..
