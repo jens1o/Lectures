@@ -32,6 +32,16 @@ TOR - The Onion Router
 :Kontakt: michael.eichberg@dhbw-mannheim.de
 :Version: |date|
 
+.. supplemental::
+
+  :Folien: 
+          https://delors.github.io/sec-tor/folien.rst.html 
+
+          https://delors.github.io/sec-tor/folien.rst.html.pdf
+  :Fehler auf Folien melden:
+
+          https://github.com/Delors/delors.github.io/issues
+
 
 
 Tor (The Onion Router)

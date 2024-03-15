@@ -32,6 +32,17 @@ Advanced Encryption Standard (AES)
 :Quellen: `NIST FIPS PUB 197, "Advanced Encryption Standard (AES)" <https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197.pdf>`_
 
 
+.. supplemental::
+
+  :Folien: 
+          https://delors.github.io/sec-aes/folien.rst.html 
+
+          https://delors.github.io/sec-aes/folien.rst.html.pdf
+  :Fehler auf Folien melden:
+
+          https://github.com/Delors/delors.github.io/issues
+
+
 
 Arithmetik endlicher Körper 
 ----------------------------------------------

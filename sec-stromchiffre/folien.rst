@@ -25,6 +25,17 @@ Erzeugung von Zufallsbits und Stromchiffren
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 :Version: |date|
 
+.. supplemental::
+
+  :Folien: 
+          https://delors.github.io/sec-stromchiffre/folien.rst.html 
+
+          https://delors.github.io/sec-stromchiffre/folien.rst.html.pdf
+  :Fehler auf Folien melden:
+
+          https://github.com/Delors/delors.github.io/issues
+
+
 
 
 Zufallszahlen

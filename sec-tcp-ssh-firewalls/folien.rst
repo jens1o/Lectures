@@ -38,6 +38,17 @@ Eine erste Einführung in die Sicherheit von (verteilten) Systemen
     
     Alle Fehler sind meine eigenen.
 
+.. supplemental::
+
+  :Folien: 
+          https://delors.github.io/sec-tcp-ssh-firewalls/folien.rst.html 
+
+          https://delors.github.io/sec-tcp-ssh-firewalls/folien.rst.html.pdf
+  :Fehler auf Folien melden:
+
+          https://github.com/Delors/delors.github.io/issues
+
+
 
 Themen
 ----------------------------------
