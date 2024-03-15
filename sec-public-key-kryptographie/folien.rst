@@ -10,24 +10,32 @@
 
 .. role:: incremental
 .. role:: ger
+.. role:: ger-quote
 .. role:: red
 .. role:: green 
 .. role:: blue 
+.. role:: shiny-red
+.. role:: shiny-green
     
     
 
-Public-Key Cryptography and RSA
+Public-Key-Kryptographie und RSA
 ===============================================
 
-:Lecturer: **Prof. Dr. Michael Eichberg**
+:Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
 :Version: |date|
-:Based on: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
+:Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 
+.. supplemental::
 
-.. image:: logo.svg
-    :alt: DHBW CAS Logo
-    :scale: 4
-    :class: logo
+  :Folien: 
+          https://delors.github.io/sec-public-key-kryptographie/folien.rst.html 
+
+          https://delors.github.io/sec-public-key-kryptographie/folien.rst.html.pdf
+  :Fehler auf Folien melden:
+
+          https://github.com/Delors/delors.github.io/issues
+
 
 
 Terminology Related to Asymmetric Encryption
@@ -54,30 +62,36 @@ Misconceptions Concerning Public-Key Encryption
 - There is a feeling that key distribution is trivial when using public-key encryption, compared to the cumbersome handshaking involved with key distribution centers for symmetric encryption
   
 
-Principles of Public-Key Cryptosystems
+Prinzipien von Public-Key-Kryptosystemen
 --------------------------------------- 
 
-- The concept of public-key cryptography evolved from an attempt to attack two of the most difficult problems associated with symmetric encryption:
+- Das Konzept der *Public-Key-Kryptographie* (d. h. der Kryptografie mit öffentlichen Schlüsseln) entstand aus dem Versuch, zwei der schwierigsten Probleme im Zusammenhang mit der symmetrischen Verschlüsselung zu lösen:
 
-    .. admonition:: Key Distribution
+    .. admonition:: Schlüsselverteilung
 
-        How to have secure communications in general without having to trust a KDC with your key.
+        Wie kann man generell sicher kommunizieren, ohne einem KDC seinen Schlüssel anvertrauen zu müssen?
     
-    .. admonition:: Digital Signatures
+    .. admonition:: Digitale Signaturen
 
-        How to verify that a message comes intact from the claimed sender.
+        Wie kann man überprüfen, ob eine Nachricht unversehrt vom angegebenen Absender stammt?
 
-.. class:: incremental
+.. supplemental::
 
-Principles of Public-Key Cryptosystems
---------------------------------------- 
-
-    **Whitfield Diffie** and **Martin Hellman** from Stanford University achieved a breakthrough in 1976 by coming up with a method that addressed both problems and was radically different from all previous approaches to cryptography.
+    KDC = Key Distribution Center
 
 
 
-Ingredients of Public-Key Cryptosystems
----------------------------------------
+.. class:: transition-fade center-child-elements
+
+Prinzipien von Public-Key-Kryptosystemen
+-----------------------------------------
+
+    **Whitfield Diffie** und **Martin Hellman** von der Stanford University erzielten 1976 einen Durchbruch, indem sie eine Methode entwickelten, die beide Probleme löste und sich radikal von allen bisherigen Ansätzen der Kryptografie unterschied.
+
+
+
+Bestandteile von Public-Key-Kryptosystemen
+-------------------------------------------
 
 .. class:: incremental
 
@@ -89,26 +103,29 @@ Ingredients of Public-Key Cryptosystems
 6. *Decryption algorithm*: Accepts the ciphertext and the matching key and produces the original plaintext.
 
 
-Encryption with Public Key
----------------------------
 
-.. image::  8-enc_with_pub_key.svg
-    :alt: Encryption with public key
+Verschlüsselung mit öffentlichem Schlüssel
+-----------------------------------------------
+
+.. image:: drawings/public_key_cryptography/enc_with_pub_key.svg
+    :alt: Verschlüsselung mit öffentlichem Schlüssel
     :align: center
-    :width: 1600px
+    :height: 925px
 
 
-Encryption with Private Key
----------------------------
 
-.. image::  8-enc_with_priv_key.svg
-    :alt: Encryption with private key
+Verschlüsselung mit privatem Schlüssel
+------------------------------------------
+
+.. image:: drawings/public_key_cryptography/enc_with_priv_key.svg
+    :alt: Verschlüsselung mit privatem Schlüssel
     :align: center
-    :width: 1600px
+    :height: 900px
 
 
-Conventional and Public-key Encryption
-----------------------------------------
+
+Konventionelle und Public-Key-Verschlüsselung
+----------------------------------------------
 
 .. container:: two-columns smaller
 
@@ -149,62 +166,72 @@ Conventional and Public-key Encryption
         3.	Knowledge of the algorithm plus one of the keys plus samples of ciphertext must be insufficient to determine the other key.
 
 
-Public-Key Cryptosystem: Confidentiality
+
+Public-Key-Kryptosystem: Vertraulichkeit
 -----------------------------------------
 
 
-.. image:: 8-confidentiality.svg 
-    :alt:  Confidentiality
+.. image:: drawings/public_key_cryptography/confidentiality.svg 
+    :alt:  Vertraulichkeit
     :align: center
-    :width: 1350px
+    :height: 950px
 
 
-Public-Key Cryptosystem: Authentication
------------------------------------------
 
-.. image:: 8-authentication.svg 
-    :alt: Authentication
+Public-Key-Kryptosystem: Authentifizierung
+---------------------------------------------
+
+.. image:: drawings/public_key_cryptography/authentication.svg 
+    :alt: Authentifizierung
     :align: center
-    :width: 1350px
+    :height: 950px
 
 
-Public-Key Cryptosystem: Authentication and Secrecy
-----------------------------------------------------
 
-.. image:: 8-authentication_and_secrecy.svg 
-    :alt: Authentication and Secrecy
+Public-Key-Kryptosystem: Authentifizierung und Geheimhaltung
+---------------------------------------------------------------
+
+.. image:: drawings/public_key_cryptography/authentication_and_secrecy.svg 
+    :alt: Authentifizierung und Geheimhaltung
     :align: center
-    :width: 1600px
+    :height: 700px
 
 
 
 
-Applications for Public-Key Cryptosystems
+Anwendungen für Public-Key-Kryptosysteme
 ------------------------------------------
 
-- Public-key cryptosystems can be classified into three categories:
-  
-  1. *En-/Decryption*: The sender encrypts a message with the recipient’s public key.
-  2. *Digital Signatures*: The sender “signs” a message with its private key.
-  3. *Key Exchange*: Two sides cooperate to exchange a session key (i.e., a symmetric key)
+- Kryptosysteme mit öffentlichen Schlüsseln lassen sich in drei Kategorien einteilen:
 
-- Some algorithms are suitable for all three applications, whereas others can be used only for one or two
+  .. class:: incremental
+
+  1. *Ver-/Entschlüsselung*: Der Absender verschlüsselt eine Nachricht mit dem öffentlichen Schlüssel des Empfängers.
+  2. *Digitale Unterschriften*: Der Absender :ger-quote:`unterschreibt` eine Nachricht mit seinem privaten Schlüssel.
+  3. *Schlüsselaustausch*: Zwei Seiten arbeiten zusammen, um einen Sitzungsschlüssel (d. h. einen symmetrischen Schlüssel) auszutauschen.
+
+.. class:: incremental
+
+- Einige Algorithmen eignen sich für alle drei Anwendungen, während andere nur für eine oder zwei verwendet werden können.
 
 
-Applications for Public-Key Cryptosystems
+
+Anwendungen für Public-Key-Kryptosysteme
 ------------------------------------------
 
 .. csv-table::
-    :header: Algorithm, Encryption/Decryption, Digital Signature, Key Exchange
+    :header: Algorithmus, Ver-/Entschlüsselung, Digitale Signaturen, Schlüsselaustausch
+    :class: incremental wobble
 
-    RSA,Yes,Yes,Yes
-    Elliptic Curve,Yes,Yes,Yes
-    Diffie-Hellman,No,No,Yes
-    DSS,No,Yes,No
+    RSA,:shiny-green:`✓`,:shiny-green:`✓`,:shiny-green:`✓`
+    Elliptic Curve,:shiny-green:`✓`,:shiny-green:`✓`,:shiny-green:`✓`
+    Diffie-Hellman,:shiny-red:`✗`,:shiny-red:`✗`,:shiny-green:`✓`
+    DSS,:shiny-red:`✗`,:shiny-green:`✓`,:shiny-red:`✗`
 
 .. container:: small
 
-    *DSS = Digital Signature Standard* developed by the NSA (National Security Agency)
+    *DSS = Digital Signature Standard*, entwickelt von der NSA (National Security Agency)
+
 
 
 Public-Key Requirements
@@ -384,6 +411,11 @@ Exponentiation in Modular Arithmetic
 
 - With RSA you are dealing with potentially large exponents so efficiency of exponentiation is a consideration!
 
+.. container:: block-footer white dhbw-gray-background text-align-center
+
+    Wiederholung
+
+
 
 Algorithm for Computing :math:`a^k\; mod\; n` 
 -----------------------------------------------
@@ -486,18 +518,22 @@ We can identify three approaches to attacking RSA mathematically:
 2. Determine :math:`\phi(n)` directly without first determining :math:`p` and :math:`q`. Again, this enables determination of :math:`d = e^{-1} (mod\; \phi(n))`.
 3. Determine :math:`d` directly without first determining :math:`\phi(n)`. 
 
-Timing Attacks
+
+
+Timing-Angriffe
 ---------------
 
-- Paul Kocher, a cryptographic consultant, demonstrated that a snooper can determine a private key by keeping track of how long a computer takes to decipher messages
-- Are applicable not just to RSA but to other public-key cryptography systems
-- Are alarming for two reasons:
+- Paul Kocher, ein IT-Sicherheits-Berater, demonstrierte, dass ein Schnüffler einen privaten Schlüssel ermitteln kann, indem er verfolgt, wie lange ein Computer braucht, um Nachrichten zu entschlüsseln.
+- Diese Angriffe sind nicht nur auf RSA, sondern auch auf andere Verschlüsselungssysteme mit öffentlichen Schlüsseln anwendbar.
+- Solche Angriffe sind aus zwei Gründen alarmierend:
 
-  - It comes from a completely unexpected direction
-  - It is a ciphertext-only attack
+  - Es kommt aus einer völlig unerwarteten Richtung.
+  - Es handelt sich um einen reinen Chiffretext-Angriff.
 
-Countermeasures
-----------------
+
+
+Gegenmaßnahmen gegen Timing-Angriffe
+----------------------------------------
 
 .. container:: smaller 
 
@@ -538,3 +574,60 @@ Chosen Ciphertext Attack (CCA)
   - The adversary exploits properties of RSA and selects blocks of data that, when processed using the target’s private key, yield information needed for cryptanalysis
   
 - To counter such attacks, RSA Security Inc. recommends modifying the plaintext using a procedure known as optimal asymmetric encryption padding (OAEP)
+
+
+
+.. class:: integrated-exercise
+
+Übung
+----------
+
+1. Execute the Square-and-Multiply algorithm for 3^17 mod 23.
+
+   .. admonition:: Solution 
+     
+      ::
+
+         k = 0001 0001b 
+     
+         i = 4; f =   3 =>
+         i = 3; f =   9 =>
+         i = 2; f =  81 mod 23 = 12 =>
+         i = 1; f = 144 mod 23 = 6 =>
+         i = 0; f = (((6 * 6) mod 23) * 3) mod 23 = 16
+
+2. Perform an encryption of a message using RSA. 
+   
+   I.e., choose 2 small prime numbers, compute e,d,n. Then encrypt the message (i.e., a (rather) small value) using the public key of a fellow student and send him the encrypted message. Let her/him decrypt your message. Afterwards validate that the encryption is successful.
+
+   .. admonition:: Solution
+   
+
+      Let's assume that :math:`p = 7` and :math:`q = 11`.
+
+      .. math::
+
+         n = p \times q = 77
+
+         \phi(n) = (p-1)(q-1) = 6 \times 10 = 60; 
+      
+      Hence the message has to be "less than" 60. 
+      
+      Compute :math:`e` such that :math:`gcd(\phi(n),e) = 1`. 
+      
+      In this case, 2 to 6 are not possible because they all divide 60. We will select :math:`e = 7`
+      
+      Compute :math:`d`; i.e., :math:`ed\; mod\; \phi(n) = 1`. :math:`d=43`; :math:`(43 \times 7) \; mod\; \phi(60)` 
+      
+      Now: PU = {7,77}, PR = {43,77}. 
+      
+      Let the message M be "13": :math:`C = 13^7\; mod\; 77 = 62`. 
+
+      To get the plaintext compute :math:`P = 62^{43}\; mod\; 77`.
+
+3. Can you think of a scenario in which fault-based attacks may be practical?
+
+   .. admonition:: Solution
+    
+      It is always practical when you have physical access to a device for a reasonable time to execute the attack. E.g., in IT-forensics. 
+
