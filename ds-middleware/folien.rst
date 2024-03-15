@@ -1042,7 +1042,7 @@ ZeroMQ
 ZeroMQ - Messaging Patterns 
 ----------------------------
 
-.. stack:: 
+.. stack::
 
   .. layer:: 
 
@@ -1050,13 +1050,13 @@ ZeroMQ - Messaging Patterns
       :height: 700px
       :align: center
 
-  .. layer:: incremental 
+  .. layer:: incremental
 
     .. image:: images/zeromq/pub-sub.svg
       :height: 700px
       :align: center
 
-  .. layer:: incremental 
+  .. layer:: incremental
 
     .. image:: images/zeromq/pipeline.svg
       :height: 900px
