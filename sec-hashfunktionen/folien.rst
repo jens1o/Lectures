@@ -177,19 +177,19 @@ Struktur eines sicheren Hash-Codes
 
 .. container:: two-columns smaller
 
-    :math:`IV` = Initial Value (algorithm dependent)
+    :math:`IV` = Initialer Wert (Algorithmus-abhängig)
 
-    :math:`CV_i` = Chaining variable
+    :math:`CV_i` = Verkettungsvariable 
     
-    :math:`Y_i` = ith input block
+    :math:`Y_i` = ier Eingabeblock
     
-    :math:`f` = compression function
+    :math:`f` = Kompressions-funktion
     
-    :math:`n` = Length of block
+    :math:`n` = Länge des Blocks
 
-    :math:`L` = Number of input blocks 
+    :math:`L` = Anzahl der Eingabeblöcke
     
-    :math:`b` = Length of input block
+    :math:`b` = Länge des Eingabeblocks
 
 
 
