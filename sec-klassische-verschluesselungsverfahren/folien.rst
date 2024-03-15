@@ -689,7 +689,7 @@ Rail Fence Chiffre
     Die verschlüsselte Nachricht ist: MEMATRHTGPRYETEFETEOAAT
 
 
-Sktale
+Skytale
 --------
 
 - Ältestes bekannte (militärische) Verschlüsselungsverfahren. 
