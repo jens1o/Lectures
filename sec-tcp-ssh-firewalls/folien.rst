@@ -580,9 +580,9 @@ Denial-of-Service: SYN-flooding Angriff
 
 SYN-Cookies sind speziell konstruiert initiale Sequenznummern.
 
-.. container:: stack
+.. stack::
 
-    .. container:: layer
+    .. layer::
 
         .. raw:: html
 
@@ -611,7 +611,7 @@ SYN-Cookies sind speziell konstruiert initiale Sequenznummern.
                 <line x1="200" y1="110" x2="1500" y2="190" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
             </svg>
 
-    .. container:: layer overlay incremental
+    .. layer:: overlay incremental
 
         .. raw:: html
 
@@ -637,7 +637,7 @@ SYN-Cookies sind speziell konstruiert initiale Sequenznummern.
 
             Der Cookie ermöglicht es, dass keine Informationen im Speicher gehalten werden müssen. Der Cookie encodiert die Informationen, die der Server benötigt, um die Verbindung aufzubauen: Client IP, time window, etc.
 
-    .. container:: layer overlay incremental
+    .. layer:: overlay incremental
 
         .. raw:: html
 
@@ -700,6 +700,7 @@ Distributed Denial-of-Service (DDoS) Angriff
 - Firewalls und Intrusion Detection Systeme sind meist wirkungslos, da die Angriffe von vielen verschiedenen IP-Adressen kommen.
 
 
+
 Distributed-Reflected-Denial-of-Service (DRDoS) Angriff
 ------------------------------------------------------------
 
@@ -726,14 +727,14 @@ Distributed-Reflected-Denial-of-Service (DRDoS) Angriff
 
 
 `Distributed Denial-of-Service (DDoS) Angriffe - Beispiel <https://cloud.google.com/blog/products/identity-security/google-cloud-mitigated-largest-ddos-attack-peaking-above-398-million-rps>`__
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 .. epigraph::
 
     [...] Google's DDoS Response Team has observed the trend that distributed denial-of-service (DDoS) attacks are **increasing exponentially in size**. Last year, we blocked the largest DDoS attack recorded at the time. This August [2023], we stopped an even larger DDoS attack — 7½ times larger — that also used new techniques to try to disrupt websites and Internet services.
 
     This new series of DDoS attacks reached **a peak of 398 million requests per second (rps)**, and relied on a novel HTTP/2 “Rapid Reset” technique based on stream multiplexing that has affected multiple Internet infrastructure companies. By contrast, last year's largest-recorded DDoS attack peaked at 46 million rps.
+
 
 
 Distributed Denial-of-Service (DDoS) Angriffe 
@@ -753,6 +754,7 @@ Distributed Denial-of-Service (DDoS) Angriffe
     - Resource Exhaustion Attacks (Slowloris, Pyloris, LOIC, etc.)
     - Flash Crowd Protection
     - Attacks on Gaming Protocols.
+
 
 
 Schutz vor DDoS-Angriffen - On-Site Robustheitsmaßnahmen
@@ -788,6 +790,7 @@ Schutz vor DDoS-Angriffen - Off-Site Robustheitsmaßnahmen
 - Einbinden spezialisierter Dienstleister (im Angriffsfall wird mittels BGP-Rerouting der Traffic an den Dienstleister umgeleitet, der dann die DDos Attacke filtert.)
 - Content-Delivery-Networks (CDNs) für statische Inhalte (z. B. Cloudflare, Akamai, ...)
 - Distributed Clouds
+
 
 
 Password Sniffing
@@ -1137,9 +1140,10 @@ Firewalls
 Unabhängiges Netz - :ger-quote:`Ideale Situation` 
 ---------------------------------------------------
 
-.. image:: images/firewalls/all-save.png
+.. image:: images/firewalls/all-save.svg
     :alt: Ideale Situation
     :align: center
+    :height: 700px
 
 :Vorteile: 
     
@@ -1166,9 +1170,10 @@ Von der Notwendigkeit des Schutzes von Rechnern
 Schutzschicht zwischen internem und externem Netz
 ------------------------------------------------------
 
-.. image:: images/firewalls/firewall.png
+.. image:: images/firewalls/firewall.svg
     :alt: Schutzschicht zwischen internem und externem Netz
     :align: center
+    :height: 770px
 
 - Kontrolle des Nachrichtenverkehrs durch Filterung 
 - begrenzte Isolation mit begrenztem Schutz
@@ -1181,9 +1186,10 @@ Schutzschicht zwischen internem und externem Netz
 Realisierung von Virtual Private Networks (VPN)
 ------------------------------------------------------
 
-.. image:: images/firewalls/vpn.png
+.. image:: images/firewalls/vpn.svg
     :alt: Realisierung von Virtual Private Networks (VPN)
     :align: center
+    :width: 1500px
 
 - Aufbau einer scheinbar privaten Verbindung von Firmenteilnetzen über das (öffentliche) Internet
 - Zusätzliche Verbindungsverschlüsselung zwischen den Firewalls.
@@ -1290,10 +1296,11 @@ Realisierungsmöglichkeiten von Firewalls
 Dual-Homed Host
 ----------------
 
-.. image:: images/firewalls/dual-homed-host.png 
+.. image:: images/firewalls/dual-homed-host.svg
     :alt: Dual-Homed Host
     :align: right
     :class: margin-1em
+    :width: 800px
 
 **Aufbau**
 
@@ -1343,20 +1350,22 @@ Screening Router
 
     .. container:: column
 
-        .. image:: images/firewalls/screening-router.png 
+        .. image:: images/firewalls/screening-router.svg 
             :alt: Screening Router
             :class: margin-1em
             :align: center
+            :width: 600px
 
 
 
 Screened Host
 -----------------
 
-.. image:: images/firewalls/screened-host.png 
+.. image:: images/firewalls/screened-host.svg 
     :alt: Screened Host
     :align: right
     :class: margin-1em padding-left-1em
+    :height: 900px
 
 **Aufbau**
 
@@ -1400,9 +1409,10 @@ Das Ziel der Konfiguration muss eine minimale angreifbare Oberfläche sein.
 Screened Subnet
 ----------------
 
-.. image:: images/firewalls/screened-subnet.png 
+.. image:: images/firewalls/screened-subnet.svg 
     :alt: Screened Subnet
     :align: right
+    :width: 950px
 
 
 **Aufbau**
