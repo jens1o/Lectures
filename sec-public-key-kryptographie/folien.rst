@@ -10,6 +10,7 @@
 
 .. role:: incremental
 .. role:: ger
+.. role:: eng
 .. role:: ger-quote
 .. role:: red
 .. role:: green 
@@ -37,41 +38,61 @@ Public-Key-Kryptographie und RSA
           https://github.com/Delors/delors.github.io/issues
 
 
+.. class:: smaller
 
-Terminology Related to Asymmetric Encryption
----------------------------------------------
-
-.. container:: smaller
-
-    :Asymmetric Keys:
-        Two related keys, a public key and a private key that are used to perform complementary operations, such as encryption and decryption or signature generation and signature verification.
-    :Public Key Certificate:
-        A digital document issued and digitally signed by the private key of a Certification Authority that binds the name of a subscriber to a public key. The certificate indicates that the subscriber identified in the certificate has sole control and access to the corresponding private key.
-    :Public Key (Asymmetric) Cryptographic Algorithm:
-        A cryptographic algorithm that uses two related keys, a public key and a private key. The two keys have the property that deriving the private key from the public key is computationally infeasible.
-    :Public Key Infrastructure (PKI):
-        A set of policies, processes, server platforms, software and workstations used for the purpose of administering certificates and public-private key pairs, including the ability to issue, maintain, and revoke public key certificates.
-
-Misconceptions Concerning Public-Key Encryption
-------------------------------------------------
+Terminologie bzgl. asymmetrischer Verschlüsselung
+-----------------------------------------------------------------
 
 .. class:: incremental
 
-- Public-key encryption is more secure from cryptanalysis than symmetric encryption
-- Public-key encryption is a general-purpose technique that has made symmetric encryption obsolete
-- There is a feeling that key distribution is trivial when using public-key encryption, compared to the cumbersome handshaking involved with key distribution centers for symmetric encryption
-  
+- Asymmetrische Schlüssel
+- Public-Key-Zertifikat
+- Public-Key (asymmetrischer) kryptografischer Algorithmus
+- Public-Key-Infrastruktur (PKI)
+
+.. supplemental::   
+
+    :Asymmetrische Schlüssel:
+            Zwei zusammengehörige Schlüssel, ein öffentlicher und ein privater Schlüssel, die zur Durchführung komplementärer Operationen verwendet werden, z. B. Ver- und Entschlüsselung oder Signaturerstellung und Signaturprüfung.
+
+    .. class:: incremental
+
+    :Public-Key-Zertifikat:
+            Ein digitales Dokument, das mit dem privaten Schlüssel einer Zertifizierungsstelle (eng:`Certification Authority`) ausgestellt und digital signiert wird und den Namen eines Teilnehmers an einen öffentlichen Schlüssel bindet. Das Zertifikat gibt an, dass der im Zertifikat genannte Teilnehmer die alleinige Kontrolle und den Zugriff auf den entsprechenden privaten Schlüssel hat.
+
+    .. class:: incremental
+
+    :Public-Key (asymmetrischer) kryptografischer Algorithmus:
+            Ein kryptographischer Algorithmus, der zwei zusammengehörige Schlüssel verwendet, einen öffentlichen und einen privaten Schlüssel. Die beiden Schlüssel haben die Eigenschaft, dass die Ableitung des privaten Schlüssels aus dem öffentlichen Schlüssel rechnerisch nicht machbar ist bzw. sein sollte (vgl. Quantenkryptografie).
+
+
+    .. class:: incremental
+
+    :Public-Key-Infrastruktur (PKI):
+            Eine Reihe von Richtlinien, Prozessen, Serverplattformen, Software und Workstations, die für die Verwaltung von Zertifikaten und öffentlich-privaten Schlüsselpaaren verwendet werden, einschließlich der Möglichkeit, Public-Key-Zertifikate auszustellen, zu pflegen und zu widerrufen.
+
+
+
+Missverständnisse bei der Verwendung von Public-Key-Kryptosystemen
+------------------------------------------------------------------------
+
+.. class:: incremental
+
+- Public-Key-Verschlüsselung ist sicherer vor Kryptoanalyse als die symmetrische Verschlüsselung.
+- Public-Key-Kryptografie (d. h. die Verschlüsselung mit öffentlichen Schlüsseln) ist eine Allzwecktechnik, die die symmetrische Verschlüsselung überflüssig gemacht hat.
+- Man hat das Gefühl, dass die Schlüsselverteilung bei der Verschlüsselung mit öffentlichen Schlüsseln trivial ist, verglichen mit dem mühsamen Handshaking, das bei der symmetrischen Verschlüsselung mit Schlüsselverteilungszentren verbunden ist.
+
 
 Prinzipien von Public-Key-Kryptosystemen
---------------------------------------- 
+-------------------------------------------
 
 - Das Konzept der *Public-Key-Kryptographie* (d. h. der Kryptografie mit öffentlichen Schlüsseln) entstand aus dem Versuch, zwei der schwierigsten Probleme im Zusammenhang mit der symmetrischen Verschlüsselung zu lösen:
 
-    .. admonition:: Schlüsselverteilung
+  .. admonition:: Schlüsselverteilung
 
         Wie kann man generell sicher kommunizieren, ohne einem KDC seinen Schlüssel anvertrauen zu müssen?
     
-    .. admonition:: Digitale Signaturen
+  .. admonition:: Digitale Signaturen
 
         Wie kann man überprüfen, ob eine Nachricht unversehrt vom angegebenen Absender stammt?
 
@@ -95,12 +116,12 @@ Bestandteile von Public-Key-Kryptosystemen
 
 .. class:: incremental
 
-1. *Plaintext*: The readable message or data that is fed into the algorithm as input
-2. *Encryption algorithm*: Performs various transforma-tions on the plaintext
-3. *Public Key*: Used for *encryption* or *decryption*
-4. *Private Key*: Used for *encryption* or *decryption*
-5. *Ciphertext*: The scrambled message produced as output
-6. *Decryption algorithm*: Accepts the ciphertext and the matching key and produces the original plaintext.
+:*Klartext* (`Plaintext`:eng:): Die lesbare Nachricht oder Daten, die dem Algorithmus als Eingabe dienen.
+:*Verschlüsselungsalgorithmus*: Führt verschiedene Umwandlungen des Klartextes durch.
+:*Öffentlicher Schlüssel*: Wird für *Verschlüsselung* oder *Entschlüsselung* verwendet.
+:*Privater Schlüssel*: Verwendet für *Verschlüsselung* oder *Entschlüsselung*.
+:*Chiffretext* (`Ciphertext`:eng:): Die verschlüsselte Nachricht, die als Ausgabe produziert wird.
+:*Entschlüsselungsalgorithmus*: Nimmt den Geheimtext und den passenden Schlüssel entgegen und erzeugt den ursprünglichen Klartext.
 
 
 
@@ -131,39 +152,41 @@ Konventionelle und Public-Key-Verschlüsselung
 
     .. container:: column smaller
 
-        **Conventional Encryption**
+        **Konventionelle Verschlüsselung**
+
+        *Benötigt zur Anwendung*:
         
-        *Needed to Work*:
-        
-        1.	The same algorithm with the same key is used for encryption and decryption.
+        1.	Es wird derselbe Algorithmus mit demselben Schlüssel für die Ver- und Entschlüsselung verwendet.
 
-        2.	The sender and receiver must share the algorithm and the key.
+        2.	Der Sender und der Empfänger müssen den Algorithmus und den Schlüssel kennen bzw. besitzen.
 
-        *Needed for Security*:
+        *Notwendig für die Sicherheit*:
 
-        1.	The key must be kept secret.
+        1.	Der Schlüssel muss geheim gehalten werden.
 
-        2.	It must be impossible or at least impractical to decipher a message if the key is kept secret.
+        2.	Es muss unmöglich oder zumindest unpraktisch sein, eine Nachricht zu entschlüsseln, wenn der Schlüssel geheim gehalten wird.
 
-        3.	Knowledge of the algorithm plus samples of ciphertext must be insufficient to determine the key.
+        3.	Die Kenntnis des Algorithmus und von (ggf. vielen) Geheimtexten ist nicht ausreichend, um den Schlüssel zu ermitteln.
+
+
     
     .. container:: column smaller
 
-        **Public-Key Encryption**
+        **Public-Key Verschlüsselung**
 
-        *Needed to Work*:
+        *Benötigt zur Anwendung*:
 
-        1.	One algorithm is used for encryption and a related algorithm for decryption with a pair of keys, one for encryption and one for decryption.
+        1.	Ein Algorithmus wird für die Verschlüsselung und ein verwandter Algorithmus für die Entschlüsselung. Dafür wird ein Paar von Schlüsseln verwendet, einer für die Verschlüsselung und einer für die Entschlüsselung.
 
-        2.	The sender and receiver must each have one of the matched pair of keys (not the same one).
+        2.	Der Absender und der Empfänger müssen jeweils einen der passenden Schlüssel besitzen (nicht den gleichen).
 
-        *Needed for Security*:
+        *Notwendig für die Sicherheit*:
 
-        1.	One of the two keys must be kept secret.
+        1.	Einer der beiden Schlüssel muss geheim gehalten werden.
 
-        2.	It must be impossible or at least impractical to decipher a message if one of the keys is kept secret.
+        2.	Es muss unmöglich oder zumindest unpraktisch sein, eine Nachricht zu entschlüsseln, wenn einer der Schlüssel geheim gehalten wird.
         
-        3.	Knowledge of the algorithm plus one of the keys plus samples of ciphertext must be insufficient to determine the other key.
+        3.	Die Kenntnis des Algorithmus und eines der Schlüssel sowie von (ggf. vielen) Geheimtexten ist nicht ausreichend, um den anderen Schlüssel zu ermitteln.
 
 
 
@@ -234,172 +257,202 @@ Anwendungen für Public-Key-Kryptosysteme
 
 
 
-Public-Key Requirements
-------------------------
-
-Conditions that these algorithms must fulfill:
+Anforderungen an Public-Key-Algorithmen
+--------------------------------------------
 
 .. class:: incremental 
 
-- It is computationally easy for a party :math:`B` to generate a pair (public-key :math:`PU_b`, private key :math:`PR_b`).
-- It is computationally easy for a sender :math:`A`, knowing the public key and the message to be encrypted, to generate the corresponding ciphertext.
-- It is computationally easy for the receiver :math:`B` to decrypt the resulting ciphertext using the private key to recover the original message.
-- It is *computationally infeasible* for an adversary, knowing the public key, to determine the private key.
-- It is *computationally infeasible* for an adversary, knowing the public key and a ciphertext, to recover the original message.
-- The two keys can be applied in either order.
+- Für eine Partei :math:`B` ist es rechnerisch einfach, ein Schlüsselpaar (bestehend aus öffentlicher Schlüssel :math:`PU_b` und privater Schlüssel :math:`PR_b`) zu erzeugen.
+- Für einen Absender :math:`A` ist es rechnerisch einfach, bei Kenntnis des öffentlichen Schlüssels von :math:`B` und der zu verschlüsselnden Nachricht den entsprechenden Chiffretext zu erzeugen.
+- Für den Empfänger :math:`B` ist es rechnerisch einfach, den resultierenden Chiffretext mit Hilfe des privaten Schlüssels zu entschlüsseln, um die ursprüngliche Nachricht wiederherzustellen.
+- Für einen Angreifer, der den öffentlichen Schlüssel kennt, ist es *rechnerisch unmöglich*, den privaten Schlüssel zu ermitteln.
+- Für einen Angreifer, der den öffentlichen Schlüssel und einen Chiffretext kennt, ist es *rechnerisch unmöglich*, die ursprüngliche Nachricht wiederherzustellen.
+- Die beiden Schlüssel können in beliebiger Reihenfolge verwendet werden.
 
 
-Public-Key Requirements
-------------------------
+
+Anforderungen an Public-Key-Algorithmen
+--------------------------------------------
 
 .. class:: incremental 
 
-- Need a trap-door one-way function
+- Benötigt wird eine Falltürfunktion (:ger-quote:`Trapdoor-Einwegfunktion`)
   
-  A one-way function is one that maps a domain into a range such that every function value has a unique inverse, with the condition that the *calculation of the function is easy*, whereas the *calculation of the inverse is infeasible*
+  .. container:: smaller
 
-  - :math:`Y = f(X)` easy  
-  - :math:`X = f^{–1}(Y)` infeasible
+    Eine Einwegfunktion ist eine Funktion, bei der jeder Funktionswert eine eindeutige Umkehrung hat, wobei die *Berechnung der Funktion einfach* ist, während die *Bestimmung der Umkehrfunktion praktisch undurchführbar ist*.
+
+    - :math:`Y = f(X)` einfach  
+    - :math:`X = f^{–1}(Y)` :ger-quote:`unmöglich`
   
-- A trap-door one-way function is a family of invertible functions :math:`f_k`, such that
+- Eine Einwegfunktion mit Falltür ist eine Familie invertierbarer Funktionen :math:`f_k`, für die gilt:
   
-  - :math:`Y = f_k(X)` easy, if k and X are known 
-  - :math:`X = f_k^{–1}(Y)` easy, if k and Y are known
-  - :math:`X = f_k^{–1}(Y)` infeasible, if Y known but k not known
+  .. container:: smaller
   
-- A practical public-key scheme depends on a suitable trap-door one-way function.
+    - :math:`Y = f_k(X)` einfach, wenn :math:`k` und :math:`X` bekannt sind.
+    - :math:`X = f_k^{–1}(Y)` einfach,  wenn :math:`k` und :math:`Y` bekannt sind.
+    - :math:`X = f_k^{–1}(Y)` unmöglich, wenn :math:`Y` bekannt ist, aber k nicht.
+  
+- Ein praktisches Public-Key-Verfahren hängt von einer geeigneten Trapdoor-Einwegfunktion ab.
+
+.. supplemental::
+
+    Ein Falltürfunktion lässt sich nicht trivial umkehren; bzw. die Umkehrung erfordert spezielle (weitergehende) Informationen.
 
 
-Public-Key Cryptanalysis
+
+Public-Key-Kryptoanalyse
 --------------------------
 
-.. class:: incremental 
+.. stack::
 
-- A public-key encryption scheme is vulnerable to a brute-force attack
+    .. layer::
 
-  .. class:: incremental smaller
+        Ein Verschlüsselungsverfahren mit öffentlichem Schlüssel ist anfällig für einen Brute-Force-Angriff.
+
+        .. class:: incremental smaller
+
+        - Gegenmaßnahme: große Schlüssel verwenden!
+        - Die Schlüsselgröße muss klein genug sein, um eine praktische Ver- und Entschlüsselung zu ermöglichen.
+        - Vorgeschlagene Schlüsselgrößen führen zu Verschlüsselungs-/Entschlüsselungsgeschwindigkeiten, die für den allgemeinen Gebrauch zu langsam sind.
+        - Die Verschlüsselung mit öffentlichen Schlüsseln ist derzeit auf die Schlüsselverwaltung und Signaturanwendungen beschränkt.
+
+    .. layer:: incremental
+
+        Eine andere Form des Angriffs besteht darin, einen Weg zu finden, den privaten Schlüssel anhand des öffentlichen Schlüssels zu berechnen.
   
-  - Countermeasure: use large keys!
-  - Key size must be small enough for practical encryption and decryption.
-  - Key sizes that have been proposed result in encryption/decryption speeds that are too slow for general-purpose use.
-  - Public-key encryption is currently confined to key management and signature applications.
+        *Bislang konnte nicht mathematisch bewiesen werden, dass diese Form des Angriffs für einen bestimmten Public-Key-Algorithmus nicht durchführbar ist.*
 
-- Another form of attack is to find some way to compute the private key given the public key.
-  
-  *To date it has not been mathematically proven that this form of attack is infeasible for a particular public-key algorithm.*
+    .. layer:: incremental
 
-- Finally, there is a probable-message attack.
-  
-  *This attack can be thwarted by appending some random bits to simple messages.*
+        Schließlich gibt es noch einen Angriff mit wahrscheinlicher Nachricht.
+        
+        *Dieser Angriff kann vereitelt werden, indem einige zufällige Bits an einfache Nachrichten angehängt werden.*
+
+.. supplemental::
+
+    Bei einem Angriff mit :ger-quote:`wahrscheinlicher Nachricht`, verschlüsselt der Angreifer eine Reihe von Nachrichten (z. B. alle DES Schlüssel mit dem öffentlichen Schlüssel des Adressaten) und analysiert die resultierenden Chiffretexte, um den privaten Schlüssel zu ermitteln.
 
 
 Rivest-Shamir-Adleman (RSA) Algorithm
 --------------------------------------
 
-- Developed in 1977 at MIT by Ron Rivest, Adi Shamir & Len Adleman
-- General-purpose approach to public-key encryption
-- Is a cipher in which the plaintext and ciphertext are integers between :math:`0` and :math:`n – 1` for some :math:`n`
+.. class:: incremental list-with-explanations
 
-  A typical size for :math:`n` was 1024 bits, or 309 decimal digits.
+- Entwickelt 1977 am MIT von Ron Rivest, Adi Shamir und Len Adleman.
+- Universeller Ansatz zur Verschlüsselung mit öffentlichen Schlüsseln.
+- Ist eine Chiffre, bei der Klartext und Chiffretext ganze Zahlen zwischen :math:`0` und :math:`n - 1` für ein bestimmtes :math:`n` sind.
 
-  Such small numbers are now considered to be grossly insecure; in particular with quatum computing on the horizon and the development of quantum algorithms (https://en.wikipedia.org/wiki/Shor's_algorithm) that can factorize numbers efficiently on them.
+- Eine typische Größe für :math:`n` waren 1024 Bits oder 309 Dezimalziffern.
+
+  Solch kleine Zahlen werden heute als äußerst unsicher angesehen, insbesondere angesichts der bevorstehenden Quantencomputer und der Entwicklung von Quantenalgorithmen (vgl. `Shors Algorithmus <https://en.wikipedia.org/wiki/Shor's_algorithm>`_), die Zahlen effizient faktorisieren können.
 
 
-RSA Algorithm
---------------
+
+RSA Algorithmus
+-----------------
 
 .. class:: incremental 
 
-- RSA makes use of an expression with exponentials
-- Plaintext is encrypted in blocks with each block having a binary value less than some number :math:`n` 
-- Encryption and decryption are of the following form, for some plaintext block :math:`M` and ciphertext block :math:`C`
+- RSA verwendet einen Ausdruck mit Exponentialen
+- Der Klartext wird in Blöcken verschlüsselt, wobei jeder Block einen Binärwert hat, der kleiner als eine bestimmte Zahl :math:`n` ist .
+- Die Ver- und Entschlüsselung erfolgt für einen Klartextblock :math:`M` und einen Chiffretextblock :math:`C` in der folgenden Form:
   
 	:math:`C = M^e\; mod\; n` 
 
 	:math:`M = C^d\; mod\; n = (M^e)^d\; mod\; n = M^{ed}\; mod\; n` 
 
-- Both sender and receiver must know the value of :math:`n`
-- The sender knows the value of :math:`e`, and only the receiver knows the value of :math:`d`
-- This is a public-key encryption algorithm with a public key of :math:`PU=\lbrace e,n \rbrace` and a private key of :math:`PR=\lbrace d,n \rbrace`
+- Sowohl der Sender als auch der Empfänger müssen den Wert von :math:`n` kennen.
+- Der Absender kennt den Wert von :math:`e`, und nur der Empfänger kennt den Wert von :math:`d`
+- Dies ist ein Public-Key-Verschlüsselungsalgorithmus mit dem öffentlichen Schlüssel :math:`PU=\lbrace e,n \rbrace` und dem privaten Schlüssel :math:`PR=\lbrace d,n \rbrace`.
 
 
-Algorithm Requirements
------------------------
+Anforderungen an den RSA Algorithmus
+----------------------------------------
 
-- For this algorithm to be satisfactory for public-key encryption, the following requirements must be met:
+Damit dieser Algorithmus für die Verschlüsselung mit öffentlichen Schlüsseln geeignet ist, müssen die folgenden Anforderungen erfüllt sein:
 
-  1.  It is possible to find values of :math:`e`, :math:`d`, :math:`n` such that :math:`M^{ed}\;mod\; n = M` for all :math:`M < n` 
-  2.  It is relatively easy to calculate :math:`M^e\;mod\; n` and :math:`C^d\; mod\; n` for all values of :math:`M < n` 
-  3.  It is infeasible to determine :math:`d` given :math:`e` and :math:`n`
+.. class:: incremental
+
+1.  Es ist möglich, Werte für :math:`e`, :math:`d`, :math:`n` so zu finden, dass :math:`M^{ed}\,mod\, n = M` für alle :math:`M < n`.
+2.  Es ist relativ einfach, :math:`M^e\;mod\; n` und :math:`C^d\, mod\, n` für alle Werte von :math:`M < n` zu berechnen.
+3.  Es ist nicht möglich, :math:`d` zu bestimmen, wenn :math:`e` und :math:`n` gegeben sind.
+
 
 
 The RSA Algorithm
 -------------------
 
-.. container:: two-columns smaller
+.. container:: two-columns slightly-more-smaller 
 
-    .. container:: column smaller
+    .. container:: 
 
-        **Key Generation by Alice**
+        **Schlüsselgenerierung von Alice**
 
         .. csv-table:: 
-            :class: invisible 
+            :class: no-table-borders no-inner-borders incremental
+            :align: left
             
-            "Select p, q", ":math:`p` and :math:`b` both prime, :math:`p \neq q` "
-            "Calculate n", ":math:`n = p \times q` "
-            "Calculate 𝜙(n) ", ":math:`\phi(n) = (p - 1)(q - 1)` "
-            "Select Int e", ":math:`gcd(\phi(n),e) = 1; \qquad 1 < e < \phi(n)` "
-            Calculate d, :math:`d \equiv e^{-1}\; (mod\; \phi(n)) \Leftrightarrow ed\; mod\; \phi(n)= 1` 
-            Public key, ":math:`PU = \lbrace e,n \rbrace` "
-            Private key, ":math:`PR = \lbrace d,n \rbrace` "
+            "Wähle p, q", ":math:`p` und :math:`b` beide prim, :math:`p \neq q` "
+            "Berechne n", ":math:`n = p \times q` "
+            "Berechne 𝜙(n) ", ":math:`\phi(n) = (p - 1)(q - 1)` "
+            "Wähle e", ":math:`GGT(\phi(n),e) = 1; \qquad 1 < e < \phi(n)` "
+            Berechne d, :math:`d \equiv e^{-1}\; (mod\; \phi(n)) \Leftrightarrow ed\; mod\; \phi(n)= 1` 
+            Public-Key, ":math:`PU = \lbrace e,n \rbrace` "
+            Private-Key, ":math:`PR = \lbrace d,n \rbrace` "
 
-    .. container:: column
+    .. container:: width-40
 
-        **Encryption by Bob with Alice's Public Key**
+        .. container:: incremental
 
-        .. csv-table:: 
-            :class: invisible
+            **Verschlüsselung von Bob mit Alices öffentlichen Schlüssel**
 
-            Plaintext, :math:`M<n`
-            Ciphertext, :math:`C=M^e\; mod\; n` 
-    
-        **Decryption by Alice with Alice's Private Key**
+            .. csv-table:: 
+                :class: no-table-borders no-inner-borders
 
-        .. csv-table:: 
-            :class: invisible
+                Klartext, :math:`M<n`
+                Chiffretext, :math:`C=M^e\; mod\; n` 
 
-            Ciphertext, :math:`C` 
-            Plaintext, :math:`M = C^d\; mod\; n`
+        .. container:: incremental
+
+            **Entschlüsselung von Alice mit ihrem privaten Schlüssel**
+
+            .. csv-table:: 
+                :class: no-table-borders no-inner-borders
+
+                Chiffretext, :math:`C` 
+                Klartext, :math:`M = C^d\; mod\; n`
 
 
 
-Example of RSA Algorithm
---------------------------
+Beispiel für den RSA-Algorithmus
+---------------------------------
 
-:p and q: 
+:p und q: 
 
     :math:`p = 11; q = 17; n = 187`
 
-:Plaintext:
+:Klartext:
     88
 
-:Encryption:
+:Verschlüsselung:
     :math:`PU =\lbrace e= 7, n= 187 \rbrace`:
 
     :math:`88^7\;mod\; 187 = 11 = C`
 
-:Decryption:
+:Entschlüsselung:
     :math:`PR =\lbrace d= 23, n = 187 \rbrace`: 
 
     :math:`11^{23}\; mod\; 187 = 88 = P`
 
 
-Exponentiation in Modular Arithmetic
--------------------------------------
 
-- Both encryption and decryption in RSA involve raising an integer to an integer power, :math:`mod\; n`
-- Can make use of a property of modular arithmetic:
-  
+Potenzierung in der Modularen Arithmetik
+-------------------------------------------
+
+- Sowohl bei der Verschlüsselung als auch bei der Entschlüsselung in RSA wird eine ganze Zahl potenziert mit einer weiteren ganzen Zahl :math:`mod\; n`
+- Eine Eigenschaft der modularen Arithmetik kann genutzt werden:
+
   :math:`[(a\; mod\; n) \times (b\; mod\; n)]\; mod\; n =(a \times b)\; mod\; n`
 
     Example 
@@ -409,7 +462,7 @@ Exponentiation in Modular Arithmetic
     :math:`2^9\; mod\; 13 = [(2^1\; mod\; 13) \times (2^8 \; mod\; 13)]\; mod\; 13` 
 
 
-- With RSA you are dealing with potentially large exponents so efficiency of exponentiation is a consideration!
+- Bei RSA haben Sie es mit potenziell großen Exponenten zu tun, so dass die Effizienz der Potenzierung eine wichtige Rolle spielt.
 
 .. container:: block-footer white dhbw-gray-background text-align-center
 
@@ -417,17 +470,17 @@ Exponentiation in Modular Arithmetic
 
 
 
-Algorithm for Computing :math:`a^k\; mod\; n` 
------------------------------------------------
+Algorithmus zur Berechnung von :math:`a^k\; mod\; n` 
+----------------------------------------------------
 
-(Square and Multiply)
+.. rubric:: Quadrieren und Multiplizieren (:eng:`Square and Multiply`)
 
-The integer :math:`b` is expressed as a binary number ``b[k]b[k-1]...b[0]``: 
+Die Ganzzahl :math:`b` wird als Binärzahl ``b[k]b[k-1]...b[0]`` ausgedrückt: 
 
-.. note:: 
-    :class: small
+.. admonition:: Hinweis
+    :class: small note
 
-    ``c`` just depicts the component.
+    ``c`` stellt lediglich die Komponente dar.
 
 .. code:: pseudocode
 
@@ -441,13 +494,15 @@ The integer :math:`b` is expressed as a binary number ``b[k]b[k-1]...b[0]``:
     return f
 
 
-Result of the Fast Modular Exponentation Algorithm for :math:`a^b\;mod\;n`
----------------------------------------------------------------------------
 
-:math:`a=7; b = 560 = 1000110000_b`, and :math:`n=561`
+Ergebnis des schnellen modularen Exponierungsalgorithmus für :math:`a^b\;mod\;n`
+--------------------------------------------------------------------------------
+
+:math:`a=7; b = 560 = 1000110000_b`, und :math:`n=561`
 
 .. csv-table::
     :header: i, 9,8,7,6,5,4,3,2,1,0
+    :widths: 6, 10,10,10,10,10,10,10,10,10,10
     :width: 100%
 
     ":math:`b_i`", 1,0,0,0,1,1,0,0,0,0
@@ -455,68 +510,77 @@ Result of the Fast Modular Exponentation Algorithm for :math:`a^b\;mod\;n`
     f, 7,49,157,526,160,241,298,166,67,1
 
 
-Efficient Operation Using the Public Key
------------------------------------------
 
-- To speed up the operation of the RSA algorithm using the public key, a specific choice of e is usually made
-- The most common choice is 65537 (:math:`2^{16} + 1`)
-- Two other popular choices are :math:`e=3` and :math:`e=17`
-- Each of these choices has only two 1 bits, so the number of multiplications required to perform exponentiation is minimized
-- With a very small public key, such as :math:`e = 3`, RSA becomes vulnerable to a simple attack
-    
+Effiziente Verschlüsselung mit dem öffentlichen Schlüssel
+---------------------------------------------------------------------
 
-Efficient Operation Using the Private Key
------------------------------------------
-
-- Decryption uses exponentiation to power :math:`d`
-- A small value of d is vulnerable to a brute-force attack and to other forms of cryptanalysis
-- Can use the Chinese Remainder Theorem (CRT) to speed up computation:
-
-  The quantities :math:`d\; mod\; (p - 1)` and :math:`d\; mod\; (q - 1)` can be precalculated.
-
-  End result is that the calculation is approximately four times as fast as evaluating :math:`M = C^d\; mod\; n` directly.
+- Um den RSA-Algorithmus bei Verwendung des öffentlichen Schlüssels zu beschleunigen, wird in der Regel eine bestimmte Wahl von :math:`e` getroffen:
+  
+  - Die häufigste Wahl ist 65537 (:math:`2^{16} + 1`)
+  - Zwei weitere beliebte Wahlmöglichkeiten sind :math:`e=3` und :math:`e=17`
+  - Jede dieser Möglichkeiten hat nur zwei 1-Bits, so dass die Anzahl der Multiplikationen, die für die Potenzierung erforderlich sind, minimiert wird.
+  - Mit einem sehr kleinen öffentlichen Schlüssel, wie :math:`e = 3`, wird RSA jedoch anfällig für einen einfachen Angriff.
 
 
-Key Generation
----------------
+
+
+Effiziente Entschlüsselung mit dem privaten Schlüssel
+-----------------------------------------------------------
+
+- Die Entschlüsselung verwendet die Potenzierung mit :math:`d`.
+- Ein kleiner Wert von :math:`d` ist anfällig für einen Brute-Force-Angriff und für andere Formen der Kryptoanalyse.
+- Der Chinesischen Restsatz (CRT) kann verwendet werden, um Berechnungen zu beschleunigen:
+
+  Die Größen :math:`d\; mod\; (p - 1)` und :math:`d\; mod\; (q - 1)` können vorberechnet werden.
+
+  Das Ergebnis ist, dass die Berechnung etwa viermal so schnell ist wie die direkte Berechnung von :math:`M = C^d\; mod\; n`.
+
+
+
+Schlüsselgenerierung
+----------------------
 
 .. container:: two-columns
 
-    .. container:: column 
+    .. container:: column no-separator
 
-        Before the application of the public-key cryptosystem each participant must generate a pair of keys:
+        Vor der Anwendung des Public-Key-Kryptosystems muss jeder Teilnehmer ein Schlüsselpaar erzeugen:
         
-        - Determine two prime numbers :math:`p` and :math:`q` 
-        - Select either :math:`e` or :math:`d` and calculate the other
+        - Bestimmung der Primzahlen :math:`p` und :math:`q`.
+        - Wahl von :math:`e` oder :math:`d` und Berechnung der anderen.
 
-    .. container:: column
+    .. container:: column smaller padding-left-2em
 
-        - Because the value of n = pq will be known to any potential adversary, primes must be chosen from a sufficiently large set.
-        - The method used for finding large primes must be reasonably efficient.
+        - Da der Wert von :math:`n = pq` jedem potenziellen Gegner bekannt sein wird, müssen die Primzahlen aus einer ausreichend großen Menge ausgewählt werden.
+        - Die Methode, die zum Finden großer Primzahlen verwendet wird, muss einigermaßen effizient sein.
          
-          The Miller-Rabin Algorithm can, e.g., be used.
+          Es kann z. B. der Miller-Rabin-Algorithmus verwendet werden.
 
 
-The Security for RSA - Five possible approaches to attacking RSA
------------------------------------------------------------------
+
+Die Sicherheit von RSA - Fünf mögliche Ansätze für einen Angriff
+----------------------------------------------------------------------
 
 .. class:: incremental 
 
-- Brute force: Involves trying all possible private keys.
-- Mathematical attacks: There are several approaches, all equivalent in effort to factoring the product of two primes.
-- Timing attacks: These depend on the running time of the decryption algorithm.
-- Hardware fault-based attack: This involves inducing hardware faults in the processor that is generating digital signatures.
-- Chosen ciphertext attacks: This type of attack exploits properties of the RSA algorithm.
+- Brute-Force: Dabei werden alle möglichen privaten Schlüssel ausprobiert.
+- Mathematische Angriffe: Es gibt mehrere Ansätze, die vom Aufwand her alle dem Faktorisieren des Produkts aus zwei Primzahlen entsprechen.
+- Zeitliche Angriffe: Diese hängen von der Laufzeit des Entschlüsselungsalgorithmus ab.
+- Hardware-Fehler-basierter Angriff: Hier geht es darum, Hardware-Fehler in den Prozessor zu induzieren, der digitale Signaturen erzeugt.
+- Gewählte Chiffretext-Angriffe: Bei dieser Art von Angriffen werden Eigenschaften des RSA-Algorithmus ausgenutzt.
 
 
-Factoring Problem
------------------
 
-We can identify three approaches to attacking RSA mathematically:
 
-1. Factor :math:`n` into its two prime factors. This enables calculation of :math:`\phi(n) = (p - 1) \times (q - 1)`, which in turn enables determination of :math:`d = e^{-1} (mod\; ø(n))`.
-2. Determine :math:`\phi(n)` directly without first determining :math:`p` and :math:`q`. Again, this enables determination of :math:`d = e^{-1} (mod\; \phi(n))`.
-3. Determine :math:`d` directly without first determining :math:`\phi(n)`. 
+Faktorisierungsproblem
+-----------------------
+
+Es gibt drei Ansätze für einen mathematischen Angriff auf RSA:
+
+1. Faktorisierung von :math:`n` in seine beiden Primfaktoren. Dies ermöglicht die Berechnung von :math:`\phi(n) = (p - 1) \times (q - 1)`, was wiederum die Bestimmung von :math:`d = e^{-1} (mod\; ø(n))` ermöglicht.
+2. Direkte Bestimmung von :math:`\phi(n)`, ohne vorher :math:`p` und :math:`q` zu bestimmen. Dies ermöglicht wiederum die Bestimmung von :math:`d = e^{-1} (mod\; \phi(n))`.
+3. Direkte Bestimmung von :math:`d`, ohne vorher :math:`\phi(n)` zu bestimmen. 
+
 
 
 
@@ -537,43 +601,50 @@ Gegenmaßnahmen gegen Timing-Angriffe
 
 .. container:: smaller 
 
-    :Constant exponentation time:
-        Ensure that all exponentiations take the same amount of time before returning a result; this is a simple fix but does degrade performance.
+    :Konstante Potenzierungszeit:
+        Es gilt sicherzustellen, dass alle Potenzierungen die gleiche Zeit benötigen, bevor ein Ergebnis zurückgegeben wird; dies ist eine einfache Lösung, die jedoch die Leistung beeinträchtigt.
 
-    .. class:: incremental 
+    .. class:: inkrementell 
 
-    :Random delay:
-        Better performance could be achieved by adding a random delay to the exponentiation algorithm to confuse the timing attack.
+    :Zufällige Verzögerung:
+        Eine bessere Leistung könnte erreicht werden, indem man dem Potenzierungsalgorithmus eine zufällige Verzögerung hinzufügt, um den Zeitangriff zu verwirren.
 
-    .. class:: incremental 
+    .. class:: inkrementell 
 
-    :Blinding: 
-        Multiply the ciphertext by a random number before performing exponentiation; this process prevents the attacker from knowing what ciphertext bits are being processed inside the computer and therefore prevents the bit-by-bit analysis essential to the timing attack
+    :Verschleierung: 
+        Multiplikation des Chiffriertextes mit einer Zufallszahl vor der Potenzierung; dieser Vorgang verhindert, dass der Angreifer erfährt, welche Bits des Chiffriertextes im Computer verarbeitet werden, und verhindert somit die für den Timing-Angriff erforderliche Bit-für-Bit-Analyse.
 
 
-Fault-Based Attack
-------------------
 
-- An attack on a processor that is generating RSA digital signatures.
+
+Fehlerbasierter Angriff
+------------------------
+
+(:eng:`Fault-based attack`)
+
+- Ein Angriff auf einen Prozessor, der digitale RSA-Signaturen erzeugt.
   
-  - Induces faults in the signature computation by reducing the power to the processor.
-  - The faults cause the software to produce invalid signatures which can then be analyzed by the attacker to recover the private key.
+  - Verursacht Fehler in der Signaturberechnung, indem er die Leistung des Prozessors reduziert.
+  - Diese Fehler führen dazu, dass die Software ungültige Signaturen erzeugt, die dann vom Angreifer analysiert werden können, um den privaten Schlüssel wiederherzustellen.
   
-- The attack algorithm involves inducing single-bit errors and observing the results.
-- While worthy of consideration, this attack does not appear to be a serious threat to RSA in many applications.
+- Der Angriffsalgorithmus besteht darin, Ein-Bit-Fehler zu erzeugen und die Ergebnisse zu beobachten.
+- Obwohl dieser Angriff eine Überlegung wert ist, scheint er in vielen Anwendungen keine ernsthafte Bedrohung für RSA darzustellen.
 
-  - It requires that the attacker have physical access to the target machine and is able to directly control the input power to the processor
+  - Er setzt voraus, dass der Angreifer physischen Zugriff auf den Zielcomputer hat und in der Lage ist, die Eingangsleistung des Prozessors direkt zu kontrollieren.
 
 
-Chosen Ciphertext Attack (CCA)
-------------------------------
 
-- The adversary chooses a number of ciphertexts and is then given the corresponding plaintexts, decrypted with the target’s private key
+Gewählter Chiffretext-Angriff 
+------------------------------------
+    
+(:eng:`Chosen Ciphertext Attack (CCA)`)
+
+- Der Angreifer wählt eine Reihe von Chiffretexten aus und erhält dann die entsprechenden Klartexte, die mit dem privaten Schlüssel des Ziels entschlüsselt wurden.
   
-  - Thus the adversary could select a plaintext, encrypt it with the target’s public key, and then be able to get the plaintext back by having it decrypted with the private key.
-  - The adversary exploits properties of RSA and selects blocks of data that, when processed using the target’s private key, yield information needed for cryptanalysis
+  - Der Angreifer könnte also einen Klartext auswählen, ihn mit dem öffentlichen Schlüssel des Ziels verschlüsseln und dann den Klartext zurückerhalten, indem er ihn mit dem privaten Schlüssel entschlüsselt.
+  - Der Angreifer macht sich die Eigenschaften von RSA zunutze und wählt Datenblöcke aus, die, wenn sie mit dem privaten Schlüssel des Ziels verarbeitet werden, die für die Kryptoanalyse benötigten Informationen liefern.
   
-- To counter such attacks, RSA Security Inc. recommends modifying the plaintext using a procedure known as optimal asymmetric encryption padding (OAEP)
+- Um solche Angriffe abzuwehren, empfiehlt RSA Security Inc., den Klartext mit einem Verfahren zu modifizieren, das als optimales asymmetrisches Verschlüsselungs-Padding (OAEP) bekannt ist
 
 
 
@@ -582,52 +653,55 @@ Chosen Ciphertext Attack (CCA)
 Übung
 ----------
 
-1. Execute the Square-and-Multiply algorithm for 3^17 mod 23.
-
-   .. admonition:: Solution 
-     
-      ::
-
-         k = 0001 0001b 
-     
-         i = 4; f =   3 =>
-         i = 3; f =   9 =>
-         i = 2; f =  81 mod 23 = 12 =>
-         i = 1; f = 144 mod 23 = 6 =>
-         i = 0; f = (((6 * 6) mod 23) * 3) mod 23 = 16
-
-2. Perform an encryption of a message using RSA. 
+1. \
    
-   I.e., choose 2 small prime numbers, compute e,d,n. Then encrypt the message (i.e., a (rather) small value) using the public key of a fellow student and send him the encrypted message. Let her/him decrypt your message. Afterwards validate that the encryption is successful.
-
-   .. admonition:: Solution
-   
-
-      Let's assume that :math:`p = 7` and :math:`q = 11`.
-
-      .. math::
-
-         n = p \times q = 77
-
-         \phi(n) = (p-1)(q-1) = 6 \times 10 = 60; 
-      
-      Hence the message has to be "less than" 60. 
-      
-      Compute :math:`e` such that :math:`gcd(\phi(n),e) = 1`. 
-      
-      In this case, 2 to 6 are not possible because they all divide 60. We will select :math:`e = 7`
-      
-      Compute :math:`d`; i.e., :math:`ed\; mod\; \phi(n) = 1`. :math:`d=43`; :math:`(43 \times 7) \; mod\; \phi(60)` 
-      
-      Now: PU = {7,77}, PR = {43,77}. 
-      
-      Let the message M be "13": :math:`C = 13^7\; mod\; 77 = 62`. 
-
-      To get the plaintext compute :math:`P = 62^{43}\; mod\; 77`.
-
-3. Can you think of a scenario in which fault-based attacks may be practical?
-
-   .. admonition:: Solution
+   .. exercise::
     
-      It is always practical when you have physical access to a device for a reasonable time to execute the attack. E.g., in IT-forensics. 
+     .. rubric::  Führen Sie den Square-and-Multiply Algorithmus für :math:`3^{17}\, mod\, 23` aus.
+
+     .. solution::
+        :pwd: hochzwei
+     
+        ::
+
+            k = 0001 0001b 
+        
+            i = 4; f =   3 =>
+            i = 3; f =   9 =>
+            i = 2; f =  81 mod 23 = 12 =>
+            i = 1; f = 144 mod 23 = 6 =>
+            i = 0; f = (((6 * 6) mod 23) * 3) mod 23 = 16
+
+2. \
+ 
+   .. exercise::
+ 
+        .. rubric:: Verschlüsseln Sie eine Nachricht mit RSA.
+
+        D. h., wählen Sie 2 kleine Primzahlen, berechnen Sie dann :math:`e`, :math:`d`, :math:`n`. Verschlüsseln Sie dann die Nachricht (d. h. einen (eher) kleinen Wert) mit dem öffentlichen Schlüssel einer anderen Person und senden Sie der Person die verschlüsselte Nachricht. Die Zielperson soll Ihre Nachricht entschlüsseln. Überprüfen Sie anschließend, ob die Verschlüsselung erfolgreich war. 
+
+        .. solution::
+            :pwd: Nachrichtenaustausch
+        
+            Wir nehmen an, dass :math:`p = 7` und :math:`q = 11` ist.
+
+            .. math::
+
+                n = p \times q = 77
+
+                \phi(n) = (p-1)(q-1) = 6 \times 10 = 60; 
+            
+            Daher muss die Nachricht ein ganzzahliger Wert kleiner als 60 sein. 
+            
+            Berechne :math:`e` so, dass :math:`GGT(\phi(n),e) = 1`. 
+            
+            In diesem Fall sind die Zahlen 2 bis 6 nicht möglich, da sie alle 60 teilen. Wir wählen :math:`e = 7`.
+            
+            Berechne :math:`d`; d. h., :math:`ed\; mod\; \phi(n) = 1`. :math:`d=43`; :math:`(43 \times 7) \; mod\; \phi(60) = 1` 
+            
+            Es folgt: :math:`PU = \lbrace7,77\rbrace`, :math:`PR = \lbrace 43,77 \rbrace`. 
+            
+            Sei die Nachricht :math:`M` "13": :math:`C = 13^7\; mod\; 77 = 62`. 
+
+            Der Klartext berechnet sich wie folgt: :math:`P = 62^{43}\; mod\; 77`.
 
