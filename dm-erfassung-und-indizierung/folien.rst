@@ -201,7 +201,7 @@ Beispiel für Eingangspostbearbeitung
 
 .. class:: smaller-slide-title vertical-title
 
-Unterstützung für Workflowdefinitionen in ECM Systemenv - z. B. `DocuWare <https://start.docuware.com>`__
+Unterstützung für Workflowdefinitionen in ECM Systemen - z. B. `DocuWare <https://start.docuware.com>`__
 -----------------------------------------------------------------------------------------------------------
 
 .. image:: screenshots/docuware-workflow-manager-2024-02.webp
@@ -209,12 +209,10 @@ Unterstützung für Workflowdefinitionen in ECM Systemenv - z. B. `DocuWare <ht
     :align: center
     :class: box-shadow
 
-    
-
-
 .. container:: supplemental
     
         :ECM: *Enterprise Content Management*
+
 
 
 Erstmalige Übernahme von Dokumenten
@@ -348,6 +346,7 @@ Scanprofile (hier in Elo Office)
     • Duplex
     • Zielformat
     • ...
+
 
 
 Scanner
@@ -733,6 +732,20 @@ Manuelles Indizieren
   - Aufwändig
   - Ergebnis vom Bearbeiter abhängig
 
+
+
+(Semi-)Automatisches Indizieren
+----------------------------------
+
+.. class:: incremental list-with-explanations
+
+- basierend auf wissensbasierten bzw. regelbasierten Ansätzen
+  
+  Durch ein umfangreiches Regelwerk wird versucht, die Metadaten (insbesondere Art des Dokuments, Vorgangsnummer, Empfänger) automatisch zu ermitteln; um eine automatische Klassifikation und Verarbeitung zu ermöglichen.
+
+- basierend auf (überwachten) maschinellen Lernverfahren
+
+  Das System wird in einem ersten Schritt - basierend auf eingescannten Dokumenten - überwacht trainiert und kann dann in einem zweiten Schritt die Metadaten automatisch ermitteln.
 
 
 Suche und Retrieval von Dokumenten

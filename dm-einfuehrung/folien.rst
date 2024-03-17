@@ -208,7 +208,7 @@ Gegenüberstellung konventionelles Archiv zu DMS
 -------------------------------------------------------------------------------
 
 .. csv-table::
-    :class: highlight-line-on-hover small incremental
+    :class: highlight-line-on-hover slightly-more-smaller incremental
     :header: " ", "Konventionell","DMS"
 
     Ablagestruktur, "hierarchisch, meist nach Dokumententypen getrennt", "datenbankgestützt, Suchbeginn nach jedem Suchkriterium möglich, Suche wahlweise z. B. je Kunde, Vorgang oder Beleg"
@@ -297,6 +297,7 @@ Was ist ein Dokument aus technischer Sicht?
     Es ist somit eine reine Deklarationsfrage, was ein Dokument ist!
 
 
+
 .. class:: vertical-title
 
 Elektronische Dokumente
@@ -318,6 +319,9 @@ Elektronische Dokumente
     :ICR (Intelligent Character Recognition): Die Qualität der Texterkennung wird durch Kontextanalyse verbessert. Typische Fehler von OCR-Systemen, wie zum Beispiel Fehlerkennungen von optisch nahe beieinanderliegenden Zeichen (z. B. „8 und B“ oder „0 und O“), werden vermieden. (Wie nahe Zeichen beieinander liegen, ist stark vom verwendeten Schrifttyp abhängig.)
 
     :OMR (Optical Mark Recognition): Liest mit großer Sicherheit spezielle Markierungen in vordefinierten Feldern aus - zum Beispiel in Multiple-Choice-Tests und Vordrucken.
+
+
+.. TODO Folie bzgl. strukturierter und unstrukturierter Daten (Dokumentenmanagement S. 103)
 
 
 
@@ -638,6 +642,71 @@ Archivierung (von Dokumenten)
 
 
 
+Kerneigenschaften elektronischer Archive
+-----------------------------------------------
+
+Archiv System müssen die folgenden Eigenschaften bei langjähriger Aufbewahrung unterstützen:
+
+.. class:: incremental
+
+:Integrität: Nachweis, dass die Informationen während der Aufbewahrung nicht verändert oder gelöscht wurden.
+
+.. class:: incremental
+
+:Authenzität: Herkunft lässt sich zweifelsfrei nachweisen.
+
+.. class:: incremental
+
+:Lesbarkeit: Informationen müssen auch in Zukunft lesbar sein.
+
+.. container:: assessment
+
+    Eigenschaften wie die Unterstützung von Volltextindizierung sind nicht in allen Fällen notwendig. 
+
+.. supplemental::
+
+    Z. B. muss ein Insolvenzverwalter nach dem Abschluss des Verfahrens die Dokumente 10 Jahre aufbewahren obwohl er in dieser Zeit die Dokumente höchstwahrscheinlich nicht mehr benötigt.
+
+    Informationen über die Ergebnisse von arbeitsmedizinischen Untersuchungen (dies sind ggf. sehr vielfältige und umfangreiche Daten (z. B. Röntenbilder, EKGs)) müssen 30 Jahre bis nach der letzten Untersuchung aufbewahrt werden, da sich daraus ggf. Rentenansprüche ableiten. Daraus leiten sich ggf. Fristen für Dokumente von 50 Jahren und mehr ab.
+
+
+
+Revisionssichere elektronische Archivierung
+-----------------------------------------------
+
+.. stack::
+
+    .. layer::
+
+        Merkmale revisionssicherer Archivsysteme sind:
+
+        .. class:: incremental
+
+        - Informationen sind wieder auffindbar, 
+        - Änderungen sind nachvollziehbar, 
+        - Informationen sind unveränderbar und 
+        - die Informationen sind verfälschungssicher archiviert 
+
+    .. layer:: incremental
+
+        Aufgrund von HGB-Vorschriften gilt für die Revisionssicherheit bei der Archivierung:
+
+        .. class:: incremental
+
+        - Richtigkeit
+        - Vollständigkeit
+        - Sicherheit des Gesamtverfahrens
+        - Schutz vor Veränderung und Verfälschung
+        - Sicherung vor Verlust
+        - Nutzung nur durch Berechtigte
+        - Einhaltung der Aufbewahrungsfristen
+        - Dokumentation des Verfahrens
+        - Nachvollziehbarkeit
+        - Prüfbarkeit
+
+
+
+
 Strategien für die langfristige Aufbewahrung von Dokumenten
 ------------------------------------------------------------
 
@@ -646,6 +715,7 @@ Strategien für die langfristige Aufbewahrung von Dokumenten
 - *Technikmuseum* (Variante: Alte Umgebung emulieren)
 - Dauerhafte Formate nutzen
 - Migration der Dokumente auf neue Umgebung
+
 
 
 
@@ -904,6 +974,35 @@ Dateiformate und ihre Eignung für die Langzeitarchivierung
 
 
 
+E-Mail-Archivierung - eine besondere Herausforderung
+------------------------------------------------------------
+
+.. container::
+    
+    Geschäftliche E-Mails sind Dokumente und müssen mit der gleichen Sorgfalt (revisionssicher) archiviert werden wie andere Dokumente.
+
+.. container:: incremental
+
+    Herausforderungen:
+
+    .. class:: incremental list-with-explanations
+
+    - nicht alle E-Mails sind (geschäftlich) relevant (z. B. private E-Mails oder Spam)
+  
+      (Wer entscheidet, was relevant ist? Dezentral die Mitarbeiter oder zentral die IT?)
+    - manche E-Mails sind sehr komplex (z. B. Anhänge)
+    - E-Mails enthalten links auf flüchtige Dokumente (z. B. Webseiten)
+    - E-Mails enthalten Schadsoftware 
+      
+      (Diesbezüglich gilt das Fernmeldegeheimnis seit dem 1.12.2021 nicht mehr.)
+
+
+.. supplemental::
+
+    Aufgrund rechtlicher Rahmenbedingungen wird im Allgemeinen die zentrale Archivierung von E-Mails bevorzugt.
+
+
+
 Pflege des Systems
 -----------------------------------------------
 
@@ -918,6 +1017,56 @@ Regelmäßiges Umkopieren der Bestände ist häufig notwendig:
 
   Kann mit einer Migration auf andere Formate bzw. Formatversionen verbunden sein! 
 
+
+
+Sichere Speicherung
+-----------------------------------------------
+
+.. class:: incremental
+
+- Dokumente und Metadaten können grundsätzlich folgendermaßen gespeichert werden:
+
+  - zentrale Speicherung
+  - dezentrale, verteilte Speicherung
+  - dezentrale Speicherung mit Replikation
+  
+  Daraus ergeben sich Unterschiede in Hinblick auf:
+
+  - Administration
+  - Transferzeiten (Latenz)
+  - Speicherplatz
+- Dokumente und die Metadaten können, müssen aber nicht gemeinsam gespeichert werden.
+
+.. supplemental::
+
+    Die Frage ob die Metadaten oder Dokumente zentral oder dezentral gespeichert werden, stellt sich insbesondere bei Behörden und großen Unternehmen, die über mehrere Standorte verfügen.
+
+
+
+.. class:: center-child-elements no-title transition-scale
+
+Sichere Speicherung kann nicht lokal erfolgen
+-----------------------------------------------
+
+.. admonition:: Hinweis
+    :class: warning
+
+    Das Speichern auf lokalen Netzlaufwerken oder gar auf dem Arbeitsplatzrechner ist sowohl aus betrieblicher (und ggf. auch rechtlicher Sicht) nicht ausreichend.
+
+
+
+Drucken von Dokumenten
+-----------------------------------------------
+
+DM-Systeme müssen das Drucken von Dokumenten unterstützen, da Nutzer oft Ausdrucke benötigen (z. B. auf Baustellen)
+
+Relevante Anforderungen an den Ausdruck:
+
+.. class:: incremental
+
+- eindeutige Dokumentenkennungen müssen mit ausgedruckt werden
+- relevante Dokumentenmerkmale (z. B. Autoren, Version, Status) sollten auf den Ausdrucken erscheinen
+- ggf. automatisches Paginieren bei mehrseitigen Dokumenten; insbesondere wenn Signaturnachweise gefordert und mitgedruckt werden sollen
 
 
 
@@ -1026,3 +1175,79 @@ Zusammenfassung: Dokumenten-Management-Lösung
 .. image:: drawings/dokumente/dokumenten-management-loesung.svg
     :height: 1150px
     :align: center
+
+
+
+.. class:: new-section transition-move-left
+
+Produkte 
+----------
+
+
+Kategorisierung von DMS Produkten
+-----------------------------------------------
+
+.. class:: incremental list-with-explanations
+
+- nach Funktionsbreite
+- nach Funktionstiefe 
+  
+  Zum Beispiel in Hinblick auf unterstützte Dateiformate, unterstützte Barcode-Typen, ...
+- nach Skalierung
+
+  In Hinblick auf die Anzahl der Dokumente, die Anzahl der gleichzeitigen Nutzer, die Anzahl der Standorte, ...
+
+- nach unterstützung spezifischer Kontextabhängiger Anforderungen
+
+  Bei internationalen Unternehmen ist ggf. die Unterstützung von mehreren Sprachen notwendig bzw. die Einhaltung verschiedener rechtlicher Rahmenbedingungen. Weiterhin können besondere Schnittstellen zu anderen Systemen erforderlich sein.
+
+
+
+Enterprise Content Management (ECM)
+-----------------------------------------------
+
+- Lösungen, die über das reine Dokumentenmanagement hinausgehen und auch Content-Management oder Records-Management (:ger:`Schriftgutverwaltung`) unterstützen.
+- Häufig aus Content-Management-Systemen (CMS) hervorgegangen.
+- unterstützt auch schwach- oder unstrukturierte Daten (z. B. E-Mails, Webseiten, ...)
+
+
+.. supplemental::
+
+    Beim Records-Management (Schriftgutverwaltung) ist die Betrachtung des gesamten Lebenszyklus von Akten in Hinblick auf einen sachlichen Kontext bzw. Geschäftsvorfall (Transaktion) und die Dokumentation desselbigen im Fokus.
+    
+    Records-Management erstreckt sich ggf. auch auf Papierdokumente.
+
+    Records-Management bedingen den Einsatz von DMS und Workflow-Systemen.
+
+
+
+Enterprise Content Management (ECM) im AIIM Modell\ [#]_
+-----------------------------------------------------------
+
+.. image:: drawings/ecm.svg
+    :height: 820px
+    :align: center
+
+
+.. container:: footer-left far-smaller
+
+    .. [#] `Association for Intelligent Information Management (AIIM) <https://www.aiim.org>`_ 
+
+
+Open-Source Lösungen (Stand 2024)
+----------------------------------
+
+- `Agorum Core Open <https://www.agorum.com/agorum-core-open-und-pro-im-vergleich/>`__
+- `LogicalDOC Open Source DMS <https://www.logicaldoc.com/download-logicaldoc-community>`__
+- `Bitfarm Archiv <https://www.bitfarm-archiv.de/dokumentenmanagement/kosten-lizenzierung.html>`__
+
+
+
+Open-Source Lösungen bieten meist grundlegende Funktionalität 
+---------------------------------------------------------------
+
+.. epigraph::
+
+    Für bitfarm-Archiv Enterprise sind zumindest die Serverinstallation und eine Schulung des / der IT-Betreuer durch uns oder einen unserer  Dokumentenmagementsystem Partner notwendig. **So können wir dafür garantieren, dass das System funktioniert und den technischen Teil der zum Nachweis der Revisionssicherheit erforderlichen Verfahrensdokumentation übernehmen.**
+
+    Gerade in kleineren Unternehmen mit übersichtlichen Anforderungen und knapper Kostenkalkulation kann das DMS anschließend in Eigenleistung konfiguriert werden. Tauchen dabei Fragen oder Probleme auf, stehen Ihnen unsere Supportmitarbeiter zur Seite. [...]Inklusive professionellem Support für ein Jahr sowie Installation, aller Module & Plugins, ist die Enterprise Version schon ab etwa 2500,- € erhältlich.
