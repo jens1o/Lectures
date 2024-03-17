@@ -355,6 +355,12 @@ Data Encryption Standard (DES)
   - Dieselben Schritte werden mit demselben Schlüssel verwendet, um die Verschlüsselung rückgängig zu machen.
 
 
+.. supplemental::
+
+    Bei DES enthält ein 64 Bit langer Schlüssel 8 Paritätsbits, die zur Überprüfung der Schlüsselübertragung verwendet werden.
+    Die 8 Paritätsbits werden dann aus dem 64-Bit-Schlüssel entfernt. Somit ist die effektive Schlüssellänge 56 Bit.
+
+
 
 DES - Design
 -------------------
@@ -364,8 +370,8 @@ DES - Design
     :align: center
 
 
-DES Rundenfunktion
--------------------
+DES Rundenfunktion (:ger-quote:`F`)
+--------------------------------------
 
 .. container:: note small width-40
 
@@ -598,21 +604,31 @@ Entwurfsprinzipien für Blockchiffre - Schlüsselableitung
 
 .. class:: integrated-exercise transition-scale
 
-Übung - Feistelchiffre Implementieren
+Übung
 ---------------------------------------
 
-Implementieren Sie eine Feistel Chiffre in einer Programmiersprache Ihrer Wahl (z. B. Java, Scala, Python, C, JavaScript ...), die es Ihnen ermöglicht: 
-   
-- Nachrichten zu ver- und entschlüsseln
-- Blöcke von 128 Bit zu verschlüsseln
-- die Funktion :math:`f` einfach auszutauschen, um die Wirkung von :math:`f` zu testen (je nach Sprache Ihrer Wahl können Sie z. B. native Funktionen höherer Ordnung oder einen Funktionszeiger verwenden)
-- Für die Ableitung der Rundenschlüssel können Sie eine Funktion verwenden, die ein einfaches Verschieben des Schlüssels durchführt
+.. exercise:: Feistelchiffre Implementieren
 
-.. container:: tiny
+    Implementieren Sie eine Feistel Chiffre in einer Programmiersprache Ihrer Wahl (z. B. Java, Scala, Python, C, JavaScript ...), die es Ihnen ermöglicht: 
+    
+    - Nachrichten zu ver- und entschlüsseln
+    - Blöcke von 128 Bit zu verschlüsseln
+    - die Funktion :math:`f` einfach auszutauschen, um die Wirkung von :math:`f` zu testen
+    - Für die Ableitung der Rundenschlüssel können Sie eine Funktion verwenden, die eine Rotation des Schlüssels durchführt (z. B. `Integer.rotateLeft <https://docs.oracle.com/javase%2F7%2Fdocs%2Fapi%2F%2F/java/lang/Integer.html#rotateLeft(int,%20int))>`_).
 
-    **Hinweis**
+    .. solution::
+        :pwd: Feistel in Python
+
+        `Feistel Chiffre in Python <https://github.com/Delors/delors.github.io/blob/main/sec-blockchiffre/resources/feistel.ipynb>`__
+
+.. supplemental::
+
+    **Hinweise**
 
     Kümmern Sie sich nicht um Nachrichten, die größer oder kleiner als die Blockgröße sind. Dies ist nicht notwendig, um die Auswirkungen von :math:`f` oder der Verwendung eines Rundenschlüssels zu verstehen. Kümmern Sie sich nicht um einen Schlüssel, der nicht die richtige Größe hat. D. h. verwenden Sie eine Nachricht und einen Schlüssel mit der entsprechenden Größe.
+
+    Um die Austauschbarkeit der Funktion f zu erreichen können Sie je nach Sprache z. B. native Funktionen höherer Ordnung, einen Funktionszeiger oder ein Interface verwenden.
+
 
 
 
