@@ -330,7 +330,7 @@ Middleware unterstützt zusätzliche Funktionen die die Entwicklung, Wartung und
 - Wiederherstellung (:eng:`Recovery`)
 - Sprachprimitive für transaktionale Abgrenzung 
  
-  (:minor:`Bzw. fortgeschrittene Transaktionsmodelle (z.B. transaktionale RPC) oder transaktionale Dateisysteme`)
+  (:minor:`Bzw. fortgeschrittene Transaktionsmodelle (z. B. transaktionale RPC) oder transaktionale Dateisysteme`)
 
 
 
@@ -681,7 +681,7 @@ Anatomie eine Java RMI Aufrufs
   
   Der Skeleton ist für die Entgegennahme der Nachrichten verantwortlich und leitet die Nachricht an das eigentliche Objekt weiter. Er sorgt für die Transparenz auf Serverseite.
 
-  Referenzen auf *Remote Objects* sind systemweit eindeutig und können frei zwischen Prozessen weitergegeben werden (z.B. als Parameter). Die Implementierung der entfernten Objektreferenzen wird von der Middleware verborgen (*Opaque-Referenzen*).
+  Referenzen auf *Remote Objects* sind systemweit eindeutig und können frei zwischen Prozessen weitergegeben werden (z. B. als Parameter). Die Implementierung der entfernten Objektreferenzen wird von der Middleware verborgen (*Opaque-Referenzen*).
 
 
 
