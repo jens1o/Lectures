@@ -239,7 +239,7 @@ Feistel-Chiffre - Hintergrund
 
 - Hierbei handelt es sich um eine praktische Anwendung eines Vorschlags von Claude Shannon zur Entwicklung einer Chiffre, bei der sich *Konfusions- und Diffusionsfunktionen* abwechseln.
 
-- Dieser Aufbau wird von vielen bedeutenden - im Einsatz befindlichen - symmetrischen Blockchiffren verwendet.
+- Dieser Aufbau wird von vielen bedeutenden (Twofish, Blowfish, Serpent, Mars) - im Einsatz befindlichen - symmetrischen Blockchiffren verwendet.
 
 .. container:: incremental margin-top-2em 
 
@@ -248,6 +248,10 @@ Feistel-Chiffre - Hintergrund
     - Begriffe, die von Claude Shannon eingeführt wurden, um die beiden grundlegenden Bausteine für jedes kryptografische System zu erfassen.
     - Shannons Anliegen war es, die auf statistischer Analyse beruhende Kryptoanalyse zu vereiteln.
 
+
+.. supplemental::
+
+    Blowfish ist zum Beispiel die Basis für das Hashingverfahren ``bcrypt``, welches für Passworthashing verwendet wird. 
 
 
 Diffusion
