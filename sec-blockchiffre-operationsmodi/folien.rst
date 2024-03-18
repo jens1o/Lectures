@@ -60,12 +60,40 @@ Doppelte Verschlüsselung
 *Meet-in-the-Middle*-Angriff
 -----------------------------
 
-- Beobachtung: :math:`E(K_2,E(K_1,P)) = E(K_3,P)` ist nicht gültig. D. h. die zweifache Anwendung  von DES führt zu einer Abbildung, die nicht äquivalent zu einer einfachen DES-Verschlüsselung ist.
+.. stack::
 
-.. class:: incremental
+    .. layer::
 
-- Der Meet-in-the-Middle-Algorithmus greift dieses Verfahren an. Er hängt nicht von einer bestimmten Eigenschaft von DES ab, sondern funktioniert gegen jede Blockchiffre.
-- Das Ergebnis ist, dass ein bekannter Klartextangriff gegen Doppel-DES mit einem Aufwand in der Größenordnung von :math:`2^{56}` erfolgreich ist, verglichen mit :math:`2^{55}` für einen einfachen DES.
+        .. container:: assessment
+
+            Beobachtung: :math:`E(K_2,E(K_1,P)) = E(K_3,P)` ist nicht gültig. D. h. die zweifache Anwendung von DES führt zu einer Abbildung, die nicht äquivalent zu einer einfachen DES-Verschlüsselung ist.
+
+    .. layer:: incremental
+
+        
+
+        Der Meet-in-the-Middle-Algorithmus greift dieses Verfahren an. Er hängt nicht von einer bestimmten Eigenschaft von DES ab, sondern funktioniert gegen jede Blockchiffre.
+        
+        .. class:: incremental
+
+        - Möglicher Known-Plaintext-Angriff: 
+
+          .. class:: incremental
+
+          1. Man berechnet *für alle Schlüssel* :math:`K_1` die Chiffretexte :math:`E(K_1,P)` und speichert diese.
+          2. Man berechnet *für alle Schlüssel* :math:`K_2` die Klartexte :math:`D(K_2,C)` .
+          3. Man vergleicht die beiden Ergebnisse und prüft, ob es Übereinstimmungen gibt.
+              
+          .. container:: incremental
+
+            Dieser Aufwand ist lediglich doppelt so hoch wie der Aufwand bei einer einfachen Verschlüsselung.
+
+    .. layer:: incremental
+
+        .. admonition:: Die zweifache Anwendung einer Blockchiffre ist nicht sinnvoll
+            :class: warning 
+
+            Das Ergebnis ist, dass ein bekannter Klartextangriff gegen Doppel-DES mit einem Aufwand in der Größenordnung von :math:`2^{56}` im Durchschnitt erfolgreich ist, verglichen mit durchschnittlich :math:`2^{55}` für einen einfachen DES.
 
 
 
