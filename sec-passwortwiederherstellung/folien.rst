@@ -874,13 +874,13 @@ Gedankenexperiment
 
 .. exercise:: Kosten und Aufwand für Passwortwiederherstellung 
 
-    Sie wollen einen SHA 256 angreifen und sie haben 100 Nvidia 4090 GPUs. Jede GPU hat eine Hash-Rate von ~22GH/s (mit Hashcat 6.2.6) und benötigt ~500 Watt. Der verwendete Zeichensatz besteht aus 84 verschiedenen Zeichen (z. B. a-z, A-Z, 0-9, <einige Sonderzeichen>).
+    Sie wollen einen *SHA-256* angreifen und sie haben 100 Nvidia 4090 GPUs. Jede GPU hat eine Hash-Rate von ~22GH/s (mit Hashcat 6.2.6) und benötigt ~500 Watt pro Stunde (Wh). Der verwendete Zeichensatz besteht aus 84 verschiedenen Zeichen (z. B. a-z, A-Z, 0-9, <einige Sonderzeichen>).
 
     1. Wie lange dauert es, ein 10-stelliges Passwort zu ermitteln (Worst Case)?
 
-    2. Wie viel Geld wird es Sie kosten, ein 10-stelliges Passwort zu knacken (Worst Case) (1kW ~ 0,25ct)?
+    2. Wie viel Geld wird es Sie kosten, ein 10-stelliges Passwort zu knacken (Worst Case), wenn 1kWh 25ct kostet?
 
-    3. Werden Sie im Laufe Ihres Lebens in der Lage sein, ein Passwort mit 12 Zeichen zu ermitteln?
+    3. Werden Sie im Laufe Ihres Lebens in der Lage sein, ein Passwort mit 12 Zeichen Länge zu ermitteln?
 
     .. solution:: 
         :pwd: Schlangsam
@@ -891,7 +891,11 @@ Gedankenexperiment
 
         Es dauert ca. 3 Monate (~2200 Stunden), um ein Passwort mit 10 Ziffern zu ermitteln!
             
-        Es wird im schlimmsten Fall 27.000€ Stromkosten verursachen.
+        Es wird im schlimmsten Fall: 
+        
+        :math:`2200h \times 0,25Eur \times 100 \times (500/1000) \approx 27000`\ € 
+         
+        Stromkosten verursachen.
 
         Um ein Passwort mit 11 Ziffern zu finden, brauchen Sie 21 Jahre (worst-case).
 
@@ -2129,9 +2133,25 @@ Passwörter angreifen - Zusammenfassung
     Hinweise: Das Passwort ist kurz, besteht nur aus Ziffern und ist sehr häufig.
 
     .. solution::
-       :pwd: 1234
+        :pwd: 1234
 
-       1234
+        .. code:: python
+           
+            import hashlib
+            import binascii
+
+            hash = binascii.unhexlify ('81dc9bdb52d04dc20036dbd8313ed055')
+
+            for i in range(0,10000):
+                # ! This approach would not test numbers starting with
+                #  0s; e.g., 00, 012, or 0001.
+                i_hash = hashlib.md5(str(i).encode("utf8")).digest();
+                if hash == i_hash :
+                    print(i);
+
+        ::
+
+          Ausgabe: 1234
 
 .. exercise:: MD5 Hash eines einfachen Passworts
 
