@@ -893,7 +893,7 @@ Gedankenexperiment
             
         Es wird im schlimmsten Fall: 
         
-        :math:`2200h \times 0,25Eur \times 100 \times (500/1000) \approx 27000`\ € 
+        :math:`2200h \times (500Wh/1000Wh) \times 0,25Eur/h \times 100  \approx 27000Eur` 
          
         Stromkosten verursachen.
 
@@ -910,7 +910,7 @@ Gedankenexperiment
 
 .. exercise:: Verstehen des Suchraums
 
-    Sie haben ganz viele Grafikkarten und einen sehr schnellen Hash. Sie kommen auf eine Hashrate von 1 THash/Sekunde (:math:`1 \times 10^{12}`). Sie haben einen Monat Zeit für das Knacken des Passworts.
+    Sie haben :ger-quote:`ganz viele`` Grafikkarten und einen sehr schnellen Hash. Sie kommen auf eine Hashrate von 1 THash/Sekunde (:math:`1 \times 10^{12}`). Sie haben einen Monat Zeit für das Knacken des Passworts.
     Gehen Sie davon aus, dass Ihr Zeichensatz 100 Zeichen umfasst. 
 
     Berechnen Sie den Anteil des Suchraums, den Sie abgesucht haben, wenn das Passwort 32 Zeichen lang sein sollte. Drücken Sie den Anteil des abgesuchten Raums in Relation zu der Anzahl der Sandkörner der Sahara aus. Gehen Sie davon aus, dass die Sahara ca. 70 Trilliarden (:math:`70 \times 10^{21}`) Sandkörner hat.
@@ -2128,7 +2128,10 @@ Passwörter angreifen - Zusammenfassung
    
 .. exercise:: MD5 Hash eines trivialen Passworts
     
-     ``81dc9bdb52d04dc20036dbd8313ed055``
+    .. code:: text
+        :class: copy-to-clipboard
+
+        81dc9bdb52d04dc20036dbd8313ed055
  
     Hinweise: Das Passwort ist kurz, besteht nur aus Ziffern und ist sehr häufig.
 
@@ -2155,7 +2158,10 @@ Passwörter angreifen - Zusammenfassung
 
 .. exercise:: MD5 Hash eines einfachen Passworts
 
-    ``7c6a180b36896a0a8c02787eeafb0e4c``
+    .. code:: text
+        :class: copy-to-clipboard
+
+        7c6a180b36896a0a8c02787eeafb0e4c
         
     Hinweise: Das Passwort besteht aus Buchstaben gefolgt von Ziffern und ist sehr häufig.
     
@@ -2164,7 +2170,7 @@ Passwörter angreifen - Zusammenfassung
     .. solution:: 
         :pwd: password1
 
-        password1
+        Das Passwort ist: ``password1``
 
 
 
