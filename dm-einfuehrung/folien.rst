@@ -659,7 +659,7 @@ Archiv System müssen die folgenden Eigenschaften bei langjähriger Aufbewahrung
 
 :Lesbarkeit: Informationen müssen auch in Zukunft lesbar sein.
 
-.. container:: assessment
+.. container:: assessment incremental
 
     Eigenschaften wie die Unterstützung von Volltextindizierung sind nicht in allen Fällen notwendig. 
 
