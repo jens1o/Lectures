@@ -104,11 +104,14 @@ Für die Präsentationen stehen die folgenden Themen stehen zur Auswahl:
     11. Hadoop Yarn/MapReduce
     12. Apache Mahout
     13. `Apache Camel <https://camel.apache.org>`__
-    14. `Zeebe <https://github.com/camunda/zeebe>`__
-    15. `NATS <https://docs.nats.io>`__
-    16. Spring Framework 
-    17. `Eclipse Glassfish und Jakarta EE <https://glassfish.org>`__
-    18. `Tokio <https://tokio.rs>`__
+    14. `NATS <https://docs.nats.io>`__
+    15. Spring Framework 
+    16. `Eclipse Glassfish und Jakarta EE <https://glassfish.org>`__
+    17. `Tokio <https://tokio.rs>`__
+
+.. Nicht mehr vergeben:
+   `Zeebe <https://github.com/camunda/zeebe>`__
+
 
 
 .. container:: supplemental

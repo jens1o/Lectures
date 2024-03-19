@@ -144,6 +144,7 @@ Verschlüsselung mit privatem Schlüssel
     :height: 900px
 
 
+.. class:: smaller-slide-title
 
 Konventionelle und Public-Key-Verschlüsselung
 ----------------------------------------------
@@ -176,17 +177,17 @@ Konventionelle und Public-Key-Verschlüsselung
 
         *Benötigt zur Anwendung*:
 
-        1.	Ein Algorithmus wird für die Verschlüsselung und ein verwandter Algorithmus für die Entschlüsselung. Dafür wird ein Paar von Schlüsseln verwendet, einer für die Verschlüsselung und einer für die Entschlüsselung.
+        1.	Zwei Algorithmen: je einer für die Ver-/Entschlüsselung. Weiterhin ein Paar von Schlüsseln; je einer für die Ver-/Entschlüsselung.
 
         2.	Der Absender und der Empfänger müssen jeweils einen der passenden Schlüssel besitzen (nicht den gleichen).
 
         *Notwendig für die Sicherheit*:
 
-        1.	Einer der beiden Schlüssel muss geheim gehalten werden.
+        1.	Einer der  Schlüssel muss geheim bleiben.
 
-        2.	Es muss unmöglich oder zumindest unpraktisch sein, eine Nachricht zu entschlüsseln, wenn einer der Schlüssel geheim gehalten wird.
+        2.	Es muss unmöglich sein, eine Nachricht zu entschlüsseln, wenn ein Schlüssel geheim gehalten wird.
         
-        3.	Die Kenntnis des Algorithmus und eines der Schlüssel sowie von (ggf. vielen) Geheimtexten ist nicht ausreichend, um den anderen Schlüssel zu ermitteln.
+        3.	Die Kenntnis des Algorithmus und eines Schlüssels sowie von  Geheimtexten ist nicht ausreichend, um den anderen Schlüssel zu ermitteln.
 
 
 
