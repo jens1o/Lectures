@@ -47,7 +47,7 @@ Gruppen, Ringe und Körper
     :Körper: :eng:`Fields`
     :neutrales Element: :eng:`Identity element`
 
-    Übersetzungen von mathematischen Fachbegriffen in Deutsche:
+    Übersetzungen mathematischer Fachbegriffe ins Deutsche:
     https://www.henked.de/woerterbuch.htm
 
 
@@ -156,13 +156,18 @@ Ein kommutativer Ring, der den folgenden Axiomen gehorcht:
 Körper
 --------------------
 
-- Ein Feld :math:`F`, manchmal auch bezeichnet als :math:`\lbrace F, +, \times \rbrace`, ist eine Menge von Elementen mit zwei binären Operationen, genannt Addition und Multiplikation, so dass für alle :math:`a, b, c \in F` die Axiome (A1-M6) gelten. 
+- Ein Körper :math:`F`, manchmal auch bezeichnet als :math:`\lbrace F, +, \times \rbrace`, ist eine Menge von Elementen mit zwei binären Operationen, genannt Addition und Multiplikation, so dass für alle :math:`a, b, c \in F` die Axiome (A1-M6) gelten. 
 - :math:`F` ist ein Integritätsbereich, d. h. :math:`F` erfüllt die Axiome A1 bis A5 und M1 bis M6 
   
 .. class:: incremental 
     
     :(M7) Existenz der multiplikativen Inversen:
         Für jedes :math:`a` in :math:`F`, außer :math:`0`, gibt es ein Element :math:`a^{-1} \in F`, so dass :math:`aa^{-1} = (a^{-1})a = 1`
+
+
+.. supplemental::
+
+    Körper ≘ :eng:`Field`
 
 
 
@@ -754,11 +759,56 @@ Multiplikation in :math:`GF(2^n)`
 
 .. container:: supplemental
 
-    Das von **AES** verwendete Polynomial ist:
+    Das von **AES** verwendete Polynom ist:
 
     .. math::
 
         m(x) = x^8 + x^4 + x^3 + x +1 
+
+    Bzgl. der  Beobachtung: Wenn wir zum Beispiel das Polynom :math:`x^7` multiplizieren mit :math:`x` gilt:
+
+    .. math::
+
+        (x^7 \times x = x^8)\; mod\; m(x) = x^4 + x^3 + x + 1   
+        
+    da 
+
+    .. math::
+
+        x^8 / x^8 + x^4 + x^3 + x + 1 = 1\; Rest\; x^4 + x^3 + x + 1.
+
+    1. Beispiel:
+
+    .. math::
+    
+        (x^7 + x^6 + 1) \times x = (x^8 + x^7 + x)\; mod\; m(x)
+
+    Hilfsrechnung:
+
+    .. math::
+        \begin{matrix}
+        x^8 + & x^7 + & & &  & & & x & & / x^8 + x^4 + x^3 + x + 1 = 1\; Rest\; x^7 +x^4 + x^3 +1 \\
+        - (x^8 + & & & & x^4 + & x^3 +& & x + & 1 ) \\
+          & x^7 + & & & x^4 + &x ^3 + & & & 1 & 
+        \end{matrix}
+
+    2. Beispiel:
+   
+    .. math::
+    
+        x^7 \times x^2 = (x^9)\; mod\; m(x)
+
+    Hilfsrechnung:
+
+    .. math::
+        \begin{matrix}
+        x^9 + & & & & & & & & & / x^8 + x^4 + x^3 + x + 1 = x\; Rest\; x^5 + x^4 + x^2 + x \\
+        -( x^9 + & & & & x^5 + & x^4 + & & x^2 + & x )
+        \end{matrix}
+
+    .. container:: minor
+
+        Die Multiplikation mit :math:`x^2` kann durch die zweifache Multiplikation mit :math:`x` unter Anwendung der obigen Gleichung erreicht werden kann. D.h. :math:`x^7 \times x^2 = (x^7 \times x) \times x` 
 
 
 
