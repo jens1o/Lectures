@@ -37,11 +37,17 @@ Ein weitgefasster Überblick über verteilte Systeme.
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
     :Version: |date|
+
+.. supplemental::
+
     :Folien: 
-        https://delors.github.io/ds-einfuehrung/folien.rst.html :raw-html:`<br>`
+        
+        https://delors.github.io/ds-einfuehrung/folien.rst.html 
+
         https://delors.github.io/ds-einfuehrung/folien.rst.html.pdf
+
     :Fehler auf Folien melden:
-        https://github.com/Delors/delors.github.io bzw. https://github.com/Delors/delors.github.io/issues
+        https://github.com/Delors/delors.github.io/issues
 
 
 
@@ -72,10 +78,27 @@ Verteilte Systeme - W3WI_110.2
 :Prüfungsleistung: 
 
     - Portfolio (mit insgesamt 120 Punkten für das Modul W3WI_110)
-    - 48 Punkte in verteilte Systeme (22/55)*120 = 0.4*120 = 48
-  
-      -  12 Punkte Präsentationen in Teams 
-      -  36 Punkte Programmieraufgabe in Teams
+
+    .. stack:: 
+
+        .. layer:: minor
+
+            - mathematisch:
+
+              48 Punkte in verteilte Systeme (22/55)*120 = 0.4*120 = 48
+          
+              -  12 Punkte Präsentationen in Teams 
+              -  36 Punkte Programmieraufgabe in Teams
+
+        .. layer:: incremental
+
+            - vermutlich:
+
+              50 Punkte in verteilte Systeme 
+          
+              -  14 Punkte Präsentationen in Teams 
+              -  36 Punkte Programmieraufgabe in Teams
+
 
 
 
