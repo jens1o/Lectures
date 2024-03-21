@@ -398,7 +398,7 @@ Austausch von Daten
 
 
 
-UPD Sockets
+UDP Sockets
 --------------------------------------
 
 .. container:: two-columns
