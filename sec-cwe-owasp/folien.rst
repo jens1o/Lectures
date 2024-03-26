@@ -1644,7 +1644,20 @@ Dump C /  C++
 
 .. image:: screenshots/dump_c_c++_2024_02_27.png
     :alt: Dump C /  C++
-    :height: 1175px
+    :height: 1150px
+    :align: center
+    :class: picture
+
+
+.. class:: no-title
+
+C++ is missjudged by the White House
+---------------------------------------
+
+.. image:: screenshots/c++_creator_rebuts_white_house_warning-infoworld_2024_03_26.png
+    :alt: C++ is missjudged
+    :height: 1150px
+    :align: center
 
 
 .. class:: new-section
