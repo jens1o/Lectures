@@ -244,8 +244,9 @@ Anwendungen für Public-Key-Kryptosysteme
 ------------------------------------------
 
 .. csv-table::
-    :header: Algorithmus, Ver-/Entschlüsselung, Digitale Signaturen, Schlüsselaustausch
+    :header: Algorithmus, Ver-/ Entschlüsselung, Digitale Signaturen, Schlüssel-austausch
     :class: incremental wobble
+    :widths: 13, 10, 10, 10
 
     RSA,:shiny-green:`✓`,:shiny-green:`✓`,:shiny-green:`✓`
     Elliptic Curve,:shiny-green:`✓`,:shiny-green:`✓`,:shiny-green:`✓`

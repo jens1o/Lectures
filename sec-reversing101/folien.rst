@@ -33,6 +33,18 @@ Reverse Engineering 101
 :Version: |date|
 
 
+.. supplemental::
+
+   :Folien: 
+        
+          https://delors.github.io/sec-reversing101/folien.rst.html 
+          
+          https://delors.github.io/sec-reversing101/folien.rst.html.pdf
+   :Fehler auf Folien melden:
+  
+          https://github.com/Delors/delors.github.io/issues
+
+
 
 Vorerfahrungen?
 -------------------

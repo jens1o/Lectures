@@ -36,6 +36,19 @@ CWE/OWASP
 :Kontakt: michael.eichberg@dhbw-mannheim.de
 :Version: |date|
 
+.. supplemental::
+
+   :Folien: 
+        
+          https://delors.github.io/sec-cwe-owasp/folien.rst.html 
+
+          https://delors.github.io/sec-cwe-owasp/folien.rst.html.pdf
+   :Fehler auf Folien melden:
+  
+          https://github.com/Delors/delors.github.io/issues
+
+
+
 
 .. class:: new-section transition-fade
 

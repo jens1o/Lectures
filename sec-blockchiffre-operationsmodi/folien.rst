@@ -32,7 +32,8 @@ Betriebsmodi bei Blockchiffren
 
    :Folien: 
         
-          https://delors.github.io/sec-blockchiffre-operationsmodi/folien.rst.html :raw-html:`<br>`
+          https://delors.github.io/sec-blockchiffre-operationsmodi/folien.rst.html 
+          
           https://delors.github.io/sec-blockchiffre-operationsmodi/folien.rst.html.pdf
    :Fehler auf Folien melden:
   
@@ -184,6 +185,13 @@ Betriebsmodi - Übersicht
 
 
 
+.. class:: new-subsection transition-fade
+
+Grundlegende Blockchiffren
+--------------------------------
+
+
+
 Electronic Codebook
 --------------------
 
@@ -241,6 +249,13 @@ Cipher Block Chaining
     .. container:: small
         
         Autor: https://commons.wikimedia.org/wiki/User:WhiteTimberwolf
+
+
+
+.. class:: new-subsection transition-fade
+
+Blockchiffren, die als Stromchiffren verwendet werden können.
+---------------------------------------------------------------
 
 
 
@@ -341,9 +356,9 @@ Bei AES, DES oder jeder anderen Blockchiffre erfolgt die Verschlüsselung immer 
 :Hardware-Effizienz: kann von der Parallelisierung der Hardware profitieren
 :Software-Effizienz: leicht parallelisierbar in Software
 :Vorverarbeitung: die Verschlüsselung der Zähler
-:Zufälliger Zugriff: Der i-te Block des Klartextes/des Chiffretextes kann im Zufallszugriff verarbeitet werden
-:Nachweisbare Sicherheit: genauso sicher wie die anderen Verfahren.
-:Einfachheit: Es wird nur der Verschlüsselungsalgorithmus benötigt.
+:Zufälliger Zugriff: der i-te Block des Klartextes/des Chiffretextes kann im Zufallszugriff verarbeitet werden
+:Nachweisbare Sicherheit: genauso sicher wie die anderen Verfahren
+:Einfachheit: es wird nur der Verschlüsselungsalgorithmus benötigt
 
 
 
@@ -355,6 +370,12 @@ Rückkopplungseigenschaften\ [#]_  der Betriebsmodi
     :align: center 
 
 .. [#] (:eng:`Feedback Characteristics`)
+
+
+.. class:: new-subsection transition-fade
+
+Spezielle Betriebsmodi
+--------------------------------
 
 
 XTS-AES Modus für blockorientierte Speichergeräte
@@ -378,8 +399,8 @@ Modus ist auch ein IEEE-Standard, IEEE Std 1619-2007
 
 
 
-Tweakable Blockchiffren
-------------------------
+*Tweakable* Blockchiffren - Bestandteile
+-----------------------------------------------
 
 - Der XTS-AES-Modus basiert auf dem Konzept einer veränderbaren (:eng:`tweakable`) Blockchiffre.
 - Allgemeine Struktur:
@@ -393,8 +414,9 @@ Tweakable Blockchiffren
 - Der *Tweak* muss nicht geheim gehalten werden; der Zweck ist, Variabilität zu bieten.
 
 
-Tweakable Blockchiffren
-------------------------
+
+*Tweakable* Blockchiffren - grundlegende Struktur
+-----------------------------------------------------
 
 .. image:: drawings/operationsmodi/tweakable_block_cipher.svg
     :width: 1750px
@@ -431,14 +453,15 @@ XTS-AES Operation auf einem Block
     
     .. container:: column no-separator
 
-      - Key: Der Schlüssel wobei gilt: :math:`Key = Key_1\, ||\, Key_2` 
-      - :math:`P_j`: Der j-te Block des Klartexts. Alle Blöcke haben eine Länge von 128 bits. Eine Klartextdateneinheit - in der Regel ein Festplattensektor - besteht aus einer Folge von Klartextblöcken.
+      - Schlüssel: es gilt: :math:`Schlüssel = Schlüssel_1\, ||\, Schlüssel_2` 
+      - :math:`P_j`: Der j-te Block des Klartexts. Alle Blöcke haben eine Länge von 128 bits. Eine Klartextdateneinheit – in der Regel ein Festplattensektor – besteht aus einer Folge von Klartextblöcken.
       - :math:`C_j`: Der j-te Block des Chiffretextes.
       - :math:`j`: Die fortlaufende Nummer des 128-Bit-Blocks innerhalb der Dateneinheit.
-      - :math:`i`: Der Wert des 128-Bit-Tweaks.
+    
     
     .. container:: column
 
+      - :math:`i`: Der Wert des 128-Bit-Tweaks.
       - :math:`\alpha`: Ein primitives Element des :math:`GF(2^{128})` welches dem Polynom :math:`x` (d. h. 0000...0010) entspricht.
       - :math:`\alpha^j`: :math:`\alpha` :math:`j` mal mit sich selbst multipliziert im Körper :math:`GF(2^{128})`  
       - :math:`\oplus` Bitwise XOR
@@ -446,7 +469,8 @@ XTS-AES Operation auf einem Block
 
 
 
-.. class:: integrated-exercise
+
+.. class:: integrated-exercise transition-scale
 
 Übung
 ---------------------

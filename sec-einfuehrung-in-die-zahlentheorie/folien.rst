@@ -28,6 +28,17 @@ Einführung in die Zahlentheorie
 :Version: |date|
 :Quelle: Im Wesentlichen *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 
+.. supplemental::
+
+   :Folien: 
+        
+          https://delors.github.io/sec-einfuehrung-in-die-zahlentheorie/folien.rst.html 
+          
+          https://delors.github.io/sec-einfuehrung-in-die-zahlentheorie/folien.rst.html.pdf
+   :Fehler auf Folien melden:
+  
+          https://github.com/Delors/delors.github.io/issues
+
 
 
 .. class:: new-section transition-scale

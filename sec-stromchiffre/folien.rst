@@ -56,8 +56,8 @@ Zufallszahlen
 
    - Zufälligkeit
    - Unvorhersehbarkeit
-    
-  
+
+
 
 Zufälligkeit
 --------------
@@ -101,6 +101,7 @@ Visualisierung von Zufallszahlengeneratoren\ [#]_
 .. supplemental::
 
     Bei diesem Experiment werden immer drei nacheinander auftretende Werte als Koordinate im 3D-Raum interpretiert. Die erwartete Verteilung ist eine gleichmäßige Verteilung im Raum. Die Verteilung der Werte eines schlechten RNGs ist nicht gleichmäßig und zeigt eine klare Struktur.
+
 
 
 Unvorhersehbarkeit

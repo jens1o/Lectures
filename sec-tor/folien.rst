@@ -39,7 +39,6 @@ TOR - The Onion Router
 
           https://delors.github.io/sec-tor/folien.rst.html.pdf
   :Fehler auf Folien melden:
-
           https://github.com/Delors/delors.github.io/issues
 
 
@@ -125,7 +124,7 @@ Tor bietet Schutz for folgenden Angreifern: Einem Angreifer dem es gelingt ...
    
    Gegen solche Angreifer bietet Tor keine Anonymität.
 
-
+.. class:: vertical-title tiny
 
 Tor - Aufbau
 ----------------
@@ -137,28 +136,28 @@ Tor - Aufbau
         .. image:: images/tor/base-network.svg
             :alt: Tor - Network
             :align: center
-            :height: 960px
+            :height: 1120px
 
     .. container:: layer incremental overlay
 
         .. image:: images/tor/directory-authority.svg
             :alt: Tor - Directory Authority
             :align: center
-            :height: 960px
+            :height: 1120px
 
     .. container:: layer incremental overlay
 
         .. image:: images/tor/bridge-nodes.svg
             :alt: TOR - Bridges and Bridge Nodes
             :align: center
-            :height: 960px
+            :height: 1120px
 
     .. container:: layer incremental overlay
 
         .. image:: images/tor/msg.svg
             :alt: TOR - Onion Routing
             :align: center
-            :height: 960px
+            :height: 1120px
 
 
 .. container:: supplemental

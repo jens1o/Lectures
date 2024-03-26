@@ -25,11 +25,25 @@ Kryptografische Hash Funktionen
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
 :Kontakt: michael.eichberg@dhbw-mannheim.de
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
+:Version: |date|
+
+.. supplemental::
+
+   :Folien: 
+        
+          https://delors.github.io/sec-hashfunktionen/folien.rst.html 
+          
+          https://delors.github.io/sec-hashfunktionen/folien.rst.html.pdf
+   :Fehler auf Folien melden:
+  
+          https://github.com/Delors/delors.github.io/issues
 
 
-.. container:: footer-left tiny minor
 
-    Version: |date|
+.. class:: new-section
+
+Hashfunktionen - Grundlagen
+------------------------------------------------
 
 
 Hashfunktionen
@@ -119,12 +133,91 @@ Beziehung zwischen den Sicherheitsanforderungen an Hashfunktionen
 
 
 
+Nachrichtenauthentifizierung - vereinfacht
+-------------------------------------------------------
+
+.. class:: far-smaller
+
+Nachrichten können auf verschiedene Weisen authentifiziert werden, so dass *Man-in-the-Middle-Angriffe* (MitM)\ [#]_ verhindert werden können.
+
+.. stack::
+
+    .. layer::
+
+        .. image:: drawings/digests/all_encrypted.svg
+            :align: center
+            :width: 1326
+
+    .. layer:: incremental
+
+        .. image:: drawings/digests/hash_encrypted.svg
+            :align: center
+            :width: 1560
+
+    .. layer:: incremental
+
+        .. image:: drawings/digests/secret_appended.svg
+            :align: center
+            :width: 1560
+
+    .. layer:: incremental
+
+        .. image:: drawings/digests/secret_encrypted.svg
+            :align: center
+            :width: 1774
+
+
+.. [#] *man* ist hier geschlechtsneutral zu verstehen. 
+
+.. supplemental::
+    
+    Im ersten Szenario wird der Hash an die Nachricht angehängt und als ganzes verschlüsselt. Wir erhalten Vertraulichkeit und Authentizität.
+
+    Im zweiten Szenario wird der Hash der Nachricht berechnet und dann verschlüsselt. Der Empfänger kann den Hash berechnen und mit dem entschlüsselten Hash vergleichen. Wir erhalten Authentizität, aber keine Vertraulichkeit.
+
+    Im dritten Szenario wird an die Nachricht ein geteiltes Secret angehängt und  alles zusammen gehasht. Die Nachricht wird dann mit dem Ergebnis der vorhergehenden Operation zusammen verschickt.
+
+    Im letzten Szenario werden alle Ansätze 
+
+    .. admonition:: Hinweis
+
+        Bei *Man-in-the-Middle-Angriffen* handelt es sich um einen Fachbegriff und häufig wird zum Beispiel Eve oder Mallory verwendet, um die Person zu bezeichnen, die den Angriff durchführt. Gelegentlich wird auch *Adversary-in-the-Middle* oder *Person-in-the-Middle* verwendet. 
+
+    .. admonition:: Message-Digests
+        
+        Im allgemeinen Sprachgebrauch wird auch von :eng:`Message Digests` gesprochen.
+
+
+Digitale Signaturen - vereinfacht
+-------------------------------------------------------
+
+.. class:: far-smaller
+
+Digitale Signaturen dienen dem Nachweis der Authentizität einer Nachricht und der Integrität der Nachricht.  Jeder, der einen öffentlichen Schlüssel hat, kann die Signatur überprüfen, aber nur der Besitzer des privaten Schlüssels kann die Signatur erstellen.
+
+.. stack::
+
+    .. layer::
+
+        .. image:: drawings/signatures/just_authentication.svg
+            :align: center
+            :width: 1582
+
+    .. layer:: incremental
+
+        .. image:: drawings/signatures/authentication_and_encryption.svg
+            :align: center
+            :width: 1775
+
+
+
 Anforderungen an die Resistenz von Hashfunktionen
 ---------------------------------------------------
 
 .. csv-table::
     :header: "", Preimage Resistant, Second Preimage Resistant, Collision Resistant
     :class: smaller highlight-line-on-hover incremental
+    :widths: 28, 10, 10, 10
     
     Hash + Digitale Signaturen, ✓, ✓, ✓
     Einbruchserkennung und Viruserkennung, , ✓ , 
@@ -132,9 +225,13 @@ Anforderungen an die Resistenz von Hashfunktionen
     Passwortspeicherung, ✓, , 
     MAC, ✓, ✓, ✓
 
-.. container:: supplemental
+.. supplemental:: 
+
+    .. rubric:: Einbruchserkennung und Viruserkennung - Hintergrund
+
+    Bei der Einbruchserkennung und Viruserkennung ist *second preimage* Resistenz erforderlich. Andernfalls könnte ein Angreifer seine Malware so schreiben, ass diese einen Hash wie eine vorhandene gutartige Software hat und so verhindern, dass die Malware auf eine schwarze Liste gesetzt werde kann, ohne den Kollateralschaden, dass auch die gutartige Software fälschlicherweise als Malware erkannt wird.
     
-    **Hintergrund**
+    .. rubric:: Aufwand eines Kollisionsangriffs
 
     Ein Kollisionsangriff erfordert weniger Aufwand als ein *preimage* oder ein *second preimage* Angriff.
 
@@ -146,6 +243,8 @@ Anforderungen an die Resistenz von Hashfunktionen
         Es ist relativ einfach, ähnliche Meldungen zu erstellen. Wenn ein Text 8 Stellen hat, an denen ein Wort mit einem anderen ausgetauscht werden kann, dann hat man bereits :math:`2^{8}` verschiedene Texte.
 
         Es ist relativ trivial(1), vergleichbare(2) Nachrichten(3) zu schreiben(4). Wenn ein Text 8 Stellen hat, an denen ein Ausdruck(5) mit einem vergleichbaren (6) ausgetauscht werden kann, dann erhält(7) man bereits :math:`2^{8}` verschiedene Dokumente(8).
+
+
 
 
 
@@ -190,6 +289,88 @@ Struktur eines sicheren Hash-Codes
     :math:`L` = Anzahl der Eingabeblöcke
     
     :math:`b` = Länge des Eingabeblocks
+
+
+
+.. class:: integrated-exercise
+
+Übung
+-------
+
+.. exercise:: XOR als Hashfunktion
+
+    
+    Warum ist eine einfache :ger-quote:`Hash-Funktion`, die einen 256-Bit-Hash-Wert berechnet, indem sie ein XOR über alle Blöcke einer Nachricht durchführt, im Allgemeinen ungeeignet?
+
+    .. solution:: 
+        :pwd: alles nichts
+
+        Je nach Beschaffenheit der zugrunde liegenden Daten können wir die ursprüngliche Nachricht ggf. wiederherstellen bzw. liegt direkt vor. Stellen Sie sich z. B. vor, dass nur der erste Block sinnvolle Daten enthält und alle anderen Blöcke einfach "0" sind; außerdem können wir nicht alle Bits verwenden.
+
+
+.. class:: integrated-exercise
+
+Übung
+---------
+
+.. exercise:: Bewertung der Sicherheit
+
+    .. class:: list-with-explanations
+ 
+    - Eine Nachricht :math:`M` bestehe aus :math:`N` 64-bit Blöcken: :math:`X_1, \ldots, X_n`.
+    - Der Hashcode H(M) ist ein simpler XOR über alle Blöcke: :math:`H(M) = h = X_1 \oplus X_2 \oplus \ldots \oplus X_n`.
+    - :math:`h` wird als der :math:`X_{N+1}` Block an die Nachricht angehängt und danach wird unter Verwendung des CBC Modus die Nachricht inkl. des Hashcodes verschlüsselt (:math:`C = Y_1, \ldots, Y_{N+1}`).
+    - Gegen welche Art von Manipulation ist diese Konstruktion *nicht* sicher?
+     
+      Studieren Sie ggf. noch einmal den CBC Modus. 
+
+    .. solution::
+        :pwd: umsortiert
+
+        Die Konstruktion ist nicht sicher gegenüber Vertauschungen der Blöcke!
+
+        Da :math:`X_1 = IV \oplus D(K,Y_1)`, ... ,\ :math:`X_{N+1} = Y_N \oplus D(K,Y_{N+1})` ist und :math:`X_{N+1} = X_1 \oplus X_2 \oplus \ldots \oplus X_n`. Gilt:
+
+        .. math::
+
+            X_1 \oplus X_2 \oplus \ldots \oplus X_n = [IV \oplus D(K,Y_{1})] \oplus \ldots \oplus [ Y_{N-1} \oplus D(K,Y_{N})]
+
+        Somit kann ein Angreifer die Blöcke vertauschen (:math:`\oplus` ist kommutativ), ohne dass dies erkannt werden könnte.
+
+
+
+
+
+
+.. class:: integrated-exercise
+
+Übung
+-------
+
+.. exercise:: Irrelevanz von Second-Preimage-Resistenz und Kollisionssicherheit
+
+    Warum sind *Second-Preimage-Resistenz* und Kollisionssicherheit von nachgeordneter Relevanz, wenn der Hash-Algorithmus zum Hashing von Passwörtern verwendet wird?
+
+    .. solution::
+        :pwd: kein Startpunkt
+
+        Wir haben keinen Block der Nachricht, mit dem wir arbeiten können, und wir haben keinen Vorteil davon, zwei beliebige aber verschiedene Nachrichten zu finden, die denselben Hash haben. Bei der Passwortwiederherstellung liegt uns immer ein Hashwert vor, und wir versuchen, *eine* Nachricht zu finden, die diesen Hashwert erzeugt hat.
+
+
+
+.. class:: new-section transition-move-left
+
+*Message Authentication Codes* (MACs)
+----------------------------------------------
+
+.. supplemental::
+
+    .. admonition:: Hinweis
+    
+        *Message Authentication Codes* könnte ins Deutsche mit 
+        Nachrichtenauthentifizierungscodes übersetzt werden, dies ist aber nicht üblich.
+
+        Im allgemeinen Sprachgebrauch wird von *MAC*\ s gesprochen.
 
 
 
@@ -299,28 +480,11 @@ HMAC Berechnung in Python
               \x16\x87\x87\x0e\xad\xa1\xe1:9\xca'
 
 
-.. class:: integrated-exercise
 
-Übung
--------
 
-.. exercise:: XOR als Hashfunktion
 
-    
-    Warum ist eine einfache Hash-Funktion, die einen 256-Bit-Hash-Wert berechnet, indem sie ein XOR über alle Blöcke einer Nachricht durchführt, im Allgemeinen ungeeignet?
+GCM - Glaois Counter Mode
+----------------------------
 
-    .. solution:: 
-        :pwd: alles nichts
-
-        Je nach Beschaffenheit der zugrunde liegenden Daten können wir die ursprüngliche Nachricht ggf. wiederherstellen. Stellen Sie sich z. B. vor, dass nur der erste Block sinnvolle Daten enthält und alle anderen Blöcke einfach "0" sind; außerdem können wir nicht alle Bits verwenden.
-
-.. exercise:: Irrelevanz von Second-Preimage-Resistenz und Kollisionssicherheit
-
-    Warum sind *Second-Preimage-Resistenz* und Kollisionssicherheit von nachgeordneter Relevanz, wenn der Hash-Algorithmus zum Hashing von Passwörtern verwendet wird?
-
-    .. solution::
-        :pwd: kein Startpunkt
-
-        Wir haben keinen Block der Nachricht, mit dem wir arbeiten können, und wir haben keinen Vorteil davon, zwei verschiedene Nachrichten zu finden, die denselben Hash haben.
-
+TODO
 
