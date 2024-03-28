@@ -18,12 +18,26 @@
 .. role:: raw-html(raw)
    :format: html
 
+
+
 Endliche Körper
 ===============================================
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
-:Version: |date|
+:Kontakt: michael.eichberg@dhbw-mannheim.de
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
+:Version: |date|
+
+.. supplemental::
+
+   :Folien: 
+        
+          https://delors.github.io/sec-endliche-koerper/folien.rst.html 
+          
+          https://delors.github.io/sec-endliche-koerper/folien.rst.html.pdf
+   :Fehler auf Folien melden:
+  
+          https://github.com/Delors/delors.github.io/issues
 
 
 
@@ -98,9 +112,25 @@ Zyklische Gruppen
 - Das Element :math:`a` erzeugt somit die Gruppe :math:`G`. :math:`a` ist somit der Generator von :math:`G`.
 - Eine zyklische Gruppe ist immer abelsch und kann endlich oder unendlich sein.
 
-.. container:: supplemental
+.. container supplemental
 
-    Eine zyklische Gruppe ist z. B. :math:`{1,2,4,8,16,...}` mit :math:`a = 2` und :math:`e = 1` (:math:`k` muss nicht Teil der zyklischen Gruppe sein.)
+    Ein Beispiel ist die Gruppe bestehend aus den natürlichen Zahlen :math:`{0,1,2,3,4,5,6}` mit der Addition modulo 7 als Verknüpfung.
+
+    .. math
+
+        3\; mod\; 7 = 3
+
+        3+3\; mod\; 7 = 6
+
+        3+3+3\; mod\; 7 = 2
+        
+        3+3+3+3\; mod\; 7 = 5
+        
+        3+3+3+3+3\; mod\; 7 = 1
+        
+        3+3+3+3+3+3\; mod\; 7 = 4
+
+        3+3+3+3+3+3+3\; mod\; 7 = 0
 
 
 
