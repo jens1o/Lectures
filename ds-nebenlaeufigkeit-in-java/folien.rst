@@ -70,10 +70,29 @@ Ein gutes Verständnis von nebenläufiger Programmierung ist für die Entwicklun
 Prozesse vs. Threads
 --------------------------------------------------------------------------------
 
-.. image:: images/threads/threads.svg
-   :alt: Prozesse vs. Threads
-   :width: 100%
-   :align: center
+.. stack::
+
+  .. layer:: 
+
+    .. image:: images/threads/native_threads.svg
+      :alt: Prozesse vs. Threads
+      :width: 100%
+      :align: center
+
+  .. layer:: incremental overlay
+    
+    .. image:: images/threads/fibres.svg
+      :alt: Prozesse vs. Threads
+      :width: 100%
+      :align: center
+
+  .. layer:: incremental overlay
+    
+    .. image:: images/threads/virtual_threads.svg
+      :alt: Prozesse vs. Threads
+      :width: 100%
+      :align: center
+
 
 .. supplemental::
 
@@ -132,7 +151,7 @@ Nebenfäufigkeit in Java
 
 .. image:: images/threads/java-threads.svg
    :alt: java.lang.Thread
-   :height: 900px
+   :height: 975px
    :align: center
 
 
@@ -565,7 +584,7 @@ Thread Prioritäten
 
 
 Best Practices
---------------------------------------------------------------------------------
+-----------------------------------------------------------
 
 .. class:: impressive incremental
 
