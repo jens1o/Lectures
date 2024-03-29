@@ -33,15 +33,19 @@
 
 
 
-Nebenläufigkeit (:eng:`Concurrency`) :raw-html:`<br>` (in Java)
+Nebenläufigkeit in Java
 ===============================================================================
+
+.. rubric:: :eng:`Concurrency` in Java
+
 
 .. container:: line-above 
 
   :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
   :Kontakt: michael.eichberg@dhbw-mannheim.de
- 
-.. container::  
+  :Version: |date| 
+
+.. supplemental::
 
   :`Folien`:smaller:: 
     .. container:: smaller
@@ -53,9 +57,9 @@ Nebenläufigkeit (:eng:`Concurrency`) :raw-html:`<br>` (in Java)
 
       https://github.com/Delors/delors.github.io/issues
 
-.. container:: footer-left tiny minor
+
    
-   Version: |date|
+
 
 
 
@@ -100,6 +104,8 @@ Prozesse vs. Threads
   - Alle Threads eines Prozesses teilen sich denselben Adressraum. *Native Threads* sind vom Betriebssystem unterstützte Threads, die direkt vom Betriebssystem verwaltet werden. Standard Java Threads sind *Native Threads*. 
 
   - *Fibres* (auch *Coroutines*) nutzen immer kooperatives Multitasking. D. h. ein Fibre gibt die Kontrolle an eine andere Fibre explizit ab. (Früher auch als *Green Threads* bezeichnet.) Diese sind für das Betriebssystem unsichtbar.
+
+  - Ab Java 21 unterstützt Java nicht nur klassische (native) Threads sondern zusätzlich auf Virtual Threads. Letztere erlauben insbesondere eine sehr natürliche Programmierung von Middleware, die sich um die Parallelisierung/Nebenläufigkeit kümmert.
 
 
 
@@ -709,44 +715,44 @@ Thread Safety Level
           );
         return thread;
 
-  .. supplemental:: tiny
+.. supplemental:: 
 
-    .. code:: Java
-      :class: far-smaller copy-to-clipboard
+  .. code:: Java
+    :class: far-smaller copy-to-clipboard
 
-      import java.util.ArrayList;
-      import java.util.List;
-      import java.util.Random;
+    import java.util.ArrayList;
+    import java.util.List;
+    import java.util.Random;
 
-      public class VirtualBuffer {
+    public class VirtualBuffer {
 
-          private final Random random = new Random();
+      private final Random random = new Random();
 
-          private Thread runDelayed(int id, Runnable task) {
-            // TODO
-          }
-
-          public static void main(String[] args) throws Exception {
-              var start = System.nanoTime();
-              VirtualBuffer buffer = new VirtualBuffer();
-              List<Thread> threads = new ArrayList<>();
-              for (int i = 0; i < 100000; i++) {
-                  final var no = i;
-                  var thread = buffer.runDelayed(
-                      i, 
-                      () -> System.out.println("i'm no.: " + no));
-                  threads.add(thread);
-              }
-              System.out.println("finished starting all threads");
-              for (Thread thread : threads) {
-                  thread.join();
-              }
-              var runtime = (System.nanoTime() - start)/1_000_000;
-              System.out.println(
-                  "all threads finished after: " + runtime + "ms"
-              );
-          }
+      private Thread runDelayed(int id, Runnable task) {
+        // TODO
       }
+
+      public static void main(String[] args) throws Exception {
+        var start = System.nanoTime();
+        VirtualBuffer buffer = new VirtualBuffer();
+        List<Thread> threads = new ArrayList<>();
+        for (int i = 0; i < 100000; i++) {
+          final var no = i;
+          var thread = buffer.runDelayed(
+              i, 
+              () -> System.out.println("i'm no.: " + no));
+          threads.add(thread);
+        }
+        System.out.println("finished starting all threads");
+        for (Thread thread : threads) {
+          thread.join();
+        }
+        var runtime = (System.nanoTime() - start)/1_000_000;
+        System.out.println(
+          "all threads finished after: " + runtime + "ms"
+        );
+      }
+    }
 
 
 
@@ -883,7 +889,6 @@ Thread Safety Level
 
       (d) Wir können zumindest für die Bedingung *notFull* ``signal`` verwenden, da auf der Bedingungsvariable *notFull* ggf. nur die ``set``-Methode wartet. Für die Bedigung *notEmpty* können wir jedoch nur ``signalAll`` verwenden, da auf der Bedingungsvariable *notEmpty* sowohl die ``get``- als auch die ``delete``-Methode warten können und es sonst passieren können, dass nach einem ``set`` Aufruf kein ``delete`` aufgeweckt wird.
 
-
 .. supplemental:: 
 
   Sie können sich die Klasse ``ThreadsafeArray`` auch als ein Array von ``BoundedBuffers`` mit der Größe 1 vorstellen.
@@ -891,78 +896,78 @@ Thread Safety Level
   .. code:: Java
     :class: far-smaller copy-to-clipboard
 
-      public class ThreadsafeArray {
+    public class ThreadsafeArray {
 
-        private final Object[] array;
+      private final Object[] array;
 
-        public ThreadsafeArray(int size) {
-            this.array = new Object[size];
-        }
+      public ThreadsafeArray(int size) {
+        this.array = new Object[size];
+      }
 
-        // Methodensignaturen ggf. vervollständigen 
-        // und Implementierungen ergänzen
-        Object get(int index) 
-        void set(int index, Object value)
-        void remove(int index)
+      // Methodensignaturen ggf. vervollständigen 
+      // und Implementierungen ergänzen
+      Object get(int index) 
+      void set(int index, Object value)
+      void remove(int index)
 
-        public static void main(String[] args) throws Exception {
-          final var ARRAY_SIZE = 2;
-          final var SLEEP_TIME = 1; // ms
-          var array = new ThreadsafeArray(ARRAY_SIZE);
-          for (int i = 0; i < ARRAY_SIZE; i++) {
-            final var threadId = i;
+      public static void main(String[] args) throws Exception {
+        final var ARRAY_SIZE = 2;
+        final var SLEEP_TIME = 1; // ms
+        var array = new ThreadsafeArray(ARRAY_SIZE);
+        for (int i = 0; i < ARRAY_SIZE; i++) {
+          final var threadId = i;
 
-            final var readerThreadName = "Reader";
-            var t2 = new Thread(() -> {
-              while (true) {
-                int j = (int) (Math.random() * ARRAY_SIZE);
-                try {
-                    out.println(readerThreadName + "[" + j + "]" );
-                    var o = array.get(j);
-                    out.println(readerThreadName + 
-                        "[" + j + "] ⇒ #" + o.hashCode());
-                    Thread.sleep(SLEEP_TIME);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+          final var readerThreadName = "Reader";
+          var t2 = new Thread(() -> {
+            while (true) {
+              int j = (int) (Math.random() * ARRAY_SIZE);
+              try {
+                out.println(readerThreadName + "[" + j + "]" );
+                var o = array.get(j);
+                out.println(readerThreadName + 
+                    "[" + j + "] ⇒ #" + o.hashCode());
+                Thread.sleep(SLEEP_TIME);
+              } catch (InterruptedException e) {
+                e.printStackTrace();
               }
-            }, readerThreadName);
-            t2.start();
+            }
+          }, readerThreadName);
+          t2.start();
 
-            // One Thread for each slot that will eventually
-            // write some content
-            final var writerThreadName = "Writer[" + threadId + "]";
-            var t1 = new Thread(() -> {
-              while (true) {
-                try {
-                    var o = new Object();
-                    out.println(writerThreadName + " = #" + o.hashCode());
-                    array.set(threadId, o);
-                    out.println(writerThreadName + " done");
-                    Thread.sleep(SLEEP_TIME);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+          // One Thread for each slot that will eventually
+          // write some content
+          final var writerThreadName = "Writer[" + threadId + "]";
+          var t1 = new Thread(() -> {
+            while (true) {
+              try {
+                var o = new Object();
+                out.println(writerThreadName + " = #" + o.hashCode());
+                array.set(threadId, o);
+                out.println(writerThreadName + " done");
+                Thread.sleep(SLEEP_TIME);
+              } catch (InterruptedException e) {
+                e.printStackTrace();
               }
-            }, writerThreadName);
-            t1.start();
+            }
+          }, writerThreadName);
+          t1.start();
 
-            // One Thread for each slot that will eventually
-            // delete the content
-            final var deleterThreadName = "Delete[" + threadId + "]";
-            var t3 = new Thread(() -> {
-              while (true) {
-                try {
-                    out.println(deleterThreadName);
-                    array.delete(threadId);
-                    Thread.sleep(SLEEP_TIME);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+          // One Thread for each slot that will eventually
+          // delete the content
+          final var deleterThreadName = "Delete[" + threadId + "]";
+          var t3 = new Thread(() -> {
+            while (true) {
+              try {
+                out.println(deleterThreadName);
+                array.delete(threadId);
+                Thread.sleep(SLEEP_TIME);
+              } catch (InterruptedException e) {
+                e.printStackTrace();
               }
-            }, deleterThreadName);
-            t3.start();
-          }
+            }
+          }, deleterThreadName);
+          t3.start();
         }
       }
+    }
 
