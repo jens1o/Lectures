@@ -668,83 +668,85 @@ Thread Safety Level
 Übung
 ---------------------
 
-.. exercise:: Virtueller Puffer
-  :class: tiny
+.. container:: far-far-smaller
 
-  Implementieren Sie einen virtuellen Puffer, der Tasks (Instanzen von ``java.lang.Runable``) entgegennimmt und nach einer bestimmten Zeit ausführt. Der Puffer darf währenddessen nicht blockieren bzw. gesperrt sein.
+  .. exercise:: Virtueller Puffer
+    
 
-  Nutzen Sie ggf. virtuelle Threads, um auf ein explizites Puffern zu verzichten. Ein virtueller Thread kann zum Beispiel mit: ``Thread.ofVirtual()`` erzeugt werden. Danach kann an die Methode ``start`` ein ``Runnable`` Objekt übergeben werden.
+    Implementieren Sie einen virtuellen Puffer, der Tasks (Instanzen von ``java.lang.Runable``) entgegennimmt und nach einer bestimmten Zeit ausführt. Der Puffer darf währenddessen nicht blockieren bzw. gesperrt sein.
 
-  Verzögern Sie die Ausführung (``Thread.sleep()``) im Schnitt um 100ms mit einer Standardabweichung von 20ms. (Nutzen Sie ``Random.nextGaussian(mean,stddev)``)
+    Nutzen Sie ggf. virtuelle Threads, um auf ein explizites Puffern zu verzichten. Ein virtueller Thread kann zum Beispiel mit: ``Thread.ofVirtual()`` erzeugt werden. Danach kann an die Methode ``start`` ein ``Runnable`` Objekt übergeben werden.
 
-  Starten Sie 100 000 virtuelle Threads. Wie lange dauert die Ausführung? Wie lange dauert die Ausführung bei 100 000 platform (*native*) Threads.
+    Verzögern Sie die Ausführung (``Thread.sleep()``) im Schnitt um 100ms mit einer Standardabweichung von 20ms. (Nutzen Sie ``Random.nextGaussian(mean,stddev)``)
 
-  Nutzen Sie ggf. die Vorlage.
+    Starten Sie 100 000 virtuelle Threads. Wie lange dauert die Ausführung? Wie lange dauert die Ausführung bei 100 000 platform (*native*) Threads.
 
-  .. solution::
-    :pwd: MyVirtualBuffer
+    Nutzen Sie ggf. die Vorlage.
+
+    .. solution::
+      :pwd: MyVirtualBuffer
+
+      .. code:: Java
+        :class: smaller copy-to-clipboard
+
+        Thread thread = Thread.ofVirtual().start(
+            () -> {
+                try {
+                    var sleepTime =  (long) random.nextGaussian(100,20);
+                    if (sleepTime < 0 ) {
+                        // we found a gremlin...
+                        return;
+                    }
+                    System.out.println(
+                      "delaying " + id + 
+                      " by " + sleepTime + "ms");
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                task.run();
+            }
+          );
+        return thread;
+
+  .. supplemental:: tiny
 
     .. code:: Java
-      :class: tiny copy-to-clipboard
+      :class: far-smaller copy-to-clipboard
 
-      Thread thread = Thread.ofVirtual().start(
-          () -> {
-              try {
-                  var sleepTime =  (long) random.nextGaussian(100,20);
-                  if (sleepTime < 0 ) {
-                      // we found a gremlin...
-                      return;
-                  }
-                  System.out.println(
-                    "delaying " + id + 
-                    " by " + sleepTime + "ms");
-                  Thread.sleep(sleepTime);
-              } catch (InterruptedException e) {
-                  Thread.currentThread().interrupt();
-              }
-              task.run();
+      import java.util.ArrayList;
+      import java.util.List;
+      import java.util.Random;
+
+      public class VirtualBuffer {
+
+          private final Random random = new Random();
+
+          private Thread runDelayed(int id, Runnable task) {
+            // TODO
           }
-        );
-      return thread;
 
-.. supplemental:: tiny
-
-  .. code:: Java
-    :class: smaller copy-to-clipboard
-
-    import java.util.ArrayList;
-    import java.util.List;
-    import java.util.Random;
-
-    public class VirtualBuffer {
-
-        private final Random random = new Random();
-
-        private Thread runDelayed(int id, Runnable task) {
-          // TODO
-        }
-
-        public static void main(String[] args) throws Exception {
-            var start = System.nanoTime();
-            VirtualBuffer buffer = new VirtualBuffer();
-            List<Thread> threads = new ArrayList<>();
-            for (int i = 0; i < 100000; i++) {
-                final var no = i;
-                var thread = buffer.runDelayed(
-                    i, 
-                    () -> System.out.println("i'm no.: " + no));
-                threads.add(thread);
-            }
-            System.out.println("finished starting all threads");
-            for (Thread thread : threads) {
-                thread.join();
-            }
-            var runtime = (System.nanoTime() - start)/1_000_000;
-            System.out.println(
-                "all threads finished after: " + runtime + "ms"
-            );
-        }
-    }
+          public static void main(String[] args) throws Exception {
+              var start = System.nanoTime();
+              VirtualBuffer buffer = new VirtualBuffer();
+              List<Thread> threads = new ArrayList<>();
+              for (int i = 0; i < 100000; i++) {
+                  final var no = i;
+                  var thread = buffer.runDelayed(
+                      i, 
+                      () -> System.out.println("i'm no.: " + no));
+                  threads.add(thread);
+              }
+              System.out.println("finished starting all threads");
+              for (Thread thread : threads) {
+                  thread.join();
+              }
+              var runtime = (System.nanoTime() - start)/1_000_000;
+              System.out.println(
+                  "all threads finished after: " + runtime + "ms"
+              );
+          }
+      }
 
 
 
@@ -753,133 +755,138 @@ Thread Safety Level
 Übung
 ----------------------------------------------
 
-.. exercise:: Thread-sichere Programmierung
-  :class: tiny
+.. container:: far-far-smaller
 
-  Implementieren Sie eine Klasse ``ThreadsafeArray`` zum Speichern von nicht-``null`` Objekten (``java.lang.Object``) an ausgewählten Indizes — vergleichbar mit einem normalen Array. Im Vergleich zu einem normalen Array sollen die Aufrufer jedoch ggf. blockiert werden, wenn die Zelle belegt ist. Die Klasse soll folgende Methoden bereitstellen:
+  .. exercise:: Thread-sichere Programmierung
+    
+    Implementieren Sie eine Klasse ``ThreadsafeArray`` zum Speichern von nicht-``null`` Objekten (``java.lang.Object``) an ausgewählten Indizes — vergleichbar mit einem normalen Array. Im Vergleich zu einem normalen Array sollen die Aufrufer jedoch ggf. blockiert werden, wenn die Zelle belegt ist. Die Klasse soll folgende Methoden bereitstellen:
 
-  :``get(int index)``: Liefert den Wert an der Position ``index`` zurück. Der aufrufende Thread wird ggf. blockiert, bis ein Wert an der Position ``index`` gespeichert wurde. (Die ``get``-Methode entfernt den Wert nicht aus dem Array.) 
-  :``set(int index, Object value)``: Speichert den Wert ``value`` an der Position ``index``. Falls an der Position ``index`` bereits ein Wert gespeichert wurde, wird der aufrufende Thread blockiert, bis der Wert an der Position ``index`` gelöscht wurde.
-  :``delete(int index)``: Löscht ggf. den Wert an der Position ``index`` wenn ein Wert vorhanden ist. Andernfalls wird der Thread blockiert, bis es einen Wert gibt, der gelöscht werden kann.
+    :``get(int index)``: Liefert den Wert an der Position ``index`` zurück. Der aufrufende Thread wird ggf. blockiert, bis ein Wert an der Position ``index`` gespeichert wurde. (Die ``get``-Methode entfernt den Wert nicht aus dem Array.) 
+    :``set(int index, Object value)``: Speichert den Wert ``value`` an der Position ``index``. Falls an der Position ``index`` bereits ein Wert gespeichert wurde, wird der aufrufende Thread blockiert, bis der Wert an der Position ``index`` gelöscht wurde.
+    :``delete(int index)``: Löscht ggf. den Wert an der Position ``index`` wenn ein Wert vorhanden ist. Andernfalls wird der Thread blockiert, bis es einen Wert gibt, der gelöscht werden kann.
 
-  (a) Implementieren Sie die Klasse ``ThreadsafeArray`` nur unter Verwendung der Standardprimitive: ``synchronized``, ``wait``, ``notify`` und ``notifyAll``. Nutzen Sie die Vorlage. 
-  (b) Können Sie sowohl ``notify`` als auch ``notifyAll`` verwenden?
+    (a) Implementieren Sie die Klasse ``ThreadsafeArray`` nur unter Verwendung der Standardprimitive: ``synchronized``, ``wait``, ``notify`` und ``notifyAll``. Nutzen Sie die Vorlage. 
+    (b) Können Sie sowohl ``notify`` als auch ``notifyAll`` verwenden?
 
-  (c) Implementieren Sie die Klasse ``ThreadsafeArray`` unter Verwendung von ``ReentrantLock``\ s und ``Condition``\ s. Nutzen Sie die Vorlage. 
-  (d) Welche Vorteile hat die Verwendung von ``ReentrantLock``\ s?
+    (c) Implementieren Sie die Klasse ``ThreadsafeArray`` unter Verwendung von ``ReentrantLock``\ s und ``Condition``\ s. Nutzen Sie die Vorlage. 
+    (d) Welche Vorteile hat die Verwendung von ``ReentrantLock``\ s?
 
-  .. solution:: 
-    :pwd: ThreadSafeArrays
+    .. solution:: 
+      :pwd: ThreadSafeArrays
 
-    (a) 
+      (a) 
 
-      .. code:: Java
-        :class: copy-to-clipboard
+        .. code:: Java
+          :class: smaller copy-to-clipboard
 
-        public synchronized Object get(int index) throws InterruptedException {
+          public synchronized Object get(int index) throws InterruptedException {
             var v = array[index];
             while (v == null) {
-                /*DEBUG*/ out.println(Thread.currentThread().getName() + " will go to sleep");
-                wait();
-                v = array[index];
+              var tName = Thread.currentThread().getName();
+              /*DEBUG*/ out.println(tName + " will go to sleep");
+              wait();
+              v = array[index];
             }
             return v;
-        }
+          }
 
-        public synchronized void set(int index, Object value) throws InterruptedException {
+          public synchronized void set(int index, Object value) throws InterruptedException {
             while (array[index] != null) {
-                /*DEBUG*/ out.println(Thread.currentThread().getName() + " will go to sleep");
-                wait();
+              var tName = Thread.currentThread().getName();
+              /*DEBUG*/ out.println(Thread.currentThread().getName() + " will go to sleep");
+              wait();
             }
             array[index] = value;
             notifyAll();
-        }
+          }
 
-        public synchronized void delete(int index) throws InterruptedException {
+          public synchronized void delete(int index) throws InterruptedException {
             while (array[index] == null) {
-                /*DEBUG*/ out.println(Thread.currentThread().getName() + " will go to sleep");
-                wait();
+              /*DEBUG*/ out.println(Thread.currentThread().getName() + " will go to sleep");
+              wait();
             }
             array[index] = null;
             notifyAll();
-        }
+          }
 
-    (b) ``notify`` kann nicht verwendet werden, da wir unterschiedliche Bedingungen haben und es bei der Verwendung von ``notify`` somit zum Aufwecken eines ungeeigneten Threads kommen könnte. Dies könnte dazu führen könnte, dass alle Threads im Wartezustand sind obwohl Fortschritt möglich wäre. 
+      (b) ``notify`` kann nicht verwendet werden, da wir unterschiedliche Bedingungen haben und es bei der Verwendung von ``notify`` somit zum Aufwecken eines ungeeigneten Threads kommen könnte. Dies könnte dazu führen könnte, dass alle Threads im Wartezustand sind obwohl Fortschritt möglich wäre. 
 
-    (c) 
-        .. code:: Java
-          :class: copy-to-clipboard
+      (c) 
+          .. code:: Java
+            :class: copy-to-clipboard
 
-          private final Object[] array;
-          private final ReentrantLock[] locks;
-          private final Condition[] notEmptyConditions;
-          private final Condition[] notFullConditions;
+            private final Object[] array;
+            private final ReentrantLock[] locks;
+            private final Condition[] notEmptyConditions;
+            private final Condition[] notFullConditions;
 
-          public ThreadsafeArrayWithConditionVariables(int size) {
+            public ThreadsafeArrayWithConditionVariables(int size) {
               this.array = new Object[size];
               this.locks = new ReentrantLock[size];
               this.notEmptyConditions = new Condition[size];
               this.notFullConditions = new Condition[size];
               for (int i = 0; i < size; i++) {
-                  locks[i] = new ReentrantLock(true);
-                  notEmptyConditions[i] = locks[i].newCondition(); 
-                  notFullConditions[i] = locks[i].newCondition();
+                locks[i] = new ReentrantLock(true);
+                notEmptyConditions[i] = locks[i].newCondition(); 
+                notFullConditions[i] = locks[i].newCondition();
               }
-          }
+            }
 
-          public Object get(int index) throws InterruptedException {
+            public Object get(int index) throws InterruptedException {
               locks[index].lock();
               try {
-                  var v = array[index];
-                  while (v == null) {
-                      out.println(Thread.currentThread().getName() + " will go to sleep");
-                      notEmptyConditions[index].await();
-                      out.println(Thread.currentThread().getName() + " awakened");
-                      v = array[index];
-                  }
-                  return v;
+                var v = array[index];
+                while (v == null) {
+                  out.println(Thread.currentThread().getName() + " will go to sleep");
+                  notEmptyConditions[index].await();
+                  out.println(Thread.currentThread().getName() + " awakened");
+                  v = array[index];
+                }
+                return v;
               } finally {
-                  locks[index].unlock();
+                locks[index].unlock();
               }
-          }
+            }
 
-          public void set(int index, Object value) throws InterruptedException {
+            public void set(int index, Object value) throws InterruptedException {
               locks[index].lock();
               try {
-                  while (array[index] != null) {
-                      out.println(Thread.currentThread().getName() + " will go to sleep");
-                      notFullConditions[index].await();
-                      out.println(Thread.currentThread().getName() + " awakened");
-                  }
-                  array[index] = value;
-                  notEmptyConditions[index].signalAll(); // otherwise, it may happen that we "just" wake up a getter thread...
+                while (array[index] != null) {
+                  out.println(Thread.currentThread().getName() + " will go to sleep");
+                  notFullConditions[index].await();
+                  out.println(Thread.currentThread().getName() + " awakened");
+                }
+                array[index] = value;
+                // "signalAll", because otherwise, it may happen that we "just"
+                // wake up a getter thread...
+                notEmptyConditions[index].signalAll(); 
               } finally {
-                  locks[index].unlock();
+                locks[index].unlock();
               }
-          }
+            }
 
-          public void delete(int index) throws InterruptedException{
+            public void delete(int index) throws InterruptedException{
               locks[index].lock();
               try {
-                  while (array[index] == null) {
-                      out.println(Thread.currentThread().getName() + " will go to sleep");
-                      notEmptyConditions[index].await();
-                      out.println(Thread.currentThread().getName() + " awakened");
-                  }
-                  array[index] = null;
-                  notFullConditions[index].signal();
+                while (array[index] == null) {
+                  out.println(Thread.currentThread().getName() + " will go to sleep");
+                  notEmptyConditions[index].await();
+                  out.println(Thread.currentThread().getName() + " awakened");
+                }
+                array[index] = null;
+                notFullConditions[index].signal();
               } finally {
-                  locks[index].unlock();
+                locks[index].unlock();
               }
-          }
+            }
 
 
-    (d) Wir können zumindest für die Bedingung *notFull* ``signal`` verwenden, da auf der Bedingungsvariable *notFull* ggf. nur die ``set``-Methode wartet. Für die Bedigung *notEmpty* können wir jedoch nur ``signalAll`` verwenden, da auf der Bedingungsvariable *notEmpty* sowohl die ``get``- als auch die ``delete``-Methode warten können und es sonst passieren können, dass nach einem ``set`` Aufruf kein ``delete`` aufgeweckt wird.
+      (d) Wir können zumindest für die Bedingung *notFull* ``signal`` verwenden, da auf der Bedingungsvariable *notFull* ggf. nur die ``set``-Methode wartet. Für die Bedigung *notEmpty* können wir jedoch nur ``signalAll`` verwenden, da auf der Bedingungsvariable *notEmpty* sowohl die ``get``- als auch die ``delete``-Methode warten können und es sonst passieren können, dass nach einem ``set`` Aufruf kein ``delete`` aufgeweckt wird.
 
 
 .. supplemental:: 
 
-  Sie können sich die Klasse ``ThreadsafeArray`` auch als ein Array von BoundedBuffers mit der Größe 1 vorstellen.
+  Sie können sich die Klasse ``ThreadsafeArray`` auch als ein Array von ``BoundedBuffers`` mit der Größe 1 vorstellen.
 
   .. code:: Java
     :class: far-smaller copy-to-clipboard
