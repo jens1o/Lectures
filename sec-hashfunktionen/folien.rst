@@ -167,7 +167,7 @@ Nachrichten können auf verschiedene Weisen authentifiziert werden, so dass *Man
             :width: 1774
 
 
-.. [#] *man* ist hier geschlechtsneutral zu verstehen. 
+.. [#] :eng:`Man` ist hier geschlechtsneutral zu verstehen. 
 
 .. supplemental::
     
