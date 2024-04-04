@@ -1,8 +1,8 @@
 .. meta:: 
     :author: Michael Eichberg
-    :keywords: "Dokumenten Management"
+    :keywords: "Dokumentenmanagement", Dokumentenindizierung, Dokumentenerfassung
     :description lang=de: "Dokumentenerfassung und -indizierung"
-    :id: lecture-dm-erfassung-und-indizierung
+    :id: lecture-dm-erfassung-und-indizierung-von-dokumenten
     :first-slide: last-viewed
 
 .. |date| date::
