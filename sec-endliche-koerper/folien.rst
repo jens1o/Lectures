@@ -838,7 +838,7 @@ Multiplikation in :math:`GF(2^n)`
 
     .. container:: minor
 
-        Die Multiplikation mit :math:`x^2` kann durch die zweifache Multiplikation mit :math:`x` unter Anwendung der obigen Gleichung erreicht werden kann. D.h. :math:`x^7 \times x^2 = (x^7 \times x) \times x` 
+        Die Multiplikation mit :math:`x^2` kann durch die zweifache Multiplikation mit :math:`x` unter Anwendung der obigen Gleichung erreicht werden kann. D. h. :math:`x^7 \times x^2 = (x^7 \times x) \times x` 
 
 
 
