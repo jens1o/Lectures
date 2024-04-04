@@ -1,28 +1,24 @@
 .. meta:: 
     :author: Michael Eichberg
-    :keywords: "Dokumenten Management"
-    :description lang=de: "Einführung in das Dokumenten Management"
-    :id: lecture-dm-einfuehrung
+    :keywords: "Dokumentenmanagement"
+    :description lang=de: "Ausgewählte rechtliche Aspekte des Dokumentenmanagements"
+    :id: lecture-dm-rechtliche-aspekte-des-dokumentenmanagements
     :first-slide: last-viewed
 
 .. |date| date::
 .. |at| unicode:: 0x40
 
 .. role:: incremental   
+
 .. role:: eng
 .. role:: ger
-.. role:: red
-.. role:: green
-.. role:: the-blue
-.. role:: minor
-.. role:: ger-quote
-.. role:: obsolete
-.. role:: line-above
-.. role:: huge
-.. role:: xxl
 
-.. role:: raw-html(raw)
-   :format: html
+.. role:: ger-quote
+.. role:: minor
+.. role:: obsolete
+
+.. role:: the-blue
+.. role:: line-above
 
 
 
@@ -262,7 +258,7 @@ Scannen von externen Dokumenten
 
 - Externe Dokumente dürfen ersetzend gescannt werden.
 - Die Dokumente sind nach dem Stand der Technik zu scannen. (TR-ESOR 03125 bzw. TR-RESISCAN 03138)
-- Bei gescannten öffentlichen Urkunden gilt §371 B ZPO; d.h. der Beweiswert bleibt erhalten wenn der Scan von einer öffentlichen Behörde oder einer mit öffentlichen Glauben versehen Personen durchgeführt wurde.
+- Bei gescannten öffentlichen Urkunden gilt §371 B ZPO; d. h. der Beweiswert bleibt erhalten wenn der Scan von einer öffentlichen Behörde oder einer mit öffentlichen Glauben versehen Personen durchgeführt wurde.
 - Relevante Vorschriften ergeben sich aus TR 3138 Resiscan des BSI.
 - Durch eine verbindliche Auskunft nach Paragraph 38 AO kann eine Garantie für die Akzeptanz gescannte Dokumente durch das Finanzamt erwirkt werden.
 
@@ -459,6 +455,7 @@ Aufbewahrungsgründe
 - die Dokumente sind ggf. Beweismittel in einem Rechtsstreit
 
 
+
 Gesetzliche Aufbewahrungsfristen
 ----------------------------------
 
@@ -468,11 +465,28 @@ Gesetzliche Aufbewahrungsfristen
 - Aussagen zur Frist leiten sich ggf. aus Nachweispflichten ab.
 - Oft gibt es erhebliche Abgrenzungsschwierigkeiten zwischen den anzuwenden Vorschriften bzw. Gesetzen.
   
-  Z.B. § 257 HGB vs. §§ 140-147 AO; d. h. 6 oder 10 Jahre.
+  Z.B. § 257 HGB vs. §§ 140-147 AO; d. h. Aufbewahrungspflicht 6 oder 10 Jahre.
 
   Vgl. `IHK Konstanz - Aufbewahrungsfristen (Stand 2020) <https://www.ihk.de/konstanz/recht-und-steuern/steuer-und-finanzpolitik/finverwal/aufbewahrung-von-geschaeftsunterlagen-1672476#:~:text=Die%20Aufbewahrungsfrist%20für%20Bücher%20und,und%20Rechnungen%20beträgt%20zehn%20Jahre.>`__
-- direkte Aufbewahrungspflichten werden in der Fachliteratur zusammengetragen und können dort entnommen werden.
+- **Direkte Aufbewahrungspflichten werden in der Fachliteratur zusammengetragen und können dort entnommen werden.**
+
+
+Aufbewahrungspflichten Ermitteln
+--------------------------------------------
+
+.. class:: incremental
+
+- Einzelheiten zu der steuerrechtlichen Aufbewahrungspflicht werden in der Abgabenordnung (primär in § 147) geregelt. 
+- Jedoch ergeben sich steuerrechtliche Aufbewahrungspflichten auch durch :ger-quote:`andere Gesetze` (z. B. Steuergesetze wie das Umsatzsteuergesetz).  
+
+- Bzgl. :ger-quote:`andere Gesetze`:
   
+  .. epigraph::
+
+    [... Gemeint] sind u. a. das HGB und **eine Vielzahl von Gesetzen und Verordnungen**, die für bestimmte Berufe oder Tätigkeiten Aufzeichnungs- und Buchführungspflichten vorschreiben. Beispielsweise müssen die Bewachungsbetriebe Auftragsbücher nach § 14 Abs. 2 Verordnung über das Bewachungsgewerbe i. V. m. § 34a Abs. 2 Nr. 3c Gewerbeordnung führen.
+
+    -- `IHK Hamburg (Abgerufen März 2024) <https://www.ihk.de/hamburg/produktmarken/beratung-service/recht-und-steuern/steuerrecht/abgabenrecht/aufbewahrungsfristen-geschaeftsunterlagen-1157174>`__
+
 
 Fristfindung
 -----------------
@@ -515,8 +529,106 @@ Sicherstellung des gesetzlichen Zugriffs
 - Eine Speicherung in der Cloud ist nicht grundsätzliche verboten; der Zugriff (durch Behörden etc.) muss jedoch gewährleistet sein.
    
   (Dies kann die Verarbeitung in einem Rechenzentrum in der EU bzw. Deutschland erfordern und muss durch entsprechende Verträge abgesichert sein.)
-
+- Für steuerlich relevante Dokumente gelten besondere Anforderungen, die sich direkt aus der GoBD ergeben.
+  
+  Dokumente, die nicht digital vorliegen, müssen nicht digitalisiert werden, um den Anforderungen der GoBD zu genügen; können jedoch digitalisiert werden, wenn eine Verfahrensdokumentation vorliegt.
 
 .. supplemental::
 
     "Innerhalb angemessener Zeit" bedeutet in der Regel innerhalb weniger Stunden bzw. Tage.
+
+    In den GoBD (Grundsätze zur ordnungsmäßigen Führung und Aufbewahrung von Büchern, Aufzeichnungen und Unterlagen in elektronischer Form sowie zum Datenzugriff) werden  in Hinblick auf Datenzugriff und Prüfbarkeit von digitalen Dokumenten Vorgaben gemacht, die aber :ger-quote:`nur` bzgl. steuerlich relevanter Dokumente Anwendung finden.
+
+    Grundsätzlich gilt, dass steuerrechtliche Dokumente in Deutschland aufbewahrt werden müssen; Ausnahmen sind auf Antrag ggf. möglich.
+
+
+
+Arten des Datenzugriffs
+----------------------------
+
+.. class:: incremental list-with-explanations
+
+1. unmittelbarer Zugriff auf die Daten
+   
+   Dem Prüfer müssen die entsprechenden Hilfsmittel zur Verfügung gestellt werden, um die Daten zu prüfen.
+2. mittelbarer Zugriff auf die Daten
+
+   Die Finanzbehörde erstellt Vorgaben bzgl. der benötigten Auswertungen, die dann der Steuerpflichtige ausführen muss.
+3. Datenträgerüberlassung
+
+   Die Daten werden auf einem Datenträger übergeben und können dann von der Finanzbehörde geprüft werden.
+
+
+
+Sicherstellung der Beweiskraft vor Gericht
+---------------------------------------------------
+
+.. class:: incremental list-with-explanations
+
+- gem. ZPO sind insbesondere Urkunden als Beweismittel zulässig.
+- Beweisführung mittels elektronischer Dokumente erfolgt nach den Regeln des Augenscheinbeweises.
+  
+  Bei E-Mails ist der Nachweis der Authentizität und Integrität ggf. problematisch.
+- E-Mails mit einer qualifizierten elektronischen Signatur haben die Beweiskraft einer Urkunde.
+- Bei der Verwendung von einfachen elektronischen Signaturen unterliegt die Beweiskraft der freien Beweiswürdigung durch das Gericht.
+
+  Private elektronische Dokumente mit einer qualifizierten Signatur haben einen höheren Beweiswert als private Urkunden.
+- Qualifizierte Signaturen können z. B. mit dem neuen Personalausweis und einem Kartenleser erzeugt werden.  
+
+.. supplemental::
+
+  Vor Gericht sind auch noch Zeugen, Sachverständigen, Augenschein und Parteivernehmung als Beweismittel zulässig.
+
+  .. rubric:: Urkunden
+
+  - gemeinhin ein Originaldokument in Papierform (man unterscheidet: öffentliche und private Urkunden)
+  - Voraussetzung: Echtheit (Nachweis über die Echtheit der Unterschrift)
+  - Urkundsbeweise ist der zuverlässigste Beweis im Zivilprozess.
+
+
+
+Zertifizierung von Systemen und Lösungen
+--------------------------------------------
+
+.. class:: incremental list-with-explanations
+
+- Prüfkriterien für Dokumentenmanagementlösungen (PK-DML) vom TÜV-IT und dem VOI. 
+  
+  Bewertung erfolgt nach internationalen ISO Standards.
+- Die Verwendung eines zertifizierten Dokumentenmanagementsystem entbindet den Anwender nicht von der funktionalen, technischen und betriebswirtschaftlichen Beurteilung des Produktes.
+-  Gesetzliche geforderte Zertifizierungen gibt es im Bereich Dokumentenmanagementsysteme nicht.
+
+
+
+Zertifizierungen von Dokumentenmanagementsystemen
+---------------------------------------------------
+
+.. class:: incremental
+
+- Die (Entwicklungs-)Prozesse des Herstellers sind zertifiziert (z. B. ISO 9000).
+- Die DMS Lösung wird von anderen Herstellern zertifiziert (Zweck garantierte Interoperabilität).
+- Die Lösung ist Teil einer Prozesszertifizierung und dient der Qualitätsverbesserung des Prozesses zu zertifizierenden Prozesses. (z. B. ISO 9000 und ISO 14001)
+- Die DMS-Software bzw. Teile davon sind nach anerkannten Prüfungsgrundlagen zertifiziert
+- Die DMS-Lösung ist in der Gesamtheit (inkl. administrativer und organisatorischer Prozesse) zertifiziert.
+
+
+
+Typische Zertifizierungsgrundlagen
+--------------------------------------
+
+.. class:: incremental
+
+- IEC/ISO 12119
+  
+  Allgemeine Anforderungen an Software in Hinblick auf (a) die Dokumentation und (b) die Zuverlässigkeit und Funktionalität der Software.
+- IDW PS 880: :ger-quote:`Softwaretestat`
+    
+  Orientiert sich an gesetzlichen Grundlagen - insbesondere in Hinblick auf die Rechnungslegung.
+- RAL GZ 901: :ger-quote:`Prospektprüfung`
+  
+  Leistet das Produkt das Versprochene?
+  
+
+.. supplemental::
+
+  IDW ≘ Institut der Wirtschaftsprüfer in Deutschland e.V.
