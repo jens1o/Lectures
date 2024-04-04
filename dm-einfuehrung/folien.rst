@@ -11,18 +11,13 @@
 .. role:: incremental   
 .. role:: eng
 .. role:: ger
-.. role:: red
-.. role:: green
 .. role:: the-blue
 .. role:: minor
 .. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
-.. role:: huge
-.. role:: xxl
 
-.. role:: raw-html(raw)
-   :format: html
+   
 
 Dokumentenmanagement, Archivierungs- und Verschlüsselungsverfahren
 ===================================================================
@@ -63,7 +58,7 @@ Dokumentmanagement, Archivierungs- und Verschlüsselungsverfahren - W3WI_EH304.
 :Übergeordnetes Modul: Fortgeschrittene Konzepte des Informationsmanagements im Gesundheitswesen (W3WI_EH304)
 :Prüfungsleistung: :obsolete:`Klausur (60 min/60 Punkte)` oder 
 
-    **Portfolio** (hier mündl. Prüfungsgespräche mit 12min pro Person.)
+    **Portfolio** (hier mündl. Prüfungsgespräche mit 10min pro Person.)
 
 
 .. container:: supplemental
