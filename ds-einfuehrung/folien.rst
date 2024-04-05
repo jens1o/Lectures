@@ -536,7 +536,7 @@ Bedingte Wahrscheinlichkeit, dass :math:`C` während :math:`[0,t)` korrekt funkt
         (a) Bestimmen Sie die Intaktwahrscheinlichkeit eines einzelnen Rechners.
         (b) Ein Datensatz ist aus Gründen der Fehlertoleranz auf drei Rechnern identisch repliziert gespeichert. Wie hoch ist seine mittlere Zugriffsverfügbarkeit beim Lesen?
         (c) Auf wie vielen Rechnern müssen Sie identische Kopien dieses Datensatzes speichern, damit die mittlere Zugriffsverfügbarkeit beim Lesen bei 99,999 % liegt 
-        (d) Für wie viele Minuten im Jahr ist im Mittel bei einer Verfügbarkeit von 99,999 % *kein Lesen des Datensatzes* möglich?
+        (d) Für wie viele Minuten im Jahr (mit 365 Tagen) ist im Mittel bei einer Verfügbarkeit von 99,999 % *kein Lesen des Datensatzes* möglich?
 
         .. solution:: Lösung
             :pwd: Laufend?
@@ -650,7 +650,7 @@ Eine sichere Hash-Funktion :math:`Digest(X)` gibt eine Zeichenkette fester Läng
 - Jede Änderung - noch so klein - der Eingabedaten führt zu einer völlig anderen Zeichenkette.
 - Bei einem Hash-Wert ist es rechnerisch unmöglich die ursprüngliche Nachricht X basierend auf :math:`Digest(X)` zu finden.
 
-.. container:: incremental
+.. container:: incremental smaller
 
     .. rubric:: Signieren von Nachrichten
 
@@ -672,7 +672,7 @@ Eine sichere Hash-Funktion :math:`Digest(X)` gibt eine Zeichenkette fester Läng
 
 .. class:: integrated-exercise
 
-Übung
+Zwischenfrage
 ----------------
 
 .. exercise:: Verschlüsselung mit Public-Private-Key Verfahren
@@ -758,7 +758,7 @@ Formale Analyse der Skalierbarkeit zentralisierter Systeme
 
             # Anfragen in Bearbeitung und Warteschlange
 
-            Z. B. ist der Anteil der Zeit in der der Rechner *idle* ist (:math:`p_0`; d. h.es gibt keine/0 Anfragen): 90 %, 60 % und 30 %.
+            Z. B. ist der Anteil der Zeit in der der Rechner *idle* ist (:math:`p_0`; d. h.es gibt keine bzw. 0 Anfragen): 90 %, 60 % und 30 %.
 
 
 .. container:: presenter-notes
@@ -1066,7 +1066,7 @@ Beschleunigung (Speedup) eines parallelisierten Programms relativ zu der nicht-p
 
                 S(8192) / S(4096) \approx 1,9997288062
 
-            Das Rechnen mit GPUs als solches, d. h. mit "2-GPUs" vs. "4-GPUs" führt zu einem geringeren Speedup, da der serielle Anteil des Angriffs noch mehr in Gewicht fällt.
+        Das Rechnen mit GPUs als solches, d. h. mit 2-GPUs vs. 4-GPUs führt zu einem geringeren Speedup, da der serielle Anteil des Angriffs noch mehr in Gewicht fällt.
 
 
 
