@@ -10,6 +10,7 @@ Vorlesung "Dokumentenmanagement und Verschlüsselungsverfahren"
 
 1. Einführung in das Dokumentenmanagement (`<dm-einfuehrung/folien.rst.html>`__)
 2. Erfassung und Indizierung von Dokumenten (`<dm-erfassung-und-indizierung/folien.rst.html>`__)
+3. Dokumentenmanagement und rechtliche Aspekte (`<dm-rechtliche-aspekte/folien.rst.html>`__)
 
 
 Vorlesung "Verteilte Systeme"
