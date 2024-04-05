@@ -267,8 +267,12 @@ Lamport-Uhren (*logical clocks*)
   
    Ereignis *receive* ist zeitlich immer nach *send*.
 
-   Ereignisse werden eingeordnet nach der :ger-quote:`happened-before` Relation: a → b
+   Ereignisse werden eingeordnet nach der :ger-quote:`happened-before` Relation: 
+   
+   a → b
 
+   (a happened-before b) 
+   
 .. container:: smaller incremental
   
   Resultat: es ergibt sich eine partielle Ordnung (partial ordering) der Ereignisse.
