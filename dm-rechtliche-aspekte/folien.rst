@@ -258,8 +258,8 @@ Scannen von externen Dokumenten
 
 - Externe Dokumente dürfen ersetzend gescannt werden.
 - Die Dokumente sind nach dem Stand der Technik zu scannen. (TR-ESOR 03125 bzw. TR-RESISCAN 03138)
-- Bei gescannten öffentlichen Urkunden gilt §371 B ZPO; d. h. der Beweiswert bleibt erhalten wenn der Scan von einer öffentlichen Behörde oder einer mit öffentlichen Glauben versehen Personen durchgeführt wurde.
-- Relevante Vorschriften ergeben sich aus TR 3138 Resiscan des BSI.
+- Bei gescannten öffentlichen Urkunden gilt §371 B ZPO; d. h. der Beweiswert bleibt erhalten wenn der Scan von einer öffentlichen Behörde oder einer mit öffentlichen Glauben versehen Personen durchgeführt wurde.
+- Relevante Vorschriften ergeben sich aus TR 3138 Resiscan des BSI.
 - Durch eine verbindliche Auskunft nach Paragraph 38 AO kann eine Garantie für die Akzeptanz gescannte Dokumente durch das Finanzamt erwirkt werden.
 
 
@@ -392,7 +392,7 @@ Rechte von Betroffenen gemäß DSGVO
 
 - die Speicherung von Daten ist bei unrechtmäßiger Verarbeitung nicht erlaubt (BDSG).
 
-  Dies umfasst ggf. personenbezogene Daten oder auch Daten bei denen der Besitz strafbar ist (z. B. KiPo oder verfassungsfeindliche Inhalte).
+  Dies umfasst ggf. personenbezogene Daten oder auch Daten bei denen der Besitz strafbar ist (z. B. KiPo oder verfassungsfeindliche Inhalte).
 
 - Systeme zur revisionssicheren Aufbewahrung müssen deswegen eine Option anbieten, Daten vor Ablauf der Aufbewahrungsfristen zu löschen. 
 
@@ -437,7 +437,7 @@ Häufig an ein konkretes Datum geknüpft:
 
 .. class:: incremental
 
-- z. B. 1. Januar des Folgejahres
+- z. B. 1. Januar des Folgejahres
 - an ein Ereignis
 - Ablauf des Kalenderjahres in dem die letzte Änderung erfolgte
 - Bei Akten/Projekten: Abschluss des Projekts
@@ -449,8 +449,8 @@ Aufbewahrungsgründe
 
 .. class:: incremental
 
-- die Dokumente werden für betriebliche Belange benötigt (z. B. Wartung/Instandhaltung)
-- historische Gründe (z. B. Unternehmensgeschichte)
+- die Dokumente werden für betriebliche Belange benötigt (z. B. Wartung/Instandhaltung)
+- historische Gründe (z. B. Unternehmensgeschichte)
 - gesetzliche Gründe
 - die Dokumente sind ggf. Beweismittel in einem Rechtsstreit
 
@@ -465,7 +465,7 @@ Gesetzliche Aufbewahrungsfristen
 - Aussagen zur Frist leiten sich ggf. aus Nachweispflichten ab.
 - Oft gibt es erhebliche Abgrenzungsschwierigkeiten zwischen den anzuwenden Vorschriften bzw. Gesetzen.
   
-  Z.B. § 257 HGB vs. §§ 140-147 AO; d. h. Aufbewahrungspflicht 6 oder 10 Jahre.
+  Z.B. § 257 HGB vs. §§ 140-147 AO; d. h. Aufbewahrungspflicht 6 oder 10 Jahre.
 
   Vgl. `IHK Konstanz - Aufbewahrungsfristen (Stand 2020) <https://www.ihk.de/konstanz/recht-und-steuern/steuer-und-finanzpolitik/finverwal/aufbewahrung-von-geschaeftsunterlagen-1672476#:~:text=Die%20Aufbewahrungsfrist%20für%20Bücher%20und,und%20Rechnungen%20beträgt%20zehn%20Jahre.>`__
 - **Direkte Aufbewahrungspflichten werden in der Fachliteratur zusammengetragen und können dort entnommen werden.**
@@ -477,13 +477,13 @@ Aufbewahrungspflichten Ermitteln
 .. class:: incremental
 
 - Einzelheiten zu der steuerrechtlichen Aufbewahrungspflicht werden in der Abgabenordnung (primär in § 147) geregelt. 
-- Jedoch ergeben sich steuerrechtliche Aufbewahrungspflichten auch durch :ger-quote:`andere Gesetze` (z. B. Steuergesetze wie das Umsatzsteuergesetz).  
+- Jedoch ergeben sich steuerrechtliche Aufbewahrungspflichten auch durch :ger-quote:`andere Gesetze` (z. B. Steuergesetze wie das Umsatzsteuergesetz).  
 
 - Bzgl. :ger-quote:`andere Gesetze`:
   
   .. epigraph::
 
-    [... Gemeint] sind u. a. das HGB und **eine Vielzahl von Gesetzen und Verordnungen**, die für bestimmte Berufe oder Tätigkeiten Aufzeichnungs- und Buchführungspflichten vorschreiben. Beispielsweise müssen die Bewachungsbetriebe Auftragsbücher nach § 14 Abs. 2 Verordnung über das Bewachungsgewerbe i. V. m. § 34a Abs. 2 Nr. 3c Gewerbeordnung führen.
+    [... Gemeint] sind u. a. das HGB und **eine Vielzahl von Gesetzen und Verordnungen**, die für bestimmte Berufe oder Tätigkeiten Aufzeichnungs- und Buchführungspflichten vorschreiben. Beispielsweise müssen die Bewachungsbetriebe Auftragsbücher nach § 14 Abs. 2 Verordnung über das Bewachungsgewerbe i. V. m. § 34a Abs. 2 Nr. 3c Gewerbeordnung führen.
 
     -- `IHK Hamburg (Abgerufen März 2024) <https://www.ihk.de/hamburg/produktmarken/beratung-service/recht-und-steuern/steuerrecht/abgabenrecht/aufbewahrungsfristen-geschaeftsunterlagen-1157174>`__
 
@@ -494,7 +494,7 @@ Fristfindung
 
 :dokumentenbezogen:
  
-  1. die Dokumententypen einer Einheit (z. B. Abteilung) werden ermittelt
+  1. die Dokumententypen einer Einheit (z. B. Abteilung) werden ermittelt
   2. die Aufbewahrungsgründe werden festgestellt
   3. Feststellung der betrieblichen und der (in)direkten gesetzlichen Aufbewahrungsfristen 
 
@@ -516,7 +516,7 @@ Fristenkatalog:
 - Fristbeginn
 - Aufbewahrungszeitraum
 - gesetzliche und/oder betriebliche Grundlage
-- Aufbewahrungsform (z. B. Original)
+- Aufbewahrungsform (z. B. Original)
 
 
 
@@ -573,7 +573,7 @@ Sicherstellung der Beweiskraft vor Gericht
 - Bei der Verwendung von einfachen elektronischen Signaturen unterliegt die Beweiskraft der freien Beweiswürdigung durch das Gericht.
 
   Private elektronische Dokumente mit einer qualifizierten Signatur haben einen höheren Beweiswert als private Urkunden.
-- Qualifizierte Signaturen können z. B. mit dem neuen Personalausweis und einem Kartenleser erzeugt werden.  
+- Qualifizierte Signaturen können z. B. mit dem neuen Personalausweis und einem Kartenleser erzeugt werden.  
 
 .. supplemental::
 
@@ -605,9 +605,9 @@ Zertifizierungen von Dokumentenmanagementsystemen
 
 .. class:: incremental
 
-- Die (Entwicklungs-)Prozesse des Herstellers sind zertifiziert (z. B. ISO 9000).
+- Die (Entwicklungs-)Prozesse des Herstellers sind zertifiziert (z. B. ISO 9000).
 - Die DMS Lösung wird von anderen Herstellern zertifiziert (Zweck garantierte Interoperabilität).
-- Die Lösung ist Teil einer Prozesszertifizierung und dient der Qualitätsverbesserung des Prozesses zu zertifizierenden Prozesses. (z. B. ISO 9000 und ISO 14001)
+- Die Lösung ist Teil einer Prozesszertifizierung und dient der Qualitätsverbesserung des Prozesses zu zertifizierenden Prozesses. (z. B. ISO 9000 und ISO 14001)
 - Die DMS-Software bzw. Teile davon sind nach anerkannten Prüfungsgrundlagen zertifiziert
 - Die DMS-Lösung ist in der Gesamtheit (inkl. administrativer und organisatorischer Prozesse) zertifiziert.
 

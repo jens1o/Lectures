@@ -109,8 +109,8 @@ TCP und UDP - Wiederholung
 
       .. class:: smaller
 
-      - Anwendungen mit vorwiegend kurzen Nachrichten (z. B. NTP, RPC, NIS)
-      - Anwendungen mit hohem Durchsatz, die ab und zu Fehler tolerieren (z. B. Multimedia)
+      - Anwendungen mit vorwiegend kurzen Nachrichten (z. B. NTP, RPC, NIS)
+      - Anwendungen mit hohem Durchsatz, die ab und zu Fehler tolerieren (z. B. Multimedia)
       - Multicasts sowie Broadcasts
 
 

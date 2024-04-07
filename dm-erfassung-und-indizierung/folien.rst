@@ -201,7 +201,7 @@ Beispiel für Eingangspostbearbeitung
 
 .. class:: smaller-slide-title vertical-title
 
-Unterstützung für Workflowdefinitionen in ECM Systemen - z. B. `DocuWare <https://start.docuware.com>`__
+Unterstützung für Workflowdefinitionen in ECM Systemen - z. B. `DocuWare <https://start.docuware.com>`__
 -----------------------------------------------------------------------------------------------------------
 
 .. image:: screenshots/docuware-workflow-manager-2024-02.webp
@@ -226,7 +226,7 @@ Erstmalige Übernahme von Dokumenten
 
     • Altsystem (Archiv, DMS) 
     • Filesystem
-    • Mikrofilm, Mikrofish etc. 
+    • Mikrofilm, Mikrofiche etc. 
     • Papierbeständen
 
 .. container:: incremental

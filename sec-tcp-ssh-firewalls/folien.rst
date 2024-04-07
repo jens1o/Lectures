@@ -985,7 +985,7 @@ Secure Shell (SSH) - Risiken durch mangelnde Schlüsselverwaltung
 - Schlüssel werden nicht regelmäßig ausgetauscht
 - Schlüssel werden nicht gelöscht, wenn sie nicht mehr benötigt werden
 - viele (die meisten) Schlüssel werden nicht verwendet
-- Es ist of nicht bekannt, wer Zugriff auf welche Schlüssel hat(te)
+- Es ist oft nicht bekannt, wer Zugriff auf welche Schlüssel hat(te)
 - Es ist nicht bekannt, welche Schlüssel auf welche Systeme Zugriff haben
 - Malware kann SSH-Schlüssel stehlen
 - SSH Keys können ggf. privilegierten Zugriff gewähren

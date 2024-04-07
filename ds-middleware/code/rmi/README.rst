@@ -7,7 +7,7 @@ RMI-Beispiel
 Ausführung
 -----------
 
-Im Verzeichnis unterhalb des Rootpackages ("rmi") - mit root-Rechten (d. h. **sudo**):
+Im Verzeichnis unterhalb des Rootpackages ("rmi") - mit root-Rechten (d. h. **sudo**):
 
 1. [..]/ds-architekturen/private $ sudo rmiregistry
 2. [..]/ds-architekturen/private $ java -cp . -Djava.rmi.server.codebase=file:./ -Djava.security.policy=server.policy rmi.TimeRegistrar localhost

@@ -187,7 +187,7 @@ Körper
 --------------------
 
 - Ein Körper :math:`F`, manchmal auch bezeichnet als :math:`\lbrace F, +, \times \rbrace`, ist eine Menge von Elementen mit zwei binären Operationen, genannt Addition und Multiplikation, so dass für alle :math:`a, b, c \in F` die Axiome (A1-M6) gelten. 
-- :math:`F` ist ein Integritätsbereich, d. h. :math:`F` erfüllt die Axiome A1 bis A5 und M1 bis M6 
+- :math:`F` ist ein Integritätsbereich, d. h. :math:`F` erfüllt die Axiome A1 bis A5 und M1 bis M6 
   
 .. class:: incremental 
     
@@ -251,7 +251,7 @@ Endliche Körper der Form :math:`GF(p)`
         Die Ordnung eines endlichen Feldes ist die Anzahl der Elemente des Feldes.
 
     - Es kann gezeigt werden, dass die Ordnung eines endlichen Körpers eine Potenz einer Primzahl :math:`p^n` sein muss, wobei :math:`n` eine positive ganze Zahl ist.
-    - Das endliche Feld der Ordnung :math:`p^n` wird allgemein als :math:`GF(p^n)` bezeichnet. 
+    - Der endliche Körper der Ordnung :math:`p^n` wird allgemein als :math:`GF(p^n)` bezeichnet. 
     - GF steht für :eng:`Galois Field` (:ger:`Galoiskörper`), zu Ehren des Mathematikers, der als erster endliche Körper untersucht hat.
 
 
@@ -436,14 +436,27 @@ Beispiel für gewöhnliche Polynomarithmetik
 :Addition:
     .. math::
 
-        (x^3 + x^2 + 2) + (x^2 - x + 1) = x^3 + 2x^2 - x + 3
+        (x^3 + x^2 + 2) + (x^2 - x + 1) 
+
+
+    .. math::
+        :class: incremental
+
+        = x^3 + 2x^2 - x + 3
 
 .. class:: incremental
 
   :Subtraktion:
+
     .. math::
 
-        (x^3 + x^2 + 2) - (x^2 - x + 1) = x^3 + x + 1
+        (x^3 + x^2 + 2) - (x^2 - x + 1) 
+    
+
+    .. math::
+        :class: incremental
+
+        = x^3 + x + 1
 
 
 Beispiel für gewöhnliche Polynomarithmetik
@@ -453,7 +466,7 @@ Beispiel für gewöhnliche Polynomarithmetik
     .. math::
         (x^3 + x^2 + 2) \times (x^2 - x + 1) = 
 
-    .. class:: small
+    .. class:: small incremental
 
         .. math::
         
@@ -482,14 +495,18 @@ Polynomarithmetik mit Koeffizienten in :math:`Z_p`
     - Wenn jedes eindeutige Polynom als Element der Menge betrachtet wird, dann ist diese Menge ein Ring.
     - Wenn die Polynomarithmetik auf Polynomen über einem Körper durchgeführt wird, dann ist die Division möglich.
         
-      .. container:: note  width-40
-
-        Das bedeutet nicht, dass eine exakte Teilung möglich ist.
+      
 
     - Wenn wir versuchen, eine Polynomdivision über eine Koeffizientenmenge durchzuführen, die kein Körper ist, dann ist die Division nicht immer definiert.
 
       - Auch wenn die Koeffizientenmenge ein Körper ist, ist die Polynomdivision nicht unbedingt exakt.
+
+        .. container:: note  width-40
+
+            Das bedeutet nicht, dass eine exakte Teilung möglich ist.
+
       - Unter der Voraussetzung, dass Reste erlaubt sind, dann ist die Polynomdivision möglich, wenn die Koeffizientenmenge ein Körper bildet.
+  
 
 
 
@@ -822,7 +839,7 @@ Multiplikation in :math:`GF(2^n)`
           & x^7 + & & & x^4 + &x ^3 + & & & 1 & 
         \end{matrix}
 
-    2. Beispiel:
+    1. Beispiel:
    
     .. math::
     
@@ -838,7 +855,7 @@ Multiplikation in :math:`GF(2^n)`
 
     .. container:: minor
 
-        Die Multiplikation mit :math:`x^2` kann durch die zweifache Multiplikation mit :math:`x` unter Anwendung der obigen Gleichung erreicht werden kann. D. h. :math:`x^7 \times x^2 = (x^7 \times x) \times x` 
+        Die Multiplikation mit :math:`x^2` kann durch die zweifache Multiplikation mit :math:`x` unter Anwendung der obigen Gleichung erreicht werden kann. D. h. :math:`x^7 \times x^2 = (x^7 \times x) \times x` 
 
 
 
@@ -910,10 +927,10 @@ Multiplikation in :math:`GF(2^n)`
     5. Verifiziere: :math:`(x^3+x^2)^{-1}=(x^2+x+1)`
 
     .. solution::
-        :pwd: 5 Lösungen
+        :pwd: 5 Loesungen
         
         1. :math:`x^3 + x^2`
-        2. :math:`f(x)=(x^4+x)·(x^3+x^2)\; mod\; p(x)=x^7+x^6+x^4+x^3\; mod\; p(x)=x^2+x`
+        2. :math:`f(x)=(x^4+x)·(x^3+x^2)\; mod\; p(x)= (x^7+x^6+x^4+x^3)\; mod\; p(x)=x^2+x`
         3. :math:`x^4 +x^3 +x^2 +1`
         4. :math:`x^4 + 1`
         5. Verifikation:
@@ -949,7 +966,9 @@ Multiplikation in :math:`GF(2^n)`
 
 .. exercise::
 
-    Berechne: :math:`(0x03\; \times\; 0x46)`
+    - Berechne: :math:`(0x03\; \times\; 0x46) \qquad` 
+  
+      (0x3 und 0x46 sind die Hexadezimaldarstellungen der Koeffizienten des Polynoms.)
 
     .. solution::
         :pwd: 0xCA

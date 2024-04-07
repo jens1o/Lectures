@@ -1019,7 +1019,7 @@ Nehmen wir an, die (*relativ prim/koprimalen*) Faktoren einer Zahl :math:`x`:  :
 
     dass die bekannten Reste der Dezimalzahl :math:`x`: :math:`a_1 = r_{m_1} = 0` und :math:`a_2 = r_{m_2} = 3` sind. 
 
-    D. h. :math:`x\; mod \;2 = 0` und :math:`x\; mod\; 5 = 3`; bzw. :math:`x \equiv 0 (mod\; 2)` und :math:`x \equiv 3 (mod\; 5)`.
+    D. h. :math:`x\; mod \;2 = 0` und :math:`x\; mod\; 5 = 3`; bzw. :math:`x \equiv 0 (mod\; 2)` und :math:`x \equiv 3 (mod\; 5)`.
 
 .. class:: incremental
 

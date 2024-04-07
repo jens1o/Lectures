@@ -660,9 +660,9 @@ Archiv System müssen die folgenden Eigenschaften bei langjähriger Aufbewahrung
 
 .. supplemental::
 
-    Z. B. muss ein Insolvenzverwalter nach dem Abschluss des Verfahrens die Dokumente 10 Jahre aufbewahren obwohl er in dieser Zeit die Dokumente höchstwahrscheinlich nicht mehr benötigt.
+    Z. B. muss ein Insolvenzverwalter nach dem Abschluss des Verfahrens die Dokumente 10 Jahre aufbewahren obwohl er in dieser Zeit die Dokumente höchstwahrscheinlich nicht mehr benötigt.
 
-    Informationen über die Ergebnisse von arbeitsmedizinischen Untersuchungen (dies sind ggf. sehr vielfältige und umfangreiche Daten (z. B. Röntenbilder, EKGs)) müssen 30 Jahre bis nach der letzten Untersuchung aufbewahrt werden, da sich daraus ggf. Rentenansprüche ableiten. Daraus leiten sich ggf. Fristen für Dokumente von 50 Jahren und mehr ab.
+    Informationen über die Ergebnisse von arbeitsmedizinischen Untersuchungen (dies sind ggf. sehr vielfältige und umfangreiche Daten (z. B. Röntenbilder, EKGs)) müssen 30 Jahre bis nach der letzten Untersuchung aufbewahrt werden, da sich daraus ggf. Rentenansprüche ableiten. Daraus leiten sich ggf. Fristen für Dokumente von 50 Jahren und mehr ab.
 
 
 
@@ -1053,7 +1053,7 @@ Sichere Speicherung kann nicht lokal erfolgen
 Drucken von Dokumenten
 -----------------------------------------------
 
-DM-Systeme müssen das Drucken von Dokumenten unterstützen, da Nutzer oft Ausdrucke benötigen (z. B. auf Baustellen)
+DM-Systeme müssen das Drucken von Dokumenten unterstützen, da Nutzer oft Ausdrucke benötigen (z. B. auf Baustellen)
 
 Relevante Anforderungen an den Ausdruck:
 

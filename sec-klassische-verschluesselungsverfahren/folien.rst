@@ -340,7 +340,7 @@ Brute-Force-Kryptoanalyse der Caesar-Chiffre
     25 QIIX QI EJXIV XLI XSKE TEVXC
 
 
-Brute-Force-Kryptoanalyse (z. B. der Caesar-Chiffre)
+Brute-Force-Kryptoanalyse (z. B. der Caesar-Chiffre)
 -----------------------------------------------------
 
 Die Entschlüsselung ist komplizierter, wenn der Klartext bereits eine sehr hohe Entropie aufweist, wie z. B. im Falle einer komprimierten Datei:

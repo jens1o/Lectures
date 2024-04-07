@@ -618,7 +618,7 @@ Entwurfsprinzipien für Blockchiffre - Schlüsselableitung
     - Nachrichten zu ver- und entschlüsseln
     - Blöcke von 128 Bit zu verschlüsseln
     - die Funktion :math:`f` einfach auszutauschen, um die Wirkung von :math:`f` zu testen
-    - Für die Ableitung der Rundenschlüssel können Sie eine Funktion verwenden, die eine Rotation des Schlüssels durchführt (z. B. `Integer.rotateLeft <https://docs.oracle.com/javase%2F7%2Fdocs%2Fapi%2F%2F/java/lang/Integer.html#rotateLeft(int,%20int))>`_).
+    - Für die Ableitung der Rundenschlüssel können Sie eine Funktion verwenden, die eine Rotation des Schlüssels durchführt (z. B. `Integer.rotateLeft <https://docs.oracle.com/javase%2F7%2Fdocs%2Fapi%2F%2F/java/lang/Integer.html#rotateLeft(int,%20int))>`_).
 
     .. solution::
         :pwd: Feistel in Python

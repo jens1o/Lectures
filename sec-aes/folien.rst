@@ -78,7 +78,7 @@ Arithmetik endlicher Körper
   
 - Wenn wir modulare Arithmetik auf die Menge der ganzen Zahlen :math:`Z_{2^n}` (mit :math:`n > 1`) anwenden, dann erhalten wir :dhbw-red:`keinen` Körper!
   
-  Zum Beispiel hat die ganze Zahl :math:`2` keine multiplikative Inverse in :math:`Z_{2^n}` (mit :math:`n > 1`), d. h. es gibt keine ganze Zahl :math:`b`, so dass :math:`2b\; mod\; 2^n = 1`
+  Zum Beispiel hat die ganze Zahl :math:`2` keine multiplikative Inverse in :math:`Z_{2^n}` (mit :math:`n > 1`), d. h. es gibt keine ganze Zahl :math:`b`, so dass :math:`2b\; mod\; 2^n = 1`
     
 - Ein endlicher Körper der :math:`2^n` Elemente enthält, wird als :math:`GF(2^n)` bezeichnet.
   
@@ -721,7 +721,7 @@ Sei der folgende *RoundKey* gegeben:
 
 ``E2 32 FC F1   91 12 91 88   B1 59 E4 E6   D6 79 A2 93``  
 
-In Hinblick auf die Berechnung von :math:`rc_2`; d. h. den Rundschlüssel (*Roundkey*) für die zweite Runde, führe folgende Schritte durch.
+In Hinblick auf die Berechnung von :math:`rc_2`; d. h. den Rundschlüssel (*Roundkey*) für die zweite Runde, führe folgende Schritte durch.
 
 .. exercise:: 
     

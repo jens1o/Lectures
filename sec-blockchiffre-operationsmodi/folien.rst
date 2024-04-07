@@ -67,7 +67,7 @@ Doppelte Verschlüsselung
 
         .. container:: assessment
 
-            Beobachtung: :math:`E(K_2,E(K_1,P)) = E(K_3,P)` ist nicht gültig. D. h. die zweifache Anwendung von DES führt zu einer Abbildung, die nicht äquivalent zu einer einfachen DES-Verschlüsselung ist.
+            Beobachtung: :math:`E(K_2,E(K_1,P)) = E(K_3,P)` ist nicht gültig. D. h. die zweifache Anwendung von DES führt zu einer Abbildung, die nicht äquivalent zu einer einfachen DES-Verschlüsselung ist.
 
     .. layer:: incremental
 
@@ -101,7 +101,7 @@ Doppelte Verschlüsselung
 Dreifache Verschlüsselung 
 -----------------------------------------------------------------------
 
-**(Z. B. Triple-DES (3DES) mit drei Schlüsseln)**
+**(Z. B. Triple-DES (3DES) mit drei Schlüsseln)**
 
 .. image:: drawings/operationsmodi/triple_encryption.svg
     :width: 100%
@@ -164,7 +164,7 @@ Betriebsmodi - Übersicht
         :header: Modus, Beschreibung, Typische Anwendung
 
         **Electronic Codebook (ECB)**, Jeder Block von Klartextbits wird unabhängig voneinander mit demselben Schlüssel verschlüsselt., "
-        • Sichere Übertragung einzelner Werte (z. B. eines Verschlüsselungsschlüssels)
+        • Sichere Übertragung einzelner Werte (z. B. eines Verschlüsselungsschlüssels)
         "
         **Cipher Block Chaining (CBC)**, Die Eingabe für den Verschlüsselungsalgorithmus ist die XOR-Verknüpfung des nächsten Klartextblocks mit dem vorangegangenen Chiffretextblock., " 
         - Universelle blockorientierte Übertragung 
@@ -176,7 +176,7 @@ Betriebsmodi - Übersicht
         - Authentifizierung
         " 
         **Output Feedback (OFB)**, "Ähnlich wie CFB, mit dem Unterschied, dass die Eingabe für den Verschlüsselungsalgorithmus die vorangegangene Verschlüsselungsausgabe ist, und volle Blöcke verwendet werden.", " 
-        • Stromorientierte Übertragung über verrauschte Kanäle (z. B. Satellitenkommunikation) 
+        • Stromorientierte Übertragung über verrauschte Kanäle (z. B. Satellitenkommunikation) 
         "
         "**Counter (CTR**)", "Jeder Klartextblock wird mit einem verschlüsselten Zähler XOR-verknüpft. Der Zähler wird für jeden nachfolgenden Block erhöht.", " 
         - Blockorientierte Übertragung für allgemeine Zwecke
@@ -272,7 +272,7 @@ Konvertierung von Blockchiffren in Stromchiffre
     - Output Feedback Mode (OFB)
     - Counter Mode (CTR)
 
-    D. h., es ist kein Auffüllen (:eng:`Padding`) erforderlich, wenn die Nachricht nicht ein Vielfaches der Blockgröße ist.
+    D. h., es ist kein Auffüllen (:eng:`Padding`) erforderlich, wenn die Nachricht nicht ein Vielfaches der Blockgröße ist.
 
 Bei AES, DES oder jeder anderen Blockchiffre erfolgt die Verschlüsselung immer Block-für-Block mit Blockgrößen von b Bits:
 
@@ -462,7 +462,7 @@ XTS-AES Operation auf einem Block
     .. container:: column
 
       - :math:`i`: Der Wert des 128-Bit-Tweaks.
-      - :math:`\alpha`: Ein primitives Element des :math:`GF(2^{128})` welches dem Polynom :math:`x` (d. h. 0000...0010) entspricht.
+      - :math:`\alpha`: Ein primitives Element des :math:`GF(2^{128})` welches dem Polynom :math:`x` (d. h. 0000...0010) entspricht.
       - :math:`\alpha^j`: :math:`\alpha` :math:`j` mal mit sich selbst multipliziert im Körper :math:`GF(2^{128})`  
       - :math:`\oplus` Bitwise XOR
       - :math:`\otimes` Modulare Multiplikation mit Binärkoeffizienten modulo :math:`x^{128}+x^7+x^2+x+1`.  
@@ -514,7 +514,7 @@ XTS-AES Operation auf einem Block
   
   .. exercise::
  
-    Warum muss der IV im Falle von OFB eine Nonce (:eng:`Number used ONCE`) sein (d. h. eine Zahl, die nur einmal für die Ausführung des Verschlüsselungsalgorithmus verwendet wird)?
+    Warum muss der IV im Falle von OFB eine Nonce (:eng:`Number used ONCE`) sein (d. h. eine Zahl, die nur einmal für die Ausführung des Verschlüsselungsalgorithmus verwendet wird)?
 
     .. solution::
         :pwd: nOnce
@@ -605,7 +605,7 @@ XTS-AES Operation auf einem Block
         .. solution::
             :pwd: caesar_ofb
 
-            Das gleiche Klartextzeichen wird nicht mehr (notwendigerweise) dem gleichen Chiffretextzeichen zugeordnet, wenn es in der ursprünglichen Nachricht wieder auftaucht, d. h. es liegt eine gewisse Diffusion vor.
+            Das gleiche Klartextzeichen wird nicht mehr (notwendigerweise) dem gleichen Chiffretextzeichen zugeordnet, wenn es in der ursprünglichen Nachricht wieder auftaucht, d. h. es liegt eine gewisse Diffusion vor.
 
             .. admonition:: Beispiel - Verschlüsselung
             

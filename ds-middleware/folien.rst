@@ -330,7 +330,7 @@ Middleware unterstützt zusätzliche Funktionen die die Entwicklung, Wartung und
 - Wiederherstellung (:eng:`Recovery`)
 - Sprachprimitive für transaktionale Abgrenzung 
  
-  (:minor:`Bzw. fortgeschrittene Transaktionsmodelle (z. B. transaktionale RPC) oder transaktionale Dateisysteme`)
+  (:minor:`Bzw. fortgeschrittene Transaktionsmodelle (z. B. transaktionale RPC) oder transaktionale Dateisysteme`)
 
 
 
@@ -412,7 +412,7 @@ Remote Procedure Call (RPC)
 
   Ein Prozess kann eine Prozedur aufrufen deren Implementierung sich auf einem entfernten Rechner befindet:
 
-  - Programmierer von verteilten Systemen müssen sich nicht mehr um alle Details der Netzwerkprogrammierung kümmern (d. h. keine :ger-quote:`expliziten` Sockets mehr).
+  - Programmierer von verteilten Systemen müssen sich nicht mehr um alle Details der Netzwerkprogrammierung kümmern (d. h. keine :ger-quote:`expliziten` Sockets mehr).
   - Überbrückung der konzeptionellen Lücke zwischen dem Aufruf lokaler Funktionalität über Prozeduren und dem Aufruf entfernter Funktionalität über Sockets.
 
 
@@ -681,7 +681,7 @@ Anatomie eine Java RMI Aufrufs
   
   Der Skeleton ist für die Entgegennahme der Nachrichten verantwortlich und leitet die Nachricht an das eigentliche Objekt weiter. Er sorgt für die Transparenz auf Serverseite.
 
-  Referenzen auf *Remote Objects* sind systemweit eindeutig und können frei zwischen Prozessen weitergegeben werden (z. B. als Parameter). Die Implementierung der entfernten Objektreferenzen wird von der Middleware verborgen (*Opaque-Referenzen*).
+  Referenzen auf *Remote Objects* sind systemweit eindeutig und können frei zwischen Prozessen weitergegeben werden (z. B. als Parameter). Die Implementierung der entfernten Objektreferenzen wird von der Middleware verborgen (*Opaque-Referenzen*).
 
 
 

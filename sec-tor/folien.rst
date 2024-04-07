@@ -503,7 +503,7 @@ Tor
     .. solution::
         :pwd: VPN-ueber-Tor
 
-        Es macht nur selten Sinn ein VPN über Tor (d. h. erst TOR, dann VPN) zu betreiben. In diesem Fall ist zum Beispiel kein Zugriff auf .onion Adressen möglich. Weiterhin kennt der VPN Anbieter seine Kunden. Jedoch wird der Standort des Clients vor dem VPN Anbieter verborgen. Die Einrichtung ist jedoch kompliziert und wird ggf. vom VPN Anbieter nicht unterstützt. Möglicherweise sinnvoll wenn der Einsatz eines VPN verboten ist.
+        Es macht nur selten Sinn ein VPN über Tor (d. h. erst TOR, dann VPN) zu betreiben. In diesem Fall ist zum Beispiel kein Zugriff auf .onion Adressen möglich. Weiterhin kennt der VPN Anbieter seine Kunden. Jedoch wird der Standort des Clients vor dem VPN Anbieter verborgen. Die Einrichtung ist jedoch kompliziert und wird ggf. vom VPN Anbieter nicht unterstützt. Möglicherweise sinnvoll wenn der Einsatz eines VPN verboten ist.
 
         Es macht meistens mehr Sinn Tor über ein VPN zu betreiben. In diesem Fall sieht kein TOR-Knoten die IP Adresse des Clients. Insbesondere garantiert diese Lösung die Annonymisierung, die das TOR Netzwerk bietet. Weiterhin weiss der VPN Anbieter nicht, dass der Client TOR benutzt.  
 

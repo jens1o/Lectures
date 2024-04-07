@@ -511,7 +511,7 @@ Langlebige Transaktionen mit choreografierten Sagas
         
         - 2PC ist im Kontext von Microservices keine Option (zu langsam, zu komplex)
         - Änderung der Reihenfolge der Aktionen (1. *publish* dann 2. *update*) führt noch immer zu Inkonsistenzen
-        - die Event Processing Middleware (synchron) zu notifizieren - d. h. als Teil des Datenbankupdates - ist auch keine Option:
+        - die Event Processing Middleware (synchron) zu notifizieren - d. h. als Teil des Datenbankupdates - ist auch keine Option:
         
           .. class:: negative-list
 

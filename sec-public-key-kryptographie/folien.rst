@@ -53,7 +53,7 @@ Terminologie bzgl. asymmetrischer Verschlüsselung
 .. supplemental::   
 
     :Asymmetrische Schlüssel:
-            Zwei zusammengehörige Schlüssel, ein öffentlicher und ein privater Schlüssel, die zur Durchführung komplementärer Operationen verwendet werden, z. B. Ver- und Entschlüsselung oder Signaturerstellung und Signaturprüfung.
+            Zwei zusammengehörige Schlüssel, ein öffentlicher und ein privater Schlüssel, die zur Durchführung komplementärer Operationen verwendet werden, z. B. Ver- und Entschlüsselung oder Signaturerstellung und Signaturprüfung.
 
     .. class:: incremental
 
@@ -79,14 +79,14 @@ Missverständnisse bei der Verwendung von Public-Key-Kryptosystemen
 .. class:: incremental
 
 - Public-Key-Verschlüsselung ist sicherer vor Kryptoanalyse als die symmetrische Verschlüsselung.
-- Public-Key-Kryptografie (d. h. die Verschlüsselung mit öffentlichen Schlüsseln) ist eine Allzwecktechnik, die die symmetrische Verschlüsselung überflüssig gemacht hat.
+- Public-Key-Kryptografie (d. h. die Verschlüsselung mit öffentlichen Schlüsseln) ist eine Allzwecktechnik, die die symmetrische Verschlüsselung überflüssig gemacht hat.
 - Man hat das Gefühl, dass die Schlüsselverteilung bei der Verschlüsselung mit öffentlichen Schlüsseln trivial ist, verglichen mit dem mühsamen Handshaking, das bei der symmetrischen Verschlüsselung mit Schlüsselverteilungszentren verbunden ist.
 
 
 Prinzipien von Public-Key-Kryptosystemen
 -------------------------------------------
 
-- Das Konzept der *Public-Key-Kryptographie* (d. h. der Kryptografie mit öffentlichen Schlüsseln) entstand aus dem Versuch, zwei der schwierigsten Probleme im Zusammenhang mit der symmetrischen Verschlüsselung zu lösen:
+- Das Konzept der *Public-Key-Kryptographie* (d. h. der Kryptografie mit öffentlichen Schlüsseln) entstand aus dem Versuch, zwei der schwierigsten Probleme im Zusammenhang mit der symmetrischen Verschlüsselung zu lösen:
 
   .. admonition:: Schlüsselverteilung
 
@@ -232,7 +232,7 @@ Anwendungen für Public-Key-Kryptosysteme
 
   1. *Ver-/Entschlüsselung*: Der Absender verschlüsselt eine Nachricht mit dem öffentlichen Schlüssel des Empfängers.
   2. *Digitale Unterschriften*: Der Absender :ger-quote:`unterschreibt` eine Nachricht mit seinem privaten Schlüssel.
-  3. *Schlüsselaustausch*: Zwei Seiten arbeiten zusammen, um einen Sitzungsschlüssel (d. h. einen symmetrischen Schlüssel) auszutauschen.
+  3. *Schlüsselaustausch*: Zwei Seiten arbeiten zusammen, um einen Sitzungsschlüssel (d. h. einen symmetrischen Schlüssel) auszutauschen.
 
 .. class:: incremental
 
@@ -333,7 +333,7 @@ Public-Key-Kryptoanalyse
 
 .. supplemental::
 
-    Bei einem Angriff mit :ger-quote:`wahrscheinlicher Nachricht`, verschlüsselt der Angreifer eine Reihe von Nachrichten (z. B. alle DES Schlüssel mit dem öffentlichen Schlüssel des Adressaten) und analysiert die resultierenden Chiffretexte, um den privaten Schlüssel zu ermitteln.
+    Bei einem Angriff mit :ger-quote:`wahrscheinlicher Nachricht`, verschlüsselt der Angreifer eine Reihe von Nachrichten (z. B. alle DES Schlüssel mit dem öffentlichen Schlüssel des Adressaten) und analysiert die resultierenden Chiffretexte, um den privaten Schlüssel zu ermitteln.
 
 
 Rivest-Shamir-Adleman (RSA) Algorithm
@@ -556,7 +556,7 @@ Schlüsselgenerierung
         - Da der Wert von :math:`n = pq` jedem potenziellen Gegner bekannt sein wird, müssen die Primzahlen aus einer ausreichend großen Menge ausgewählt werden.
         - Die Methode, die zum Finden großer Primzahlen verwendet wird, muss einigermaßen effizient sein.
          
-          Es kann z. B. der Miller-Rabin-Algorithmus verwendet werden.
+          Es kann z. B. der Miller-Rabin-Algorithmus verwendet werden.
 
 
 
@@ -680,7 +680,7 @@ Gewählter Chiffretext-Angriff
  
         .. rubric:: Verschlüsseln Sie eine Nachricht mit RSA.
 
-        D. h., wählen Sie 2 kleine Primzahlen, berechnen Sie dann :math:`e`, :math:`d`, :math:`n`. Verschlüsseln Sie dann die Nachricht (d. h. einen (eher) kleinen Wert) mit dem öffentlichen Schlüssel einer anderen Person und senden Sie der Person die verschlüsselte Nachricht. Die Zielperson soll Ihre Nachricht entschlüsseln. Überprüfen Sie anschließend, ob die Verschlüsselung erfolgreich war. 
+        D. h., wählen Sie 2 kleine Primzahlen, berechnen Sie dann :math:`e`, :math:`d`, :math:`n`. Verschlüsseln Sie dann die Nachricht (d. h. einen (eher) kleinen Wert) mit dem öffentlichen Schlüssel einer anderen Person und senden Sie der Person die verschlüsselte Nachricht. Die Zielperson soll Ihre Nachricht entschlüsseln. Überprüfen Sie anschließend, ob die Verschlüsselung erfolgreich war. 
 
         .. solution::
             :pwd: Nachrichtenaustausch
@@ -699,7 +699,7 @@ Gewählter Chiffretext-Angriff
             
             In diesem Fall sind die Zahlen 2 bis 6 nicht möglich, da sie alle 60 teilen. Wir wählen :math:`e = 7`.
             
-            Berechne :math:`d`; d. h., :math:`ed\; mod\; \phi(n) = 1`. :math:`d=43`; :math:`(43 \times 7) \; mod\; \phi(60) = 1` 
+            Berechne :math:`d`; d. h., :math:`ed\; mod\; \phi(n) = 1`. :math:`d=43`; :math:`(43 \times 7) \; mod\; \phi(60) = 1` 
             
             Es folgt: :math:`PU = \lbrace7,77\rbrace`, :math:`PR = \lbrace 43,77 \rbrace`. 
             
