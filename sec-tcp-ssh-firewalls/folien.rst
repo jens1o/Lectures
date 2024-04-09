@@ -1072,7 +1072,7 @@ Schwachstellen in SSH
 
     1. Welche Vorteile bieten Einmalpasswortsysteme gegenüber Systemen mit mehrfach zu verwendenden Passworten?
     2. Welchen Angriffen sind Einmalpasswortsysteme weiterhin ausgesetzt?
-    3. Generieren Sie eine Liste von Einmalpassworten mit Initialwert :math:` r = 769`. Generieren Sie :math:`H(r)` bis :math:`H^6(r)` wenn die Einwegfunktion hier der Einfachheit halber :math:`H(x) = x^2\; mod\; 1000` ist.
+    3. Generieren Sie eine Liste von Einmalpassworten mit Initialwert :math:`r = 769`\ . Generieren Sie :math:`H(r)` bis :math:`H^6(r)` wenn die Einwegfunktion hier der Einfachheit halber :math:`H(x) = x^2\; mod\; 1000` ist.
     4. Wie oft kann sich der Benutzer anmelden? Wie sieht seine Liste aus?
     5. Welchen Wert speichert der Server vor dem jeweiligen Anmeldevorgang?
     6. Spielen Sie zwei Anmeldevorgänge durch.
@@ -1116,8 +1116,8 @@ Schwachstellen in SSH
 .. exercise:: DDoS
 
   1.  Welches Problem entsteht wenn zum Schutze vor Angriffen auf die Verfügbarkeit die Ressourcen von IT-Systemen und deren Internet-Anbindung erhöht werden?
-  2. Recherchieren Sie was ein "Low and Slow Angriff" ist.
-  3. Wo kann überall "Egress filtering" statt finden.
+  2. Recherchieren Sie was ein :ger-quote:`Low and Slow Angriff` ist.
+  3. Wo kann überall :ger-quote:`Egress filtering` statt finden.
 
   .. solution::
     :pwd: DDoSVerstehen
