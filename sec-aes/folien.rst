@@ -324,7 +324,7 @@ S-Box Design Grundlagen
 .. container:: three-columns smaller margin-top-0em padding-top-0em
     
     .. csv-table:: Gegeben
-        :class: monospaced footnotesize  
+        :class: monospaced far-smaller  
 
         87, F2, 4D, 97
         6E, 4C, 90, EC
@@ -332,14 +332,14 @@ S-Box Design Grundlagen
         A6, 8C, D8, 95
 
     .. csv-table:: Ergebnis
-        :class: monospaced footnotesize 
+        :class: monospaced far-smaller 
 
         47,40,A3,4C
         37,D4,70,9F
         94,E4,3A,42 
         ED,A5,A6,BC
         
-    .. container:: tiny
+    .. container:: slightly-more-smaller
 
         Beispiel für die Berechnung von :math:`S'_{0,0}`:
 
@@ -728,7 +728,7 @@ In Hinblick auf die Berechnung von :math:`rc_2`; d. h. den Rundschlüssel (*Ro
     .. rubric:: Formeln für die Berechnung des *RoundKey*
 
     Bevor Sie die konkrete Berechnung durchführen, schreiben Sie zunächst die Formeln für: 
-    :math:`w[8]\;\; =\; \ldots \oplus ... \quad w[9]\;\; =\; ... \oplus ...  \quad w[10] =\; ... \oplus ... \quad w[11] =\; ... \oplus ...` auf.
+    :math:`w[8] = \ldots \oplus \ldots \quad w[9]= \ldots \oplus \ldots  \quad w[10]= \ldots \oplus \ldots \quad w[11]= \ldots \oplus \ldots` auf.
 
     .. solution:: Formeln für die Berechnung des *RoundKey*
         :pwd: CalcRoundKey
