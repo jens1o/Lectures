@@ -1,9 +1,8 @@
 .. meta:: 
     :author: Michael Eichberg
-    :keywords: "Verteilte Anwendungen", "Modelle"
-    :description lang=de: Architekturen von verteilten Anwendungen
-    :id: lecture-ds-architectures-of-distributed-applications
-    :first-slide: last-viewed
+    :keywords: "Lebenslauf"
+    :description lang=de: Lebenslauf von Prof. Dr. Michael Eichberg
+    :id: lecture-cv
 
 .. |date| date::
 .. |at| unicode:: 0x40
@@ -31,12 +30,7 @@
 
 
 Lebenslauf - Prof. Dr. Michael Eichberg
-=================================================================================================
-
-.. container:: footer-left tiny dhbw-light-gray
-
-  :Version: |date|
-
+==============================================
 
 :seit Okt. 2023: Professor an der DHBW Mannheim
 :4 Jahre: Bundeskriminalamt
