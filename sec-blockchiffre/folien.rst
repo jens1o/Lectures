@@ -606,6 +606,99 @@ Entwurfsprinzipien für Blockchiffre - Schlüsselableitung
 
 
 
+.. class:: new-section transition-fade
+
+Mehrfachverschlüsselung
+-----------------------------------
+
+
+
+Doppelte Verschlüsselung
+-------------------------------
+
+.. image:: 
+    drawings/multiple_encryption/double_encryption.svg
+    :width: 1200px
+    :align: center
+
+
+
+*Meet-in-the-Middle*-Angriff
+-----------------------------
+
+.. stack::
+
+    .. layer::
+
+        .. container:: assessment
+
+            Beobachtung: :math:`E(K_2,E(K_1,P)) = E(K_3,P)` ist nicht gültig. D. h. die zweifache Anwendung von DES führt zu einer Abbildung, die nicht äquivalent zu einer einfachen DES-Verschlüsselung ist.
+
+    .. layer:: incremental
+
+        
+
+        Der Meet-in-the-Middle-Algorithmus greift dieses Verfahren an. Er hängt nicht von einer bestimmten Eigenschaft von DES ab, sondern funktioniert gegen jede Blockchiffre.
+        
+        .. class:: incremental
+
+        - Möglicher Known-Plaintext-Angriff: 
+
+          .. class:: incremental
+
+          1. Man berechnet *für alle Schlüssel* :math:`K_1` die Chiffretexte :math:`E(K_1,P)` und speichert diese.
+          2. Man berechnet *für alle Schlüssel* :math:`K_2` die Klartexte :math:`D(K_2,C)` .
+          3. Man vergleicht die beiden Ergebnisse und prüft, ob es Übereinstimmungen gibt.
+              
+          .. container:: incremental
+
+            Dieser Aufwand ist lediglich doppelt so hoch wie der Aufwand bei einer einfachen Verschlüsselung.
+
+    .. layer:: incremental
+
+        .. admonition:: Die zweifache Anwendung einer Blockchiffre ist nicht sinnvoll
+            :class: warning 
+
+            Das Ergebnis ist, dass ein bekannter Klartextangriff gegen Doppel-DES mit einem Aufwand in der Größenordnung von :math:`2^{56}` im Durchschnitt erfolgreich ist, verglichen mit durchschnittlich :math:`2^{55}` für einen einfachen DES.
+
+
+
+Dreifache Verschlüsselung 
+-----------------------------------------------------------------------
+
+**(Z. B. Triple-DES (3DES) mit drei Schlüsseln)**
+
+.. image:: drawings/multiple_encryption/triple_encryption.svg
+    :width: 100%
+    :align: center  
+
+
+
+Triple-DES mit zwei Schlüsseln
+---------------------------------
+
+Die offensichtliche Antwort auf den *Meet-in-the-middle*-Angriff ist die dreifache Verschlüsselung mit drei verschiedenen Schlüsseln.
+
+- Dies erhöht die Kosten des *Meet-in-the-Middle*-Angriffs auf :math:`2^{112}`, was jenseits dessen liegt, was praktikabel ist.
+- Das hat den Nachteil, dass eine Schlüssellänge von :math:`56\,bits \times 3 = 168\,bits` erforderlich ist, was etwas unhandlich sein kann.
+- Als Alternative schlug Tuchman eine dreifache Verschlüsselungsmethode vor, die nur zwei Schlüssel verwendet.
+- 3DES mit zwei Schlüsseln war eine Alternative zu DES und wurde in die Schlüsselverwaltungsstandards ANSI X9.17 und ISO 8732 aufgenommen.
+
+
+
+
+Triple-DES mit drei Schlüsseln
+--------------------------------
+
+- Es wurden mehrere Angriffe gegen 3DES mit 2 Schlüsseln entwickelt, die jedoch (noch) nicht praktikabel sind.
+- Viele Forscher sind inzwischen der Meinung, dass 3DES mit drei Schlüsseln die bevorzugte Alternative ist.
+- 3DES mit drei Schlüsseln hat eine effektive Schlüssellänge von 168 Bit und ist definiert als: 
+  
+  .. math:: C=E(K_3,D(K_2,E(K_1, P)))
+- Rückwärtskompatibilität mit DES ist gegeben, wenn man :math:`K_3 = K_2` oder :math:`K_1 = K_2` einsetzt.
+
+
+
 .. class:: integrated-exercise transition-scale
 
 Übung
@@ -632,7 +725,6 @@ Entwurfsprinzipien für Blockchiffre - Schlüsselableitung
     Kümmern Sie sich nicht um Nachrichten, die größer oder kleiner als die Blockgröße sind. Dies ist nicht notwendig, um die Auswirkungen von :math:`f` oder der Verwendung eines Rundenschlüssels zu verstehen. Kümmern Sie sich nicht um einen Schlüssel, der nicht die richtige Größe hat. D. h. verwenden Sie eine Nachricht und einen Schlüssel mit der entsprechenden Größe.
 
     Um die Austauschbarkeit der Funktion f zu erreichen können Sie je nach Sprache z. B. native Funktionen höherer Ordnung, einen Funktionszeiger oder ein Interface verwenden.
-
 
 
 

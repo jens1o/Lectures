@@ -38,105 +38,6 @@ Betriebsmodi bei Blockchiffren
    :Fehler auf Folien melden:
   
           https://github.com/Delors/delors.github.io/issues
-  
-
-
-.. class:: new-section transition-fade
-
-Einschub: Mehrfachverschlüsselung
------------------------------------ 
-
-
-
-Doppelte Verschlüsselung
--------------------------------
-
-.. image:: 
-    drawings/operationsmodi/double_encryption.svg
-    :width: 1200px
-    :align: center
-
-
-
-*Meet-in-the-Middle*-Angriff
------------------------------
-
-.. stack::
-
-    .. layer::
-
-        .. container:: assessment
-
-            Beobachtung: :math:`E(K_2,E(K_1,P)) = E(K_3,P)` ist nicht gültig. D. h. die zweifache Anwendung von DES führt zu einer Abbildung, die nicht äquivalent zu einer einfachen DES-Verschlüsselung ist.
-
-    .. layer:: incremental
-
-        
-
-        Der Meet-in-the-Middle-Algorithmus greift dieses Verfahren an. Er hängt nicht von einer bestimmten Eigenschaft von DES ab, sondern funktioniert gegen jede Blockchiffre.
-        
-        .. class:: incremental
-
-        - Möglicher Known-Plaintext-Angriff: 
-
-          .. class:: incremental
-
-          1. Man berechnet *für alle Schlüssel* :math:`K_1` die Chiffretexte :math:`E(K_1,P)` und speichert diese.
-          2. Man berechnet *für alle Schlüssel* :math:`K_2` die Klartexte :math:`D(K_2,C)` .
-          3. Man vergleicht die beiden Ergebnisse und prüft, ob es Übereinstimmungen gibt.
-              
-          .. container:: incremental
-
-            Dieser Aufwand ist lediglich doppelt so hoch wie der Aufwand bei einer einfachen Verschlüsselung.
-
-    .. layer:: incremental
-
-        .. admonition:: Die zweifache Anwendung einer Blockchiffre ist nicht sinnvoll
-            :class: warning 
-
-            Das Ergebnis ist, dass ein bekannter Klartextangriff gegen Doppel-DES mit einem Aufwand in der Größenordnung von :math:`2^{56}` im Durchschnitt erfolgreich ist, verglichen mit durchschnittlich :math:`2^{55}` für einen einfachen DES.
-
-
-
-Dreifache Verschlüsselung 
------------------------------------------------------------------------
-
-**(Z. B. Triple-DES (3DES) mit drei Schlüsseln)**
-
-.. image:: drawings/operationsmodi/triple_encryption.svg
-    :width: 100%
-    :align: center  
-
-
-
-Triple-DES mit zwei Schlüsseln
----------------------------------
-
-Die offensichtliche Antwort auf den *Meet-in-the-middle*-Angriff ist die dreifache Verschlüsselung mit drei verschiedenen Schlüsseln.
-
-- Dies erhöht die Kosten des *Meet-in-the-Middle*-Angriffs auf :math:`2^{112}`, was jenseits dessen liegt, was praktikabel ist.
-- Das hat den Nachteil, dass eine Schlüssellänge von :math:`56\,bits \times 3 = 168\,bits` erforderlich ist, was etwas unhandlich sein kann.
-- Als Alternative schlug Tuchman eine dreifache Verschlüsselungsmethode vor, die nur zwei Schlüssel verwendet.
-- 3DES mit zwei Schlüsseln war eine Alternative zu DES und wurde in die Schlüsselverwaltungsstandards ANSI X9.17 und ISO 8732 aufgenommen.
-
-
-
-
-Triple-DES mit drei Schlüsseln
---------------------------------
-
-- Es wurden mehrere Angriffe gegen 3DES mit 2 Schlüsseln entwickelt, die jedoch (noch) nicht praktikabel sind.
-- Viele Forscher sind inzwischen der Meinung, dass 3DES mit drei Schlüsseln die bevorzugte Alternative ist.
-- 3DES mit drei Schlüsseln hat eine effektive Schlüssellänge von 168 Bit und ist definiert als: 
-  
-  .. math:: C=E(K_3,D(K_2,E(K_1, P)))
-- Rückwärtskompatibilität mit DES ist gegeben, wenn man :math:`K_3 = K_2` oder :math:`K_1 = K_2` einsetzt.
-
-
-.. class:: new-section transition-scale
-
-Betriebsmodi bei Blockchiffren
---------------------------------
 
 
 Betriebsmodi
@@ -372,10 +273,12 @@ Rückkopplungseigenschaften\ [#]_  der Betriebsmodi
 .. [#] (:eng:`Feedback Characteristics`)
 
 
+
 .. class:: new-subsection transition-fade
 
 Spezielle Betriebsmodi
 --------------------------------
+
 
 
 XTS-AES Modus für blockorientierte Speichergeräte
@@ -469,7 +372,6 @@ XTS-AES Operation auf einem Block
 
 
 
-
 .. class:: integrated-exercise transition-scale
 
 Übung
@@ -479,20 +381,21 @@ XTS-AES Operation auf einem Block
   
   .. exercise:: 
 
-    Warum ist es bei CBC wichtig, den Initialisierungsvektor (IV) zu schützen?
+     Warum ist es bei CBC wichtig, den Initialisierungsvektor (IV) zu schützen?
 
-    .. solution::
+     .. solution::
         :pwd: IV und CBC
     
         Wenn der IV im Klartext gesendet wird, können wir in bestimmten Szenarien einige Bytes des Klartextes (des ersten Blocks) umdrehen, wenn wir den IV ändern. 
+
 
 - \
   
   .. exercise:: 
     
-    In welchen Betriebsarten ist eine Auffüllung (:eng:`Padding`) notwendig?
+     In welchen Betriebsarten ist eine Auffüllung (:eng:`Padding`) notwendig?
 
-    .. solution::
+     .. solution::
      
         ECB und CBC (die Eingabe für die Verschlüsselung ist ein vollständiger Klartextblock).
 
@@ -500,9 +403,9 @@ XTS-AES Operation auf einem Block
   
   .. exercise::
 
-    Was geschieht im Falle eines Übertragungsfehlers (einzelner Bitflip im Chiffretext) bei ECB, CBC, CFB, OFB, CTR?
+     Was geschieht im Falle eines Übertragungsfehlers (einzelner Bitflip im Chiffretext) bei ECB, CBC, CFB, OFB, CTR?
    
-    .. solution::
+     .. solution::
         :pwd: bitFlip
 
         :ECB: ein Block ist betroffen (im Falle von DES und AES ca. 50% der Bits).
@@ -514,9 +417,9 @@ XTS-AES Operation auf einem Block
   
   .. exercise::
  
-    Warum muss der IV im Falle von OFB eine Nonce (:eng:`Number used ONCE`) sein (d. h. eine Zahl, die nur einmal für die Ausführung des Verschlüsselungsalgorithmus verwendet wird)?
+     Warum muss der IV im Falle von OFB eine Nonce (:eng:`Number used ONCE`) sein (d. h. eine Zahl, die nur einmal für die Ausführung des Verschlüsselungsalgorithmus verwendet wird)?
 
-    .. solution::
+     .. solution::
         :pwd: nOnce
  
         Die O_i hängen nur vom Schlüssel und dem Initialisierungsvektor ab. Wenn der IV mit demselben Schlüssel wiederverwendet wird und wir zufällig einen bestimmten Klartext kennen, können wir möglicherweise einen entsprechenden Chiffretext in einer anderen Nachricht entschlüsseln.
@@ -525,9 +428,9 @@ XTS-AES Operation auf einem Block
   
   .. exercise::
 
-    Sie möchten feststellen, ob ein Programm zur Verschlüsselung von Dateien den ECB-Modus verwendet. Was müssen Sie tun?
+     Sie möchten feststellen, ob ein Programm zur Verschlüsselung von Dateien den ECB-Modus verwendet. Was müssen Sie tun?
 
-    .. solution::
+     .. solution::
         :pwd: ecb_erkennung
 
         Verwenden Sie ein Dokument, das aus mehreren Blöcken besteht, wobei jeder Block die Größe der zugrunde liegenden Chiffre hat und jeder Block den gleichen Inhalt hat. Bei Verwendung des ECB-Modus werden alle Blöcke auf die gleiche Weise verschlüsselt.
@@ -535,7 +438,6 @@ XTS-AES Operation auf einem Block
 
 
 .. class:: integrated-exercise
-
 
 Übung
 ---------------------
