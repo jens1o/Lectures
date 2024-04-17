@@ -1,9 +1,6 @@
-# Local content
 .vscode
-
 *.key
 *.ova
-Icon?
 
 # Content we never share publicly
 exercise
