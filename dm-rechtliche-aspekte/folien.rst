@@ -209,7 +209,7 @@ Grundsätze ordnungsgemäßer Buchführung (GoB)
 
     Die elektronische Form wird mit der Schriftform im deutschen Recht gleichgestellt. Die gesetzliche Schriftform ist erfüllt, wenn elektronische Dokumente mit einer qualifizierten elektronischen Signatur versehen sind.
 
-    Die Beweiskraft elektronisch signierter Die Beweiskraft elektronisch signiert Dokumente ist in der ZPO geregelt. Dokumente ist in der ZPO geregelt.
+    Die Beweiskraft elektronisch signierter Dokumente ist in der ZPO geregelt. 
 
 
 
