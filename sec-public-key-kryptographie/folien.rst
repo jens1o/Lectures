@@ -457,7 +457,7 @@ Potenzierung in der Modularen Arithmetik
 
   :math:`[(a\; mod\; n) \times (b\; mod\; n)]\; mod\; n =(a \times b)\; mod\; n`
 
-    Example 
+    Beispiel: 
   
     :math:`2^{11} = 2^1 \times 2^2 \times 2^8 = 2  \times  4  \times  256`
     
@@ -472,7 +472,7 @@ Potenzierung in der Modularen Arithmetik
 
 
 
-Algorithmus zur Berechnung von :math:`a^k\; mod\; n` 
+Algorithmus zur Berechnung von :math:`a^b\; mod\; n` 
 ----------------------------------------------------
 
 .. rubric:: Quadrieren und Multiplizieren (:eng:`Square and Multiply`)

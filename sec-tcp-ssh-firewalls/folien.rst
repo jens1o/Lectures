@@ -1074,7 +1074,7 @@ Schwachstellen in SSH
     2. Welchen Angriffen sind Einmalpasswortsysteme weiterhin ausgesetzt?
     3. Generieren Sie eine Liste von Einmalpassworten mit Initialwert :math:`r = 769`\ . Generieren Sie :math:`H(r)` bis :math:`H^6(r)` wenn die Einwegfunktion hier der Einfachheit halber :math:`H(x) = x^2\; mod\; 1000` ist.
     4. Wie oft kann sich der Benutzer anmelden? Wie sieht seine Liste aus?
-    5. Welchen Wert speichert der Server vor dem jeweiligen Anmeldevorgang?
+    5. Welchen Wert speichert der Server vor dem ersten Anmeldevorgang?
     6. Spielen Sie zwei Anmeldevorgänge durch.
     7. Wenn ein Passwort :math:`H^L(W), 1 < L < N` bekannt ist, welche Auswirkungen hat dies auf die Sicherheit des Verfahrens?
 
@@ -1097,13 +1097,13 @@ Schwachstellen in SSH
         
            :math:`761^2\; mod\; 1000 = 121`
 
-        4. Fünfmal. Der Benutzer erhält folgende Passwortliste: 761, 681, 41, 321, 361
-        5. Der Server speichert: 121
-        6. Beim ersten Anmeldevorgang verwendet der Benutzer das erste Passwort auf der Liste, die 761.
+        4. Fünfmal. Der Benutzer erhält folgende Passwortliste: :math:`761, 681, 41, 321, 361`
+        5. Der Server speichert: :math:`121`.
+        6. Beim ersten Anmeldevorgang verwendet der Benutzer das erste Passwort auf der Liste, die :math:`761`.
 
-           Der Server berechnet nun 7612 mod 1000 = 121 und vergleicht dies mit dem gespeicherten Wert. Da diese übereinstimmen, wird der Benutzer angemeldet.
+           Der Server berechnet nun :math:`761^2\, mod\, 1000 = 121` und vergleicht dies mit dem gespeicherten Wert. Da diese übereinstimmen, wird der Benutzer angemeldet.
 
-           Der Server speichert jetzt die 761, und der Benutzer streicht die 761 von der Liste, usw.
+           Der Server speichert jetzt die :math:`761`, und der Benutzer streicht die :math:`761` von der Liste, usw.
 
         7. Keine
 

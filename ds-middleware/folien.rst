@@ -1013,7 +1013,7 @@ Web Services - Standardisierung
 
 .. class:: new-section transition-move-to-top
   
-Messaging  and Message-oriented Communication/Middleware)
+Messaging and Message-oriented Communication/Middleware
 -----------------------------------------------------------
 
 
@@ -1246,7 +1246,7 @@ MOM - Queue Managers
   .. rubric:: Einfacher TCP basierter SyslogServer
 
   .. code:: Java
-    :class: far-smaller
+    :class: far-smaller copy-to-clipboard
   
     import java.net.*;
     import java.io.*;
@@ -1275,7 +1275,7 @@ MOM - Queue Managers
   .. rubric:: Schablone für den Client
 
   .. code:: Java
-    :class: far-smaller
+    :class: far-smaller copy-to-clipboard
 
     import java.net.*;
     import java.io.*;
