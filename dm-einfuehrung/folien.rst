@@ -53,7 +53,7 @@ Dokumentenmanagement, Archivierungs- und Verschlüsselungsverfahren
 Dokumentmanagement, Archivierungs- und Verschlüsselungsverfahren - W3WI_EH304.1
 ----------------------------------------------------------------------------------
 
-:Verortung: 3. Studienjahr (5. oder 6. Semester)
+:Verortung: Drittes Studienjahr (5. oder 6. Semester)
 :Umfang: 25 Vorlesungsstunden und 50 Stunden Selbststudium (2,5 ECTS) 
 :Übergeordnetes Modul: Fortgeschrittene Konzepte des Informationsmanagements im Gesundheitswesen (W3WI_EH304)
 :Prüfungsleistung: :obsolete:`Klausur (60 min/60 Punkte)` oder 
@@ -1192,7 +1192,7 @@ Kategorisierung von DMS Produkten
 
   In Hinblick auf die Anzahl der Dokumente, die Anzahl der gleichzeitigen Nutzer, die Anzahl der Standorte, ...
 
-- nach unterstützung spezifischer Kontextabhängiger Anforderungen
+- nach Unterstützung spezifischer Kontextabhängiger Anforderungen
 
   Bei internationalen Unternehmen ist ggf. die Unterstützung von mehreren Sprachen notwendig bzw. die Einhaltung verschiedener rechtlicher Rahmenbedingungen. Weiterhin können besondere Schnittstellen zu anderen Systemen erforderlich sein.
 
