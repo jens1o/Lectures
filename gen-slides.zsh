@@ -13,7 +13,7 @@ function update_html_if_necessary() {
         reStructuredTextToLectureDoc2/rst2ld.py "$1" \
             --output "$html_file" \
             --ld-path $path_prefix"LectureDoc2" \
-            --ld-exercise-passwords "$html_file.passwords.txt"
+            --ld-exercises-passwords "$html_file.passwords.txt"
     fi
 }
 
