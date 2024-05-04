@@ -5,6 +5,7 @@
 # Content we never share publicly
 exercise
 TODO
+start_http_for_lectures.sh
 
 # Generated files
 Readme.pdf
