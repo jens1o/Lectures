@@ -356,44 +356,38 @@ XML Namensräume
 Namensräume in XML - Motivation
 --------------------------------
 
-Wenn wir nur einen Namen(sraum) haben sollten...
-
 .. stack:: 
 
     .. layer:: 
 
-      .. class:: incremental
+        Wenn wir nur einen Namen(sraum) haben sollten...
 
-      - Was würde passieren, wenn wir Markup von zwei verschiedenen Autoritäten nutzen wollten?
-      - Wie assoziiere ich Semantik mit gemischtem Markup?
-      - Wie verbinde ich ein Schema (oder Regeln) mit dem gemischten Markup?
+        .. class:: incremental
+
+        - Was würde passieren, wenn wir Markup von zwei verschiedenen Autoritäten nutzen wollten?
+        - Wie assoziiere ich Semantik mit gemischtem Markup?
+        - Wie verbinde ich ein Schema (oder Regeln) mit dem gemischten Markup?
 
     .. layer:: incremental
 
         *Variante 1*:
 
         .. code:: xml
+            :class: far-smaller
 
             <date>1/27</date>
 
         *Variante 2*:
         
         .. code:: xml
+            :class: far-smaller
 
             <date><year>2004</year><day>1</day><month>27</month></date>
 
-        .. incremental:: 
+        .. incremental:: margin-top-1em
 
             Wie kann ich beide unterscheiden?
 
-
-    .. layer:: incremental
-
-        Lösungen?
-
-        - Was ist für XML syntaktisch *in scope*?
-
-        - Was ist für XML syntaktisch *out of scope*?
 
 
 XML - Namen und Namensräume
