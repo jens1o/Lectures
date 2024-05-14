@@ -186,6 +186,15 @@ HTML-Dokumente bestehen aus einem Baum von Elementen und Text.
     Mehrere HTML Dokumente bilden ggf. auf den selben DOM ab. Zum Beispiel, werden die Tags als solches gar nicht abgebildet und wenn im HTML Code ein optionales (schließendes) Tag fehlt, dann ist dies im DOM nicht mehr ersichtlich.
 
 
+HTML - Verarbeitung
+------------------------------------------------
+
+.. image:: images/html.svg
+    :alt: HTML Verarbeitung
+    :width: 100%
+    :align: center
+
+
 .. class:: new-section transition-fade
 
 Aufbau von HTML Dokumenten
