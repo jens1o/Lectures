@@ -33,7 +33,7 @@
 
 
 HTTP und Sockets (in Java)
-===============================================================================
+=============================
 
 .. container:: line-above padding-bottom-1em
 
@@ -319,6 +319,8 @@ TCP Sockets
         }
         catch (IOException e) {/* probably no server waiting at this port */ }
   } } }
+
+
 
 
 
