@@ -1016,22 +1016,16 @@ MapReduce - Visualisierung und Beispiel
 ----------------------------------------------------------
 
 
-.. image:: images/map-reduce.png
-    :width: 90%
+.. image:: images/mapreduce.svg
+    :width: 94%
     :align: center
 
 .. container:: supplemental
 
 
-    Beispiel: Berechnung der Häufigkeit von Wörtern in einem sehr großen Datensatz.
+    Hier ist es die Berechnung der Häufigkeit von Wörtern in einem sehr großen Datensatz.
 
-    :K1: URLs
-    :V1: HTML Dokumente
-    :K2: Wörter in einem HTML Dokument
-    :V2: Anzahl pro gefundenem Wort
-    :V3: Häufigkeit des Wortes
-
-    Ein weiteres Beispiel ist die Berechnung eines invertierten Indexes.
+    Ein weiteres kanonisches Beispiel ist die Berechnung eines invertierten Indexes.
 
 
 
