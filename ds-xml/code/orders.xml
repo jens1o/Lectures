@@ -15,5 +15,8 @@
 			<m:product m:id="Ripeye Steak" m:quantity="1" />
 			<m:product m:id="T-bone Steak" m:quantity="3"/>
 		</m:order>
+		<m:order xmlns:m="http://meat.com">
+			<m:product m:id="Hind leg" m:quantity="1" />
+		</m:order>
 	</orders>
 </document>

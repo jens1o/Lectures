@@ -181,7 +181,7 @@ XML Dokument - Beispiel
 .. code:: xml
     :class: far-smaller
 
-    <?xml version=“1.0” encoding=“UTF-8” standalone="yes" ?>
+    <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
     <lehrveranstaltungen status="akkreditiert">
         <!-- Modul muss überarbeitet werden... -->
         <modul>
@@ -192,7 +192,7 @@ XML Dokument - Beispiel
 
 .. container:: incremental
 
-    :XML-Deklaration: ``<?xml version=“1.0” encoding=“UTF-8” standalone="yes"?>``
+    :XML-Deklaration: ``<?xml version="1.0" encoding="UTF-8" standalone="yes"?>``
     :Start-Tags: ``<lehrveranstaltungen>``, ``<modul>``, ``<vorlesung>``
     :End-Tags: ``</lehrveranstaltungen>``, ``</modul>``, ``</vorlesung>``
     :Attribute: ``status``
@@ -589,6 +589,53 @@ Namensräume
     </m:pseudocode>
 
 
+.. class:: integrated-exercise transition-scale
+
+Übung: XML Dokument mit Namensräumen
+------------------------------------------------
+
+.. exercise::
+
+    Erstellen Sie ein XML Dokument nach folgenden Vorgaben:
+
+    - Das Wurzelelement ist ``document``.
+    - Das Dokument fasst mehrere  Bestellungen (``order``-Elemente) zusammen.
+    - Es gibt vier Bestellungen (d.h. vier ``order``-Elemente). 
+    - Jede Bestellung enthält mehrere Produkte (d. h. ``product``-Elemente).
+    - Pro Produkt soll angegeben werden um welches Produkt es sich handelt und wie viele davon bestellt wurden. Fügen Sie den Bestellungen zwischen einem und drei Produkte hinzu.
+    - Die Bestellungen gehen an verschiedenen Partnersysteme und sollen deswegen durch entsprechende Namensräume voneinander getrennt sein.    
+
+    .. solution:: 
+        :pwd: !xml_and_NameSpaces
+
+        Im folgenden ist **eine** mögliche Lösung dargestellt:
+
+        .. code:: xml
+            :class: far-smaller
+
+            <document>
+                <orders>
+                    <order xmlns="http://fruits.com">
+                        <product quantity="1">Bananen</product>
+                        <product quantity="3">Orangen</product>
+                        <product quantity="4">Zitronen</product>
+                        <product quantity="2">Äpfel</product>
+                    </order>
+                    <order xmlns="http://electronics.com">
+                        <product id="65'' TV" quantity="1" />
+                        <product id="Refrigator" quantity="3"/>
+                    </order>
+                    <m:order xmlns:m="http://meat.com">
+                        <m:product m:id="Ripeye Steak" m:quantity="1" />
+                        <m:product m:id="T-bone Steak" m:quantity="3"/>
+                    </m:order>
+                    <m:order xmlns:m="http://meat.com">
+                        <m:product m:id="Hind Leg" m:quantity="101" />
+                    </m:order>
+                </orders>
+            </document>
+
+
 
 .. class:: new-section transition-fade
 
@@ -646,7 +693,7 @@ XPath - Pfadausdrücke
 Resultat eines XPath-Ausdrucks
 --------------------------------
 
-- Das Ergebnis der Auswertung eines XPath-Ausdrucks ist ein *Node Set*.\ [#]_
+- Das Ergebnis der Auswertung eines XPath-Ausdrucks ist ein *Node Set* oder ein einzelner Wert (ein String, eine Zahl oder ein Boolean).\ [#]_
 
 - Ein ``Node`` ist nur ein anderer Begriff für *Info Item*.
 
@@ -664,17 +711,17 @@ Resultat eines XPath-Ausdrucks
             <vorlesung>Zwei</vorlesung>
         </modul>
 
-    Dann würde der Ausdruck:
+    Dann gibt der folgende Ausdruck zwei ``vorlesung``-Elemente zurück:
 
     .. code:: xslt
         :class: far-smaller
 
         /modul/vorlesung
 
-    Zwei ``vorlesung``-Elemente als Menge zurückgeben.
+    
 
 
-.. [#] Die Reihenfolge der Ergebnisse muss nicht über alle Implementierungen (z. B. Browser) hinweg konsistent sein. 
+.. [#] Die Reihenfolge der Ergebnisse muss nicht über alle Implementierungen (z. B. Browser) hinweg konsistent sein. (vgl. `XPathResult <https://developer.mozilla.org/en-US/docs/Web/API/XPathResult>`__)
 
 
 Attribute Selektieren
@@ -802,6 +849,10 @@ Namen und Namensräume
         /dhbw:modul/dhbw:*
         /dhbw:modul/dhbw:vorlesung/@i:*
 
+.. class:: footer-left
+
+    Der Namensraum Präfix kann nicht durch ein *Wildcard* ersetzt werden.
+
 
 
 Kontextknoten   
@@ -830,6 +881,7 @@ Bedingtes Matching
 
 - Prädikate erlauben die Angaben von Bedingungen und folgen der Deklaration des *Schrittes*.
 - Prädikate sind in eckigen Klammern (``[`` und ``]``) eingeschlossen.
+- Verschachtelte Prädikate sind möglich.
 
 .. class:: incremental 
 
@@ -841,8 +893,8 @@ Bedingtes Matching
         /modul/vorlesung[@mhb='123']
     
   Wählt das ``vorlesung``-Element aus, das das Attribut ``mhb`` mit dem Wert ``123`` hat.
-- Es gibt eine Vielzahl von Operatoren (einschließlich boolescher Logik (``or`` und ``and``)), die verwendet werden können.
-- Die Verwendung von Unterausdrücken ist ebenfalls möglich.
+
+- Die Verwendung von (komplexen) Pfadausdrücken in Bedingungen ist ebenfalls möglich.
 
   Beispiel
 
@@ -850,6 +902,32 @@ Bedingtes Matching
     :class: far-smaller
 
     lehrveranstaltungen/modul[vorlesung/@mhb='123']
+
+Bedingtes Matching - Operatoren und Funktionen
+----------------------------------------------------------
+
+.. class:: incremental
+
+- boolesche Operatoren: (``or`` und ``and``)
+- boolesche Funktionen: ``not ( boolean )``, ``lang ( string )``, ``true()``, ``false()``, ...
+- Mathematische Funktionen: ``sum( node-set )``, ``number( object )``, ...
+- Zeichenketten: ``string( object )``, ``concat( string, string, string* )``, ``starts-with( string, string )``, ``contains( string, string )``, ``substring( string, number, number )``, ``string-length( string )``, ``normalize-space( string )``, ...
+- Node-set Funktionen: ``last()``, ``position()``, ``count( node-set )``, ``id( object )``, ``local-name( node-set )``, ``namespace-uri( node-set )``, ...
+
+
+.. container:: incremental
+
+    Beispiel - alle Element, die den lokalen Namen ``modul`` haben:
+    
+    .. code:: xslt
+        :class: far-smaller
+
+        //*[local-name()='modul']
+
+
+.. container:: footer-left
+
+    vgl. `XPath 1.0 Funktionen <https://www.edankert.com/xpathfunctions.html>`__
 
 
 
@@ -905,17 +983,21 @@ Auswahl von Knoten, die keine Elemente oder Attribute sind
     ``comment()``, "Wählt Kommentare aus."
     ``processing-instruction()``, "Wählt Verarbeitungsanweisungen aus."
     ``node()``, "Wählt alle Knoten aus."
-    
-.. container:: incremental
 
-    Beispiel
-    
-    .. code:: xml
-        :class: far-smaller
+.. container:: smaller
 
-        /document/comment()
+    .. container:: incremental
 
-    Wählt alle Kommentare aus, die Kinder des ``document``-Elements sind.
+        Beispiel - alle Kommentare, die Kinder des ``document``-Elements sind:
+        
+        .. code:: xml
+            :class: far-smaller
+
+            /document/comment()
+
+        
+
+
 
 
 Beziehungen zwischen Knoten
@@ -1002,3 +1084,111 @@ XPath Support
 .. container:: block-footer margin-bottom-1em
     
      https://www.saxonica.com/welcome/welcome.xml
+
+
+
+.. class:: integrated-exercise transition-scale far-smaller
+
+Übung: XPath
+------------------------------------------------
+
+Schreiben Sie XPath-Ausdrücke, um die folgenden Anfragen zu beantworten:
+
+- Wählen Sie alle ``orders``-Elemente aus.
+- Wählen Sie alle ``product``-Elemente aus, die im Namensraum ``http://fruits.com`` sind.
+- Berechnen Sie die Summe der Werte der ``quantity``-Attribute, die zu Bestellungen aus dem Namensraum von ``http://fruits.com`` gehören.
+- Berechnen Sie die Summe der Werte der ``quantity``-Attribute, die im Namensraum ``http://meat.com`` sind.
+- Berechnen Sie die Summe der Werte *aller* ``quantity``-Attribute; unabhängig von dem konkreten Ziel der Bestellung.
+- Wählen Sie alle ``order``-Elemente aus.
+- Wählen Sie das erste ``product``-Element jeder Bestellung aus, die ``http://meat.com`` zugeordnet ist.
+- Wählen Sie alle ``order``-Elemente aus, bei denen mehr als fünf Produkte bestellt wurden.
+- Bestimmen Sie wie viele Bestellungen es gibt.
+- Selektieren Sie alle Produkte der Bestellungen, die genau vier Produkte umfassen.
+
+
+.. admonition:: Hinweis
+    :class: warning incremental smaller
+
+    Verwenden Sie das XML Dokument aus der Musterlösung zur letzten Aufgabe als Grundlage.
+
+
+
+.. exercise::
+
+    .. solution:: 
+        :pwd: xpath-rauf-und-runter
+
+        .. code:: json
+
+            {
+                "source": "orders.xml",
+                "namespaces": {
+                    "f": "http://fruits.com",
+                    "e": "http://electronics.com",
+                    "m" : "http://meat.com"
+                },
+                "xpaths" : [
+                    {
+                        "expr": "//orders"
+                    },
+                    {
+                        "expr": "//f:order/f:product"
+                    },
+
+                    {
+                        "expr": "sum(//f:order//@quantity)"
+                    },
+                    {
+                        "expr": "sum(//@m:quantity)"
+                    },
+                    {
+                        "expr": "sum(//@*[local-name()='quantity'])"
+                    },
+                    {
+                        "expr": "//*[local-name()='order']"
+                    },
+                    {
+                        "expr" : "//m:product[1]"
+                    },
+                    {
+                        "expr": "//*[local-name()='order' and sum(.//@*[local-name()='quantity']) > 5]"
+                    },
+                    {
+                        "expr": "count(//orders/*)"
+                    },
+                    {
+                        "expr": "//orders/*/*[last()=4]"
+                    }
+                ]
+            }
+
+
+.. supplemental:: 
+    
+    .. rubric:: Voraussetzungen
+    
+    **Installation von node.js**
+
+    Installieren Sie die neueste Version von node.js von https://nodejs.org/en. Benutzen Sie bitte *die neueste Version* auch wenn diese keine LTS Version ist.
+
+    **Installieren Sie die benötigten node.js Pakete**
+
+    Am Besten einfach im "aktuellen Verzeichnis" in dem die Übungsdateien liegen ausführen:
+
+    .. code:: shell
+        :class: copy-to-clipboard
+    
+        npm install jsonschema
+        npm install xpath
+        npm install @xmldom/xmldom
+
+    **Ausführen der XPath Ausdrücke**
+
+    
+    Nutzen Sie den XPath Evaluator, um die XPath-Ausdrücke auf dem XML-Dokument auszuführen: 
+    
+    https://gist.github.com/Delors/189629b86265463e4a625924a9f705c8
+
+    (Speichern Sie das Script in der Datei ``xpaths_evaluator.js`` und führen Sie es mit ``node xpaths_evaluator.js <xpath specifications>`` aus.)
+
+    In der Datei finden Sie am Anfang eine Beschreibung wie die Dateien auszusehen haben.

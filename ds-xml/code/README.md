@@ -8,6 +8,10 @@ Installieren Sie die neueste Version von node.js von https://nodejs.org/en. Benu
 
 Am Besten einfach im "aktuellen Verzeichnis" in dem die Übungsdateien liegen ausführen:
 
+### JSON Schema
+
+    npm install jsonschema 
+
 ### https://www.npmjs.com/package/xpath
 
   npm install xpath
@@ -17,3 +21,6 @@ Am Besten einfach im "aktuellen Verzeichnis" in dem die Übungsdateien liegen au
   npm install @xmldom/xmldom  
 
 
+# Verwendung
+
+  node xpaths_evaluator.js demo.xpaths.json

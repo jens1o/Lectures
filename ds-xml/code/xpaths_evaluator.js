@@ -26,9 +26,9 @@ const specSchema = {
             "items": {
                 "type": "object",
                 "properties": {
-                    "expr": "string",
-                    "subExpr": "string",
-                    "type": "enum ['single','nodeset']"
+                    "description": { "type": "string" },
+                    "expr": { "type": "string" },
+                    "subExpr": { "type": "string" }
                 },
                 "additionalProperties": false,
                 "required": ["expr"]
@@ -38,6 +38,7 @@ const specSchema = {
     "required": ["source"]
 }
 
+const validate = require('jsonschema').validate;
 const fs = require("fs");
 const xpath = require('xpath');
 const dom = require('@xmldom/xmldom').DOMParser;
@@ -50,6 +51,13 @@ if (process.argv.length < 3) {
 
 var spec = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
 
+const errors = validate(spec, specSchema).errors;
+if (errors && errors.length > 0) {
+    console.error(`Your xpaths document is not valid: ${JSON.stringify(errors)}`);
+    process.exit(1);
+}
+
+
 const xmlFile = fs.readFileSync(spec.source, "utf8");
 const xmlDOM = new dom().parseFromString(xmlFile);
 const namespaces = spec.namespaces ? spec.namespaces : {};
@@ -61,19 +69,21 @@ spec.xpaths.forEach(xpathSpec => {
 
     console.log(`Evaluating "${baseExpr}":`);
 
-    if (xpathSpec["type"] === "single") {
-        let xpathNS =  xpath.useNamespaces(namespaces);
-        let result = xpathNS(baseExpr, xmlDOM);
+    const xpathNS =  xpath.useNamespaces(namespaces);
+    try {
+        var result = xpathNS(baseExpr, xmlDOM);
+    } catch (error) {
+        console.error(`${error}`);
+        process.exit(1);
+    }
+    //console.log(`Result: ${typeof result}\n`);
+    if (typeof result !== "object") {
         console.log(result);
-    } else {
-        const result = xpath.
-            parse(baseExpr).
-            select({ node: xmlDOM, namespaces: namespaces })
-        console.log(`Done`)    
+    } else {  
         result.
             forEach((element, i) => {
                 if (subExpr) {
-                    console.log(`${i}: Evaluating "${subExpr}" for node "${element.toString()}":\n`);
+                    console.log(`${i+1}: Evaluating "${subExpr}" for node "${element.toString()}":\n`);
                     let result = xpath.evaluate(
                         subExpr,
                         element,
@@ -86,7 +96,7 @@ spec.xpaths.forEach(xpathSpec => {
                         node = result.iterateNext();
                     }
                 } else {
-                    console.log(`${i}: ${element.toString()}\n`);
+                    console.log(`${i+1}: ${element.toString()}\n`);
                 }
             });
     }
