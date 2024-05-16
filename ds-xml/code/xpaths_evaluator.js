@@ -27,7 +27,8 @@ const specSchema = {
                 "type": "object",
                 "properties": {
                     "expr": "string",
-                    "subExpr": "string"
+                    "subExpr": "string",
+                    "type": "enum ['single','nodeset']"
                 },
                 "additionalProperties": false,
                 "required": ["expr"]
@@ -52,33 +53,43 @@ var spec = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
 const xmlFile = fs.readFileSync(spec.source, "utf8");
 const xmlDOM = new dom().parseFromString(xmlFile);
 const namespaces = spec.namespaces ? spec.namespaces : {};
+//console.log(`Namespaces: ${JSON.stringify(namespaces)}`);
 
 spec.xpaths.forEach(xpathSpec => {
     const baseExpr = xpathSpec["expr"];
     const subExpr = xpathSpec["subExpr"];
 
     console.log(`Evaluating "${baseExpr}":`);
-    xpath.
-        parse(baseExpr).
-        select({ node: xmlDOM, namespaces: namespaces }).
-        forEach((element, i) => {
-            if (subExpr) {
-                console.log(`${i}: Evaluating "${subExpr}" for node "${element.toString()}":\n`);
-                let result = xpath.evaluate(
-                    subExpr,
-                    element,
-                    (prefix) => namespaces[prefix],
-                    xpath.XPathResult.ANY_TYPE,
-                    null);
-                let node = result.iterateNext()
-                while (node) {
-                    console.log(node.toString());
-                    node = result.iterateNext();
+
+    if (xpathSpec["type"] === "single") {
+        let xpathNS =  xpath.useNamespaces(namespaces);
+        let result = xpathNS(baseExpr, xmlDOM);
+        console.log(result);
+    } else {
+        const result = xpath.
+            parse(baseExpr).
+            select({ node: xmlDOM, namespaces: namespaces })
+        console.log(`Done`)    
+        result.
+            forEach((element, i) => {
+                if (subExpr) {
+                    console.log(`${i}: Evaluating "${subExpr}" for node "${element.toString()}":\n`);
+                    let result = xpath.evaluate(
+                        subExpr,
+                        element,
+                        (prefix) => namespaces[prefix],
+                        xpath.XPathResult.ANY_TYPE,
+                        null);
+                    let node = result.iterateNext()
+                    while (node) {
+                        console.log(node.toString());
+                        node = result.iterateNext();
+                    }
+                } else {
+                    console.log(`${i}: ${element.toString()}\n`);
                 }
-            } else {
-                console.log(`${i}: ${element.toString()}\n`);
-            }
-        });
+            });
+    }
     console.log(`\n`);
 });
 
