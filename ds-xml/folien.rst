@@ -7,6 +7,13 @@
     :exercises-master-password: WirklichSchwierig!
     
 .. |date| date::
+.. |html-source| source::
+    :url-prefix: https://delors.github.io/
+    :suffix: .html
+.. |pdf-source| source::
+    :url-prefix: https://delors.github.io/
+    :suffix: .html.pdf
+
 .. |at| unicode:: 0x40
 
 .. role:: incremental   
@@ -40,13 +47,15 @@ XML (eXtensible Markup Language) und XPath
 .. supplemental::
 
     :Folien: 
-        
-        https://delors.github.io/ds-xml/folien.rst.html 
 
-        https://delors.github.io/ds-xml/folien.rst.html.pdf
+        |html-source|
+
+        |pdf-source|
 
     :Fehler auf Folien melden:
         https://github.com/Delors/delors.github.io/issues
+
+    
 
 
 .. class:: new-section transition-fade
