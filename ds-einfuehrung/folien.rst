@@ -41,7 +41,7 @@ Ein weitgefasster Überblick über verteilte Systeme.
 .. supplemental::
 
     :Folien: 
-        
+
         https://delors.github.io/ds-einfuehrung/folien.rst.html 
 
         https://delors.github.io/ds-einfuehrung/folien.rst.html.pdf
@@ -51,65 +51,15 @@ Ein weitgefasster Überblick über verteilte Systeme.
 
 
 
-.. container:: footer-left tiny incremental
+.. container:: footer-left tiny incremental minor
 
-    Dieser Foliensatz basiert auf Folien von:
+    Dieser Foliensatz basiert in Teilen auf Folien von:
     
     (a) Maarten van Steen (Veröffentlicht zum Buch *Distributed Systems*)
 
     (b) Henning Pagnia (basierend auf seiner Vorlesung *Verteilte Systeme*). 
 
     Alle Fehler sind meine eigenen.
-
-
-
-Verteilte Systeme - *Middleware Lösungen*
-------------------------------------------
-
-Für die Präsentationen stehen die folgenden Themen stehen zur Auswahl:
-
-.. container:: two-columns
-
-  .. container::
-
-    1. Apache Kafka
-    2. Apache Zookeeper
-    3. (Scala) Akka
-    4. Rabbit MQ
-    5. (Twitter/X) Finagle
-    6. Apache Hive
-    7. Apache Cassandra
-    8. Apache Spark
-    9. `Apache Pulsar <https://pulsar.apache.org>`__
-   
-  .. container::
-
-    10. Hadoop HDFS
-    11. Hadoop Yarn/MapReduce
-    12. Apache Mahout
-    13. `Apache Camel <https://camel.apache.org>`__
-    14. `NATS <https://docs.nats.io>`__
-    15. Spring Framework 
-    16. `Eclipse Glassfish und Jakarta EE <https://glassfish.org>`__
-    17. `Tokio <https://tokio.rs>`__
-
-.. Nicht mehr vergeben:
-   `Zeebe <https://github.com/camunda/zeebe>`__
-
-.. container:: supplemental
-
-    .. rubric:: Kerninhalte gem. MHB
-
-    - Terminologie, Konzepte, Architekturen, Anforderungsprofile und Architekturmodelle für verteilte Systeme
-    - Entwurfs- und Implementierungsansätze
-    - Vergleich unterschiedlicher Middleware-Konzepte
-    - Synchrone und asynchrone Kommunikation, entfernter Methodenaufruf 
-    - Asynchrone Kommunikation und Messaging-Systeme
-    - Sicherheitsaspekte in verteilten Systemen
-
-
-
-  Die Präsentationen sind am letzten Termin zu halten. Die Präsentationen sollen sich insbesondere mit den Kerninhalten der Vorlesung beschäftigen und insbesondere konzeptioneller Natur sein. D. h. nach der Darstellung des Anwendungszweckes gilt es  die Architektur darzustellen, wie mit Fehlern umgegangen wird, welche Services angeboten werden, welche Garantien/Sicherheitsaspekte umgesetzt werden, wie wird die Skalierbarkeit erreicht, etc. 
 
 
 
@@ -123,6 +73,7 @@ Terminologie verteilter Systeme
     :align: center
 
 
+.. class:: smaller-slide-title
 
 Empfohlene Literatur
 ---------------------
@@ -163,6 +114,13 @@ Empfohlener Podcast: `Thoughtworks Technology Podcast <https://www.thoughtworks.
     :class: picture
     
 
+
+.. class:: new-section transition-fade
+
+Verteilte Systeme - Beschreibung und Eigenschaften
+------------------------------------------------------------
+
+
 Verteilt vs. Dezentralisiert 
 -------------------------------------------------------------------
 
@@ -171,28 +129,20 @@ Verteilt vs. Dezentralisiert
     :align: center
     :class: margin-bottom-1em
 
-.. container:: question  
-
-    Wann wird ein dezentralisiertes System zu einem verteilten System?
-
 .. supplemental:: 
 
     :eng:`Distributed vs Decentralized`
 
 
+    .. admonition:: Zwei Ansichten zur Realisierung verteilter Systeme
 
-Verteilte Systeme
-------------------
+        - **Integrative Sichtweise**: Verbindung bestehender (lokal) vernetzter Computersysteme zu einem größeren System.
+        - **Expansive Sichtweise**: ein bestehendes vernetztes Computersystem wird um zusätzliche Computer erweitert.
 
-.. admonition:: Zwei Ansichten zur Realisierung verteilter Systeme
+    .. admonition:: Zwei Definitionen
 
-    - **Integrative Sichtweise**: Verbindung bestehender (lokal) vernetzter Computersysteme zu einem größeren System.
-    - **Expansive Sichtweise**: ein bestehendes vernetztes Computersystem wird um zusätzliche Computer erweitert.
-
-.. admonition:: Zwei Definitionen
-
-    - Ein **dezentrales System** ist ein vernetztes Computersystem, in dem Prozesse und Ressourcen *notwendigerweise* über mehrere Computer verteilt sind.
-    - Ein **verteiltes System** ist ein vernetztes Computersystem, bei dem Prozesse und Ressourcen *hinreichend* über mehrere Computer verteilt sind.
+        - Ein **dezentrales System** ist ein vernetztes Computersystem, in dem Prozesse und Ressourcen *notwendigerweise* über mehrere Computer verteilt sind.
+        - Ein **verteiltes System** ist ein vernetztes Computersystem, bei dem Prozesse und Ressourcen *hinreichend* über mehrere Computer verteilt sind.
 
 
 
@@ -256,11 +206,21 @@ Entwurfsziele verteilter Systeme
 
 .. class:: incremental
 
-- Unterstützung der gemeinsamen Nutzung von Ressourcen 
-- Verteilungstransparenz (:eng:`Distribution Transparency`)
-- Offenheit
-- Skalierbarkeit
+- Unterstützung der `gemeinsamen Nutzung von Ressourcen`_ 
+- `Verteilungstransparenz`_ (:eng:`Distribution Transparency`)
+- `Offenheit`_
+- `Skalierbarkeit`_
 
+
+
+.. class:: new-subsection transition-fade
+
+Gemeinsame Nutzung von Ressourcen
+------------------------------------
+
+.. _gemeinsamen Nutzung von Ressourcen:
+
+\ 
 
 
 Gemeinsame Nutzung von Ressourcen
@@ -275,7 +235,15 @@ Kanonische Beispiele:
 
 
 
-Verteilungstransparenz (:eng:`Distribution Transparency`)
+.. class:: new-subsection transition-fade
+
+Verteilungstransparenz 
+-------------------------------------------------------------
+
+(:eng:`Distribution Transparency`)
+
+
+Definition von Verteilungstransparenz 
 ----------------------------------------------------------
 
 .. admonition:: Definition 
@@ -292,7 +260,7 @@ Aspekte der Verteilungstransparenz
 ----------------------------------------------------------------------------
 
 .. csv-table::
-    :class: highlight-line-on-hover smaller
+    :class: highlight-line-on-hover smaller no-inner-borders
 
     Datenzugriff, Verbergen von Unterschieden in der Datendarstellung und der Art des Zugriffs auf ein lokales bzw. entferntes Objekt
     Ort der Datenhaltung, "Verbergen, wo sich ein Objekt befindet"
@@ -343,6 +311,16 @@ Die Verteilung offen zu legen, kann Vorteile bringen
 
 
 
+.. class:: new-subsection transition-fade
+
+Offene verteilte Systeme   
+-------------------------------------------------------------
+
+.. _offenheit:
+
+\ 
+
+
 Offene verteilte Systeme
 ----------------------------------
 
@@ -363,6 +341,9 @@ Offene verteilte Systeme
     - Sie sollten die Portabilität von Anwendungen unterstützen 
     - Sie sollten leicht erweiterbar sein
 
+.. supplemental::
+    
+    Ein Beispiel sind Authentifizierungsdienste, die von vielen verschiedenen Anwendungen genutzt werden können.
 
 
 Vorgaben/Richtlinien vs. Umsetzungen 
@@ -397,120 +378,6 @@ Vorgaben/Richtlinien vs. Umsetzungen
 .. container:: supplemental
 
     Die harte Kodierung von Richtlinien vereinfacht oft die Verwaltung und reduziert die Komplexität des Systems. Hat jedoch den Preis geringerer Flexibilität.
-
-
-
-Verlässlichkeit verteilter Systeme 
-------------------------------------------------------------
-
-.. container:: minor
-
-    (:eng:`Dependability`)
-
-.. admonition:: Abhängigkeiten
-    :class: foundations
-    
-    Eine **Komponente**\ [#]_ stellt ihren **Clients** **Dienste** zur Verfügung. Dafür kann die Komponente jedoch wiederum Dienste von anderen Komponenten benötigen und somit ist eine Komponente  von einer anderen Komponente abhängig (:eng:`depend`).
-
-.. admonition:: Definition
-
-    Eine Komponente :math:`C` hängt von :math:`C^*` ab, wenn die Korrektheit des Verhaltens von :math:`C` von der Korrektheit des Verhaltens von :math:`C^*` abhängt. 
-
-.. [#] Komponenten seien Prozesse oder Kanäle.
-
-
-
-Anforderungen an die Verlässlichkeit verteilter Systeme
-------------------------------------------------------------
-
-.. csv-table::
-    :class: highlight-line-on-hover incremental
-    :header: "Anforderung", "Beschreibung"
-
-    "Verfügbarkeit", "Das System ist nutzbar."
-    "Zuverlässigkeit", "Kontinuität der korrekten Leistungserbringung."
-    "Sicherheit 
-    (:eng:`Safety`\ [#]_)", "Niedrige Wahrscheinlichkeit für ein katastrophales Ereignis"
-    "Wartbarkeit", "Wie leicht kann ein fehlgeschlagenes System wiederhergestellt werden?"
-
-.. [#] :eng:`Safety` und :eng:`Security` werden beide im Deutschen gleich mit Sicherheit übersetzt und sind daher leicht zu verwechseln. :eng:`Safety` bezieht sich auf die Sicherheit von Personen und Sachen, während :eng:`Security` sich auf die Sicherheit von Daten und Informationen bezieht.
-
-
-.. class:: smaller-slide-title smaller
-
-Zuverlässigkeit (:eng:`Reliability`) vs. Verfügbarkeit (:eng:`Availability`) in verteilten Systemen
---------------------------------------------------------------------------------------------------------------
-
-.. rubric:: Verlässlichkeit :math:`R(t)` der Komponente :math:`C`
-
-Bedingte Wahrscheinlichkeit, dass :math:`C` während :math:`[0,t)` korrekt funktioniert hat, wenn :math:`C` zum Zeitpunkt :math:`T = 0` korrekt funktionierte.
-
-.. compound:: 
-    :class: incremental
-
-    .. rubric:: Traditionelle Metriken
-
-    .. class:: incremental
-
-    - Mittlere Zeit bis zum Versagen (:eng:`Mean Time to Failure` (:math:`MTTF`)): 
-  
-      Die durchschnittliche Zeit bis zum Ausfall einer Komponente. 
-
-    - Mittlere Zeit bis zur Reparatur (:eng:`Mean Time to Repair` (:math:`MTTR`)): 
-  
-      Die durchschnittliche Zeit, die für die Reparatur einer Komponente benötigt wird.
-
-    - Mittlere Zeit zwischen Ausfällen (:eng:`Mean Time Between Failures` (:math:`MTBF`)): 
-     
-      :math:`MTTF + MTTR = MTBF`.
-
-    .. container:: supplemental
-
-        - Zuverlässigkeit: Wie wahrscheinlich ist es, dass ein System *korrekt* arbeitet?
-        - Verfügbarkeit: Wie wahrscheinlich ist es, dass ein System zu einem bestimmten Zeitpunkt verfügbar ist?
-
-
-
-.. class:: integrated-exercise smaller-slide-title
-
-Übung: Verfügbarkeit und Ausfallwahrscheinlichkeit
-------------------------------------------------------
-
-.. container:: smaller
-
-    .. exercise:: MTTF, MTTR und MTBF
-
-        Wenn die MTTF einer Komponente 100 Stunden beträgt und die MTTR 10 Stunden beträgt, wie hoch ist dann die MTBF?
-
-        .. solution:: Berechnung des MTBF
-            :pwd: MTTBFR
-
-            .. math::
-                MTBF = MTTF + MTTR = 100 + 10 = 110
-
-    .. exercise:: Ausfallwahrscheinlichkeit
-
-        Gegeben sei ein größeres verteiltes System bestehend aus 500 unabhängigen Rechnern, die auch unabhängig voneinander ausfallen. Im Mittel ist jeder Rechner innerhalb von zwei Tagen zwölf Stunden lang nicht erreichbar.
-
-        (a) Bestimmen Sie die Intaktwahrscheinlichkeit eines einzelnen Rechners.
-        (b) Ein Datensatz ist aus Gründen der Fehlertoleranz auf drei Rechnern identisch repliziert gespeichert. Wie hoch ist seine mittlere Zugriffsverfügbarkeit beim Lesen?
-        (c) Auf wie vielen Rechnern müssen Sie identische Kopien dieses Datensatzes speichern, damit die mittlere Zugriffsverfügbarkeit beim Lesen bei 99,999 % liegt 
-        (d) Für wie viele Minuten im Jahr (mit 365 Tagen) ist im Mittel bei einer Verfügbarkeit von 99,999 % *kein Lesen des Datensatzes* möglich?
-
-        .. solution:: Lösung
-            :pwd: Laufend?
-
-            (a) Die Verfügbarkeit eines einzelnen Rechners beträgt p = 36h/48h = 0,75 (MTBF = 36H, MTTR = 12H)
-            (b) Die mittlere Zugriffsverfügbarkeit (für :math:`p = 0.75`) beim Lesen beträgt :math:`1 - (1 - p)^3 = 0,984375`; :math:`(1-p)` ist die Ausfallwahrscheinlichkeit.
-            (c) (Erinnerung: :math:`log_a(u^v) = v \cdot log_a(u)`).
-                
-                Wahrscheinlichkeit, dass alle gleichzeitig ausfallen muss kleiner(gleich) der erlaubten Nichtverfügbarkeit sein:  :math:`(1-p)^x \leq (1-0,99999) \Leftrightarrow x \cdot log(1-p) \geq log(1-0,99999)`
-
-                :math:`\Rightarrow x \geq log(1-0,99999)/log(1-p) \approx 8,3`
-                
-                Die Anzahl der Rechner, auf denen der Datensatz repliziert werden muss, beträgt :math:`\lceil \frac{log(1-0,99999)}{log(1-p)} \rceil = 9`
-            (d) Bei 365 Tagen im Jahr: (1-0,99999) * 365 * 24 * 60 = 5,256 Minuten
-
 
 
 Sicherheit in verteilten Systemen - Schutzziele
@@ -577,7 +444,7 @@ Es geht im Wesentlichen um das Ver- und Entschlüsseln von Daten (:math:`X`) mit
 
         Wir unterscheiden zwischen privaten (:math:`PR`) und öffentlichen Schlüsseln (:math:`PU`) (:math:`PU` :math:`\neq` :math:`PR`). Ein privater und ein öffentlicher Schlüssel bilden immer ein Paar. Der private Schlüssel ist immer geheim zu halten.
         
-        .. container:: stack
+        .. container:: stack incremental
 
             .. container:: layer
 
@@ -643,6 +510,11 @@ Zwischenfrage
 
         Alice kann nicht sicher sein, dass Ihre Nachricht nicht verfälscht wurde! Jeder, der die Nachricht abfängt kann sie verändern und dann mit Bobs öffentlichen Schlüssel verschlüsseln.
 
+
+.. class:: new-subsection transition-fade
+
+Skalierbarkeit
+---------------------- 
 
 
 Skalierbarkeit in verteilten Systemen
@@ -723,7 +595,7 @@ Formale Analyse der Skalierbarkeit zentralisierter Systeme
 .. container:: presenter-notes
 
     Anschaulich kann man die Formel:
-    :math:`p_x  = \bigl(1 - \frac{\lambda}{\mu}\bigr)\bigl(\frac{\lambda}{\mu}\bigr)^x` so verstehen, dass die Wahrscheinlichkeit, dass sich :math:`x` Anfragen im System befinden, mit der Anzahl der Anfragen im System abnimmt. Deswegen gilt :math:`\bigl(\frac{\lambda}{\mu}\bigr)^x` weiterhin müssen wir modellieren, dass es :ger-quote:`nur` zwei Anfragen gibt (d. h. das System is sonst `idle`). Deswegen müssen wir noch mit :math:`p_0 = 1 - \frac{\lambda}{\mu}` multiplizieren.
+    :math:`p_x  = \bigl(1 - \frac{\lambda}{\mu}\bigr)\bigl(\frac{\lambda}{\mu}\bigr)^x` so verstehen, dass die Wahrscheinlichkeit, dass sich :math:`x` Anfragen im System befinden, mit der Anzahl der Anfragen im System abnimmt. Deswegen gilt :math:`\bigl(\frac{\lambda}{\mu}\bigr)^x` weiterhin müssen wir modellieren, dass es :ger-quote:`nur` zwei Anfragen gibt (d. h. das System ist sonst `idle`). Deswegen müssen wir noch mit :math:`p_0 = 1 - \frac{\lambda}{\mu}` multiplizieren.
 
 
 
@@ -814,6 +686,9 @@ Probleme der geografischen Skalierbarkeit
 --------------------------------------------
 
 - Viele verteilte Systeme gehen von synchronen Client-Server-Interaktionen aus und dies verhindert einen Übergang vom LAN zum WAN. Die Latenzzeiten können prohibitiv sein, wenn der Client auf eine Anfrage lange warten muss.
+  
+.. class:: incremental
+
 - WAN-Verbindungen sind oft von Natur aus unzuverlässig.
 
 
@@ -1029,10 +904,91 @@ Beschleunigung (Speedup) eines parallelisierten Programms relativ zu der nicht-p
 
 
 
+.. class:: new-section transition-fade
+
+Anforderungen an verteilter Systeme
+-------------------------------------
+
+
+Verlässlichkeit verteilter Systeme 
+------------------------------------------------------------
+
+.. container:: minor
+
+    (:eng:`Dependability`)
+
+.. admonition:: Abhängigkeiten
+    :class: foundations
+    
+    Eine **Komponente**\ [#]_ stellt ihren **Clients** **Dienste** zur Verfügung. Dafür kann die Komponente jedoch wiederum Dienste von anderen Komponenten benötigen und somit ist eine Komponente  von einer anderen Komponente abhängig (:eng:`depend`).
+
+.. admonition:: Definition
+
+    Eine Komponente :math:`C` hängt von :math:`C^*` ab, wenn die Korrektheit des Verhaltens von :math:`C` von der Korrektheit des Verhaltens von :math:`C^*` abhängt. 
+
+.. [#] Komponenten seien Prozesse oder Kanäle.
+
+
+
+Anforderungen an die Verlässlichkeit verteilter Systeme
+------------------------------------------------------------
+
+.. csv-table::
+    :class: highlight-line-on-hover incremental
+    :header: "Anforderung", "Beschreibung"
+
+    "Verfügbarkeit", "Das System ist nutzbar."
+    "Zuverlässigkeit", "Kontinuität der korrekten Leistungserbringung."
+    "Sicherheit 
+    (:eng:`Safety`\ [#]_)", "Niedrige Wahrscheinlichkeit für ein katastrophales Ereignis"
+    "Wartbarkeit", "Wie leicht kann ein fehlgeschlagenes System wiederhergestellt werden?"
+
+.. [#] :eng:`Safety` und :eng:`Security` werden beide im Deutschen gleich mit Sicherheit übersetzt und sind daher leicht zu verwechseln. :eng:`Safety` bezieht sich auf die Sicherheit von Personen und Sachen, während :eng:`Security` sich auf die Sicherheit von Daten und Informationen bezieht.
+
+
+.. class:: smaller-slide-title smaller
+
+Zuverlässigkeit (:eng:`Reliability`) vs. Verfügbarkeit (:eng:`Availability`) in verteilten Systemen
+--------------------------------------------------------------------------------------------------------------
+
+.. rubric:: Verlässlichkeit :math:`R(t)` der Komponente :math:`C`
+
+Bedingte Wahrscheinlichkeit, dass :math:`C` während :math:`[0,t)` korrekt funktioniert hat, wenn :math:`C` zum Zeitpunkt :math:`T = 0` korrekt funktionierte.
+
+.. compound:: 
+    :class: incremental
+
+    .. rubric:: Traditionelle Metriken
+
+    .. class:: incremental
+
+    - Mittlere Zeit bis zum Versagen (:eng:`Mean Time to Failure` (:math:`MTTF`)): 
+  
+      Die durchschnittliche Zeit bis zum Ausfall einer Komponente. 
+
+    - Mittlere Zeit bis zur Reparatur (:eng:`Mean Time to Repair` (:math:`MTTR`)): 
+  
+      Die durchschnittliche Zeit, die für die Reparatur einer Komponente benötigt wird.
+
+    - Mittlere Zeit zwischen Ausfällen (:eng:`Mean Time Between Failures` (:math:`MTBF`)): 
+     
+      :math:`MTTF + MTTR = MTBF`.
+
+
+.. supplemental::
+
+    - Zuverlässigkeit: Wie wahrscheinlich ist es, dass ein System *korrekt* arbeitet?
+    - Verfügbarkeit: Wie wahrscheinlich ist es, dass ein System zu einem bestimmten Zeitpunkt verfügbar ist?
+
+    .. rubric:: MTBF vs. MTTR
+
+    Wenn die MTTF einer Komponente 100 Stunden beträgt und die MTTR 10 Stunden beträgt, dann ist die MTBF :math:`= MTTF + MTTR = 100 + 10 = 110` Stunden.
+
+
 .. class:: smaller
 
-MapReduce - ein Programmiermodell für paralleles Rechnen
-----------------------------------------------------------
+MapReduce - Programmiermodell und Middleware für paralleles Rechnen
+---------------------------------------------------------------------
 
 .. class:: incremental 
 
@@ -1076,6 +1032,44 @@ MapReduce - Visualisierung und Beispiel
     :V3: Häufigkeit des Wortes
 
     Ein weiteres Beispiel ist die Berechnung eines invertierten Indexes.
+
+
+
+.. class:: integrated-exercise smaller-slide-title
+
+Übung: Verfügbarkeit und Ausfallwahrscheinlichkeit
+------------------------------------------------------
+
+.. exercise:: Ausfallwahrscheinlichkeit
+
+    Gegeben sei ein größeres verteiltes System bestehend aus 500 unabhängigen Rechnern, die auch unabhängig voneinander ausfallen. Im Mittel ist jeder Rechner innerhalb von zwei Tagen zwölf Stunden lang nicht erreichbar.
+
+    (a) Bestimmen Sie die Intaktwahrscheinlichkeit eines einzelnen Rechners.
+    (b) Ein Datensatz ist aus Gründen der Fehlertoleranz auf drei Rechnern identisch repliziert gespeichert. Wie hoch ist seine mittlere Zugriffsverfügbarkeit beim Lesen?
+    (c) Auf wie vielen Rechnern müssen Sie identische Kopien dieses Datensatzes speichern, damit die mittlere Zugriffsverfügbarkeit beim Lesen bei 99,999 % liegt 
+    (d) Für wie viele Minuten im Jahr (mit 365 Tagen) ist im Mittel bei einer Verfügbarkeit von 99,999 % *kein Lesen des Datensatzes* möglich?
+
+    .. solution:: Lösung
+        :pwd: Laufend?
+
+        (a) Die Verfügbarkeit eines einzelnen Rechners beträgt p = 36h/48h = 0,75 (MTBF = 36H, MTTR = 12H)
+        (b) Die mittlere Zugriffsverfügbarkeit (für :math:`p = 0.75`) beim Lesen beträgt :math:`1 - (1 - p)^3 = 0,984375`; :math:`(1-p)` ist die Ausfallwahrscheinlichkeit.
+        (c) (Erinnerung: :math:`log_a(u^v) = v \cdot log_a(u)`).
+            
+            Wahrscheinlichkeit, dass alle gleichzeitig ausfallen muss kleiner(gleich) der erlaubten Nichtverfügbarkeit sein:  :math:`(1-p)^x \leq (1-0,99999) \Leftrightarrow x \cdot log(1-p) \geq log(1-0,99999)`
+
+            :math:`\Rightarrow x \geq log(1-0,99999)/log(1-p) \approx 8,3`
+            
+            Die Anzahl der Rechner, auf denen der Datensatz repliziert werden muss, beträgt :math:`\lceil \frac{log(1-0,99999)}{log(1-p)} \rceil = 9`
+        (d) Bei 365 Tagen im Jahr: (1-0,99999) * 365 * 24 * 60 = 5,256 Minuten
+
+
+
+.. class:: new-section transition-fade
+
+Klassifikation Verteilte Systeme
+-------------------------------------
+
 
 
 
@@ -1216,7 +1210,13 @@ Cloud-Computing
   - Kostentransparenz/-management
 
     Die Kosten für Serverless-Computing sind schwer vorherzusagen und zu kontrollieren. 
-  
+
+
+
+.. class:: new-section transition-fade
+
+Herausforderungen bei der Entwicklung verteilter Systeme
+-------------------------------------------------------------
 
 
 Integration von Anwendungen
@@ -1293,7 +1293,7 @@ Transaktionen auf Geschäftsprozessebene
 
 .. container:: assessment
 
-    Daten, die im Rahmen einer Transaktion benötigt werden, sind oft verteilt über mehrere Server. 
+    Die für eine Transaktion benötigten Daten, sind oft verteilt über mehrere Server. 
 
 .. image:: images/transactions/tpm.svg
     :width: 80%
@@ -1358,6 +1358,12 @@ Wie kann die Anwendungsintegration erreicht werden?
 :Nachrichtenübermittlung `Messaging`:eng:: Ermöglicht eine zeitliche und räumliche Entkopplung im Vergleich zu RPCs.
 
 
+.. class:: new-section transition-fade
+
+Moderne verteilte Systeme
+--------------------------------------------
+
+
 *Distributed Pervasive/Ubiquitous Systems* 
 ------------------------------------------------------------------------
 
@@ -1374,7 +1380,7 @@ Wie kann die Anwendungsintegration erreicht werden?
 
     Drei (sich überschneidende) Untertypen
 
-    :Ubiquitous Computing: *allgegenwärtig und ständig präsent*, d. h., es besteht eine ständige Interaktion zwischen System und Benutzer.
+    :Ubiquitous Computing: *allgegenwärtig und ständig präsent*; d. h., es besteht eine ständige Interaktion zwischen System und Benutzer.
     :Mobile Computing: *allgegenwärtig*; der Schwerpunkt liegt auf der Tatsache, dass Geräte von Natur aus mobil sind.
     :Sensor-/Actuator Networks: *allgegenwärtig*; Schwerpunkt liegt auf der tatsächlichen (kollaborativen) Erfassung (:eng:`sensing`) und Betätigung (:eng:`actuation`).
 
