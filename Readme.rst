@@ -1,7 +1,9 @@
 Lehrveranstaltungen und Foliensätze
 ===================================
 
-Die Foliensätze sind modularisiert und lassen sich an die jeweiligen Anforderungen der Vorlesungen anpassen. Im Folgenden sind einige sinnvolle Kombinationen aufgeführt:
+Die Foliensätze sind modularisiert, um sich an die jeweiligen Anforderungen der Vorlesungen anpassen zu lassen. 
+
+Im Folgenden sind einige sinnvolle Kombinationen aufgeführt.
 
 
 
@@ -9,14 +11,23 @@ Vorlesung "Verteilte Systeme"
 -----------------------------
 
 1. Einführung in verteilte Systeme (`<ds-einfuehrung/folien.rst.html>`__)
-2. HTTP und Sockets (in Java) (`<ds-http-and-sockets/folien.rst.html>`__)
+2. HTTP und Sockets in Java (`<ds-http-and-sockets-java/folien.rst.html>`__)
+   
+   Alternativ:
+
+   HTTP und Sockets in Python (`<ds-http-and-sockets-python/folien.rst.html>`__)
 3. Nebenläufigkeit und Synchronisation (in Java) (`<ds-nebenlaeufigkeit/folien.rst.html>`__)
 4. Grundlegende Konzepte (`<ds-grundlegende-konzepte/folien.rst.html>`__)
 5. Middleware (`<ds-middleware/folien.rst.html>`__)
 6. Architekturen von verteilten Systemen (`<ds-architekturen/folien.rst.html>`__)
-7. Zusammenspiel von Agile Methoden und Entwurf verteilter Systeme (`<ds-se-agile/folien.rst.html>`__)
-8. Entwurfsprinzipien für verteilte Systeme (`<ds-se-entwurfsprinzipien/folien.rst.html>`__)
-9. RESTful Web Services (`<ds_restful/folien.rst.html>`_)
+
+Vorlesung "Verteilte Systeme" - Ergänzend
+------------------------------------------
+
+- Zusammenspiel von Agile Methoden und Entwurf verteilter Systeme (`<ds-se-agile/folien.rst.html>`__)
+- Entwurfsprinzipien für verteilte Systeme (`<ds-se-entwurfsprinzipien/folien.rst.html>`__)
+- RESTful Web Services (`<ds-restful/folien.rst.html>`_)
+- XML (`<ds-xml/folien.rst.html>`__)
 
 
 
@@ -24,7 +35,12 @@ Vorlesung "Web Engineering"
 -----------------------------
 
 1. HTML (`<web-html/folien.rst.html>`__)
+2. XML und XPath (`<ds-xml/folien.rst.html>`__)
 
+Ergänzend
+_________
+
+- Vortragsthemen, die sich gut in die Vorlesung einfügen (`<web-vortragsthemen/folien.rst.html>`__)
 
 
 Vorlesung "IT Sicherheit (IT Infrastrukturen)"
@@ -52,11 +68,10 @@ Vorlesung "Dokumentenmanagement und Verschlüsselungsverfahren"
 3. Dokumentenmanagement und rechtliche Aspekte (`<dm-rechtliche-aspekte/folien.rst.html>`__)
 
 
+.. Vorlesung "Software Engineering III"
+   -----------------------------------------------------
 
-Vorlesung "Software Engineering III"
------------------------------------------------------
-
-1. TCP SSH Firewalls
-2. [Optional] Klassische Sicherheitsprinzipien 
-3. CVSS-CVE-VEP
-4. CWE-OWASP
+   1. TCP SSH Firewalls
+   2. [Optional] Klassische Sicherheitsprinzipien 
+   3. CVSS-CVE-VEP
+   4. CWE-OWASP
