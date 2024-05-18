@@ -7,6 +7,12 @@
     :first-slide: last-viewed
 
 .. |date| date::
+.. |html-source| source::
+    :url-prefix: https://delors.github.io/
+    :suffix: .html
+.. |pdf-source| source::
+    :url-prefix: https://delors.github.io/
+    :suffix: .html.pdf
 .. |at| unicode:: 0x40
 
 .. role:: incremental
@@ -44,9 +50,10 @@ HTTP und Sockets (in Java)
 .. supplemental::
 
   :Folien: 
-      :HTML: https://delors.github.io/ds-http-and-sockets/folien.rst.html 
+      :HTML: |html-source|
 
-      :PDF: https://delors.github.io/ds-http-and-sockets/folien.rst.html.pdf
+      :PDF: |pdf-source|
+      
   :Fehler auf Folien melden:
       https://github.com/Delors/delors.github.io/issues
 
@@ -352,7 +359,7 @@ Austausch von Daten
 
   .. layer::
         
-    .. code:: Java
+    .. code:: java
       :class: copy-to-clipboard
 
       import java.net.*;
@@ -376,7 +383,7 @@ Austausch von Daten
 
   .. layer:: incremental
 
-    .. code:: Java
+    .. code:: java
       :class: copy-to-clipboard
 
       import java.net.*;
@@ -435,7 +442,7 @@ UDP basierter Echo Server
 
 .. container:: tiny
 
-  .. code:: Java
+  .. code:: java
     :class: copy-to-clipboard
 
     import java.net.*;
@@ -470,7 +477,7 @@ UDP basierter Echo Server
 
   .. class:: list-with-explanations smaller
 
-  (a) Schreiben Sie einen HTTP-Client, der den Server ``archive.org`` kontaktiert, die Datei ``/web/web.php`` anfordert und die Antwort des Servers auf dem Bildschirm ausgibt.
+  (a) Schreiben Sie einen HTTP-Client, der den Server ``www.michael-eichberg.de`` kontaktiert, die Datei ``/index.html`` anfordert und die Antwort des Servers auf dem Bildschirm ausgibt.
 
       Verwenden Sie HTTP/1.1 und eine Struktur ähnlich dem in der Vorlesung vorgestellten Echo-Client.
 
@@ -482,7 +489,7 @@ UDP basierter Echo Server
 
       Nutzen Sie die Klasse ``FileOutputStream`` oder ``FileWriter`` zum Speichern der Datei.
 
-      Kann Ihr Programm auch Bilddateien (z. B. "/images/logo_wayback_210x77.png") korrekt speichern?
+      Kann Ihr Programm auch Bilddateien (z. B. "/exercises/star.jpg") korrekt speichern?
 
 
   .. solution::
@@ -490,7 +497,7 @@ UDP basierter Echo Server
 
     Zu (a):
 
-    .. code:: Java
+    .. code:: java
       :class: copy-to-clipboard smaller
     
       import java.net.*;
@@ -499,17 +506,17 @@ UDP basierter Echo Server
         public static void main(String [] args){
           BufferedReader in = null ;
           PrintWriter out = null ;
-          String hostname = "archive.org";
-          String filename = "/web/web.php";
+          String hostname = "www.michael-eichberg.de";
+          String filename = "/index.html";
           try(Socket s = new Socket(hostname ,80) ;){
             
             in = new BufferedReader(new InputStreamReader(s.getInputStream()));
             out = new PrintWriter(s.getOutputStream());
-            out.println("GET "+ filename + " HTTP/1.1");
-            out.println("Host: " + hostname);
-            out.println("Connection: close");
-            out.println() ;
-            out.flush () ;
+            out.print("GET " + url.getFile() + " HTTP/1.1\r\n");
+            out.print("HOST: " + url.getHost()+ "\r\n");
+            out.print("Connection: close"+ "\r\n");
+            out.print("\r\n");
+            out.flush();
             String line = null;
             while ((line = in.readLine()) != null){
               System.out.println (line);
@@ -521,7 +528,7 @@ UDP basierter Echo Server
 
     Zu (b) und (c):
 
-    .. code:: Java
+    .. code:: java
       :class: copy-to-clipboard smaller
 
       import java.net.*;
@@ -539,10 +546,10 @@ UDP basierter Echo Server
                   System.err.println("-> new file: " + url.getFile().substring(pos + 1));
                   f = new FileOutputStream(url.getFile().substring(pos + 1));
                   System.err.print("** Anfordern von <" + url + "> ...");
-                  out.println("GET " + url + " HTTP/1.0");
-                  out.println("HOST: " + url.getHost());
-                  out.println("Connection: close");
-                  out.println("");
+                  out.print("GET " + url.getFile() + " HTTP/1.1\r\n");
+                  out.print("HOST: " + url.getHost()+ "\r\n");
+                  out.print("Connection: close"+ "\r\n");
+                  out.print("\r\n");
                   out.flush();
                   System.err.print(" request sent ");
                   // skip HTTP/1.x header data up to ’CR LF CR LF’
@@ -572,7 +579,7 @@ UDP basierter Echo Server
            * (Example: "java HTTPGet.java http://www.google.de/index.html")
            * 
            * @param args URL of the file to be downloaded. E.g.,
-           *             "http://archive.org/web/web.php".
+           *             "http://www.michael-eichberg.de/index.html".
            *              
            */
           public static void main(String args[]) {
@@ -606,7 +613,7 @@ UDP basierter Echo Server
   .. solution:: 
     :pwd: Nun mit UDP.
     
-    .. code:: Java
+    .. code:: java
       :class: copy-to-clipboard smaller
 
       import java.net.*;
@@ -637,7 +644,7 @@ UDP basierter Echo Server
         }
       }
 
-    .. code:: Java
+    .. code:: java
       :class: copy-to-clipboard smaller
 
       import java.net.*;

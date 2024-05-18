@@ -13,12 +13,11 @@ public class HTTPGet {
             System.err.println("-> new file: " + url.getFile().substring(pos + 1));
             f = new FileOutputStream(url.getFile().substring(pos + 1));
             System.err.print("[TRACE] get " + url);
-            out.println("GET " + url + " HTTP/1.0");
-            out.println("HOST: " + url.getHost());
-            out.println("Connection: close");
-            out.println("");
+            out.print("GET " + url.getFile() + " HTTP/1.1\r\n");
+            out.print("HOST: " + url.getHost()+ "\r\n");
+            out.print("Connection: close"+ "\r\n");
+            out.print("\r\n");
             out.flush();
-            System.err.print(" request sent ");
             // skip HTTP/1.x header data up to ’CR LF CR LF’
             while (true) {
                 if (in.read() == 13) // CR

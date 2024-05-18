@@ -79,10 +79,11 @@ HyperText Markup Language (HTML)
 
       .. raw:: html
 
-        <script src="lib/timeline/timeline.js" type="text/javascript"></script>
-        <link href="lib/timeline/timeline.css" type="text/css" rel="stylesheet" />
+        
         <svg id="HTML-Timeline" class="timeline"/>
-        <script type="text/javascript">
+        <script src="lib/timeline/timeline.js" type="text/javascript"></script>
+        <link href="lib/timeline/timeline.css" rel="stylesheet" />
+        <script defer type="text/javascript">
             Timeline.draw("HTML-Timeline",[
                 {d:"...",t:"HTML 1.0"},
                 {d:"1995",t:"HTML 2.0"},
@@ -94,9 +95,11 @@ HyperText Markup Language (HTML)
                 {d:"2018",t:"XHTML 1.0 und 1.1 - obsolet"},	
                 {d:"seit 2019",t:"HTML(5) (W3C und WHATWG)"},
             ]);
-        </script>
+        </script>       
 
-      :far-smaller:`WHATWG ≘ Web Hypertext Application Technology Working Group`
+      .. container:: far-smaller
+      
+        WHATWG ≘ Web Hypertext Application Technology Working Group
 
 .. container:: footer-left far-far-smaller 
 
@@ -853,6 +856,33 @@ Drei Arten von Listen werden unterstützt, die beliebig verschachtelt werden kö
 
     .. class:: incremental
 
+    - Definitionslisten: ``<dl>``
+
+      .. container:: two-columns
+
+          .. container:: column
+
+            .. code:: html
+                :class: far-smaller
+
+                <dl>
+                    <dt>Erster Begriff</dt>
+                    <dd>Erklärung des 1. Begriffs</dd>
+                    <dt>Zweiter Begriff</dt>
+                    <dd>Erklärung des 2. Begriffs</dd>
+                </dl>
+
+          .. container:: column far-smaller
+
+            .. raw:: html                    
+
+                <dl>
+                    <dt style="font-weight:bold">Erster Begriff</dt>
+                    <dd style="margin-left:3em">Erklärung des 1. Begriffs</dd>
+                    <dt style="font-weight:bold">Zweiter Begriff</dt>
+                    <dd style="margin-left:3em">Erklärung des 2. Begriffs</dd>
+                </dl>
+
     - geordnete Listen: ``<ol [reversed] [start=<NO>]>``
 
       .. container:: two-columns
@@ -904,32 +934,7 @@ Drei Arten von Listen werden unterstützt, die beliebig verschachtelt werden kö
                 </ul> 
 
 
-    - Definitionslisten: ``<dl>``
 
-      .. container:: two-columns
-
-          .. container:: column
-
-            .. code:: html
-                :class: far-smaller
-
-                <dl>
-                    <dt>Erster Begriff</dt>
-                    <dd>Erklärung des 1. Begriffs</dd>
-                    <dt>Zweiter Begriff</dt>
-                    <dd>Erklärung des 2. Begriffs</dd>
-                </dl>
-
-          .. container:: column far-smaller
-
-            .. raw:: html                    
-
-                <dl class="field-list">
-                    <dt>Erster Begriff</dt>
-                    <dd>Erklärung des 1. Begriffs</dd>
-                    <dt>Zweiter Begriff</dt>
-                    <dd>Erklärung des 2. Begriffs</dd>
-                </dl>
 
 
 
@@ -1327,7 +1332,7 @@ Referenzen
 ------------------------------------------------
 
 - `MDN Web Docs <https://developer.mozilla.org/en-US/docs/Web/HTML>`__
-- `canisuse.com: Unterstützung von HTML, CSS etc. Features <https://caniuse.com>`__ 
+- `caniuse.com: Unterstützung von HTML, CSS etc. Features <https://caniuse.com>`__ 
 - `HTML (Living Standard) <https://html.spec.whatwg.org>`__ (aka HTML5)
 - `HTML DOM <https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model>`__
 

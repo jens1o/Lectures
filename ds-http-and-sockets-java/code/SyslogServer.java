@@ -1,7 +1,7 @@
 import java.net.*;
 
 public class SyslogServer {
-    public final static int DEFAULT_PORT = 4999;
+    public final static int DEFAULT_PORT = 5678;
     public final static int MAX_PACKET_SIZE = 65507;
 
     public static void main(String[] args) {

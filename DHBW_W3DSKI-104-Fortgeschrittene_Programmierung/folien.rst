@@ -1,0 +1,97 @@
+.. meta:: 
+    :author: Michael Eichberg
+    :keywords: "Fortgeschrittene Programmierung"
+    :description lang=de: Verteilte Systeme und Web-Entwicklung
+    :id: lecture-w3dski_10-fortgeschrittene_programmierung
+    :first-slide: last-viewed
+    
+.. |date| date::
+.. |at| unicode:: 0x40
+
+.. role:: incremental   
+.. role:: eng
+.. role:: ger
+.. role:: red
+.. role:: green
+.. role:: the-blue
+.. role:: minor
+.. role:: ger-quote
+.. role:: obsolete
+.. role:: line-above
+.. role:: huge
+.. role:: xxl
+
+.. role:: raw-html(raw)
+   :format: html
+
+
+
+W3DSKI 104 - Fortgeschrittene Programmierung
+================================================
+
+.. container:: line-above tiny
+
+    :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
+    :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
+    :Version: |date|
+
+
+
+Verteilte Systeme - Kerninhalte gem. MHB
+-------------------------------------------
+
+- Terminologie, Konzepte, Architekturen, Anforderungsprofile und Architekturmodelle für verteilte Systeme
+- Synchrone und asynchrone Kommunikation und entfernter Methodenaufruf (RMI, RPC, Web-Services, ...), Übertragungsprotokolle und APIs zwischen Client und Server (z.B. HTTP, HTTPS, WebSockets, Fetch API, etc.), Einführung in das RESTful API-Design
+- Herausforderungen in verteilten Systemen
+- High Performance Computing und Distributed Computing
+- Sicherheitsaspekte bei der Verarbeitung von verteilten Anwendungen; Authentifizierung, Autorisierung, Rollenkonzepte
+- Grundlagen Ubiquitous Computing, Internet der Dinge, MQTT, Edge Computing, Streaming & Messaging
+
+
+
+Web-Entwicklung  - Kerninhalte gem. MHB
+-------------------------------------------
+
+- Frontend-Technologien, HTML, CSS, JavaScript
+- Konzepte, Entwurfsmuster und Werkzeuge für die Entwicklung von Web-Anwendungen - Entwurf und Umsetzung von Responsive Web-Design und zustandsbehafteten Web-Anwendungen
+- Abgrenzung client-side und Server-Side-Rendering
+
+Labor Web Projekt:
+- Die theoretischen Inhalte sollen jeweils auch mit aktuellen Technologien beispielhaft umgesetzt werden. Es soll eine übergreifende Anwendung entwickelt werden anhand derer das Zusammenspiel deutlich wird.
+
+
+Prüfungsleistung - Portfolio
+------------------------------------------
+
+.. container:: minor box-shadow rounded-corners padding-1em
+    
+    .. rubric:: Hintergrund
+
+    - Das Modul hat 5 ECTS
+    - Insgesamt gibt es max. 120 Punkte
+    
+
+- 3 Bestandteile:
+
+  1. Vorträge - max. 30 Punkte
+  2. Schriftlicher Zwischenleistungsnachweis - max. 40 Punkte
+  3. Programmierprojekt - max. 50 Punkte
+
+
+
+Vorträge - organisatorische Rahmenbedingungen
+---------------------------------------------
+
+.. class:: incremental list-with-explanations
+
+- Jedes Vortragsthema soll 15 Minuten dauern und von 2 Personen vorgetragen werden.
+  
+  (Ggf. gibt es ein Thema für eine Person mit 8 Minuten Vortragszeit.)
+
+- Jeder hält nur einen Vortrag.
+- Die Vortragsthemen werden sukzessive vergeben. 
+- Die Vorbereitungszeit ist immer zwischen einer und max. 2 Wochen.
+
+.. container:: box-shadow rounded-corners padding-1em center-child-elements
+
+    `Vortragsthemen <../web-vortragsthemen/folien.rst.html>`__
