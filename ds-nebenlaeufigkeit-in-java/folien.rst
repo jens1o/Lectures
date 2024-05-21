@@ -222,7 +222,7 @@ Beispiel: Synchronisierte Methode
 
   .. layer::
 
-    .. code:: Java
+    .. code:: java
       :class: copy-to-clipboard
 
       public class SynchronizedCounter {
@@ -240,7 +240,7 @@ Beispiel: Synchronisierte Methode
 
   .. layer:: incremental
 
-    .. code:: Java
+    .. code:: java
       :class: copy-to-clipboard
       
         public class SharedLong {
@@ -264,7 +264,7 @@ Beispiel: Synchronisierte Methode
 
   .. layer:: incremental
 
-    .. code:: Java
+    .. code:: java
       :class: copy-to-clipboard
 
       public class SynchronizedCounter {
@@ -298,7 +298,7 @@ Beispiel: Synchronisierte Methode
 Komplexe Rückgabewerte
 ------------------------------
 
-.. code:: Java
+.. code:: java
   :class: tiny copy-to-clipboard
 
   public class SharedCoordinate {
@@ -329,7 +329,7 @@ Komplexe Rückgabewerte
 
   Kann sichergestellt werden, dass ein auslesender Thread die Instanz in einem ``synchronized`` Block benennt, dann kann die Auslesung eines konsistenten Zustands auch bei mehreren Methodenaufrufen hintereinander sichergestellt werden.
 
-  .. code:: Java
+  .. code:: java
     :class: copy-to-clipboard
 
     SharedCoordinate point = new SharedCoordinate(0,0);
@@ -395,7 +395,7 @@ Ein *BoundedBuffer* hat z. B. traditionell zwei Bedingungsvariablen: *BufferNo
 
   .. layer:: incremental tiny
 
-    .. code:: Java
+    .. code:: java
       :class: smaller copy-to-clipboard
 
         public class BoundedBuffer {
@@ -416,7 +416,7 @@ Ein *BoundedBuffer* hat z. B. traditionell zwei Bedingungsvariablen: *BufferNo
 
   .. layer:: incremental tiny
 
-    .. code:: Java
+    .. code:: java
       :class: smaller copy-to-clipboard
 
         public synchronized void put(int item) throws InterruptedException {
@@ -430,7 +430,7 @@ Ein *BoundedBuffer* hat z. B. traditionell zwei Bedingungsvariablen: *BufferNo
 
   .. layer:: incremental tiny
 
-    .. code:: Java
+    .. code:: java
       :class: smaller copy-to-clipboard
 
         public synchronized int get() throws InterruptedException {
@@ -449,7 +449,7 @@ Ein *BoundedBuffer* hat z. B. traditionell zwei Bedingungsvariablen: *BufferNo
     
       Fehlersituation, die bei der Verwendung von ``notify`` (statt ``notifyAll``) auftreten könnte.
 
-    .. code:: Java
+    .. code:: java
       :class: smaller copy-to-clipboard
 
       BoundedBuffer bb = new BoundedBuffer(1); 
@@ -498,7 +498,7 @@ Ein *BoundedBuffer* hat z. B. traditionell zwei Bedingungsvariablen: *BufferNo
 
   .. layer::
 
-    .. code:: Java
+    .. code:: java
       :class: smaller copy-to-clipboard
 
       public class BoundedBuffer<T> {
@@ -517,7 +517,7 @@ Ein *BoundedBuffer* hat z. B. traditionell zwei Bedingungsvariablen: *BufferNo
 
   .. layer:: incremental
 
-    .. code:: Java
+    .. code:: java
       :class: smaller copy-to-clipboard
 
         public BoundedBuffer(int length) { /* Normaler Constructor. */
@@ -531,7 +531,7 @@ Ein *BoundedBuffer* hat z. B. traditionell zwei Bedingungsvariablen: *BufferNo
 
   .. layer:: incremental
 
-    .. code:: Java
+    .. code:: java
       :class: smaller copy-to-clipboard
 
         public void put(T item) throws InterruptedException {
@@ -552,7 +552,7 @@ Ein *BoundedBuffer* hat z. B. traditionell zwei Bedingungsvariablen: *BufferNo
 
   .. layer:: incremental
 
-    .. code:: Java
+    .. code:: java
       :class: smaller copy-to-clipboard
 
         public T get() ... {
@@ -692,7 +692,7 @@ Thread Safety Level
     .. solution::
       :pwd: MyVirtualBuffer
 
-      .. code:: Java
+      .. code:: java
         :class: smaller copy-to-clipboard
 
         Thread thread = Thread.ofVirtual().start(
@@ -717,7 +717,7 @@ Thread Safety Level
 
 .. supplemental:: 
 
-  .. code:: Java
+  .. code:: java
     :class: far-smaller copy-to-clipboard
 
     import java.util.ArrayList;
@@ -782,7 +782,7 @@ Thread Safety Level
 
       (a) 
 
-        .. code:: Java
+        .. code:: java
           :class: smaller copy-to-clipboard
 
           public synchronized Object get(int index) throws InterruptedException {
@@ -818,7 +818,7 @@ Thread Safety Level
       (b) ``notify`` kann nicht verwendet werden, da wir unterschiedliche Bedingungen haben und es bei der Verwendung von ``notify`` somit zum Aufwecken eines ungeeigneten Threads kommen könnte. Dies könnte dazu führen könnte, dass alle Threads im Wartezustand sind obwohl Fortschritt möglich wäre. 
 
       (c) 
-          .. code:: Java
+          .. code:: java
             :class: copy-to-clipboard
 
             private final Object[] array;
@@ -893,7 +893,7 @@ Thread Safety Level
 
   Sie können sich die Klasse ``ThreadsafeArray`` auch als ein Array von ``BoundedBuffers`` mit der Größe 1 vorstellen.
 
-  .. code:: Java
+  .. code:: java
     :class: far-smaller copy-to-clipboard
 
     public class ThreadsafeArray {

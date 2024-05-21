@@ -980,7 +980,7 @@ CWE-22: Path Traversal - Beispiel: partielle Validierung
 
         Java: 
 
-        .. code:: Java
+        .. code:: java
 
             String path = getInputPath();
             if (path.startsWith("/safe_dir/")) {
@@ -1311,7 +1311,7 @@ CWE-502: Deserialization of Untrusted Data - Beispiel
 
 Java
 
-.. code:: Java
+.. code:: java
 
     File file = new File("object.obj");
     try ( FileInputStream fin = new FileInputStream(file);
@@ -1781,7 +1781,7 @@ OWASP
 
     Java:
 
-    .. code:: Java
+    .. code:: java
         :class: smaller
         :number-lines:
 

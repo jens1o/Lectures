@@ -362,13 +362,13 @@ Obfuscation - Techniken (Auszug)
 - das Kürzen aller möglichen Namen (insbesondere Methoden und Klassennamen)
 - das Verschleiern von Konstanten durch den Einsatz vermeintlich komplexer Berechnungen zu deren Initialisierung.
 
-    .. code:: Java
+    .. code:: java
         
         ~(((int)Math.PI) ^ Integer.MAX_VALUE >> 16)+Short.MAX_VALUE
 
     .. class:: incremental
         
-        .. code:: Java
+        .. code:: java
         
             = 2
 
@@ -445,7 +445,7 @@ Java Bytecode - stackbasierte virtuelle Maschine
         
                 Instruktion
 
-                .. code:: Java
+                .. code:: java
 
                     nop
                     bipush 100               → int
@@ -461,7 +461,7 @@ Java Bytecode - stackbasierte virtuelle Maschine
                 
                 Stack
 
-                .. code:: Java
+                .. code:: java
 
                     └─────┘
                     │ 100 │
@@ -495,7 +495,7 @@ Beispiel: *Default Constructor* In Java Bytecode
 
 Ein *Constructor* welcher keine expliziten Parameter hat und nur den super Konstruktor aufruft.
 
-.. code:: Java
+.. code:: java
 
     // Method descriptor #8 ()V
     // Stack: 1, Locals: 1
@@ -506,7 +506,7 @@ Ein *Constructor* welcher keine expliziten Parameter hat und nur den super Konst
 
 Die Zeilennummern und die Informationen über die lokalen Variablen ist optional und wird nur für Debugging Zwecke benötigt.
 
-.. code:: Java
+.. code:: java
     
       Line numbers:         [pc: 0, line: 9]
       Local variable table: [pc: 0, pc: 5]  local: this 
@@ -521,7 +521,7 @@ Die Zeilennummern und die Informationen über die lokalen Variablen ist optional
 Beispiel: Aufruf einer komplexeren Methode
 -------------------------------------------
 
-.. code:: Java
+.. code:: java
     :class: small
         
     // Method descriptor #36 ([Ljava/lang/String;)V
