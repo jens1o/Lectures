@@ -1,11 +1,17 @@
 .. meta:: 
     :author: Michael Eichberg
-    :keywords: "Web Programmierung", "Vortragsthemen"
-    :description lang=de: Themen für Vorträge im Rahmen der Vorlesung Webprogrammierung
+    :keywords: "Web-Entwicklung", "Vortragsthemen"
+    :description lang=de: Themen für Vorträge im Rahmen der Vorlesung Web-Entwicklung
     :id: lecture-web-programming-vortragsthemen
     :first-slide: last-viewed
     
 .. |date| date::
+.. |html-source| source::
+    :url-prefix: https://delors.github.io/
+    :suffix: .html
+.. |pdf-source| source::
+    :url-prefix: https://delors.github.io/
+    :suffix: .html.pdf
 .. |at| unicode:: 0x40
 
 .. role:: incremental   
@@ -27,7 +33,7 @@
 
 
 
-Web Entwicklung
+Web-Entwicklung - Vortragsthemen
 ================================================
 
 .. container:: line-above tiny
@@ -40,9 +46,9 @@ Web Entwicklung
 
     :Folien: 
         
-        https://delors.github.io/web-vortragsthemen/folien.rst.html 
+        |html-source|
 
-        https://delors.github.io/web-vortragsthemen/folien.rst.html.pdf
+        |pdf-source|
 
     :Fehler auf Folien melden:
         https://github.com/Delors/delors.github.io/issues
@@ -52,26 +58,19 @@ Web Entwicklung
 
 .. class:: integrated-exercise transition-fade
 
-Vortragsthemen
-----------------
+Rahmenbedingungen - Inhalt
+-----------------------------
 
 .. class:: incremental list-with-explanations
 
-- Jedes Vortragsthema soll 15 Minuten dauern und von 2 Personen vorgetragen werden.
-  
-  (Ggf. gibt es ein Thema für eine Person mit 8 Minuten Vortragszeit.)
-
-- Jeder hält nur einen Vortrag.
-- Die Vortragsthemen werden sukzessive vergeben. Die Vorbereitungszeit ist immer zwischen einer und max. 2 Wochen.
-- Die Vorträge gehen mit 30 (von 120 Punkten) in die Endnote ein.
-- In jedem Vortrag im Bereich Webprogrammierung sollen nur solche Features vorgestellt werden, die von Safari, Chrome, und Firefox in den jeweils aktuellen Versionen vollständig unterstützt werden (siehe `caniuse.com <https://caniuse.com>`__).
+- Es sollen nur solche Features vorgestellt werden, die von Safari, Chrome, und Firefox in den jeweils aktuellen Versionen vollständig unterstützt werden (siehe `caniuse.com <https://caniuse.com>`__).
 - Die Vorträge sollen direkte Umsetzung erlauben. D. h. es soll möglich sein, das Gelernte direkt in einem Projekt umzusetzen.
 
 
 
 .. class:: integrated-exercise 
 
-1. Barrierefreiheit (:eng:`Accessibilty`) und HTML 
+Barrierefreiheit (:eng:`Accessibilty`) und HTML 
 ---------------------------------------------------
 
 - Allgemeine Einführung in das Thema
@@ -89,7 +88,7 @@ Achtung: *CSS und JavaScript sollen nicht behandelt werden*.
 
 .. class:: integrated-exercise 
 
-2. HTML Forms 
+HTML Forms 
 ---------------------------------------------------
 
 - Formulare mit HTML; insbesondere Input Typen und Validierung von Daten
@@ -99,13 +98,13 @@ Achtung: *CSS und JavaScript sollen nicht behandelt werden*.
   - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
   - https://web.dev/learn/forms
 
-Achtung: *JavaScript soll nicht behandelt werden*.
+Achtung: *CSS und JavaScript soll nicht behandelt werden*.
 
 
 
 .. class:: integrated-exercise 
 
-3. SVG - Vektorgrafiken auf Webseiten
+SVG - Vektorgrafiken auf Webseiten
 ----------------------------------------------------
 
 - Einführung in SVG und Vektorgrafiken
@@ -117,3 +116,23 @@ Achtung: *JavaScript soll nicht behandelt werden*.
   - https://www.w3schools.com/graphics/svg_intro.asp#:~:text=SVG%20stands%20for%20Scalable%20Vector,supported%20by%20all%20major%20browsers.
 
 Achtung: *JavaScript und CSS sollen nicht behandelt werden*.
+
+
+
+
+Ideas
+----------------
+
+
+- `Saas <https://sass-lang.com/>`__ und `Less <https://lesscss.org/>`__ (max 2 Personen)
+- `Typescript <https://www.typescriptlang.org/>`__ (max 2 Personen)
+
+- `React <https://react.dev/>`__ (max 4 Personen)
+- `Vue.js <https://vuejs.org/>`__ (max 4 Personen)
+- `Angular <https://angular.io/>`__ (max 4 Personen)
+- `Svelt <https://svelte.dev/>`__ (max 4 Personen)
+- `Bootstrap <https://getbootstrap.com/>`__ (max 4 Personen)
+  (ohne Sass)
+
+
+- `Electron <https://www.electronjs.org/>`__ (max 2 Personen)
