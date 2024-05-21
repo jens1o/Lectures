@@ -79,8 +79,8 @@ Was ist Middleware?
 
 .. class:: tiny
 
-Ein einfacher Server mit Sockets
---------------------------------
+Ein einfacher Server mit Sockets (in C)
+----------------------------------------
 
 .. container:: stack smaller
 
@@ -709,7 +709,7 @@ Einfacher RMI Dienst und Aufruf
 
     **Schnittstelle des Zeitservers**
 
-    .. code:: Java
+    .. code:: java
 
       import java.rmi.Remote;
       import java.rmi.RemoteException;
@@ -723,7 +723,7 @@ Einfacher RMI Dienst und Aufruf
 
     **Implementierung der Schnittelle durch den Zeitserver**
 
-    .. code:: Java
+    .. code:: java
 
       import java.rmi.RemoteException;
       import java.rmi.server.UnicastRemoteObject;
@@ -743,7 +743,7 @@ Einfacher RMI Dienst und Aufruf
 
     **Registrierung des Zeitservers**
 
-    .. code:: Java
+    .. code:: java
 
       import java.rmi.Naming;
 
@@ -761,7 +761,7 @@ Einfacher RMI Dienst und Aufruf
 
     **Client des Zeitservers**
 
-    .. code:: Java
+    .. code:: java
 
       import java.rmi.Naming;
       import java.util.Date;
@@ -1072,14 +1072,14 @@ ZeroMQ - Messaging Patterns
 
 
 
-ZeroMQ - Beispiel *Publish-Subscribe*
+ZeroMQ - Beispiel *Publish-Subscribe* (Java)
 --------------------------------------------
 
 .. container:: two-columns tiny
 
   .. container:: column
 
-    .. code:: Java
+    .. code:: java
       :class: smaller
 
       import static java.lang.Thread.currentThread
@@ -1108,7 +1108,7 @@ ZeroMQ - Beispiel *Publish-Subscribe*
 
   .. container:: column
 
-    .. code:: Java
+    .. code:: java
       :class: smaller
 
       import java.util.StringTokenizer;
@@ -1135,6 +1135,58 @@ ZeroMQ - Beispiel *Publish-Subscribe*
       } } }
 
 
+
+ZeroMQ - Beispiel *Publish-Subscribe* (Python)
+-----------------------------------------------
+
+.. container:: two-columns tiny
+
+  .. container:: column
+
+    .. code:: python
+      :class: smaller
+
+      import signal
+      import time
+      import zmq
+
+      signal.signal(signal.SIGINT, signal.SIG_DFL)
+
+      context = zmq.Context()
+      socket = context.socket(zmq.PUB)
+      socket.bind('tcp://*:5555')
+
+      for i in range(5):
+          socket.send(b'status 5')
+          socket.send(b'All is well')
+          time.sleep(1)
+      
+
+
+  .. container:: column
+
+    .. code:: python
+      :class: smaller
+
+      import signal
+      import zmq
+
+
+      signal.signal(signal.SIGINT, signal.SIG_DFL)
+
+      context = zmq.Context()
+      socket = context.socket(zmq.SUB)
+      socket.connect('tcp://localhost:5555')
+      socket.setsockopt(zmq.SUBSCRIBE, b'status')
+
+      while True:
+          message = socket.recv_multipart()
+          print(f'Received: {message}')
+
+
+.. supplemental::
+
+  Bzgl. des Handlings von Signalen in Python siehe auch: https://docs.python.org/3/library/signal.html#signal.signal
 
 
 MOM - Message Oriented Middleware
@@ -1193,7 +1245,7 @@ MOM - Queue Managers
   .. solution::
     :pwd: NurEinBisschenCode
 
-    .. code:: Java
+    .. code:: java
 
       ...
 
@@ -1245,7 +1297,7 @@ MOM - Queue Managers
 
   .. rubric:: Einfacher TCP basierter SyslogServer
 
-  .. code:: Java
+  .. code:: java
     :class: far-smaller copy-to-clipboard
   
     import java.net.*;
@@ -1274,7 +1326,7 @@ MOM - Queue Managers
 
   .. rubric:: Schablone für den Client
 
-  .. code:: Java
+  .. code:: java
     :class: far-smaller copy-to-clipboard
 
     import java.net.*;
