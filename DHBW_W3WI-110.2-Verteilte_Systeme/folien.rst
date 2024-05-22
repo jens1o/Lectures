@@ -113,3 +113,15 @@ Vorträge - Themen
 .. Nicht mehr vergeben:
    `Zeebe <https://github.com/camunda/zeebe>`__
 
+
+
+.. Vorträge - Themen (inkl. Einstiegslinks)
+  ------------------------------------------
+  - `Pxos <https://en.wikipedia.org/wiki/Paxos_(computer_science)>`_
+  - `Raft Consensus Algorithm <https://raft.github.io>`_ 
+  - `Gossip Protokoll <https://highscalability.com/gossip-protocol-explained/>`_
+  - `gRPC <https://grpc.io>`_
+  - `AMQP <https://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol>`_
+  - `GraphQL <https://graphql.org>`_
+  - `Django <https://www.djangoproject.com>`_
+  - `HTTP/3 und QUIC bzw. HTTP over QUIC <https://en.wikipedia.org/wiki/HTTP/3>`_
