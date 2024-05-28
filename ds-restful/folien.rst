@@ -409,3 +409,7 @@ Beispielanwendung del.icio.us: Löschen eines Lesezeichens
     401 Unauthorized
 	
     404 Not Found
+    
+
+.. ideas: (JWT) Tokens in RESTful WebServices
+
