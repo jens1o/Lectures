@@ -6,6 +6,12 @@
     :first-slide: last-viewed
     :exercises-master-password: WirklichSchwierig!
     
+.. |html-source| source::
+    :url-prefix: https://delors.github.io/
+    :suffix: .html
+.. |pdf-source| source::
+    :url-prefix: https://delors.github.io/
+    :suffix: .html.pdf
 .. |date| date::
 .. |at| unicode:: 0x40
 
@@ -40,14 +46,16 @@ Ein weitgefasster Überblick über verteilte Systeme.
 
 .. supplemental::
 
-    :Folien: 
+  :Folien: 
 
-        https://delors.github.io/ds-einfuehrung/folien.rst.html 
+      |html-source|
 
-        https://delors.github.io/ds-einfuehrung/folien.rst.html.pdf
+      |pdf-source|
+      
 
-    :Fehler auf Folien melden:
-        https://github.com/Delors/delors.github.io/issues
+  :Fehler auf Folien melden:
+
+      https://github.com/Delors/delors.github.io/issues
 
 
 
@@ -892,13 +900,13 @@ Beschleunigung (Speedup) eines parallelisierten Programms relativ zu der nicht-p
 
         .. math::
 
-                S(2*2048=4096) = 1 + 0.9 * 4096 = 3.687,4
+                S(2*2048=4096) = 1 + 0.9 * 4095 = 3.686,5
 
-                S((2*2048)+(2*2048)=8192) = 1 + 0.9 * 8182 = 7.373,8
+                S((2*2048)+(2*2048)=8192) = 1 + 0.9 * 8191 = 7.372,9
 
-                S(4096) / S(2048) \approx 1,9994577595
+                S(4096) / S(2048) \approx 1,9999457495
 
-                S(8192) / S(4096) \approx 1,9997288062
+                S(8192) / S(4096) \approx 1,999972874
 
         Das Rechnen mit GPUs als solches, d. h. mit 2-GPUs vs. 4-GPUs führt zu einem geringeren Speedup, da der serielle Anteil des Angriffs noch mehr in Gewicht fällt.
 
@@ -1046,11 +1054,11 @@ MapReduce - Visualisierung und Beispiel
     .. solution:: Lösung
         :pwd: Laufend?
 
-        (a) Die Verfügbarkeit eines einzelnen Rechners beträgt p = 36h/48h = 0,75 (MTBF = 36H, MTTR = 12H)
+        (a) Die Verfügbarkeit eines einzelnen Rechners beträgt p = 36h/48h = 0,75 
         (b) Die mittlere Zugriffsverfügbarkeit (für :math:`p = 0.75`) beim Lesen beträgt :math:`1 - (1 - p)^3 = 0,984375`; :math:`(1-p)` ist die Ausfallwahrscheinlichkeit.
         (c) (Erinnerung: :math:`log_a(u^v) = v \cdot log_a(u)`).
             
-            Wahrscheinlichkeit, dass alle gleichzeitig ausfallen muss kleiner(gleich) der erlaubten Nichtverfügbarkeit sein:  :math:`(1-p)^x \leq (1-0,99999) \Leftrightarrow x \cdot log(1-p) \geq log(1-0,99999)`
+            Die Wahrscheinlichkeit, dass alle gleichzeitig ausfallen, muss kleiner(gleich) der erlaubten Nichtverfügbarkeit sein:  :math:`(1-p)^x \leq (1-0,99999) \Leftrightarrow x \cdot log(1-p) \geq log(1-0,99999)`
 
             :math:`\Rightarrow x \geq log(1-0,99999)/log(1-p) \approx 8,3`
             
