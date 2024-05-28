@@ -2,7 +2,7 @@
     :author: Michael Eichberg
     :keywords: "Web-Entwicklung", "Vortragsthemen"
     :description lang=de: Themen für Vorträge im Rahmen der Vorlesung Web-Entwicklung
-    :id: lecture-web-programming-vortragsthemen
+    :id: lecture-web-programming-und-verteilte-systeme-vortragsthemen
     :first-slide: last-viewed
     
 .. |date| date::
@@ -33,8 +33,10 @@
 
 
 
-Web-Entwicklung - Vortragsthemen
-================================================
+Web-Entwicklung und Verteilte Systeme
+=======================================================
+
+.. rubric::  Vortragsthemen
 
 .. container:: line-above tiny
 
@@ -63,17 +65,17 @@ Rahmenbedingungen - Inhalt
 
 .. class:: incremental list-with-explanations
 
-- Es sollen nur solche Features vorgestellt werden, die von Safari, Chrome, und Firefox in den jeweils aktuellen Versionen vollständig unterstützt werden (siehe `caniuse.com <https://caniuse.com>`__).
-- Die Vorträge sollen direkte Umsetzung erlauben. D. h. es soll möglich sein, das Gelernte direkt in einem Projekt umzusetzen.
+- Vorträge, die Webtechnologien zum Gegenstand haben, sollen nur solche Features vorstellen, die von Safari, Chrome, *und* Firefox in den jeweils aktuellen Versionen vollständig unterstützt werden (siehe `caniuse.com <https://caniuse.com>`__).
+- Vorträge, die konkrete Technologien vorstellen, sollen direkte Umsetzung erlauben. D. h. es soll möglich sein, das Gelernte direkt in einem Projekt umzusetzen.
 
 
 
 .. class:: integrated-exercise 
 
-Barrierefreiheit (:eng:`Accessibilty`) und HTML 
----------------------------------------------------
+Barrierefreiheit und HTML (2 Personen)\ [#]_
+--------------------------------------------------------------
 
-- Allgemeine Einführung in das Thema
+- Allgemeine Einführung in das Thema Barrierefreiheit (:eng:`Accessibilty`) 
 - Barrierefreie HTML Webseiten mit HTML5 Gestalten
 - Erste Quellen:
 
@@ -84,11 +86,12 @@ Barrierefreiheit (:eng:`Accessibilty`) und HTML
 
 Achtung: *CSS und JavaScript sollen nicht behandelt werden*.
 
+.. [#] Präsentation nach der Einführung in HTML möglich.
 
 
 .. class:: integrated-exercise 
 
-HTML Forms 
+HTML Forms (2 Personen)\ [#]_
 ---------------------------------------------------
 
 - Formulare mit HTML; insbesondere Input Typen und Validierung von Daten
@@ -100,11 +103,12 @@ HTML Forms
 
 Achtung: *CSS und JavaScript soll nicht behandelt werden*.
 
+.. [#] Präsentation nach der Einführung in HTML möglich.
 
 
 .. class:: integrated-exercise 
 
-SVG - Vektorgrafiken auf Webseiten
+SVG - Vektorgrafik auf Webseiten (1 Person)\ [#]_
 ----------------------------------------------------
 
 - Einführung in SVG und Vektorgrafiken
@@ -117,22 +121,35 @@ SVG - Vektorgrafiken auf Webseiten
 
 Achtung: *JavaScript und CSS sollen nicht behandelt werden*.
 
+.. [#] Präsentation nach der Einführung in HTML möglich.
 
 
+.. class:: integrated-exercise
 
-Ideas
-----------------
+*Consensus Algorithms* (2 Personen)\ [#]_
+------------------------------------------
 
+- Einführung in Paxos
+- Einführung in Raft 
+- Erste Quellen:
 
-- `Saas <https://sass-lang.com/>`__ und `Less <https://lesscss.org/>`__ (max 2 Personen)
-- `Typescript <https://www.typescriptlang.org/>`__ (max 2 Personen)
-
-- `React <https://react.dev/>`__ (max 4 Personen)
-- `Vue.js <https://vuejs.org/>`__ (max 4 Personen)
-- `Angular <https://angular.io/>`__ (max 4 Personen)
-- `Svelt <https://svelte.dev/>`__ (max 4 Personen)
-- `Bootstrap <https://getbootstrap.com/>`__ (max 4 Personen)
-  (ohne Sass)
+  - https://en.wikipedia.org/wiki/Paxos_(computer_science)
+  - https://raft.github.io
 
 
-- `Electron <https://www.electronjs.org/>`__ (max 2 Personen)
+.. [#] Präsentation nach den grundlegenden Konzepten (insbesondere 2PC) von verteilten Systemen.
+
+
+.. Ideas
+  ----------------
+  - `WebSockets` (max 1 Person)
+  - `WebRTC`__ (max 1 Person)
+  - `Saas <https://sass-lang.com/>`__ und `Less <https://lesscss.org/>`__ (max 2 Personen)
+  - `Typescript <https://www.typescriptlang.org/>`__ (max 2 Personen)
+  - `React <https://react.dev/>`__ (max 4 Personen)
+  - `Vue.js <https://vuejs.org/>`__ (max 4 Personen)
+  - `Angular <https://angular.io/>`__ (max 4 Personen)
+  - `Svelte <https://svelte.dev/>`__ (max 4 Personen)
+  - `Bootstrap <https://getbootstrap.com/>`__ (max 2 Personen)
+    (ohne Sass)
+  - `Electron <https://www.electronjs.org/>`__ (max 2 Personen)
