@@ -1,0 +1,7 @@
+images/threads
+
+private
+external
+
+__pycache__
+code/*.zip
