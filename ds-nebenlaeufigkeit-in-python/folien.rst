@@ -5,6 +5,7 @@
     :description lang=en: Concurrency in Python
     :id: lecture-ds-nebenlaeufigkeit-python
     :first-slide: last-viewed
+    :exercises-master-password: WirklichSchwierig!
 
 .. |html-source| source::
     :url-prefix: https://delors.github.io/
@@ -69,7 +70,7 @@ Nebenläufigkeit in Python
 .. class:: no-title center-child-elements transition-move-left
 
 Nebenläufigkeit 
-----------------------------------------------------------------------
+-------------------------------------------------------------------
 
 .. admonition:: Hintergrund  
 
@@ -128,16 +129,17 @@ Prozesse vs. Threads vs. Coroutines in Python
 
 .. supplemental::
 
-  - Prozesse sind voneinander isoliert und können nur über explizite Mechanismen miteinander kommunizieren (:code:`Pipe`\ s und :code:`Queue`\ s; Prozesse teilen sich nicht denselben Adressraum.
+  - Prozesse sind voneinander isoliert und können nur über explizite Mechanismen miteinander kommunizieren (z. B. :code:`Pipe`\ s und :code:`Queue`\ s); Prozesse teilen sich *nicht* denselben Adressraum.
 
   - Alle Threads eines Prozesses teilen sich denselben Adressraum. Python Threads sind vom Betriebssystem unterstützte Threads, die direkt vom Betriebssystem verwaltet werden. Python (d. h. der Standardinterpreter CPython bis (mind.) einschließlich Version 3.12) führt aber immer nur einen Thread aus aufgrund des *Global Interpreter Lock*\ s (GIL). 
   
-    Der GIL existiert(e) insbesondere, da dadurch die Implementierung von Python einfacher wurde (z. B. kann problemlos reference Counting verwendet werden und Probleme mit externen Bibliotheken sind auch minimiert.)
+    Der GIL existiert(e) insbesondere, da dadurch die Implementierung von Python einfacher wurde (z. B. kann problemlos *Reference Counting* verwendet werden und Probleme mit externen Bibliotheken sind auch minimiert.)
 
-    Andere Python-Implementierungen (wie Jython, IronPython, PyPy) haben keinen GIL und können daher mehrere Threads (echt) parallel ausführen.
+    Andere Python-Implementierungen (wie Jython und IronPython) haben keinen GIL und können daher mehrere Threads (echt) parallel ausführen.
 
-  - *Coroutines* (auch *Fibres*) nutzen immer kooperatives Multitasking. D. h. ein Fibre gibt die Kontrolle an eine andere Fibre explizit ab. (Früher auch als *Green Threads* bezeichnet.) Diese sind für das Betriebssystem unsichtbar. 
-  *Coroutines* erfordern explizite Unterstützung in den Bibliotheken. 
+  - *Coroutines* (auch *Fibres*) nutzen immer kooperatives Multitasking. D. h. ein Fibre gibt die Kontrolle an eine andere Fibre explizit ab. (Früher wurden *Fibres* auch als *Green Threads* bezeichnet.) Diese sind für das Betriebssystem unsichtbar.
+  
+    *Coroutines* erfordern explizite Unterstützung in den Bibliotheken. Alle auf Koroutinen basierenden Tasks werden in von der Event-Loop verwaltet und von einem einzigen Thread ausgeführt.
 
 
 
@@ -149,11 +151,11 @@ Nebenläufigkeit in Python
   .. layer::
 
     .. image:: images/threads/python-threads.svg
-      :alt: java.lang.Thread
-      :height: 975px
+      :alt: threading.Thread
+      :height: 950px
       :align: center
 
-  .. layer:: center-child-elements incremental overlay 
+  .. layer:: incremental overlay center-child-elements
     
     .. container:: rounded-corners dhbw-light-gray-background opacity-90 padding-1em
 
@@ -161,24 +163,24 @@ Nebenläufigkeit in Python
 
 .. supplemental::
 
-  - Threads werden in Python über die vordefinierte Klasse threading.Thread bereitgestellt.
-  - Alternativ kann ein Callable an ein Thread-Objekt übergeben werden.
-  - Threads beginnen ihre Ausführung erst, wenn die ``start``-Methode in der Thread-Klasse aufgerufen wird. Die ``Thread.start``-Methode ruft die ``run``-Methode auf. Ein direkter Aufruf der ``run``-Methode führt nicht zu einer parallelen Ausführung.
+  - Threads werden in Python über die vordefinierte Klasse ``threading.Thread`` bereitgestellt.
+  - Alternativ kann ein *Callable* an ein Thread-Objekt übergeben werden.
+  - Threads beginnen ihre Ausführung erst, wenn die ``start``-Methode in der Thread-Klasse aufgerufen wird. Die ``Thread.start``-Methode ruft die ``run``-Methode auf. Ein direkter Aufruf der ``run``-Methode führt nicht zu einer nebenläufigen Ausführung.
   - Der aktuelle Thread kann mittels der statischen Methode ``Thread.currentThread()`` ermittelt werden.
-  - Ein Thread wird beendet, wenn die Ausführung seiner Run-Methode entweder normal oder als Ergebnis einer unbehandelten Ausnahme endet.
+  - Ein Thread wird beendet, wenn die Ausführung seiner ``run``-Methode entweder normal oder als Ergebnis einer unbehandelten Ausnahme endet.
 
   - Python unterscheidet *User*-Threads und *Daemon*-Threads.
 
-    *Daemon-Threads* sind Threads, die allgemeine Dienste bereitstellen und normalerweise nie beendet werden.
+    *Daemon-Threads* sind Threads, die allgemeine Dienste bereitstellen und normalerweise nie beendet werden. Jeder Thread, der eine Endlosschleife ausführt sollte als Daemon-Thread gekennzeichnet werden bei Erzeugung.  
 
-    Wenn alle Benutzer-Threads beendet sind, werden die Daemon-Threads von der JVM beendet, und das Hauptprogramm wird beendet.
+    Wenn alle Benutzer-Threads beendet sind, werden die Daemon-Threads automatisch beendet, und das Hauptprogramm endet.
 
     Der Thread kann beim Erzeugen als Daemon-Thread gekennzeichnet werden, indem der Parameter ``daemon`` auf ``True`` gesetzt wird.
 
 
 
 Inter-``Thread``/``Process``- Koordination
----------------------------------------------------------------------
+--------------------------------------------------------------
 
 - Ein ``Thread``/``Process`` kann (mit oder ohne Zeitüberschreitung) auf die Beendigung eines anderen ``Thread``\ s/``Process``\ es (des Ziels) warten, indem er die ``join``-Methode für das ``Thread``/``Process``-Objekt des Ziels aufruft.
 
@@ -396,7 +398,6 @@ Beispiel: Coroutines
       :class: far-far-smaller
 
       #!/usr/bin/env python3
-      import time
       import asyncio
 
       async def busy_sleep(id):
@@ -436,10 +437,10 @@ Beispiel: Coroutines
 
 .. supplemental::
 
-  - Beide ``Task``\ s werden von dem gleichen Thread ausgeführt. Der Thread gibt die Kontrolle an den Event-Loop ab, wenn er auf eine entsprechende blockierende Methode. Die Event-Loop kann dann die Kontrolle an einen anderen Task übergeben.
+  - Beide ``Task``\ s werden von dem gleichen Thread ausgeführt. Der Thread gibt :ger-quote:`die Kontrolle an die Event-Loop ab`, wenn er auf eine entsprechende blockierende Methode trifft. Die Event-Loop kann dann die Kontrolle an einen anderen Task übergeben.
   - Warten (``await``) ist nur möglich in asynchronen Methoden (``async def``). 
-  - ``asyncio.run`` startet die Event-Loop und führt die übergebene asynchrone Methode aus. 
-  - Die Verwendung von Coroutines erfordert explizite Unterstützung in den Bibliotheken.
+  - ``asyncio.run(<fn>)`` startet die Event-Loop und führt die übergebene asynchrone Methode aus. 
+  - Die Verwendung von Koroutinen erfordert explizite Unterstützung in den Bibliotheken.
 
 
 
@@ -478,7 +479,7 @@ Verwendung von *Sperren*\ [#]_
 
 .. class:: incremental 
 
-- Um sicherzustellen, dass eine gehaltene Sperre immer aufgehoben wird, sollte ``try-finally`` oder ein passendes ``with``\ -Statement (mit entsprechendem *Context-Manager*) verwendet werden.
+- Um sicherzustellen, dass eine gehaltene Sperre immer aufgehoben wird, sollte ``try-finally`` oder ein passendes ``with``\ -Statement verwendet werden. (Lock implementiert z. B. das Protokoll von *Context-Managern*) 
 
   .. container:: two-columns
 
@@ -505,7 +506,7 @@ Verwendung von *Sperren*\ [#]_
         with lock:
           # critical section
 
-.. [#] Die APIs von ``threading`` und ``multiprocessing`` sind vergleichbar.
+.. [#] Die APIs von ``threading`` und ``multiprocessing`` sind in weiten Teilen vergleichbar.
 
 
 
@@ -535,8 +536,8 @@ Beispiel: Thread-safe Shared Counter
     .. code:: python
       :class: smaller copy-to-clipboard
 
-      # Thread-sichere Implementierungen von
-      # increment und decrement
+      # Thread-sichere Implementierungen
+      #  von increment und decrement
 
 
       def increment(self):
@@ -1246,87 +1247,202 @@ Starte immer mit einer *Single-threaded implementation*
 Übung
 ---------------------
 
-.. container:: far-far-smaller
-
-  .. exercise:: Virtueller Puffer
+.. container:: far-smaller scrollable
     
+  Implementieren Sie einen einfachen *DelayedBuffer*, der es ermöglicht Aufgaben (d. h. Objekte vom Typ ``Callable``) erst nach einer bestimmten Zeit auszuführen. Die Klasse muss zwei Funktionen zur Verfügung stellen:
 
-    Implementieren Sie einen virtuellen Puffer, der Tasks (Instanzen von ``java.lang.Runable``) entgegennimmt und nach einer bestimmten Zeit ausführt. Der Puffer darf währenddessen nicht blockieren bzw. gesperrt sein.
+  :``submit(self, delay, fn, *args, **kwargs)``: Die Funktion ``fn`` wird nach ``delay`` Sekunden ausgeführt wobei delay vom Typ Float ist. ``args`` und ``kwargs`` sind die Argumente, die an ``fn`` übergeben werden.
+  :``join(self)``: Wartet bis alle Aufgaben abgearbeitet wurden.
 
-    Nutzen Sie ggf. virtuelle Threads, um auf ein explizites Puffern zu verzichten. Ein virtueller Thread kann zum Beispiel mit: ``Thread.ofVirtual()`` erzeugt werden. Danach kann an die Methode ``start`` ein ``Runnable`` Objekt übergeben werden.
+  Im folgenden sehen Sie eine mögliche Verwendung des Puffers:
 
-    Verzögern Sie die Ausführung (``Thread.sleep()``) im Schnitt um 100ms mit einer Standardabweichung von 20ms. (Nutzen Sie ``Random.nextGaussian(mean,stddev)``)
+  .. code:: python
+    :class: smaller copy-to-clipboard
 
-    Starten Sie 100 000 virtuelle Threads. Wie lange dauert die Ausführung? Wie lange dauert die Ausführung bei 100 000 platform (*native*) Threads.
+    buffer = DelayedBuffer()
+    buffer.submit(100 / 1000, ts_print, "Hello ", **{"end": "", "flush": True})
+    buffer.submit(1000 / 1000, ts_print, "World!")
+    buffer.submit(500 / 1000, ts_print, "of the ", **{"end": "", "flush": True})
+    buffer.submit(200 / 1000, ts_print, "from ", **{"end": "", "flush": True})
+    buffer.submit(300 / 1000, ts_print, "the other side ", **{"end": "", "flush": True})
+    # ggf. await buffer.join() im Falle von Koroutinen
+    buffer.join()
+    print("Done.")
 
-    Nutzen Sie ggf. die Vorlage.
+  .. exercise:: Implementation mit Threads
+
+    Implementieren Sie die Klasse ``DelayedBuffer`` mit Hilfe von Threads (und ggf. ``Queue``\ s bzw. Locks).
+
+    Implementieren Sie ``ts_print`` als Thread-sichere Variante von ``print``.
 
     .. solution::
-      :pwd: MyVirtualBuffer
+      :pwd: DelayedBuffer-Threads
 
-      .. code:: java
-        :class: smaller copy-to-clipboard
+      .. rubric:: Lösungsvorschlag
 
-        Thread thread = Thread.ofVirtual().start(
-            () -> {
-                try {
-                    var sleepTime =  (long) random.nextGaussian(100,20);
-                    if (sleepTime < 0 ) {
-                        // we found a gremlin...
-                        return;
-                    }
-                    System.out.println(
-                      "delaying " + id + 
-                      " by " + sleepTime + "ms");
-                    Thread.sleep(sleepTime);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-                task.run();
-            }
-          );
-        return thread;
+      .. code:: python
+        :class: copy-to-clipboard
 
-.. supplemental:: 
+        from threading import Thread, Lock
+        from queue import Queue
+        import time
 
-  .. code:: java
-    :class: far-smaller copy-to-clipboard
+        print_lock = Lock()
 
-    import java.util.ArrayList;
-    import java.util.List;
-    import java.util.Random;
+        def ts_print(*args, **kwargs):
+            with print_lock:
+                print(*args, **kwargs)
 
-    public class VirtualBuffer {
+        class DelayedBuffer:  # NOT Thread Safe
 
-      private final Random random = new Random();
+            def __init__(self):
+                self.fn_queue = Queue()
 
-      private Thread runDelayed(int id, Runnable task) {
-        // TODO
-      }
+            def submit(self, delay, fn, *args, **kwargs):
 
-      public static void main(String[] args) throws Exception {
-        var start = System.nanoTime();
-        VirtualBuffer buffer = new VirtualBuffer();
-        List<Thread> threads = new ArrayList<>();
-        for (int i = 0; i < 100000; i++) {
-          final var no = i;
-          var thread = buffer.runDelayed(
-              i, 
-              () -> System.out.println("i'm no.: " + no));
-          threads.add(thread);
-        }
-        System.out.println("finished starting all threads");
-        for (Thread thread : threads) {
-          thread.join();
-        }
-        var runtime = (System.nanoTime() - start)/1_000_000;
-        System.out.println(
-          "all threads finished after: " + runtime + "ms"
-        );
-      }
-    }
+                def delayed_fn():
+                    try:
+                        (fn, args, kwargs) = self.fn_queue.get()
+                        time.sleep(delay)
+                        fn(*args, **kwargs)
+                    except Exception as e:
+                        ts_print(f"Error in {fn}: {e}")
+                    finally:
+                        self.fn_queue.task_done()
+                    
+                self.fn_queue.put((fn, args, kwargs))
+                Thread(target=delayed_fn).start()
+
+            def join(self):
+                self.fn_queue.join()
 
 
+        if __name__ == "__main__":
+            buffer = DelayedBuffer()
+            buffer.submit(10 / 1000, ts_print, "Hello ", **{"end": ""})
+            buffer.submit(100 / 1000, ts_print, "World!")
+            buffer.submit(50 / 1000, ts_print, "of the ", **{"end": ""})
+            buffer.submit(20 / 1000, ts_print, "from ", **{"end": ""})
+            buffer.submit(30 / 1000, ts_print, "the other side ", **{"end": ""})
+            buffer.join()
+            print("Done.")
+
+
+  .. exercise:: Implementation mit Threadpool
+
+    Implementieren Sie die Klasse ``DelayedBuffer`` mit Hilfe eines ``concurrent.futures.ThreadPool``s (und ggf. ``Queue``\ s bzw. Locks).
+
+    Implementieren Sie ``ts_print`` als Thread-sichere Variante von ``print``. Wählen Sie ggf. eine andere Implementierung als in der vorherigen Aufgabe.
+
+    .. solution::
+      :pwd: ThreadPools machen es einfacher
+
+      .. rubric:: Lösungsvorschlag
+
+      .. code:: python
+        :class: copy-to-clipboard
+
+        from threading import Lock
+        import time
+        import concurrent.futures
+
+        print_lock = Lock()
+
+        def ts_print(*args, **kwargs):
+            with print_lock:
+                print(*args, **kwargs)
+
+        class DelayedBuffer:  # NOT Thread Safe
+
+            def __init__(self):
+                self.thread_pool = concurrent.futures.ThreadPoolExecutor()
+
+            def submit(self, delay, fn, *args, **kwargs):
+
+                def delayed_fn(fn, *args, **kwargs):
+                    time.sleep(delay)
+                    try:
+                        fn(*args, **kwargs)
+                    except Exception as e:
+                        ts_print(f"Error in {fn}: {e}")
+                    
+                self.thread_pool.submit(delayed_fn, fn, *args, **kwargs)
+
+            def join(self):
+                self.thread_pool.shutdown(wait=True)
+
+
+        if __name__ == "__main__":
+            buffer = DelayedBuffer()
+            buffer.submit(10 / 1000, ts_print, "Hello ", **{"end": ""})
+            buffer.submit(100 / 1000, ts_print, "World!")
+            buffer.submit(50 / 1000, ts_print, "of the ", **{"end": ""})
+            buffer.submit(20 / 1000, ts_print, "from ", **{"end": ""})
+            buffer.submit(30 / 1000, ts_print, "the other side ", **{"end": ""})
+            buffer.join()
+            print("Done.")
+
+  .. exercise:: Implementation mit Koroutinen
+
+    Implementieren Sie die Klasse ``DelayedBuffer`` mit Hilfe von Koroutinen (und ggf. ``asyncio.Queue``\ s).
+
+    .. solution::
+      :pwd: KoroutinenUndDelayedBuffer
+
+      .. rubric:: Lösungsvorschlag
+
+      .. code:: python
+        :class: copy-to-clipboard
+ 
+
+
+        from asyncio import Queue
+        import asyncio
+
+
+        def ts_print(*args, **kwargs):
+            print(
+                *args, **kwargs
+            )  # no lock needed, because we are using coroutines and not threads
+
+
+        class DelayedBuffer:
+
+            def __init__(self):
+                self.fn_queue = Queue()
+
+            def submit(self, delay, fn, *args, **kwargs):
+
+                async def delayed_fn():
+                    try:
+                        (fn, args, kwargs) = await self.fn_queue.get()
+                        await asyncio.sleep(delay)
+                        fn(*args, **kwargs)
+                    except Exception as e:
+                        ts_print(f"Error in {fn}: {e}")
+                    finally:
+                        self.fn_queue.task_done()
+
+                self.fn_queue.put_nowait((fn, args, kwargs))
+                asyncio.create_task(delayed_fn())
+
+            async def join(self):
+                await self.fn_queue.join()
+
+
+        async def main():
+            buffer = DelayedBuffer()
+            buffer.submit(100 / 1000, ts_print, "Hello ", **{"end": "", "flush": True})
+            buffer.submit(1000 / 1000, ts_print, "World!")
+            buffer.submit(500 / 1000, ts_print, "of the ", **{"end": "", "flush": True})
+            buffer.submit(200 / 1000, ts_print, "from ", **{"end": "", "flush": True})
+            buffer.submit(300 / 1000, ts_print, "the other side ", **{"end": "", "flush": True})
+            await buffer.join()
+            print("Done.")
+
+
+        if __name__ == "__main__":
+            asyncio.run(main())
 
 .. links:
   https://www.youtube.com/watch?v=Bv25Dwe84g0
