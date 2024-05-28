@@ -63,19 +63,24 @@ Labor Web Projekt:
 Prüfungsleistung - Portfolio
 ------------------------------------------
 
-.. container:: minor box-shadow rounded-corners padding-1em
+.. stack::
+
+  .. layer:: 
+      
+      .. rubric:: Hintergrund
+
+      - Das Modul hat 5 ECTS
+      - Insgesamt gibt es max. 120 Punkte
     
-    .. rubric:: Hintergrund
+  .. layer:: incremental
 
-    - Das Modul hat 5 ECTS
-    - Insgesamt gibt es max. 120 Punkte
-    
+    - 3 Bestandteile:
 
-- 3 Bestandteile:
+      1. Vorträge - max. 30 Punkte
+      2. Schriftlicher Zwischenleistungsnachweis - max. 40 Punkte
 
-  1. Vorträge - max. 30 Punkte
-  2. Schriftlicher Zwischenleistungsnachweis - max. 40 Punkte
-  3. Programmierprojekt - max. 50 Punkte
+         Der schriftliche Zwischenleistungsnachweis wird ähnlich zur einer Klausur sein und am 24. Juni erfolgen. Die Dauer ist 40 Minuten. Inhalt sind alle bis zum 18. Juni behandelten Themen. Schwerpunkt bilden Themen aus dem Bereich der verteilten Systeme. Es wird aber auch Fragen aus dem Bereich der Web-Entwicklung geben.
+      3. Programmierprojekt - max. 50 Punkte
 
 
 
@@ -84,13 +89,9 @@ Vorträge - organisatorische Rahmenbedingungen
 
 .. class:: incremental list-with-explanations
 
-- Jedes Vortragsthema soll 15 Minuten dauern und von 2 Personen vorgetragen werden.
-  
-  (Ggf. gibt es ein Thema für eine Person mit 8 Minuten Vortragszeit.)
-
+- Vortragsdauer pro Person: 10 Minuten.
 - Jeder hält nur einen Vortrag.
 - Die Vortragsthemen werden sukzessive vergeben. 
-- Die Vorbereitungszeit ist immer zwischen einer und max. 2 Wochen.
 
 .. container:: box-shadow rounded-corners padding-1em center-child-elements
 
