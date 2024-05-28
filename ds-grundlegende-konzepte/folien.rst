@@ -439,3 +439,6 @@ Teilnehmer sind (1) die Partizipanten (:math:`P_i`), welche die verteilten Daten
     - Kennt einer der Teilnehmer die Entscheidung des Koordinators bereits, kann er diese auf Nachfrage an die anderen Teilnehmer weiterleiten.
     - Hat ein Teilnehmer mit ABORT geantwortet, dann kann er die Transaktion auch ohne den Koordinator zurücksetzen und dies auf Nachfrage auch den anderen Teilnehmern mitteilen.
 
+
+
+.. ideas: CAP Theorem, Leader Election Algo., Gossip Protocol, RAFT Protocol, Paxos, AMQP
