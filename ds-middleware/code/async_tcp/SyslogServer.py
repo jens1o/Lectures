@@ -4,49 +4,56 @@ import queue
 import threading
 import concurrent.futures
 
-
 HOST = "localhost"
 PORT = 5678
 
-print_queue = queue.Queue()
+PRINT_QUEUE = queue.Queue()
+
 
 def print_queue_handler():
     while True:
         try:
-            msg = print_queue.get()
+            msg = PRINT_QUEUE.get()
             print(msg, end="")
         finally:
-            print_queue.task_done()
+            PRINT_QUEUE.task_done()
+
 
 def ts_print(msg):
-    print_queue.put(msg)
+    PRINT_QUEUE.put(msg)
 
-def handle_connection(conn, addr):
+
+def handle_connection(conn, host, port):
+    addr = f"{host}:{port}"
     with conn:
         ts_print(f"Connection from {addr}.\n")
-        with conn.makefile(mode="r", encoding="utf-8") as f:
+        with conn.makefile(mode="rw", encoding="utf-8") as f:
             while True:
                 data = f.readline()
                 if not data:
-                    ts_print(f"Connection closed ${addr}.\n")
+                    ts_print(f"Connection closed {addr}.\n")
                     return
-                ts_print(f"Log[${addr}]: {data}")
+                f.write("ACK\n")
+                f.flush()
+                ts_print(f"Log[{addr}]: {data}")
 
 
-def echo_server():
-    with    socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server,\
-            concurrent.futures.ThreadPoolExecutor() as tp:
+def run_server():
+    with (
+        socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server,
+        concurrent.futures.ThreadPoolExecutor() as tp,
+    ):
         server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         server.bind((HOST, PORT))
         server.listen(1)
 
         while True:
-            conn, addr = server.accept()
-            # handle_connection(conn, addr)
-            tp.submit(handle_connection, conn, addr)
+            conn, (host, port) = server.accept()
+            # Single-Threaded Solution: handle_connection(conn, addr)
+            tp.submit(handle_connection, conn, host, port)
 
 
 if __name__ == "__main__":
     threading.Thread(target=print_queue_handler, daemon=True).start()
-    echo_server()
-    print_queue.join()
+    run_server()
+    PRINT_QUEUE.join()
