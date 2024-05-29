@@ -143,10 +143,11 @@ Ein einfacher Server mit Sockets (in C)
    Motivation
 
 
+
 .. class:: tiny
 
-Ein einfacher Client mit Sockets
---------------------------------
+Ein einfacher Client mit Sockets (in C)
+----------------------------------------
 
 .. stack:: smaller
 
@@ -1231,21 +1232,24 @@ MOM - Queue Managers
 
 .. class:: integrated-exercise
 
-Übung 
+Übung - Java
 ----------------------------------------------------------
 
 .. exercise:: Asynchrone, verbindungsorientierte Kommunikation
 
-  Entwickeln Sie einen Client für einen Logging Server, der Lognachrichten an den Server sendet. Im Fehlerfall, z. B. wenn der Server nicht verfügbar ist oder es zu einer Netzwerkpartitionierung kam, sollen die Nachrichten zwischengepuffert werden und bei Serververfügbarkeit wieder zugestellt werden. Mit anderen Worten: Im Fehlerfall soll der Client nicht blockieren, sondern weiter funktionieren. Der Client stellt stattdessen die Nachrichten dann zu, wenn der Server wieder verfügbar wird.
+  Entwickeln Sie einen Client für einen :ger-quote:`Logging Server`\ , der Lognachrichten (Strings) an den Server sendet. Im Fehlerfall, z. B. wenn der Server nicht verfügbar ist oder es zu einer Netzwerkpartitionierung kam, sollen die Nachrichten zwischengepuffert werden und bei Serververfügbarkeit wieder zugestellt werden. Mit anderen Worten: Im Fehlerfall soll der Client nicht blockieren, sondern weiter funktionieren. Der Client stellt stattdessen die Nachrichten dann zu, wenn der Server wieder verfügbar wird.
 
   Stellen Sie sicher, dass Nachrichten immer in der richtigen Reihenfolge am Server ankommen. D. h. stellen Sie zum Beispiel sicher, dass eine gepufferte Nachricht nie nach einer neueren Nachricht ankommt.
 
   Verwenden Sie den Code im Anhang als Schablone.
-
+  
   .. solution::
     :pwd: NurEinBisschenCode
 
+    .. rubric:: Lösung in Java
+
     .. code:: java
+      :class: far-smaller copy-to-clipboard
 
       ...
 
@@ -1295,7 +1299,7 @@ MOM - Queue Managers
 
 .. supplemental:: 
 
-  .. rubric:: Einfacher TCP basierter SyslogServer
+  .. rubric:: Einfacher TCP basierter SyslogServer in Java
 
   .. code:: java
     :class: far-smaller copy-to-clipboard
@@ -1305,26 +1309,30 @@ MOM - Queue Managers
 
     public class SyslogServer {
       public static void main(String[] args) {
-        BufferedReader in = null;
+        ServerSocket server = new ServerSocket(9999);
         try {
-          ServerSocket server = new ServerSocket(9999);
           while (true) {
             try (Socket con = server.accept()) {
-                in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()));
-                System.out.println("[Logging] " + in.readLine());
+                var in = con.getInputStream();
+                var ir = new InputStreamReader(in);
+                var br = new BufferedReader(ir);
+                System.out.println("[Logging] " + br.readLine());
             } catch (IOException e) {
                 System.err.println(e);
             }
           }
         } catch (IOException e) {
             System.err.println(e);
+        } finally {
+          if (server != null) {
+            server.close();
+          }
         }
       }
     }
 
 
-  .. rubric:: Schablone für den Client
+  .. rubric:: Schablone für den Client in Java
 
   .. code:: java
     :class: far-smaller copy-to-clipboard
@@ -1335,8 +1343,8 @@ MOM - Queue Managers
     public class Client {
 
       /**
-      * Versendet die Nachricht an den Server (wenn möglich).
-      */
+       * Versendet die Nachricht an den Server (wenn möglich).
+       */
       private static void sendMsg(String msg) throws IOException{
         try (Socket s = new Socket("localhost", 9999)) {
           BufferedReader networkIn = 
@@ -1386,3 +1394,226 @@ MOM - Queue Managers
     }
 
 
+
+.. class:: integrated-exercise
+
+Übung - Python
+-------------------------------------------------------
+
+.. exercise:: Asynchrone, verbindungsorientierte Kommunikation
+  :class: scrollable
+
+  Entwickeln Sie sowohl einen Client (bzw. eine Clientkomponente) als auch einen Server für das zentralisierte Loggen von Nachrichten. 
+  
+  Im Fehlerfall, z. B. wenn der Server nicht verfügbar ist oder es zu einer Netzwerkpartitionierung kam, sollen die Nachrichten, die der Client an den Server senden will/wollte, zwischengepuffert werden und bei Serververfügbarkeit wieder zugestellt werden. Mit anderen Worten: die Methode des Clients zum senden von Nachrichten sollte nicht blockieren, sondern immer weiter funktionieren - auch im Fehlerfall. 
+
+  **Anforderungen**
+
+  - Stellen Sie sicher, dass Nachrichten immer in der richtigen Reihenfolge am Server ankommen. D. h. stellen Sie zum Beispiel sicher, dass eine gepufferte Nachricht nie nach einer neueren Nachricht ankommt.
+  - Der Client nimmt (hier) die Nachrichten über die Konsole entgegen und sendet sie direkt an den Server. Der Server sollte diese dann sofort ausgeben!
+  - Stellen Sie sicher, dass keine Nachrichten verloren gehen, wenn der Server unkontrolliert beendet wird.
+  - Bevor Sie versuchen eine Nachricht wieder zu versenden, warten Sie X Sekunden (z. B. 5 Sekunden).
+  
+  **Hinweise**
+
+  - Orientieren Sie sich an dem Code auf den Folien.
+  - Nutzen Sie ggf. die Möglichkeit Sockets in ``File``-Objekte zu verwandeln, um die Nachrichten zu senden. Vergessen Sie ggf. nicht ``flush()`` aufzurufen, damit die Nachricht auch wirklich versendet wird.
+  - Prüfen Sie explizit, dass - wenn Sie Ihren Server abrupt beenden (CTRL+C) - und dann ganz schnell mehrere kleine Nachrichten senden, dass diese auch später *alle* ankommen. Falls dies nicht der Fall ist, überlegen Sie sich, wie Sie das Problem lösen können und implementieren Sie die Lösung.
+
+  **Keine Anforderungen**
+
+  - Duplikate von Nachrichten müssen nicht erkannt werden.
+
+  .. solution::
+    :pwd: ThreadPoolsAreASolution
+
+    .. rubric:: Server in Python 
+
+    .. code:: python
+      :class: far-smaller copy-to-clipboard
+
+      #!/usr/bin/env python3
+      import socket
+      import queue
+      import threading
+      import concurrent.futures
+
+      HOST = "localhost"
+      PORT = 5678
+
+      PRINT_QUEUE = queue.Queue()
+
+
+      def print_queue_handler():
+          while True:
+              try:
+                  msg = PRINT_QUEUE.get()
+                  print(msg, end="")
+              finally:
+                  PRINT_QUEUE.task_done()
+
+
+      def ts_print(msg):
+          PRINT_QUEUE.put(msg)
+
+
+      def handle_connection(conn, host, port):
+          addr = f"{host}:{port}"
+          with conn:
+              ts_print(f"Connection from {addr}.\n")
+              with conn.makefile(mode="rw", encoding="utf-8") as f:
+                  while True:
+                      data = f.readline()
+                      if not data:
+                          ts_print(f"Connection closed {addr}.\n")
+                          return
+                      f.write("ACK\n")
+                      f.flush()
+                      ts_print(f"Log[{addr}]: {data}")
+
+
+      def run_server():
+          with (
+              socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server,
+              concurrent.futures.ThreadPoolExecutor() as tp,
+          ):
+              server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+              server.bind((HOST, PORT))
+              server.listen(1)
+
+              while True:
+                  conn, (host, port) = server.accept()
+                  # Single-Threaded Solution: handle_connection(conn, addr)
+                  tp.submit(handle_connection, conn, host, port)
+
+
+      if __name__ == "__main__":
+          threading.Thread(target=print_queue_handler, daemon=True).start()
+          run_server()
+          PRINT_QUEUE.join()
+
+
+    .. rubric:: Client in Python
+
+    .. code:: python
+      :class: far-smaller copy-to-clipboard
+
+      #!/usr/bin/env python3
+      import socket
+      import queue
+      import threading
+      import time
+
+      HOST = "localhost"
+      PORT = 5678
+
+      log_queue = queue.Queue()
+
+
+      def log_queue_handler():
+          s = None
+          f = None
+
+          def establish_connection():
+              nonlocal s, f
+              s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+              s.connect((HOST, PORT))
+              f = s.makefile(mode="rw", encoding="utf-8")
+              return s
+
+          establish_connection()
+
+          def send(data):
+              f.write(data)
+              f.flush()
+              if f.readline() != "ACK\n":
+                  raise Exception("no ACK received")
+
+          while True:
+              data = log_queue.get()
+              try:
+                  print(f"Trying to send: {data}", end="")
+                  send(data)
+                  print(f"Succeeded sending: {data}", end="")
+                  log_queue.task_done()
+              except Exception as e:
+                  print(f"Failed ({e}) sending {data}", end="")
+                  try:
+                      s.close()
+                      s = None
+                      f = None
+                  except Exception as e:
+                      print(f"Failed to close connection ({e}) {data}", end="")
+                      pass
+                  while True:
+                      try:
+                          time.sleep(5)
+                          establish_connection()
+                          send(data)
+                          log_queue.task_done()
+                          break
+                      except Exception as e:
+                          print(f"Failed ({e}) resending {data}", end="")
+                          pass
+
+
+      def main():
+
+          threading.Thread(target=log_queue_handler, daemon=True).start()
+
+          while True:
+              try:
+                  the_line = input() + "\n"
+                  log_queue.put(the_line)
+              except (EOFError, KeyboardInterrupt):
+                  # We want to exit the program after
+                  # the user presses CTRL-D, but we
+                  # first want to wait for the queue
+                  # to be empty!
+                  log_queue.join()
+                  break
+              except Exception as e:
+                  print(f"Error: {e}")
+                  break
+
+
+      if __name__ == "__main__":
+          main()
+
+
+
+.. supplemental::
+
+  .. rubric:: Schablone für die Serverseite 
+
+  .. code:: python
+    :class: copy-to-clipboard far-smaller
+
+    import queue
+    import socket
+    import queue
+    import threading
+
+    HOST = "localhost"
+    PORT = 5678
+
+    PRINT_QUEUE = queue.Queue()
+
+    def print_queue_handler():
+        while True:
+            try:
+                msg = PRINT_QUEUE.get()
+                print(msg, end="")
+            finally:
+                PRINT_QUEUE.task_done()
+
+
+    def ts_print(msg):
+        PRINT_QUEUE.put(msg)
+
+    # implement the server logic here...
+
+    if __name__ == "__main__":
+        threading.Thread(target=print_queue_handler, daemon=True).start()
+        # start/run server
+        PRINT_QUEUE.join()
