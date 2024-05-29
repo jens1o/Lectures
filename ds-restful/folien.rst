@@ -46,7 +46,7 @@ Ein |WS| ist lediglich eine Webseite, die von einem Computer angefordert und ver
 
 .. container:: incremental 
 
-    Ein |WS| eine :ger-quote:`Webseite`, die von einem *autonomen Programm* - im Gegensatz zu einem Webbrowser oder einem ähnlichen UI-Tool - konsumiert werden soll.
+    Ein |WS| ist eine :ger-quote:`Webseite`, die von einem *autonomen Programm* - im Gegensatz zu einem Webbrowser oder einem ähnlichen UI-Tool - konsumiert werden soll.
 
 .. container:: supplemental
 
@@ -58,8 +58,8 @@ Ein |WS| ist lediglich eine Webseite, die von einem Computer angefordert und ver
 
 
 
-REST
--------
+REST\ [#]_
+-----------
 
 - REST = Representational State Transfer 
   
@@ -68,9 +68,16 @@ REST
 - Ressourcen werden durch einheitliche Ressourcenbezeichner (URIs) identifiziert
 - Ressourcen werden durch ihre Repräsentationen manipuliert
 - Nachrichten sind selbstbeschreibend und zustandslos
-- Mehrere Repräsentationen werden akzeptiert oder gesendet
-- :ger-quote:`Hypertext` repräsentiert den Anwendungszustand
+
+.. container:: minor incremental
   
+  Von untergeordneter Bedeutung:
+
+  - Mehrere Repräsentationen werden akzeptiert oder gesendet
+  - :ger-quote:`Hypertext` repräsentiert den Anwendungszustand
+ 
+
+.. [#] REST wurde von Roy Fielding in seiner Dissertation beschrieben.
 
 
 Eine mögliche Architektur für RESTful Web Services
@@ -101,7 +108,7 @@ RESTful Web Services - Grundlagen
 
 :HTTP: das zugrunde liegende zustandslose Transportprotokoll:
 
-    Methoden: 
+    Wesentliche Methoden: 
 
     :GET: seiteneffektfreie Abfragen von Informationen 
     :POST: Hinzufügen von neuen Informationen (ohne Angabe der Ziel URI)
@@ -114,7 +121,7 @@ RESTful Web Services - Grundlagen
 
 .. class:: incremental
 
-:`Repräsentation`:ger-quote:: **JSON**, WebP, XML, ...
+:`Repräsentation`:ger-quote:: **JSON**, XML, SVG, WebP, XML, ...
 
 
 
