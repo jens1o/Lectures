@@ -400,6 +400,17 @@ Ein einfacher Echo-Dienst
                     conn.sendall(data)
 
 
+  .. layer:: incremental
+
+    - Python erlaubt es Sockets zu Wrappen, um sie wie Dateien behandeln zu können.
+  
+      ``<Socket>.makefile(mode="r?w?b?" [, encoding="utf-8"])`` erzeugt ein Dateiobjekt, das (insbesondere) ``readline()`` und ``write()`` unterstützt. Dies kann insbesondere bei zeilenorientierter Kommunikation hilfreich sein.
+    - Es können auch ganze Dateien über Sockets basierend  übertragen werden (``<Socket>.sendfile(<File>)``).
+
+    .. class:: incremental attention-list
+
+    - Einige Methoden sind nur auf spezifischen Betriebssystemen (meist Unix) verfügbar.
+
 
 UDP Sockets
 --------------------------------------
