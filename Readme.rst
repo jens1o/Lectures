@@ -10,16 +10,23 @@ Im Folgenden sind einige sinnvolle Kombinationen aufgeführt.
 Vorlesung "Verteilte Systeme"
 -----------------------------
 
-1. Einführung in verteilte Systeme (`<ds-einfuehrung/folien.rst.html>`__)
-2. HTTP und Sockets in Java (`<ds-http-and-sockets-java/folien.rst.html>`__)
-   
-   Alternativ:
+.. container:: scrollable
 
-   HTTP und Sockets in Python (`<ds-http-and-sockets-python/folien.rst.html>`__)
-3. Nebenläufigkeit und Synchronisation (in Java) (`<ds-nebenlaeufigkeit/folien.rst.html>`__)
-4. Grundlegende Konzepte (`<ds-grundlegende-konzepte/folien.rst.html>`__)
-5. Middleware (`<ds-middleware/folien.rst.html>`__)
-6. Architekturen von verteilten Systemen (`<ds-architekturen/folien.rst.html>`__)
+   1. Einführung in verteilte Systeme (`<ds-einfuehrung/folien.rst.html>`__)
+   2. HTTP und Sockets in Java (`<ds-http-and-sockets-java/folien.rst.html>`__)
+      
+      Alternativ:
+
+      HTTP und Sockets in Python (`<ds-http-and-sockets-python/folien.rst.html>`__)
+   3. Nebenläufigkeit und Synchronisation (in Java) (`<ds-nebenlaeufigkeit-java/folien.rst.html>`__)
+      
+      Alternativ:
+
+      Nebenläufigkeit und Synchronisation (in Java) (`<ds-nebenlaeufigkeit-python/folien.rst.html>`__)
+   4. Grundlegende Konzepte (`<ds-grundlegende-konzepte/folien.rst.html>`__)
+   5. Middleware (`<ds-middleware/folien.rst.html>`__)
+   6. Architekturen von verteilten Systemen (`<ds-architekturen/folien.rst.html>`__)
+
 
 Vorlesung "Verteilte Systeme" - Ergänzend
 ------------------------------------------
