@@ -58,7 +58,7 @@ Web-Entwicklung und Verteilte Systeme
 
 
 
-.. class:: integrated-exercise transition-fade
+.. class:: transition-fade
 
 Rahmenbedingungen - Inhalt
 -----------------------------
@@ -70,10 +70,16 @@ Rahmenbedingungen - Inhalt
 
 
 
-.. class:: integrated-exercise 
+.. class:: new-section
+
+Vorträge am 4. Juni
+----------------------
+
 
 Barrierefreiheit und HTML (2 Personen)\ [#]_
 --------------------------------------------------------------
+
+.. rubric:: 4. Juni
 
 - Allgemeine Einführung in das Thema Barrierefreiheit (:eng:`Accessibilty`) 
 - Barrierefreie HTML Webseiten mit HTML5 Gestalten
@@ -89,10 +95,10 @@ Achtung: *CSS und JavaScript sollen nicht behandelt werden*.
 .. [#] Präsentation nach der Einführung in HTML möglich.
 
 
-.. class:: integrated-exercise 
-
 HTML Forms (2 Personen)\ [#]_
 ---------------------------------------------------
+
+.. rubric:: 4. Juni
 
 - Formulare mit HTML; insbesondere Input Typen und Validierung von Daten
 - Erste Quellen:
@@ -106,10 +112,11 @@ Achtung: *CSS und JavaScript soll nicht behandelt werden*.
 .. [#] Präsentation nach der Einführung in HTML möglich.
 
 
-.. class:: integrated-exercise 
 
 SVG - Vektorgrafik auf Webseiten (1 Person)\ [#]_
 ----------------------------------------------------
+
+.. rubric:: 4. Juni
 
 - Einführung in SVG und Vektorgrafiken
 - HTML5 und eingebettete SVGs
@@ -124,10 +131,196 @@ Achtung: *JavaScript und CSS sollen nicht behandelt werden*.
 .. [#] Präsentation nach der Einführung in HTML möglich.
 
 
-.. class:: integrated-exercise
+
+
+.. class:: new-section
+
+Vorträge am  12. Juni
+----------------------
+
+
+Common.js Modules (1 Person)
+-------------------------------------------------------------------------------
+
+.. rubric:: 12. Juni
+
+- Modulsystem (insbesondere) für NodeJS
+- https://nodejs.org/api/modules.html
+
+
+
+ECMAScript Modules (1 Person)
+--------------------------------------------------------------------------------
+
+.. rubric:: 12. Juni
+
+- Modulsystem für JavaScript (NodeJS und Browser)
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
+
+
+Saas (1 Person)
+----------------------------------------------------------
+
+.. rubric:: 12. Juni
+
+- CSS Erweiterung (CSS Preprocessor)
+- https://sass-lang.com/
+
+
+Less (1 Person)
+----------------------------------------------------------
+
+.. rubric:: 12. Juni
+
+- CSS Preprocessor
+- https://lesscss.org/
+
+
+
+.. class:: new-section
+
+Vorträge am 17. Juni
+-----------------------
+
+
+Bootstrap (2 Personen)
+----------------------------------------------------------
+
+.. rubric:: 17. Juni
+
+- Entwicklung von *responsive* Webseiten
+- https://getbootstrap.com/
+
+Achtung: Sass (und Less) werden getrennt behandelt werden.
+
+
+
+.. class:: new-section
+
+Vorträge am 18. Juni
+-----------------------
+
+
+Express (3 Personen)
+----------------------------------------------------------
+
+.. rubric:: 18. Juni
+
+- Einführung in Express
+- *Programmierung von Endpunkten*
+- https://expressjs.com/
+
+.. rubric:: Hinweise
+
+- *Grundlagen des RESTful Designs brauchen nicht in der Präsentation behandelt werden; d. h. die Präsentation soll sich darauf konzentrieren, wie man Express verwendet (Hands-on.)*
+- WebSockets sollen nicht behandelt werden (es gibt einen weiteren Vortrag dazu).
+
+
+
+
+.. class:: new-section
+
+Vorträge am 24. Juni
+----------------------
+
+
+Electron (2 Personen)
+----------------------------------------------------------
+
+.. rubric:: 24. Juni
+
+- Framework zur Entwicklung von Cross-Platform Desktop-Anwendungen mit Webtechnologien.
+- https://www.electronjs.org/
+
+
+WebSockets (und Express) (1 Person)
+-------------------------------------
+
+.. rubric:: 24. Juni
+
+- Einführung in WebSockets
+- Verwendung von WebSockets in Browsern
+  
+  https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
+- Programmierung von WebSockets in Express
+
+  https://www.npmjs.com/package/express-ws?activeTab=readme
+  (Abstimmen mit der Gruppe, die Express präsentiert.)
+
+
+
+
+WebRTC (1 Person)
+--------------------------------
+
+.. rubric:: 24. Juni
+
+- Echtzeitkommunikation für das Web
+- https://webrtc.org/
+
+
+Vue.js (3 Personen)
+-----------------------------------------------
+
+.. rubric:: 24. Juni
+
+- JavaScript Framework für Web User Interfaces
+- https://vuejs.org/
+
+
+
+.. class:: new-section
+
+Vorträge am 25. Juni
+----------------------
+
+
+Typescript (2 Personen)
+------------------------------------------------------------------
+
+.. rubric:: 25. Juni
+
+- JavaScript with types
+  
+  (Der Vortrag sollte sich auf die Vorteile von statischer Typisierung konzentrieren; insbesondere für das :eng:`Programming in the large`.)
+- https://www.typescriptlang.org/
+
+
+Angular (4 Personen) 
+----------------------------------------------------------
+
+.. rubric:: 25. Juni
+
+- Web-Application Framework
+- https://angular.io/
+
+
+Svelte (4 Personen)
+----------------------------------------------------------
+
+.. rubric:: 25. Juni
+
+- Javascript Web Framework
+
+  - Svelte
+  - SvelteKit (:ger-quote:`Server Side Rendering`)
+- https://svelte.dev/
+  
+
+React (4 Personen)
+----------------------------------------------------------
+
+.. rubric:: 25. Juni
+
+- Frontend orientierte Bibliothek für die Entwicklung von Benutzeroberflächen
+- https://react.dev/
+
+
 
 *Consensus Algorithms* (2 Personen)\ [#]_
 ------------------------------------------
+
+.. rubric:: 25. Juni
 
 - Einführung in Paxos
 - Einführung in Raft 
@@ -138,18 +331,3 @@ Achtung: *JavaScript und CSS sollen nicht behandelt werden*.
 
 
 .. [#] Präsentation nach den grundlegenden Konzepten (insbesondere 2PC) von verteilten Systemen.
-
-
-.. Ideas
-  ----------------
-  - `WebSockets` (max 1 Person)
-  - `WebRTC`__ (max 1 Person)
-  - `Saas <https://sass-lang.com/>`__ und `Less <https://lesscss.org/>`__ (max 2 Personen)
-  - `Typescript <https://www.typescriptlang.org/>`__ (max 2 Personen)
-  - `React <https://react.dev/>`__ (max 4 Personen)
-  - `Vue.js <https://vuejs.org/>`__ (max 4 Personen)
-  - `Angular <https://angular.io/>`__ (max 4 Personen)
-  - `Svelte <https://svelte.dev/>`__ (max 4 Personen)
-  - `Bootstrap <https://getbootstrap.com/>`__ (max 2 Personen)
-    (ohne Sass)
-  - `Electron <https://www.electronjs.org/>`__ (max 2 Personen)
