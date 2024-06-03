@@ -8,6 +8,13 @@
     :first-slide: last-viewed
 
 .. |date| date::
+.. |html-source| source::
+    :url-prefix: https://delors.github.io/
+    :suffix: .html
+.. |pdf-source| source::
+    :url-prefix: https://delors.github.io/
+    :suffix: .html.pdf
+.. |date| date::
 
 .. role:: incremental
 .. role:: ger
@@ -32,9 +39,9 @@ Einführung in die Zahlentheorie
 
    :Folien: 
         
-          https://delors.github.io/sec-einfuehrung-in-die-zahlentheorie/folien.rst.html 
+          |html-source|
           
-          https://delors.github.io/sec-einfuehrung-in-die-zahlentheorie/folien.rst.html.pdf
+          |pdf-source|
    :Fehler auf Folien melden:
   
           https://github.com/Delors/delors.github.io/issues
