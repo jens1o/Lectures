@@ -4,8 +4,10 @@ function update_html_if_necessary() {
     html_file="$1.html"   
     language_option=""
     if [[ "$1" == *".de.rst" ]]
+    then
         lang=$(echo "$1" | grep -Eo '\.([a-z]{2,3})\.rst$' | grep -Eo "[a-z]+\." | sed -E 's/\.//g')
-        language_option="--language $lang"
+        language_option="--language=$lang"
+    fi
     if [[ ! -f "$html_file" || "$html_file" -ot "$1" ]]
     then
         path_prefix=$(echo "$1" | sed -E 's/[.0-9a-zA-Z_-]+/../g' | grep -Eo "^(\.+/)+")

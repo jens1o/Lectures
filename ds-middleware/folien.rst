@@ -5,6 +5,7 @@
     :description lang=en: Middleware
     :id: lecture-ds-middleware
     :first-slide: last-viewed
+    :exercises-master-password: WirklichSchwierig!
 
 .. |date| date::
 .. |at| unicode:: 0x40

@@ -7,10 +7,10 @@
     
 .. |date| date::
 .. |html-source| source::
-    :url-prefix: https://delors.github.io/
+    :prefix: https://delors.github.io/
     :suffix: .html
 .. |pdf-source| source::
-    :url-prefix: https://delors.github.io/
+    :prefix: https://delors.github.io/
     :suffix: .html.pdf
 .. |at| unicode:: 0x40
 
@@ -93,6 +93,7 @@ Barrierefreiheit und HTML (2 Personen)\ [#]_
 Achtung: *CSS und JavaScript sollen nicht behandelt werden*.
 
 .. [#] Präsentation nach der Einführung in HTML möglich.
+
 
 
 HTML Forms (2 Personen)\ [#]_

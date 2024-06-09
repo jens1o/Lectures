@@ -6,18 +6,20 @@
     :description lang=de: Einführung in die Zahlentheorie
     :id: sec-einfuehrung-in-die-zahlentheorie
     :first-slide: last-viewed
+    :exercises-master-password: WirklichSchwierig!
 
-.. |date| date::
 .. |html-source| source::
-    :url-prefix: https://delors.github.io/
-    :suffix: .html
+    :prefix: https://delors.github.io/
+    :suffix: .htm/Users/Michael/Teaching/Lectures/web-css/
+
 .. |pdf-source| source::
-    :url-prefix: https://delors.github.io/
+    :prefix: https://delors.github.io/
     :suffix: .html.pdf
 .. |date| date::
 
 .. role:: incremental
-.. role:: ger
+.. role:: ge/Users/Michael/Teaching/Lectures/sec-pentesting/
+
 .. role:: ger-quote
 .. role:: eng
 .. role:: minor

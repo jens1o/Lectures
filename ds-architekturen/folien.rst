@@ -5,6 +5,12 @@
     :id: lecture-ds-architekturen
     :first-slide: last-viewed
 
+.. |html-source| source::
+    :prefix: https://delors.github.io/
+    :suffix: .html
+.. |pdf-source| source::
+    :prefix: https://delors.github.io/
+    :suffix: .html.pdf
 .. |date| date::
 .. |at| unicode:: 0x40
 
@@ -50,10 +56,10 @@
 .. supplemental::
 
   :Folien: 
-        
-          https://delors.github.io/ds-architekturen/folien.rst.html 
+          |html-source
 
-          https://delors.github.io/ds-architekturen/folien.rst.html.pdf
+          |pdf-source
+          
   :Fehler auf Folien melden:
 
           https://github.com/Delors/delors.github.io/issues

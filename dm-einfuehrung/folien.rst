@@ -5,6 +5,12 @@
     :id: lecture-dm-einfuehrung
     :first-slide: last-viewed
 
+.. |html-source| source::
+    :prefix: https://delors.github.io/
+    :suffix: .html
+.. |pdf-source| source::
+    :prefix: https://delors.github.io/
+    :suffix: .html.pdf
 .. |date| date::
 .. |at| unicode:: 0x40
 
@@ -31,9 +37,9 @@ Dokumentenmanagement, Archivierungs- und Verschlüsselungsverfahren
 .. supplemental::
 
   :Folien: 
-      :HTML: https://delors.github.io/dm-einfuehrung/folien.rst.html 
+      :HTML: |html-source|
 
-      :PDF: https://delors.github.io/dm-einfuehrung/folien.rst.html.pdf
+      :PDF: |pdf-source|
   :Fehler auf Folien melden:
       https://github.com/Delors/delors.github.io/issues
 

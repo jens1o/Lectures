@@ -2,7 +2,7 @@
     :author: Michael Eichberg
     :keywords: "Verteilte Systeme"
     :description lang=de: Verteilte Systeme
-    :id: lecture-w3wi_110.2-verteilte_systeme
+    :id: lecture-w3wi_110.2-verteilte_systeme_wirtschaftsinformatik
     :first-slide: last-viewed
     
 .. |date| date::

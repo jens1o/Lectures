@@ -5,13 +5,14 @@
     :description lang=en: HTTP amd Sockets
     :id: lecture-ds-http-and-sockets-python
     :first-slide: last-viewed
+    :exercises-master-password: WirklichSchwierig!
 
 .. |date| date::
 .. |html-source| source::
-    :url-prefix: https://delors.github.io/
+    :prefix: https://delors.github.io/
     :suffix: .html
 .. |pdf-source| source::
-    :url-prefix: https://delors.github.io/
+    :prefix: https://delors.github.io/
     :suffix: .html.pdf
 .. |at| unicode:: 0x40
 

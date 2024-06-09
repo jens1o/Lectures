@@ -8,10 +8,10 @@
     
 .. |date| date::
 .. |html-source| source::
-    :url-prefix: https://delors.github.io/
+    :prefix: https://delors.github.io/
     :suffix: .html
 .. |pdf-source| source::
-    :url-prefix: https://delors.github.io/
+    :prefix: https://delors.github.io/
     :suffix: .html.pdf
 
 .. |at| unicode:: 0x40
@@ -1191,4 +1191,4 @@ Schreiben Sie XPath-Ausdrücke, um die folgenden Anfragen zu beantworten:
 
     (Speichern Sie das Script in der Datei ``xpaths_evaluator.js`` und führen Sie es mit ``node xpaths_evaluator.js <xpath specifications>`` aus.)
 
-    In der Datei finden Sie am Anfang eine Beschreibung wie die Dateien auszusehen haben.
+    In der Datei finden Sie am Anfang eine Beschreibung wie die Dateien auszusehen haben. Alternativ können Sie auch die XML Datei `demo.xml <https://gist.github.com/Delors/89e57bd0665f66376cac0cbdf359fa83>`__ und die Datei `demo.xpaths.json <https://gist.github.com/Delors/aee6eb48450657a5ae22e530580548b2>`__ herunterladen und als Grundlage nutzen. 

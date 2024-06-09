@@ -8,10 +8,10 @@
     :exercises-master-password: WirklichSchwierig!
 
 .. |html-source| source::
-    :url-prefix: https://delors.github.io/
+    :prefix: https://delors.github.io/
     :suffix: .html
 .. |pdf-source| source::
-    :url-prefix: https://delors.github.io/
+    :prefix: https://delors.github.io/
     :suffix: .html.pdf
 .. |date| date::
 .. |at| unicode:: 0x40
