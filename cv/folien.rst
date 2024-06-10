@@ -4,7 +4,7 @@
     :description lang=de: Lebenslauf von Prof. Dr. Michael Eichberg
     :id: lecture-cv
 
-.. |date| date::
+
 .. |at| unicode:: 0x40
 
 .. role:: incremental

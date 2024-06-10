@@ -7,15 +7,12 @@
     :first-slide: last-viewed
     :exercises-master-password: WirklichSchwierig!
     
-
-.. |date| date::
 .. |html-source| source::
     :prefix: https://delors.github.io/
     :suffix: .html
 .. |pdf-source| source::
     :prefix: https://delors.github.io/
     :suffix: .html.pdf
-
 .. |at| unicode:: 0x40
 
 .. role:: incremental   
@@ -44,7 +41,7 @@ CSS
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
-    :Version: |date|
+    :Version: 1.0
 
 .. supplemental::
 

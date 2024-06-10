@@ -7,7 +7,13 @@
     :first-slide: last-viewed
     :exercises-master-password: WirklichSchwierig!
 
-.. |date| date::
+.. |html-source| source::
+    :prefix: https://delors.github.io/
+    :suffix: .html
+.. |pdf-source| source::
+    :prefix: https://delors.github.io/
+    :suffix: .html.pdf
+
 .. |at| unicode:: 0x40
 
 .. role:: incremental
@@ -26,7 +32,6 @@
 .. role:: shiny-red
 .. role:: black
 .. role:: dark-red
-.. role:: huge
 .. role:: smaller  
 
 .. role:: raw-html(raw)
@@ -44,23 +49,18 @@ Nebenläufigkeit in Java
 
   :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
   :Kontakt: michael.eichberg@dhbw-mannheim.de
-  :Version: |date| 
+  :Version: 1.0
 
 .. supplemental::
 
-  :`Folien`:smaller:: 
-    .. container:: smaller
+  :Folien: 
+    
+    |html-source|
 
-      https://delors.github.io/ds-nebenlaeufigkeit-in-java/folien.rst.html :raw-html:`<br>`
-      https://delors.github.io/ds-nebenlaeufigkeit-in-java/folien.rst.html.pdf
-  :`Fehler auf Folien melden`:smaller::
-    .. container:: smaller
-
-      https://github.com/Delors/delors.github.io/issues
-
-
-   
-
+    |pdf-source|
+  :Fehler auf Folien melden:
+    
+    https://github.com/Delors/delors.github.io/issues
 
 
 
