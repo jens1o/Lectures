@@ -136,7 +136,6 @@ Ein *Monitor* ist ein Objekt, bei dem die Methoden im wechselseitigen Ausschluss
      :class: warning
       
      In Java findet der wechselseitige Ausschluss nur zwischen solchen Methoden statt, die explizit als ``synchronized`` deklariert wurden. 
-     
 
   *Monitore* sind nur ein Modell (Alternativen: *Semaphores*, *Message Passing*), das die Kommunikation und Synchronisation von Threads ermöglicht. Es ist das Standardmodell in Java und wird von der Java Virtual Machine (JVM) unterstützt.
 
