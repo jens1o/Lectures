@@ -34,7 +34,7 @@ RESTful Web Services
 
 .. container:: line-above 
 
-  :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
+  :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
   :Kontakt: michael.eichberg@dhbw-mannheim.de
   :Version: 1.0 
   :Quelle: (teilweise) RESTful Web Services; Leonard Richardson & Sam Ruby; O'Reilly

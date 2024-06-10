@@ -28,7 +28,7 @@ W3WI_110.2 - Verteilte Systeme
 
 .. container:: line-above tiny
 
-    :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
+    :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
     :Version: 1.0
 

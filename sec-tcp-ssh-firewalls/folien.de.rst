@@ -32,7 +32,7 @@
 Eine erste Einführung in die Sicherheit von (verteilten) Systemen
 ===================================================================
 
-:Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
+:Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Kontakt: michael.eichberg@dhbw-mannheim.de
 :Version: 1.0
 

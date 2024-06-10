@@ -30,7 +30,7 @@
 Advanced Encryption Standard (AES)
 ===============================================
 
-:Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
+:Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Version: 1.0
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 :Quellen: `NIST FIPS PUB 197, "Advanced Encryption Standard (AES)" <https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197.pdf>`_

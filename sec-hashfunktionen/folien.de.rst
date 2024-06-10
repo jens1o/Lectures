@@ -28,7 +28,7 @@
 Kryptografische Hash Funktionen
 ===============================================
 
-:Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.rst.html>`__
+:Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Kontakt: michael.eichberg@dhbw-mannheim.de
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 :Version: 1.0
