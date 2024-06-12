@@ -397,7 +397,7 @@ Attribute (:eng:`Attribute-Selector`) - Beispiel
             :class: far-far-smaller
 
             [lang] { text-decoration: underline; }            
-            [lang|="de"] { font-size: larger; }
+            [lang|='en'] { font-style: italic; }
             [lang="de-at" i] { text-transform: uppercase; }
 
     .. container:: column incremental
@@ -410,7 +410,7 @@ Attribute (:eng:`Attribute-Selector`) - Beispiel
             <iframe srcdoc="<html style='font-size:26px'><head></head><body>
                             <style> 
             [lang] { text-decoration: underline; }
-            [lang|='de'] { font-size: larger; }
+            [lang|='en'] { font-style: italic; }
             [lang='de-at' i] { text-transform: uppercase; }
                             </style>
             <h1 lang='de-DE'>Die Bedeutung des Seins.</h1>
@@ -1788,15 +1788,16 @@ Nicht Behandelte Themen
 - Animation
 - Counter
 - CSS bzgl. Printing
-- Transformation (scaling, rotating, ...)
+- Transformation (skalieren, drehen, ...)
+
   .. scaling using ``scale`` vs. using ``transform: scale``
 - (bisher nur grob) Flexbox  (`A guide to flex-box <https://css-tricks.com/snippets/css/a-guide-to-flexbox/>`__)
 - Grid-Layout (`A complete guide to CSS Grid <https://css-tricks.com/snippets/css/complete-guide-grid/>`__)
 - Cascade Layers
 - CSS Tricks
-  .. e.g. assigning an index to an element using "nth-child"
+  .. z. B. das Zuordnen eines Index zu einem Element basierend auf dem ":nth-child()" Selektor
 - Shadow-DOM (und HTML Custom Elements)
-- Styling von Dokumenten bei denen die Flussrichtung nicht links nach rechts ist
+- Styling von Dokumenten mit alternativen Flussrichtungen (rechts nach links, bzw. oben nach unten)
 
 
 .. class:: integrated-exercise transition-move-up

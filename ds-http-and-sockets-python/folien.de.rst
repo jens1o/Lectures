@@ -372,7 +372,7 @@ Ein einfacher Echo-Dienst
           the_line = input()
           if the_line == ".": break
           with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-              s.connect(("localhost", 5678))  # Connect to localhost on port 7
+              s.connect(("localhost", 5678))  # Connect to localhost on port 5678
               s.sendall(the_line.encode())
               data = receive_all(s)
           print(data.decode())
@@ -589,9 +589,11 @@ UDP basierter Echo Server
 
 .. exercise:: Protokollaggregation
 
-  Schreiben Sie einen Python basierten Server, mit dem sich Protokoll-Meldungen auf einem Server zentral anzeigen lassen. Das Programm soll mehrere Clients unterstützen und UDP verwenden. Jeder Client liest von der Tastatur eine Eingabezeile in Form eines Strings ein, validiert die Eingabe und sendet diese dann ggf. sofort zum Server. Der Server wartet auf Port 5678 und empfängt die Meldungen beliebiger Clients, die er dann unmittelbar ausgibt.
+  Schreiben Sie einen Python basierten Server und Client, mit dem sich Protokoll-Meldungen auf einem Server zentral anzeigen lassen. Das Programm soll mehrere Clients unterstützen und UDP verwenden. Jeder Client liest von der Tastatur eine Eingabezeile in Form eines Strings ein, validiert die Eingabe und sendet diese dann ggf. sofort zum Server. Der Server wartet auf Port 5678 und empfängt die Meldungen beliebiger Clients, die er dann unmittelbar ausgibt.
 
   Stellen Sie sicher, dass Fehler adäquat behandelt werden.
+
+  Sie können den UDP basierten Echo Server als Vorlage für Ihren Server verwenden.
 
   .. solution:: 
     :pwd: Nun mit UDP.
