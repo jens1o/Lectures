@@ -6,8 +6,7 @@ import java.io.*;
 public class SyslogServer {
     public static void main(String[] args) {
         BufferedReader in = null;
-        try {
-            ServerSocket server = new ServerSocket(9999);
+        try (ServerSocket server = new ServerSocket(9999)) {
             while (true) {
                 try (Socket con = server.accept()) {
                     in = new BufferedReader(new InputStreamReader(con.getInputStream()));
