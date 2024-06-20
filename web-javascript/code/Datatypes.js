@@ -37,8 +37,10 @@ let anonymousObj = {
     u: { j: 2, v: { k: 3 } }, 
     toString: function () { return "anonymousObj"; }
 };
-anonymousObj.j = 2;
-anonymousObj["j"] = 4;
+
+// Zugriff auf die Eigenschaften eines Objekts
+anonymousObj.j = 2;     // mittels Bezeichner ("j") (eng. Identifier)
+anonymousObj["j"] = 4;  // mittels String ("j")
 anonymousObj["k"] = 3;
 console.log("anonymousObj", anonymousObj);
 console.log("anonymousObj.toString()", anonymousObj.toString());

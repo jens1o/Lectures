@@ -14,9 +14,11 @@ function log(message, ...args) {
 // strikt ungleich  !===
 
 log('1 == "1": ', 1 == "1");
-log('1 === "1": ', 1 == "1");
+log('1 === "1": ', 1 === "1");
 log('1.0 == 1: ', 1 == 1.0);
-log('1 === 1n: ', 1 == 1n);
+log('1 === 1n: ', 1 === 1n);
+
+log("asdf" === ("as"+"df"));
 
 log('null == NaN: ', null == NaN);
 log('null == NaN: ', null == NaN);
@@ -59,6 +61,36 @@ log(obj2Values, " vs. ", obj1Value);
 log(sym1, sym2, "===", sym1 === sym2); // false
 log(sym1, sym2, "==", sym1 == sym2); // false
 log(Symbol.for("1"), sym1, "==", Symbol.for("1") === sym1);
+
+
+{
+    const obj = {
+        name: "John",
+        age: 30,
+        city: "Berlin"
+    };
+    log("\nTyptests und Feststellung des Typs:");
+    log("typeof obj", typeof obj);
+    log("obj instanceof Object", obj instanceof Object);
+    log("obj instanceof Array", obj instanceof Array);
+}
+{
+    
+    const obj = { a: "lkj"};
+    const obj2 = Object.create(obj);
+    log(obj2 instanceof obj.constructor);
+}
+
+log("\n?-Operator and Truthy and Falsy Values:");
+log("\"\"", "" ? "is truthy" : "is falsy");
+log("f()", (() => { }) ? "is truthy" : "is falsy");
+log("Array ", Array ? "is truthy" : "is falsy");
+log("obj ", obj ? "is truthy" : "is falsy");
+log("undefined ", undefined ? "is truthy" : "is falsy");
+log("null ", null ? "is truthy" : "is falsy");
+log("0", 0 ? "is truthy" : "is falsy");
+log("1", 1 ? "is truthy" : "is falsy");
+
 
 
 process.stdin.on('data', () => {

@@ -127,20 +127,3 @@ for (const value of obj) {
         c++;
     } while (c < arr.length);
 }
-
-console.log("\nTyptests und Feststellung des Typs:");
-console.log("typeof obj", typeof obj);
-console.log("obj instanceof Object", obj instanceof Object);
-console.log("obj instanceof Array", obj instanceof Array)
-
-
-console.log("\n?-Operator and Truthy and Falsy Values:");
-console.log("\"\"", "" ? "is truthy" : "is falsy");
-console.log("f()", (() => { }) ? "is truthy" : "is falsy");
-console.log("Array ", Array ? "is truthy" : "is falsy");
-console.log("obj ", obj ? "is truthy" : "is falsy");
-console.log("undefined ", undefined ? "is truthy" : "is falsy");
-console.log("null ", null ? "is truthy" : "is falsy");
-console.log("0", 0 ? "is truthy" : "is falsy");
-console.log("1", 1 ? "is truthy" : "is falsy");
-
