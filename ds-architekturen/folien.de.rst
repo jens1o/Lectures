@@ -32,9 +32,7 @@
 .. role:: shiny-red
 .. role:: black
 .. role:: dark-red
-.. role:: huge
-.. role:: small
-.. role:: tiny
+
 
 .. role:: raw-html(raw)
    :format: html
