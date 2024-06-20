@@ -530,7 +530,7 @@ Nachdem die Zeitüberschreitung abgelaufen ist, beschließt der Client die Anfra
 
     .. container:: minor
 
-      ``XMLHTTPRequests`` in Webbrowsern verwenden diese Semantik.
+      ``XMLHTTPRequests`` und ``fetch()`` in Webbrowsern verwenden diese Semantik.
 
   .. layer:: incremental
 
