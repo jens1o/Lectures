@@ -784,7 +784,7 @@ Beispiel: Synchronisation mit nur einer Bedingung
       c1.start(); c2.start(); p1.start(); p2.start();
 
     .. csv-table::
-      :class: smaller incremental no-table-borders
+      :class: far-smaller incremental no-table-borders
       :header: "","Aktionen" , "(Änderung des) Zustand(s) des Buffers", "Auf die Sperre (*Lock*) wartend", "An der Bedingung wartend"
 
       1, "**c1:bb.get()**, :raw-html:`<br>`
@@ -924,9 +924,7 @@ Thread-/ProcessPools
 --------------------------------------------------------------
 
 - *ThreadPools* und *ProcessPools* bieten eine höherwertige Abstraktion, um eine große Anzahl von Aufgaben nebenläufig zu verarbeiten.
-- Beide erben von ``concurrent.futures.Executor``
-  
-  Die zentralen Methoden sind:
+- Beide erben von ``concurrent.futures.Executor``; zentrale Methoden:
 
   - ``submit(fn, *args, **kwargs)``: Fügt eine Aufgabe hinzu und gibt ein ``Future``-Objekt zurück.
   
@@ -1328,7 +1326,7 @@ Starte immer mit einer *Single-threaded implementation*
 
   .. exercise:: Implementation mit Threadpool
 
-    Implementieren Sie die Klasse ``DelayedBuffer`` mit Hilfe eines ``concurrent.futures.ThreadPool``s (und ggf. ``Queue``\ s bzw. Locks).
+    Implementieren Sie die Klasse ``DelayedBuffer`` mit Hilfe eines ``concurrent.futures.ThreadPool``\ s (und ggf. ``Queue``\ s bzw. Locks).
 
     Implementieren Sie ``ts_print`` als Thread-sichere Variante von ``print``. Wählen Sie ggf. eine andere Implementierung als in der vorherigen Aufgabe.
 
@@ -1430,11 +1428,21 @@ Starte immer mit einer *Single-threaded implementation*
 
         async def main():
             buffer = DelayedBuffer()
-            buffer.submit(100 / 1000, ts_print, "Hello ", **{"end": "", "flush": True})
-            buffer.submit(1000 / 1000, ts_print, "World!")
-            buffer.submit(500 / 1000, ts_print, "of the ", **{"end": "", "flush": True})
-            buffer.submit(200 / 1000, ts_print, "from ", **{"end": "", "flush": True})
-            buffer.submit(300 / 1000, ts_print, "the other side ", **{"end": "", "flush": True})
+            buffer.submit(
+              100 / 1000, 
+              ts_print, "Hello ", **{"end": "", "flush": True})
+            buffer.submit(
+              1000 / 1000, 
+              ts_print, "World!")
+            buffer.submit(
+              500 / 1000, 
+              ts_print, "of the ", **{"end": "", "flush": True})
+            buffer.submit(
+              200 / 1000, 
+              ts_print, "from ", **{"end": "", "flush": True})
+            buffer.submit(
+              300 / 1000, 
+              ts_print, "the other side ", **{"end": "", "flush": True})
             await buffer.join()
             print("Done.")
 
