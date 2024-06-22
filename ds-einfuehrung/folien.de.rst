@@ -516,7 +516,9 @@ Zwischenfrage
     .. solution:: 
         :pwd: nicht sicher
 
-        Alice kann nicht sicher sein, dass Ihre Nachricht nicht verfälscht wurde! Jeder, der die Nachricht abfängt kann sie verändern und dann mit Bobs öffentlichen Schlüssel verschlüsseln.
+        Alice kann nicht sicher sein, dass Ihre Nachricht nicht ausgetauscht wird! Jeder, der die Nachricht abfängt kann die Nachricht verwerfen und eine eigene mit Bobs öffentlichen Schlüssel verschlüsseln. Je nach Hintergrundwissen der dritten Person kann diese Nachricht ggf. auch so aussehen, als ob sie von Alice stammt.
+        
+        Bob kann also nicht sicher sein, dass die Nachricht von Alice stammt. 
 
 
 .. class:: new-subsection transition-fade
