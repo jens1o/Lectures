@@ -1,0 +1,13 @@
+folien.de.rst.html
+folien.de.rst.html.pdf
+
+drawings/digests/all_encrypted.svg
+drawings/digests/hash_encrypted.svg
+drawings/digests/secret_appended.svg
+drawings/digests/secret_encrypted.svg
+drawings/hash_functions/properties.svg
+drawings/hash_functions/structure_of_secure_hash_codes.svg
+drawings/hmac/hmac_i_o_key_derivation.svg
+drawings/hmac/hmac_message_hashing.svg
+drawings/signatures/authentication_and_encryption.svg
+drawings/signatures/just_authentication.svg

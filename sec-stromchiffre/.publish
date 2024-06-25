@@ -1,0 +1,10 @@
+folien.de.rst.html
+folien.de.rst.html.pdf
+
+drawings/stream_ciphers/blum_blum_shub.svg
+drawings/stream_ciphers/distribution_3d_bad_lcg.svg
+drawings/stream_ciphers/distribution_3d_expected.svg
+drawings/stream_ciphers/generation_of_seed_input.svg
+drawings/stream_ciphers/rng_and_prng.svg
+drawings/stream_ciphers/typical_stream_cipher.svg
+code/stream_ciphers.ipynb
