@@ -59,8 +59,8 @@ Historie
 
 .. raw:: html
 
-	<script src="lib/Timeline-0.0.0/Timeline.js" type="text/javascript"></script>
-	<link href="lib/Timeline-0.0.0/Timeline.css" type="text/css" rel="stylesheet" />
+	<script src="lib/timeline/timeline.js" type="text/javascript"></script>
+	<link href="lib/timeline/timeline.css" type="text/css" rel="stylesheet" />
     <svg id="JavaScript-Timeline" class="timeline"/>
     <script type="text/javascript">
         Timeline.draw("JavaScript-Timeline",[
