@@ -175,6 +175,18 @@ Ist Passwortwiederherstellung noch relevant?
     -- `The Hacker News (Jan 29, 2024) <https://thehackernews.com/2024/01/researchers-uncover-outlook.html>`__
 
 
+.. class:: vertical-title
+
+Ist Passwortwiederherstellung nicht :ger-quote:`trivial`?
+----------------------------------------------------------------
+
+.. image:: images/golem-passwortcracking.png
+    :align: center
+    :height: 1050px
+    :class: picture margin-left-1em margin-right-1em
+    :alt: Hälfte alle Passwörter in 1 Stunde geknackt
+
+`golem.de <https://www.golem.de/news/forscher-machen-den-test-59-prozent-aller-passwoerter-in-unter-60-minuten-knackbar-2406-186329.html>`__
 
 .. class:: vertical-title
 
