@@ -52,24 +52,24 @@ Materialien
     
         .. container:: clearfix
 
-            .. image:: tape.webp 
+            .. image:: images/tape.webp 
                 :alt: Tape
                 :align: right
                 :width: 275
 
-        .. image:: rope.webp 
+        .. image:: images/rope.webp 
             :alt: Rope
             :align: center
             :width: 575
             
-        .. image:: marshmallow.webp
+        .. image:: images/marshmallow.webp
             :alt: Marshmallow
             :align: center
             :width: 250
 
     .. container:: column 
     
-        .. image:: spaghetti.webp 
+        .. image:: images/spaghetti.webp 
             :alt: Spaghetti
             :align: center
             :height: 1000
@@ -116,7 +116,7 @@ Marshmallow-Challenge
 \ 
 ----
 
-.. image:: gebaeude.png 
+.. image:: images/gebaeude.png 
     :alt: Ein mögliches Gebäude
     :align: center
     :width: 800px
