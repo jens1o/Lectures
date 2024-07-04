@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            border: 0;
+            /*background-color: white;*/
+            background-image: radial-gradient(circle,
+                    rgba(249, 249, 249, 1) 0%,
+                    rgba(255, 0, 0, 1) 57%,
+                    rgba(255, 0, 0, 1) 100%);
+            background-size: 200% 200%; /* required to enable animation of the background position */
+            animation: Move alternate 7s infinite;
+        }
+
+        @keyframes Move {
+            0% {background-position: 0% 50%}
+            50% {background-position: 50% 25%}
+            100% {background-position: 100% 50%}
+        }
+
+        .slide {
+            background:
+                radial-gradient(circle at bottom left,
+                    rgba(255, 255, 255, 1) 0%,
+                    rgba(255, 255, 255, 1) 24%,
+                    rgba(255, 0, 0, 0.1) 100%),
+                radial-gradient(circle at top right,
+                    rgba(249, 0, 0, 0.3) 0%,
+                    rgba(255, 0, 0, 0.2) 57%,
+                    rgba(255, 0, 0, 0) 80%,
+                    rgba(255, 0, 0, 0) 100%)
+                ;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            height: 100%;
+            width: 100%;
+            grid-template-columns: [main] 2fr [details] 1fr;
+            grid-template-rows: [title] 1fr [version] 2em [logo] 170px;
+            gap: 2px 2px;
+            grid-template-areas:
+                "title details"
+                "version details"
+                "logo details";
+        }
+
+        .slide::before {
+            content: "";
+            grid-area: logo;
+            align-self: stretch;
+            /*background-color: white;*/
+            background-image: url(dhbw_logo.png);
+            background-repeat: no-repeat;
+            background-position: bottom 1ch left 1ch;
+            background-size: auto 150px;
+            padding: 0.25rem;
+        }
+
+        .slide h1 {
+            grid-area: title;
+
+            margin: 0;
+            padding-left: 0.25ch;
+            border-radius: 1rem 0 0 0;
+
+            font-size: 4rem;
+            /*background-color: rgb(95, 95, 95);
+                color: white;*/
+            text-shadow: -1px -1px black;
+            color: darkslategrey;
+
+        }
+
+        .slide .version {
+            grid-area: version;
+            padding: 0.25rem;
+            /*border-top: 1px solid white;*/
+            color: white;
+            text-shadow: 1px 1px 6px darkgray;
+            /*background-color: white;*/
+
+            &::before {
+                content: "Version: ";
+            }
+        }
+
+        .slide aside {
+            grid-area: details;
+            /*background-color: white;*/
+            padding: 1em;
+        }
+
+
+
+        ol {
+            --item-counter-width: 3ch;
+            --item-counter-offset: calc(var(--item-counter-width) + 0.5ch);
+
+            list-style-type: none;
+
+            padding-left: var(--item-counter-offset);
+
+            perspective: 500px;
+            transform-style: preserve-3d;
+
+            >li {
+                position: relative;
+                padding: 0.25rem;
+                margin: 0.25rem;
+
+                background-color: lightgray;
+                /*filter: blur(0.5px);*/
+                transition: 0.5s;
+
+                &::before {
+                    content: counter(list-item);
+
+                    box-sizing: border-box;
+                    display: inline-block;
+
+                    position: absolute;
+                    padding: 0.15em;
+                    top: 0;
+                    left: calc(var(--item-counter-offset) * -1);
+                    width: var(--item-counter-width);
+                    height: 100%;
+
+
+                    text-align: center;
+                    font-family: menlo, monospace;
+                    font-weight: 600;
+                    background-color: red;
+                    border-radius: 0.2em 0 0 0.2em;
+                    color: white;
+                    transition: 0.5s;
+                }
+
+                &:nth-child(-n+9)::before {
+                    content: "0" counter(list-item);
+                }
+
+                &:hover {
+                    /*filter: blur(0);*/
+                    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
+                    transform: translateZ(25px);
+                    transition: 0.5s;
+
+                    &::before {
+                        transition: 0.5s;
+                        background-color: darkred;
+                    }
+                }
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="slide">
+        <h1>CSS</h1>
+        <div class="version">1.0</div>
+        <!-- Some Content! -->
+        <aside>
+            <p>
+                CSS = Cascading Style Sheets
+            </p>
+            <ol>
+                <li>What is CSS?</li>
+                <li>How to use CSS?<br>(only a brief introduction)</li>
+                <li>Inline vs. Block</li>
+                <li>Font Styling</li>
+                <li>Lists</li>
+                <li>Background Styling</li>
+                <li>Flexbox</li>
+                <li>Grid</li>
+                <li>Animation</li>
+                <li>Transformation</li>
+                <li>Tricks</li>
+                <li>Nesting</li>
+            </ol>
+        </aside>
+    </div>
+    </div>
+</body>
+
+</html>
