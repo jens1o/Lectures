@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        const ws = new WebSocket("ws://localhost:8888/player");
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            switch (data.type) {
+                case "question":
+                    console.log("Question: " + data.question);
+                    showQuestion(data);
+                    break;
+                case "results":
+                    document.getElementById("main").innerText = "Results: " + event.data;
+                    break;
+                default:
+                    console.log("Unknown message: " + data);
+                    break;
+            }
+        };
+        ws.onclose = (event) => {
+            console.log("Connection closed: " + event);
+        }
+        ws.onerror = (event) => {
+            console.error("Error: " + event);
+        }
+
+        function showQuestion(data) {
+            const main = document.getElementById("main")
+            main.innerHTML = `
+            <h1>Question</h1>
+            <p>${data.question}</p>`;
+
+            function createAnswerButton(answer) {
+                const button = document.createElement("button");
+                button.innerText = answer;
+                button.onclick = submitAnswer(answer);
+                return button;
+            }
+
+            for (answer of data.answers) {    
+                main.appendChild(createAnswerButton(answer));
+            }
+        }
+
+
+        function submitAnswer(answer) {
+            return () => {
+                ws.send(JSON.stringify({
+                    "type": "answer",
+                    "answer": answer
+                }));
+
+                doWait();
+            }
+        }
+
+        function submitUsername() {
+            const name = document.getElementById("username").value;
+            ws.send(JSON.stringify({
+                "type": "registration",
+                "name": name
+            }));
+
+            doWait();
+        }
+
+        function doWait() {
+            document.getElementById("main").innerHTML = "Waiting for other players...";
+        }
+    </script>
+
+<body>
+
+    <main id="main">
+        <form>
+            <input type="text" id="username" placeholder="Username">
+            <button type="button" onclick="submitUsername();">Submit</button>
+        </form>
+    </main>
+</body>
+
+</html>

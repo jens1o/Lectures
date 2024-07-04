@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        const ws = new WebSocket("ws://localhost:8888/admin");
+
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            console.log("Received: " + event.data);
+            switch (data.type) {
+                case "players":
+                    const players = document.getElementById("players")
+                    players.innerText =
+                        "["+data.players.length + " players] " +
+                        data.players
+                            .map(player => player.id + ": " + player.name)
+                            .join(", ");
+                    break;
+                case "question":
+                    showQuestion(data);
+                    break;
+                case "results":
+                    document.getElementById("main").innerText = "Result: " + event.data;
+                    break;
+                default:
+                    console.log("unknown: " + event.data);
+                    break;
+            }
+        };
+
+        ws.onclose = (event) => {
+            console.log("Connection closed: " + event);
+            document.getElementById("main").innerText = "Connection closed - you need to restart.";
+        };
+        ws.onerror = (event) => {
+            console.log("Connection error: " + event);
+        };
+
+        function startGame() {
+            ws.send(JSON.stringify({"type": "start"}));
+        }
+
+        function showQuestion(data) {
+            document.getElementById("main").innerText = `
+                Current question: ${data.question}; correct answer: ${data.correct}
+                `
+        }
+    </script>
+</head>
+
+<body>
+    <main id="main">
+        <h1>Players</h1>
+        <p id="players"></p>
+        <button type="button" onclick="startGame();">Start Game</button>
+    </main>
+</body>
+
+</html>
