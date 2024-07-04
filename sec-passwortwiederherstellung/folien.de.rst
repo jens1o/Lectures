@@ -259,7 +259,7 @@ Raum der Passwortkandidaten
     Eine vierstellige PIN kann niemals als sicher angesehen werden. Selbst wenn ein Bruteforce nur auf 4 oder 5 Versuche pro Stunde kommt, so ist es dennoch in wenigen Monaten möglich die PIN zu ermitteln.
 
 
-.. class:: center-child-elements not-title
+.. class:: center-child-elements no-title
 
 Passwörter nicht im Klartext speichern
 ---------------------------------------
@@ -610,7 +610,7 @@ Passwortwiederherstellung 101
 Passwortwiederherstellung
 -------------------------
 
-.. class:: incremental impressive
+.. class:: incremental dhbw
 
 1. Wissen wo/in welcher Form der Passworthash zu finden ist.
 2. Extraktion des Hashes 
@@ -919,6 +919,8 @@ Gedankenexperiment
         Um ein Passwort mit 12 Ziffern zu finden, brauchen Sie 21*84 Jahre (worst case).
 
 
+
+
 .. class:: transition-move-left integrated-exercise 
 
 Gedankenexperiment
@@ -927,10 +929,10 @@ Gedankenexperiment
 
 .. exercise:: Verstehen des Suchraums
 
-    Sie haben :ger-quote:`ganz viele`` Grafikkarten und einen sehr schnellen Hash. Sie kommen auf eine Hashrate von 1 THash/Sekunde (:math:`1 \times 10^{12}`). Sie haben einen Monat Zeit für das Knacken des Passworts.
-    Gehen Sie davon aus, dass Ihr Zeichensatz 100 Zeichen umfasst. 
+    Sie haben :ger-quote:`ganz viele` Grafikkarten und einen sehr schnellen Hash. Sie kommen auf eine Hashrate von 1 THash/Sekunde (:math:`1 \times 10^{12}`). Sie haben einen Monat Zeit für das Knacken des Passworts.
+    Gehen Sie vereinfacht davon aus, dass Ihr Zeichensatz 100 Zeichen umfasst. 
 
-    Berechnen Sie den Anteil des Suchraums, den Sie abgesucht haben, wenn das Passwort 32 Zeichen lang sein sollte. Drücken Sie den Anteil des abgesuchten Raums in Relation zu der Anzahl der Sandkörner der Sahara aus. Gehen Sie davon aus, dass die Sahara ca. 70 Trilliarden (:math:`70 \times 10^{21}`) Sandkörner hat.
+    Berechnen Sie den Anteil des Suchraums, den Sie abgesucht haben, wenn das Passwort 32 Zeichen lang sein sollte und Sie dies wissen. Drücken Sie den Anteil des abgesuchten Raums in Relation zu der Anzahl der Sandkörner der Sahara aus. Gehen Sie davon aus, dass die Sahara ca. 70 Trilliarden (:math:`70 \times 10^{21}`) Sandkörner hat.
 
     .. solution::
         :pwd: Fast-nichts!
@@ -2138,12 +2140,12 @@ Passwörter angreifen - Zusammenfassung
 
 
 
-.. class:: integrated-exercise
+.. class:: integrated-exercise transition-move-up
 
-Übung - Stellen Sie die Passwörter wieder her...
+Wiederherstellung eines trivialen Passworts
 --------------------------------------------------
    
-.. exercise:: MD5 Hash eines trivialen Passworts
+.. exercise:: Gegeben sei ein MD5 Hash
     
     .. code:: text
         :class: copy-to-clipboard
@@ -2151,6 +2153,20 @@ Passwörter angreifen - Zusammenfassung
         81dc9bdb52d04dc20036dbd8313ed055
  
     Hinweise: Das Passwort ist kurz, besteht nur aus Ziffern und ist sehr häufig.
+
+    Wenn Sie Python verwenden wollen, dann können Sie den folgenden Code als Ausgangspunkt 
+    verwenden:
+
+    .. code:: python
+        :class: copy-to-clipboard far-far-smaller
+
+        import hashlib
+        import binascii
+
+        hash = binascii.unhexlify ('81dc9bdb52d04dc20036dbd8313ed055')
+
+        """ In some loop do: hashlib.md5(...).digest() """
+
 
     .. solution::
         :pwd: 1234
@@ -2173,6 +2189,13 @@ Passwörter angreifen - Zusammenfassung
 
           Ausgabe: 1234
 
+
+
+.. class:: integrated-exercise transition-scale
+
+Wörterbuch basierte Wiederherstellung eines Passworts
+------------------------------------------------------
+
 .. exercise:: MD5 Hash eines einfachen Passworts
 
     .. code:: text
@@ -2182,7 +2205,8 @@ Passwörter angreifen - Zusammenfassung
         
     Hinweise: Das Passwort besteht aus Buchstaben gefolgt von Ziffern und ist sehr häufig.
     
-    Sie können Hashcat (https://hashcat.net/hashcat/) verwenden oder ein Bash-Skript schreiben oder eine kleine Lösung in einer Programmiersprache Ihrer Wahl entwickeln.
+    Sie können Hashcat (https://hashcat.net/hashcat/) verwenden oder ein Bash-Skript schreiben oder eine kleine Lösung in einer Programmiersprache Ihrer Wahl entwickeln. Verwenden Sie ggf. eine 
+    Liste bekannter Passwörter (z. B. Rockyou).
     
     .. solution:: 
         :pwd: password1

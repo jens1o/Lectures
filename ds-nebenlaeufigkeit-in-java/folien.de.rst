@@ -152,7 +152,7 @@ Kommunikation zwischen Threads mit Hilfe von Monitoren
 
 
 
-Nebenfäufigkeit in Java
+Nebenläufigkeit in Java
 --------------------------------------------------------------------------------
 
 .. image:: images/threads/java-threads.svg
