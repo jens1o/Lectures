@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dhbw-logo {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            /*overflow: visible;*/
+
+            perspective: 2500px;
+            transform: rotateX(-30deg);
+            transform-style: preserve-3d;
+
+            .side {
+                position: absolute;
+                width: 98px;
+                height: 98px;
+                border-radius: 4px;
+            }
+
+            .left {
+                background-color: rgba(226, 0, 26);
+                transform: translateY(51px) translateX(0px) translateZ(2px);
+            }
+
+            .back {
+                background-color: rgba(226, 0, 26);
+                transform: translateY(51px) translateX(52px) rotateY(65deg) translateX(52px);
+            }
+
+            .front {
+                background-color: rgba(51, 65, 73, 0.56);
+                transform: translateY(51px) translateX(52px) rotateY(-115deg) translateZ(2px) translateX(52px);
+            }
+
+            .right {
+                background-color: rgba(51, 65, 73, 0.56);
+                transform: translateY(51px) translateX(102px) translateZ(-2px);
+            }
+
+            animation: 15s infinite alternate move-across;
+        }
+        
+        @keyframes move-across {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg) rotateZ(15deg) translate3d(-500px,-400px,-100px) scale(3) ;
+            }
+            100% {
+                transform: rotateX(-30deg) rotateY(360deg);
+            }
+        }
+
+        .blur-it {
+            animation: blur-it 15s infinite alternate;
+        }
+
+        @keyframes blur-it {
+            0% {
+                filter: blur(10px) opacity(0.1);
+            }
+            100% {
+                filter: blur(0px);
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div class="blur-it">
+    <div class="dhbw-logo">
+        <div class="side left"></div>
+        <div class="side front"></div>
+        <div class="side back"></div>
+        <div class="side right"></div>
+    </div>
+</div>
+</body>
+
+</html>
