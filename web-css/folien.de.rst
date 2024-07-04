@@ -147,13 +147,12 @@ Eine CSS-Datei besteht aus Regeln, die aus einem Selektor und einer oder mehrere
                 iframes are not supported
             </iframe>
 
-
-
 .. supplemental::
     
-    CSS ist im wesentlichen Whitespace insensitive, d.h., Leerzeichen, Zeilenumbrüche und Tabulatoren werden ignoriert.
+    CSS ist im wesentlichen *Whitespace insensitive*, d. h. Leerzeichen, Zeilenumbrüche und Tabulatoren werden ignoriert.
 
     Kommentare werden in ``/* ... */`` geschrieben.
+
 
 
 Elemente
@@ -640,7 +639,7 @@ Kombinatoren - Beispiele
   Da das zweite Eingabefeld nicht als ``required`` markiert ist, wird es auch dann als ``:valid`` betrachtet, wenn es leer ist.
 
 
-Spezifizität von Selektoren
+Spezifität von Selektoren
 -----------------------------
 
 .. stack::
@@ -648,26 +647,26 @@ Spezifizität von Selektoren
 
     .. layer::
 
-      - Die Spezifizität eines Selektors bestimmt, welcher Stil auf ein Element angewendet wird, wenn mehrere Regeln auf ein Element zutreffen und diese bzgl. der gleichen Eigenschaften in Konflikt stehen.
+      - Die Spezifität eines Selektors bestimmt, welcher Stil auf ein Element angewendet wird, wenn mehrere Regeln auf ein Element zutreffen und diese bzgl. der gleichen Eigenschaften in Konflikt stehen.
         
-        Die Spezifizität wird durch einen Vektor ``(a, b, c)`` dargestellt:
+        Die Spezifität wird durch einen Vektor ``(a, b, c)`` dargestellt:
 
         - ``a``: Anzahl der ID Selektoren
         - ``b``: Anzahl der Klassen-, Attribut- und Pseudo-Klassen Selektoren
         - ``c``: Anzahl der Element- und Pseudo-Element Selektoren
 
-        Die Spezifizität wird in der Reihenfolge ``a``, ``b``, ``c`` verglichen.
+        Die Spezifität wird in der Reihenfolge ``a``, ``b``, ``c`` verglichen.
 
       .. class:: incremental
 
-      - Konzeptionell wird die Spezifizität pro Deklaration betrachtet.
+      - Konzeptionell wird die Spezifität pro Deklaration betrachtet.
 
     .. layer:: incremental
 
       - Beispiele:
         
         .. csv-table::
-            :header: "Selektor", "Spezifizität"
+            :header: "Selektor", "Spezifität"
             :class: incremental no-table-borders
             :width: 100%
 
@@ -729,9 +728,9 @@ Spezifizität von Selektoren
 
 .. supplemental::
 
-    - Kombinatoren haben keine Spezifizität.
-    - ``*`` hat die Spezifizität (0,0,0)
-    - eine Deklaration mit ``!important`` hat eine höhere Spezifizität alls jede Deklaration ohne ``!important``. Alle als ``!important`` markierten Deklarationen werden nach den beschriebenen Regeln ausgewertet.
+    - Kombinatoren haben keine Spezifität.
+    - ``*`` hat die Spezifität (0,0,0)
+    - eine Deklaration mit ``!important`` hat eine höhere Spezifität alls jede Deklaration ohne ``!important``. Alle als ``!important`` markierten Deklarationen werden nach den beschriebenen Regeln ausgewertet.
 
 
 
@@ -851,7 +850,7 @@ Vererbung
 .. class:: incremental list-with-explanations
 
 - Eigenschaften, die nicht vererbt werden sind zum Beispiel: ``border``, ``margin``, ``padding`` und ``background`` 
-- vererbte Eigenschaften haben **keine Spezifizität** 
+- vererbte Eigenschaften haben **keine Spezifität** 
 
   (D. h. ein :where() Selektor oder der Universal-Selektor ``*`` gewinnen.)
 
@@ -872,7 +871,7 @@ Die Entscheidung welche Regeln bzw. Deklarationen Anwendung finden, wird durch d
 4. Sortiere nach *Encapsulation Context* (cf. Shadow-DOM)
 5. Sortiere danach ob die Deklarationen *Element Attached* sind (d. h. mittels ``style`` Attribut)
 6. Sortiere nach *Cascade Layer*
-7. Sortiere nach Spezifizität
+7. Sortiere nach Spezifität
 8. Sortiere nach Reihenfolge der Deklarationen
 
 .. supplemental::
@@ -958,7 +957,7 @@ CSS - Trick - nicht-unterstützte Eigenschaften
     - ``:not(<list of selectors>)`` erlaubt die logische Und-Verknüpfung: 
     
       ``:not(<selector_a>, <selector_b>)`` ≘ ``nicht selector_a und nicht selector_b``.
-    - die Spezifizität ergibt sich aus der Sepzifizität des spezifischsten Selektors
+    - die Spezifität ergibt sich aus der Sepzifizität des spezifischsten Selektors
 
 
 ``:is()`` und ``:where()`` - Beispiel
@@ -1019,7 +1018,7 @@ Erlauben das Gruppieren von Selektoren innerhalb eines (komplexen) Selektors.
 
 .. incremental:: smaller margin-top-1em
 
-    - ``:is()`` und ``:where()`` unterscheiden sich nur in der Spezifizität. (0 bei ``:where()``; die Spezifizität des spezifischsten Selektors bei ``:is()``.
+    - ``:is()`` und ``:where()`` unterscheiden sich nur in der Spezifität. (0 bei ``:where()``; die Spezifität des spezifischsten Selektors bei ``:is()``.
 
     
 
@@ -1089,7 +1088,7 @@ Erlauben das Gruppieren von Selektoren innerhalb eines (komplexen) Selektors.
     
      ``:has(<selector_a>, <selector_b>)`` ≘ ``selector_a oder selector_b passt``.
 
-   - die Spezifizität ergibt sich aus der Sepzifizität des spezifischsten Selektors
+   - die Spezifität ergibt sich aus der Sepzifizität des spezifischsten Selektors
 
 
 .. supplemental::
