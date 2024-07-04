@@ -29,28 +29,121 @@
    :format: html
 
 
+.. class:: text-logo organic-red
+
 Reverse Engineering 101 
 =====================================================
 
-:Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-:Kontakt: michael.eichberg@dhbw-mannheim.de
-:Version: 1.0
+.. raw:: html
+
+    <style>
+
+        .dhbw-logo {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            /*overflow: visible;*/
+
+            perspective: 2500px;
+            transform: rotateX(-30deg);
+            transform-style: preserve-3d;
+
+            .side {
+                position: absolute;
+                width: 98px;
+                height: 98px;
+                border-radius: 4px;
+            }
+
+            .left {
+                background-color: rgba(226, 0, 26);
+                transform: translateY(51px) translateX(0px) translateZ(2px);
+            }
+
+            .back {
+                background-color: rgba(226, 0, 26);
+                transform: translateY(51px) translateX(52px) rotateY(65deg) translateX(52px);
+            }
+
+            .front {
+                background-color: rgba(51, 65, 73, 0.56);
+                transform: translateY(51px) translateX(52px) rotateY(-115deg) translateZ(2px) translateX(52px);
+            }
+
+            .right {
+                background-color: rgba(51, 65, 73, 0.56);
+                transform: translateY(51px) translateX(102px) translateZ(-2px);
+            }
+
+            animation: 30s infinite alternate move-across;
+        }
+        
+        @keyframes move-across {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg) rotateZ(15deg) translate3d(-1500px,-800px,-100px) scale(4) ;
+            }
+            50%, 100% {
+                transform: rotateX(-30deg) rotateY(360deg) translateX(425px) translateY(115px);
+            }
+        }
+
+        .blur-it {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            animation: blur-it 30s infinite alternate;
+        }
+
+        @keyframes blur-it {
+            0% {
+                filter: blur(10px) opacity(0.1);
+            }
+            10% {
+                filter: blur(0px) opacity(0.8);
+            }
+            50%, 100% {
+                filter: blur(0px);
+            }
+        }
+
+    </style>
+
+    <div class="blur-it" style="mix-blend-mode: multiply;z-index:-1">
+        <div class="dhbw-logo">
+            <div class="side left"></div>
+            <div class="side front"></div>
+            <div class="side back"></div>
+            <div class="side right"></div>
+        </div>
+    </div>
+
+.. container::
+
+    :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
+    :Kontakt: michael.eichberg@dhbw-mannheim.de
+    :Version: 1.0
 
 .. supplemental::
 
-  :Folien: 
-      :HTML: |html-source|
-
-      :PDF: |pdf-source|
+  :Folien:
+    - |html-source|
+    - |pdf-source|
+  
   :Fehler auf Folien melden:
-      https://github.com/Delors/delors.github.io/issues
+
+    https://github.com/Delors/delors.github.io/issues
 
 
 
 Vorerfahrungen?
 -------------------
 
-.. class:: incremental more-space-between-list-items
+.. class:: incremental
 
 - Wer hat schon einmal Software or Hardware Reverse Engineering betrieben?
 - Wer kennt Java Bytecode?
@@ -63,9 +156,8 @@ Reverse Engineering
 
 Reverse Engineering ist die Analyse von Systemen mit dem Ziel, ihren Aufbau und ihre Funktionsweise zu verstehen.
 
-.. container:: incremental 
+.. incremental::  
 
-        
     Typische Anwendungsfälle:
 
     .. class:: incremental
@@ -92,12 +184,61 @@ Zweck von Reverse Engineering
 
 
 
+.. class:: smaller-slide-title
+
+`CVE-2024-3094 <https://nvd.nist.gov/vuln/detail/CVE-2024-3094>`__ - ``liblzma`` Backdoor in OpenSSH\ [#]_\ [#]_
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+.. class:: incremental columns far-far-smaller
+
+- Ziel
+  
+  Das Verhalten von SSH bei der Authentifikation so zu verändern, dass es dem Angreifer Zugang zum System erlaubt. 
+  
+  Zur Absicherung der Backdoor ist diese über ein Zertifikat abgesichert.
+ 
+- Verbreitung des Schadcode?
+
+  Die Bibliothek ``liblzma`` wurde so angepasst, dass diese eine Backdoor in SSH einbaut.
+
+  Der Schadcode ist nur in den Tarballs zu finden - nicht im SourceCode im GIT. Der eigentliche Schadcode wurde versteckt in *Testfixtures*.
+
+  Der Code wurde so entworfen, dass bekannte Werkzeuge (*Valgrind*) keine Probleme erkennen.
+
+  Die Bibliothek wurde nur in bestimmten Situationen von OpenSSH verwendet.
+- Bewertung
+    
+  *CVSS Base Score*: 10.0 (kritisch)
+
+  *Entstandener Schaden*: vermutlich gering, da (gerade noch) keine offiziellen Releases (von Debian, Ubuntu, etc.) betroffen waren.
+
+  Dem Angriff ging ein sehr langer Social Engineering Angriff voraus, weswegen mit höherer Wahrscheinlichkeit ein :ger-quote:`State-sponsored Actor` dahintersteckt.
+
+
+.. [#] `InnoQ  Podcast <https://www.innoq.com/de/podcast/030-xz-open-ssh-backdoor/transcript/>`__
+.. [#] `SSH Blob <https://www.ssh.com/blog/a-recap-of-the-openssh-and-xz-liblzma-incident#:~:text=The%20harsh%20fact%20is%20that,by%20one%20of%20its%20maintainers>`__
+
+
+
+Backdoor in 16 D-Link Routern\ [#]_
+--------------------------------------
+
+- Angreifer können aus dem lokalen Netzwerk heraus den Telnet-Dienst betroffener D-Link-Router durch Angabe einer bestimmten Ziel URL aktivieren.
+- Die Admin-Zugangsdaten sind in der Firmware hinterlegt.
+- Vermutlich ursprünglich für werksseitige Tests.
+- *CVSS Base Score*: 8.8 (hoch)
+
+
+.. [#] `Golem.de <https://www.golem.de/news/d-link-versteckte-backdoor-in-16-routermodellen-entdeckt-2406-186277.html>`__
+
+
+
 Reverse Engineering - grundlegende Schritte
 ---------------------------------------------
 
-.. class:: incremental impressive
+.. class:: incremental dhbw 
 
-1. Informationsgewinnung zur Gewinnung aller relevanten Informationen über das Produkt
+1. Informationsgewinnung zur Gewinnung aller relevanten Informationen über das Produkt.
 2. Modellierung mit dem Ziel der (Wieder-)Gewinnung eines (abstrakten) Modells der relevanten Funktionalität.
 3. Überprüfung (:eng:`review`) des Modells auf seine Richtigkeit und Vollständigkeit.
 
@@ -111,7 +252,7 @@ Gegeben sei eine App zum Ver- und Entschlüsseln von Dateien sowie ein paar vers
 
     .. container:: layer incremental
     
-       - Die ausführbare Datei ggf. mit ``file`` überprüfen (z. B. wie kompiliert und für welches Betriebssystem und Architektur)
+       - Die ausführbare Datei ggf. mit ``file`` (oder sogar mit ``binwalk``) überprüfen (z. B. wie wurde die Datei kompiliert und für welches Betriebssystem und Architektur)
     
         Beispiel:
 
@@ -141,7 +282,9 @@ Gegeben sei eine App zum Ver- und Entschlüsseln von Dateien sowie ein paar vers
   
         Ist die Datei gleich groß? 
   
-           Falls ja, dann werden keine Metainformationen gespeichert und das Passwort kann (ggf.) nicht (leicht) verifiziert werden.
+           Falls ja, dann werden keine Metainformationen gespeichert und das Passwort kann (ggf.) nicht (leicht) verifiziert werden. 
+           
+           (Es kann zumindest nicht direkt in der Datei gespeichert sein.)
 
     .. container:: layer incremental
 
@@ -157,7 +300,7 @@ Gegeben sei eine App zum Ver- und Entschlüsseln von Dateien sowie ein paar vers
 
     .. container:: layer incremental
 
-       - Eine Datei mit einem wohldefinierten Muster verschlüsseln, um ggf. den "Mode of Operation" (insbesondere ECB) zu identifizieren.
+       - Eine Datei mit einem wohldefinierten Muster verschlüsseln, um ggf. den :ger-quote:`Mode of Operation` (insbesondere ECB) zu identifizieren.
 
     .. container:: layer incremental
 
@@ -170,6 +313,10 @@ Gegeben sei eine App zum Ver- und Entschlüsseln von Dateien sowie ein paar vers
     .. container:: layer incremental
 
        - ...
+  
+    .. container:: layer incremental
+
+       - Reverse Engineering der App durchführen.
 
 
 Rechtliche Aspekte des Reverse Engineering
@@ -177,10 +324,15 @@ Rechtliche Aspekte des Reverse Engineering
 
 .. class:: incremental
 
-- **unterschiedliche nationale Gesetzgebung**
-- Rechtslage in Deutschland hat sich mehrfach geändert
-- Umgehung von Kopierschutzmechanismen ist im Allgemeinen verboten
-- Lizenz verbietet das Reverse Engineering häufig
+- \
+  
+  .. caution::
+    
+    Die Gesetzgebungen unterscheiden sich von Land zu Land teils signifikant.
+
+- Die Rechtslage hat sich in Deutschland mehrfach geändert.
+- Umgehung von Kopierschutzmechanismen ist im Allgemeinen verboten.
+- Lizenz verbietet das Reverse Engineering häufig!
 
 .. admonition:: Warnung
     :class: incremental warning 
@@ -196,23 +348,25 @@ Software Reverse Engineering
 Ansätze
 -----------
 
-:statische Analyse: Studieren des Programms ohne es auszuführen; typischerweise mittels eines Disassemblers oder eines Decompilers.
+.. container:: scrollable
 
-.. class:: incremental 
+    :statische Analyse: Studieren des Programms ohne es auszuführen; typischerweise mittels eines Disassemblers oder eines Decompilers.
 
-:dynamische Analyse: Ausführen des Programms; typischerweise unter Verwendung eines Debuggers oder eines instrumentations Frameworks (z. B. `Frida <https://frida.re>`__).
+    .. class:: incremental 
 
-.. class:: incremental 
+    :dynamische Analyse: Ausführen des Programms; typischerweise unter Verwendung eines Debuggers oder eines instrumentations Frameworks (z. B. `Frida <https://frida.re>`__).
 
-:hybride Analyse: Kombination aus statischer und dynamischer Analyse.
+    .. class:: incremental 
 
-    Ansätze wie `Unicorn <https://www.unicorn-engine.org>`__, welches auf `QEmu <https://www.qemu.org>`__ aufbaut, erlaubt zum Beispiel die Ausführung von (Teilen von) Binärcode auf einer anderen Architektur als der des Hosts.
-    
-    Ein Beispiel wäre die Ausführung einer Methode, die im Code verschlüsselte hinterlegte Strings entschlüsselt (:eng:`deobfuscation`), um die Analyse zu vereinfachen.
+    :hybride Analyse: Kombination aus statischer und dynamischer Analyse.
 
-.. container:: incremental 
+        Ansätze wie `Unicorn <https://www.unicorn-engine.org>`__, welches auf `QEmu <https://www.qemu.org>`__ aufbaut, erlaubt zum Beispiel die Ausführung von (Teilen von) Binärcode auf einer anderen Architektur als der des Hosts.
+        
+        Ein Beispiel wäre die Ausführung einer Methode, die im Code verschlüsselte hinterlegte Strings entschlüsselt (:eng:`deobfuscation`), um die Analyse zu vereinfachen.
 
-    Ggf. müssen für Teile des Codes, die die Hostfunktionalität nutzen, Stubs/Mocks bereitgestellt werden.
+    .. container:: incremental 
+
+        Ggf. müssen für Teile des Codes, die die Hostfunktionalität nutzen, Stubs/Mocks bereitgestellt werden.
 
 
 Disassembler
@@ -220,14 +374,14 @@ Disassembler
 
 Überführt (maschinenlesbaren) Binärcode in Assemblercode
 
-Beispiel:
+Kommandozeilenwerkzeuge (exemplarisch):
 
-- objdump -d 
-- gdb
-- radare
-- javap (für Java) 
+- ``objdump -d``
+- ``gdb``
+- ``radare``
+- ``javap (für Java)``
 
-.. admonition:: Hinweis
+.. hint::
     :class: incremental small
 
     Für einfache Programme ist es häufig möglich direkt den gesamten Assemblercode mittels der entsprechenden Werkzeuge zu erhalten. Im Falle komplexer Binärdateien (z. B. im ELF (Linux) und PE (Windows) Format) gilt dies nicht und erfordert ggf. manuelle Unterstützung zum Beispiel durch das Markieren von Methodenanfängen. 
@@ -238,25 +392,30 @@ Beispiel:
 Decompiler
 -------------
 
-Überführt (maschinenlesbarem) Binärcode bestmöglich in Hochsprache (meist C oder Java). Eine *kleine* Auswahl von verfügbaren Werkzeugen:
+Überführt (maschinenlesbarem) Binärcode *bestmöglich* in Hochsprache (meist C ähnlich oder Java). Eine *kleine* Auswahl von verfügbaren Werkzeugen:
 
 - Hex-Rays IDAPro (kommerziell)
-- `Ghidra <https://ghidra-sre.org/>`__ (unterstützt fast jede Platform; die Ergebnisse sind sehr unterschiedlich)
+- `Ghidra <https://ghidra-sre.org/>`__ (unterstützt fast jede Platform; die Ergebnisse sind sehr unterschiedlich.)
 - JadX (Androids ``.dex`` Format)
 - CFR (Java ``.class`` Dateien)
 - IntelliJ
-- `decompiler.com <https://decompiler.com>`__
 
 .. container:: supplemental 
 
     Mittels Decompiler ist es ggf. möglich Code, der zum Beispiel ursprünglich in Kotlin oder Scala geschrieben und für die JVM kompiliert wurde, als Java Code zurückzubekommen. 
     
-    Die Ergebnisse sind für Analysezwecke zwar häufig ausreichend gut - von funktionierendem Code jedoch ggf. ((sehr) weit) entfernt.
+    Die Ergebnisse sind für Analysezwecke zwar häufig ausreichend gut – von funktionierendem Code jedoch ggf. (sehr) weit entfernt.
 
-.. admonition:: Hinweis
+    `decompiler.com <https://decompiler.com>`__ unterstützt eine große Anzahl ausführbaren Dateien.
+
+.. hint::
     :class: incremental small
 
-    Generell sehr hilfreich, aber gleichzeitig auch sehr fehlerbehaftet. Vieles, dass im Binärcode möglich ist, hat auf Sourcecode Ebene keine Entsprechung. Zum Beispiel unterstützt Java Bytecode beliebige Sprünge. Solche, die  
+    Decompiler sind generell sehr hilfreich, aber gleichzeitig auch sehr fehlerbehaftet. Vieles, dass im Binärcode möglich ist, hat auf der Ebene des Sourcecodes keine Entsprechung. 
+    
+    Zum Beispiel unterstützt Java Bytecode beliebige Sprünge. Solche Code wird aber durch normale Programme, die z. B. in Java, Kotlin, Scala oder Clojure geschrieben wurden, nicht erzeugt. Decompiler kommen mit solchem Code in der Regel nicht (gut) zurecht.
+
+
 
 cfr Decompiler
 ---------------
@@ -310,9 +469,12 @@ Dient der schrittweisen Ausführung des zu analysierenden Codes oder Hardware; e
 
 .. container:: supplemental 
 
-    Auch für das Debuggen von Hardware gibt es entsprechende Werkzeuge, z. B.
-    `Lauterbach Hardware Debugger <https://www.lauterbach.com>`__
-    Mittels solcher Werkzeuge ist es möglich die Ausführung von Hardware Schritt für Schritt (:eng:`single step mode``) zu verfolgen und den Zustand der Hardware (Speicher und Register) zu inspizieren. Dies erfordert (z.Bsp.) eine JTAG Schnittstelle.
+    .. rubric:: Hardware Debugger
+    
+    Für das Debuggen von Hardware gibt es entsprechende Werkzeuge, z. B.
+    `Lauterbach Hardware Debugger <https://www.lauterbach.com>`__ (kommerziell und sehr teuer).
+
+    Mittels solcher Werkzeuge ist es möglich die Ausführung von Hardware Schritt für Schritt (:eng:`single step mode``) zu verfolgen und den Zustand der Hardware (Speicher und Register) zu inspizieren. Dies erfordert jedoch häufig eine JTAG Schnittstelle oder etwas vergleichbares.
 
 
 .. class:: new-section transition-fade
@@ -324,7 +486,7 @@ Erschwerung des Reverse Engineering
 Obfuscation (:ger:`Verschleierung`)
 ------------------------------------
 
-.. class:: incremental
+.. class:: incremental scrollable
 
 - Techniken, die dazu dienen das Reverse Engineering zu erschweren.
 - Häufig eingesetzt ...
@@ -336,7 +498,7 @@ Obfuscation (:ger:`Verschleierung`)
   -  zum Schutz geistigen Eigentums
   -  für DRM / Durchsetzung von Kopierrechten
   -  zur Prävention von :ger-quote:`Cheating` (insbesondere im Umfeld von Online Games)
-  -  Wenn das Programm als Source Code vertrieben wird (JavaScript)
+  -  Wenn das Programm als Source Code vertrieben wird bzw. vertrieben werden muss (JavaScript)
 
 - Arbeiten auf Quellcode oder Maschinencode Ebene
 - Grenze zwischen *Code Minimization*, *Code Optimization* und *Code Obfuscation* ist fließend.
@@ -349,7 +511,7 @@ Obfuscation (:ger:`Verschleierung`)
 
     Gerade im Umfeld von klassischen *Binaries* für Windows, Mac und Linux erhöhen Compiler Optimierungen, z. B. von C/C++ und Rust Compilern (``-O2 / -O3``), bereits den Aufwand, der notwendig ist den Code zu verstehen, erheblich.
 
-    .. admonition:: Hinweis
+    .. hint::
 
         Einen ambitionierten und entsprechend ausgestatteten Angreifer wird **Code Obfuscation** bremsen, aber sicher nicht vollständig ausbremsen und das Vorhaben verteilen.
 
@@ -357,11 +519,11 @@ Obfuscation (:ger:`Verschleierung`)
 Obfuscation - Techniken (Auszug)
 ------------------------------------
 
-.. class:: incremental
+.. class:: scrollable incremental
 
 - :minor:`entfernen aller Debug-Informationen`
-- das Kürzen aller möglichen Namen (insbesondere Methoden und Klassennamen)
-- das Verschleiern von Konstanten durch den Einsatz vermeintlich komplexer Berechnungen zu deren Initialisierung.
+- Das Kürzen aller möglichen Namen (insbesondere Methoden und Klassennamen).
+- Das Verschleiern von Konstanten durch den Einsatz vermeintlich komplexer Berechnungen zu deren Initialisierung.
 
     .. code:: java
         
@@ -373,18 +535,7 @@ Obfuscation - Techniken (Auszug)
         
             = 2
 
-.. container:: supplemental 
-
-   Obfuscation auf Source Code Ebene: 
-   `International Obfuscated C Code Contest <https://www.ioccc.org/>`__
-
-
-Obfuscation - Techniken (Auszug)
-------------------------------------
-
-.. class:: incremental
-
-- die Verwendung von Unicode Codepoints für Strings oder die Verschleierung von Strings mittels `rot13 <https://cryptii.com/pipes/rot13-decoder>`__ Verschlüsselung.
+- Die Verwendung von Unicode Codepoints für Strings oder die Verschleierung von Strings mittels `rot13 <https://cryptii.com/pipes/rot13-decoder>`__ Verschlüsselung.
   
   .. code:: C
     
@@ -396,13 +547,16 @@ Obfuscation - Techniken (Auszug)
     
         /*  =  */ printf("Hello World!");
 
-- das Umstellen von Instruktionen, um das Dekompilieren zu erschweren
-- das Hinzufügen von totem Code
+- Das Umstellen von Instruktionen, um das Dekompilieren zu erschweren.
+- Das Hinzufügen von totem Code.
 
-- den relevanten Teil der Anwendung komprimieren und verschlüsseln und erst bei Verwendung entpacken und entschlüsseln.
+- Den relevanten Teil der Anwendung komprimieren und verschlüsseln und erst bei Verwendung entpacken und entschlüsseln.
 - ...
 
 .. container:: supplemental 
+
+   Obfuscation auf Source Code Ebene: 
+   `International Obfuscated C Code Contest <https://www.ioccc.org/>`__
 
    **Umstellen von Instruktionen**
     
@@ -425,9 +579,9 @@ Die Java Virtual Machine
 
 .. class:: incremental
 
-- **Java Bytecode** ist die Sprache, in der Java (oder Scala, Kotlin, Groovy, ...) Programme auf der Java Virtual Machine (JVM) [#]_ ausgeführt werden.
+- **Java Bytecode** ist die Sprache, in der Java (oder Scala, Kotlin, ...) Programme auf der Java Virtual Machine (JVM) [#]_ ausgeführt werden.
 - :minor:`In den meisten Fällen arbeiten Java Decompiler so gut, dass ein tiefgehendes Verständnis von Java Bytecode selten notwendig ist.`
-- Java Bytecode kann, muss aber nicht interpretiert werden. (z. B. können virtuelle Methodenaufrufe in Java schneller sein als in C++)
+- Java Bytecode kann — muss aber nicht — interpretiert werden. (Z. B. können :ger-quote:`virtuelle Methodenaufrufe` in Java schneller sein als in C++.)
 
 
 .. [#] `Java Bytecode Spezifikation <https://docs.oracle.com/javase/specs/jvms/se21/html/index.html>`__
@@ -438,13 +592,15 @@ Java Bytecode - stackbasierte virtuelle Maschine
 
 .. container:: smaller
 
-   Die JVM ist eine stackbasierte virtuelle Maschine; die getypten Operanden eines Befehls werden auf einem Stack abgelegt und die Operationen arbeiten auf den obersten Elementen des Stacks. Jeder Thread hat seinen eigenen Stack.
+   Die JVM ist eine stackbasierte virtuelle Maschine. 
+   
+   Die getypten Operanden eines Befehls werden auf einem Stack abgelegt und die Operationen arbeiten auf den obersten Elementen des Stacks. Jeder Thread hat seinen eigenen Stack.
    
         .. container:: two-columns footnotesize incremental
     
             .. container:: column 
         
-                Instruktion
+                .. rubric:: Instruktionen
 
                 .. code:: java
 
@@ -460,7 +616,7 @@ Java Bytecode - stackbasierte virtuelle Maschine
             
             .. container:: column incremental
                 
-                Stack
+                .. rubric:: Veränderung des Stacks
 
                 .. code:: java
 
@@ -473,7 +629,11 @@ Java Bytecode - stackbasierte virtuelle Maschine
                     │ 150 │
                     └─────┘
 
-   - Die benötigte Höhe des Stacks wird vom Compiler berechnet und von der JVM überprüft.
+.. supplemental::
+
+    Eine Methode muss einen Stack begrenzter Höhe aufweisen. Code, für den die Stackhöhe nicht berechenbar ist, wird vom Compiler abgelehnt. (Zum Beispiel ein ``bipush`` in einer Endlosschleife.)
+    Die benötigte Höhe des Stacks wird vom Compiler berechnet und von der JVM überprüft. 
+
 
 
 Java Bytecode - Methodenaufrufe und lokale Variablen
@@ -483,10 +643,13 @@ Java Bytecode - Methodenaufrufe und lokale Variablen
 
 - Die Java Virtual Machine verwendet lokale Variablen zur Übergabe von Parametern beim Methodenaufruf. 
 - Beim Aufruf von *Klassenmethoden* (``static``) werden alle Parameter in aufeinanderfolgenden lokalen Variablen übergeben, beginnend mit der lokalen Variable 0. 
-  d. h. in der aufrufenden Methode werden die Parameter vom Stack geholt und in lokalen Variablen gespeichert.
+  D. h. in der aufrufenden Methode werden die Parameter vom Stack geholt und in lokalen Variablen gespeichert.
 - Beim Aufruf von *Instanzmethoden* wird die lokale Variable 0 dazu verwendet, um die Referenz (``this``) auf das Objekt zu übergeben, auf dem die Instanzmethode aufgerufen wird. 
   Anschließend werden alle Parameter in aufeinanderfolgenden lokalen Variablen übergeben, beginnend mit der lokalen Variable 1.
-- Die Anzahl der benötigten lokalen Variablen wird vom Compiler berechnet und von der JVM überprüft.
+
+.. supplemental::
+
+    Die Anzahl der benötigten lokalen Variablen wird vom Compiler berechnet und von der JVM überprüft. 
 
 
 .. class:: small
@@ -498,11 +661,11 @@ Ein *Constructor* welcher keine expliziten Parameter hat und nur den super Konst
 
 .. code:: java
 
-    // Method descriptor #8 ()V
+    // Method descriptor ()V
     // Stack: 1, Locals: 1
     public Main();
         0  aload_0 [this]
-        1  invokespecial java.lang.Object() [31]
+        1  invokespecial java.lang.Object()
         4  return
 
 Die Zeilennummern und die Informationen über die lokalen Variablen ist optional und wird nur für Debugging Zwecke benötigt.
@@ -525,7 +688,7 @@ Beispiel: Aufruf einer komplexeren Methode
 .. code:: java
     :class: small
         
-    // Method descriptor #36 ([Ljava/lang/String;)V
+    // Method descriptor ([Ljava/lang/String;)V
     // Stack: 5, Locals: 8
     public static void main(java.lang.String[] args) throws ...;
         0  aload_0 [args]
@@ -548,7 +711,7 @@ Verschlüsselung von Daten
 Alternativen zur Speicherung von Passwörtern
 ---------------------------------------------
 
-In einigen Anwendungsgebieten ist es möglich auf das explizite Speichern von Passwörtern ganz zu verzichten [*]_. 
+In einigen Anwendungsgebieten ist es möglich auf das explizite Speichern von Passwörtern ganz zu verzichten\ [*]_. 
 
 .. container:: incremental 
 
@@ -562,7 +725,7 @@ In einigen Anwendungsgebieten ist es möglich auf das explizite Speichern von Pa
 
 
 
-schematische Darstellung der Verschlüsselung von Containern (z. B., Veracrypt)
+Schematische Darstellung der Verschlüsselung von Containern (z. B. Veracrypt)
 -------------------------------------------------------------------------------
 
 
@@ -586,12 +749,85 @@ Generische Dateiverschlüsselung ohne explizite Speicherung des Passworts
 
 
 
-.. class:: center-child-elements
+.. class:: center-child-elements no-title
 
-\
+Fokussiert bleiben!
 --------------------------------------
 
-.. admonition:: Bleibe fokussiert! 
+.. important:: 
     :class: warning incremental
    
+    Bleibe fokussiert! 
+
     Analysiere nur was notwendig ist.
+
+
+.. class:: integrated-exercise organic-red center-child-elements
+
+Live Demo - Reversing SimpleSecure++
+--------------------------------------
+
+
+
+
+.. class:: integrated-exercise
+
+Reverse Engineering Übung
+--------------------------------------
+
+.. rubric:: Gegeben
+
+:Programm: `Secure++ <./exercise/securepp/securepp-0.0.1.jar>`__
+:Datei: `Poem.enc <./exercise/securepp/Poem.enc>`__
+
+.. rubric:: Exemplarische Verwendung zum Verschlüsseln
+
+.. code:: bash
+    :class: far-smaller copy-to-clipboard
+
+    java -jar securepp-0.0.1.jar de.dhbw.securepp.Main \
+        -p 'VielleichtIstEsRichtig-vielleichtAuchNICHT...' \
+        -in Poem.txt -out Poem.enc
+
+.. rubric:: Aufgabe
+
+.. exercise::
+
+    Entschlüsseln Sie die Datei Poem.enc, die mit dem Program Secure++ verschlüsselt wurde.
+
+    .. solution::
+        :pwd: 5ZeilenInPython;
+
+        Das Problem von Secure++ ist, dass der DEK unabhängig vom Passwort ist. Wir benötigen nur den Nonce aus der Datei und die Konstante "DEK", um die Datei zu entschlüsseln.
+
+        Der folgende Python-Code entschlüsselt Dateien, die mit Secure++ verschlüsselt wurden.
+
+        .. code:: python
+            :class: copy-to-clipboard
+
+            #!/usr/local/bin/python3
+
+            # Format:
+            # [32] Salt (for KEK)
+            # [44] Encrypted and Encoded DEK
+            # [16] Checksum
+            # [16] Nonce for CTR
+            # [...] Encrypted Data
+
+            from Crypto.Cipher import AES
+            from Crypto.Util import Counter
+            from binascii import hexlify
+
+            dek = bytes([ 0x43, 0xE7, 0x14, 0x67, 0xF9, 0x86, 0xDE, 0xEA, 0xAA,
+                          0x4E, 0x5F, 0x88, 0xDE, 0x89, 0x15, 0xD7, 0x91, 0x00, 
+                          0x3D, 0x32, 0x0A, 0xE1, 0x2D, 0x19, 0x25, 0x20, 0x5B, 
+                          0x92, 0xA9, 0xB1, 0x84, 0xED ])
+
+            with open("demo/Poem.enc","rb") as f:
+                f.seek(0x5c)
+                nonce = f.read(16)[:8]
+                encryptedData = f.read()
+                aes = AES.new(dek,AES.MODE_CTR,nonce=nonce)
+                print(aes.decrypt(encryptedData))
+
+
