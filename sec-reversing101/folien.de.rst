@@ -29,7 +29,7 @@
    :format: html
 
 
-.. class:: text-logo organic-red
+.. class:: animated-symbol organic-red
 
 Reverse Engineering 101 
 =====================================================

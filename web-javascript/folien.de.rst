@@ -29,6 +29,7 @@
    :format: html
 
 
+.. class:: animated-symbol
 
 Webprogrammierung mit JavaScript
 ================================================
@@ -110,6 +111,10 @@ Grundlagen
 - Standardisiert durch die ECMA (ECMAScript)
 - Verwendet ganz insbesondere in Browsern, aber auch Serverseitig (`Node.js <http://nodejs.org/>`__) oder in Desktop-Anwendungen (Electron)
 
+.. TODO: 
+   - adding JavaScript to HTML files (in particular "defer" and "async" and type="module" )
+   - adding major events DOMContentLoaded, onload, etc.
+   - 
 
 
 Datentypen
@@ -350,6 +355,10 @@ DOM Manipulation
    :tab-width: 4
 
 
+.. TODO: 
+   Promises,
+   async-await, 
+
 Interaktion mit Server
 --------------------------
 
@@ -359,6 +368,8 @@ Interaktion mit Server
    :class: far-far-smaller scrollable copy-to-clipboard
    :tab-width: 4
 
+
+.. TODO: ECMAScript Modules (Plug-in Architektur mit Modules)
 
 
 Referenzen

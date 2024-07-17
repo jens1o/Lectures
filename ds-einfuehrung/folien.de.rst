@@ -32,6 +32,7 @@
    :format: html
 
 
+.. class:: animated-symbol
 
 Einführung in verteilte Systeme
 ================================================
@@ -428,16 +429,16 @@ Sicherheit - Verschlüsselung und Signaturen
 
 Es geht im Wesentlichen um das Ver- und Entschlüsseln von Daten (:math:`X`) mit Hilfe von Schlüsseln.
 
-.. container:: stack
+.. stack::
 
-    .. container:: layer
+    .. layer::
 
         :math:`E(K,X)` bedeutet, dass wir die Nachricht X mit dem Schlüssel :math:`K`  verschlüsseln (:eng:`encryption`). 
         
         :math:`D(K,X)` bezeichnet die Umkehrfunktion, die die Daten wieder entschlüsselt (:eng:`decryption`).
 
 
-    .. container:: layer incremental
+    .. layer:: incremental
 
         .. rubric:: Symmetrische Verschlüsselung
 
@@ -446,15 +447,15 @@ Es geht im Wesentlichen um das Ver- und Entschlüsseln von Daten (:math:`X`) mit
         .. math::
             X = D(K,E(K,X)) 
     
-    .. container:: layer incremental
+    .. layer:: incremental
 
         .. rubric:: Asymmetrische Verschlüsselung
 
         Wir unterscheiden zwischen privaten (:math:`PR`) und öffentlichen Schlüsseln (:math:`PU`) (:math:`PU` :math:`\neq` :math:`PR`). Ein privater und ein öffentlicher Schlüssel bilden immer ein Paar. Der private Schlüssel ist immer geheim zu halten.
         
-        .. container:: stack incremental
+        .. stack:: incremental
 
-            .. container:: layer
+            .. layer::
 
                 **Verschlüsselung von Nachrichten**
                 
@@ -464,7 +465,7 @@ Es geht im Wesentlichen um das Ver- und Entschlüsseln von Daten (:math:`X`) mit
                     Y = E(PU_{Bob},X) \\
                     X = D(PR_{Bob},Y) 
 
-            .. container:: layer incremental
+            .. layer:: incremental
 
                 **Signierung von Nachrichten**
 
@@ -1265,9 +1266,9 @@ Transaktionen auf Geschäftsprozessebene
 
     .. container:: column footnotesize
 
-        .. container:: stack
+        .. stack:: 
 
-            .. container:: layer
+            .. layer::
 
                 .. csv-table::
                     :header: "Primitiv", "Beschreibung"
@@ -1279,7 +1280,7 @@ Transaktionen auf Geschäftsprozessebene
                     LESEN, "Lesen von Daten aus (z. B.) einer Datei oder einer Tabelle."
                     SCHREIBEN, "Schreiben von Daten (z. B.) in eine Datei oder eine Tabelle."
 
-            .. container:: layer incremental
+            .. layer:: incremental
         
                 :Atomar `Atomic`:eng:: geschieht untrennbar (scheinbar)
                 :Konsistent `Consistent`:eng:: keine Verletzung von Systeminvarianten

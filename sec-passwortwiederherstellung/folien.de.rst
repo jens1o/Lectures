@@ -206,6 +206,22 @@ Ist Passwortwiederherstellung nicht :ger-quote:`trivial`?
     `Home Security Heroes <https://www.homesecurityheroes.com/ai-password-cracking/assets/pdf/hsh-an-ai-just-cracked-your-password-infographic.pdf>`__
 
 
+Ist Passwortwiederherstellung nicht wirklich :ger-quote:`trivial`?
+-------------------------------------------------------------------
+
+.. epigraph::
+
+    **Check Your Accounts: 10 Billion Passwords Exposed in Largest Leak Ever**
+
+    *The 'RockYou2024' database includes almost 10 billion passwords pulled from 'a mix of old and new data breaches.' Here's how to check if yours are at risk.*
+
+    [...]Researchers at Cybernews have uncovered a massive trove of nearly 10 billion passwords on a popular hacking forum in what they're calling "largest password compilation" ever.
+
+    The file, titled rockyou2024.txt, was posted on July 4 by someone going by the name ObamaCare and contains a mind-boggling 9,948,575,739 unique plaintext passwords. The user only joined the forum in late May, but they've posted data from other breaches, too. [...]
+
+    -- Jul 06, 2024 `PCMag <https://uk.pcmag.com/security/153138/check-your-accounts-10-billion-passwords-exposed-in-largest-leak-ever>`__
+
+
 
 Wiederherstellung von Passwörtern mit unterschiedlicher Komplexität
 --------------------------------------------------------------------
