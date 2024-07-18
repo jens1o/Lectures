@@ -58,28 +58,27 @@ JavaScript und die Webprogrammierung
 Historie
 ------------------------------------------------
 
-.. raw:: html
+.. module:: timeline
+   :class: far-smaller align-center
 
-	<script src="lib/timeline/timeline.js" type="text/javascript"></script>
-	<link href="lib/timeline/timeline.css" type="text/css" rel="stylesheet" />
-    <svg id="JavaScript-Timeline" class="timeline"/>
-    <script type="text/javascript">
-        Timeline.draw("JavaScript-Timeline",[
-            {d:"03/1996",t:"1.0"},
-            {d:"08/1996",t:"1.1"},
-            {d:"06/1997",t:"1.2"},
-            {d:"10/1998",t:"1.3 - ECMA-262 1st + 2nd edition"},
-            {d:"11/2000",t:"1.5 - ECMA-262 3rd edition"},						
-            {d:"11/2005",t:"1.6"},
-            {d:"10/2006",t:"1.7"},
-            {d:"06/2008",t:"1.8"},
-            {d:"07/2010",t:"1.8.5 - ECMAScript 5"},
-            {d:"06/2015",t:"ECMAScript 6"},
-        ]);
-    </script>
+   {
+    "class" : "JavaScript-Timeline",
+    "spread" : "1.1",
+    "data": [
+        {"d":"03/1996","t":"1.0"},
+        {"d":"08/1996","t":"1.1"},
+        {"d":"06/1997","t":"1.2"},
+        {"d":"10/1998","t":"1.3 - ECMA-262 1st + 2nd edition"},
+        {"d":"11/2000","t":"1.5 - ECMA-262 3rd edition"},						
+        {"d":"11/2005","t":"1.6"},
+        {"d":"10/2006","t":"1.7"},
+        {"d":"06/2008","t":"1.8"},
+        {"d":"07/2010","t":"1.8.5 - ECMAScript 5"},
+        {"d":"06/2015","t":"ECMAScript 6"}
+    ]
+   }
     
 Seit 2016 gibt es jährliche Updates (ECMAScript 2016, 2017, 2018, 2019, 2020, 2021, 2022, ...)
-
 
 
 Grundlagen

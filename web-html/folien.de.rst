@@ -78,37 +78,36 @@ HyperText Markup Language (HTML)
         - Progressive Web-Apps
         - Desktop Apps (z.B. mit Electron)
 
-    .. layer:: incremental
-
-      Historie
-
-      .. raw:: html
-
-        
-        <svg id="HTML-Timeline" class="timeline"/>
-        <script src="lib/timeline/timeline.js" type="text/javascript"></script>
-        <link href="lib/timeline/timeline.css" rel="stylesheet" />
-        <script defer type="text/javascript">
-            Timeline.draw("HTML-Timeline",[
-                {d:"...",t:"HTML 1.0"},
-                {d:"1995",t:"HTML 2.0"},
-                {d:"1997",t:"HTML 3.2 (3.0 wurde nie veröffentlicht)"},
-                {d:"1998",t:"HTML 4.0/CSS"},
-                {d:"2000",t:"XHTML (HTML 4 in XML)"},	
-                {d:"2001",t:"XHTML 1.1"},	
-                {d:"seit 2004",t:"HTML5 in Entwicklung"},
-                {d:"2018",t:"XHTML 1.0 und 1.1 - obsolet"},	
-                {d:"seit 2019",t:"HTML(5) (W3C und WHATWG)"},
-            ]);
-        </script>       
-
-      .. container:: far-smaller
-      
-        WHATWG ≘ Web Hypertext Application Technology Working Group
-
 .. container:: footer-left far-far-smaller 
 
     Im folgenden bezeichnet HTML die HTML(5) Spezifikation (Living Standard).
+
+
+Historie
+-------------
+
+.. module:: timeline 
+    :class: align-center far-smaller
+
+    {
+    "class" : "HTML-Timeline",
+    "spread" : "0.9",
+    "data": [
+        {"d":"...","t":"HTML 1.0"},
+        {"d":"1995","t":"HTML 2.0"},
+        {"d":"1997","t":"HTML 3.2 (3.0 wurde nie veröffentlicht)"},
+        {"d":"1998","t":"HTML 4.0/CSS"},
+        {"d":"2000","t":"XHTML (HTML 4 in XML)"},	
+        {"d":"2001","t":"XHTML 1.1"},	
+        {"d":"seit 2004","t":"HTML5 in Entwicklung"},
+        {"d":"2018","t":"XHTML 1.0 und 1.1 - obsolet"},	
+        {"d":"seit 2019","t":"HTML(5) (W3C und WHATWG)"}
+    ]
+    }     
+
+.. container:: far-smaller
+
+    WHATWG ≘ Web Hypertext Application Technology Working Group
 
 
 
