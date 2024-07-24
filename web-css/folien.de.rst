@@ -29,10 +29,8 @@
 .. role:: far-smaller
 .. role:: monospaced
 
-.. role:: raw-html(raw)
-   :format: html
 
-
+.. class:: animated-symbol
 
 CSS
 ================================================
@@ -55,7 +53,7 @@ CSS
         https://github.com/Delors/delors.github.io/issues
 
 
-.. class:: new-section transition-fade
+.. class:: new-section transition-flip
 
 Einführung
 ------------------------------------------------

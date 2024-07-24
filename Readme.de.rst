@@ -31,10 +31,10 @@ Vorlesung "Verteilte Systeme"
 Vorlesung "Verteilte Systeme" - Ergänzend
 ------------------------------------------
 
-- Zusammenspiel von Agile Methoden und Entwurf verteilter Systeme (`<ds-se-agile/folien.de.rst.html>`__)
+- Zusammenspiel von agilen Methoden und Entwurf verteilter Systeme (`<ds-se-agile/folien.de.rst.html>`__)
 - Entwurfsprinzipien für verteilte Systeme (`<ds-se-entwurfsprinzipien/folien.de.rst.html>`__)
 - RESTful Web Services (`<ds-restful/folien.de.rst.html>`_)
-- XML (`<ds-xml/folien.de.rst.html>`__)
+- XML und XPath (`<ds-xml/folien.de.rst.html>`__)
 
 
 
@@ -52,7 +52,7 @@ _________
 - Vortragsthemen, die sich gut in die Vorlesung einfügen (`<web-vortragsthemen/folien.de.rst.html>`__)
 
 
-Vorlesung "IT Sicherheit (IT Infrastrukturen)"
+Vorlesung mit Bezug zu "IT Sicherheit" 
 -----------------------------------------------
 
 .. container:: scrollable
@@ -70,19 +70,18 @@ Vorlesung "IT Sicherheit (IT Infrastrukturen)"
    11. Passwortwiederherstellung (`<sec-passwortwiederherstellung/folien.de.rst.html>`__)
 
 
+Fortgeschrittene Themen der IT Sicherheit
+------------------------------------------
 
-Vorlesung "Dokumentenmanagement und Verschlüsselungsverfahren"
+- [Optional] Klassische Sicherheitsprinzipien 
+- TCP SSH Firewalls
+- CVSS-CVE-VEP
+- CWE-OWASP
+
+Vorlesung "Dokumentenmanagement"
 ---------------------------------------------------------------
 
 1. Einführung in das Dokumentenmanagement (`<dm-einfuehrung/folien.de.rst.html>`__)
 2. Erfassung und Indizierung von Dokumenten (`<dm-erfassung-und-indizierung/folien.de.rst.html>`__)
 3. Dokumentenmanagement und rechtliche Aspekte (`<dm-rechtliche-aspekte/folien.de.rst.html>`__)
 
-
-.. Vorlesung "Software Engineering III"
-   -----------------------------------------------------
-
-   1. TCP SSH Firewalls
-   2. [Optional] Klassische Sicherheitsprinzipien 
-   3. CVSS-CVE-VEP
-   4. CWE-OWASP

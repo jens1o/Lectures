@@ -33,6 +33,8 @@
 
 
 
+.. class:: animated-symbol
+
 HTML(5) - HyperText Markup Language
 ================================================
 
@@ -77,37 +79,40 @@ HyperText Markup Language (HTML)
         - Webseiten
         - Progressive Web-Apps
         - Desktop Apps (z.B. mit Electron)
+  
+    .. layer:: incremental
+
+        .. rubric:: Historie
+
+        .. module:: timeline 
+            :class: align-center far-far-smaller
+
+            {
+            "class" : "HTML-Timeline",
+            "spread" : "0.9",
+            "data": [
+                {"d":"...","t":"HTML 1.0"},
+                {"d":"1995","t":"HTML 2.0"},
+                {"d":"1997","t":"HTML 3.2 (3.0 wurde nie veröffentlicht)"},
+                {"d":"1998","t":"HTML 4.0/CSS"},
+                {"d":"2000","t":"XHTML (HTML 4 in XML)"},	
+                {"d":"2001","t":"XHTML 1.1"},	
+                {"d":"seit 2004","t":"HTML5 in Entwicklung"},
+                {"d":"2018","t":"XHTML 1.0 und 1.1 - obsolet"},	
+                {"d":"seit 2019","t":"HTML(5) (W3C und WHATWG)"}
+            ]
+            }     
+
+        .. container:: far-smaller
+
+            WHATWG ≘ Web Hypertext Application Technology Working Group
+
+
 
 .. container:: footer-left far-far-smaller 
 
     Im folgenden bezeichnet HTML die HTML(5) Spezifikation (Living Standard).
 
-
-Historie
--------------
-
-.. module:: timeline 
-    :class: align-center far-smaller
-
-    {
-    "class" : "HTML-Timeline",
-    "spread" : "0.9",
-    "data": [
-        {"d":"...","t":"HTML 1.0"},
-        {"d":"1995","t":"HTML 2.0"},
-        {"d":"1997","t":"HTML 3.2 (3.0 wurde nie veröffentlicht)"},
-        {"d":"1998","t":"HTML 4.0/CSS"},
-        {"d":"2000","t":"XHTML (HTML 4 in XML)"},	
-        {"d":"2001","t":"XHTML 1.1"},	
-        {"d":"seit 2004","t":"HTML5 in Entwicklung"},
-        {"d":"2018","t":"XHTML 1.0 und 1.1 - obsolet"},	
-        {"d":"seit 2019","t":"HTML(5) (W3C und WHATWG)"}
-    ]
-    }     
-
-.. container:: far-smaller
-
-    WHATWG ≘ Web Hypertext Application Technology Working Group
 
 
 
@@ -215,14 +220,14 @@ Die Dokumente müssen aus den folgenden Teilen in der angegebenen Reihenfolge be
 
   - Optional ein einzelnes U+FEFF BYTE ORDER MARK (BOM) Zeichen.
   - Eine beliebige Anzahl von Kommentaren und ASCII-Whitespace.
-  - Eine DOCTYPE Deklaration :raw-html:`<!DOCTYPE html>`.
+  - Eine DOCTYPE Deklaration: `<!DOCTYPE html>`.
   - Eine beliebige Anzahl von Kommentaren und ASCII-Whitespace.
-  - Das **Dokumentenelement** in Form eines ``html``-Elementen\ [#]_.
+  - Das **Dokumentenelement** in Form eines ``html``-Elements\ [#]_.
   - Eine beliebige Anzahl von Kommentaren und ASCII-Leerzeichen.
 
   -- HTML Spezifikation
   
-.. [#] HTML ist nicht case-sensitive, d.h. ``html`` und ``HTML`` sind gleichwertig. Wir verwenden jedoch immer die Kleinschreibung.
+.. [#] HTML ist nicht case-sensitive, d. h. ``html`` und ``HTML`` sind gleichwertig. Wir verwenden jedoch immer die Kleinschreibung.
 
 
 Allgemeiner Aufbau von HTML Elementen

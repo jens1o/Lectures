@@ -25,8 +25,6 @@
 .. role:: obsolete
 .. role:: line-above
 
-.. role:: raw-html(raw)
-   :format: html
 
 
 .. class:: animated-symbol
