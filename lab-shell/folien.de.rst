@@ -4,6 +4,7 @@
     :description lang=de: Fortgeschrittene Angewandte IT Sicherheit
     :id: 2023_11-w3wi_se403_passwort_wiederherstellung-shell
     :first-slide: last-viewed
+    :exercises-master-password: WirklichSchwierig!
 
 .. |html-source| source::
     :prefix: https://delors.github.io/
@@ -120,7 +121,7 @@ Grundlegende Prinzipien: Lesen aus einer Datei
 
 .. container:: incremental small line-above margin-top-1em padding-top-1em
 
-    Beispiel: Finden aller Städte, die mit "B" beginnen.[#]_
+    Beispiel: Finden aller Städte, die mit "B" beginnen.\ [#]_
 
     .. code:: zsh
         :class: copy-to-clipboard
@@ -572,21 +573,44 @@ Shellprogrammierung
 Fingerübungen
 -------------------
 
-1. Starten Sie die Kali Linux VM, loggen Sie sich ein und starten Sie einen Terminal.
-2. Finden Sie die Datei, die die Standardpassworte von Postgres Datenbanken enthält. 
+.. container:: far-smaller
 
-   Tip der Dateiname enthält sowohl ``postgres`` als auch ``pass``.
+    Voraussetzung: Starten Sie die Kali Linux VM, loggen Sie sich ein und starten Sie einen Terminal.
 
-.. 
-    find /  -iname "*postgres*pass*" -type f 2>/dev/null
+.. exercise:: Dateien finden
 
-3. Konkatenieren sie die Zeichenkette "MySalt" (ohne Zeilenumbruch!) mit dem Inhalt von rockyou.txt und berechnen Sie davon den md5 Hash. Verwenden Sie keine expliziten Zwischenergebnisse.
+    Finden Sie die Datei, die die Standardpassworte von Postgres Datenbanken enthält. 
 
-.. 
-    $ echo -n "MySalt" | cat - /usr/share/wordlists/rockyou.txt | md5sum
-    4e50fd427d675821b68c61a4c6099ea0  -
+    Tip der Dateiname enthält sowohl ``postgres`` als auch ``pass``.
 
-4. Erzeugen Sie für eine Datei (z. B. ``/usr/bin/wc``) einen MD5 hash und stellen Sie diesen  der Datei selber voran bevor sie alles nach Base64 konvertieren.
+    .. solution::
+        :pwd: find_mit_iname
+    
+        .. code:: bash
+    
+            $ find /  -iname "*postgres*pass*" -type f 2>/dev/null
 
-.. 
-    md5sum /usr/bin/wc | cat - /usr/bin/wc | base64
+.. exercise:: MD5 Hash berechnen
+
+    Konkatenieren sie die Zeichenkette :ger-quote:`MySalt` (ohne Zeilenumbruch!) mit dem Inhalt von rockyou.txt (als Ganzes) und berechnen Sie davon den md5 Hash. Verwenden Sie keine expliziten Zwischenergebnisse.
+
+    .. solution::
+        :pwd: ech_cat_md5sum
+    
+        .. code:: bash
+
+            $ echo -n "MySalt" | cat - /usr/share/wordlists/rockyou.txt |\
+               md5sum
+
+            4e50fd427d675821b68c61a4c6099ea0  -
+
+.. exercise:: Base64
+
+    Erzeugen Sie für eine Datei (z. B. ``/usr/bin/wc``) einen MD5 hash und stellen Sie diesen  der Datei selber voran bevor sie alles nach Base64 konvertieren.
+
+    .. solution:: 
+        :pwd: md5sum_base64
+
+        .. code:: bash
+
+            $ md5sum /usr/bin/wc | cat - /usr/bin/wc | base64

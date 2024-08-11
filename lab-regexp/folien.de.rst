@@ -4,6 +4,7 @@
     :description lang=de: Fortgeschrittene Angewandte IT Sicherheit
     :id: 2023_11-w3wi_se403_passwort_wiederherstellung-regexp
     :first-slide: last-viewed
+    :exercises-master-password: WirklichSchwierig!
 
 .. |html-source| source::
     :prefix: https://delors.github.io/
@@ -36,7 +37,7 @@ Reguläre Ausdrücke
 
   :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
   :Kontakt: michael.eichberg@dhbw-mannheim.de
-  :Version: 1.0
+  :Version: 1.1
 
 .. supplemental::
 
@@ -274,17 +275,37 @@ Reguläre Ausdrücke (Fortgeschrittene Grundlagen)
 Fingerübungen
 ---------------
 
-1. Prüfen Sie ob der Begriff: schmetterling oder Schmetterling in rockyou vorkommt.
+.. exercise:: Schmetterling in Rockyou
+   
+   Prüfen Sie ob der Begriff: schmetterling oder Schmetterling in rockyou vorkommt.
 
-..
-    grep -E "^[a-zA-Z]+$" /usr/share/wordlists/rockyou.txt | grep -ni "schmetterling"
+   .. solution::
+      :pwd: mal_sehen
 
-2. Finden Sie alle Passworte in denen ein Zeichen mind. 3 oder mehrmals wiederholt wird. z. B. "x0000!" oder "aaaabbbb".  
+      .. code:: bash
 
-..
-    grep -E "(.)\1{3,}" /usr/share/wordlists/rockyou.txt 
+         $ grep -E "^[a-zA-Z]+$" /usr/share/wordlists/rockyou.txt |\
+           grep -ni "schmetterling"
 
-3. Finden Sie alle Passworte, in denen eine Sequenz mit mindestens 3 Zeichen wiederholt wird. z. B. "TestTest" oder "1AffeIstAffe#".
+.. exercise:: Wiederholungen von Zeichen in Passwörtern
+   
+   Finden Sie alle Passworte in denen ein Zeichen mind. 3 oder mehrmals wiederholt wird. z. B. "x0000!" oder "aaaabbbb".  
 
-..
-    └─$ grep -E "(.{3,}).*\1" /usr/share/wordlists/rockyou.txt 
+   .. solution::
+      :pwd: ganz_schoen_viele
+
+      .. code:: bash
+         
+         $ grep -E "(.)\1{3,}" /usr/share/wordlists/rockyou.txt 
+
+.. exercise:: Wiederholungen von Sequenzen in Passwörtern
+   
+   Finden Sie alle Passworte, in denen eine Sequenz mit mindestens 3 Zeichen wiederholt wird. z. B. "TestTest" oder "1AffeIstAffe#".
+
+   .. solution::
+      :pwd: Wiederholungen
+
+      .. code:: bash
+
+         
+         $ grep -E "(.{3,}).*\1" /usr/share/wordlists/rockyou.txt 
