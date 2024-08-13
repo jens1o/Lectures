@@ -143,7 +143,7 @@ Ist Passwortwiederherstellung noch relevant?
 
     Obwohl an vielen Stellen versucht wird Passwörter aus vielen Gründen zurück zu drängen, so ist die Verwendung noch allgegenwärtig und in machen Bereichen ist auch nicht unmittelbar eine Ablösung zu erkennen.
 
-    Biometrie ist zum Beispiel in machen Bereichen kein Ersatz für Passwörter und wird - wenn überhaupt - nur ergänzend genommen. So ist es zum Beispiel im deutschen Recht erlaubt/möglich einem Beschuldigten sein Smartphone bei Bedarf vor das Gesicht zu halten, um es zu entsperren. Je nach Qualität des Fingerabdrucksensors können ggf. auch genommene Fingerabdrücke verwendet werden. Möchte der Beschuldigte jedoch das Passwort nicht freiwillige nennen, dann besteht keine direkte weitere Handhabe.
+    Biometrie ist zum Beispiel in machen Bereichen kein Ersatz für Passwörter und wird - wenn überhaupt - nur ergänzend genommen. So ist es zum Beispiel im deutschen Recht erlaubt/möglich einem Beschuldigten sein Smartphone bei Bedarf vor das Gesicht zu halten, um es zu entsperren (Stand 2023). Je nach Qualität des Fingerabdrucksensors können ggf. auch genommene Fingerabdrücke verwendet werden. Möchte der Beschuldigte jedoch das Passwort nicht freiwillige nennen, dann besteht keine direkte weitere Handhabe.
 
 
 
@@ -265,9 +265,9 @@ Raum der Passwortkandidaten
 .. class:: incremental
 
 - Eine vierstellige PIN: 10.000 mögliche Kombinationen. 
-- „Normales“ Passworte mit 8 Zeichen und 70 Zeichen im Zeichensatz (a-z, A-Z, 0-9 und ausgewählte Sonderzeichen): :math:`70^8 = 576.480.100.000.000` Kombinationen.
-- Eine einfache Passphrase mit 4 Wörtern aus einem Wörterbuch mit 100.000 Wörtern: :math:`100.000^4 = 10^{20}` Kombinationen.
-- Eine Passphrase mit 6 Wörtern aus einem Wörterbuch mit 2.000 Wörtern: :math:`2.000^6 = 64 \times 10 ^{18}` Kombinationen.
+- „Normales“ Passworte mit 8 Zeichen und 70 Zeichen im Zeichensatz (a-z, A-Z, 0-9 und ausgewählte Sonderzeichen): :math:`70^8 = 576.480.100.000.000 \approx 5,7 \times 10^{14}` Kombinationen.
+- Eine Passphrase mit 6 Wörtern aus einem Wörterbuch mit 2.000 Wörtern: :math:`2.000^6 = 6,4 \times 10 ^{19}` Kombinationen.
+- Eine einfache Passphrase mit 4 Wörtern aus einem Wörterbuch mit 100.000 Wörtern: :math:`100.000^4 = 1 \times 10^{20}` Kombinationen.
 - Ein :ger-quote:`komplexes` Passwort mit 16 Zeichen und 84 Zeichen im Zeichensatz (a-z, A-Z, 0-9 und die meisten Sonderzeichen): :math:`84^{16} = 6,14 \times 10^{30}` Kombinationen.
 
 .. supplemental::
@@ -332,7 +332,7 @@ Vom Salzen (:eng:`Salt`) ...
     Werden Passwörter direkt mit Hilfe einer kryptografischen Hashfunktion gehasht, dann haben zwei Nutzer, die das gleiche Passwort verwenden, den gleichen Hash.
 
     .. csv-table::
-        :class: tiny
+        :class: tiny highlight-line-on-hover
         :header: User, Hash
 
         Alice, "sha256_crypt.hash('\ **DHBWMannheim**\ ',salt='',rounds=1000) =
@@ -347,7 +347,7 @@ Vom Salzen (:eng:`Salt`) ...
     Passwörter sollten immer mit einem einzigartigen und zufälligen :ger-quote:`Salt` gespeichert werden, um Angriffe mittels Regenbogentabellen zu verhindern. 
 
     .. csv-table::
-        :class: tiny
+        :class: tiny highlight-line-on-hover
         :header: User, Hash
 
         Alice, "sha256_crypt.hash('\ **DHBWMannheim**\ ',\ :red:`salt='0123456'`\ ,rounds=1000)
@@ -948,7 +948,7 @@ Gedankenexperiment
     Sie haben :ger-quote:`ganz viele` Grafikkarten und einen sehr schnellen Hash. Sie kommen auf eine Hashrate von 1 THash/Sekunde (:math:`1 \times 10^{12}`). Sie haben einen Monat Zeit für das Knacken des Passworts.
     Gehen Sie vereinfacht davon aus, dass Ihr Zeichensatz 100 Zeichen umfasst. 
 
-    Berechnen Sie den Anteil des Suchraums, den Sie abgesucht haben, wenn das Passwort 32 Zeichen lang sein sollte und Sie dies wissen. Drücken Sie den Anteil des abgesuchten Raums in Relation zu der Anzahl der Sandkörner der Sahara aus. Gehen Sie davon aus, dass die Sahara ca. 70 Trilliarden (:math:`70 \times 10^{21}`) Sandkörner hat.
+    Berechnen Sie den Anteil des Suchraums, den Sie abgesucht haben, wenn das Passwort 32 Zeichen lang sein sollte und Sie dies wissen. Drücken Sie den Anteil des abgesuchten Raums in Relation zu der Anzahl der Sandkörner der Sahara aus. Gehen Sie davon aus, dass die Sahara ca. 70 Trilliarden (:math:`70 \times 10^{21}`) Sandkörner hat.\ [#]_
 
     .. solution::
         :pwd: Fast-nichts!
@@ -981,7 +981,7 @@ Gedankenexperiment
 
         Oder ganz praktisch ausgedrückt: wir sind - je nach Theroie - frühestens **nach dem Ende des Universums** fertig - `Ende des Universums <https://www.welt.de/kmpkt/article177740494/Weltall-Wie-das-Ende-des-Universums-aussehen-koennte.html#:~:text=Das%20All%20dehnt%20sich%20immer,Gut%20zu%20wissen!>`__.
 
-
+.. [#] `Astronom widerlegt die Sandkorn These (Welt.de) <https://www.welt.de/wissenschaft/weltraum/article7068474/Hobby-Astronom-widerlegt-die-Sandkorn-These.html>`__
 
 Herausforderung: Passwortrichtlinien 
 ---------------------------------------------------------------
@@ -1045,7 +1045,7 @@ Die Zusammensetzung von Passwörtern verstehen
 
 .. container:: small
 
-    Analyse des *rockyou* Leaks.
+    Analyse des ersten/original *Rockyou* Leaks.
 
     .. csv-table::
         :class: tiny no-table-borders no-inner-borders incremental
@@ -1402,7 +1402,7 @@ Bewertung von Passworten
     :Donaudampfschifffahrt: Ist weder in Rockyou noch im Duden und auch nicht in den Corpora von Twitter und Facebook von 2022 zu finden.
     :Passwort: Nr. 93968 in Rockyou.
     :password123: Nr. 1348 in Rockyou.
-    :2wsx3edc4rfv: So nicht in Rockyou, aber 1qaz2wsx3edc4rfv ist Nr. 143611 in Rockyou.
+    :2wsx3edc4rfv: So nicht in Rockyou, aber 1qaz\ *2wsx3edc4rfv* ist Nr. 143611 in Rockyou.
     :Haus Maus: In Rockyou ist lediglich hausmaus zu finden.
     :iluvu: Nr. 1472 in Rockyou.
     :Emily060218: Emily ist Nr. 35567 in Rockyou. Die Zahl ist ganz offensichtlich ein Datum: 6. Feb. 2018 und könnte ein Geburtsdatum, Hochzeitsdatum, oder ein für die Person vergleichbar bedeutends Datum sein.
@@ -1451,9 +1451,9 @@ Werkzeuge und Methoden zur Wiederherstellung von Passwörtern
 Grundlegende Werkzeuge
 -------------------------
 
-- `Linux Shell <../lab-shell/folien.rst.html>`__
+- `Linux Shell <../lab-shell/folien.de.rst.html>`__
 
-- `Reguläre Ausdrücke <../lab-regexp/folien.rst.html>`__
+- `Reguläre Ausdrücke <../lab-regexp/folien.de.rst.html>`__
 
 
 .. class:: new-subsection transition-fade
