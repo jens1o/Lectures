@@ -32,6 +32,8 @@
    :format: html
 
 
+.. class:: animated-symbol organic-red
+
 Passwortwiederherstellung 
 =====================================================
 
@@ -39,16 +41,16 @@ Passwortwiederherstellung
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de
-    :Version: 1.0
+    :Version: 1.1
 
 
 .. supplemental::
 
   :Folien: 
-      :HTML: |html-source|
+      [HTML] |html-source|
 
-      :PDF: |pdf-source|
-  :Fehler auf Folien melden:
+      [PDF] |pdf-source|
+  :Fehler melden:
       https://github.com/Delors/delors.github.io/issues
 
 
@@ -88,7 +90,7 @@ Was ist Passwortwiederherstellung?
 
     - Wer hat schon einmal Passworte wiederhergestellt?
     - Wer hat Erfahrung mit Linux?
-    - Wer hat Erfahrung mit Linux Kommandozeilenwerkzeugen für die Textverarbeitung?
+    - Wer hat Erfahrung mit Linux Kommandozeilenwerkzeugen für die Verarbeitung von Dateien mit Text?
     - Wer hat Erfahrung mit regulären Ausdrücken?
     - Wer hat Erfahrung mit Python?
     - Wer hat Erfahrung mit Java (Reverse Engineering)?
@@ -154,7 +156,7 @@ Ist Passwortwiederherstellung noch relevant?
     
     Microsoft said hackers working for the Russian government breached its corporate networks recently and stole email from executives and some employees to find out what the company knew about them. The tech company said the breach was not due to any flaw in its software, but rather began with a “password spraying.” The technique worked on what Microsoft said was an old test account, and the hackers then used the account’s privileges to get access to multiple streams of email.
 
-    -- The Washington Post; Joseph Menn (January 19, 2024)
+    -- 19. Januar 2024: The Washington Post; Joseph Menn
 
 
 
@@ -172,39 +174,75 @@ Ist Passwortwiederherstellung noch relevant?
 
     "What makes this interesting is that WPA attempts to authenticate using NTLM v2 over the open web," Taler said.
 
-    -- `The Hacker News (Jan 29, 2024) <https://thehackernews.com/2024/01/researchers-uncover-outlook.html>`__
+    -- 29. Januar 2024: `The Hacker News <https://thehackernews.com/2024/01/researchers-uncover-outlook.html>`__
 
 
-.. class:: vertical-title
 
 Ist Passwortwiederherstellung nicht :ger-quote:`trivial`?
 ----------------------------------------------------------------
 
-.. image:: images/golem-passwortcracking.png
-    :align: center
-    :height: 1050px
-    :class: picture margin-left-1em margin-right-1em
-    :alt: Hälfte alle Passwörter in 1 Stunde geknackt
+.. epigraph::
 
-`golem.de <https://www.golem.de/news/forscher-machen-den-test-59-prozent-aller-passwoerter-in-unter-60-minuten-knackbar-2406-186329.html>`__
+    **59 Prozent aller Passwörter in unter 60 Minuten knackbar**
+
+    *Forscher haben per Brute-Force-Methode mit einer Nvidia Geforce RTX 4090 Millionen von Passwörtern aus dem Darknet geknackt*.
+
+    [...] Sicherheitsforscher von Kaspersky haben untersucht, wie schnell sich gängige Passwörter mit einer modernen GPU vom Typ Nvidia Geforce RTX 4090 knacken lassen. Durchgeführt wurde die Untersuchung anhand einer Datenbank mit 193 Millionen echten Nutzerpasswörtern, die die Forscher aus dem Darknet bezogen. Sämtliche Passwörter lagen dabei in Form von gesalzenen MD5-Hashes vor. [...]
+
+    -- 21. Juni 2024: `golem.de <https://www.golem.de/news/forscher-machen-den-test-59-prozent-aller-passwoerter-in-unter-60-minuten-knackbar-2406-186329.html>`__
+
+
 
 .. class:: vertical-title
 
 Ist Passwortwiederherstellung nicht :ger-quote:`trivial`?
 ----------------------------------------------------------
 
-.. image:: logos/home_security_heroes.webp 
-    :align: center
-    :height: 1152px
-    :class: picture margin-left-1em margin-right-1em
-    :alt: An AI just cracked your password.
+.. epigraph::
 
-.. container::
+    **An AI just cracked your password.**
 
-    An AI just cracked your password.
+    We used [...] PassGAN to run through a list of 15,680,000 passwords. [...]
 
-    `Home Security Heroes <https://www.homesecurityheroes.com/ai-password-cracking/assets/pdf/hsh-an-ai-just-cracked-your-password-infographic.pdf>`__
+    Time It Takes Using AI to Crack Your Password
 
+    .. container:: smaller incremental
+
+        .. csv-table::
+            :class: far-far-smaller highlight-line-on-hover
+            :header: # OF CHARACTER, Numbers Only, Lowercase Letters, Lower- & Uppercase Letters, "Numbers, Upper- & Lowercase Letters", "Numbers, Upper- & Lowercase Letters, Symbols"
+
+            4, Instantly, Instantly, Instantly, Instantly, Instantly
+            5, Instantly, Instantly, Instantly, Instantly, Instantly
+            6, Instantly, Instantly, Instantly, Instantly, 4 Seconds
+            7, Instantly, Instantly, 22 Seconds, 42 Seconds, 6 Minutes
+            8, Instantly, 3 Seconds, 19 Minutes, 48 Minutes, 7 Hours
+            9, Instantly, 1 Minutes, 11 Hours, 2 Days, 2 Weeks
+            10, Instantly, 1 Hours, 4 Weeks, 6 Months, 5 Years
+            11, Instantly, 23 Hours, 4 Years, 38 Years, 356 Years
+            12, 25 Seconds, 3 Weeks, 289 Years, 2K Years, 30K Years
+            13, 3 Minutes, 11 Months, 16K Years, 91K Years, 2M Years
+            14, 36 Minutes, 49 Years, 827K Years, 9M Years, 187M Years
+            15, 5 Hours, 890 Years, 47M Years, 613M Years, 14Bn Years
+            16, 2 Days, 23K Years, 2Bn Years, 26Bn Years, 1Tn Years
+            17, 3 Weeks, 812K Years, 539.72M Years, 2Tn Years, 95Tn Years
+            18, 10 Months, 22M Years, 7.23Bn Years, 96Tn Years, 6Qn Years
+
+
+    -- 2023: `Home Security Heroes <https://www.securityhero.io/ai-password-cracking/>`__
+
+.. supplemental::
+
+    Auf der Webseite https://www.securityhero.io/ai-password-cracking/ wird ein Tool angeboten, dass eine Schätzung vornimmt wie lange eine AI braucht, um das Passwort zu knacken. 
+
+    Empfohlene Tests:
+
+    - start
+    - Start
+    - StartStart
+    - startstart!
+
+    Wie bewerten Sie die Einschätzungen dieses Tools?
 
 Ist Passwortwiederherstellung nicht wirklich :ger-quote:`trivial`?
 -------------------------------------------------------------------
@@ -217,9 +255,9 @@ Ist Passwortwiederherstellung nicht wirklich :ger-quote:`trivial`?
 
     [...]Researchers at Cybernews have uncovered a massive trove of nearly 10 billion passwords on a popular hacking forum in what they're calling "largest password compilation" ever.
 
-    The file, titled rockyou2024.txt, was posted on July 4 by someone going by the name ObamaCare and contains a mind-boggling 9,948,575,739 unique plaintext passwords. The user only joined the forum in late May, but they've posted data from other breaches, too. [...]
+    The file, titled ``rockyou2024.txt``, was posted on July 4 by someone going by the name ObamaCare and contains a mind-boggling 9,948,575,739 unique plaintext passwords. The user only joined the forum in late May, but they've posted data from other breaches, too. [...]
 
-    -- Jul 06, 2024 `PCMag <https://uk.pcmag.com/security/153138/check-your-accounts-10-billion-passwords-exposed-in-largest-leak-ever>`__
+    -- 6. Juli 2024: `PCMag <https://uk.pcmag.com/security/153138/check-your-accounts-10-billion-passwords-exposed-in-largest-leak-ever>`__
 
 
 
@@ -262,13 +300,38 @@ Quellen für Passwortkandidaten
 Raum der Passwortkandidaten
 --------------------------------
 
-.. class:: incremental
+:vierstellige PIN: 
 
-- Eine vierstellige PIN: 10.000 mögliche Kombinationen. 
-- „Normales“ Passworte mit 8 Zeichen und 70 Zeichen im Zeichensatz (a-z, A-Z, 0-9 und ausgewählte Sonderzeichen): :math:`70^8 = 576.480.100.000.000 \approx 5,7 \times 10^{14}` Kombinationen.
-- Eine Passphrase mit 6 Wörtern aus einem Wörterbuch mit 2.000 Wörtern: :math:`2.000^6 = 6,4 \times 10 ^{19}` Kombinationen.
-- Eine einfache Passphrase mit 4 Wörtern aus einem Wörterbuch mit 100.000 Wörtern: :math:`100.000^4 = 1 \times 10^{20}` Kombinationen.
-- Ein :ger-quote:`komplexes` Passwort mit 16 Zeichen und 84 Zeichen im Zeichensatz (a-z, A-Z, 0-9 und die meisten Sonderzeichen): :math:`84^{16} = 6,14 \times 10^{30}` Kombinationen.
+    .. container:: incremental
+    
+        
+        :math:`10.000` Kombinationen
+
+:Passwort mit 8 Zeichen und 70 Zeichen im Zeichensatz (a-z, A-Z, 0-9 und ausgewählte Sonderzeichen):
+
+    .. container:: incremental
+    
+        :math:`70^8 = 576.480.100.000.000 \approx 5,7 \times 10^{14}` Kombinationen
+
+:Passphrase mit 6 Wörtern aus einem Wörterbuch mit 2.000 Wörtern: 
+
+    .. container:: incremental
+    
+        :math:`2.000^6 = 6,4 \times 10 ^{19}` Kombinationen
+
+:Passphrase mit 4 Wörtern aus einem Wörterbuch mit 100.000 Wörtern: 
+
+    .. container:: incremental
+    
+        :math:`100.000^4 = 1 \times 10^{20}` Kombinationen
+
+
+
+:Passwort mit 16 Zeichen und 84 Zeichen im Zeichensatz (a-z, A-Z, 0-9 und die meisten Sonderzeichen): 
+
+    .. container:: incremental
+    
+        :math:`84^{16} = 6,14 \times 10^{30}` Kombinationen
 
 .. supplemental::
 
@@ -306,20 +369,20 @@ Hashfunktionen (Wiederholung)
 
     **Kollisionen bei Hashes**
 
-    Wenn ein Passwort :ger-quote:`nur` als Hash gespeichert wird, dann gibt es zwangsläufig Kollisionen und es könnte dann theoretisch passieren, dass ein Angreifer (zufällig) ein völlig anderes Passwort findet, dass bei der Überprüfung des Passworts akzeptiert wird. Die Konstruktion kryptografischer Hashfunktionen stellt jedoch sicher, dass dies in der Praxis nicht auftritt.
+    Wenn ein Passwort :ger-quote:`nur` als Hash gespeichert wird, dann gibt es zwangsläufig Kollisionen und es kann theoretisch passieren, dass ein Angreifer (zufällig) ein völlig anderes Passwort findet, dass bei der Überprüfung des Passworts akzeptiert wird. Die Konstruktion kryptografischer Hashfunktionen stellt jedoch sicher, dass dies in der Praxis nicht auftritt. Sollte jedoch eine :ger-quote:`normale Hashfunktion` genommen werden, dann ist dieses Szenario durchaus realistisch.
 
 
 
 Kryptografische Hashfunktionen für Passworte
 ----------------------------------------------------------------------
 
-.. class:: incremental smaller more-space-between-list-items
+.. class:: incremental
 
 - Bekannte kryptografische Hash-Funktionen: :obsolete:`MD4`, :obsolete:`MD5`, SHA-256, SHA-512, RIPE-MD, ...
-- Bekannte Funktion zur Schlüsselableitung: PBKDF2, ...
+- Bekannte Funktion zur Schlüsselableitung: PBKDF2, Argon2 Familie...
 - Beim Hashing von Passwörtern werden die Basisalgorithmen in der Regel mehrfach (ggf. viele hunderttausend Male) angewendet, um die Laufzeit zu verlängern und es für Angreifer schwieriger zu machen.
-- Mehrere Hash-Algorithmen/Schlüsselableitungsfunktionen wurden ausdrücklich für das Hashing von Passwörtern entwickelt, um gängigen Angriffen zu widerstehen. z. B. bcrypt, scrypt oder die Argon2 Familie.
-- Einige dieser Algorithmen sind so rechenintensiv, dass sie nicht für Webanwendungen bzw. Situationen geeignet sind, in denen viele Benutzer gleichzeitig autorisiert werden müssen. Diese Algorithmen werden in der Regel zum Schutz von Dateien, Containern oder lokaler Festplatten verwendet.
+- Mehrere Hash-Algorithmen/Schlüsselableitungsfunktionen wurden ausdrücklich für das Hashing von Passwörtern entwickelt, um gängigen Angriffen zu widerstehen. Z. B. bcrypt, scrypt oder die Argon2 Familie.
+- Einige dieser Algorithmen sind hochgradig parametrisierbar und dann ggf. so rechenintensiv, dass sie nicht für Webanwendungen bzw. Situationen geeignet sind, in denen viele Benutzer gleichzeitig autorisiert werden müssen. Diese Algorithmen werden in der Regel zum Schutz von Dateien, Containern oder lokaler Festplatten verwendet.
 
 
 Vom Salzen (:eng:`Salt`) ...
@@ -359,11 +422,11 @@ Vom Salzen (:eng:`Salt`) ...
 
 .. container:: supplemental
     
-    **Regenbogentabellen**
+    .. rubric:: Rainbow Tables
 
-    Eine Regenbogentabelle (:eng:`rainbow table`) bezeichnet eine vorberechnete Tabelle die konzeptionell zum einem Hash ein jeweilig dazugehörendes  Passwort speichert und einen effizienten Lookup ermöglicht. Dies kann ggf. die Angriffsgeschwindigkeit sehr signifikant beschleunigen.
+    Eine Rainbow Table (:ger:`Regenbogentabelle` - Verwendung jedoch nicht gängig) bezeichnet eine vorberechnete Tabelle die konzeptionell zum einem Hash ein jeweilig dazugehörendes  Passwort speichert und einen effizienten Lookup ermöglicht. Dies kann ggf. die Angriffsgeschwindigkeit sehr signifikant beschleunigen, auch wenn die Tabellen sehr groß sind und ggf. in die Terabytes gehen.
 
-    Aufgrund der allgemeinen Verwendung von Salts sind Angriffe mit Hilfe von Regenbogentabellen heute nur noch von historischer Bedeutung.
+    Aufgrund der allgemeinen Verwendung von Salts sind Angriffe mit Hilfe von Regenbogentabellen heute (fast nur noch) von historischer Bedeutung.
 
 
 Vom Salzen (:eng:`Salt`)...
@@ -410,13 +473,21 @@ Vom Salzen (:eng:`Salt`)...
 - Der *Secret Key* sollte pro Instanziierung einer Anwendung einmalig sein. 
 
 
-Sichere Hashfunktionen für Passworte
--------------------------------------
+Sichere Hash- bzw. Schlüsselableitungsfunktionen für Passworte
+---------------------------------------------------------------
 
-- Argon2 (z. B. verwendete von LUKS2)
-- bcrypt (basierend auf Blowfish)
-- scrypt (z. B. ergänzend verwendet für das Hashing von Passwörtern auf Smartphones)
-- yescrypt (z. B. moderne Linux Distributionen)
+.. note:: 
+    :class: far-smaller
+
+    Häufig werden die :ger-quote:`Hashwerte` von Passwörtern in Datenbanken oder Dateien  als Base64 kodierter String gespeichert.
+
+:Argon2: z. B. verwendete von LUKS2
+:bcrypt: basierend auf Blowfish; z. B. verwendet in OpenBSD
+:scrypt: z. B. ergänzend verwendet für das Hashing von Passwörtern auf Smartphones
+:yescrypt: z. B. moderne Linux Distributionen
+
+
+
 
 
 `PBKDF2 <https://datatracker.ietf.org/doc/html/rfc2898.html#section-5.2>`__ (Password-Based Key Derivation Function 2)
@@ -426,16 +497,22 @@ Sichere Hashfunktionen für Passworte
 
 - Dient der Ableitung eines Schlüssels aus einem Passwort. 
 - Das Ergebnis der Anwendung der PBKDF2 wird zusammen mit dem *Salt* und dem Iterationszähler für die anschließende Passwortverifizierung gespeichert.
-- die :math:`PBKDF2` Schlüsselableitungsfunktion hat 5 Parameter :math:`DK = PBKDF2(`\ PRF, Password, Salt, c, dkLen\ :math:`)`:
+- die :math:`PBKDF2` Schlüsselableitungsfunktion hat 5 Parameter 
+  
+  :math:`DK = PBKDF2(`\ PRF, Password, Salt, c, dkLen\ :math:`)`:
 
-    :PRF: eine Pseudozufallsfunktion; typischer Weise ein HMAC
-    :Password: das Masterpasswort
-    :Salt: der zu verwendende Salt
-    :c: Zähler für die Anzahl an Runden
-    :dkLen: die Bitlänge des abgeleiteten Schlüssels.
+    .. container:: smaller
+
+        :PRF: eine Pseudozufallsfunktion; typischer Weise ein HMAC\ [#]_
+        :Password: das Masterpasswort
+        :Salt: der zu verwendende Salt
+        :c: Zähler für die Anzahl an Runden
+        :dkLen: die Bitlänge des abgeleiteten Schlüssels (:eng:`derived key length`)
+        
+  .. [#] Ein HMAC bietet sich an, da wir ein Passwort und ein Hash haben.
 
 
-.. container:: supplemental
+.. supplemental:: 
     
     Die PBKDF2 ist nicht für das eigentliche Hashen zuständig sondern :ger-quote:`nur` für das Iterieren der Hashfuntion und das eigentliche Key-stretching.
 
@@ -456,11 +533,11 @@ HMAC (Hash-based Message Authentication Code)
         HMAC(K,m) & = & H( (K' \oplus opad) || H( ( K' \oplus ipad) || m) ) \\
         K' & = &\begin{cases}
                 H(K) & \text{falls K größer als die Blockgröße ist}\\
-                K & \text{andernfalls}
+                K & \text{andernfalls; ggf. Padded}
                 \end{cases}
         \end{array}
     
-    :math:`H` is eine kryptografische Hashfunktion.
+    :math:`H` is eine kryptografische Hashfunktion (z. B. SHA-256 bzw. SHA-512).
 
     :math:`m` ist die Nachricht.
 
@@ -480,12 +557,12 @@ HMAC (Hash-based Message Authentication Code)
 \ 
 ----------------------------------------------
 
-.. image:: graffles/hmac_i_o_key_derivation.svg
+.. image:: graffles/hmac/hmac_i_o_key_derivation.svg
         :alt: Schlüsselableitung für den inneren und äußeren Schlüssel K'
         :align: left
         :height: 450px
 
-.. image:: graffles/hmac_message_hashing.svg
+.. image:: graffles/hmac/hmac_message_hashing.svg
         :alt: Schlüsselableitung für den inneren und äußeren Schlüssel K'
         :align: right
         :height: 625px
@@ -504,7 +581,7 @@ HMAC (Hash-based Message Authentication Code)
 HMAC Computation in Python
 ---------------------------
     
-**Implementierung PBKDF2 mit einer Runde**
+**Implementierung von PBKDF2 mit einer Runde**
 
 .. code:: python
     :class: slightly-more-smaller
@@ -551,6 +628,11 @@ HMAC Computation in Python
             b'h\x88\xc2\xb6X\xb7\xcb\x9c\x90\xc2R...
               \x16\x87\x87\x0e\xad\xa1\xe1:9\xca'
 
+    .. code:: python
+
+        b"\x00\x00\x00\x01"
+
+        Ist die Blocknummer (hier: 1).
 
 
 PBKDF2-HMAC 
@@ -757,9 +839,11 @@ Von Menschen vergebene Passwörter basieren häufig auf Kombinationen von Wörte
 - Reguläre Wörter aus Wörterbüchern: Duden, Webster, …
 - Kontextinformationen:
   
-  - Szenespezifisch: ``acab``, szenetypischen Marken (z. B. Gucci, Ferrari), …
+  - Szenespezifisch: ``acab``, ``1888``, ``1488``\ [#]_ szenetypischen Marken (z. B. Gucci, Ferrari), …
   - Privates Umfeld: Namen von Kindern, Eltern, Hunden, Geburtsort, Adresse, …
 
+.. [#] ``14`` oder ``1488`` ist ein numerischer Code für die vierzehn Worte des David Eden Lane. 
+        (Er war ein Mitbegründer der Terrororganisation *The Order*, die für die Vorherrschaft der weißen Rasse in den USA kämpfte.)
 
 
 Häufige Passworte
@@ -1143,6 +1227,8 @@ Aufgrund der :ger-quote:`Unmöglichkeit` eines Brute-Force-Angriffs stellen sich
     
     Technisch sinnvolle Passwörter sind solche, die die zu Grunde liegenden Passwortrichtlinien und auch weiteren technischen Anforderungen erfüllen. Zum Beispiel den von der Software verwendeten Zeichensatz (UTF-8, ASCII, ...) oder im Falle eines Smartphones/Krytosticks die eingebbaren Zeichen.
 
+        Auf einer deutschen Standardtastatur für Macs können in Kombination mit :ger-quote:`Shift`, :ger-quote:`Alt` und :ger-quote:`Alt+Shift` zum Beispiel 192 verschiedene Zeichen eingegeben werden – ohne auf Unicode oder Zeichentabellen zurückgreifen zu müssen.
+
     Sollte der Algorithmus zum Generieren der Passwörter langsamer sein als die Zeit, die benötigt wird, um ein Passwort zu falsifizieren, dann beschränkt nicht mehr länger nur die Hashrate den Suchraum.
 
 
@@ -1195,7 +1281,7 @@ Password Cracking Using Probabilistic Context-Free Grammars [PCFG]_
    1. Vorverarbeitung, um die Basisstrukturen und deren Wahrscheinlichkeiten zu identifizieren (z. B. zwei Ziffern gefolgt von einem Sonderzeichen und 8 Buchstaben.)
    2. Passwortkandidatengenerierung unter Beachtung der Wahrscheinlichkeiten der Basisstrukturen und der Wahrscheinlichkeiten der Worte, Ziffern und Sonderzeichen. 
    
-      :minor:`(In der Originalversion wurden die Wahrscheinlichkeiten von Worten nicht beachtet; die auf GitHub verfügbare Version enthält jedoch zahlreiche Verbesserungen.)``
+      :minor:`(In der Originalversion wurden die Wahrscheinlichkeiten von Worten nicht beachtet; die auf GitHub verfügbare Version enthält jedoch zahlreiche Verbesserungen.)`
 
 
 PCFG - Analyse - Beispiel
@@ -1411,11 +1497,9 @@ Bewertung von Passworten
     :Baum Lampe Haus Steak Eis Berg: Es handelt sich um ein Passwort mit 30 Stellen, dass vermutlich mit Hilfe von Diceware generiert wurde und 6 Worte umfasst. 
     :ME01703138541: Namenskürzel und Telefonnummer.
     
-.. container:: supplemental
+.. supplemental::
 
-    .. container:: foundations the-blue-background
-        
-        **Diceware**
+    .. admonition:: Diceware
 
         Auch wenn dem Angreifer
         (a) bekannt ist, dass das Passwort mit Hilfe von Diceware generiert wurde, 
@@ -1424,11 +1508,7 @@ Bewertung von Passworten
     
         Beim klassischen Dicewareansatz umfasst das Wörterbuch :math:`6^5` Worte, da man mit einem normalen Würfel fünfmal Würfelt und dann das entsprechende Wort nachschlägt. Würde man zum Beispiel die folgenden Zahlen würfeln: 1,4,2,5,2. Dann würde man das Wort zur Zahl: 14252 nachschlagen.
 
-    .. container:: foundations the-blue-background  
-        
-        **Zeichensatz**
-
-        Auf einer deutschen Standardtastatur für Macs können in Kombination mit :ger-quote:`Shift`, :ger-quote:`Alt` und :ger-quote:`Alt+Shift` zum Beispiel 192 verschiedene Zeichen eingegeben werden – ohne auf Unicode oder Zeichentabellen zurückgreifen zu müssen.
+    
 
 
 Wörterbuchgenerierung - Evaluation von Werkzeugen
@@ -1474,6 +1554,77 @@ Quellen für Werkzeuge & Anleitungen
 - `Hashcat Tools <https://github.com/hashcat/hashcat/tree/master/tools>`__
 - `John (the Ripper) <https://github.com/openwall/john>`__
 - Googeln
+- KI Assistent (z. B.) ChatGPT
+
+.. supplemental::
+    :class: far-smaller
+
+    .. rubric:: Konversation mit ChatGPT (23. August 2024)
+
+    .. container:: far-far-smaller
+
+        Im Folgenden wurde Anpassungen der Formatierung vorgenommen, zwecks Integration in den Foliensatz. Die Inhalte sind jedoch vollständig von ChatGPT erstellt.
+
+    .. container:: text-align-right dhbw-light-gray-background italic padding-1em
+
+        **Prompt**
+
+        Wie extrahiere ich den Hash eines Passworts eines Nutzers unter Ubuntu Linux?
+
+    **Antwort**
+
+    Um den Hash eines Passworts eines Nutzers unter Ubuntu Linux zu extrahieren, müssen Sie Zugriff auf die Datei /etc/shadow haben, da diese Datei die gehashten Passwörter enthält. Folgende Schritte sind notwendig:
+
+    1. Root-Rechte erlangen:
+
+        Da die Datei /etc/shadow nur von root gelesen werden kann, müssen Sie entweder als root angemeldet sein oder sudo verwenden.
+
+    2. Öffnen der /etc/shadow Datei:
+
+        Sie können die Datei mit einem Texteditor oder einem Kommandozeilen-Tool wie cat, less, oder grep öffnen.
+
+        Beispiel mit cat:
+
+        .. code:: bash
+
+           sudo cat /etc/shadow
+
+    3. Suchen des entsprechenden Benutzers:
+
+        Suchen Sie nach der Zeile, die mit dem Benutzernamen beginnt, dessen Passwort-Hash Sie extrahieren möchten. Diese Zeile hat das folgende Format:
+
+        .. code:: text
+
+           benutzername:$id$salt$hash:weitere_felder
+
+        Der Hash des Passworts ist der Teil nach dem zweiten $ Zeichen. Hier ein Beispiel für eine Zeile aus der /etc/shadow Datei:
+
+        .. code:: text
+
+            username:$6$salt$hashed_password:date:0:99999:7:::
+
+        In diesem Fall ist hashed_password der Passwort-Hash des Benutzers.
+
+    4. Extraktion des Passwort-Hashes:
+   
+        Wenn Sie nur den Hash extrahieren möchten, können Sie den Befehl grep zusammen mit cut verwenden:
+
+        .. code:: bash
+
+            sudo grep 'username' /etc/shadow | cut -d: -f2
+
+        Dieser Befehl extrahiert den gesamten Hash einschließlich des ID- und Salt-Teils, also z.B.:
+
+        .. code:: text
+
+            $6$salt$hashed_password
+
+        Falls Sie nur den Hash ohne den ID- und Salt-Teil [...]
+
+    .. hint::
+
+        Der Zugriff auf und das Bearbeiten von /etc/shadow sollte sehr vorsichtig und verantwortungsbewusst durchgeführt werden, da unsachgemäße Änderungen zu Sicherheitsproblemen oder sogar zum Verlust des Zugangs zum System führen können.
+
 
 
 Relevante Linux Kommandozeilenwerkzeuge
@@ -1658,12 +1809,14 @@ Hashcat - relevante Parameter
           
           ?a = ?l?u?d?s        
 
-        Definition von bis zu 4 eigenen Zeichensätzen ist möglich.
+        Definition von bis zu 4 eigenen Zeichensätzen (?1,...,?4) ist möglich.
 
 
 
-`Hashcat - Ausgewählte Regeln <https://hashcat.net/wiki/doku.php?id=rule_based_attack>`__ (Teilweise John kompatibel)
----------------------------------------------------------------------------------------------------------------------------------------------
+`Hashcat - Ausgewählte Regeln <https://hashcat.net/wiki/doku.php?id=rule_based_attack>`__
+------------------------------------------------------------------------------------------------
+
+(Die Regeln sind teilweise John kompatibel.)
 
 .. csv-table::
     :header: "Name", "Function", Description, Input, Output
@@ -1898,7 +2051,7 @@ Aufgrund von Social Engineering/Ermittlungen wissen wir, dass die Person sehr ge
 
 .. class:: incremental
    
-1. Erstellen eines fokussierten Wörterbuchs durch "Googeln" von großen Städten.
+1. Erstellen eines fokussierten Wörterbuchs durch *Googeln* von großen Städten.
 2. Angriff durch Kombination des Wörterbuchs mit sich selbst.
 
    .. code:: bash
@@ -2156,7 +2309,7 @@ Passwörter angreifen - Zusammenfassung
 
 
 
-.. class:: integrated-exercise transition-move-up
+.. class:: integrated-exercise transition-move-to-top
 
 Wiederherstellung eines trivialen Passworts
 --------------------------------------------------
@@ -2207,7 +2360,7 @@ Wiederherstellung eines trivialen Passworts
 
 
 
-.. class:: integrated-exercise transition-scale
+.. class:: integrated-exercise transition-move-to-top
 
 Wörterbuch basierte Wiederherstellung eines Passworts
 ------------------------------------------------------
@@ -2243,16 +2396,16 @@ Sichere Passwörter
 Literaturverzeichnis
 -----------------------
 
-.. container:: tiny
+.. container:: far-smaller
 
     .. [SePass] 
-        SePass: Semantic Password Guessing Using k-nn Similarity Search in Word Embeddings; Maximilian Hünemörder, Levin Schäfer, Nadine-Sarah Schüler, Michael Eichberg & Peer Kröger, ADMA 2022: Advanced Data Mining and ApplicationsSpringer LNAI, volume 13726
+        SePass: Semantic Password Guessing Using k-nn Similarity Search in Word Embeddings; Maximilian Hünemörder, Levin Schäfer, Nadine-Sarah Schüler, Michael Eichberg & Peer Kröger, ADMA 2022: Advanced Data Mining and Applications, Springer LNAI, volume 13726
 
     .. [PCFG]
-        S.\  Aggarwal, M. Weir, B. Glodek and B. Medeiros, "Password Cracking Using Probabilistic Context-Free Grammars," in 2009 30th IEEE Symposium on Security and Privacy (SP); doi: `10.1109/SP.2009.8 <https://doi.ieeecomputersociety.org/10.1109/SP.2009.8>`__
+        S.\  Aggarwal, M. Weir, B. Glodek and B. Medeiros, Password Cracking Using Probabilistic Context-Free Grammars, in 2009 30th IEEE Symposium on Security and Privacy (SP); doi: `10.1109/SP.2009.8 <https://doi.ieeecomputersociety.org/10.1109/SP.2009.8>`__
 
     .. [NGPCFG]
-        S.\ Houshmand, S. Aggarwal and R. Flood, "Next Gen PCFG Password Cracking," in IEEE Transactions on Information Forensics and Security, vol. 10, no. 8, pp. 1776-1791, Aug. 2015, doi: 10.1109/TIFS.2015.2428671.
+        S.\ Houshmand, S. Aggarwal and R. Flood, Next Gen PCFG Password Cracking, in IEEE Transactions on Information Forensics and Security, vol. 10, no. 8, pp. 1776-1791, Aug. 2015, doi: 10.1109/TIFS.2015.2428671.
 
     .. [PAofPCFG] 
         Hranický, R., Lištiak, F., Mikuš, D., Ryšavý, O. (2019). On Practical Aspects of PCFG Password Cracking. In: Foley, S. (eds) Data and Applications Security and Privacy XXXIII. DBSec 2019. Lecture Notes in Computer Science(), vol 11559. Springer, Cham. https://doi.org/10.1007/978-3-030-22479-0_3

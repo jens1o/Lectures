@@ -4,12 +4,10 @@ folien.de.rst.html.pdf
 logos/android.webp
 logos/cryptostick.jpg
 logos/filevault.webp
-logos/home_security_heroes.webp
 logos/veracrypt.webp
-images/golem-passwortcracking.png
 graffles/unsichere_passwort_validierung.svg
 graffles/sepass_conceptual_overview.svg
-graffles/hmac_message_hashing.svg
-graffles/hmac_i_o_key_derivation.svg
+graffles/hmac/hmac_message_hashing.svg
+graffles/hmac/hmac_i_o_key_derivation.svg
 dgraphs/brute_force.svg
 dgraphs/brute_force-luks2.svg
