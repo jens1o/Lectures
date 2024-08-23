@@ -46,7 +46,7 @@ Grundlegende Konzepte verteilter Systeme
 
   :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
   :Kontakt: michael.eichberg@dhbw-mannheim.de
-  :Version: 1.0
+  :Version: 1.0.1
  
 .. supplemental::  
 
@@ -55,7 +55,7 @@ Grundlegende Konzepte verteilter Systeme
       |html-source|
       
       |pdf-source|
-  :Fehler auf Folien melden:
+  :Fehler melden:
 
       https://github.com/Delors/delors.github.io/issues
 
@@ -84,13 +84,33 @@ Von der Bedeutung der Zeit in verteilten Systemen
 - geographische Positionsbestimmung (z. B. GPS)
 
 
-.. container:: dhbw-light-gray-background rounded-corners padding-1em incremental margin-top-2em
 
-  Unterscheidung von realer und logischer Zeit.
+Probleme, wenn die Zeit nicht korrekt ist
+--------------------------------------------------------------------------------
 
-.. supplemental::
+.. epigraph::
 
-  Die logische Zeit ermöglicht es uns, eine wohldefinierte Reihenfolge zwischen Ereignissen (vgl. :eng:`happened before` Relation) zu bestimmen.
+  A recent surge in GPS “spoofing”, a form of digital attack which can send commercial airliners off course, has entered an intriguing new dimension, according to cybersecurity researchers: The ability to hack time. [...]
+
+  “We think too much about GPS being a source of position, but it's actually a source of time,” [...]  “We're starting to see reports of the clocks on board airplanes during spoofing events start to do weird things."
+  In an interview with Reuters, Munro [at Defcon] cited a recent incident in which an aircraft operated by a major Western airline had its onboard clocks suddenly sent forward by years, causing the plane to lose access to its digitally-encrypted communication systems.
+
+  -- `11. August, 2024 - GPS spoofers 'hack time' on commercial airlines <https://www.reuters.com/technology/cybersecurity/gps-spoofers-hack-time-commercial-airlines-researchers-say-2024-08-10/>`__
+
+
+
+.. class:: center-child-elements transition-scale no-title
+
+Reale vs. logische Zeit
+--------------------------------------------------------------------------------
+
+.. container:: dhbw-light-gray-background rounded-corners padding-1em margin-top-2em
+
+  In verteilten System unterscheiden wir **reale** und **logische Zeit**.
+
+  .. container:: dhbw-gray
+
+    Die logische Zeit ermöglicht es uns, eine wohldefinierte Reihenfolge zwischen Ereignissen (vgl. :eng:`happened before` Relation) zu bestimmen. *Häufig* ist dies für verteilte Systeme ausreichend.
 
 
 

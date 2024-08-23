@@ -50,11 +50,11 @@ HTTP und Sockets (in Java)
 .. supplemental::
 
   :Folien: 
-      :HTML: |html-source|
+      [HTML] |html-source|
 
-      :PDF: |pdf-source|
+      [PDF] |pdf-source|
       
-  :Fehler auf Folien melden:
+  :Fehler melden:
       https://github.com/Delors/delors.github.io/issues
 
 .. container:: footer-left tiny 
