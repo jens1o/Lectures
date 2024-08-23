@@ -59,7 +59,7 @@
 
           |pdf-source|
           
-  :Fehler auf Folien melden:
+  :Fehler melden:
 
           https://github.com/Delors/delors.github.io/issues
 
