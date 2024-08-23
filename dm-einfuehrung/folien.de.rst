@@ -23,7 +23,9 @@
 .. role:: obsolete
 .. role:: line-above
 
-   
+
+
+.. class:: animated-symbol
 
 Dokumentenmanagement, Archivierungs- und Verschlüsselungsverfahren
 ===================================================================
@@ -40,7 +42,7 @@ Dokumentenmanagement, Archivierungs- und Verschlüsselungsverfahren
       :HTML: |html-source|
 
       :PDF: |pdf-source|
-  :Fehler auf Folien melden:
+  :Fehler melden:
       https://github.com/Delors/delors.github.io/issues
 
 
@@ -62,9 +64,7 @@ Dokumentmanagement, Archivierungs- und Verschlüsselungsverfahren - W3WI_EH304.
 :Verortung: Drittes Studienjahr (5. oder 6. Semester)
 :Umfang: 25 Vorlesungsstunden und 50 Stunden Selbststudium (2,5 ECTS) 
 :Übergeordnetes Modul: Fortgeschrittene Konzepte des Informationsmanagements im Gesundheitswesen (W3WI_EH304)
-:Prüfungsleistung: :obsolete:`Klausur (60 min/60 Punkte)` oder 
-
-    **Portfolio** (hier mündl. Prüfungsgespräche mit 10min pro Person.)
+:Prüfungsleistung: **Portfoliogespräch** (d. h. mündl. Prüfungsgespräche - 10min pro Person.)
 
 
 .. container:: supplemental
@@ -82,6 +82,7 @@ Dokumentmanagement, Archivierungs- und Verschlüsselungsverfahren - W3WI_EH304.
     - Elektronische Signaturen
     - Archivierungsverfahren 
     - Verschlüsselungsverfahren
+
 
 
 Literatur
