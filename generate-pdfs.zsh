@@ -10,7 +10,7 @@ function update_pdf_if_necessary() {
     then
         echo "$(date '+%Y-%m-%d %H:%M:%S') updating:" $pdf_path 
         osascript LectureDoc2/gen-pdf-from-slides.applescript "$1"
-        sleep 1 # required to ensure that the file is acutally written to disk
+        sleep 2 # required to ensure that the file is acutally written to disk
         # pdf_file=$(basename "$pdf_path")
     fi
     rsync -ac --relative "$pdf_path" "$target_directory"
