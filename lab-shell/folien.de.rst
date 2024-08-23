@@ -29,23 +29,28 @@
    :format: html
 
 
-Die Linux Shell - kurz Wiederholung 
+
+.. class:: animated-symbol
+
+Die Linux Shell 
 =====================================================
+
+Eine kurze Wiederholung / Einführung.
 
 .. container:: line-above padding-bottom-1em
 
   :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
   :Kontakt: michael.eichberg@dhbw-mannheim.de
-  :Version: 1.0
+  :Version: 1.0.1
 
 .. supplemental::
 
   :Folien: 
-      :HTML: |html-source|
+      [HTML] |html-source|
 
-      :PDF: |pdf-source|
+      [PDF] |pdf-source|
       
-  :Fehler auf Folien melden:
+  :Fehler melden:
       https://github.com/Delors/delors.github.io/issues
 
       
@@ -164,26 +169,68 @@ Linux Shell - Grundlegendes Design-Pattern: **Pipes and Filters**
 Wichtige Linux Kommandozeilenwerkzeuge für die Verarbeitung von Passwortkandidaten
 -----------------------------------------------------------------------------------
 
-.. container:: tiny
+.. container:: scrollable
 
     :cat: Dateien verketten.
+
+    .. class:: incremental
+    
     :sed: Strom Editor.
+    
+    .. class:: incremental
+
     :grep: Mustersuche auf Dateien.
+    
+    .. class:: incremental
+
     :tr: Ersetzung und Löschung von Zeichen.
+    
+    .. class:: incremental
+
     :uniq: Filtert wiederholte aufeinanderfolgende Zeilen in einer Datei.
+    
+    .. class:: incremental
+
     :sort: Sortiert Dateien.
+    
+    .. class:: incremental
+
     :echo: Schreibt Argumente auf *Standard Out* (``stdout``).
+    
+    .. class:: incremental
+
     :wc: Zählt die Zeichen, Wörter, Zeilen einer Datei.
+    
+    .. class:: incremental
+
     :comm: Vergleicht sortierte Listen und filtert entsprechend.
+    
+    .. class:: incremental
+
     :find: Auswertung eines Ausdrucks für jede Datei während eines rekusiven Abstiegs über den Verzeichnisbaum.
+    
+    .. class:: incremental
+
     :awk: Muster-orientierte Verarbeitung der Zeilen einer Eingabedatei.
+    
+    .. class:: incremental
+
     :base64: (De-)Kodierung von Daten in Base64 Kodierung.
+    
+    .. class:: incremental
+
     :rev: Dreht die Reihenfolge der Zeichen einer Zeile um.
+    
+    .. class:: incremental
+
     :head: Zeigt die ersten (``-n``) Zeilen einer Datei an. 
+    
+    .. class:: incremental
+
     :tail: Zeigt die letzten (``-n``) Zeilen einer Datei an. :raw-html:`<br>`
            (``-f`` folgt der Datei, d. h. wartet auf weitere Daten, die der Datei hinzugefügt werden.)
 
-.. container:: supplemental
+.. supplemental::
 
     **Anwendungsfälle**
 
@@ -552,17 +599,17 @@ Shellprogrammierung
    .. code:: zsh
     :class: smaller 
 
-    #!/usr/bin/zsh                    # Shebang
-    IFS=$'\n'                         # IFS = Internal Field Separator
-                                      # (Nur Zeilenumbrüche sind Trennzeichen)
-    rm Files.list.assessed            # Lösche die Ausgabedatei
-    for i in $(cat Files.list); do    # Iteriere über die Zeilen in Files.list
+    #!/usr/bin/zsh                   # Shebang zur Spezifikation der Shell
+    IFS=$'\n'                        # IFS = Internal Field Separator
+                                     # (Nur Zeilenumbrüche sind Trennzeichen)
+    rm Files.list.assessed           # Lösche die Ausgabedatei
+    for i in $(cat Files.list); do   # Iteriere über die Zeilen in Files.list
         echo "Processing: ""$i"
-        ent -t "$i" | \               # Berechne die Entropie
-        grep -E "^1" | \              # Selektiere die Zeile mit der Entropie
-        tr -d '\n' | \                # Lösche den Zeilenumbruch
-        cat - <(echo ",""$i") \       # Füge den Dateinamen hinzu
-            >> Files.list.assessed ;  # Schreibe das Ergebnis
+        ent -t "$i" | \              # Berechne die Entropie
+        grep -E "^1" | \             # Selektiere die Zeile mit der Entropie
+        tr -d '\n' | \               # Lösche den Zeilenumbruch
+        cat - <(echo ",""$i") \      # Füge den Dateinamen hinzu
+            >> Files.list.assessed ; # Schreibe das Ergebnis
     done; 
 
 
@@ -573,15 +620,15 @@ Shellprogrammierung
 Fingerübungen
 -------------------
 
-.. container:: far-smaller
+.. admonition:: Voraussetzung
+    :class: far-smaller 
 
-    Voraussetzung: Starten Sie die Kali Linux VM, loggen Sie sich ein und starten Sie einen Terminal.
+    Starten Sie z. B. Kali Linux (oder eine entsprechende VM), loggen Sie sich ein und starten Sie ein Terminal.
 
 .. exercise:: Dateien finden
+    :class: smaller
 
-    Finden Sie die Datei, die die Standardpassworte von Postgres Datenbanken enthält. 
-
-    Tip der Dateiname enthält sowohl ``postgres`` als auch ``pass``.
+    Finden Sie die Datei, die die Standardpassworte von Postgres Datenbanken enthält (der Dateiname enthält sowohl ``postgres`` als auch ``pass``).
 
     .. solution::
         :pwd: find_mit_iname
@@ -591,6 +638,7 @@ Fingerübungen
             $ find /  -iname "*postgres*pass*" -type f 2>/dev/null
 
 .. exercise:: MD5 Hash berechnen
+    :class: smaller
 
     Konkatenieren sie die Zeichenkette :ger-quote:`MySalt` (ohne Zeilenumbruch!) mit dem Inhalt von rockyou.txt (als Ganzes) und berechnen Sie davon den md5 Hash. Verwenden Sie keine expliziten Zwischenergebnisse.
 
@@ -605,6 +653,7 @@ Fingerübungen
             4e50fd427d675821b68c61a4c6099ea0  -
 
 .. exercise:: Base64
+    :class: smaller
 
     Erzeugen Sie für eine Datei (z. B. ``/usr/bin/wc``) einen MD5 hash und stellen Sie diesen  der Datei selber voran bevor sie alles nach Base64 konvertieren.
 
