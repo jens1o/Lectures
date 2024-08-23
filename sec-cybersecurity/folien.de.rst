@@ -46,7 +46,7 @@ Cybersecurity
       |html-source|
 
       |pdf-source|
-  :Fehler auf Folien melden:
+  :Fehler melden:
       https://github.com/Delors/delors.github.io/issues
 
 
@@ -113,6 +113,36 @@ Online-Betrug
 
     --29. Juni 2024 - `Golem.de <https://www.golem.de/news/fast-4-000-verhaftungen-interpol-gelingt-grosser-schlag-gegen-onlinebetrug-2406-186568.html>`__
 
+
+.. class:: no-title center-child-elements
+
+Cyberangriff auf KritIs
+--------------------------
+
+.. epigraph::
+
+    **Hackers shut down heating in Ukrainian city with malware**
+
+    For two days in mid-January, some Ukrainians in the city of Lviv had to live without central heating and suffer freezing temperatures because of a cyberattack against a municipal energy company [...]
+    
+    [...], the cybersecurity company Dragos published a report with details about a new malware dubbed FrostyGoop, which the company says is designed to target industrial control systems [...]
+
+    --Juli 2024 - `Techcrunch <https://techcrunch.com/2024/07/23/hackers-shut-down-heating-in-ukrainian-city-with-malware-researchers-say/?guccounter=1>`__
+
+
+
+.. class:: no-title center-child-elements
+
+Cyberangriff auf Fahrräder
+----------------------------
+
+.. epigraph::
+
+    **Want to Win a Bike Race? Hack Your Rival’s Wireless Shifters**
+
+    Relatively inexpensive hardware can be used to hack the Shimano Di2 wireless gear-shifting systems used by cyclists [...]. They tested the eavesdrop-and-replay attack with a $1,500 USRP software-defined radio, an antenna, and a laptop but said the setup could be miniaturized. Attackers could spoof signals from up to 30 feet away, causing the target bike to shift gears unexpectedly or lock into the wrong gear. 
+
+    --August 2024 - `summary provided by ACM <https://technews.acm.org/archives.cfm?fo=2024-08-aug/aug-16-2024.html>`__; `full article: Wired <https://www.wired.com/story/shimano-wireless-bicycle-shifter-jamming-replay-attacks/>`__
 
 
 .. class:: no-title center-child-elements
@@ -245,10 +275,23 @@ Schutzziele der IT-Sicherheit: CIA-Triade
     Availability ≘dt. Verfügbarkeit
 
 
+
 .. class:: new-section transition-fade
 
 Social-Engineering Angriffe
 -------------------------------------------------------------
+
+
+
+**One Question Saved Ferrari from a Deepfake Scam**
+-------------------------------------------------------------
+
+.. epigraph::
+
+    With one question, an executive at Ferrari stopped an effort to use deepfake technology to scam the company. CEO Benedetto Vigna (pictured) was impersonated on a call by deepfake software that, using a convincing imitation of Vigna's southern Italian accent, said he needed to discuss something confidential that required an unspecified currency-hedge transaction to be carried out. The executive started to have suspicions and asked, for identification purposes, the title of the book Vigna had recently recommended to him. With that, the call ended.
+
+    -- Juli, 2024 - Zusammenfassung: `ACM <https://technews.acm.org/archives.cfm?fo=2024-07-jul/jul-29-2024.html>`__\ ; Original: `‘I Need to Identify You': How One Question Saved Ferrari From a Deepfake Scam - Bloomberg <https://www.bloomberg.com/news/articles/2024-07-26/ferrari-narrowly-dodges-deepfake-scam-simulating-deal-hungry-ceo>`__
+
 
 
 Eigenschaften von Social-Engineering Angriffe

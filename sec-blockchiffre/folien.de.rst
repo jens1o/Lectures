@@ -38,7 +38,7 @@ Block Chiffre und der *Data Encryption Standard (DES)*
       :HTML: |html-source|
 
       :PDF: |pdf-source|
-  :Fehler auf Folien melden:
+  :Fehler melden:
       https://github.com/Delors/delors.github.io/issues
 
 
