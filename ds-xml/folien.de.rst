@@ -33,7 +33,8 @@
    :format: html
 
 
-
+.. class:: animated-symbol
+    
 XML (eXtensible Markup Language) und XPath
 ================================================
 
@@ -51,7 +52,7 @@ XML (eXtensible Markup Language) und XPath
 
         |pdf-source|
 
-    :Fehler auf Folien melden:
+    :Fehler melden:
         https://github.com/Delors/delors.github.io/issues
 
     
