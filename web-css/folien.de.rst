@@ -49,7 +49,7 @@ CSS
 
         |pdf-source|
 
-    :Fehler auf Folien melden:
+    :Fehler melden:
         https://github.com/Delors/delors.github.io/issues
 
 
@@ -1917,9 +1917,6 @@ Nicht Behandelte Themen
                     transition: all 0.3s;
                 }
             } 
-
-
-
 
 
 .. raw:: html

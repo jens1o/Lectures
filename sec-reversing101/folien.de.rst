@@ -34,107 +34,21 @@
 Reverse Engineering 101 
 =====================================================
 
-.. raw:: html
-
-    <style>
-
-        .dhbw-logo {
-            width: 200px;
-            height: 200px;
-            position: relative;
-            /*overflow: visible;*/
-
-            perspective: 2500px;
-            transform: rotateX(-30deg);
-            transform-style: preserve-3d;
-
-            .side {
-                position: absolute;
-                width: 98px;
-                height: 98px;
-                border-radius: 4px;
-            }
-
-            .left {
-                background-color: rgba(226, 0, 26);
-                transform: translateY(51px) translateX(0px) translateZ(2px);
-            }
-
-            .back {
-                background-color: rgba(226, 0, 26);
-                transform: translateY(51px) translateX(52px) rotateY(65deg) translateX(52px);
-            }
-
-            .front {
-                background-color: rgba(51, 65, 73, 0.56);
-                transform: translateY(51px) translateX(52px) rotateY(-115deg) translateZ(2px) translateX(52px);
-            }
-
-            .right {
-                background-color: rgba(51, 65, 73, 0.56);
-                transform: translateY(51px) translateX(102px) translateZ(-2px);
-            }
-
-            animation: 30s infinite alternate move-across;
-        }
-        
-        @keyframes move-across {
-            0% {
-                transform: rotateX(0deg) rotateY(0deg) rotateZ(15deg) translate3d(-1500px,-800px,-100px) scale(4) ;
-            }
-            50%, 100% {
-                transform: rotateX(-30deg) rotateY(360deg) translateX(425px) translateY(115px);
-            }
-        }
-
-        .blur-it {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            animation: blur-it 30s infinite alternate;
-        }
-
-        @keyframes blur-it {
-            0% {
-                filter: blur(10px) opacity(0.1);
-            }
-            10% {
-                filter: blur(0px) opacity(0.8);
-            }
-            50%, 100% {
-                filter: blur(0px);
-            }
-        }
-
-    </style>
-
-    <div class="blur-it" style="mix-blend-mode: multiply;z-index:-1">
-        <div class="dhbw-logo">
-            <div class="side left"></div>
-            <div class="side front"></div>
-            <div class="side back"></div>
-            <div class="side right"></div>
-        </div>
-    </div>
-
 .. container::
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de
-    :Version: 1.0
+    :Version: 1.0.1
 
 .. supplemental::
 
   :Folien:
-    - |html-source|
-    - |pdf-source|
+    
+    |html-source|
+
+    |pdf-source|
   
-  :Fehler auf Folien melden:
+  :Fehler melden:
 
     https://github.com/Delors/delors.github.io/issues
 
@@ -167,7 +81,7 @@ Reverse Engineering ist die Analyse von Systemen mit dem Ziel, ihren Aufbau und 
 
 .. container:: supplemental 
 
-    Vom Reverse Engineering ist das **Reengineering** zu unterscheiden. Im Fall von letzteren geht es :ger-quote:`nur` darum die Funktionalität eines bestehenden Systems mit neuen Techniken wiederherzustellen.
+    Vom Reverse Engineering ist das **Reengineering** zu unterscheiden. Im Fall von letzteren geht es :ger-quote:`nur` darum die Funktionalität eines bestehenden Systems mit neuen Techniken wiederherzustellen.  
 
 
 Zweck von Reverse Engineering
@@ -181,6 +95,21 @@ Zweck von Reverse Engineering
 - Untersuchung auf Backdoors
 - Analyse von Viren, Würmern etc.
 - Umgehung von ungerechtfertigten(?) Schutzmaßnahmen (z. B. bei Malware)
+
+
+Bootrom Lücke
+---------------
+
+.. epigraph:: 
+
+    **CPU-Lücke macht Malware-Infektionen nahezu unumkehrbar**
+
+    Die Schwachstelle verschafft Angreifern Zugang zu einer der höchsten Privilegienstufen heutiger PC-Systeme. Schadsoftware entzieht sich damit jeglicher Erkennung.
+
+    [...] Gegenüber Wired erklärten die Forscher, per Sinkclose ließen sich etwa Bootkits installieren, die für das Betriebssystem und gängige Antivirensoftware unsichtbar seien, während Angreifer einen Vollzugriff auf das Zielsystem erhielten.
+
+    -- August, 2024 - `Golem.de <https://www.golem.de/news/sinkclose-trifft-amd-cpu-luecke-macht-malware-infektionen-nahezu-unumkehrbar-2408-187913.html>`__ (`AMD CVE <https://www.amd.com/en/resources/product-security/bulletin/amd-sb-7014.html>`__)
+
 
 
 
