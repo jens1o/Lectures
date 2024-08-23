@@ -1,7 +1,8 @@
 RMI-Beispiel 
 =====================================
 
-:Zuletzt getestet: 2024.02. Java 21
+Zuletzt getestet: 2024.02. Java 21
+
 
 
 Ausführung
