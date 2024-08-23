@@ -28,13 +28,14 @@ Vorlesung "Verteilte Systeme"
    6. Architekturen von verteilten Systemen (`<ds-architekturen/folien.de.rst.html>`__)
 
 
-Vorlesung "Verteilte Systeme" - Ergänzend
-------------------------------------------
+   .. container:: incremental
 
-- Zusammenspiel von agilen Methoden und Entwurf verteilter Systeme (`<ds-se-agile/folien.de.rst.html>`__)
-- Entwurfsprinzipien für verteilte Systeme (`<ds-se-entwurfsprinzipien/folien.de.rst.html>`__)
-- RESTful Web Services (`<ds-restful/folien.de.rst.html>`_)
-- XML und XPath (`<ds-xml/folien.de.rst.html>`__)
+      .. rubric:: Ergänzend
+      
+      - Zusammenspiel von agilen Methoden und Entwurf verteilter Systeme (`<ds-se-agile/folien.de.rst.html>`__)
+      - Entwurfsprinzipien für verteilte Systeme (`<ds-se-entwurfsprinzipien/folien.de.rst.html>`__)
+      - RESTful Web Services (`<ds-restful/folien.de.rst.html>`_)
+      - XML und XPath (`<ds-xml/folien.de.rst.html>`__)
 
 
 
@@ -46,10 +47,12 @@ Vorlesung "Web Engineering"
 3. CSS (`<web-css/folien.de.rst.html>`__)
 4. JavaScript (`<web-javascript/folien.de.rst.html>`__)
 
-Ergänzend
-_________
+.. container:: incremental
 
-- Vortragsthemen, die sich gut in die Vorlesung einfügen (`<web-vortragsthemen/folien.de.rst.html>`__)
+      .. rubric:: Ergänzend
+      
+      - Vortragsthemen, die sich gut in die Vorlesung einfügen (`<web-vortragsthemen/folien.de.rst.html>`__)
+
 
 
 Vorlesung mit Bezug zu "IT Sicherheit" 
@@ -70,13 +73,16 @@ Vorlesung mit Bezug zu "IT Sicherheit"
    11. Passwortwiederherstellung (`<sec-passwortwiederherstellung/folien.de.rst.html>`__)
 
 
+
 Fortgeschrittene Themen der IT Sicherheit
 ------------------------------------------
 
-- [Optional] Klassische Sicherheitsprinzipien 
-- TCP SSH Firewalls
-- CVSS-CVE-VEP
-- CWE-OWASP
+- [Optional] Klassische Sicherheitsprinzipien (`<sec-klassische-sicherheitsprinzipien/folien.de.rst.html>`__)
+- TCP SSH Firewalls (`<sec-tcp-ssh-firewalls/folien.de.rst.html>`__)
+- CVSS-CVE-VEP (`<sec-cvss-cve-vep/folien.de.rst.html>`__)
+- CWE-OWASP (`<sec-cwe-owasp/folien.de.rst.html>`__)
+
+
 
 Vorlesung "Dokumentenmanagement"
 ---------------------------------------------------------------
@@ -85,3 +91,18 @@ Vorlesung "Dokumentenmanagement"
 2. Erfassung und Indizierung von Dokumenten (`<dm-erfassung-und-indizierung/folien.de.rst.html>`__)
 3. Dokumentenmanagement und rechtliche Aspekte (`<dm-rechtliche-aspekte/folien.de.rst.html>`__)
 
+
+
+Labs
+-----------------------
+
+- Reguläre Ausdrücke (`<lab-regexp/folien.de.rst.html>`__)
+- Die Linux Shell (`<lab-shell/folien.de.rst.html>`__)
+- Kurze Darstellung ausgewählter Aspekte des Softwareprojektmanagements (`<se-softwareprojektmanagement/folien.de.rst.html>`__)
+
+
+Allgemeine Foliensätze
+-----------------------
+
+- Bei Vorträgen zu beachten (`<allg-vortraege/folien.de.rst.html>`__)
+- Bei Ausarbeitungen zu beachten (`<allg-ausarbeitungen/folien.de.rst.html>`__)
