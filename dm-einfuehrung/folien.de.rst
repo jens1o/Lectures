@@ -67,7 +67,7 @@ Dokumentmanagement, Archivierungs- und Verschlüsselungsverfahren - W3WI_EH304.
 :Prüfungsleistung: **Portfoliogespräch** (d. h. mündl. Prüfungsgespräche - 10min pro Person.)
 
 
-.. container:: supplemental
+.. supplemental::
 
     .. rubric:: Kerninhalte gem. MHB
 
@@ -200,7 +200,7 @@ Was kann ein Dokumentenmanagement System (DMS) leisten?
 • Redundanzfreie Archivierung
 • Kostenreduktion (Bearbeitungszeiten, Archivkosten.... )
 
-.. container:: supplemental
+.. supplemental::
 
     Revisionssichere Archivsysteme stellen sicher, dass Informationen wieder auffindbar, nachvollziehbar, unveränderbar und verfälschungssicher archiviert sind.
 
@@ -294,7 +294,7 @@ Was ist ein Dokument aus technischer Sicht?
     Das beschriebene Objekt kann selbst elektronisch gespeichert werden.
 
 
-.. container:: supplemental
+.. supplemental::
 
     Es ist somit eine reine Deklarationsfrage, was ein Dokument ist!
 
@@ -310,7 +310,7 @@ Elektronische Dokumente
     :height: 1150px
     :align: center
 
-.. container:: supplemental
+.. supplemental::
 
     :NCI: *Non-Coded-Information (NCI)-Dokumente* sind eingescannte Unterlagen, die als Bild vorliegen, also keine direkte Bearbeitung/Verarbeitung ermöglichen. 
 
@@ -445,7 +445,7 @@ Meta-Daten
   - Kategorien wie Mahnung, Anfrage, Branche, Land, ... 
   - Quelle des Dokuments (Zeitschrift...)
 
-.. container:: supplemental
+.. supplemental::
 
     Dies ist insbesondere ein Thema der Datenmodellierung, d. h. welche Daten möchte man wie erfassen.
 
@@ -609,7 +609,7 @@ Rahmenbedingungen für die Lebensdauer von Dokumenten
 • Datenschutzbestimmungen
 
 
-.. container:: supplemental
+.. supplemental::
 
     - Konzept zur intelligenten Verwaltung, Bewertung und Nutzung von Daten bei möglichst geringen Kosten (Geschäftsregeln, Servicelevel, ..)
     - Betrachtung der Daten und Dokumente über ihren gesamten Lebenslauf, aber nicht in Abhängigkeit vom Alter sondern von der Wichtigkeit
@@ -1135,7 +1135,7 @@ Beispiel: Anlagendokumentation
     :width: 100%
     :align: center
 
-.. container:: supplemental
+.. supplemental::
 
     Redlining bzw. die Redlining-Funktion, oder auch Rotstiftfunktion, bezeichnet das Markieren und Ändern von elektronischen Dokumenten oder Zeichnungen zu Feedback-Zwecken. Anmerkungen und Änderungen sind ersichtlich, ohne dass die Originaldatei verändert wird. 
     

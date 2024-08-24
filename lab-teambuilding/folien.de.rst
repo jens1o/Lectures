@@ -101,7 +101,7 @@ Marshmallow-Challenge
 
     - Die Höhe wird gemessenen von der Unterkante der untersten Spaghetti bis zur Oberkante des Marshmallow.
 
-.. container:: supplemental
+.. supplemental::
     
     **Hintergrund**
 

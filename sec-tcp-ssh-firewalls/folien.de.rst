@@ -92,7 +92,7 @@ Aufbau einer TCP Verbindung
 
 Dreifacher Handshake:
 
-.. container:: supplemental
+.. supplemental::
 
     **Terminologie**:
 
@@ -383,7 +383,7 @@ Versenden eines für den Verbindungsaufbau ungültigen TCP-Segments an einen Por
     - Scan bleibt unbemerkt
 
 
-.. container:: supplemental 
+.. supplemental:: 
 
     **XMAS-Scan**: 
     
@@ -415,7 +415,7 @@ Bei allen bisher betrachteten Scans kann der Scanner prinzipiell identifiziert w
             :align: left
             :width: 750px
 
-.. container:: supplemental 
+.. supplemental:: 
 
     Zombies: ein Rechner (Computer, Drucker oder anderes IoT Gerät) im Internet *möglichst ohne eigenen Netzverkehr* und mit :ger-quote:`altem` Betriebssystem, bei dem die IP ID in vorhersehbarer Weise inkrementiert wird.
 
@@ -464,7 +464,7 @@ Port Scans: Idle Scan - Zusammenfassung
 - [**Port offen**] Der Zombie antwortet mit RST, da er kein SYN gesendet hat und kein SYN/ACK erwartet und erhöht seine IP ID. 
 - Der Angreifer sendet wieder ein SYN/ACK an den Zombie, um die IP ID zu erfahren. 
 
-.. container:: supplemental 
+.. supplemental:: 
 
     Mit einem IDLE Scan kann nicht unterschieden werden, ob der Port geschlossen oder gefiltert ist.
 
@@ -492,7 +492,7 @@ Port Scans mit nmap
     5000/tcp open  upnp
     7000/tcp open  afs3-fileserver
 
-.. container:: supplemental
+.. supplemental::
 
     **OS-Fingerprinting**
 
@@ -516,7 +516,7 @@ Port Knocking
 - Erst nach Erkennen einer vordefinierten (Einmal-)Klopfsequenz öffnet der Knock-Daemon den gewünschten Port für diesen Client.
 - Client kann nun die Verbindung aufbauen.
 
-.. container:: supplemental
+.. supplemental::
 
     
     **Weiterführend**
@@ -538,7 +538,7 @@ Angreifer übernimmt eine bestehende - zum Beispiel eine bereits durch (Einmal-)
     :height: 800px
 
 
-.. container:: supplemental 
+.. supplemental:: 
 
     TCP/IP-Hijacking ist eine Form eines Man-in-the-Middle-Angriffs. Der Angreifer bestimmt erst die IP-Adressen der beiden Sitzungsteilnehmer.
     
@@ -733,7 +733,7 @@ Distributed-Reflected-Denial-of-Service (DRDoS) Angriff
 - :eng:`Egress Filtering` kann helfen, die Verwendung von IP-Spoofing zu verhindern. 
 
 
-.. container:: supplemental
+.. supplemental::
     
     Bereits im Jahr 2018 wurde ein Angriff mit einer Bandbreite von 1,7 TBit/s beobachtet.
 
@@ -815,7 +815,7 @@ Password Sniffing
 :Heute: Passwörter werden verschlüsselt übertragen (ssh, https, ...)
 
 
-.. container:: supplemental
+.. supplemental::
 
     Unverschlüsselte Passworte können leicht mittels eines Sniffers, der den Netzwerkverkehr mitschneidet (z. B. Wireshark), abgefangen werden.
 
@@ -862,7 +862,7 @@ Einmal-Passwort-System nach Codebuch-Verfahren, dass im Original auf der kryptog
         - Ist das Passwort korrekt, dann wird der Nutzer angemeldet und der Server speichert das Passwort :math:`H^{n-1}(W)` als neues Passwort :math:`H^n(W)` und dekrementiert n.
 
 
-.. container:: supplemental
+.. supplemental::
 
     Intern verwendet S/KEY 64-bit Zahlen. Für die Benutzbarkeit werden diese Zahlen auf sechs kurze Wörter, von ein bis vier Zeichen, aus einem öffentlich zugänglichen 2048-Wörter-Wörterbuch (:math:`2048 = 2^{11}`) abgebildet. Zum Beispiel wird eine 64-Bit-Zahl auf "ROY HURT SKI FAIL GRIM KNEE" abgebildet. 
 
@@ -888,7 +888,7 @@ SSH ermöglicht die sichere Fernanmeldung von einem Computer bei einem anderen (
     (3) Kommunikation über symmetrisch verschlüsselte Verbindung
 
 
-.. container:: supplemental
+.. supplemental::
 
     Die Authentifizierung mittels eines Schlüsselpaars dient primäre der Automatisierung (dann wird auch keine :ger-quote:`Schlüsselphrase` zum Schutz des Passworts verwendet). Auf jeden Fall ist effektives Schlüsselmanagement erforderlich:
 
@@ -920,7 +920,7 @@ Secure Shell (SSH) - Protokoll
 
     :Session Keys: werden für die symmetrische Verschlüsselung der Daten in einer Verbindung verwendet. Session Keys (:ger:`Sitzungsschlüssel`) werden während des  Verbindungsaufbaus ausgehandelt.
 
-.. container:: supplemental 
+.. supplemental:: 
 
     Im Falle von SSH gibt es kein initiales Vertrauen zwischen Server und Client.
 
@@ -1024,7 +1024,7 @@ SSH und :ger-quote:`Back-tunneling`
 - Die meisten Firewalls bieten wenig bis gar keinen Schutz dagegen.
 
 
-.. container:: supplemental
+.. supplemental::
 
     Es ist in diesem Fall besonders interessant für den Angreifer den SSH Server zum Beispiel bei einem Cloud-Anbieter zu betreiben, welcher von dem Unternehmen  standardmäßig verwendet wird (am Anfang steht immer die Aufklärung!). In diesem Fall wird die Firewall keine ausgehenden SSH-Verbindungen dorthin blockieren.
 
@@ -1192,7 +1192,7 @@ Schutzschicht zwischen internem und externem Netz
 - Kontrolle des Nachrichtenverkehrs durch Filterung 
 - begrenzte Isolation mit begrenztem Schutz
 
-.. container:: supplemental
+.. supplemental::
 
     Eine Firewall schafft zwischen verbundenen Netzen Sicherheitsdomänen mit unterschiedlichem Schutzbedarf. Eine wichtige Teilaufgabe ist das Ausarbeiten von Sicherheitsrichtlinien.
 
@@ -1208,7 +1208,7 @@ Realisierung von Virtual Private Networks (VPN)
 - Aufbau einer scheinbar privaten Verbindung von Firmenteilnetzen über das (öffentliche) Internet
 - Zusätzliche Verbindungsverschlüsselung zwischen den Firewalls.
 
-.. container:: supplemental
+.. supplemental::
 
     Ziel ist es aktive und passive Angriffe zu unterbinden. 
     Selbst bei verschlüsselten Verbindungen kann die Verkehrsflussanalyse noch Informationen liefern über die Verbindungen liefern.
@@ -1222,7 +1222,7 @@ Kommerzielle VPNs für Endnutzer
     :align: center
     :width: 1400px
 
-.. container:: supplemental
+.. supplemental::
 
     **Motivation**
 
@@ -1262,7 +1262,7 @@ Zentraler Schutz des gesamten internen Netzwerks durch:
 - Protokollierungsmöglichkeit der Kommunikation von / nach extern
 
 
-.. container:: supplemental
+.. supplemental::
 
     Firewalls (alleine) können die Struktur des Netzwerks nicht verbergen.
 
@@ -1300,7 +1300,7 @@ Realisierungsmöglichkeiten von Firewalls
 - Software-Firewall (*Personal Firewall*)
 
 
-.. container:: supplemental
+.. supplemental::
 
     Im Falle eines :eng:`Bastion Host`, ist dies der einzige unmittelbar erreichbare Rechner.
 
@@ -1393,7 +1393,7 @@ Screened Host
 - Gate bietet Proxy-Server (z. B. für E-Mail)
 
 
-.. container:: supplemental
+.. supplemental::
 
     Gibt es für eine bestimmte Anwendung kein Application-level Proxy, dann kann auf einen für TCP/UDP generischen Proxy zurückgegriffen werden. Dieser arbeitet auf dem Session Layer und kann nur die Header-Informationen auswerten. Es handelt sich dann um ein :eng:`Circuit-level Proxy/Gateway`. Im Vergleich zu einem Application-level Proxy ist die Sicherheit geringer, da der Circuit-level Proxy nicht in der Lage ist, die Daten zu interpretieren.
 
@@ -1464,7 +1464,7 @@ Intrusion Detection Systeme (IDS)
 
     An verschiedenen, neuralgischen Stellen werden spezielle Sensoren platziert, die (hier) den Netzwerkverkehr überwachen und verdächtige Aktivitäten melden.
 
-.. container:: supplemental
+.. supplemental::
 
     Miteinander verwandt bzw. typischerweise in einem Produkt zu finden:
 

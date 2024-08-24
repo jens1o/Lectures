@@ -79,7 +79,7 @@ Reverse Engineering ist die Analyse von Systemen mit dem Ziel, ihren Aufbau und 
     - die Rekonstruktion (von Teilen) des Quellcodes von Programmen, die nur als Binärabbild vorliegen.
     - die Analyse von Kommunikationsprotokollen proprietärer Software 
 
-.. container:: supplemental 
+.. supplemental:: 
 
     Vom Reverse Engineering ist das **Reengineering** zu unterscheiden. Im Fall von letzteren geht es :ger-quote:`nur` darum die Funktionalität eines bestehenden Systems mit neuen Techniken wiederherzustellen.  
 
@@ -329,7 +329,7 @@ Decompiler
 - CFR (Java ``.class`` Dateien)
 - IntelliJ
 
-.. container:: supplemental 
+.. supplemental:: 
 
     Mittels Decompiler ist es ggf. möglich Code, der zum Beispiel ursprünglich in Kotlin oder Scala geschrieben und für die JVM kompiliert wurde, als Java Code zurückzubekommen. 
     
@@ -396,7 +396,7 @@ Dient der schrittweisen Ausführung des zu analysierenden Codes oder Hardware; e
 - x64dbg (Windows, Open-Source)
 - jdb (Java Debugger)
 
-.. container:: supplemental 
+.. supplemental:: 
 
     .. rubric:: Hardware Debugger
     
@@ -436,7 +436,7 @@ Obfuscation (:ger:`Verschleierung`)
   - [Java] Proguard / Dexguard
   - [C/C++] `Star Force <https://www.star-force.com/products/starforce-crypto/>`__ 
 
-.. container:: supplemental 
+.. supplemental:: 
 
     Gerade im Umfeld von klassischen *Binaries* für Windows, Mac und Linux erhöhen Compiler Optimierungen, z. B. von C/C++ und Rust Compilern (``-O2 / -O3``), bereits den Aufwand, der notwendig ist den Code zu verstehen, erheblich.
 
@@ -482,7 +482,7 @@ Obfuscation - Techniken (Auszug)
 - Den relevanten Teil der Anwendung komprimieren und verschlüsseln und erst bei Verwendung entpacken und entschlüsseln.
 - ...
 
-.. container:: supplemental 
+.. supplemental:: 
 
    Obfuscation auf Source Code Ebene: 
    `International Obfuscated C Code Contest <https://www.ioccc.org/>`__
@@ -606,7 +606,7 @@ Die Zeilennummern und die Informationen über die lokalen Variablen ist optional
                                             index: 0 
                                             type:  de.dhbw.simplesecurepp.Main
 
-.. container:: supplemental 
+.. supplemental:: 
 
     Es gibt weitere Metainformationen, die :ger-quote:`nur` für Debugging-Zwecke benötigt werden, z. B. Informationen über die ursprünglich Quelle des Codes oder die sogenannte "Local Variable Type Table" in Hinblick auf generische Typinformationen. Solche Informationen werden häufig vor Auslieferung entfernt bzw. nicht hineinkompiliert. 
 

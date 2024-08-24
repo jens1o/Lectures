@@ -64,7 +64,7 @@ Agile Softwareentwicklung und Ihre Bedeutung für verteilte Anwendungsarchitektu
  
     Das heißt, obwohl wir die Werte auf der rechten Seite wichtig finden, schätzen wir die Werte auf der linken Seite höher ein.“
 
-.. container:: supplemental
+.. supplemental::
 
     Agile Methoden bauen auf iterativen Ansätzen auf, die es schon viel früher gab.
 
@@ -91,7 +91,7 @@ Agile Softwareentwicklung
   Die Entwicklung erfolgt iterativ und erlaubt explizit die Wiederholung von Softwareentwicklungstätigkeiten; die einzelnen Iterationen sind strukturiert entlang einer Serie von inkrementellen Schritten mit einer fixen Länge.  
 
 
-.. container:: supplemental
+.. supplemental::
 
     Große Teams haben sich im Allgemeinen als nicht-effektiv erwiesen.
 
@@ -113,7 +113,7 @@ Aspekte Agiler Prozessmodelle mit Bezug zu Softwarearchitekturen
 - Continuous Delivery (CD) (Continuous Deployment)
 
 
-.. container:: supplemental
+.. supplemental::
 
     :YAGNI: You ain't gonna need it
 
@@ -144,7 +144,7 @@ Anforderungsermittlung mittels Domain-driven Design (DDD) [Evans2004]_
 - Das Ziel des Softwareentwurfs liegt darauf die Fachlichkeit und die Fachlogik der realen Welt bestmöglich zu repräsentieren.
 - Das Domänenmodell ist die Grundlage für den Entwurf komplexer fachlicher Zusammenhänge in der Anwendungsdomäne.
 
-.. container:: supplemental
+.. supplemental::
 
     Häufig wird DDD in Kombination mit *User Stories* eingesetzt, um die Anforderungen zu ermitteln und zu dokumentieren. 
     
@@ -159,7 +159,7 @@ Ausgewählte Konzepte des Domain-driven Design (DDD) [Evans2004]_
 
 
 
-.. container:: supplemental
+.. supplemental::
 
     - Aggregate (aggregates)
   
@@ -180,7 +180,7 @@ Ergänzen bestehende agile Methoden.
     :width: 80%
     :align: center
 
-.. container:: supplemental
+.. supplemental::
 
     DevOps integriert und automatisiert die Arbeit von Softwareentwicklung (Dev) und IT-Betrieb (Ops) als Mittel zur Verbesserung und Verkürzung des Lebenszyklus der Systementwicklung.
 

@@ -160,7 +160,7 @@ Linux Shell - Grundlegendes Design-Pattern: **Pipes and Filters**
         |              \ # Weiterleitung der Ausgabe von echo an base64.
         base64 
 
-.. container:: supplemental
+.. supplemental::
 
     :ger-quote:`Filter`: Kommandos/Programme, die von ``stdin`` lesen und nach ``stdout`` schreiben.
 
@@ -398,7 +398,7 @@ sort
         abc
 
 
-.. container:: supplemental
+.. supplemental::
 
     **Komplexes Beispiel**
 
@@ -525,7 +525,7 @@ sed - Stromeditor
           sed -E -e's/[a-z]/l/g' -e's/[A-Z]/u/g' -e's/[0-9]/d/g' -e 's/[^lud]/s/g'
         lusldlsslls
 
-.. container:: supplemental
+.. supplemental::
 
     **Hinweis**
 

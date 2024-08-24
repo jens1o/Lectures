@@ -61,7 +61,7 @@ Ein |WS| ist lediglich eine Webseite, die von einem Computer angefordert und ver
 
     Ein |WS| ist eine :ger-quote:`Webseite`, die von einem *autonomen Programm* - im Gegensatz zu einem Webbrowser oder einem ähnlichen UI-Tool - konsumiert werden soll.
 
-.. container:: supplemental
+.. supplemental::
 
     .. image:: book-restful_web_services.png 
         :alt: RESTful Web Services
@@ -201,7 +201,7 @@ Ressourcenmodellierung
 - Organisation der Anwendung in URI-adressierbare Ressourcen (diskrete Ressourcen sollten ihre eigenen stabilen URIs erhalten.)
 - nur die Standard-HTTP-Nachrichten - GET, PUT, POST, DELETE und :not-important:`PATCH`  - verwenden, um die vollen Fähigkeiten der Anwendung bereitzustellen
 
-.. container:: supplemental
+.. supplemental::
 
     .. rubric:: HTTP Methoden
 

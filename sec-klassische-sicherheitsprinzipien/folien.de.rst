@@ -82,7 +82,7 @@ Klassische Sicherheitsprinzipien
 
 :Principle of Open Design (vgl. Kerckhoffs Prinzip): Die Sicherheit des Systems sollte nicht von der Geheimhaltung der Sicherheitsmechanismen abhängen (sondern nur vom Schlüssel). 
 
-.. container:: supplemental 
+.. supplemental:: 
 
     **Beispiel - Principle of Least Common Mechanism**
 
@@ -102,7 +102,7 @@ Wiederholung: Klassische Sicherheitsprinzipien
 
 :Principle of Isolation: Die Sicherheitsmechanismen sollten so entworfen sein, dass Fehler in einem Teil des Systems nicht die Sicherheit des gesamten Systems gefährden; d. h. die einzelnen Komponenten sollten möglichst unabhängig voneinander sein und nur über wohldefinierte  Schnittstellen miteinander kommunizieren und entsprechende Sicherheitsüberprüfungen durchführen. 
 
-.. container:: supplemental
+.. supplemental:: 
 
     **Beispiel - Principle of Isolation:**
 
@@ -111,7 +111,8 @@ Wiederholung: Klassische Sicherheitsprinzipien
     Einen Angreifer ist es somit ggf. möglich den Basebandchip anzugreifen und ggf. zu kompromittieren, aber er kann nicht direkt auf das Betriebssystem zugreifen und Nachrichten, die bereits auf Betriebssystem oder Anwendungsebene verschlüsselt werden, sind weiterhin sicher.
 
 
-ergänzende Sicherheitsprinzipien
+
+Ergänzende Sicherheitsprinzipien
 -----------------------------------------------
 
 :Principle of Modularity: Die Sicherheitsmechanismen sollten so entworfen sein, dass sie unabhängig voneinander implementiert und geprüft werden können.
@@ -125,7 +126,7 @@ ergänzende Sicherheitsprinzipien
 :Principle of Least Astonishment: Die Sicherheitsmechanismen sollten so entworfen sein, dass sie keine Überraschungen für die Benutzer bereithalten.
 
 
-.. container:: supplemental
+.. supplemental::
 
     Beispiel für ein Schutzsystem für Netzwerke, dass mehrere Schichten verwendet:
 

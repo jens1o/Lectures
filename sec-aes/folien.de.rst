@@ -226,7 +226,7 @@ AES S-box
     E, E1, F8, 98, 11, 69, D9, 8E, 94, 9B, 1E, 87, E9, CE, 55, 28, DF
     F, 8C, A1, 89, OD, BF, E6, 42, 68, 41, 99, 2D, OF, BO, 54, BB, 16
 
-.. container:: supplemental
+.. supplemental::
 
     Jedes einzelne Byte des Zustands (*State*) wird auf folgende Weise auf ein neues Byte abgebildet: Die äußersten linken 4 Bits des Bytes werden als Zeilenwert und die äußersten rechten 4 Bits als Spaltenwert verwendet. Diese beiden Werte dienen als Indizes in der S-Box.
 
@@ -257,7 +257,7 @@ AES Inverse S-box
     E, A0, E0, 3B, 4D, AE, 2A, F5, BO, C8, EB, BB, 3С, 83, 53, 99, 61
     F, 17, 2B, 04, 7E, BA, 77, D6, 26, E1, 69, 14, 63, 55, 21, 0C, 7D
 
-.. container:: supplemental
+.. supplemental::
 
     .. rubric:: Beispiel
     
@@ -367,7 +367,7 @@ S-Box Design Grundlagen
         \end{matrix}
 
 
-.. container:: supplemental
+.. supplemental::
 
     .. admonition:: Warnung
         :class: warning
@@ -473,7 +473,7 @@ AES *Round Key* Berechnung
     :math:`r_{c_{6}}=20,r_{c_{7}}=40,r_{c_{8}}=80,r_{c_{9}}=1B = 0001 1011, r_{c_{10}}=36`
 
 
-.. container:: supplemental
+.. supplemental::
 
     Die :math:`xtime` Funktion ist eine Multiplikation im endlichen Körper :math:`GF(2^8)` und ist die Polynommultiplikation mit dem Polynom :math:`x`.
 
@@ -697,7 +697,7 @@ AES kann effizient auf einem 32-Bit-Prozessor implementiert werden:
 - Die Entwickler glauben, dass die Möglichkeit einer effizienten Implementierung ein Schlüsselfaktor für die Wahl der AES-Chiffre zum neuen Standard war.
 
 
-.. container:: supplemental
+.. supplemental::
 
     .. image:: drawings/vorberechnung-von-mixcolumns.png
         :width: 100%

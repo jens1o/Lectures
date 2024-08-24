@@ -118,7 +118,7 @@ Sicherheitsanforderungen an kryptografische Hashfunktion II
 
     (:eng:`Collision resistant; strong collision resistant`)
 
-.. container:: supplemental
+.. supplemental::
 
     **Hintergrund**
 
@@ -426,7 +426,7 @@ HMAC (Hash-based Message Authentication Code)
         :width: 1300px
         :class: incremental margin-top-1em padding-top-1em
 
-.. container:: supplemental
+.. supplemental::
 
     **Padding und Hashing**
 
@@ -464,7 +464,7 @@ HMAC Berechnung in Python
           \x16\x87\x87\x0e\xad\xa1\xe1:9\xca'
 
 
-.. container:: supplemental
+.. supplemental::
     
     HMAC ist auch direkt als Bibliotheksfunktion verfügbar.
 

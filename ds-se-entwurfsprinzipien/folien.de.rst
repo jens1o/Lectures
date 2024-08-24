@@ -86,7 +86,7 @@ Die Entitäten (:dhbw-light-gray:`Klassen`, :dhbw-gray:`Module`, :dhbw-gray:`Kom
 
   Diese Kriterien erlauben es uns einen :ger-quote:`fertigen` Entwurf zu beurteilen ohne zu sagen, wie das Ziel erreicht werden kann.
 
-.. container:: supplemental
+.. supplemental::
 
   Die unabhängige Testbarkeit ersetzt aber nicht die Notwendigkeit von Integrationstests.
 
@@ -110,7 +110,7 @@ Die Entitäten (:dhbw-light-gray:`Klassen`, :dhbw-gray:`Module`, :dhbw-gray:`Kom
 
     [Martin2017]_
 
-.. container:: supplemental
+.. supplemental::
 
   Es muss Leitlinien geben, die uns helfen einen guten Entwurf zu erstellen, der die genannten Ziele erreicht. Weiterhin muss klar sein wie dieser beurteilt werden kann. d. h. Code darf nicht beliebig :ger-quote:`platziert` werden; Schnittstellen sollten nicht aus dem Bauch heraus entworfen werden.
 
@@ -141,7 +141,7 @@ Kopplung (:eng:`coupling`)
 .. [#] Eine Entität kann z. B. eine Methode, Klasse, Modul, Package, Komponente oder Service sein.
 
 
-.. container:: supplemental
+.. supplemental::
 
   *Dynamische Kopplung* entsteht zur Laufzeit durch den Austausch von Nachrichten, statische Kopplung zur Compilezeit.
 
@@ -159,7 +159,7 @@ Eine Entität mit hoher Kopplung ist nicht wünschenswert:
 - sie sind schwerer wiederzuverwenden, da die Verwendung auch aller weiteren Entitäten notwendig ist von denen die Entität abhängt
 
 
-.. container:: supplemental
+.. supplemental::
 
   Hohe Kopplung ist aber nicht per-se schlecht! Eine hohe Kopplung an Dinge, die extrem stabil sind, ist im Allgemeinen unkritisch.
 
@@ -176,7 +176,7 @@ Niedrige statische Kopplung (:eng:`low (static) coupling`)
   :align: center
   
 
-.. container:: supplemental
+.. supplemental::
 
   Keine Kopplung ist (auch) nicht wünschenswert, da dies zu Entitäten führt, die alle Arbeit durchführen; weiterhin führt dies auch dazu, dass sich ggf. die Arbeit sehr viel schlechter aufteilen lässt und dann eine agile Entwicklung mit einem kleinen Team nicht mehr möglich ist. 
 
@@ -211,7 +211,7 @@ Niedrige vs. hohe dynamische Kopplung
     (:eng:`Publisher-subscriber`)
 
 
-.. container:: supplemental
+.. supplemental::
 
   Beobachtungen:
 
@@ -249,7 +249,7 @@ Ausgewählte Typen von Zusammenhalt:
   Es gibt keine relevante Beziehung zwischen den Elementen.
 
 
-.. container:: supplemental
+.. supplemental::
 
   Eine wesentliche Frage ist: :ger-quote:`Worin besteht der abgeschlossene Kontext, um etwas auf einer entsprechenden Abstraktionsebene kohäsiv erscheinen zu lassen?`
 
@@ -269,7 +269,7 @@ Sie sind:
 - schwer zu warten und oft von Änderungen betroffen
 
 
-.. container:: supplemental
+.. supplemental::
 
   Services mit einer geringen Kohäsion repräsentieren häufig Dinge auf sehr grober, abstrakter Ebene und haben Verantwortlichkeiten übernommen für Dinge, die sie bessere delegieren sollten.
 
@@ -309,7 +309,7 @@ Alle Funktionalität und alle Daten sollten :ger-quote:`natürlich` zum Konzept 
       
       :shiny-green:`hohe Kohäsion`
 
-.. container:: supplemental
+.. supplemental::
 
   Eine sehr niedrige Kopplung führt zwangsweise dazu, das man zu viel Funktionalität in ein Modul/einen Service/eine Klasse/eine Funktion packt. Eine hohe Kohäsion führt zwangsweise dazu, dass man (sehr) viele Module/Services/Klassen/Funktionen benötigt, die häufig viele (starke) Kopplungen haben. Es gilt also die richtige Balance zu finden.
 
@@ -344,7 +344,7 @@ Von Verantwortung und Zuständigkeit
   - Deswegen gibt es gute und schlechte Entwürfe, schöne und hässliche, effiziente und ineffiziente.
   - Eine schlechte Wahl führt zu fragilen Systemen, welche schwer zu warten, zu verstehen, wiederzuverwenden oder zu erweitern sind.
 
-.. container:: supplemental
+.. supplemental::
 
   Bei der Verteilung der Zuständigkeiten gibt es eine große Bandbreite in Hinblick darauf, wie die nicht-funktionalen - und die funktionalen Eigenschaften einer Software realisiert werden.
 
@@ -369,7 +369,7 @@ Fasse die Dinge zusammen, die sich aus dem gleichen Grund und zur selben Zeit ä
   :alt: Anwendung des Common Closure Principle und des Single Responsibility Principle
 
 
-.. container:: supplemental
+.. supplemental::
 
   :Single Responsibility Principle (SRP): Ein Modul sollte nur einem einzigen Akteur gegenüber verantwortlich sein. D. h. es sollte nur eine wohldefinierte Gruppe von Akteuren geben, die eine Veränderung veranlassen/verlangen können. Code, von dem verschiedene Akteure abhängen, sollte aufgeteilt werden.
   
@@ -407,7 +407,7 @@ Fasse die Dinge zusammen, die sich aus dem gleichen Grund und zur selben Zeit ä
 
       -- Agile Software Development; Robert C. Martin; Prentice Hall, 2003
 
-.. container:: supplemental
+.. supplemental::
 
   **Mögliche Interpretation**
 
@@ -433,7 +433,7 @@ Dependency Inversion Principle
   :align: center
 
 
-.. container:: supplemental
+.. supplemental::
 
   .. rubric:: Begründung
 
@@ -461,7 +461,7 @@ Open-closed Principle (OCP)
   -- Bertrand Meyer 1988, Robert C. Martin 1996
 
 
-.. container:: supplemental
+.. supplemental::
 
   D. h. es sollte möglich sein neue Erweiterungen zu realisieren ohne dass man die Software verändern, rekompilieren, neu bereitstellen (:eng:`to deploy`) oder vergleichbares muss. Klassisches Beispiel ist ein Texteditor wie VS Code, welcher durch *Extensions*/*Plug-Ins* erweitert werden kann; d. h. es die Software is erweiterbar ohne das man diese neu kompilieren muss.
 
@@ -478,7 +478,7 @@ Open-closed Principle - Case Study
 
   Ist dieses Design offen für Erweiterungen?
 
-.. container:: supplemental
+.. supplemental::
 
   In diesem Fall haben wir eine Architektur, die auf “Services” aufbaut welche lose gekoppelt sind und über Nachrichten kommunizieren. 
 
@@ -499,7 +499,7 @@ Open-closed Principle - Case Study
   Ist dieses Design *wirklich* offen für Erweiterungen?
 
 
-.. container:: supplemental
+.. supplemental::
 
   Das Problem ist, dass wir hier die Nachrichten - welche im Prinzip die Schnittstelle modellieren - relativ exakt an den Anforderungen des Services zur Bestimmung der Verfügbarkeit von Autos ausgerichtet haben. 
   
@@ -529,7 +529,7 @@ Open-closed Principle - Case Study
       Wie stellen wir fest welche Informationen in eine Nachricht gehören, um offen für *relevante* Erweiterungen zu sein?
 
 
-.. container:: supplemental
+.. supplemental::
 
   Eine Antwort darauf liefern ggf. *Bounded-Context* aus dem *Domain-driven Design*
   
@@ -568,7 +568,7 @@ Liskov Substitution Principle (LSP)
 
     Die Implementierungen von Schnittstellen müssen austauschbar sein.
 
-.. container:: supplemental
+.. supplemental::
 
   Im Original wird auf die Substituierbarkeit von Subtypen im Kontext der objekt-orientierten Programmierung eingegangen. Das Prinzip lässt sich aber auch auf andere Abstraktionsgeraden übertragen. Insbesondere auch auf die Ebene von Services deren Schnittstellen und Implementierungen.
 
@@ -608,7 +608,7 @@ Interface Segregation Principle & Common Reuse Principle
   Hänge nicht von Dingen ab, die du nicht benötigst.
 
 
-.. container:: supplemental
+.. supplemental::
 
   Segregation (:ger:`Abtrennung`) bezeichnet hier die Aufspaltung eines bestehenden Interfaces bei dem die Teile abgespalten werden, die logisch zu einer anderen Funktionalität gehören. d. h. die von der Schnittstelle zur Verfügung gestellte Funktionalität ist nicht homogen und wird deswegen in verschiedene Teile aufgeteilt.
 
@@ -641,7 +641,7 @@ Command-Query Separation (CQS)
 
     Auf der Ebene von nachrichten- bzw. ereignisgetriebenen Systemen wird CQS zum CQRS erweitert (Command-Query Responsibility Segregation).
 
-.. container:: supplemental
+.. supplemental::
 
   Ein Java Iterator mit seiner :ger-quote:`next` Methode verletzt ganz klar dieses Prinzip!
 
@@ -668,7 +668,7 @@ Traditionelle Interaktion mit Informationssystemen (CRUD)
     5. Modell validiert
     6. Modell aktualisiert DB
  
-.. container:: supplemental
+.. supplemental::
 
   Darstellung einer Anwendung mit traditioneller Architektur.
 
@@ -705,7 +705,7 @@ Command-Query Responsibility Segregation Principle
 
   ⸺ Greg Young, 2010
 
-.. container:: supplemental
+.. supplemental::
 
   Command-Query-Responsibility-Segregation (CQRS) wendet das CQS-Prinzip an, indem es separate Abfrage- und Befehlsnachrichten zum Abrufen bzw. Ändern von Daten verwendet.
 
@@ -803,7 +803,7 @@ Ein einfacher RESTful Web Service mit Spring
 
   Eine gute Anwendungsarchitektur erlaubt es Entscheidungen, die sich *nicht* aus den Geschäftsanforderungen ergeben, zu verzögern bzw. :ger-quote:`leicht` anpassbar zu machen.
 
-.. container:: supplemental
+.. supplemental::
 
   Entscheidungen, die nicht am Anfang final getroffen werden sollten, da sie ggf. die Architektur dominieren:
   
@@ -824,7 +824,7 @@ Traditionelle n-Schichten Architektur (Wiederholung)
   :height: 950px
   :align: center
 
-.. container:: supplemental
+.. supplemental::
 
   Codeabhängigkeiten ergeben sich zum Beispiel beim Verwenden eines Object-relational Mappers (ORM). 
 
@@ -867,7 +867,7 @@ Hexagonal Architecture (Ports & Adapters) [#]_
 .. [#] https://alistair.cockburn.us/hexagonal-architecture/ und https://www.thoughtworks.com/insights/blog/architecture/demystify-software-architecture-patterns
 
 
-.. container:: supplemental
+.. supplemental::
 
   Ziel der hexagonalen Architektur ist es die Anwendungslogik unabhängig von der UI und den Datenbanken etc. zu machen. Die Anwendungslogik/die Anwendungskomponenten sollen lose gekoppelt sein und einfach mit Ihrer Umgebung verbunden werden können durch die Nutzung von *Ports & Adapters*.
 
@@ -909,7 +909,7 @@ Hexagonal Architecture (Ports & Adapters) [#]_
 
   ⸺ Jeffrey Palermo, 2008
 
-.. container:: supplemental
+.. supplemental::
 
   Schlüssellehren der *Onion Architecture* (Zwiebelarchitektur):
 
@@ -958,7 +958,7 @@ Hexagonal Architecture (Ports & Adapters) [#]_
       .. image:: images/clean-architecture/legende.svg
         :height: 800px
 
-.. container:: supplemental
+.. supplemental::
 
   .. rubric:: Entities
 
@@ -1008,7 +1008,7 @@ Hexagonal Architecture (Ports & Adapters) [#]_
       :height: 800px
       :align: center
 
-.. container:: supplemental
+.. supplemental::
 
     Mit einer solchen Implementierung sind auch echte initiale Kosten verbunden - mehrere Interfaces müssen implementiert und gewartet werden. Partielle Lösungen sind denkbar, müssen aber wohl überlegt sein, um ungewünschte Abhängigkeiten zu vermeiden, die häufig zu einer schlechten Wartbarkeit und langfristigen bzw. verzögerten Kosten führen.
 

@@ -149,7 +149,7 @@ Fremderstellte Dokumente
     • Qualitätsunterschiede
     • Umsetzung in ein CI-Format
 
-.. container:: supplemental
+.. supplemental::
 
     :NCI: *Non Coded Information* (z. B. Texte in Bildern)
     :CI: *Coded Information*
@@ -212,7 +212,7 @@ Unterstützung für Workflowdefinitionen in ECM Systemen - z. B. `DocuWare <ht
     :align: center
     :class: box-shadow
 
-.. container:: supplemental
+.. supplemental::
     
         :ECM: *Enterprise Content Management*
 
@@ -474,7 +474,7 @@ Sicherstellung der Qualität
       - falsch erkannten Zeichen → müssen im konvertierten Text mühsam gesucht werden
 
 
-.. container:: supplemental
+.. supplemental::
 
     Serifenlose Zeichensätze sind solche, bei denen die Zeichensätze keine Endstriche an Zeichen haben, z. B. Arial oder Helvetica (dieser Foliensatz verwendet Helvetica).
 
@@ -667,7 +667,7 @@ Beschreibt **die direkte digitale Speicherung von Druck- und Listenausgaben  bet
 • COLD bei größeren Unternehmen bzw. DMS-Lösungen sehr verbreitet.
 • COLD-Verarbeitung ist typische Batch-Verarbeitung.
 
-.. container:: supplemental
+.. supplemental::
 
     d. h. bei COLD werden die Daten nicht mehr - bzw. nur optional - auf Papier ausgegeben, sondern stattdessen direkt in ein DMS übernommen. Da kein OCR notwendig ist, sondern die Daten direkt :ger-quote:`beim Drucken` abgegriffen werden, ist die Qualität der Daten sehr hoch.
 

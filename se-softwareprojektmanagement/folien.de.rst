@@ -256,7 +256,7 @@ Extreme Programming ist eine Sammlung von einfachen, von einander abhängigen Pr
     Die Anforderungen werden mit dem Kunden besprochen, aber nur ein paar Worte, die
     jeden an das Gespräch erinnern, werden zusammen mit einer Schätzung auf eine Karteikarte geschrieben.
 
-.. container:: supplemental
+.. supplemental::
 
     .. admonition:: Achtung vor Mehrdeutigkeit 
         
@@ -497,7 +497,7 @@ Beispielaufzeichnung von User Stories
     , Bemerkungen, /
 
 
-.. container:: supplemental
+.. supplemental::
     
     .. rubric:: User Stories
 

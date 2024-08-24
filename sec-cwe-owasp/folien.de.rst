@@ -226,7 +226,7 @@ CWE-787: Out-of-bounds Write - Beispiel 5
         Das Problem ist, dass Zeichenketten, die nur aus Whitespace bestehen, nicht korrekt behandelt werden. In diesem Fall kommt es zu einem Buffer-Underflow (d. h. es wird auf den Speicherbereich vor dem Puffer zugegriffen).
 
 
-.. container:: supplemental
+.. supplemental::
 
     :isspace: If an argument (character) passed to the isspace() function is a white-space character, it returns non-zero integer. If not, it returns 0.
 
@@ -299,7 +299,7 @@ CWE-79: Improper Neutralization of Input During Web Page Generation
 :Betrifft: Zugriffskontrolle, Vertraulichkeit
 :Typen: Stored XSS (Typ 2), Reflected XSS (Typ 1), DOM-based XSS (Typ 0)
 
-.. container:: supplemental
+.. supplemental::
 
     Durch eine XSS Lücke werden häufig Informationen abgegriffen (z. B. Session Cookies). Allerdings ist es ggf. auch möglich, dass der Angreifer die Session des Nutzers übernimmt und sich als dieser ausgibt. 
 
@@ -323,7 +323,7 @@ Reflected XSS (Typ 1)
    :width: 1650px
    :align: center
 
-.. container:: supplemental
+.. supplemental::
 
     Reflected XSS ist häufig schwerer auszunutzen, da der Angreifer den Nutzer dazu bringen muss, einen Link zu klicken, der den Angriffsvektor enthält. Bei Stored XSS ist dies nicht notwendig, da der Angriffsvektor bereits auf dem Server gespeichert ist.
 
@@ -337,7 +337,7 @@ Dom-based XSS (Typ 0)
    :width: 1500px
    :align: center
 
-.. container:: supplemental
+.. supplemental::
 
     Dom-based XSS ist am schwersten Auszunutzen, da der Angreifer den Nutzer dazu bringen muss den Schadcode in die Informationen einzubringen, die von dem Script verarbeitet werden (z. B. durch das Eingeben in ein Formular).
 
@@ -677,7 +677,7 @@ CWE-416: Use After Free - Abhilfemaßnahmen und Erkennung
 - Fuzzing
 - Statische Analyse Werkzeuge
 
-.. container:: supplemental
+.. supplemental::
 
     Empfohlene Lektüre: `One day short of a full chain: Real world exploit chains explained <https://github.blog/2021-03-24-real-world-exploit-chains-explained/>`__ (In Teil 1 wird eine UAF Schwachstelle genutzt.)
 
@@ -870,7 +870,7 @@ CWE-125: Out-of-bounds Read
 :Betrifft: Vertraulichkeit
 :Auswirkungen: Umgehung von Schutzmaßnahmen; Lesen von Speicher
 
-.. container:: supplemental
+.. supplemental::
 
     Die Ausnutzung dieser Schwachstelle ist häufig schwierig, da nicht immer bekannt ist welche und wie viele Daten gelesen werden können. Es kann allerdings möglich sein Speicheradressen auszulesen. Dies kann ggf. genutzt werden, um Mechanismen wie ASLR zu umgehen.
 
@@ -1125,7 +1125,7 @@ Standardtechniken, die CSRF verhindern *sollen*:
     Auch diese Techniken lassen sich ggf. (alle zusammen) aushebeln, `wenn die Anwendung weitere Schwachstellen aufweist <https://portswigger.net/web-security/csrf>`__. So gibt/gab es Anwendungen, die Anfragen, die nur über ein POST request gestellt werden sollten, auch bei einem GET akzeptiert haben. 
 
 
-.. container:: supplemental
+.. supplemental::
 
     In allen Browsern wird in der Zwischenzeit für Cookies die Same-site Policy angewandt mit dem Wert :code:`Lax`. Dieser Wert hat zur Folge, dass Cookies nur dann gesendet werden, wenn der Nutzer explizit auf einen Link klickt oder sich innerhalb der selben Seite befindet.
     
@@ -1301,7 +1301,7 @@ CWE-502: Deserialization of Untrusted Data
 :Alternative Begriffe: (Un-)Marshalling, (Un-)Pickling
 
 
-.. container:: supplemental
+.. supplemental::
 
     Bei der Serialisierung werden programminterne Objekte so verpackt, dass die Daten extern gespeichert und/oder übertragen werden können. Die Deserialisierung kehrt diesen Prozess um.
 
@@ -1325,7 +1325,7 @@ Java
         ...
     } 
 
-.. container:: supplemental
+.. supplemental::
 
     In diesem Beispiel wird ein Objekt aus einer Datei gelesen und in eine Variable vom Typ :code:`javax.swing.JButton` geschrieben. Der Typ des Objekts wird nicht geprüft. Es ist möglich, dass die Datei ein Objekt enthält, welches vom Typ :code:`javax.swing.JButton` ist, aber nicht die Eigenschaften hat, die ein Button haben sollte. In diesem Fall wird keine Exception geworfen, aber das Objekt kann nicht wie erwartet verwendet werden bzw. es kommt zur Ausführung von beliebigem Code.
 
@@ -1513,7 +1513,7 @@ CWE-918: Server-Side Request Forgery - Variante: Blind SSRF
 
 Bei *Blind SSRF*-Schwachstellen werden auch Back-End-HTTP-Anfragen an eine bereitgestellte URL gestellt, die Antwort der Back-End-Anfrage jedoch nicht an die Front-End-Antwort der Anwendung zurückgegeben.
 
-.. container:: supplemental
+.. supplemental::
 
     Empfohlene Lektüre: `Blind Server-Side Request Forgery (SSRF) <https://portswigger.net/web-security/ssrf/blind>`__
 

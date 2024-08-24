@@ -59,7 +59,7 @@ Tor (The Onion Router)
 - Baut ein *Overlay-Netzwerk* auf
 - Grundlegendes Prinzip: Onion Routing
 
-.. container:: supplemental
+.. supplemental::
 
     :low-latency: Die Verzögerung durch die Anonymisierung ist so gering, dass Tor für Instant Messaging und das Surfen im Internet verwendet werden kann.
 
@@ -88,7 +88,7 @@ Tor - Verwendung und Sicherheit
 .. [#] `Aufstellung von Angriffen auf Tor <https://github.com/Attacks-on-Tor/Attacks-on-Tor#correlation-attacks>`__.
 
 
-.. container:: supplemental
+.. supplemental::
 
     .. epigraph::
 
@@ -164,7 +164,7 @@ Tor - Aufbau
             :height: 1120px
 
 
-.. container:: supplemental
+.. supplemental::
 
     `Spezifikation <https://spec.torproject.org>`__
 
@@ -204,7 +204,7 @@ Initiierung eines Circuits (konzeptionell)
     :align: center
     :width: 1800px
 
-.. container:: supplemental
+.. supplemental::
 
     Jeder Tor-Knoten verfügt über mehrere Keys. Für den Aufbau der Verbindung werden die *Onion Keys* verwendet. Mit Hilfe dieser werden die initialen Datenpakete mittels Public-Key Kryptografie verschlüsselt. Dies wird benötigt, um den AES Key - einer pro Knoten - der für den eigentlichen Versand benötigt wird, auszuhandeln und sicher zu übertragen.
 
@@ -220,7 +220,7 @@ Tor Relays in Deutschland
    :align: center
    :height: 1050px
 
-.. container:: supplemental
+.. supplemental::
 
     **Flags**
 
@@ -268,7 +268,7 @@ Informationen über Tor Relays
             (Stand Jan. 2024)
 
 
-.. container:: supplemental
+.. supplemental::
 
     Pfade, die über die ganze Welt gehen verhindern, dass der ``Entry-`` und ``Exit-node`` beim gleichen Anbieter liegen.
 
@@ -301,7 +301,7 @@ Die Anzahl der Exit nodes ist deutlich kleiner (2. Jan. 2024 - 1314 Einträge) a
     :align: center
     :class: picture
 
-.. container:: supplemental
+.. supplemental::
 
     Reverse IP Lookup für 130.149.80.199 durchgeführt mit `IP Location Service <https://www.iplocation.net/ip-lookup>`__.
 
@@ -363,7 +363,7 @@ Standardanwendung für den Zugriff auf das Tor-Netzwerk.
         :Sicher: (zusätzlich) JavaScript ist immer deaktiviert. Einige Schriftarten, Symbole, mathematische Symbole und Bilder sind deaktiviert.
 
 
-.. container:: supplemental
+.. supplemental::
 
     Das Tor-Netzwerk erlaubt ggf. das Setzen des ``Exit Nodes``, um zum Beispiel geografische Sperren zu umgehen. Entsprechende Dienstanbieter können dies jedoch leicht erkennen, da die Knoten des Tor Netzwerkes bekannt sind (https://check.torproject.org/torbulkexitlist) und verweigern dann den Zugriff.
 
@@ -389,7 +389,7 @@ Tor
 - Die Anonymität hängt auch von der Anzahl der Nutzer ab.
 
 
-.. container:: supplemental
+.. supplemental::
 
     *Website Fingerprinting*
 

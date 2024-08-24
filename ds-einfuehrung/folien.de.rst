@@ -91,7 +91,7 @@ Empfohlene Literatur
     :height: 1000px
     :align: center
 
-.. container:: supplemental
+.. supplemental::
 
     Ergänzend bzw. für interessierte Studierende:
 
@@ -183,7 +183,7 @@ Häufige Missverständnisse bzgl. zentralisierter Systeme
         - leichter zu verwalten
         - einfacher robuster zu machen
 
-.. container:: supplemental 
+.. supplemental:: 
     
     .. admonition:: Warnung 
         :class: warning
@@ -280,7 +280,7 @@ Aspekte der Verteilungstransparenz
     Fehlertransparenz, Verbergen des Ausfalls und der Wiederherstellung eines Objekts
 
 
-.. container:: supplemental
+.. supplemental::
 
     Datendarstellung: Big-Endian vs. Little-Endian; ASCII vs. Iso-Latin 8859-1 vs. UTF-8
 
@@ -384,7 +384,7 @@ Vorgaben/Richtlinien vs. Umsetzungen
 - Angebot verschiedener Verschlüsselungsalgorithmen
 
 
-.. container:: supplemental
+.. supplemental::
 
     Die harte Kodierung von Richtlinien vereinfacht oft die Verwaltung und reduziert die Komplexität des Systems. Hat jedoch den Preis geringerer Flexibilität.
 
@@ -402,7 +402,7 @@ Grundlegende Schutzziele:
 :Integrität: Änderungen an den Werten eines Systems dürfen nur auf autorisierte Weise vorgenommen werden können.
 
 
-.. container:: supplemental
+.. supplemental::
 
     Zusammen mit dem dritten Schutzziel: Verfügbarkeit, bilden diese drei Schutzziele die CIA-Triade der Informationssicherheit (:eng:`Confidentiality, Integrity, and Availability`).
 
@@ -545,7 +545,7 @@ Ursachen für Skalierbarkeitsprobleme bei zentralisierten Lösungen:
 - Die Speicherkapazität, einschließlich der Übertragungsrate zwischen CPUs und Festplatten 
 - Das Netzwerk zwischen dem Benutzer und dem zentralisierten Dienst
 
-.. container:: supplemental
+.. supplemental::
 
     Die Skalierbarkeit bzgl. der Größe kann oft durch den Einsatz von mehr und leistungsstärkeren Servern, die parallel betrieben werden, erreicht werden.
 
@@ -652,7 +652,7 @@ Formale Analyse der Skalierbarkeit zentralisierter Systeme
         X = \underbrace{U \cdot \mu}_{\mbox{ausgelastet}} + \underbrace{(1-U) \cdot 0}_{\mbox{ungenutzt}} = \frac{\lambda}{\mu} \cdot \mu = \lambda 
 
 
-.. container:: supplemental
+.. supplemental::
 
     Für eine `unendliche geometrische Reihe <https://de.wikipedia.org/wiki/Geometrische_Reihe#Konvergenz_und_Wert_der_geometrischen_Reihe>`__ mit dem Quotienten :math:`U` gilt:
 
@@ -783,7 +783,7 @@ Herausforderungen bei der Replikation
 - Zur Erreichung von Konsistenz ist bei jeder Änderung eine globale Synchronisierung erforderlich.
 - Die globale Synchronisierung schließt Lösungen im großen Maßstab aus.
 
-.. container:: supplemental
+.. supplemental::
 
     Inwieweit Inkonsistenzen toleriert werden können, ist anwendungsspezifisch. Können diese jedoch toleriert werden, dann kann der Bedarf an globaler Synchronisation verringert werden.
 
@@ -810,7 +810,7 @@ Paralleles Rechnen (:eng:`Parallel Computing`)
             :align: center
 
 
-.. container:: supplemental
+.. supplemental::
 
     Das verteilte Hochleistungsrechnen begann mit dem parallelen Rechnen.
 
@@ -1031,7 +1031,7 @@ MapReduce - Visualisierung und Beispiel
     :width: 94%
     :align: center
 
-.. container:: supplemental
+.. supplemental::
 
 
     Hier ist es die Berechnung der Häufigkeit von Wörtern in einem sehr großen Datensatz.
@@ -1087,7 +1087,7 @@ Eine Gruppe von :ger-quote:`High-End-Systemen`, die über ein LAN verbunden sind
     :width: 85%
     :align: center
 
-.. container:: supplemental
+.. supplemental::
 
     Die einzelnen Rechner/Compute Nodes sind oft identisch (Hardware und Software) und werden von einem Verwaltungsknotenpunkt (:eng:`management node`) verwaltet.
 
@@ -1102,7 +1102,7 @@ Weiterführung des Cluster Computing.
 - Die Knotenpunkte sind über das WAN verbunden. 
 - Die Zusammenarbeit erfolgt im Rahmen einer virtuellen Organisation.
 
-.. container:: supplemental
+.. supplemental::
 
     (Volunteer) Grid Computing - Beispiel:
 
@@ -1148,7 +1148,7 @@ Peer-to-Peer-Systeme
 :Hauptanwendung: 
    File-Sharing-Systeme (insbesondere BitTorrent)
 
-.. container:: supplemental
+.. supplemental::
 
     Die große Zeit der klassischen Peer-to-Peer-Systeme war in den 2000er Jahren. 
 
@@ -1164,9 +1164,9 @@ Peer-to-Peer-Systeme
 Cloud-Computing
 ------------------
 
-.. container:: definition
+.. admonition:: Definition
 
-    Weiterentwicklung des Grid-Computing. Ziel ist die Bereitstellung von Rechenleistung, Speicher und Anwendungen als Dienstleistung.
+   Cloud-Computing bezeichnet die Bereitstellung von Rechenleistung, Speicher und Anwendungen als Dienstleistung. Es ist die  Weiterentwicklung des Grid-Computing.
 
 .. container:: incremental margin-top-1em
 
@@ -1244,7 +1244,7 @@ Integration von Anwendungen
     Die direkte Kommunikation zwischen den Anwendungen führt zur Integration von Unternehmensanwendungen (:eng:`Enterprise Application Integration (EAI)`).
 
 
-.. container:: supplemental
+.. supplemental::
 
     Eine vernetzte Anwendung ist eine Anwendung, die auf einem Server läuft und ihre Dienste für entfernte Clients verfügbar macht. 
 
@@ -1310,7 +1310,7 @@ Transaktionen auf Geschäftsprozessebene
     Ein TPM ist für die Koordination der Ausführung einer Transaktion verantwortlich.
 
 
-.. container:: supplemental
+.. supplemental::
 
     Insbesondere im Zusammenhang mit Microservices ist der Einsatz von TPMs und 2PC zum Zwecke der Koordination von Geschäftsprozessen häufig nicht die 1. Wahl. 
 
@@ -1328,7 +1328,7 @@ Middleware ermöglicht Kommunikation zwischen den Anwendungen.
     :align: center
     :class: incremental
 
-.. container:: supplemental
+.. supplemental::
 
     :Remote Procedure Call (RPC): Anfragen werden über einen lokalen Prozeduraufruf gesendet, als Nachricht verpackt, verarbeitet, von einer Nachricht beantwortet und das Ergebnis ist dann der Rückgabewert des Prozeduraufrufs.
 

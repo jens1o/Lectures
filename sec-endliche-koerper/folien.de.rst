@@ -59,7 +59,7 @@ Gruppen, Ringe und Körper
                           in Abel'schen Gruppen) 
                               in Gruppen)
 
-.. container:: supplemental
+.. supplemental::
 
     :Integritätsring: :eng:`Integral Domains`
     :Körper: :eng:`Fields`
@@ -411,7 +411,7 @@ In diesem Abschnitt haben wir gezeigt, wie man endliche Körper der Ordnung :mat
     
     Wir haben gezeigt, dass die Elemente von :math:`GF(p)` die ganzen Zahlen :math:`\lbrace 0, 1, \ldots , p - 1 \rbrace` sind und dass die arithmetischen Operationen Addition und Multiplikation modulo :math:`p` sind.
 
-.. container:: supplemental
+.. supplemental::
     
     .. admonition:: Hinweis
         :class: warning
@@ -642,7 +642,7 @@ Arithmetik in :math:`GF(2^3)`: Addition
 
 :far-smaller:`(Die Definition der Addition des endlichen Körpers GF(2^3) wird in Kürze behandelt.)`
 
-.. container:: supplemental
+.. supplemental::
     
     .. rubric:: Wiederholung
 
@@ -724,7 +724,7 @@ Um den endlichen Körper :math:`GF(2^3)` zu konstruieren, müssen wir ein irredu
         m(x) = x^8 + x^4 + x^3 + x +1 
 
 
-.. container:: supplemental
+.. supplemental::
 
     Die 8 Polynome sind die möglichen "Reste" bei der Division von Polynomen über :math:`GF(2^3)` mit :math:`x^3 + x + 1`.
 
@@ -809,7 +809,7 @@ Multiplikation in :math:`GF(2^n)`
     
     Multiplikation mit einer höheren Potenz von :math:`x` kann durch wiederholte Anwendung der vorherigen Gleichung erreicht werden. Durch Hinzufügen von Zwischenergebnissen kann die Multiplikation mit einer beliebigen Konstanten in :math:`GF(2^n)` erreicht werden.
 
-.. container:: supplemental
+.. supplemental::
 
     Das von **AES** verwendete Polynom ist:
 

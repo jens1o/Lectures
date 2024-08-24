@@ -307,7 +307,7 @@ Eigenschaften von Social-Engineering Angriffe
 - mittels OSINT kann die Vorbereitung von Social-Engineering Angriffen vereinfacht werden
 - neue technische Möglichkeiten (z. B. KI generierte Stimmen) erweitern die Angriffsmöglichkeiten
 
-.. container:: supplemental
+.. supplemental::
 
     .. rubric:: Beispiel eines fortgeschrittenen Social-Engineering Angriffs
 
@@ -440,7 +440,7 @@ Ausgewählte Social-Engineering Angriffe
         Ausnutzen von Tippfehlern durch das Registrieren einer Domain, die der Domain eines Zielunternehmens ähnelt, um dann Besucher der Webseite auf eine gefälschte Webseite zu leiten. (z. B. `www.gooogle.com`)
 
 
-.. container:: supplemental
+.. supplemental::
 
     .. rubric:: HOAX
 

@@ -139,7 +139,7 @@ Ist Passwortwiederherstellung noch relevant?
 
     Klassische Passwörter werden (noch immer) in zahlreichen Bereichen verwendet. Beispiele sind Smartphones, Cryptosticks, Logins für Computer und Serversysteme, verschlüsselte Dateien und Datenträger.
 
-.. container:: supplemental
+.. supplemental::
     
     **Hintergrund**
 
@@ -365,7 +365,7 @@ Hashfunktionen (Wiederholung)
 - Kryptographische Hashfunktionen werden für die Speicherung von Passwörtern verwendet.
 
 
-.. container:: supplemental
+.. supplemental::
 
     **Kollisionen bei Hashes**
 
@@ -420,7 +420,7 @@ Vom Salzen (:eng:`Salt`) ...
         ``$5$rounds=1000$1234567$LxD/hg29N9KYpNdFMW69Kk65BLkVLlzlSEJvqhCmFU9``"
 
 
-.. container:: supplemental
+.. supplemental::
     
     .. rubric:: Rainbow Tables
 
@@ -444,7 +444,7 @@ Vom Salzen (:eng:`Salt`)...
 
     Sollte es einem Angreifer gelingen in eine Datenbank einzubrechen und die Tabellen mit den Nutzerdaten abzufragen (zum Beispiel aufgrund einer erfolgreichen SQL Injection), dann ist es Ihm danach direkt möglich zu versuchen Passworte wiederherzustellen.
 
-.. container:: supplemental
+.. supplemental::
 
     **Speicherung von Salts**
 
@@ -568,7 +568,7 @@ HMAC (Hash-based Message Authentication Code)
         :height: 625px
         :class: incremental margin-top-1em
 
-.. container:: supplemental
+.. supplemental::
 
     **Padding und Hashing**
 
@@ -609,7 +609,7 @@ HMAC Computation in Python
           \x16\x87\x87\x0e\xad\xa1\xe1:9\xca'
 
 
-.. container:: supplemental
+.. supplemental::
     
     HMAC ist auch direkt als Bibliotheksfunktion verfügbar.
 
@@ -658,7 +658,7 @@ Im Fall von PBKDF2 ist der Schlüssel :math:`K` also das Passwort und die Nachri
 
     Bei einer Runde und passenden Blockgrößen ist das Ergebnis der PBKDF2 somit gleich mit der Berechnung des HMACs wenn der Salt um die Nummer des Blocks ``\x00\x00\x00\x01`` ergänzt wurde.
 
-.. container:: supplemental
+.. supplemental::
 
     In der konkreten Anwendung ist es ggf. möglich das *Secret* auch zu Salzen und den *Salt* aus einer anderen Quellen abzuleiten.
 
@@ -738,7 +738,7 @@ Beispiel - Wiederherstellung eines Linux Login Passwortes
     
     % hashcat -m 1800 hash.txt -a 3 '?d?d?d?d?d?d'
 
-.. container:: supplemental
+.. supplemental::
 
     **Finden eines Hashes**
 
@@ -801,7 +801,7 @@ Konzeptionell führt die Software Hashcat die folgenden Schritte durch:
     <extracted_hash> == SHA512crypt("zElzjLsMqi36JXWG","123456") ✔︎
 
 
-.. container:: supplemental 
+.. supplemental:: 
 
     Der folgende Code könnte als Grundlage genutzt werden, um das Passwort wiederherzustellen.
 
@@ -1082,7 +1082,7 @@ Moderne Passwortrichtlinien (:eng:`Password Policies`) machen es unmöglich, äl
 - einige Passwörter (z. B. aus bekannten Leaks und Wörterbüchern) sind verboten
 - ...
 
-.. container:: supplemental
+.. supplemental::
 
     Passwortrichtlinien extrem: `Password Game <https://neal.fun/password-game/>`__
 
@@ -1223,7 +1223,7 @@ Aufgrund der :ger-quote:`Unmöglichkeit` eines Brute-Force-Angriffs stellen sich
 - Auswahl/Generierung von *Passwörten in absteigender Wahrscheinlichkeit*.
 - :minor:`Die Auswahl/Generierung sollte effizient sein.`
 
-.. container:: supplemental
+.. supplemental::
     
     Technisch sinnvolle Passwörter sind solche, die die zu Grunde liegenden Passwortrichtlinien und auch weiteren technischen Anforderungen erfüllen. Zum Beispiel den von der Software verwendeten Zeichensatz (UTF-8, ASCII, ...) oder im Falle eines Smartphones/Krytosticks die eingebbaren Zeichen.
 
@@ -1541,7 +1541,7 @@ Grundlegende Werkzeuge
 Extraktion von Hashes
 ----------------------
 
-.. container:: supplemental
+.. supplemental::
 
     **Hinweis**
 
@@ -1987,7 +1987,7 @@ Szenario 5: Kombination von Wörterbuch mit eigenem Regelsatz
         | sort -u \
         > candidates.txt
 
-.. container:: supplemental
+.. supplemental::
 
     **Zu Bedenken**
 
@@ -2021,7 +2021,7 @@ Szenario 5: Kombination von Wörterbuch mit eigenem Regelsatz
 
       hashcat -m 1700 hash.sha125 candidates.txt -r case.rule
 
-.. container:: supplemental 
+.. supplemental:: 
 
     **Tips**
 
@@ -2101,7 +2101,7 @@ Szenario 7: Wörterbuch mit Maske
         $ hashcat -m 1400 hash.sha256 candidates.txt \
             -a 6 -1 '$.!' '?d?d?d?d?1?1'
 
-.. container:: supplemental
+.. supplemental::
 
     **Beispiel**
     
@@ -2144,7 +2144,7 @@ Weiterhin soll die Liste nach der Länge der gefundenen Einträge aufsteigend so
         | sed -E 's/^[0-9]+ //'
 
 
-.. container:: supplemental
+.. supplemental::
     
     *Alternative Aufgabenstellung*
 
@@ -2192,7 +2192,7 @@ Zu Generierung aller Kombinationen aus den Fragmenten verwenden wir den Princepr
         -r number_prepend.rule \
         -r sc_append.rule
 
-.. container:: supplemental
+.. supplemental::
 
     *Aufbau von* ``number_prepend.rule``:
 
@@ -2286,7 +2286,7 @@ Gegeben sein 3 Wörterbücher [#]_: ``base1.txt``, ``base2.txt`` und ``base3.txt
             $ hashcat --stdout base1-base2.txt base3.txt -j '$-' > final.txt
 
 
-.. container:: supplemental 
+.. supplemental:: 
 
     Die Hashcat Utilities Bibliothek hat auch noch weitere Werkzeug zum Kombinieren von Wörterbüchern, die viele Fälle sehr effizient abdecken (auch den besprochenen). Jedoch ist es gerade in Fällen, in denen komplexere Regeln zur Anwendung kommen sollen, häufiger sinnvoller/nowendig direkt Hashcat im "stdout" Modus zu verwenden, um die Zwischenwörterbücher zu generieren.
 

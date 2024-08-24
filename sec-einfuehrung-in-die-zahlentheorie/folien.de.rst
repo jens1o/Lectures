@@ -370,7 +370,7 @@ Wenn :math:`n|(a - b)`, dann gilt :math:`(a - b) = kn` für ein :math:`k`
   :math:`81 \equiv 0(mod\; 27)`, da :math:`81 - 0 = 81 = 27 \times 3`
 
 
-.. container:: supplemental
+.. supplemental::
 
     Im zweiten Schritt haben wir :math:`mod\; n` auf beide Seiten angewendet. 
     
@@ -412,7 +412,7 @@ Dann gilt:
     = [(a\; mod\; n) + (b\; mod\; n)]\; mod\; n
 
 
-.. container:: supplemental
+.. supplemental::
 
     Im vorletzten Schritt setzen wir die Definition vom Anfang ein und erhalten das Ergebnis.
 
@@ -505,7 +505,7 @@ Multiplikation Modulo 8
     6, 0,6,4,2,0,6,4,2
     7, 0,7,6,5,4,3,2,*1*
 
-.. container:: supplemental
+.. supplemental::
 
     Generator in Python:
 
@@ -638,7 +638,7 @@ Euklidischer Algorithmus - neu betrachtet
 
     Um welche Art von rekursivem Algorithmus handelt es sich hierbei?
 
-.. container:: supplemental
+.. supplemental::
 
     In der gegebenen Formulierung ist der Algorithmus endrekursiv (:eng:`tail recursive`).
 
@@ -652,7 +652,7 @@ Erweiterter Euklidischer Algorithmus
 .. math::
     x \times a + y \times b = d = ggt(a,b)
 
-.. container:: supplemental
+.. supplemental::
 
     Notwendigerweise haben :math:`x` und :math:`y` gegensätzliche Vorzeichen, da sonst :math:`(x \times a + y \times b) > a\; ( > b )` gelten würde und somit nicht den GGT darstellen könnte.
 
@@ -835,7 +835,7 @@ Primzahlen
             :math:`2^2 \times 3^1 \times 5^1`
 
 
-.. container:: supplemental
+.. supplemental::
    
    Primzahlen spielen in der Zahlentheorie eine zentrale Rolle. Wir betrachten sie hier aber nur insoweit es für das Verständnis der Kryptographie notwendig ist.
 
@@ -927,7 +927,7 @@ Die Eulersche Totientenfunktion :math:`\phi(n)`
                     ggt(5,6) = 1 \checkmark
 
 
-.. container:: supplemental
+.. supplemental::
 
     Vgl. https://de.wikipedia.org/wiki/Eulersche_Phi-Funktion
 
