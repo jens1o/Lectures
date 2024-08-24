@@ -39,9 +39,9 @@ Dokumentenmanagement, Archivierungs- und Verschlüsselungsverfahren
 .. supplemental::
 
   :Folien: 
-      :HTML: |html-source|
+      [HTML] |html-source|
 
-      :PDF: |pdf-source|
+      [PDF] |pdf-source|
   :Fehler melden:
       https://github.com/Delors/delors.github.io/issues
 
