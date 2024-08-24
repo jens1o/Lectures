@@ -1,14 +1,14 @@
 .vscode
 *.key
 *.ova
+start_node_js_http_server.sh
+start_python_http_server.sh
 
 # Content we never share publicly
 exercise
 TODO
-start_http_for_lectures.sh
 
 # Generated files
-Readme.pdf
 *.rst.html
 *.rst.html.pdf
 *.rst.html.passwords.txt
