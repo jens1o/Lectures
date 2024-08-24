@@ -81,7 +81,18 @@ function process_publish_file_in_root_folder() {
 }   
 
 function remove_removed_folders() {
-    removed_folders=$(echo $remote_folders"\n"$local_folders | sort | uniq -c | grep -E "^\s*1 " | sed -E "s/^ *1 //" | grep -v "W3M20014")
+    # We first need to find the folders that are no removed in the local directory
+    # for that we simply list the folder in the remote directory and the local 
+    # directory and then compare the two lists by sorting and counting the
+    # entries. The entries that are only present in the target directory are
+    # the one which only exist once (the count is 1). These are the folders
+    # that will be removed.
+    # only top level folders: remote_folders=$(ls -p "$target_directory" | grep "/" | sort)
+    remote_folders=$(cd "$target_directory" &&  find * -type d -not -ipath "*/.git/*" -not -ipath "W3M20014/*" -mindepth 1 && cd ~-)
+    # only top level folders: local_folders=$(ls -p . | grep "/" | sort)
+    local_folders=$(find * -type d -not -ipath "*/.git/*" -mindepth 1)
+    shared_folders=$(echo $remote_folders"\n"$local_folders | sort | uniq -c | grep -E "^\s*2 " | sed -E "s/^ *2 //")
+    removed_folders=$(echo $remote_folders"\n"$shared_folders | sort | uniq -c | grep -E "^\s*1 " | sed -E "s/^ *1 //" | grep -v "W3M20014")
     echo -n "$removed_folders" | while IFS= read -r removed_folder
     do
         target_folder="$target_directory$removed_folder"
