@@ -54,37 +54,14 @@ Passwortwiederherstellung
       https://github.com/Delors/delors.github.io/issues
 
 
+.. class:: center-child-elements
 
 Was ist Passwortwiederherstellung?
 ----------------------------------
 
-.. container:: smaller
+.. admonition:: Definition 
 
     Passwortwiederherstellung ist der Prozess, der dazu dient, ein nicht (mehr) vorhandenes Passwort wiederzuerlangen.
-
-.. topic:: Haftungsausschluss
-    :class: line-above red incremental small
-
-    .. container:: stack
-
-        .. container:: layer
-
-            .. epigraph::
-            
-                Wer unbefugt sich oder einem anderen Zugang zu Daten, die nicht für ihn bestimmt und die gegen unberechtigten Zugang besonders gesichert sind, unter Überwindung der Zugangssicherung verschafft, wird mit Freiheitsstrafe bis zu drei Jahren oder mit Geldstrafe bestraft.
-
-                -- § 202 a Abs. 1 StGB
-        
-        .. container:: layer incremental scriptsize
-
-            **Gericht sieht Nutzung von Klartext-Passwörtern als Hacken an**
-
-            .. epigraph::
-
-                [...] Vor dem Amtsgericht wurde ein Prozess verhandelt, der die Gefahren verdeutlicht, denen sich Menschen mitunter aussetzen, die versuchen, Sicherheitslücken in der Software deutscher Firmen zu finden. Das Amtsgericht hat einen Programmierer verurteilt, der im Auftrag eines Kunden eine Software analysiert und darin eine Sicherheitslücke gefunden hatte, welche die Daten von Einkäufern in Online-Shops im Internet offengelegt hatte. Der Programmierer kontaktierte [...] die betroffene Firma, die daraufhin die Sicherheitslücke schloss und ihn anzeigte. Aufgrund dieses Umstandes wurde der Programmierer nun wegen unbefugten Zugriffs auf fremde Computersysteme und Ausspähens von Daten – welches unter dem sogenannten Hacker-Paragrafen 202a StGB unter Strafe gestellt ist – [...] verurteilt[...].
-
-                -- Heise.de - 19.01.2024 12:54 Uhr
-
 
 .. supplemental::
 
@@ -94,6 +71,33 @@ Was ist Passwortwiederherstellung?
     - Wer hat Erfahrung mit regulären Ausdrücken?
     - Wer hat Erfahrung mit Python?
     - Wer hat Erfahrung mit Java (Reverse Engineering)?
+
+
+
+Passwortwiederherstellung -  Haftungsausschluss
+------------------------------------------------
+
+.. container:: stack smaller
+
+    .. container:: layer
+
+        .. epigraph::
+        
+            Wer unbefugt sich oder einem anderen Zugang zu Daten, die nicht für ihn bestimmt und die gegen unberechtigten Zugang besonders gesichert sind, unter Überwindung der Zugangssicherung verschafft, wird mit Freiheitsstrafe bis zu drei Jahren oder mit Geldstrafe bestraft.
+
+            -- § 202 a Abs. 1 StGB
+    
+    .. container:: layer incremental
+
+        **Gericht sieht Nutzung von Klartext-Passwörtern als Hacken an**
+
+        .. epigraph::
+
+            [...] Vor dem Amtsgericht wurde ein Prozess verhandelt, der die Gefahren verdeutlicht, denen sich Menschen mitunter aussetzen, die versuchen, Sicherheitslücken in der Software deutscher Firmen zu finden. Das Amtsgericht hat einen Programmierer verurteilt, der im Auftrag eines Kunden eine Software analysiert und darin eine Sicherheitslücke gefunden hatte, welche die Daten von Einkäufern in Online-Shops im Internet offengelegt hatte. Der Programmierer kontaktierte [...] die betroffene Firma, die daraufhin die Sicherheitslücke schloss und ihn anzeigte. Aufgrund dieses Umstandes wurde der Programmierer nun wegen unbefugten Zugriffs auf fremde Computersysteme und Ausspähens von Daten – welches unter dem sogenannten Hacker-Paragrafen 202a StGB unter Strafe gestellt ist – [...] verurteilt[...].
+
+            -- Heise.de - 19.01.2024 12:54 Uhr
+
+
 
 
 Ist Passwortwiederherstellung noch relevant?
@@ -206,10 +210,10 @@ Ist Passwortwiederherstellung nicht :ger-quote:`trivial`?
 
     Time It Takes Using AI to Crack Your Password
 
-    .. container:: smaller incremental
+    .. container:: far-smaller incremental
 
         .. csv-table::
-            :class: far-far-smaller highlight-line-on-hover
+            :class: far-smaller highlight-line-on-hover
             :header: # OF CHARACTER, Numbers Only, Lowercase Letters, Lower- & Uppercase Letters, "Numbers, Upper- & Lowercase Letters", "Numbers, Upper- & Lowercase Letters, Symbols"
 
             4, Instantly, Instantly, Instantly, Instantly, Instantly
