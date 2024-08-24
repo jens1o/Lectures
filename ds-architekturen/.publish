@@ -1,6 +1,7 @@
 # Files which should be published on a WebPage (after code generation)
 
 folien.de.rst.html
+folien.de.rst.html.pdf
 
 images/cloud.svg
 images/common_application_architectures/3-layered-example.svg
