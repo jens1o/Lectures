@@ -85,8 +85,17 @@ Inhaltliche Qualität (bei Seminararbeiten 50 %)
 - Die Evaluation lässt klar erkennen, dass die Beantwortung der Forschungsfrage entweder erfolgreich oder nicht erfolgreich war. Wobei *nicht erfolgreich* bedeutet, dass keine finale Aussage bzgl. der Forschungsfrage getroffen werden konnte, da während der Durchführung der Arbeit unerwartete oder nicht beim Bearbeiter zu suchende Probleme aufgetaucht sind. Letzteres führt bei wissenschaftlichen Arbeiten nicht zu einer Abwertung, wenn die Begründung nachvollzogen werden kann.
 - Die Arbeit identifiziert Schwächen der Methodik eindeutig. Dies gilt insbesondere für jegliche Formen von Interviews. Oder auch zum Beispiel Performance Messungen und ähnliches. Insbesondere Interviews sollten — soweit möglich - nicht verwendet werden.
 - Alle Schlussfolgerungen sind eindeutig nachvollziehbar.
-- Wiss....
+- Die Arbeit bezieht sich auf aktuelle wissenschaftliche Quellen. Wissenschaftliche Quellen sind insbesondere bei Springer, IEEE, ACM und Elsevier zu finden; ggf. kann Google Scholar genutzt werden. Die Quellenangaben geben genau an in welchem Journal bzw. auf welcher Konferenz die Arbeit veröffentlicht wurde. Die Quellenangaben sind vollständig und konsistent. Lehrbücher, Blogs, Tutorials können natürlich auch angegeben werden, werden aber nicht als wissenschaftliche Quellen gewertet. 
+  
+  Trennen Sie Ihre Bibliografie explizit in wissenschaftliche und nicht-wissenschaftliche Quellen auf. D. h. Ihr Inhaltsverzeichnis hat zwei folgende Struktur:
 
+  - Bibliografie
+
+    - Wissenschaftliche Quellen
+
+    - Sonstige Quellen
+  
+  Führen Sie diese Trennung nicht durch, dann werden alle Quellen als nicht-wissenschaftlich gewertet.
 
 
 Einhaltung formaler Kriterien (bei Seminararbeiten 20%)
