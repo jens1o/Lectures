@@ -48,14 +48,29 @@ function check_all_rst_files() {
     done
 }
 
-function process_all_publish_files() {
+function process_all_publish_files_in_subfolders() {
     for f in .publish */.publish
     do
         path_to_publish=$(dirname "$f")
         #set -x
-        rsync -a "$path_to_publish" --files-from="$f" "$target_directory$path_to_publish/" --delete-excluded
+        rsync -a "$path_to_publish" --files-from="$f" "$target_directory$path_to_publish/" 
         #set +x
     done
+}   
+
+function process_publish_file_in_root_folder() {
+    f=".publish"
+    path_to_publish=$(dirname "$f")
+    removed_files=ls -p  "$target_directory" | grep -v / | grep -F -v -x -f .publish
+    for file in $removed_files
+    do
+        target_file="$target_directory$file"
+        echo "$(date '+%Y-%m-%d %H:%M:%S') removing:" $target_file
+        rm $target_file
+    done
+    #set -x
+    rsync -a "$path_to_publish" --files-from="$f" "$target_directory$path_to_publish/"
+    #set +x
 }   
 
 echo "Checks every couple of seconds if an rst file was updated."
@@ -63,7 +78,9 @@ echo "Press CTRL+C to terminate."
 while true
 do
     check_all_rst_files
-    process_all_publish_files
+    process_publish_file_in_root_folder
+    process_all_publish_files_in_subfolders
+
 
     sleep 3
     # echo "check done:"$(date '+%Y-%m-%d %H:%M:%S')
