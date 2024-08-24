@@ -52,7 +52,10 @@ function process_all_publish_files_in_subfolders() {
     for f in */.publish
     do
         path_to_publish=$(dirname "$f")
-        removed_files=$(ls -p "$target_directory$path_to_publish" | grep -v / | grep -F -v -x -f "$f")
+        cd "$target_directory$path_to_publish"
+        all_files=$(find * -type f | grep -E -v "/$" )
+        cd - > /dev/null 
+        removed_files=$(echo -n "$all_files" | grep -F -v -x -f "$f") 
         echo -n "$removed_files" | while IFS= read -r removed_file
         do
             target_file="$target_directory$path_to_publish/$removed_file"
