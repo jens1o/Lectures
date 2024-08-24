@@ -49,9 +49,16 @@ function check_all_rst_files() {
 }
 
 function process_all_publish_files_in_subfolders() {
-    for f in .publish */.publish
+    for f in */.publish
     do
         path_to_publish=$(dirname "$f")
+        removed_files=$(ls -p "$target_directory$path_to_publish" | grep -v / | grep -F -v -x -f "$f")
+        echo -n "$removed_files" | while IFS= read -r removed_file
+        do
+            target_file="$target_directory$path_to_publish/$removed_file"
+            echo "$(date '+%Y-%m-%d %H:%M:%S') removing:" $target_file
+            rm $target_file
+        done
         #set -x
         rsync -a "$path_to_publish" --files-from="$f" "$target_directory$path_to_publish/" 
         #set +x
@@ -61,10 +68,10 @@ function process_all_publish_files_in_subfolders() {
 function process_publish_file_in_root_folder() {
     f=".publish"
     path_to_publish=$(dirname "$f")
-    removed_files=ls -p  "$target_directory" | grep -v / | grep -F -v -x -f .publish
-    for file in $removed_files
+    removed_files=$(ls -p "$target_directory" | grep -v "/" | grep -F -v -x -f "$f")
+    echo -n "$removed_files" | while IFS= read -r removed_file
     do
-        target_file="$target_directory$file"
+        target_file="$target_directory$removed_file"
         echo "$(date '+%Y-%m-%d %H:%M:%S') removing:" $target_file
         rm $target_file
     done
@@ -73,6 +80,16 @@ function process_publish_file_in_root_folder() {
     #set +x
 }   
 
+function remove_removed_folders() {
+    removed_folders=$(echo $remote_folders"\n"$local_folders | sort | uniq -c | grep -E "^\s*1 " | sed -E "s/^ *1 //" | grep -v "W3M20014")
+    echo -n "$removed_folders" | while IFS= read -r removed_folder
+    do
+        target_folder="$target_directory$removed_folder"
+        echo "$(date '+%Y-%m-%d %H:%M:%S') removing:" $target_folder
+        rm -r $target_folder
+    done
+}
+
 echo "Checks every couple of seconds if an rst file was updated."
 echo "Press CTRL+C to terminate."
 while true
@@ -80,7 +97,7 @@ do
     check_all_rst_files
     process_publish_file_in_root_folder
     process_all_publish_files_in_subfolders
-
+    remove_removed_folders
 
     sleep 3
     # echo "check done:"$(date '+%Y-%m-%d %H:%M:%S')
