@@ -154,6 +154,37 @@ Qualitätssicherung
 -------------------
 
 
+
+.. class:: center-child-elements transition-move-left
+
+Effekte Mangelnder Qualitätssicherung\ [#]_
+---------------------------------------------
+
+.. epigraph:: 
+  
+
+  Auf Tausenden von Windows-Rechnern weltweit ist der Bluescreen of Death zu sehen. Neben Privatpersonen und Firmen sind auch Banken, Krankenhäuser und Flughäfen betroffen. Es entsteht ein Milliardenschaden. [...]
+
+  .. container:: incremental
+
+    [...] Juli 2024 - Das CrowdStrike Desaster - Wenn Sicherheitssoftware zur Gefahr wird
+
+    — `Das Crowdstrike Desaster <https://www.innoq.com/de/podcast/028-das-crowdstrike-desaster/>`__
+
+
+.. [#] Es handelt sich in diesem Falle eindeutig nicht um einen Cybersecurity Vorfall. Es ist ein Beispiel für mangelnde Qualitätssicherung an *mehreren* Stellen.
+
+
+.. supplemental::
+
+  Wo fehlten die Qualitätsmaßnahmen (mind./vermutlich)?
+
+  - passende QS Maßnahmen fehlten (vermutlich) bei der Entwicklung
+  - passende QS Maßnahmen fehlten vor dem Rollout
+
+
+.. class:: center-child-elements transition-fade
+
 Durchzuführende Qualitätssicherung
 -----------------------------------
 
