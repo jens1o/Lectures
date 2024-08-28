@@ -22,6 +22,9 @@
 .. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
+    
+.. role:: raw-html(raw)
+   :format: html
 
 
 
@@ -34,7 +37,7 @@ Dokumentenmanagement, Archivierungs- und Verschlüsselungsverfahren
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
-    :Version: 1.0
+    :Version: 1.0.1
 
 .. supplemental::
 
@@ -64,7 +67,9 @@ Dokumentmanagement, Archivierungs- und Verschlüsselungsverfahren - W3WI_EH304.
 :Verortung: Drittes Studienjahr (5. oder 6. Semester)
 :Umfang: 25 Vorlesungsstunden und 50 Stunden Selbststudium (2,5 ECTS) 
 :Übergeordnetes Modul: Fortgeschrittene Konzepte des Informationsmanagements im Gesundheitswesen (W3WI_EH304)
-:Prüfungsleistung: **Portfoliogespräch** (d. h. mündl. Prüfungsgespräche - 10min pro Person.)
+:Prüfungsleistung: **Portfoliogespräch** 
+    
+    (d. h. mündl. Prüfungsgespräche - voraussichtlich 10min pro Person)
 
 
 .. supplemental::
@@ -110,15 +115,22 @@ Motivation
 
 - Die meisten strukturierten Daten liegen elektronisch vor (ERP, CRM, etc.). 
 - Dokumente liegen aber (noch immer) in Papierform vor (insbesondere in Deutschland) und es gilt dieses Rationalisierungspotential zu heben.
-- Alle reden von elektronischen Geschäftsprozessen und Digitalisierung - Dokumente sind ein wesentlicher Bestandteil!
-- Wichtige gesetzliche und technische Grundlagen sind geschaffen.
+- Alle reden von elektronischen Geschäftsprozessen und Digitalisierung - Dokumente sind ein (der?) wesentlicher Bestandteil.
+- Wichtige gesetzliche und technische _Grundlagen_ sind geschaffen.
 - Experten schätzen, dass 95% der Papierdokumente nach Ablage nicht mehr genutzt werden, da sie zu schwer zu finden sind.
-- Ähnlich hohe Werte werden für digitale Dokumente genannt, die ohne weitere Strukturierungshilfen in Dateisystemen oder Datenbanken liegen. 
+
+  .. container:: incremental
+
+     Ähnlich hohe Werte werden für digitale Dokumente genannt, die ohne weitere Strukturierungshilfen in Dateisystemen oder Datenbanken liegen. 
 - Die Menge an Dokumenten, die heute entstehen kann durch eine einzelne Person nicht mehr bewältigt werden.
 
 .. supplemental::
 
-  Zum  Beispiel fallen für ein einzelnes konventionelles Kraftwerk bereits ca. 500  000 Dokumente.
+  - Zum Beispiel wurden an der DHBW erst zum Jahrgang 2024/25 die Schriftform bei (einigen) der Dokumenten zu Anmeldung abgeschafft.
+
+  - An der DHBW ist es (zumindest im Jahr 2024) noch erforderlich Projektarbeiten und Bachelorarbeiten in Papierform einzureichen, obwohl dies von vielen Dozenten nicht verlangt wird.
+
+  - Zum  Beispiel fallen für ein einzelnes konventionelles Kraftwerk bereits ca. 500  000 Dokumente.
    
 
 .. class:: smaller
@@ -131,6 +143,21 @@ Digitalisierung - ein langwieriger Prozess...
     :align: center
     
     Jan. 2024
+
+.. supplemental::
+
+    **Verwendung von Disketten im Jahr 2024**
+
+    .. epigraph::
+
+        *Bundeswehrschiffe mit Diskettenlaufwerken: Marine sucht Ersatz für Floppy Disks*
+
+        :raw-html:`<hr>`
+
+        In kleinen Schritten schreitet auch die Bundeswehr bei der Digitalisierung voran: Jetzt will sie ihre Fregatten mit moderner Technik ausstatten – und verabschiedet sich dafür vom technischen Standard der Neunzigerjahre: der Diskette.
+
+        -- 19.07.2024 `RND <https://www.rnd.de/politik/bundeswehr-sucht-ersatz-fuer-floppy-disks-deutsche-marine-will-fregatten-umruesten-7AUDWQUN7BGZPDOCOS7N6G5LPQ.html>`__
+
 
 
 .. class:: smaller
@@ -163,11 +190,16 @@ Digitalisierung - ein Prozess mit Stilblüten...
     :align: center
 
 
+.. supplemental::
 
-.. class:: center-child-elements transition-scale
+    Zumindest in der Übergangszeit - aber nicht nur dann - kann es vorkommen, dass die Digitalisierung zu einem deutlichen Mehraufwand führt, da beide Systeme (Papier und Digital) gepflegt werden, weil die Nutzer dem neuen System noch nicht vertrauen oder es noch nicht vollständig implementiert ist und die echten Anforderungen (noch) nicht erfüllt.
 
-\ 
----
+
+
+.. class:: no-title center-child-elements transition-scale
+
+Über die Ordnung von Dokumenten - Arthur Schopenhauer
+-------------------------------------------------------
 
 .. container:: 
 
@@ -214,7 +246,7 @@ Gegenüberstellung konventionelles Archiv zu DMS
     :header: " ", "Konventionell","DMS"
 
     Ablagestruktur, "hierarchisch, meist nach Dokumententypen getrennt", "datenbankgestützt, Suchbeginn nach jedem Suchkriterium möglich, Suche wahlweise z. B. je Kunde, Vorgang oder Beleg"
-    Auskunftsbereitschaft,"zeitverzögert, nach Sichtung/ Entnahme aller Dokumente", "unmittelbar durch vorgangsbezogene bzw. dokumentenübergreifende Suche"
+    Auskunftsbereitschaft,"zeitverzögert, nach Sichtung bzw. Entnahme aller Dokumente", "unmittelbar durch vorgangsbezogene bzw. dokumentenübergreifende Suche"
     Auskunftsaufwand, "für Belegsuche, Entnahme und wieder einordnen, evtl. kopieren und Versand", "nur für Recherche am Bildschirm, gegebenenfalls direkter Versand per E-Mail"
     Redundanz, "Abteilungsablagen = mehrfacher Aufwand", Einmalablage
     Vollständigkeit, "leidet unter jeder Entnahme", bleibt immer gewahrt
@@ -238,7 +270,7 @@ Grundlegende Voraussetzungen für Dokumentenmanagementorganisation
 
 In einer Organisation ist zu regeln:
 
-.. class:: incremental
+.. class:: incremental smaller
 
 • Kennzeichnung und Beschreibung von Dokumenten
 • Fortschreibung und Historienverwaltung von Dokumenten
@@ -248,7 +280,8 @@ In einer Organisation ist zu regeln:
 • Vernichtung von Dokumenten
 • Regelung von Verantwortlichkeiten für Inhalt und Verwaltung von Dokumenten
 
-.. container:: assessment incremental
+.. admonition:: Feststellung 
+    :class: incremental smaller
     
     Ein Dokumentenmanagementsystem ist ein IT System zur Unterstützung der Dokumentenmanagementorganisation.
 
@@ -278,7 +311,8 @@ Was ist ein Dokument aus logischer Sicht?
     • Die Information ist für einen gewissen Zeitraum zu erhalten.
     • Dokumente dienen dem Nachweis von Tatsachen.
     
-.. container:: assessment incremental
+.. admonition:: Feststellung 
+    :class: incremental smaller
     
     Das Dokument ist somit eigentlich der Träger, der die Informationen speichert, unabhängig davon ob das Dokument ein Stück Papier, eine Datei auf einem Rechner, ein Videoband oder eine Tontafel ist etc.
 
@@ -291,7 +325,9 @@ Was ist ein Dokument aus technischer Sicht?
 
     Ein Dokument ist ein Objekt, das in einer Datenbank beschrieben wird.
 
-    Das beschriebene Objekt kann selbst elektronisch gespeichert werden.
+    .. container:: incremental
+
+        Das beschriebene Objekt kann selbst elektronisch gespeichert werden.
 
 
 .. supplemental::
@@ -386,6 +422,18 @@ Dokumente annotieren
 - Preview Images sind oft zusätzlich eingebettet.
 
 
+.. container:: question incremental
+
+    Was beeinflusst den ursprüngliche optische Zustand? 
+    
+    Wo sind die Probleme beim Erhalt des ursprünglichen optischen Zustandes?
+
+
+    .. - nicht-gängigen Schriftarten/Fonts
+       - Anpassung der Algorithmen zum Layout
+       - die Wörterbücher/Algorithmen für die Trennung von Wörtern werden aktualisiert
+       - ...
+
 
 Hashwerte und Signaturen [#]_
 --------------------------------
@@ -474,7 +522,7 @@ Beispiele von Meta-Daten einer Verwaltungssoftware für grafische Zeichnungen
 
     1, Zeichnungsnummer, M, Eindeutiger Schlüssel, Manuelle Vergabe durch Benutzer, Identifiziert Zeichnung
     2,"Zeichnungsmappen- nummer", M, Fremdschlüssel, , 
-    3a, Version, M, Version der Zeichnung verwalten, Automatische Vergabe durch DMS bei Check-in, Benutzer entscheidet, ob *minor* oder *major*
+    3a, Version, M, Version der Zeichnung verwalten, Automatische Vergabe durch DMS bei Check-in, "Benutzer entscheidet, ob *minor* oder *major*"
     3b, Check-In-Datum, M, Datum des Check-in der Version, Automatische Vergabe durch DMS, Check-in Datum
     3c, Dokumenten-Owner, M, Gruppe aus letzten Bearbeitern, Aus USER-ID abgeleitet
     3d, Letzter Bearbeiter, M, Identifikation, USER-ID, Beim Check-in
@@ -516,7 +564,13 @@ Dokumentenstrukturen
    
 .. supplemental::
      
-    Ein Beispiel einer Mappe wäre eine Vorgangsakte mit einem Antrag, (am Ende) einem Gutachten, ggf. E-Mails aber auch handschriftlichen Notizen ...
+    Ein Beispiel einer Mappe wäre eine Vorgangsakte mit:
+    
+    - einem Antrag, 
+    - ggf. E-Mails
+    - ggf. Unteraufträgen
+    - ggf. handschriftlichen Notizen
+    - (am Ende) einem Gutachten
 
 
 
@@ -559,11 +613,11 @@ Dokumente ...
 
 .. class:: incremental
 
-• entstehen
-• verändern sich
-• werden festgeschrieben
-• dienen als Nachweis / Infoquelle
-• müssen bestimmte Zeit aufbewahrt werden
+• entstehen,
+• verändern sich,
+• werden festgeschrieben,
+• dienen als Nachweis / Infoquelle,
+• müssen bestimmte Zeit aufbewahrt werden,
 • können bzw. müssen gelöscht werden.
 
 
@@ -605,7 +659,7 @@ Rahmenbedingungen für die Lebensdauer von Dokumenten
 .. class:: incremental
 
 • Betriebliche Notwendigkeiten
-• Gesetzliche Aufbewahrungspflichten 
+• Gesetzliche Aufbewahrungs- bzw. Löschungspflichten 
 • Datenschutzbestimmungen
 
 
@@ -638,16 +692,14 @@ Archivierung (von Dokumenten)
 
 .. admonition:: Definition
     
-    **Archiv**
-    
-    Ein Archiv ist ein realer oder elektronischer Ort, in dem Dokumente, die zur laufenden Aufgabenerfüllung nicht mehr benötigt werden, erfasst, ausgewertet und zugänglich gemacht werden.
+    :Archiv: Ein realer oder elektronischer Ort, in dem Dokumente, die zur laufenden Aufgabenerfüllung nicht mehr benötigt werden, erfasst, ausgewertet und zugänglich gemacht werden.
 
 
 
 Kerneigenschaften elektronischer Archive
 -----------------------------------------------
 
-Archiv System müssen die folgenden Eigenschaften bei langjähriger Aufbewahrung unterstützen:
+Archivsysteme müssen die folgenden Eigenschaften bei langjähriger Aufbewahrung unterstützen:
 
 .. class:: incremental
 
@@ -661,16 +713,20 @@ Archiv System müssen die folgenden Eigenschaften bei langjähriger Aufbewahrung
 
 :Lesbarkeit: Informationen müssen auch in Zukunft lesbar sein.
 
-.. container:: assessment incremental
+.. admonition:: Feststellung 
+    :class: incremental smaller
 
     Eigenschaften wie die Unterstützung von Volltextindizierung sind nicht in allen Fällen notwendig. 
 
 .. supplemental::
 
+    Wikipedia: `Authentizität <https://de.wikipedia.org/wiki/Authentizität>`__ bedeutet Echtheit im Sinne von Ursprünglichkeit.
+
+    Z. B. müssen Privatpersonen Handwerkerrechnungen für (mind.) 2 Jahre aufbewahren. 
+
     Z. B. muss ein Insolvenzverwalter nach dem Abschluss des Verfahrens die Dokumente 10 Jahre aufbewahren obwohl er in dieser Zeit die Dokumente höchstwahrscheinlich nicht mehr benötigt.
 
     Informationen über die Ergebnisse von arbeitsmedizinischen Untersuchungen (dies sind ggf. sehr vielfältige und umfangreiche Daten (z. B. Röntenbilder, EKGs)) müssen 30 Jahre bis nach der letzten Untersuchung aufbewahrt werden, da sich daraus ggf. Rentenansprüche ableiten. Daraus leiten sich ggf. Fristen für Dokumente von 50 Jahren und mehr ab.
-
 
 
 Revisionssichere elektronische Archivierung
