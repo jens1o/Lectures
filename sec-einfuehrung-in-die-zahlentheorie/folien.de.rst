@@ -10,7 +10,7 @@
 
 .. |html-source| source::
     :prefix: https://delors.github.io/
-    :suffix: .htm/Users/Michael/Teaching/Lectures/web-css/
+    :suffix: .html
 .. |pdf-source| source::
     :prefix: https://delors.github.io/
     :suffix: .html.pdf
@@ -32,7 +32,7 @@ Einführung in die Zahlentheorie
 ================================
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-:Version: 1.0
+:Version: 1.0.1
 :Quelle: Im Wesentlichen *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 
 .. supplemental::
@@ -122,7 +122,12 @@ Wenn :math:`b | g` und :math:`b|h`, dann :math:`b|(mg+nh)` für beliebige ganze 
 Teilungsalgorithmus
 ---------------------
 
-Sei eine beliebige positive ganze Zahl :math:`n` gegeben und eine beliebige ganze Zahl :math:`a \geq 0`, so erhält man bei der Division von :math:`a` durch :math:`n` einen ganzzahligen Quotienten :math:`q` und einen nicht negativen, ganzzahligen Rest :math:`r`, die der folgenden Beziehung gehorchen:
+Sei eine beliebige positive ganze Zahl :math:`n` gegeben und eine beliebige ganze Zahl :math:`a \geq 0`, so erhält man bei der Division von :math:`a` durch :math:`n`:
+
+- einen ganzzahligen Quotienten :math:`q` und 
+- einen nicht negativen, ganzzahligen Rest :math:`r`, 
+ 
+die der folgenden Beziehung gehorchen:
 
 .. math:: 
 
@@ -170,7 +175,7 @@ Verfahren zur Bestimmung des größten gemeinsamen Teilers (GGT) von zwei positi
 Größter Gemeinsamer Teiler (:ab:`GGT`) 
 ------------------------------------------------------------------------------
 
-(:eng:`Greatest Common Divisor (GGT)`)
+(:eng:`Greatest Common Divisor (GCD)`)
 
 .. class:: incremental
 
@@ -251,18 +256,18 @@ Euklidischer Algorithmus
 .. csv-table:: 
     :header: "Schritt", "Dividend", "Divisor", "Quotient", "Rest" 
     :width: 100%
-    :class: highlight-line-on-hover
+    :class: highlight-line-on-hover table-rows-align-right
 
-    1, 1160718174, 316258250, 3, 211943424
-    2, 316258250, 211943424, 1, 104314826
-    3, 211943424, 104314826, 2, 3313772
-    4, 104314826, 3313772, 31, 1587894
-    5, 3313772, 1587894, 2, 137984
-    6, 1587894, 137984, 11, 70070
-    7, 137984, 70070, 1, 67914
-    8, 70070, 67914, 1, 2156
-    9, 67914, 2156, 31, 1078
-    10, 2156, **1078**, 2, 0
+    1, 1.160.718.174, 316.258.250, 3, 211.943.424
+    2, 316.258.250, 211.943.424, 1, 10.431.4826
+    3, 211.943.424, 104.314.826, 2, 3.313.772
+    4, 104.314.826, 3.313.772, 31, 1.587.894
+    5, 3.313.772, 1.587.894, 2, 137.984
+    6, 1.587.894, 137.984, 11, 70.070
+    7, 137.984, 70.070, 1, 67.914
+    8, 70.070, 67.914, 1, 2.156
+    9, 67.914, 2.156, 31, 1.078
+    10, 2.156, **1.078**, 2, 0
 
 
 
@@ -283,7 +288,7 @@ Somit gilt für jede ganze Zahl :math:`a`:
 
 .. math:: 
     
-    a = qn + r \quad 0 \leq r < n; q = \left\lfloor a / n \right\rfloor
+    a = qn + r \quad 0 \leq r < n;\qquad q = \left\lfloor a / n \right\rfloor
 
     a =  \left\lfloor a / n \right\rfloor \times n + (a\; mod\;  n)
 
@@ -332,7 +337,7 @@ Eigenschaften der Kongruenz
 
 .. class:: incremental
 
-1. :math:`a \equiv b (mod\; n)` wenn :math:`n|(a-b)`
+1. :math:`a \equiv b (mod\; n)` wenn :math:`n|(a-b)` :minor:`(Siehe nächste Folie.)`
 2. :math:`a \equiv b (mod\; n) \Rightarrow b \equiv a (mod\; n)`
 3. :math:`a \equiv b (mod\; n)` und :math:`b \equiv c (mod\; n) \Rightarrow a \equiv c (mod\; n)`
 
@@ -554,9 +559,6 @@ Additive und Multiplikative Inverse Modulo 8
             7, 1, 7 
 
 
-        
-
-
 
 .. class:: smaller-slide-title
 
@@ -711,6 +713,8 @@ Erweiterter Euklidischer Algorithmus :raw-html:`<br>` :scriptsize:`Systematische
 
     Aufgrund der Umstellung z. B. von :math:`710 = 2 \times 310 + 90` nach :math:`90 = 710 - 2 \times 310` können wir dann im nächsten Schritt/der nächsten Formel die :math:`90` durch :math:`710 - 2 \times 310` ersetzen und werden dann :math:`310 - 3 \times(710 - 2 \times 310) = 40` erhalten.
 
+    D. h. betrachten wir :math:`710` als :math:`a` und :math:`310` als :math:`b`, erhalten wir durch die Umstellung eine Formel, die nur aus :math:`a`\ s und :math:`b`\ s zuzüglich zweiter Koeffizienten besteht.
+
 
 Erweiterter Euklidischer Algorithmus - systematische Berechnung
 -------------------------------------------------------------------
@@ -750,14 +754,14 @@ Erweiterter Euklidischer Algorithmus
 .. csv-table::
     :align: left
     :width: 1850px
-    :class: footnotesize highlight-line-on-hover
+    :class: far-far-smaller highlight-line-on-hover
     :header: Berechne, Was erfüllt, Berechne, Was erfüllt
 
-    :math:`r_{-1} = a`, , :math:`x_{-1}=1; y_{-1}=0`, :math:`a = ax_{-1} + by_{-1}`
-    :math:`r_{0} = b`, , :math:`x_0=0;y_{0}=0`, :math:`b = ax_{0} + by_{0}`
-    ":math:`r_{1} = a\;mod\;b`; :math:`q_1= \lfloor a/b \rfloor`", :math:`a=q_1b+r_1` , :math:`x_1=x_{-1} -q_1x_0 = 1`; :math:`y_1=y_{-1} -q_1y_0 = -q_1`, :math:`r_1 = ax_{1} + by_{1}` 
-    :math:`r_{2} = b\;mod\;r_1`; :math:`q_2= \lfloor b/r_1 \rfloor`, :math:`b=q_2r_1+r_2` , :math:`x_2=x_{0} -q_2x_1; y_2=y_{0} -q_2y_1`, :math:`r_2 = ax_{2} + by_{2}`
-    :math:`r_{3} = r_1\;mod\;r_2`; :math:`q_3= \lfloor r_1/r_2 \rfloor`, :math:`r_1=q_3r_2+r_3` , :math:`x_3=x_{1} -q_3x_2; y_3=y_{1} -q_3y_2`, :math:`r_3 = ax_{3} + by_{3}`
+    :math:`r_{-1} = a`, , :math:`x_{-1}=1;\quad y_{-1}=0`, :math:`a = ax_{-1} + by_{-1}`
+    :math:`r_{0} = b`, , :math:`x_0=0;\quad y_{0}=0`, :math:`b = ax_{0} + by_{0}`
+    ":math:`r_{1} = a\;mod\;b;\quad q_1= \lfloor a/b \rfloor`", :math:`a=q_1b+r_1` , :math:`x_1=x_{-1} -q_1x_0 = 1`; :math:`y_1=y_{-1} -q_1y_0 = -q_1`, :math:`r_1 = ax_{1} + by_{1}` 
+    :math:`r_{2} = b\;mod\;r_1;\quad q_2= \lfloor b/r_1 \rfloor`, :math:`b=q_2r_1+r_2` , :math:`x_2=x_{0} -q_2x_1;\quad y_2=y_{0} -q_2y_1`, :math:`r_2 = ax_{2} + by_{2}`
+    :math:`r_{3} = r_1\;mod\;r_2;\quad q_3= \lfloor r_1/r_2 \rfloor`, :math:`r_1=q_3r_2+r_3` , :math:`x_3=x_{1} -q_3x_2;\quad y_3=y_{1} -q_3y_2`, :math:`r_3 = ax_{3} + by_{3}`
     :math:`\vdots`, :math:`\vdots`, :math:`\vdots`, :math:`\vdots`
     :math:`r_{n} = r_{n-2}\;mod\;r_{n-1}`; :math:`q_n= \lfloor r_{n-2}/r_{n-1} \rfloor`, :math:`r_{n-2}=q_nr_{n-1}+r_n` , :math:`x_n=x_{n-2} -q_nx_{n-1}`; :math:`y_n=y_{n-2} -q_ny_{n-1}`, :math:`r_n = ax_{n} + by_{n}`
     :math:`r_{n+1} = r_{n-1}\;mod\;r_{n} = 0`; :math:`q_{n+1}= \lfloor r_{n-1}/r_{n} \rfloor`, :math:`r_{n-1}=q_{n+1}r_{n}+0` , ,  
@@ -1226,9 +1230,25 @@ Das CRT findet in der Public-Key-Kryptographie Einsatz.
     .. solution::
         :pwd: CRT!
 
-        1. :math:`x \equiv 2 (mod\; 4)` und :math:`x \equiv 3 (mod\; 7)`
-        2. Bestimme :math:`x_1` und :math:`x_2`:
+        1. [Modellierung des Problems] 
+   
+           :math:`x \equiv 2 (mod\; 4)` und :math:`x \equiv 3 (mod\; 7)`
+        2. [Bestimme :math:`x_1` und :math:`x_2`]
      
+           Sei :math:`a_1 = 2`, :math:`m_1 = 4`, :math:`a_2 = 3`, :math:`m_2 = 7`
+
+           (Zur Erinnerung: :math:`m_2 \times x_1 \equiv 1 (mod\; m_1)` und :math:`m_1 \times x_2 \equiv 1 (mod\; m_2)`)
+
+           Somit: 
+
+           :math:`(m_1 = 4) \times x_2 \equiv 1 (mod\; (m_2 = 7))` bzw.
+
+           :math:`(m_2 = 7) \times x_1 \equiv 1 (mod\; (m_1 = 4))`
+
+           d. h.:
+
            :math:`x_1 = 3` und :math:`x_2 = 2`
 
-        3. Berechne :math:`x = 2 \times 7 \times 3 + 3 \times 4 \times 2 = 66`
+        3. [Berechne] 
+         
+           :math:`x = 2 \times 7 \times 3 + 3 \times 4 \times 2 = 66`
