@@ -388,7 +388,7 @@ Beispiel - Blum Blum Shub (BBS) Generator
 
 .. csv-table::
     :align: center 
-    :class: no-table-borders text-align-right
+    :class: no-table-borders table-rows-align-right
     :header: i, x_i, B_i
 
     0, 20749, 
