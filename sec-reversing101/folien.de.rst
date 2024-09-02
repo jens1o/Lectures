@@ -597,7 +597,7 @@ Ein *Constructor* welcher keine expliziten Parameter hat und nur den super Konst
         1  invokespecial java.lang.Object()
         4  return
 
-Die Zeilennummern und die Informationen über die lokalen Variablen ist optional und wird nur für Debugging Zwecke benötigt.
+Die Zeilennummern und die Informationen über die lokalen Variablen sind optional und werden nur für Debugging Zwecke benötigt.
 
 .. code:: java
     
