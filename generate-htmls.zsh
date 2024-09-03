@@ -6,6 +6,7 @@
 # files listed in them to the specified target directory (see below).
 
 target_directory="/Users/Michael/Sites/delors.github.io/" # must end with "/"!
+wd=$(pwd)
 
 # Use the following lines to enable/disable debug output:
 # set -x
@@ -52,16 +53,25 @@ function process_all_publish_files_in_subfolders() {
     for f in */.publish
     do
         path_to_publish=$(dirname "$f")
-        cd "$target_directory$path_to_publish"
-        all_files=$(find * -type f | grep -E -v "/$" )
-        cd - > /dev/null 
-        removed_files=$(echo -n "$all_files" | grep -F -v -x -f "$f") 
-        echo -n "$removed_files" | while IFS= read -r removed_file
-        do
-            target_file="$target_directory$path_to_publish/$removed_file"
-            echo "$(date '+%Y-%m-%d %H:%M:%S') removing:" $target_file
-            rm $target_file
-        done
+        target_folder="$target_directory$path_to_publish"
+        if [ -d "$target_folder" ]
+        then
+            cd "$target_folder"
+            all_files=$(find * -type f | grep -E -v "/$" )
+            cd "$wd"
+            removed_files=$(echo -n "$all_files" | grep -F -v -x -f "$f")
+            if [ $? -eq 2 ]
+            then
+                echo "Fatal error[" $? "] while processing:" $f
+                return
+            fi
+            echo -n "$removed_files" | while IFS= read -r removed_file
+            do
+                target_file="$target_directory$path_to_publish/$removed_file"
+                echo "$(date '+%Y-%m-%d %H:%M:%S') removing file:" $target_file
+                rm $target_file
+            done
+        fi
         #set -x
         rsync -a "$path_to_publish" --files-from="$f" "$target_directory$path_to_publish/" 
         #set +x
@@ -72,10 +82,14 @@ function process_publish_file_in_root_folder() {
     f=".publish"
     path_to_publish=$(dirname "$f")
     removed_files=$(ls -p "$target_directory" | grep -v "/" | grep -F -v -x -f "$f")
+    if [ $? -eq 2 ]; then
+        echo "Fatal error [" $? "] while processing" $f "in" $(pwd)
+        return
+    fi
     echo -n "$removed_files" | while IFS= read -r removed_file
     do
         target_file="$target_directory$removed_file"
-        echo "$(date '+%Y-%m-%d %H:%M:%S') removing:" $target_file
+        echo "$(date '+%Y-%m-%d %H:%M:%S') removing file in root folder:" $target_file
         rm $target_file
     done
     #set -x
@@ -84,22 +98,26 @@ function process_publish_file_in_root_folder() {
 }   
 
 function remove_removed_folders() {
-    # We first need to find the folders that are no removed in the local directory
-    # for that we simply list the folder in the remote directory and the local 
+    # We first need to find the folders that are removed in the local directory.
+    # For that, we simply list the folder in the remote directory and the local 
     # directory and then compare the two lists by sorting and counting the
     # entries. The entries that are only present in the target directory are
-    # the one which only exist once (the count is 1). These are the folders
+    # the ones which only exist once (the count is 1). These are the folders
     # that will be removed.
-    # only top level folders: remote_folders=$(ls -p "$target_directory" | grep "/" | sort)
-    remote_folders=$(cd "$target_directory" &&  find * -type d -not -ipath "*/.git/*" -not -ipath "W3M20014/*" -mindepth 1 && cd ~-)
+    # We exclude the .git folder and the W3M20014 folder from the list of folders!
+    remote_folders=$(cd "$target_directory" && find * -type d -not -ipath "*/.git/*" -not -ipath "*/W3M20014/*" && cd $wd)
     # only top level folders: local_folders=$(ls -p . | grep "/" | sort)
-    local_folders=$(find * -type d -not -ipath "*/.git/*" -mindepth 1)
+    local_folders=$(find * -type d -not -ipath "*/.git/*")
     shared_folders=$(echo $remote_folders"\n"$local_folders | sort | uniq -c | grep -E "^\s*2 " | sed -E "s/^ *2 //")
     removed_folders=$(echo $remote_folders"\n"$shared_folders | sort | uniq -c | grep -E "^\s*1 " | sed -E "s/^ *1 //" | grep -v "W3M20014")
-    echo -n "$removed_folders" | while IFS= read -r removed_folder
+    if [[ "$removed_folders" == "" ]]; then 
+        # If we don't return now, we will delete the target folder itself!
+        return; 
+    fi
+    echo "$removed_folders" | while IFS= read -r removed_folder
     do
         target_folder="$target_directory$removed_folder"
-        echo "$(date '+%Y-%m-%d %H:%M:%S') removing:" $target_folder
+        echo "$(date '+%Y-%m-%d %H:%M:%S') removing folder:" $target_folder
         rm -r $target_folder
     done
 }
@@ -109,8 +127,11 @@ echo "Press CTRL+C to terminate."
 while true
 do
     check_all_rst_files
+    cd $wd # Just to be sure that we are (still) in the right directory
     process_publish_file_in_root_folder
+    cd $wd # Just to be sure that we are (still) in the right directory
     process_all_publish_files_in_subfolders
+    cd $wd # Just to be sure that we are (still) in the right directory
     remove_removed_folders
 
     sleep 3
