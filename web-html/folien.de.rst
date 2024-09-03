@@ -38,11 +38,13 @@
 HTML(5) - HyperText Markup Language
 ================================================
 
+*Eine Einführung in die grundlegenden Konzepte von HTML*
+
 .. container:: line-above tiny
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
-    :Version: 1.0
+    :Version: 1.0.1
 
 .. supplemental::
 
@@ -78,34 +80,34 @@ HyperText Markup Language (HTML)
   
         - Webseiten
         - Progressive Web-Apps
-        - Desktop Apps (z.B. mit Electron)
+        - Desktop Apps (z. B. mit Electron)
   
-    .. layer:: incremental
 
-        .. rubric:: Historie
+HTML - Historie
+------------------------------------------------
 
-        .. module:: timeline 
-            :class: align-center far-far-smaller
+.. module:: timeline 
+    :class: align-center far-far-smaller
 
-            {
-            "class" : "HTML-Timeline",
-            "spread" : "0.9",
-            "data": [
-                {"d":"...","t":"HTML 1.0"},
-                {"d":"1995","t":"HTML 2.0"},
-                {"d":"1997","t":"HTML 3.2 (3.0 wurde nie veröffentlicht)"},
-                {"d":"1998","t":"HTML 4.0/CSS"},
-                {"d":"2000","t":"XHTML (HTML 4 in XML)"},	
-                {"d":"2001","t":"XHTML 1.1"},	
-                {"d":"seit 2004","t":"HTML5 in Entwicklung"},
-                {"d":"2018","t":"XHTML 1.0 und 1.1 - obsolet"},	
-                {"d":"seit 2019","t":"HTML(5) (W3C und WHATWG)"}
-            ]
-            }     
+    {
+    "class" : "HTML-Timeline",
+    "spread" : "0.9",
+    "data": [
+        {"d":"...","t":"HTML 1.0"},
+        {"d":"1995","t":"HTML 2.0"},
+        {"d":"1997","t":"HTML 3.2 (3.0 wurde nie veröffentlicht)"},
+        {"d":"1998","t":"HTML 4.0/CSS"},
+        {"d":"2000","t":"XHTML (HTML 4 in XML)"},	
+        {"d":"2001","t":"XHTML 1.1"},	
+        {"d":"seit 2004","t":"HTML5 in Entwicklung"},
+        {"d":"2018","t":"XHTML 1.0 und 1.1 - obsolet"},	
+        {"d":"seit 2019","t":"HTML(5) (W3C und WHATWG)"}
+    ]
+    }     
 
-        .. container:: far-smaller
+.. container:: far-smaller
 
-            WHATWG ≘ Web Hypertext Application Technology Working Group
+    WHATWG ≘ Web Hypertext Application Technology Working Group
 
 
 
@@ -141,7 +143,7 @@ Die *HTML Spezifikation* definiert eine abstrakte Sprache zur Beschreibung von D
 
     - Namespaces werden nicht von der HTML-Syntax unterstützt, aber sowohl vom DOM als auch der  XML-Syntax unterstützt. 
     - ``noscript`` wird nur in HTML Dokumenten unterstützt.
-    - Kommentare, die ``-->`` enthalten werden nur vom DOM unterstützt.
+    - Kommentare, die ``-->`` enthalten, werden nur vom DOM unterstützt.
 
 
 
@@ -195,7 +197,7 @@ HTML-Dokumente bestehen aus einem Baum von Elementen und Text.
 
 .. supplemental::
 
-    Mehrere HTML Dokumente bilden ggf. auf den selben DOM ab. Zum Beispiel, werden die Tags als solches gar nicht abgebildet und wenn im HTML Code ein optionales (schließendes) Tag fehlt, dann ist dies im DOM nicht mehr ersichtlich.
+    Mehrere HTML Dokumente bilden ggf. auf den selben DOM ab. Zum Beispiel werden die Tags als solches gar nicht abgebildet und wenn im HTML Code ein optionales (schließendes) Tag fehlt, dann ist dies im DOM nicht mehr ersichtlich.
 
 
 HTML - Verarbeitung
@@ -251,11 +253,11 @@ Allgemeiner Aufbau von HTML Elementen
 .. admonition:: Warnung
     :class: warning incremental
 
-    Die Spezifikation verlangt nicht in allen Fällen ein Start und/oder Endtag. Es ist jedoch eine gute Praxis, diese immer zu verwenden, wenn ein Start und/oder Endtag möglich ist.
+    Die Spezifikation verlangt nicht in allen Fällen ein Start und Endtag. Es ist jedoch eine gute Praxis, diese immer zu verwenden, wenn ein Endtag möglich ist.
 
 .. incremental:: 
 
-    Im Fall von Elementen ohne Endtag (z. B. ``<wbr>`` darf auch keines hinzugefügt werden!
+    Im Fall von Elementen ohne Endtag (z. B. ``<wbr>``) darf auch keines hinzugefügt werden!
 
 .. supplemental::
 
@@ -281,11 +283,14 @@ Typen von HTML Elementen
 Sechs Typen von HTML-Elementen werden unterschieden:
 
 :Void elements: ``area``, ``base``, ``br``, ``col``, ``embed``, ``hr``, ``img``, ``input``, ``link``, ``meta``, ``source``, ``track``, ``wbr``
-:Das template Element: ``template``
 :Raw text elements: ``script``, ``style``
 :Escapable raw text elements: ``textarea``, ``title``
+:Das template Element: ``template``
 :Foreign elements: Elemente aus dem MathML- und SVG-Namensraum.
-:Normal elements: Alle weiteren HTML Elemente sind *normale Elemente*.
+
+.. container:: line-above margin-top-1em
+
+    :Normal elements: **Alle weiteren HTML Elemente** sind *normale Elemente*.
 
 
 
@@ -360,7 +365,7 @@ Im Head sollten immer die folgenden Informationen deklariert werden:
   
 .. supplemental::
 
-    Insbesondere Mobilgeräte haben oft entweder eine geringere Auflösung als Desktop-Computer oder verwenden HiDPI Screens. Beides führt dazu, dass die Webseiten nicht wie gewünscht aussehen. In diesem Fall verwenden die Browser für die Webseiten einen virtuellen Viewport mit (z. B.) 960px und skalieren dann die Seite auf 390px herunter. Wenn dieses Verhalten nicht gewünscht ist - z. B. weil die Seite :eng:`Responsive` ist oder von vorneherein auf mobile Endgeräte ausgerichtet ist, dann ist auf jeden Fall eine *Viewport* Konfiguration notwendig.
+    Insbesondere Mobilgeräte haben oft entweder eine geringere Auflösung als Desktop-Computer oder verwenden HiDPI Screens. Beides führt dazu, dass die Webseiten nicht wie gewünscht aussehen. In diesem Fall verwenden die Browser für die Webseiten einen virtuellen Viewport mit (z. B.) 960px und skalieren dann die Seite (z. B.) auf 390px herunter. Wenn dieses Verhalten nicht gewünscht ist — z. B. weil die Seite :eng:`Responsive` ist oder von vorneherein auf mobile Endgeräte ausgerichtet ist — dann ist auf jeden Fall eine *Viewport* Konfiguration notwendig.
 
     .. csv-table::
         :header: "Device", "Viewport Size (width x height)", "Device Resolution (width x height)"
@@ -398,10 +403,10 @@ Im Head können weitere Informationen und Pragmas deklariert werden bzw. sollten
 
         .. container:: minor far-smaller
 
-            ``http-equiv`` ≘ *HTML equivalent* die Informationen könnte auch im HTTP Header stehen.
+            ``http-equiv`` ≘ *HTML equivalent*; d. h. die Informationen könnte auch im HTTP Header stehen.
 
         - ``<meta http-equiv="Content-Type" content="text/html; charset=utf-8">`` (alt)
-        - ``<meta http-equiv="Content-Security-Policy" content="default-src https:" />``
+        - ``<meta http-equiv="Content-Security-Policy" content="default-src https:">``
 
           .. incremental:: far-smaller 
 
@@ -562,7 +567,7 @@ Attribute
 
 .. class:: incremental
 
-:Aufgezählte Attribute (`enumerated values`:eng:): definieren eine begrenzte Anzahl von gültigen Werten sowie einen Default Wert, der verwendet wird, wenn kein Wert angegeben ist, aber das Attribut verwendet wird.
+:Aufgezählte Attribute (`enumerated values`:eng:): definieren eine begrenzte Anzahl von gültigen Werten sowie einen Default, der verwendet wird, wenn kein Wert angegeben ist, aber das Attribut verwendet wird.
 
 .. class:: incremental
 
@@ -572,7 +577,9 @@ Attribute
 
     Globale HTML Attribute sind Z. B. ``id``, ``class``, ``data-*``, ``autofocus``, ``role``, ``lang``, ``style``, ``popover``, ``tabindex``.
 
-    Event Handler Attribute: ``onclick``, ``onclose``, ...
+    .. container:: minor
+    
+        Event Handler Attribute: ``onclick``, ``onclose``, ...
    
 
 .. [#] `Globale Attribute <https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#list_of_global_attributes>`__
@@ -595,18 +602,19 @@ Attribute
     Zum Beispiel kann der ``content``-Wert des ``meta``-Elements wie folgt geschrieben werden:
 
     .. code:: html
+        :class: far-smaller copy-to-clipboard
 
         <meta name="author" content="
         ⇥ ⇥Michael Eichberg
         ⇥ ⇥ Professor
-        ⇥ ⇥ DHBW Mannheim
         ">
 
     Dies ist äquivalent zu:
     
     .. code:: html
+        :class: far-smaller copy-to-clipboard
 
-        <meta name="author" content="Michael Eichberg Professor DHBW Mannheim">
+        <meta name="author" content="Michael Eichberg Professor">
 
 
 
@@ -619,7 +627,7 @@ Ausgewählte globale Attribute
 
         - verwendet, um ein Element eindeutig zu identifizieren
         
-        (Welches man in CSS oder JavaScript per Selektor referenzieren kann.)
+          (Welches man in CSS oder JavaScript per Selektor referenzieren kann.)
         - als Ziel von Hyperlinks (``<a href="#id">``)
         - im Rahmen der Unterstützung von Barrierefreiheit
         - der Wert ist case-sensitive 
@@ -630,7 +638,7 @@ Ausgewählte globale Attribute
 
     :``class``:
 
-        - das class-Attribut ermöglicht es Elemente mit CSS und JavaScript anzusprechen
+        - das ``class``\ -Attribut ermöglicht es Elemente mit CSS und JavaScript anzusprechen
         - dient keinem anderen Zweck in HTML 
         - wird sehr häufig von Frameworks und Bibliotheken verwendet
 
@@ -761,7 +769,7 @@ HTML - logische Gruppierung von Text
 
 
 
-HTML Text - physische Auszeichnung von Text
+HTML - physische Auszeichnung von Text
 ------------------------------------------------
 
 .. container:: scrollable
@@ -793,8 +801,8 @@ HTML - ``<span>`` und ``div``
 HTML - ``data``
 ------------------------------------------------
 
-- Das ``data``-Attribut ermöglicht es, benutzerdefinierte Daten an das Element zu binden, die von JavaScript verwendet werden können. 
-- Die Daten werden im ``value`` Attribut gespeichert.
+- Das ``data``-Element ermöglicht es, maschinenlesbare Date an ein Element zu binden, die dann von JavaScript verwendet werden können. 
+- Die maschinenlesbaren Daten werden im ``value`` Attribut gespeichert.
 
   .. code:: html
 
@@ -953,6 +961,24 @@ HTML - Navigation
 - Das ``<nav>`` Element wird verwendet, um Navigationslinks zu gruppieren.
 - Insbesondere für Screenreader und die Suchmaschine relevant.
 
+.. container:: incremental
+
+    .. rubric:: Beispiel
+
+    .. code:: HTML
+        :class: far-smaller
+
+        <nav id="ld-menu">
+            <button type="button" 
+                    id="ld-slides-button" 
+                    aria-label="show slides"></button>
+            <button type="button" 
+                    id="ld-slides-with-nr-button" 
+                    aria-label="show slides with numbers"></button>
+            <button type="button" 
+                    id="ld-help-button" 
+                    aria-label="show help"></button>
+        </nav>
 
 
 HTML - Tabellen
@@ -975,7 +1001,7 @@ HTML - Tabellen
 
         .. container:: two-columns
 
-            .. container:: column
+            .. container:: column no-separator
 
                 .. code:: html
                     :class: far-smaller
@@ -993,7 +1019,7 @@ HTML - Tabellen
                     </table> 
 
 
-            .. container:: column
+            .. container:: column padding-left-1em
 
                 .. raw:: html
                 
@@ -1196,7 +1222,7 @@ HTML - Dialoge
 
   .. container:: two-columns
   
-    .. container:: column
+    .. container:: column no-separator
 
         Beispiel\ [#]_:
 
@@ -1212,10 +1238,10 @@ HTML - Dialoge
               <button autofocus>Abbrechen</button>
             </dialog>
 
-    .. container:: column
+    .. container:: column center-child-elements
 
         .. raw:: html
-            :class: far-smaller
+            :class: smaller
 
             <button onclick="document.querySelector('#html-dialog-example').showModal()">Open Dialog</button>
 
@@ -1259,7 +1285,7 @@ Das ``<iframe>`` Element ermöglicht das Einbetten von Webseiten in Webseiten:
 
 .. container:: two-columns 
 
-    .. container:: column
+    .. container:: column no-separator
 
         .. code:: html
             :class: far-far-smaller
@@ -1300,7 +1326,7 @@ HTML Erweiterbarkeit
 
 - Hinzufügen von Meta-daten (``<meta name="" content="">``)
 - ``class`` Attribute
-- :ger-quote:`Custom Elements` (z.B. ``<my-element>``)
+- :ger-quote:`Custom Elements` (z. B. ``<my-element>``)
 - Autoren können APIs mit Hilfe des JavaScript-Prototyping-Mechanismus erweitern
 
 
@@ -1319,17 +1345,23 @@ HTML - :ger-quote:`nicht mehr unterstützt - April Stand 2024`
 --------------------------------------------------------------
 
 Nicht mehr unterstützte Elemente (Auswahl):
-- big
-- blink
-- center
-- font
-- marquee
-- nobr
-- tt
-- menuitem
+
+.. class:: far-far-smaller
+
+- ``big``
+- ``blink``
+- ``center``
+- ``font``
+- ``marquee``
+- ``nobr``
+- ``tt``
+- ``menuitem``
 - ...
   
 Nicht mehr unterstützte Attribute (Auswahl):
+
+.. class:: far-far-smaller
+
 - ``align`` bei ``h1`` bis ``h6`` Elementen
 - ``bgcolor`` bei ``body`` Elementen
 - ``charset`` bei ``a`` und ``link`` Elementen
@@ -1353,7 +1385,7 @@ Referenzen
 
 .. container:: two-columns
 
-    .. container:: column far-smaller
+    .. container:: column smaller no-separator
 
         Erzeugen Sie ein HTML Dokument, das wie das Dokument auf der rechten Seite aussieht.
 
@@ -1364,7 +1396,7 @@ Referenzen
     .. container:: column
 
         .. raw:: html
-            :class: center-child-elements
+            :class: center-child-elements 
 
             <iframe width=850px height=900px srcdoc='
                 <!DOCTYPE html>

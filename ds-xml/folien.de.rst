@@ -42,7 +42,7 @@ XML (eXtensible Markup Language) und XPath
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
-    :Version: 1.0
+    :Version: 1.0.1
 
 .. supplemental::
 
@@ -71,15 +71,15 @@ XML (eXtensible Markup Language)
 
 .. class:: incremental list-with-explanations
 
-- maschinenlesbar
-- Beispiele:
+  - maschinenlesbar
+  - Beispiele:
 
-  - HTML
-  - XML
-  - LaTeX
-  - Markdown
-  - reStructuredText
-  - ...
+    - HTML
+    - XML
+    - LaTeX
+    - Markdown
+    - reStructuredText
+    - ...
 
 .. supplemental::
    
@@ -155,7 +155,6 @@ Was bietet XML?
 - Ein *menschenlesbares* Format.
 - Hierarchische Struktur.
 - Erweiterbarkeit.
-
 
 .. supplemental::
 
@@ -438,19 +437,19 @@ XML Präfixe und Namensräume
 - Präfixe müssen durch assoziierte Präfixe mit Namensräumen deklariert werden, *bevor* sie verwendet werden.
 - Diese Assoziation kann nur für Elemente deklariert werden.
 
-.. class:: incremental list-with-explanations
+.. class:: incremental
 
 - Die Syntax lautet: ``xmlns:prefix="some:uri"``.
  
   Beispiel:
 
   .. code:: xml
-    :class: far-smaller
+      :class: far-smaller
 
-    <c:pseudocode xmlns:c="urn:publicid:IDN+mathdoc.org">
+      <c:pseudocode xmlns:c="urn:publicid:IDN+mathdoc.org">
         <c:comment xlink:href="http://somewhere..." 
                    xmlns:xlink="http://www.w3.org/..."/>
-    </c:pseudocode>
+      </c:pseudocode>
 
 - *Bevor* bedeutet, dass der Präfix auf dem Element, in dem das Präfix vorkommt - oder auf einem Vorgängerelement - deklariert werden muss.
 
@@ -589,6 +588,34 @@ Namensräume
     </m:pseudocode>
 
 
+
+Beispiel: OpenOffice Dokumentenformat
+---------------------------------------
+
+.. code:: xml
+    :class: far-far-smaller
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <office:document-content 
+        [...]
+        xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" 
+        xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" 
+        xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" office:version="1.3">
+        <office:scripts/>
+        <office:font-face-decls>[...]
+        </office:font-face-decls>
+        <office:automatic-styles>
+            <style:style style:name="P1" [...]>[...]
+            </style:style>
+        </office:automatic-styles>
+        <office:body>
+            <office:text> [...]
+                <text:p text:style-name="P1">Test</text:p>
+            </office:text>
+        </office:body>
+    </office:document-content>
+
+
 .. class:: integrated-exercise transition-scale
 
 Übung: XML Dokument mit Namensräumen
@@ -646,11 +673,13 @@ XPath
 XPath - Übersicht
 -------------------
 
-.. class:: incremental list-with-explanations
+.. class:: incremental 
 
 - XPath ist eine Syntax/Sprache zur Adressierung von Knoten in einem Dokument.
 - XPath-Ausdrücke sind *Pfadausdrücke* (:eng:`path expressions`).
 - Erlaubt es folgende Dinge auszudrücken:
+  
+  .. class:: incremental
 
   - Selektiere alle ``vorlesung``-Kinderelemente des ``lehrveranstaltungselements``-Elements.
 
@@ -1119,46 +1148,46 @@ Schreiben Sie XPath-Ausdrücke, um die folgenden Anfragen zu beantworten:
         :pwd: xpath-rauf-und-runter
 
         .. code:: json
+            :class: smaller
 
             {
                 "source": "orders.xml",
                 "namespaces": {
-                    "f": "http://fruits.com",
-                    "e": "http://electronics.com",
-                    "m" : "http://meat.com"
+                "f": "http://fruits.com",
+                "e": "http://electronics.com",
+                "m" : "http://meat.com"
                 },
                 "xpaths" : [
-                    {
-                        "expr": "//orders"
-                    },
-                    {
-                        "expr": "//f:order/f:product"
-                    },
-
-                    {
-                        "expr": "sum(//f:order//@quantity)"
-                    },
-                    {
-                        "expr": "sum(//@m:quantity)"
-                    },
-                    {
-                        "expr": "sum(//@*[local-name()='quantity'])"
-                    },
-                    {
-                        "expr": "//*[local-name()='order']"
-                    },
-                    {
-                        "expr" : "//m:product[1]"
-                    },
-                    {
-                        "expr": "//*[local-name()='order' and sum(.//@*[local-name()='quantity']) > 5]"
-                    },
-                    {
-                        "expr": "count(//orders/*)"
-                    },
-                    {
-                        "expr": "//orders/*/*[last()=4]"
-                    }
+                {
+                    "expr": "//orders"
+                },
+                {
+                    "expr": "//f:order/f:product"
+                },
+                {
+                    "expr": "sum(//f:order//@quantity)"
+                },
+                {
+                    "expr": "sum(//@m:quantity)"
+                },
+                { 
+                    "expr": "sum(//@*[local-name()='quantity'])"
+                },
+                {
+                    "expr": "//*[local-name()='order']"
+                },
+                {
+                    "expr" : "//m:product[1]"
+                },
+                {
+                    "expr": "//*[local-name()='order' and sum(.//@*[local-name()='quantity']) > 5]"
+                },
+                {
+                    "expr": "count(//orders/*)"
+                },
+                {
+                    "expr": "//orders/*/*[last()=4]"
+                }
                 ]
             }
 
@@ -1169,7 +1198,7 @@ Schreiben Sie XPath-Ausdrücke, um die folgenden Anfragen zu beantworten:
     
     **Installation von node.js**
 
-    Installieren Sie die neueste Version von node.js von https://nodejs.org/en. Benutzen Sie bitte *die neueste Version* auch wenn diese keine LTS Version ist.
+    Installieren Sie node.js von https://nodejs.org/en (Version 21 und 22 sind getestet). Benutzen Sie bitte *eine getestet Version*!
 
     **Installieren Sie die benötigten node.js Pakete**
 
@@ -1178,9 +1207,9 @@ Schreiben Sie XPath-Ausdrücke, um die folgenden Anfragen zu beantworten:
     .. code:: shell
         :class: copy-to-clipboard
     
-        npm install jsonschema
-        npm install xpath
-        npm install @xmldom/xmldom
+        npm install jsonschema@~1.4.1
+        npm install xpath@~0.0.34
+        npm install @xmldom/xmldom@~0.8.10 #ACHTUNG: 0.9.0 funktioniert nicht!
 
     **Ausführen der XPath Ausdrücke**
 

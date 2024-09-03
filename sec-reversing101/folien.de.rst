@@ -250,23 +250,23 @@ Gegeben sei eine App zum Ver- und Entschlüsseln von Dateien sowie ein paar vers
 
 Rechtliche Aspekte des Reverse Engineering
 -------------------------------------------
+  
+.. caution::
+
+    Die Gesetzgebungen unterscheiden sich von Land zu Land teils signifikant.
 
 .. class:: incremental
 
-- \
-  
-  .. caution::
-    
-    Die Gesetzgebungen unterscheiden sich von Land zu Land teils signifikant.
-
 - Die Rechtslage hat sich in Deutschland mehrfach geändert.
 - Umgehung von Kopierschutzmechanismen ist im Allgemeinen verboten.
-- Lizenz verbietet das Reverse Engineering häufig!
+- Lizenzen verbieten das Reverse Engineering häufig; es stellt sich aber die Frage nach der Rechtmäßigkeit der Klauseln.
 
-.. admonition:: Warnung
-    :class: incremental warning 
-    
-    Bevor Sie Reverse Engineering von Systemen betreiben, erkundigen sie sich erst über mögliche rechtliche Konsequenzen.
+.. container:: center-child-elements
+
+    .. admonition:: Warnung
+        :class: incremental warning 
+        
+        Bevor Sie Reverse Engineering von Systemen betreiben, erkundigen sie sich erst über mögliche rechtliche Konsequenzen.
 
 
 .. class:: new-section transition-scale
@@ -412,8 +412,14 @@ Erschwerung des Reverse Engineering
 ------------------------------------
 
 
+.. class:: new-subsection
+
 Obfuscation (:ger:`Verschleierung`)
 ------------------------------------
+
+
+Obfuscation → für Menschen unverständlich Code
+----------------------------------------------------------
 
 .. class:: incremental scrollable
 
@@ -454,7 +460,8 @@ Obfuscation - Techniken (Auszug)
 - Das Kürzen aller möglichen Namen (insbesondere Methoden und Klassennamen).
 - Das Verschleiern von Konstanten durch den Einsatz vermeintlich komplexer Berechnungen zu deren Initialisierung.
 
-    .. code:: java
+    .. code:: java 
+        :class: copy-to-clipboard
         
         ~(((int)Math.PI) ^ Integer.MAX_VALUE >> 16)+Short.MAX_VALUE
 
@@ -467,6 +474,7 @@ Obfuscation - Techniken (Auszug)
 - Die Verwendung von Unicode Codepoints für Strings oder die Verschleierung von Strings mittels `rot13 <https://cryptii.com/pipes/rot13-decoder>`__ Verschlüsselung.
   
   .. code:: C
+    :class: copy-to-clipboard
     
      /* ??? */ printf("\x48""e\154l\x6F"" \127o\x72""l\144!");
 
@@ -496,6 +504,145 @@ Obfuscation - Techniken (Auszug)
    Das Verschleiern von Strings kann insbesondere das Reversen von Binärcode erschweren, da ein Angreifer häufig :ger-quote:`nur` an einer ganz bestimmten Funktionalität interessiert ist und dann Strings ggf. einen sehr guten Einstiegspunkt für die weitergehende Analyse bieten. 
    
    Stellen Sie sich eine komplexe Java Anwendung vor, in der alle Namen von Klassen, Methoden und Attributen durch einzelne oder kurze Sequenzen von Buchstaben ersetzt wurden und sie suchen danach wie von der Anwendung Passworte verarbeitet werden. Handelt es sich um eine GUI Anwendung, dann wäre zum Beispiel die Suche nach Text, der in den Dialogen vorkommt (z. B. ``"Password"``) z. B. ein sehr guter Einstiegspunkt.
+
+
+.. class:: new-subsection
+
+Verschlüsselung von Bytecode und Java Class Loader
+---------------------------------------------------
+
+
+``ClassLoader``
+----------------
+
+.. class:: incremental list-with-explanations
+
+- ``ClassLoader`` dienen dazu Klassen dynamisch zu laden. D. h. eine Klasse wird erst dann von der JVM geladen, wenn sie benötigt bzw. angefordert wird.
+- Jeder ``ClassLoader`` spannt seinen eigenen Namensraum auf.
+
+  Zwei Instanzen der gleichen Klasse (d. h. mit dem selben Bytecode) sind nicht gleich (Referenzgleichheit), wenn zwei verschiedene ``ClassLoader`` genutzt wurden.
+- ``ClassLoader`` stehen in einer Hierarchie.
+- ``ClassLoader`` können genutzt werden, um:
+  
+  - ein Programm dynamisch zu erweitern (Plug-ins
+  - um Klassen zu laden, die zur Laufzeit generiert wurden
+  - um den Bytecode zu manipulieren, bevor er von der JVM ausgeführt wird.
+
+
+  
+
+
+Ein eigener ClassLoader
+--------------------------
+
+.. code:: Java
+    :class: copy-to-clipboard far-smaller
+
+    static class MyClassLoader extends ClassLoader {
+      public MyClassLoader(ClassLoader parent) { super(parent); }
+
+      @Override
+      protected Class<?> findClass(final String name) throws ClassNotFoundException {
+        try (final var in = super.getResourceAsStream(name)) {
+          final var classBytes = new byte[in.available()];
+          final var readBytes = in.read(classBytes);
+          if (readBytes != classBytes.length) {
+             throw new IOException("failed reading class file: " + name);
+          }
+          return defineClass(name,classBytes, 0, classBytes.length);
+        } catch (IOException ioe) {
+           throw new ClassNotFoundException("failed loading " + name, ioe);
+        }
+      }
+    }
+
+
+ClassLoading - Example
+------------------------
+
+.. container:: scrollable
+
+    .. rubric:: Ein Singleton
+
+    .. code:: Java
+        :class: copy-to-clipboard smaller
+
+        public class MySingleton {
+
+            private static MySingleton instance = null;
+            private MySingleton() {}
+
+            public static synchronized MySingleton instance() {
+                if (instance == null) instance = new MySingleton();
+                return instance;
+            }
+        }
+
+    .. container:: incremental
+
+        .. rubric:: Gleichheit von Instanzen
+
+        .. code:: Java
+            :class: copy-to-clipboard  smaller
+
+            Object a = MySingleton.instance();
+            Object b = MySingleton.instance();
+            System.out.println(a == b);
+
+        .. code:: Text
+
+            Ergebnis: true
+
+    .. container:: incremental
+
+        .. rubric:: Verwendung des SystemClassLoader
+
+        .. code:: Java
+            :class: copy-to-clipboard  smaller
+
+            ClassLoader cl1 = ClassLoader.getSystemClassLoader();
+            Class<?> clazz1 = cl1.loadClass("demo.MySingleton");
+            Object a = clazz1
+                .getDeclaredMethod("instance", new Class<?>[] {})
+                .invoke(null);
+            ClassLoader cl2 = ClassLoader.getSystemClassLoader(); 
+            Class<?> clazz2 = cl2.loadClass("demo.MySingleton");
+            Object b = clazz2
+                .getDeclaredMethod("instance", new Class<?>[] {})
+                .invoke(null);
+
+            System.out.println(a == b);
+
+        .. code:: Text
+
+            Ergebnis: true
+
+
+    .. container:: incremental
+
+        .. rubric:: Verwendung von zwei Instanzen von MyClassLoader
+
+        .. code:: Java
+            :class: copy-to-clipboard  smaller
+
+            ClassLoader cl1 = new MyClassLoader();
+            Class<?> clazz1 = cl1.loadClass("demo.MySingleton");
+            Object a = clazz1
+                .getDeclaredMethod("instance", new Class<?>[] {})
+                    .invoke(null);
+            ClassLoaderacl2 = new MyClassLoader();
+            Class<?> clazz2 = cl2.loadClass("demo.MySingleton");
+            Object b = clazz2
+                .getDeclaredMethod("instance", new Class<?>[] {})
+                    .invoke(null);
+
+            System.out.println(a == b);
+
+        .. container:: incremental
+
+            .. code:: Text
+
+                Ergebnis: False
 
 
 .. class:: new-section transition-fade
@@ -628,6 +775,9 @@ Beispiel: Aufruf einer komplexeren Methode
         9  ldc <String "SimpleSecure++">
         11  invokevirtual java.io.PrintStream.println(java.lang.String) : void 
         ...
+
+
+
 
 
 
