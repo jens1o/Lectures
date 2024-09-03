@@ -21,12 +21,13 @@
 .. role:: minor
 
 
+.. class:: animated-symbol
 
 Klassische Verschlüsselungsmethoden
 ====================================
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-:Version: 1.0
+:Version: 1.0.1
 :Quelle: Im Wesentlichen: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 
 .. supplemental::
@@ -76,7 +77,9 @@ Definitionen
 :Kryptoanalyse: 
     :eng:`Cryptanalysis`
 
-    Methoden und Techniken, die zur Gewinnung von Informationen aus einer verschlüsselten Nachricht dienen. Analyse von kryptographischen Verfahren.
+    Methoden und Techniken, die zur Gewinnung von Informationen aus einer verschlüsselten Nachricht dienen. 
+    
+    Analyse von kryptographischen Verfahren.
 
 :Kryptologie: 
     :eng:`Cryptology`
@@ -125,7 +128,7 @@ Modell eines symmetrischen Kryptosystems
 Kryptografische Systeme können entlang dreier unabhängiger Dimensionen charakterisiert werden
 ----------------------------------------------------------------------------------------------------------
 
-.. container:: note width-30
+.. note:: 
 
     Eine Permutation ist eine Folge von Vertauschungen (:eng:`Transposition`).
 
@@ -229,6 +232,9 @@ Brute-Force Angriff
 
 - Zur Durchführung des Brute-Force-Ansatzes ist ein gewisses Maß an Wissen über den zu erwartenden Klartext erforderlich. Es werden Mittel zur automatischen Unterscheidung von Klartext und :ger-quote:`Müll` benötigt.
 
+  .. admonition:: Frage
+
+      Was bedeuted somit *bis eine verständliche Übersetzung des Chiffriertextes in Klartext erreicht wird*? Wenn der Klartext zum Beispiel ein Bild, ein Video oder ein Computerprogramm ist?
 
 
 Substitutionsverfahren
@@ -348,11 +354,11 @@ Brute-Force-Kryptoanalyse der Caesar-Chiffre
 Brute-Force-Kryptoanalyse (z. B. der Caesar-Chiffre)
 -----------------------------------------------------
 
-Die Entschlüsselung ist komplizierter, wenn der Klartext bereits eine sehr hohe Entropie aufweist, wie z. B. im Falle einer komprimierten Datei:
+Die Entschlüsselung ist komplizierter, wenn der Klartext bereits eine sehr hohe Entropie aufweist, wie z. B. im Falle einer komprimierten ZIP Datei:
 
 .. csv-table:: 
     :delim: space
-    :class: tiny monospaced highlight-line-on-hover
+    :class: far-far-smaller monospaced highlight-line-on-hover
     :width: 100%
 
     00000000: 504b 0304 1400 0000 0800 afb1 4257 1da9  PK..........BW..
@@ -372,6 +378,12 @@ Die Entschlüsselung ist komplizierter, wenn der Klartext bereits eine sehr hohe
     000000e0: 0000 0001 0001 004e 0000 008d 0000 0000  .......N........
     000000f0: 00 
 
+
+.. supplemental::
+
+    .. admonition:: Frage
+    
+        Wie kann man - wenn man weiss, dass es sich um eine ZIP Datei handelt - die Caesar-Chiffre knacken?
 
 
 Monoalphabetische Chiffren
@@ -693,6 +705,10 @@ Rail Fence Chiffre
 
     Die verschlüsselte Nachricht ist: MEMATRHTGPRYETEFETEOAAT
 
+.. supplemental::
+
+    Um die Nachricht zu entschlüsseln, wird die Nachricht in :math:`K` Zeilen geschrieben und dann in einer Diagonalen abgelesen. Die Länge einer Zeile ergibt sich aus der Länge der Nachricht (L) und der Tiefe der Chiffre (K): :math:`\lfloor L/K \rfloor`. Wobei die ersten :math:`L\;mod\;K` Zeilen um eins länger sind als die anderen.
+
 
 Skytale
 --------
@@ -721,7 +737,7 @@ Zeilenverschiebungs-Chiffre
             
         ::
 
-            Schlüssel:  4312567
+            Schlüssel:  4312567 
             Klartext:   attackp  
                         ostpone 
                         duntilt 
@@ -734,6 +750,16 @@ Zeilenverschiebungs-Chiffre
 
    Zeilenverschiebungs-Chiffre ≘ :eng:`Row Transposition Cipher`
 
+   Wenn der Schlüssel 4312567 ist, dann wird:
+
+   - die erste Spalte wird als die *vierte* (4),
+   - die zweite Spalte als die *dritte* (3),
+   - die dritte Spalte als die *erste* (1),
+   - ...
+  
+   geschrieben
+
+   Beim Entschlüsseln ergibt sich die Anzahl der Reihen trivial aus der Länge der Nachricht (:math:`28` Zeichen) und der Länge des Schlüssels (:math:`7` Zeichen); :math:`28/7 = 4` .
 
 .. class:: new-subsection transition-fade
     
@@ -747,7 +773,7 @@ Steganografie - Beispiel
 .. exercise::
 
     .. code:: Text
-        :class: slightly-more-smaller copy-to-clipboard
+        :class: far-smaller copy-to-clipboard
 
         Dear Friend ; We know you are interested in receiving cutting-edge 
         announcement . If you are not interested in our publications and wish to be 
@@ -850,6 +876,37 @@ Steganographie vs. Verschlüsselung
         1. Der Schlüss ist: PODPOD.
         2. Einen Klartextangriffe (:eng:`plaintext attack`).
 
+
+.. class:: integrated-exercise
+
+Übung
+--------
+
+
+.. exercise:: Rail-fence Chiffre
+    
+    Entschlüsseln Sie: ggettueietmsr
+
+    .. solution:: 
+        :pwd: GutGemeistert
+
+        ::
+
+            K = 3 (durch ausprobieren)
+            
+            Länge("ggettueietmsr") = 13
+
+            13 (=L) / 3 (=K) = 4 Rest 1 
+            ⇒ 1 Zeile mit 5 Buchstaben und die Zeilen 2 und 3 mit 4 Buchstaben.
+
+            g  g  e  t  t
+             u  e  i  e
+              t  m  s  r
+
+            P = gutgemeistert
+
+            
+
 .. exercise:: Rail-fence Chiffre
     
     Verschlüsseln Sie "i love crypto" mit dem Schlüssel/der Tiefe 3.
@@ -864,7 +921,9 @@ Steganographie vs. Verschlüsselung
 
             C = I V R T L E Y O O C P
 
-
+            I  V  R  T 
+             L  E  Y  O
+              O  C  P
 
 .. class:: integrated-exercise
 
