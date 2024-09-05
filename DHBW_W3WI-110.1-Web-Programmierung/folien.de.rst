@@ -220,12 +220,11 @@ Themen
 
     .. rubric:: Hinweise
 
-    - *Grundlagen des RESTful Designs brauchen nicht in der Präsentation behandelt werden; d. h. die Präsentation soll sich darauf konzentrieren, wie man Express verwendet (Hands-on.)*
+    - Grundlagen des RESTful Designs brauchen nicht behandelt werden; konzentrieren Sie sich darauf wie man Express verwendet (\ *Hands-on*\ )
     - Die Programmierung mit WebSockets muss behandelt werden:
 
-      - Einführung in WebSockets
-      - Verwendung von WebSockets in Browsern
-      - Programmierung von WebSockets in Express
+      - Allg. Einführung in WebSockets
+      - Programmierung von WebSockets in Browsern und Express
 
     - Erste Quellen:
  

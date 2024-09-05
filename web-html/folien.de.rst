@@ -1027,7 +1027,7 @@ HTML - Tabellen
                         <caption>Logische Operation</caption>
                         <thead>
                             <tr>
-                                <th>xor</th>
+                                <th>not xor</th>
                                 <th>1</th>
                                 <th>0</th>
                             </tr>
@@ -1275,6 +1275,8 @@ Ausgewählte Zeichen können (in manchen Kontexten) nur durch HTML Entities darg
 .. container:: footer-left  far-smaller
 
     `Benannte Zeichen <https://html.spec.whatwg.org/multipage/named-characters.html#named-character-references>`__
+
+    Die numerischen Werte sind `Unicode Code Points <https://en.wikipedia.org/wiki/List_of_Unicode_characters>`__ (d.h. ``#60`` ist  der Unicode Code Point von ``<``).
 
 
 
