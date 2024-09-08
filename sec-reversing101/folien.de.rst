@@ -841,11 +841,131 @@ Fokussiert bleiben!
     Analysiere nur was notwendig ist.
 
 
-.. class:: integrated-exercise organic-red center-child-elements
+.. class:: integrated-exercise 
 
-Live Demo - Reversing SimpleSecure++
+Live Exercise
 --------------------------------------
 
+.. exercise:: Reversing SimpleSecure++ 
+
+    .. rubric:: Gegeben
+
+    :Programm: `Simplesecure++ <./exercise/simplesecurepp/simplesecurepp-0.0.1.jar>`__
+    :Datei: `42.enc <./exercise/simplesecurepp/42.enc>`__
+    :Hinweise: `Hints.pdf <./exercise/reversing_aufgaben.pdf>`__
+
+    .. container
+        .. rubric:: Programm
+        .. source::
+            :path: dir
+            :prefix: https://delors.github.io/
+            :suffix: /exercise/simplesecurepp/simplesecurepp-0.0.1.jar
+        .. rubric:: Verschlüsselte Datei
+        .. source::
+            :path: dir
+            :prefix: https://delors.github.io/
+            :suffix: /exercise/simplesecurepp/42.enc
+
+    .. solution::
+        :pwd: This passworD is wirklich impossible TO crack
+
+        Beobachtungen:
+
+        - die Datei ist größer als die unverschlüsselte Datei
+        - wenn ich die selbe Datei zweimal hintereinander mit dem selben Passwort verschlüssele, dann sind die Dateien identisch (es scheint keinen "Zufall/Seed" zu geben)
+        - wenn ich das falsche Passwort verwende, dann wird dies erkannt (und keine Entschlüsselung durchgeführt)
+        - wenn ich zwei verschiedene Dateien mit dem selben Passwort verschlüssele, dann sind die Anfänge gleich; die Anfänge unterscheiden sich aber, wenn ich das Passwort ändere
+        - es scheint keine Blockchiffre zu sein
+
+        - [Nach der Analyse des Codes]
+  
+        .. code:: java
+            :class: copy-to-clipboard smaller
+
+                /*
+                * INTENDED TO BE RUN AS A JAVA SCRIPT.
+                * (I.e. use: "java FindSeed.java".)
+                */
+
+                import java.math.BigInteger;
+                import java.nio.charset.Charset;
+                import java.security.NoSuchAlgorithmException;
+                import java.security.SecureRandom;
+                import java.util.Arrays;
+
+                public class FindSeed {
+
+                    private final static byte[] CC = "simplesecurepp"
+                            .getBytes(Charset.forName("ascii"));
+                    private final static long ADLER32_MAX = ((long) Integer.MAX_VALUE) * 2;
+
+                    /**
+                    * Reads in an encrypted file from stdin and tries to find the seed that
+                    * was used for the SecureRandom generator. Given the seed, it is then 
+                    * possible to easily decrypt the stream.
+                    * 
+                    * If we are not lucky, it may take several hours on a multi-core machine.
+                    */
+                    public static void main(String[] args) throws Exception {
+                        /*
+                        * We don't need the password, because as soon as we have identified the
+                        * seed everything is Ok and we can efficiently check if the seed is ok.
+                        */
+                        var encryptedCC = System.in.readNBytes(CC.length);
+                        var availableProcessors = Runtime.getRuntime().availableProcessors();
+                        System.out.println(
+                            "Trying to find the seed for decryption using " + 
+                            availableProcessors + 
+                            " processors.");
+
+                        for (int p = 0; p < availableProcessors; p++) {
+                            final var fp = p;
+                            var t = new Thread() {
+
+                                final byte[] decryptedHeader = new byte[CC.length];
+
+                                public void run() {
+                                    final var START_TIME = System.currentTimeMillis();
+                                    final long SEG_SIZE = ADLER32_MAX / availableProcessors;
+                                    final long START = fp * SEG_SIZE;
+                                    final long END = (fp + 1) * SEG_SIZE;
+                                    for (long s = START; s < END; s++) {
+
+                                        SecureRandom secureRandom;
+                                        try {
+                                            secureRandom = SecureRandom.getInstance("SHA1PRNG");
+                                        } catch (NoSuchAlgorithmException e) {
+                                            throw new RuntimeException(e);
+                                        }
+                                        secureRandom.setSeed(BigInteger.valueOf(s).toByteArray());
+
+                                        for (int i = 0; i < CC.length; i++) {
+                                            decryptedHeader[i] = (byte) (
+                                                encryptedCC[i] ^ secureRandom.nextInt()
+                                            );
+                                        }
+                                        if (Arrays.equals(CC, decryptedHeader)) {
+                                            System.out.println("The seed: " + s);
+                                            System.exit(1);
+                                        }
+
+                                        if (s % 5000000 == 0) {
+                                            var speed = 
+                                                (s - START) / 
+                                                    (System.currentTimeMillis() - START_TIME);
+                                            System.out.println(
+                                                    "[" + fp + "] Tested " + 
+                                                    100l * (s - START) / SEG_SIZE + 
+                                                    "% (" + speed + "H/ms): "
+                                                            + START + "=>" + s);
+                                        }
+                                    }
+                                }
+                            };
+                            t.start();
+                        }
+                    }
+                }
 
 
 
@@ -857,20 +977,20 @@ Reverse Engineering Übung
 .. rubric:: Gegeben
 
 :Programm: `Secure++ <./exercise/securepp/securepp-0.0.1.jar>`__
+
+    **Exemplarische Verwendung zum Verschlüsseln**
+
+    .. code:: bash
+        :class: far-smaller copy-to-clipboard
+
+        java -jar securepp-0.0.1.jar de.dhbw.securepp.Main \
+            -p 'VielleichtIstEsRichtig-vielleichtAuchNICHT...' \
+            -in Poem.txt -out Poem.enc
+
 :Datei: `Poem.enc <./exercise/securepp/Poem.enc>`__
+:Hinweise: `Hints.pdf <./exercise/reversing_aufgaben.pdf>`__
 
-.. rubric:: Exemplarische Verwendung zum Verschlüsseln
-
-.. code:: bash
-    :class: far-smaller copy-to-clipboard
-
-    java -jar securepp-0.0.1.jar de.dhbw.securepp.Main \
-        -p 'VielleichtIstEsRichtig-vielleichtAuchNICHT...' \
-        -in Poem.txt -out Poem.enc
-
-.. rubric:: Aufgabe
-
-.. exercise::
+.. exercise:: Reversing Secure++
 
     Entschlüsseln Sie die Datei Poem.enc, die mit dem Program Secure++ verschlüsselt wurde.
 
