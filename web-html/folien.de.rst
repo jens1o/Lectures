@@ -1371,6 +1371,59 @@ Nicht mehr unterstützte Attribute (Auswahl):
 
 
 
+Barrierefreiheit ist verpflichtend
+--------------------------------------
+
+
+.. epigraph::
+
+    [...] Webseiten, Onlineshops, Apps, Onlinebuchungs- und Ticketdienste, Fahrkartenautomaten, Selbstbedienungs- und Zahlungsterminals, Telefon- und Messenger-Dienstleistungen sowie E-Book-Reader ab Juni 2025 barrierefrei sein müssen. Denn am 28. Juni 2025 tritt das Barrierefreiheitsstärkungsgesetz (BFSG)\ [#]_ in Kraft. [...]
+
+    .. container:: incremental
+
+        [...] Diese [die Barrierefreie-Informationstechnik-Verordnung (BITV 2.0)] regelt, wie Behörden und Ministerien Webseiten gestalten müssen. In Paragraf 3 Absatz 2 ist festgelegt, dass diese dann als barrierefrei anzusehen sind, wenn sie Normen erfüllen, die im Amtsblatt der EU genannt werden – beispielsweise die EN 301 549 oder die Web Content Accessibility Guidelines 2.1 (WCAG) des World Wide Web Consortiums.
+
+    .. container:: incremental
+
+        [...] Verstöße gegen das Barrierefreiheitsstärkungsgesetz [...] muss mit einem Bußgeld bis zu 100.000 Euro rechnen. [...]
+
+    -- Sept. 2024; `Golem.de - Deutsche Webseiten sind versetzungsgefährdet <https://www.golem.de/news/barrierefreiheit-deutsche-webseiten-sind-versetzungsgefaehrdet-2409-188655.html>`__
+
+.. [#] https://bfsg-gesetz.de/
+
+
+
+Web Content Accessibility Guidelines 2.1 (WCAG) 
+--------------------------------------------------------------- 
+
+Einige Anforderungen\ [#]_:
+
+.. container:: smaller
+
+    .. rubric:: :ger-quote:`Harte` Kriterien
+
+    .. class:: incremental smaller
+
+    - die Schrift auf einer Website wenigstens 16 Pixel groß und 
+    - Zeilen nicht mehr als 80 Zeichen lang sein sollen. 
+    - Der Abstand dazwischen soll das 1,5-Fache ihrer Höhe betragen. 
+    - Um einen ausreichenden Kontrast zu erzeugen, muss die Schrift wenigstens 4,5-mal dunkler sein als der Hintergrund. 
+    - Klickflächen schließlich müssen wenigstens 44 x 44 Pixel groß sein.
+
+    .. rubric:: :ger-quote:`Weiche` Kriterien
+
+    .. class:: incremental smaller
+
+    - Starke Animationen sind auf barrierefreien Seiten tabu.
+    - das Layout der Seite außerdem einfach, logisch und auf jeder Unterseite einheitlich aufgebaut sein.
+
+.. [#] Sept. 2024; `Golem.de - So setzen gute Webdesigner Barrierefreiheit um
+ <https://www.golem.de/news/barrierefreiheit-deutsche-webseiten-sind-versetzungsgefaehrdet-2409-188655-2.html>`__
+
+
+
+.. class:: transition-fade
+
 Referenzen
 ------------------------------------------------
 
@@ -1378,9 +1431,10 @@ Referenzen
 - `caniuse.com: Unterstützung von HTML, CSS etc. Features <https://caniuse.com>`__ 
 - `HTML (Living Standard) <https://html.spec.whatwg.org>`__ (aka HTML5)
 - `HTML DOM <https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model>`__
+- `Web Content Accessibility Guidelines <https://www.w3.org/TR/WCAG21/>`__
 
 
-.. class:: integrated-exercise transition-fade
+.. class:: integrated-exercise transition-scale
 
 Übung
 --------    
