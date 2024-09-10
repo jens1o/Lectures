@@ -8,6 +8,8 @@ drawings/des/design.svg
 drawings/des/round_function.svg
 drawings/feistel/design.svg
 drawings/feistel/example.svg
+drawings/feistel/one_round_no_swap.svg
+drawings/feistel/one_round_and_swap.svg
 drawings/multiple_encryption/double_encryption.svg
 drawings/multiple_encryption/triple_encryption.svg
 resources/feistel.ipynb

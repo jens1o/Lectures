@@ -29,15 +29,13 @@ Block Chiffre und der *Data Encryption Standard (DES)*
 ========================================================
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-:Version: 1.0
+:Version: 1.1
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 
 .. supplemental::
 
-  :Folien: 
-      :HTML: |html-source|
-
-      :PDF: |pdf-source|
+  :HTML [normativ]: |html-source|
+  :PDF: |pdf-source|
   :Fehler melden:
       https://github.com/Delors/delors.github.io/issues
 
@@ -104,9 +102,9 @@ Blockchiffre
 .. class:: incremental
 
 - Ein Klartextblock wird als Ganzes behandelt und verwendet, um einen gleich langen Chiffretextblock zu erzeugen.
-- In der Regel wird eine Blockgröße von 64 oder 128 Bit verwendet.
-- Wie bei einer Stromchiffre teilen sich die beiden Benutzer einen symmetrischen Chiffrierschlüssel.
-- Die meisten netzbasierten Anwendungen, die auf symmetrische Verschlüsselung setzen, verwenden Blockchiffren.
+- In der Regel wird eine Blockgröße von 64 (8 Byte) oder 128 Bit (16 Byte) verwendet.
+- Wie bei einer Stromchiffre *teilen sich die beiden Benutzer einen symmetrischen Chiffrierschlüssel*.
+- Viele netzbasierte Anwendungen, die auf symmetrische Verschlüsselung setzen, verwenden Blockchiffren.
 
 
 
@@ -132,6 +130,9 @@ Allgemeine n-Bit-n-Bit-Blocksubstitution (n = 4)
     :align: center
     :width: 1400px
 
+.. supplemental::
+
+    Mittels 4 Bit können :math:`16` verschiedene Werte dargestellt werden (:math:`[0,15]`). Je nach Wert der Eingabe wird ein anderer Wert ausgegeben. Die Zuordnung ist der Grafik zu entnehmen.
 
 
 
@@ -266,7 +267,7 @@ Diffusion
   
 .. class:: incremental list-with-explanations
 
-- Dies wird dadurch erreicht, dass jede Klartextziffer *den Wert* **vieler** *Chiffretextziffern* beeinflusst.
+- Dies wird dadurch erreicht, dass jede Klartextziffer(bzw. -zeichen) den Wert vieler Chiffretextziffern (bzw. -zeichen) beeinflusst.
   
   (:ger-quote:`Lawineneffekt`)
 - Die Diffusion kann z. B. durch *Permutationen* erreicht werden.
@@ -294,15 +295,51 @@ Feistel-Chiffre - Verschlüsselung und Entschlüsselung
 
     .. container:: column no-separator
 
-        :bold:`Feistel-Chiffre`
+        .. rubric:: Feistel-Chiffre
         
-        :smaller:`Verschlüsselung und Entschlüsselung`
+        Verschlüsselung und Entschlüsselung
+
+        .. TODO add concept of admonition::Legende
+
+        .. container:: far-far-smaller dhbw-gray-background white padding-1em rounded-corners
+
+            **Legende**
+
+            :math:`K_x` - Schlüssel der :math:`x`-ten Runde
+            
+            :math:`L_{x-1}` - linke Hälfte des Eingabeblocks der :math:`x`-ten Runde
+            
+            :math:`R_{x-1}` - rechte Hälfte des Eingabeblocks der :math:`x`-ten Runde
+            
+            :math:`f` - Rundenfunktion
+            
+            :math:`\oplus` - XOR-Operation
 
     .. container:: width-100
 
         .. image:: drawings/feistel/design.svg
             :height: 1150px
             :align: center
+
+
+.. supplemental::
+
+    .. rubric:: Swap
+
+    Die Verwendung des Swaps am Ende ist notwendig, damit die Verschlüsselung und Entschlüsselung identisch sind; d. h. der selbe Algorithmus kann verwendet werden.
+
+    .. image:: drawings/feistel/one_round_and_swap.svg
+        :width: 90%
+        :align: center
+
+    Wird der Swap am Ende nicht durchgeführt, würde die Entschlüsselung nicht funktionieren, wie am folgenden Beispiel mit nur einer Runde zu sehen ist:
+
+    .. image:: drawings/feistel/one_round_no_swap.svg
+        :width: 90%
+        :align: center
+
+    Ein alternatives Design wäre es beim Verschlüsseln auf den finalen Tausch zu verzichten und stattdessen beim Entschlüsseln initial einen Tausch durchzuführen — zusätzlich zum finalen Tausch. Dieses Design wird jedoch nicht verwendet, da es die Implementierung komplizierter macht.
+
 
 
 Feistel Chiffre - Beispiel
@@ -312,6 +349,14 @@ Feistel Chiffre - Beispiel
     :width: 100%
     :align: center
 
+.. container:: far-smaller
+
+    .. rubric:: Zur Erinnerung
+
+    ::    
+ 
+        [F(03A6,12DE52) ⊕ DE7F] ⊕ F(03A6,12DE52) = 
+         F(03A6,12DE52) ⊕ F(03A6,12DE52) ⊕ DE7F  = DE7F 
 
 Feistel Chiffre - Eigenschaften 
 --------------------------------
@@ -367,32 +412,91 @@ Data Encryption Standard (DES)
 .. supplemental::
 
     Bei DES enthält ein 64 Bit langer Schlüssel 8 Paritätsbits, die zur Überprüfung der Schlüsselübertragung verwendet werden.
-    Die 8 Paritätsbits werden dann aus dem 64-Bit-Schlüssel entfernt. Somit ist die effektive Schlüssellänge 56 Bit.
+
+    Die 8 Paritätsbits werden dann aus dem 64-Bit-Schlüssel entfernt. Somit ist die effektive Schlüssellänge 56 Bit. Diese Operation wurde oft als explizite Schwächung des Algorithmus kritisiert, da die Sinnhaftigkeit der Paritätsbits in Frage gestellt wurde. 
+    
+    Diese Verkürzung hat dazu geführt, dass bereits im Jahre 1998 die `EFF <https://de.wikipedia.org/wiki/Electronic_Frontier_Foundation>`__ einen DES-Schlüssel in weniger als 3 Tagen durch einfachen *Brute Force* ermitteln konnte. D. h. der Algorithmus an sich wurde nicht gebrochen!
 
 
 
-DES - Design
+DES: Design
 -------------------
 
 .. image:: drawings/des/design.svg
     :width: 1200px
     :align: center
 
+.. supplemental::
 
-DES Rundenfunktion (:ger-quote:`F`)
+    :Permuted Choice 1: Permutation und Selektion (d. h. Entfernung der Paritätsbits) der 56 (Schlüssel-)bits
+
+              .. csv-table:: 
+                :class: monospaced far-far-smaller
+
+                57, 49,  41, 33,  25,  17,  9
+                1, 58,  50, 42,  34,  26, 18
+                10,  2,  59, 51,  43,  35, 27
+                19, 11,  3, 60,  52,  44, 36
+                63, 55,  47, 39,  31,  23, 15
+                7, 62,  54, 46,  38,  30, 22
+                14,  6,  61, 53,  45,  37, 29
+                21, 13,  5, 28,  20,  12,  4
+
+    :\<\<\<: Rotation der Schlüsselbits
+
+              .. csv-table:: 
+                :class: monospaced far-far-smaller
+                :header: Iteration, Anzahl der Linksverschiebungen
+
+                          1,  1
+                          2,          1
+                          3,          2
+                          4 ,         2
+                          5  ,        2
+                          6   ,       2
+                          7    ,      2
+                          8     ,     2
+                          9      ,    1
+                         10      ,    2
+                         11      ,    2
+                         12      ,    2
+                         13      ,    2
+                         14     ,     2
+                         15     ,     2
+                         16     ,     1
+
+
+    :Permuted Choice 2: Auswahl der 48 zur Verschlüsselung zu verwendenden Bits aus den 56 Eingabebits
+
+              .. csv-table:: 
+                :class: monospaced far-far-smaller
+
+                14,  17, 11,  24,   1,  5
+                3,  28, 15,   6,  21, 10
+                23,  19, 12,   4,  26,  8
+                16,   7, 27,  20,  13,  2
+                41,  52, 31,  37,  47, 55
+                30,  40, 51,  45,  33, 48
+                44,  49, 39,  56,  34, 53
+                46,  42, 50,  36,  29, 32
+
+
+DES: Rundenfunktion (:ger-quote:`F`)
 --------------------------------------
+
+.. TODO add .. caption :: (dt. Legende)
 
 .. container:: note small width-40
 
     **Legende**
 
-    R ist die rechte Hälfte der Nachricht.
+    R - rechte Hälfte der Nachricht
 
-    E ist eine Expansionsfunktion.
+    E - Expansionsfunktion
 
-    S sind Substitutionsboxen.
+    S - Substitutionsboxen
 
-    P ist eine Permutation.
+    P - Permutation.
 
 .. image:: drawings/des/round_function.svg
     :width: 840px
@@ -401,16 +505,16 @@ DES Rundenfunktion (:ger-quote:`F`)
 
 .. class:: vertical-title
 
-DES Beispiel
+DES: Beispiel
 -------------
 
 .. container:: width-100
 
     .. csv-table::
-        :class: footnotesize monospaced highlight-line-on-hover
+        :class: far-smaller monospaced highlight-line-on-hover
         :align: center
         
-        Round, Ki, Li, Ri
+        Round, :math:`Ki`, :math:`Li`, :math:`Ri`
         IP, , 5a005a00, 3cf03c0f
         1, 1e030f03080d2930, 3cf03c0f, bad22845
         2, 0a31293432242318, bad22845, 99e9b723
@@ -430,9 +534,21 @@ DES Beispiel
         16, 2921080b13143025, 75e8fd8f, 25896490
         IP-1, , da02ce3a, 89ecac3b
 
-.. container:: margin-left-1em
+.. container:: margin-left-1em far-smaller
 
-    DES-Unterschlüssel werden als acht 6-Bit-Werte im Hexadezimalformat angezeigt (der Höchstwert für :math:`k_i` ist :math:`2^6-1=63=0x3F`)
+    DES-Unterschlüssel werden als acht 6-Bit-Werte im Hexadezimalformat angezeigt. 
+
+    Der Höchstwert für einen Wert von :math:`k_i` ist somit :math:`2^6-1=63=0x3F`.
+
+    .. rubric:: Beispiel - :math:`k_1`
+
+    .. csv-table::
+        :class: far-smaller monospaced highlight-cell-on-hover
+        :align: center
+        :header: Index, 1,2,3,4,5,6,7,8
+
+        Wert, 1e, 03, 0f, 03, 08, 0d, 29, 30
+
 
 
 
@@ -451,34 +567,34 @@ Lawineneffekt in DES
         :class: scriptsize monospaced highlight-line-on-hover
         :width: 800px
         :align: center
-        :header: Round, , δ, Round, , δ
+        :header: Round, , δ, , Round, , δ
 
         , "02468aceeca86420
-        12468aceeca86420", 1, 9, "c11bfc09887fbc6c
+        12468aceeca86420", 1, , 9, "c11bfc09887fbc6c
         996911532eed7d94", 32
         1, "3cf03c0fbad22845
-        3cf03c0fbad32845", 1, 10, "887fbc6c60017e8b
+        3cf03c0fbad32845", 1, , 10, "887fbc6c60017e8b
         2eed7d94d0f23094", 34
         2, "bad2284599e9b723
-        bad3284539a9b7a3", 5, 11, "600f7e8bf596506e
+        bad3284539a9b7a3", 5, , 11, "600f7e8bf596506e
         d0f23094455da9c4", 37
         3, "99e9b7230bae3b9e
-        39a9b7a3171cb8b3", 18, 12, "1596506e738538b8
+        39a9b7a3171cb8b3", 18, , 12, "1596506e738538b8
         455da9c47f6e3cf3", 31
         4, "Obae3b9e42415649
-        171cb8b3ccaca55e", 34, 13, "738538b8c6a62c4e
+        171cb8b3ccaca55e", 34, , 13, "738538b8c6a62c4e
         7f6e3cf34bc1a8d9", 29
         5, "4241564918b3fa41
-        ccaca55ed16c3653", 37, 14, "c6a62c4e56b0bd75
+        ccaca55ed16c3653", 37, , 14, "c6a62c4e56b0bd75
         4bc1a8d91e07d409", 33
         6, "18b3fa419616fe23
-        d16c3653cf402c68", 33, 15, "56b0bd7575e8fd81
+        d16c3653cf402c68", 33, , 15, "56b0bd7575e8fd81
         1e07d4091ce2e6dc", 31
         7, "9616fe2367117cf2
-        cf402c682b2cefbc", 32, 16, "75e8fd8625896490
+        cf402c682b2cefbc", 32, , 16, "75e8fd8625896490
         1ce2e6dc365e5f59", 32
         8, "67117cf2c11bfc09
-        2b2cefbc99191153", 33, IP-1, "da02ce3a89ecac3b
+        2b2cefbc99191153", 33, , IP-1, "da02ce3a89ecac3b
         057cde97d7683f2a", 32
 
 
@@ -497,34 +613,34 @@ Lawineneffekt in DES
         :class: scriptsize monospaced highlight-line-on-hover
         :width: 800px
         :align: center
-        :header: Round, , "δ", Round, , δ
+        :header: Round, , "δ", , Round, , δ
 
         , "02468aceeca86420
-        02468aceeca86420", 0, 9, "c11bfe09887fbe6c
+        02468aceeca86420", 0, , 9, "c11bfe09887fbe6c
         548f1de471f64dfd", 34
         1, "3cf03c0fbad22845
-        3cf03c0f9ad628c5", 3, 10, "8876be6c60067e8b
+        3cf03c0f9ad628c5", 3, , 10, "8876be6c60067e8b
         71664dfd4279876c", 36
         2, "bad2284599e9b723
-        9ad628c59939136b", 11, 11, "60017e8bf596506e
+        9ad628c59939136b", 11, , 11, "60017e8bf596506e
         4279876c399fdc0d", 32
         3, "99e9b7230bae3b9e
-        9939136676806767", 25, 12, "f596506e738538b8
+        9939136676806767", 25, , 12, "f596506e738538b8
         399fde0d6d208dbb", 28
         4, "Obae3b9e42415649
-        768067b75a8807c5", 29, 13, "738538b8c6a62c4e
+        768067b75a8807c5", 29, , 13, "738538b8c6a62c4e
         6d208dbbb9bdeeaa", 33
         5, "4241564918b3fa41
-        5a8807c5488bde94", 26, 14, "c6a62c4e56b0bd75
+        5a8807c5488bde94", 26, , 14, "c6a62c4e56b0bd75
         b9bdeeaad2c3a56f", 30
         6, "18b3fa419616fe23
-        488dbe94aba7fe53", 26, 15, "56b0bd7575e8fd8f
+        488dbe94aba7fe53", 26, , 15, "56b0bd7575e8fd8f
         d2c3a5612765c1fb", 33
         7, "9616fe2367117cf2
-        aba7fe53177d21e4", 27, 16, "75e8fd8f25896490
+        aba7fe53177d21e4", 27, , 16, "75e8fd8f25896490
         2765c1fb01263dc4", 30
         8, "67117cf2c11bfc09
-        177d21e4548f1de4", 32, IP-1, "da02ce3a89ecac3b
+        177d21e4548f1de4", 32, , IP-1, "da02ce3a89ecac3b
         ee92b50606b6260b", 30
 
 
@@ -561,7 +677,7 @@ Stärke von DES - Timing-Angriffe
 
 
 
-Entwurfsprinzipien für Blockchiffre - Anzahl der Runden
+Entwurfsprinzipien für Blockchiffren - Anzahl der Runden
 ---------------------------------------------------------
 
 .. class:: incremental
@@ -574,7 +690,7 @@ Entwurfsprinzipien für Blockchiffre - Anzahl der Runden
 
 
 
-Entwurfsprinzipien für Blockchiffre - Funktion F
+Entwurfsprinzipien für Blockchiffren - Funktion F
 -----------------------------------------------------
 
 .. class:: incremental
@@ -729,7 +845,7 @@ Triple-DES mit drei Schlüsseln
 
     Kümmern Sie sich nicht um Nachrichten, die größer oder kleiner als die Blockgröße sind. Dies ist nicht notwendig, um die Auswirkungen von :math:`f` oder der Verwendung eines Rundenschlüssels zu verstehen. Kümmern Sie sich nicht um einen Schlüssel, der nicht die richtige Größe hat. D. h. verwenden Sie eine Nachricht und einen Schlüssel mit der entsprechenden Größe.
 
-    Um die Austauschbarkeit der Funktion f zu erreichen können Sie je nach Sprache z. B. native Funktionen höherer Ordnung, einen Funktionszeiger oder ein Interface verwenden.
+    Um die Austauschbarkeit der Funktion f zu erreichen, können Sie je nach Sprache z. B. native Funktionen höherer Ordnung, einen Funktionszeiger oder ein Interface verwenden.
 
 
 
@@ -742,8 +858,8 @@ Triple-DES mit drei Schlüsseln
 
   1. Was passiert, wenn f nur 0x00-Werte zurückgibt (unabhängig vom Rundenschlüssel)?
   2. Was passiert, wenn f nur 0x01-Werte zurückgibt (unabhängig vom Rundenschlüssel)?
-  3. Was passiert, wenn f einfach die entsprechende Hälfte mit dem Ergebnis der Verschiebung des Schlüssels xor?
-  4. Was passiert, wenn du deine Nachricht änderst? Testen Sie insbesondere, was passiert wenn die Nachricht nur aus 0x00 besteht (und Sie eine :ger-quote:`vernünftigere` f-Funktion verwenden.)
+  3. Was passiert, wenn f einfach ein *xor* der entsprechende Hälfte mit dem Ergebnis der Verschiebung des Schlüssels durchführt?
+  4. Was passiert, wenn man eine Nachricht ändert? Testen Sie insbesondere, was passiert wenn die Nachricht nur aus 0x00 besteht (und Sie eine :ger-quote:`vernünftigere` f-Funktion verwenden.)
   5. Was passiert, wenn du deinen Schlüssel änderst? Was passiert in extremen Fällen (z. B. wenn das Passwort nur aus "0 "s besteht?
 
   .. solution:: 
