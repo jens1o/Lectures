@@ -440,13 +440,15 @@ Hashwerte und Signaturen [#]_
 
 .. class:: incremental
 
-- Hashwert ist wie ein mathematischer Fingerabdruck des Dokumentes.
+- Ein Hashwert ist wie ein (eindeutige) mathematischer Fingerabdruck des Dokumentes.
+- Ein (kryptografischer) Hashwert erlaubt keinen Rückschluss auf die Inhalte des Dokuments.
+- Die kleinste Änderung am Dokument führt zu einem (völlig) anderen Hashwert.
   
 - Dieser Hashwert – verknüpft mit einer persönlichen Signatur – zeigt, dass dieses Dokument von dem Absender der Signatur stammt und das Dokument nicht verändert wurde.
 
 
 
-.. [#] Hashwerte und Signaturen werden wir ausführlich im Zusammenhang mit Verschlüsselungsverfahren betrachten.
+.. [#] Hashwerte und Signaturen sind Gegenstand der Vorlesungen im Bereich IT Security.
 
 
 
