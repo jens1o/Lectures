@@ -83,6 +83,12 @@ Was ist Cybersecurity?
         - Betrug und Diebstahl zu schützen
 
 
+.. class:: new-section
+
+Von praktischen und theoretischen Angriffen
+-------------------------------------------------------------
+
+
 .. class:: no-title center-child-elements
 
 Indonesia - Ransomware Angriff
@@ -143,6 +149,40 @@ Cyberangriff auf Fahrräder
     Relatively inexpensive hardware can be used to hack the Shimano Di2 wireless gear-shifting systems used by cyclists [...]. They tested the eavesdrop-and-replay attack with a $1,500 USRP software-defined radio, an antenna, and a laptop but said the setup could be miniaturized. Attackers could spoof signals from up to 30 feet away, causing the target bike to shift gears unexpectedly or lock into the wrong gear. 
 
     --August 2024 - `summary provided by ACM <https://technews.acm.org/archives.cfm?fo=2024-08-aug/aug-16-2024.html>`__; `full article: Wired <https://www.wired.com/story/shimano-wireless-bicycle-shifter-jamming-replay-attacks/>`__
+
+
+.. class:: no-title center-child-elements
+
+Auslesen von Daten über die Luftschnittstelle
+----------------------------------------------------------------
+
+
+.. epigraph::
+
+    **New RAMBO attack steals data using RAM in air-gapped computers**
+
+    [...] A novel side-channel attack dubbed  "RAMBO" (Radiation of Air-gapped Memory Bus for Offense) generates electromagnetic radiation from a device's RAM to send data from air-gapped computers.
+
+    .. container:: incremental
+
+        [...] To conduct the Rambo attack, an attacker plants malware on the air-gapped computer to collect sensitive data and prepare it for transmission. It transmits the data by manipulating memory access patterns to generate controlled electromagnetic emissions from the device's RAM. 
+
+    .. container:: incremental
+
+        [...] The RAMBO attack achieves data transfer rates of up to 1,000 bits per second (bps) [at a distance of up to 7 meters], equating to 128 bytes per second, or 0.125 KB/s.
+
+    --September 2024 - `Bleepingcomputer  <https://www.bleepingcomputer.com/news/security/new-rambo-attack-steals-data-using-ram-in-air-gapped-computers/>`__
+
+
+.. supplemental::
+
+    .. rubric:: Weitere Details
+
+    .. epigraph::
+    
+        The emitted data is encoded into "1" and "0," represented in the radio signals as "on" and "off." The researchers opted for using Manchester code to enhance error detection and ensure signal synchronization, reducing the chances for incorrect interpretations at the receiver's end.
+        
+        The attacker may use a relatively inexpensive Software-Defined Radio (SDR) with an antenna to intercept the modulated electromagnetic emissions and convert them back into binary information.
 
 
 .. class:: no-title center-child-elements
