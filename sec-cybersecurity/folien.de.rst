@@ -368,7 +368,7 @@ Ausgewählte Social-Engineering Angriffe
 
     :Phishing and Spear Phishing: 
 
-        *Phishing* nutzt elekr. Kommunikationswege um an Informationen zu gelangen (z. B. E-Mail oder SMS). 
+        *Phishing* nutzt elektr. Kommunikationswege um an Informationen zu gelangen (z. B. E-Mail oder SMS). 
         
         *Spear phishing* ist Phishing, bei der der Angreifer auf eine bestimmte Zielgruppe oder Person abzielt.
 
