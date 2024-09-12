@@ -39,7 +39,7 @@ CSS
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
-    :Version: 1.0
+    :Version: 1.1
 
 .. supplemental::
 
@@ -59,34 +59,81 @@ Einführung
 ------------------------------------------------
 
 
-Hintergrund
+CSS - Cascading Style Sheets
 ------------------------------------------------
 
-.. stack::
 
-    .. layer::
+CSS (Cascading Style Sheets) ist eine Stylesheet-Sprache, die verwendet wird, um das Aussehen von Dokumenten zu gestalten.
 
-        CSS (Cascading Style Sheets) ist eine Stylesheet-Sprache, die verwendet wird, um das Aussehen von Dokumenten zu gestalten.
+.. container:: two-columns
 
-    .. layer:: incremental smaller
+    .. container:: column no-separator incremental
+
+        .. rubric:: HTML
+
+        .. code:: html
+            :class: far-far-smaller
+
+            <section>
+                <p>1. Absatz</p>
+                <p>2. Absatz</p>   
+                <p>3. Absatz</p>
+            </section>
+
+    .. container:: column incremental
+                
+        .. rubric:: CSS und Resultat
+    
+        .. raw:: html
+            :class: css-iframe
+
+            <iframe srcdoc="<html style='font-size:36px'>
+                <head><style>
+                    style {
+                        font-family: monospace; 
+                        white-space: pre; 
+                        display: block; 
+                        background-color: whitesmoke;
+                    } 
+                    h1 {margin:0; padding:0;} p {margin: 0; padding:0;} </style>
+                </head>
+                <body>
+                    <style spellcheck='false' contenteditable='true'>
+            p { color: red; }
+            p ~ p { color: blue; }
+            p:nth-child(3) { color: green; }
+                    </style><hr>
+                    <section>
+                    <p>1. Absatz</p>
+                    <p>2. Absatz</p>   
+                    <p>3. Absatz</p>
+                    </section>
+                </body></html>"
+                    width="var(--ld-slide-width)" 
+                    height="550"
+                    style="border-radius: calc(var(--slide-border-radius) * 0.5)" >
+                iframes are not supported
+            </iframe>
 
 
-        .. rubric:: Historie
+CSS - Historie
+----------------
 
+.. class:: incremental
 
-        .. class:: incremental
+- Entwicklung begann 1994; CSS 1 wurde 1996 veröffentlicht und war erst einmal ein Fehlschlag
+- CSS 2 wurde 1998 veröffentlicht 
+- CSS 3 wurde modularisiert, um die Entwicklung zu beschleunigen
 
-        - Entwicklung begann 1994; CSS 1 wurde 1996 veröffentlicht und war erst einmal ein Fehlschlag
-        - CSS 2 wurde 1998 veröffentlicht 
-        - CSS 3 wurde modularisiert, um die Entwicklung zu beschleunigen
-        
-          - CSS Color Level 3 (2012)
-          - CSS Namespaces Level 3 (2012)
-          - CSS Selectors Level 3 (2012)
-          - ...
-          - CSS Flexbox Level 1 (2018) (`nach 9 Jahren Entwicklungszeit <https://www.w3.org/standards/history/css-flexbox-1/>`_)
-          - CSS Selectors Level 4 (`2024 noch Draft Status <https://www.w3.org/TR/selectors-4/>`__; insbesondere ``:has()`` hat `breite Unterstützung <https://caniuse.com/css-has>`__)
-          - CSS Nesting (`2024 noch Draft Status <https://drafts.csswg.org/css-nesting/>`__; `dennoch bereits seit 2024 weit verfügbar <https://caniuse.com/css-nesting>`__)
+  .. class:: incremental just-a-bit-smaller
+
+  - CSS Color Level 3 (2012)
+  - CSS Namespaces Level 3 (2012)
+  - CSS Selectors Level 3 (2012)
+  - ...
+  - CSS Flexbox Level 1 (2018) (`nach 9 Jahren Entwicklungszeit <https://www.w3.org/standards/history/css-flexbox-1/>`_)
+  - CSS Selectors Level 4 (`2024 noch Draft Status <https://www.w3.org/TR/selectors-4/>`__; insbesondere ``:has()`` hat `breite Unterstützung <https://caniuse.com/css-has>`__)
+  - CSS Nesting (`2024 noch Draft Status <https://drafts.csswg.org/css-nesting/>`__; `dennoch bereits seit 2024 weit verfügbar <https://caniuse.com/css-nesting>`__)
 
 
 
@@ -150,84 +197,6 @@ Eine CSS-Datei besteht aus Regeln, die aus einem Selektor und einer oder mehrere
     CSS ist im wesentlichen *Whitespace insensitive*, d. h. Leerzeichen, Zeilenumbrüche und Tabulatoren werden ignoriert.
 
     Kommentare werden in ``/* ... */`` geschrieben.
-
-
-
-Elemente
-------------------------------------------------
-
-- Wir unterscheiden zwischen *replaced elements* bei denen der Inhalt nicht Teil des Dokumentes ist (zum Beispiel ``<img>``) und *non-replaced elements* (zum Beispiel ``<p>`` und ``<div>``; d. h. die meisten HTML Elemente).
-
-.. class:: incremental
-
-- Grundlegende Formatierungskontexte\ [#]_\ : *block* (z. B. der Standard von ``h1``, ``p``, ``div``, ...) und *inline* (z. B. der Standard von ``strong``, ``span``,...).
-
-  .. class:: list-with-explanations
-
-  - Block-Elemente generieren eine Box, welche den Inhaltsbereich des *Parent-Elements* ausfüllt. 
-
-    (*Replaced elements* können, müssen aber nicht Block-Elemente sein.)
-  - Inline-Elemente generieren eine Box innerhalb einer Zeile und unterbrechen den Fluss der Zeile nicht.
-  - Mittels CSS kann der Formatierungskontext geändert werden.
-
-  .. [#] Es gibt noch :ger-quote:`viel mehr` Kontexte für spezielle Anwendungsfälle.
-
-
-
-
-Block und Inline Elemente - Beispiel
-------------------------------------------------
-
-.. container:: two-columns incremental
-
-    .. container:: column
-
-        .. code:: css
-            :class: far-far-smaller
-
-            h1 {
-                display: inline;
-            }
-            strong { 
-                display: block;
-            }
-
-        Folgendes Beispiel dient nur der Veranschaulichung:
-
-        .. code:: html
-            :class: far-far-smaller
-
-            Dies ist eine <strong><h1>Überschrift</h1> 
-            in sehr wichtig</strong>; wirklich!
-
-        .. admonition:: Warnung
-            :class: warning far-smaller incremental
-
-            (So nicht verwenden; dies ist kein gültiges HTML5!)
-
-    .. container:: column incremental
-
-        .. rubric:: Visualisierung
-
-        .. raw:: html
-            :class: css-iframe 
-
-            <iframe srcdoc="<html style='font-size:32px'><head></head><body>
-                            <style> 
-             h1 {
-                display: inline;
-            }
-            strong { 
-                display: block;
-            }
-                            </style>
-                        Dies ist eine <strong><h1>Überschrift</h1> in sehr wichtig</strong>; wirklich!
-                        </body>"
-                    height="410">
-                iframes are not supported.
-            </iframe>
-
-
 
 
 Verknüpfung von CSS und HTML
@@ -306,13 +275,13 @@ Klassen (:eng:`class-Selector`) - Beispiel\ [#]_
         .. code:: html
             :class: far-far-smaller
 
-            <h1>Die Bedeutung des Seins.</h1>
+            <h1>Die Bedeutung des Seins</h1>
             <h1 class="wip">
                 Die Bedeutung des Nicht-Seins
             </h1>
             <h1 class="todo future">
                 Das Sein und das Nicht-Sein
-                </h1>
+            </h1>
 
         *CSS*
 
@@ -338,9 +307,9 @@ Klassen (:eng:`class-Selector`) - Beispiel\ [#]_
             *.todo { color: red; }
             .future { text-decoration: underline;}
                             </style>
-                                   <h1>Die Bedeutung des Seins.</h1>
+                                   <h1>Die Bedeutung des Seins</h1>
                 <h1 class='wip'>Die Bedeutung des Nicht-Seins</h1>
-                <h1 class='todo future'>Die Bedeutung des Nicht-Seins</h1>
+                <h1 class='todo future'>Das Sein und das Nicht-Sein</h1>
                         </body>"
                     height="300">
                 iframes are not supported.
@@ -385,7 +354,8 @@ Attribute (:eng:`Attribute-Selector`) - Beispiel
             :class: far-far-smaller
 
             <h1 lang="de-DE">Die Bedeutung des Seins.</h1>
-            <h1 lang="en-US">To Be Or Not To Be</h1>
+            <h1 lang="en-GB">To Be Or Not To Be</h1>
+            <h1 lang="en-US">Play to win!</h1>
             <h1 lang="de-AT">Ich brauch ne Jause</h1>
 
         *CSS*
@@ -394,6 +364,7 @@ Attribute (:eng:`Attribute-Selector`) - Beispiel
             :class: far-far-smaller
 
             [lang] { text-decoration: underline; }            
+            [lang$='US'] { color: orange; }
             [lang|='en'] { font-style: italic; }
             [lang="de-at" i] { text-transform: uppercase; }
 
@@ -406,15 +377,17 @@ Attribute (:eng:`Attribute-Selector`) - Beispiel
 
             <iframe srcdoc="<html style='font-size:26px'><head></head><body>
                             <style> 
-            [lang] { text-decoration: underline; }
+            [lang] { text-decoration: underline; }            
+            [lang$='US'] { color: orange; }
             [lang|='en'] { font-style: italic; }
             [lang='de-at' i] { text-transform: uppercase; }
                             </style>
             <h1 lang='de-DE'>Die Bedeutung des Seins.</h1>
-            <h1 lang='en-US'>To Be Or Not To Be</h1>
+            <h1 lang='en-GB'>To Be Or Not To Be</h1>
+            <h1 lang='en-US'>Play to win!</h1>
             <h1 lang='de-AT'>Ich brauch ne Jause</h1>
                         </body>"
-                    height="300">
+                    height="400">
                 iframes are not supported.
             </iframe>
 
@@ -437,7 +410,7 @@ Kombinatoren
       :``div > p``: alle ``<p>`` Kinder von ``<div>`` Elementen.
     - Benachbarte Geschwister (:eng:`Adjacent Sibling Selector`):
 
-      :``h1 + p``: alle ``<p>`` Elemente, die *direkt* auf ein ``<h1>`` Element folgen und sich das Gleiche Eltern-Element teilen.
+      :``h1 + p``: alle ``<p>`` Elemente, die *direkt* auf ein ``<h1>`` Element folgen und sich gleiche Eltern-Element teilen.
 
     - Allgemeiner Geschwister Selektor (:eng:`General Sibling Selector`):
 
@@ -448,7 +421,7 @@ Kombinatoren - Beispiele
 --------------------------------------------------------------------
 
 
-.. container:: two-columns smaller
+.. container:: two-columns far-smaller
 
     .. container:: column
 
@@ -457,23 +430,21 @@ Kombinatoren - Beispiele
         .. code:: html
             :class: far-smaller
 
-            <h1>Ü1</h1>
-            
-                Text
-            
-                <p>P1</p>
-                <p>P2</p>
-                <p>P3</p>
+            <h1>Ü1</h1>            
+            Text
+            <p>P1</p>
+            <p>P2</p>
+            <div>D0</div>
+            <p>P3</p>
 
             <h1>Ü2</h1>
-
-                <div>
-                    D1
-                    <div>D1.1</div>
-                    <div>D1.2</div>
-                </div>
-                <div>D2</div>
-                <div>D3</div>
+            <div>
+                D1
+                <div>D1.1</div>
+                <div>D1.2</div>
+            </div>
+            <div>D2</div>
+            <div>D3</div>
 
 
     .. container:: column incremental
@@ -494,20 +465,21 @@ Kombinatoren - Beispiele
             /* h1 ~ div { color: orange; } */
                             </style><hr>
                         <h1>Ü1</h1>
-                            Text
-                            <p>P1</p>
-                            <p>P2</p>
-                            <p>P3</p>
+                        Text
+                        <p>P1</p>
+                        <p>P2</p>
+                        <div>D0</div>
+                        <p>P3</p>
                         <h1>Ü2</h1>
-                            <div>D1
-                                <div>D1.1</div>
-                                <div>D1.2</div>
-                            </div>
-                            <div>D2</div>
-                            <div>D3</div>
+                        <div>D1
+                            <div>D1.1</div>
+                            <div>D1.2</div>
+                        </div>
+                        <div>D2</div>
+                        <div>D3</div>
                         </body>"
                     width="var(--ld-slide-width)" 
-                    height="900"
+                    height="930"
                     style="border-radius: calc(var(--slide-border-radius) * 0.5)" >
                 iframes are not supported
             </iframe>
@@ -517,70 +489,112 @@ Kombinatoren - Beispiele
 *Pseudo-class Selektors*
 ------------------------------------------------
 
-.. container:: scrollable
 
-    .. class:: incremental 
-        
-    - erlauben das Selektieren von Elementen basierend auf ihrem Zustand
-    - können beliebig kombiniert werden: ``a:link:hover { color: red; }`` selektiert alle Links, die noch nicht besucht wurden und über denen sich die Maus befindet
-    - Ausgewählte Beispiele: 
+.. class:: incremental 
     
-      .. class:: incremental
+- erlauben das Selektieren von Elementen basierend auf ihrem Zustand
+- können beliebig kombiniert werden: ``a:link:hover { color: red; }`` selektiert alle nicht-besuchten Links über denen sich die Maus befindet
+- Ausgewählte Beispiele: 
 
-      - Bzgl. der Struktur: ``:first-child``, ``:last-child``, ``:nth-child(n)``, ``:nth-of-type(n)``, ``:root``, ``:only-child``, ``:only-of-type``, ``:link``, ``:visited``
-    
-      - Basierend auf Nutzerinteraktionen: ``:hover``, ``:active``, ``:focus``
-      - Zustand des Elements: ``:enabled``, ``:disabled``, ``:checked``, ``:valid``, ``:invalid``
-      - Sprache und Lokalisierung: ``:lang(de)``, ``:dir(ltr)``
-      - Logische Selektoren: ``:not(selector)``, ``:is(selector)``, ``:where(selector)``, ``:has(selector)``
+    .. class:: incremental smaller
 
+    - Bzgl. der Struktur: ``:first-child``, ``:last-child``, ``:nth-child(n)``, ``:nth-of-type(n)``, ``:root``, ``:only-child``, ``:only-of-type``, ``:link``, ``:visited``
 
-    - Pseudo-class Selektoren beziehen sich immer auf das Element auf das sie sich beziehen.
+    - Basierend auf Nutzerinteraktionen: ``:hover``, ``:active``, ``:focus``
+    - Zustand des Elements: ``:enabled``, ``:disabled``, ``:checked``, ``:valid``, ``:invalid``
+    - Sprache und Lokalisierung: ``:lang(de)``, ``:dir(ltr)``
+    - Logische Selektoren: ``:not(selector)``, ``:is(selector)``, ``:where(selector)``, ``:has(selector)``
 
-      .. container:: two-columns
-
-        .. container:: column
-
-            **HTML**
-
-            .. code:: html
-                :class: far-far-smaller copy-to-clipboard
-
-                <div class="oma" id="Maria">
-                    <div class="papa" id="Fritz">
-                        <div class="kind" id="Elias">
-                            Kind 1
-                        </div>
-                    </div>
-                    <div class="papa" id="Hans">
-                        <div class="kind" id="Tobias">
-                            Kind 2
-                        </div>
-                    </div>
-                </div>
-
-        .. container:: column
-
-            **CSS**
-
-            .. code:: css
-                :class: far-far-smaller copy-to-clipboard
-
-                .papa:first-child { color: red; }
-            
-            Selektiert welches Element?
-    
-      .. incremental:: smaller
-        
-        Selektiert wird ein Element mit der Klasse ``papa``, wenn es das erste Kind seines Eltern-Elements ist. Es wird *nicht das erste Kind des Elements selektiert*.
-
+- Pseudo-class Selektoren beziehen sich immer auf das aktuelle Element.
 
 .. supplemental::
     
-    - Bei ``nth-child(n)`` und ``nth-of-type`` ist n eine Zahl oder ein Ausdruck (:math:`\alpha\,n+b`), der eine Zahl ergibt (z. B. ``2n+1`` oder aber ``even``). Das Zählen der Elemente beginnt bei 1.
+    - Bei ``nth-child(n)`` und ``nth-of-type(n)`` ist n eine Zahl oder ein Ausdruck (:math:`\alpha\,n+b`), der eine Zahl ergibt (z. B. ``2n+1`` oder aber ``even``). Das Zählen der Elemente beginnt bei 1.
     - ``:root`` selektiert das Wurzelelement des Dokuments, also das ``<html>`` Element.
     - ``:only-child`` und ``:only-of-type`` selektiert ein Element, das das einzige entsprechende Kind seines Eltern-Elements ist.
   
+
+
+*Pseudo-class Selektors* - Beispiel
+------------------------------------------------
+
+.. container:: two-columns
+
+    .. container:: column
+
+        **HTML**
+
+        .. code:: html
+            :class: far-far-smaller copy-to-clipboard
+
+            <div class="oma" id="Maria">
+                <div class="papa" id="Fritz">
+                    Vater 1
+                    <div class="kind" id="Elias">
+                        Kind 1
+                    </div>
+                </div>
+                <div class="papa" id="Hans">
+                    Vater 2
+                    <div class="kind" id="Tobias">
+                        Kind 2
+                    </div>
+                </div>
+            </div>
+
+    .. container:: column
+
+        **CSS**
+
+        .. code:: css
+            :class: far-far-smaller copy-to-clipboard
+
+            .papa:first-child { color: red; }
+            .kind:first-child { color: green; }
+        
+        Selektiert welches Element?
+
+        .. container:: far-far-smaller
+        
+            Zur Erinnerung: 
+            Pseudo-class Selektoren beziehen sich immer auf das Element, auf das sie sich beziehen.
+
+        .. raw:: html
+            :class: one-column-iframe incremental margin-top-1em
+
+            <iframe srcdoc="<html style='font-size:36px'>
+                <head>
+                <style>
+                h1 {margin:0; padding:0;} p {margin: 0; padding:0;} 
+                </style>
+                </head>
+                <body>
+                    <style>.papa:first-child { color: red; } .kind:first-child { color: green; }</style>
+                    <div class=,oma' id='Maria'>
+                        <div class='papa' id='Fritz'>
+                            Vater 1
+                            <div class='kind' id='Elias'>
+                                Kind 1
+                            </div>
+                        </div>
+                        <div class='papa' id='Hans'>
+                            Vater 2
+                            <div class='kind' id='Tobias'>
+                                Kind 2
+                            </div>
+                        </div>
+                    </div>"                        
+                    height="100"
+                    style="border-radius: calc(var(--slide-border-radius) * 0.5)" >
+                iframes are not supported
+            </iframe>
+
+.. incremental:: smaller
+
+    Selektiert wird ein Element mit der Klasse ``papa``, wenn es das erste Kind seines Eltern-Elements ist. Es wird *nicht das erste Kind des Elements selektiert*.
+
+
+
 
 
 *Pseudo-class Selektors* bzgl. Inputvalidierung
@@ -710,6 +724,7 @@ Spezifität von Selektoren
                                     <style spellcheck='false' contenteditable='true'>/*p[id*='this'] {color: green; }*/
                     /*section p { color: red; }*/
                     /*p { color: orange; }*/
+                    /*p ~ p { color: aliceblue; }*/
                                     </style><hr>
                     <section>
                         <p id='this-is-it'>Der erste Abschnitt!</p>
@@ -732,112 +747,82 @@ Spezifität von Selektoren
 
 
 
-Nesting
+Elemente
 ------------------------------------------------
 
+- Wir unterscheiden zwischen *replaced elements* bei denen der Inhalt nicht Teil des Dokumentes ist (zum Beispiel ``<img>``) und *non-replaced elements* (zum Beispiel ``<p>`` und ``<div>``; d. h. die meisten HTML Elemente).
 
-.. container:: two-columns smaller
+.. class:: incremental
+
+- Grundlegende Formatierungskontexte\ [#]_\ : *block* (z. B. der Standard von ``h1``, ``p``, ``div``, ...) und *inline* (z. B. der Standard von ``strong``, ``span``,...).
+
+  .. class:: list-with-explanations
+
+  - Block-Elemente generieren eine Box, welche den Inhaltsbereich des *Parent-Elements* ausfüllt. 
+
+    (*Replaced elements* können, müssen aber nicht Block-Elemente sein.)
+  - Inline-Elemente generieren eine Box innerhalb einer Zeile und unterbrechen den Fluss der Zeile nicht.
+  - Mittels CSS kann der Formatierungskontext geändert werden.
+
+  .. [#] Es gibt noch :ger-quote:`viel mehr` Kontexte für spezielle Anwendungsfälle.
+
+
+Block und Inline Elemente - Beispiel
+------------------------------------------------
+
+.. container:: two-columns incremental
 
     .. container:: column
 
-        *HTML*
+        .. rubric:: Code
+
+        .. code:: css
+            :class: far-far-smaller
+
+            h1 {
+                display: inline;
+            }
+            strong { 
+                display: block;
+            }
+
+        Folgendes Beispiel dient nur der Veranschaulichung:
 
         .. code:: html
             :class: far-far-smaller
-            
-            <h1 class="obsolete">1. Überschrift</h1>
-                <p>Ein alter Absatz</p>
-            <h2>2. Überschrift</h2>
-                <p>Ein neuer, besserer Absatz</p>
 
+            Dies ist eine <strong><h1>Überschrift</h1> 
+            in sehr wichtig</strong>; wirklich!
 
     .. container:: column incremental
 
-        *Spielwiese*
+        .. rubric:: Visualisierung
 
         .. raw:: html
-            :class: one-column-iframe with-editable-content
+            :class: css-iframe 
 
-            <iframe srcdoc="<html style='font-size:32px'><head><style>style {
-                font-family: monospace; white-space: pre; display: block; background-color: whitesmoke;
-            } h1 {margin:0; padding:0;} p {margin: 0; padding:0;} input {font-size: 30px; padding: 0.5em; display: block; margin: 0.5em} </style></head><body>
-                            <style spellcheck='false' contenteditable='true'> 
-            h1.obsolete { 
-                color: red;
-                text-decoration: line-through;
-                background-color: lightgray;
-
-                & + p {
-                    color: green;
-                }
+            <iframe srcdoc="<html style='font-size:32px'><head></head><body>
+                            <style> 
+             h1 {
+                display: inline;
             }
-                            </style><hr>
-                                <h1 class='obsolete'>1. Überschrift</h1>
-                                    <p>Ein alter Absatz</p>
-                                <h2>2. Überschrift</h2>
-                                    <p>Ein neuer, besserer Absatz</p>
+            strong { 
+                display: block;
+            }
+                            </style>
+                        Dies ist eine <strong><h1>Überschrift</h1> in sehr wichtig</strong>; wirklich!
                         </body>"
-                    width="var(--ld-slide-width)" 
-                    height="900"
-                    style="border-radius: calc(var(--slide-border-radius) * 0.5)" >
-                iframes are not supported
+                    height="410">
+                iframes are not supported.
             </iframe>
 
-.. supplemental::
 
-    CSS Nesting ist erst seit 2024 in CSS verfügbar. Nesting findet bzgl. der Selektoren statt.  Häufig(er) in Kombination mit *At-Regeln* (:eng:`at-rules`; z. B. :code:`@media`) verwendet.
+.. admonition:: Warnung
+    :class: warning far-smaller incremental
+
+    Dies ist kein gültiges HTML5!
 
 
-Nesting - ``&`` Operator
-------------------------------------------------
-
-Der ``&`` Operator kann immer verwendet werden, ist aber oft optional.
-
-.. container:: two-columns smaller
-
-    .. container:: column
-
-        .. code:: css
-            :class: smaller copy-to-clipboard
-
-            p  {
-                .obsolete {
-                    text-decoration: line-through;
-                } 
-            }
-
-        ist äquivalent zu:
-
-        .. code:: css
-            :class: smaller copy-to-clipboard
-
-            p .obsolete {
-                text-decoration: line-through;
-            }
-
-    .. container:: column incremental   
-
-        .. code:: css
-            :class: smaller copy-to-clipboard
-
-            p  {
-                &.obsolete {
-                    text-decoration: line-through;
-                } 
-            }
-
-        ist äquivalent zu:
-
-        .. code:: css
-            :class: smaller copy-to-clipboard
-
-            p.obsolete {
-                text-decoration: line-through;
-            }
-
-.. supplemental::
-
-    D. h. sollten nur solche Paragraphen durchgestrichen werden, die als *obsolete* markiert sind (d. h. ``<p class='obsolete'>``) und nicht alle darunter liegenden Elemente, dann muss der ``&`` Operator verwendet werden (``&`` ist dann nicht optional).
 
 
 Vererbung   
@@ -955,7 +940,7 @@ CSS - Trick - nicht-unterstützte Eigenschaften
     - ``:not(<list of selectors>)`` erlaubt die logische Und-Verknüpfung: 
     
       ``:not(<selector_a>, <selector_b>)`` ≘ ``nicht selector_a und nicht selector_b``.
-    - die Spezifität ergibt sich aus der Sepzifizität des spezifischsten Selektors
+    - die Spezifität ergibt sich aus der Spezifität des spezifischsten Selektors
 
 
 ``:is()`` und ``:where()`` - Beispiel
@@ -1016,7 +1001,7 @@ Erlauben das Gruppieren von Selektoren innerhalb eines (komplexen) Selektors.
 
 .. incremental:: smaller margin-top-1em
 
-    - ``:is()`` und ``:where()`` unterscheiden sich nur in der Spezifität. (0 bei ``:where()``; die Spezifität des spezifischsten Selektors bei ``:is()``.
+    - ``:is()`` und ``:where()`` unterscheiden sich nur in der Spezifität. Die Spezifität ist bei ``:where()`` immer 0 und bei ``:is()`` gleich der die Spezifität des spezifischsten Selektors.
 
     
 
@@ -1086,7 +1071,7 @@ Erlauben das Gruppieren von Selektoren innerhalb eines (komplexen) Selektors.
     
      ``:has(<selector_a>, <selector_b>)`` ≘ ``selector_a oder selector_b passt``.
 
-   - die Spezifität ergibt sich aus der Sepzifizität des spezifischsten Selektors
+   - die Spezifität ergibt sich aus der Spezifität des spezifischsten Selektors
 
 
 .. supplemental::
@@ -1102,6 +1087,300 @@ JavaScript und CSS Selektoren
 CSS Selektoren werden auch von der JavaScript API für HTML Dokumente verwendet, um Elemente zu selektieren.
 
 
+Nesting
+------------------------------------------------
+
+
+.. container:: two-columns smaller
+
+    .. container:: column
+
+        *HTML*
+
+        .. code:: html
+            :class: far-far-smaller
+            
+            <h1 class="obsolete">1. Überschrift</h1>
+                <p>Ein alter Absatz</p>
+            <h2>2. Überschrift</h2>
+                <p>Ein neuer, besserer Absatz</p>
+
+
+    .. container:: column incremental
+
+        *Spielwiese*
+
+        .. raw:: html
+            :class: one-column-iframe with-editable-content
+
+            <iframe srcdoc="<html style='font-size:32px'><head><style>style {
+                font-family: monospace; white-space: pre; display: block; background-color: whitesmoke;
+            } h1 {margin:0; padding:0;} p {margin: 0; padding:0;} input {font-size: 30px; padding: 0.5em; display: block; margin: 0.5em} </style></head><body>
+                            <style spellcheck='false' contenteditable='true'> 
+            h1.obsolete { 
+                color: red;
+                text-decoration: line-through;
+                background-color: lightgray;
+
+                & + p {
+                    color: green;
+                }
+            }
+                            </style><hr>
+                                <h1 class='obsolete'>1. Überschrift</h1>
+                                    <p>Ein alter Absatz</p>
+                                <h2>2. Überschrift</h2>
+                                    <p>Ein neuer, besserer Absatz</p>
+                        </body>"
+                    width="var(--ld-slide-width)" 
+                    height="900"
+                    style="border-radius: calc(var(--slide-border-radius) * 0.5)" >
+                iframes are not supported
+            </iframe>
+
+.. supplemental::
+
+    CSS Nesting ist erst seit 2024 in CSS verfügbar. Nesting findet bzgl. der Selektoren statt.  Häufig(er) in Kombination mit *At-Regeln* (:eng:`at-rules`; z. B. :code:`@media`) verwendet.
+
+
+Nesting - ``&`` Operator
+------------------------------------------------
+
+Der ``&`` Operator kann immer verwendet werden, ist aber oft optional.
+
+.. container:: two-columns smaller
+
+    .. container:: column
+
+        .. code:: css
+            :class: smaller copy-to-clipboard
+
+            p  {
+                .obsolete {
+                    text-decoration: line-through;
+                } 
+            }
+
+        ist äquivalent zu:
+
+        .. code:: css
+            :class: smaller copy-to-clipboard
+
+            p .obsolete {
+                text-decoration: line-through;
+            }
+
+    .. container:: column incremental   
+
+        .. code:: css
+            :class: smaller copy-to-clipboard
+
+            p  {
+                &.obsolete {
+                    text-decoration: line-through;
+                } 
+            }
+
+        ist äquivalent zu:
+
+        .. code:: css
+            :class: smaller copy-to-clipboard
+
+            p.obsolete {
+                text-decoration: line-through;
+            }
+
+.. supplemental::
+
+    D. h. sollten nur solche Paragraphen durchgestrichen werden, die als *obsolete* markiert sind (d. h. ``<p class='obsolete'>``) und nicht alle darunter liegenden Elemente, dann muss der ``&`` Operator verwendet werden (``&`` ist dann nicht optional).
+
+
+
+.. class:: integrated-exercise
+
+Übung - Einbinden von CSS in HTML
+------------------------------------------------
+
+.. container:: scrollable smaller
+
+    Gegen sei die folgende (unformatierte) Webseite:
+
+    .. image:: code/1st-exercise/screenshot-ausgangssituation.png
+        :width: 1024px
+        :align: center
+        :class: box-shadow rounded-corners
+
+    .. container:: incremental
+
+        :Code (HTML): `exercise-template.html <code/1st-exercise/exercise-template.html>`__ 
+        :Hintergrundbild: `image.png <code/1st-exercise/image.png>`__ 
+
+    .. container:: incremental
+                    
+        1. Binden Sie den CSS Code (siehe Anhang) ein, um grundlegend das folgende Layout zu erhalten:
+
+           .. image:: code/1st-exercise/screenshot-final.png 
+              :width: 1024px
+              :align: center 
+              :class: box-shadow rounded-corners  
+        
+    .. container:: incremental
+
+        2. Erweitern Sie den CSS Code, um das finale Layout zu erhalten. Dazu müssen sie die folgenden CSS Eigenschaften passend :ger-quote:`einfügen`.
+   
+           .. code:: css
+             :class: far-far-smaller copy-to-clipboard
+            
+             text-align: center;
+             text-align: right;
+            
+             font-family: sans-serif;
+             font-size: smaller;
+             font-size: 0.5em;
+             font-size: 25px;
+             text-shadow: 2px 2px 4px white;            
+            
+             color: #999; /* defines the font color */
+             color: #ccc;
+
+             background-color: rgba(0, 0, 0, 0.3);
+             background-color: rgba(0, 0, 0, 0.6);
+             background-color: rgba(255, 255, 255, 0.4);
+
+             /* Corners: top-left; top-right; bottom-right; bottom-left */
+             border-radius: 0.5em 0.5em 0 0; 
+             border-radius: 0 0 0.5em 0.5em ;
+
+.. exercise:: Einbinden von CSS
+    
+    .. solution::
+        :pwd: DasWarNICHTsoSchwer
+
+        Die Lösung ist hier zu finden: `exercise-solution.html <code/1st-exercise/exercise-solution.html>`__
+
+.. supplemental::
+
+    Grundlegender CSS Code
+
+    .. code:: css
+        :class: copy-to-clipboard far-far-smaller
+
+        :root {
+            background-size: cover;
+            background-image: url('image.png');
+        }
+        body {
+            max-width: 60ch;
+            padding: 0;
+            margin: 0;
+            margin-right:auto;
+            margin-left:auto;
+        }
+        h1 {
+            padding:0.5rem;
+            margin-bottom: 0;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(10px);
+            
+        }
+        p {
+            position: relative;
+            margin-top:0;
+            margin-bottom:0;
+            padding: 0.5rem;            
+            font-weight: 100;
+            text-wrap: pretty;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+        cite {
+            display: block;
+            padding: 0.5rem;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0.5rem;
+        }
+
+
+.. class:: integrated-exercise
+
+Übung - CSS Selektoren
+------------------------------------------------
+
+.. container:: two-columns smaller margin-bottom-2em
+
+    .. container:: column
+
+        Gegeben sei folgendes HTML Dokument:
+
+        .. code:: html
+            :class: copy-to-clipboard far-far-smaller
+
+            <body>
+                <h1>Country Information</h1>
+                <ul>
+                    <li>Germany
+                        <ul>
+                            <li>Berlin</li>
+                            <li>Hamburg</li>
+                            <li>Munich</li>
+                        </ul>
+                    </li>
+                    <li>France</li>
+                    <li>Spain</li>
+                    <li>Sweden</li>
+                    <li>Finland</li>
+                    <li>Norway</li>
+                    <li>Italy</li>
+                    <li>Albania</li>
+                    <li>Portugal</li>
+                </ul>
+            </body>
+
+    .. container:: column incremental
+
+        Schreiben Sie CSS Code, um folgende Formatierung zu erreichen:
+
+        .. raw:: html
+            :class: margin-top-1em margin-bottom-1em
+
+            <div style="margin-left: auto; margin-right:auto; width: fit-content">
+                <video 
+                    width="800px" 
+                    height="568px"
+                    controlslist="nofullscreen nodownload"
+                    controls
+                    playsinline
+                    autoplay 
+                    loop
+                    muted
+                    preload="metadata"
+                    style="box-shadow: var(--trbl-shadow);">
+                    <source src="code/2nd-exercise/index.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+        .. container::  far-smaller
+
+            Sie benötigten folgende Selektoren:
+
+            ``:nth-child(2n-1)``, ``:hover``, ``+``, ``:has``, ``h1``, ``ul``, ``li``
+
+            Verwenden Sie CSS Nesting, wenn möglich.
+
+.. exercise:: CSS Selektoren
+
+    .. solution::
+        :pwd: SelektorenGanzEinfach
+
+        Die Lösung ist hier zu finden: `exercise-solution.html <code/2nd-exercise/index.html>`__
+
+
 
 .. class:: new-section transition-fade
 
@@ -1109,7 +1388,7 @@ Werte und Einheiten
 ------------------------------------------------
 
 
-Kategorien
+Grundlagen
 ------------------------------------------------
 
 .. container:: scrollable
@@ -1125,15 +1404,15 @@ Kategorien
     - Ganzzahlen, Fließkommazahlen und Prozente
     - Ausgewählte Distanzen:
     
-      .. class:: incremental
+      .. container:: smaller
 
-      - Absolute Längen: ``cm``, ``mm``, ``in``, ``pt``, ``pc``, ``px``
-      - Relative Längen: 
-      
-        - Charakter bezogene Längen: ``em``, ``ex``, ``lh`` 
-        - Root bezogene Längen: ``rem`` (*root-em*)
-        - Relation: ``fr`` (Anteil vom Leerraum)
-      - Viewport bezogene Längen: ``vw`` (viewport width), ``vh`` (viewport height), ``dvh`` (dynamic viewport height), ``dvw`` (dynamic viewport width), ``svh`` (small viewport height), ``svw`` (small viewport width)
+        - Absolute Längen: ``cm``, ``mm``, ``in``, ``pt``, ``pc``, ``px``
+        - Relative Längen: 
+        
+          - Charakter bezogene Längen: ``em``, ``ex``, ``lh``, ``ch`` 
+          - Root bezogene Längen: ``rem`` (*root-em*)
+          - Relation: ``fr`` (Anteil vom Leerraum)
+        - Viewport bezogene Längen: ``vw`` (viewport width), ``vh`` (viewport height), ``dvh`` (dynamic viewport height), ``dvw`` (dynamic viewport width), ``svh`` (small viewport height), ``svw`` (small viewport width)
     - Funktionswerte: ``calc()``, ``min()``, ``max()``, ``clamp(<min_value>,<preferred_value>,<max_value>)``, ``attr`` und über 90 weitere Funktionen
     - Farben werden spezifiziert mittels Schlüsselworte: (``red``, ``green``, etc.), RGB-Werte: ``rgb(<red>,<green>,<blue>)`` oder ``rgb(<red> <green> <blue> [/ <alpha>])``; oder ...
     - Zeitangaben: ``s`` und ``ms``
@@ -1169,7 +1448,10 @@ Kategorien
 
     ``lh`` computed line-height
 
+    ``ch`` Breite des Zeichens :ger-quote:`0` (ZERO, U+0030) (Ein Wert von 60ch entspricht bei vielen Fonts einer effektiven Breite von ca. 80 Zeichen im Durchschnitt.)
+
     ``calc`` erlaubt verschiedenste Berechnungen ist aber an einigen Stellen *Whitespace-sensitive* und unterliegt bestimmten Einschränkungen welche Arten von Werten verrechnet werden können. (+ und - müssen immer mit Leerraum umgeben sein.)
+
 
  
 CSS - Berechnung von Werten
@@ -1356,6 +1638,7 @@ Inhalt, der nicht in die umgebende Box passt
                 <div>1</div>
                 <div>2</div>
                 <div>3</div>
+                <p>Text</p>
             </div>
 
 
@@ -1369,7 +1652,7 @@ Inhalt, der nicht in die umgebende Box passt
 
             <iframe srcdoc="<html style='font-size:36px'><head><style>style {
                 font-family: monospace; white-space: pre; display: block; background-color: whitesmoke;
-            } h1 {margin:0; padding:0;} p {margin: 0; padding:0;} input {font-size: 30px; padding: 0.5em; display: block; margin: 0.5em} div > div { background-color: lightblue; opacity: 50%;  margin: 5px; padding: 15px; } </style></head><body>
+            } h1 {margin:0; padding:0;} p {margin: 0; padding:0px;} input {font-size: 30px; padding: 0.5em; display: block; margin: 0.5em} div > div { background-color: lightblue; opacity: 50%;  margin: 5px; padding: 15px; } </style></head><body>
                             <style spellcheck='false' contenteditable='true'>div.container {
                 padding: 0;
             }
@@ -1384,6 +1667,7 @@ Inhalt, der nicht in die umgebende Box passt
                         <div>1</div>
                         <div>2</div>
                         <div>3</div>
+                        <p>Text</p>
                     </div>
                         </body>"
                     width='var(--ld-slide-width)' 
@@ -1640,6 +1924,7 @@ Responsive Design - Grundlagen
 - Durch unterschiedliche Techniken umsetzbar
   
   - Media-Queries
+  - Container Queries
   - Flexbox
   - Grid-Layout
 
@@ -1777,30 +2062,172 @@ Flexbox - Beispielhaft
 
 
 
+Dark and Light Mode
+------------------------------------------------
+
+.. stack::
+
+    .. layer::
+
+      - Die Unterstützung sowohl von Dark und Light-Mode ist mittlerweile Standard.
+      - Der aktuelle Modus kann mittels ``prefers-color-scheme`` abgefragt werden:
+
+        - ``@media ( prefers-color-scheme: dark ) { ... }``
+        - ``@media ( prefers-color-scheme: light ) { ... }``
+
+    .. layer:: incremental
+
+        (Eine) Vorgehensweise: Definition des Farbschemas über *Custom Properties*
+
+        .. code:: css
+            :class: far-far-smaller
+
+            :root {
+                /* Here, the default theme is the "light theme" */        
+                --background-color: white;
+                --text-color: black;
+            }
+
+            @media ( prefers-color-scheme: dark ) {
+                :root {
+                    --background-color: black;
+                    --text-color: white;
+                }
+                a:link {
+                    color: lightcoral;
+                }
+            }
+
+
 .. class:: not-covered-topics transition-fade
 
 Nicht Behandelte Themen
 ------------------------------------------------
 
-- Animation
+- Cascade Layers
 - Counter
-- CSS bzgl. Printing
-- Transformation (skalieren, drehen, ...)
 
+- Transformation (skalieren, drehen, ...)
+- Animation
+ 
   .. scaling using ``scale`` vs. using ``transform: scale``
 - (bisher nur grob) Flexbox  (`A guide to flex-box <https://css-tricks.com/snippets/css/a-guide-to-flexbox/>`__)
 - Grid-Layout (`A complete guide to CSS Grid <https://css-tricks.com/snippets/css/complete-guide-grid/>`__)
-- Cascade Layers
+
 - CSS Tricks
-  .. z. B. das Zuordnen eines Index zu einem Element basierend auf dem ":nth-child()" Selektor
+
+  
 - Shadow-DOM (und HTML Custom Elements)
-- Styling von Dokumenten mit alternativen Flussrichtungen (rechts nach links, bzw. oben nach unten)
+- Dokumente mit alternativen Flussrichtungen (rechts nach links / oben nach unten)
+- CSS bzgl. Printing
+
+
+.. supplemental::
+
+    Es gibt sehr, sehr viele CSS Tricks die Dinge ermöglichen, die nicht unmittelbar zu erwarten gewesen wären. Z. B. kann man einem Element einen Index zuordnen basierend auf dem ":nth-child()" Selektor. Dieser Index kann dann für :ger-quote:`die Berechnung` von weiteren Werten verwendet werden.
+
+.. class:: integrated-exercise transition-move-up
+
+Übung - Wo Licht ist, ist auch Schatten
+-----------------------------------------
+
+Bauen Sie Unterstützung für den Dark und Light Mode nach. Den Rumpf der HTML-Datei finden Sie im Anhang.
+
+.. raw:: html
+
+    <div style="margin-left: auto; margin-right:auto; width: fit-content">
+        <video 
+            width="1260px" 
+            height="820px"
+            controls
+            autoplay
+            loop
+            muted
+            preload="metadata"
+            style="box-shadow: var(--trbl-shadow)">
+            <source src="code/3rd-exercise/dark-light.mov" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+.. supplemental::
+
+    **HTML-Datei**
+
+    .. code::  html
+        :class: copy-to-clipboard far-far-smaller
+
+        <!DOCTYPE html>
+        <html lang="de">
+        <body>
+          <main>
+            <h1>Naturalismus (Philosophie)</h1>
+            <p>
+            Der Naturalismus ist die Auffassung, dass die Welt als ein 
+            rein von der Natur gegebenes Geschehen zu begreifen ist. 
+            Er geht davon aus, dass alles natürliche Ursachen hat und 
+            dass es nichts Übernatürliches gibt.[...]
+            </p>
+            <cite>
+              Quelle: 
+              <a href="https://de.wikipedia.org/wiki/Naturalismus_(Philosophie)">
+              Wikipedia
+              </a>
+            </cite>
+          </main>
+        </body>
+        </html>
+
+    **Grundlegendes CSS Gerüst**
+
+    .. code:: css
+        :class: copy-to-clipboard far-far-smaller
+
+        /* The following CSS does not define any colors/color scheme. */ 
+        :root {
+            --font-siz
+            --font-family: sans-serif;
+        }
+
+        body {
+            max-width: 60ch;
+            padding: 20px;
+            font-size: var(--font-size);
+            font-family: var(--font-family);
+            padding: 0;
+            margin: 0;
+            margin-right:auto;
+            margin-left:auto;
+        }
+        h1 {
+            padding:0.75rem;
+            margin-bottom: 0;
+            border-radius: 0.5em 0.5em 0 0;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        p {
+            position: relative;
+            margin-top:0;
+            margin-bottom:0;
+            padding: 0.75rem;
+            border-radius: 0 0 0.5em 0.5em ;
+            font-weight: 100;
+            text-wrap: pretty;
+        }
+        cite {
+            display: block;
+            padding: 0.5rem;
+            text-align: right;
+            font-size: smaller;
+        }
+
 
 
 .. class:: integrated-exercise transition-move-up
 
-Übung
--------------------
+Übung - Komplexeres Layout
+---------------------------
 
 .. exercise:: 
     
@@ -1923,9 +2350,14 @@ Nicht Behandelte Themen
 
     <div style="margin-left: auto; margin-right:auto; width: fit-content">
         <video 
-            width="1024" 
+            width="1150px" 
+            height="755px"
             controls 
-            style="box-shadow: 4px 4px 4px black;">
+            autoplay 
+            loop
+            muted
+            preload="metadata"
+            style="box-shadow: var(--trbl-shadow);">
             <source src="code/simple-layout-480p.mov" type="video/mp4">
             Your browser does not support the video tag.
         </video>

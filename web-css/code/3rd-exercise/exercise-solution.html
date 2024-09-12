@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <style>
+        :root {
+            --font-size: 18px;
+            --font-family: sans-serif;
+
+            /* the default light theme */
+            
+            --body-background-color: white;
+            --h1-background-color: rgba(0,0,0, 0.3);
+            --h1-color: white;
+            --p-background-color: whitesmoke;
+            --p-color: black;
+            --cite-color: gray; 
+        }
+
+        @media ( prefers-color-scheme: dark ) {
+            :root {
+                --body-background-color: black;
+                --h1-background-color: rgba(255,255,255, 0.3);
+                --h1-color: whitesmoke;
+                --p-background-color: rgba(255,255,255, 0.2);
+                --p-color: whitesmoke;
+            }
+
+            a:link {
+                color: lightcoral;
+            }
+        }
+
+
+        body {
+            max-width: 60ch;
+            padding: 20px;
+            font-size: var(--font-size);
+            font-family: var(--font-family);
+            padding: 0;
+            margin: 0;
+            margin-right:auto;
+            margin-left:auto;
+            background-color: var(--body-background-color);
+        }
+        h1 {
+            padding:0.75rem;
+            margin-bottom: 0;
+            border-radius: 0.5em 0.5em 0 0;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: var(--h1-background-color);
+            color: var(--h1-color);
+        }
+        p {
+            position: relative;
+            margin-top:0;
+            margin-bottom:0;
+            padding: 0.75rem;
+            background-color: var(--p-background-color);
+            color: var(--p-color);
+            border-radius: 0 0 0.5em 0.5em ;
+            font-weight: 100;
+            text-wrap: pretty;
+        }
+        cite {
+            display: block;
+            padding: 0.5rem;
+            text-align: right;
+            font-size: smaller;
+            color: var(--cite-color);
+        }
+
+        main {
+            container: main / inline-size;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <article>
+            <h1>Naturalismus (Philosophie)</h1>
+            <p>
+            Der Naturalismus ist die Auffassung, dass die Welt als ein rein von der Natur gegebenes Geschehen zu begreifen ist. Er geht davon aus, dass alles natürliche Ursachen hat und dass es nichts Übernatürliches gibt. Diese Annahme, die oft auch durch den Spruch „Alles ist Natur“ pointiert wird, lässt für sich genommen offen, wie der Begriff der Natur zu umgrenzen ist. Versteht man unter Natur allein die physische Natur, so ergibt sich aus dem Spruch „Alles ist Natur“ eine materialistische oder physikalistische Position. Derartige Theorien vertreten, dass auch der Geist oder das Bewusstsein Teil der physischen Natur sei oder alternativ gar nicht oder höchstens als Illusion existiere. [...]
+            </p>
+            <cite>Quelle: <a href="https://de.wikipedia.org/wiki/Naturalismus_(Philosophie)">Wikipedia</a></cite>
+        </article>
+    </main>
+</body>
+</html>
