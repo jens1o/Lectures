@@ -245,11 +245,11 @@ Schutzziele der IT-Sicherheit: CIA-Triade
 
         .bottom-left {
             left: 0;
-           background: linear-gradient(145.98deg, rgba(255,255,255,0) 50%, var(--dhbw-dark-red) 50%, var(--dhbw-dark-red) 100%);
+           background: linear-gradient(145.98deg, rgba(255,255,255) 50%, var(--dhbw-dark-red) 50%, var(--dhbw-dark-red) 100%);
         }
         .bottom-right {
             right: 0;
-            background: linear-gradient(213.98deg, rgba(255,255,255,0) 50%, var(--dhbw-dark-red) 50%, var(--dhbw-dark-red) 100%);
+            background: linear-gradient(213.98deg, rgba(255,255,255) 50%, var(--dhbw-dark-red) 50%, var(--dhbw-dark-red) 100%);
         }
         .bottom-left,
         .bottom-right {
@@ -257,21 +257,24 @@ Schutzziele der IT-Sicherheit: CIA-Triade
             height: 135px;
             z-index: 1;
             bottom: 0;
-            right: 0;
-            box-shadow: 0 5px 3px -3px rgba(0,0,0,0.5);
+            right: 0;            
         }
 
-        .left {
-            width: 200px;         
-            height: 400px;
-            background: linear-gradient(116.57deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%, var(--dhbw-light-red) 50%, var(--dhbw-light-red) 100%);
-        }
-    
+        .left,
         .right {
             width: 200px;         
             height: 400px;
+            z-index: 2;  
+            mix-blend-mode: multiply;
+        }
+
+        .left {
+            background: linear-gradient(116.57deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, var(--dhbw-light-red) 50%, var(--dhbw-light-red) 100%);
+        }
+    
+        .right {
             right: 0;
-            background: linear-gradient(243.43deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%, var(--dhbw-red) 50%, var(--dhbw-red) 100%);
+            background: linear-gradient(243.43deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, var(--dhbw-red) 50%, var(--dhbw-red) 100%);
         }
 
         p {
