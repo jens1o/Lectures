@@ -352,8 +352,10 @@ Rivest-Shamir-Adleman (RSA) Algorithm
 
 - Eine typische Größe für :math:`n` waren 1024 Bits oder 309 Dezimalziffern.
 
-  Solch kleine Zahlen werden heute als äußerst unsicher angesehen, insbesondere angesichts der bevorstehenden Quantencomputer und der Entwicklung von Quantenalgorithmen (vgl. `Shors Algorithmus <https://en.wikipedia.org/wiki/Shor's_algorithm>`_), die Zahlen effizient faktorisieren können.
+  Solch kleine Zahlen werden heute als äußerst unsicher angesehen, insbesondere angesichts der bevorstehenden Quantencomputer und der Entwicklung von Quantenalgorithmen (vgl. `Shors Algorithmus (1994) <https://en.wikipedia.org/wiki/Shor%27s_algorithm>`_), die Zahlen effizient faktorisieren können, wenn genügend QBits in hinreichender Qualität\ [#]_ zur Verfügung stehen.
 
+
+.. [#] Aktuell sind Quantencomputer nicht in der Lage, die für RSA verwendeten Schlüssel zu brechen und es ist auch (noch) nicht geklärt ob die aktuellen Technologien entsprechend skaliert werden können. Es besteht aber die Möglichkeit!
 
 
 RSA Algorithmus
@@ -362,16 +364,21 @@ RSA Algorithmus
 .. class:: incremental 
 
 - RSA verwendet einen Ausdruck mit Exponentialen
-- Der Klartext wird in Blöcken verschlüsselt, wobei jeder Block einen Binärwert hat, der kleiner als eine bestimmte Zahl :math:`n` ist .
+- Der Klartext wird in Blöcken verschlüsselt, wobei jeder Block einen Binärwert hat, der kleiner als eine bestimmte Zahl :math:`n` ist\ [#]_. 
 - Die Ver- und Entschlüsselung erfolgt für einen Klartextblock :math:`M` und einen Chiffretextblock :math:`C` in der folgenden Form:
   
-	:math:`C = M^e\; mod\; n` 
-
-	:math:`M = C^d\; mod\; n = (M^e)^d\; mod\; n = M^{ed}\; mod\; n` 
+	:math:`C = M^e\; mod\; n \qquad M = C^d\; mod\; n  \qquad (M^e)^d\; mod\; n = M^{ed}\; mod\; n` 
 
 - Sowohl der Sender als auch der Empfänger müssen den Wert von :math:`n` kennen.
 - Der Absender kennt den Wert von :math:`e`, und nur der Empfänger kennt den Wert von :math:`d`
 - Dies ist ein Public-Key-Verschlüsselungsalgorithmus mit dem öffentlichen Schlüssel :math:`PU=\lbrace e,n \rbrace` und dem privaten Schlüssel :math:`PR=\lbrace d,n \rbrace`.
+
+
+.. [#] Basierend auf der Zahl n ergibt sich die maximale Größe des Blocks in Bit. Sei, hypothetisch, :math:`n = 4.294.967.296+1`, dann kann der Block maximal 32 Bit groß sein (:math:`2^{32} = 4.294.967.296`).
+
+.. supplemental::
+
+    :math:`M = C^d\; mod\; n  \Rightarrow M = (M^e\; mod\; n)^d\; mod\; n = (M^e)^d\; mod\; n`
 
 
 Anforderungen an den RSA Algorithmus
@@ -400,11 +407,11 @@ The RSA Algorithm
             :class: no-table-borders no-inner-borders incremental
             :align: left
             
-            "Wähle p, q", ":math:`p` und :math:`b` beide prim, :math:`p \neq q` "
-            "Berechne n", ":math:`n = p \times q` "
-            "Berechne 𝜙(n) ", ":math:`\phi(n) = (p - 1)(q - 1)` "
-            "Wähle e", ":math:`GGT(\phi(n),e) = 1; \qquad 1 < e < \phi(n)` "
-            Berechne d, :math:`d \equiv e^{-1}\; (mod\; \phi(n)) \Leftrightarrow ed\; mod\; \phi(n)= 1` 
+            "Wähle :math:`p, q`", ":math:`p` und :math:`b` beide prim, :math:`p \neq q` "
+            "Berechne :math:`n`", ":math:`n = p \times q` "
+            "Berechne :math:`𝜙(n)` ", ":math:`\phi(n) = (p - 1)(q - 1)` "
+            "Wähle :math:`e`", ":math:`GGT(\phi(n),e) = 1; \qquad 1 < e < \phi(n)` "
+            Berechne :math:`d`, :math:`d \equiv e^{-1}\; (mod\; \phi(n)) \Leftrightarrow ed\; mod\; \phi(n)= 1` 
             Public-Key, ":math:`PU = \lbrace e,n \rbrace` "
             Private-Key, ":math:`PR = \lbrace d,n \rbrace` "
 
@@ -431,16 +438,49 @@ The RSA Algorithm
                 Klartext, :math:`M = C^d\; mod\; n`
 
 
+Berechnung von :math:`d`
+-------------------------
+
+Der Wert von :math:`d` wird mit Hilfe des erweiterten Euklidischen Algorithmus\ [#]_ berechnet.
+
+Wir wissen dass :math:`GGT(\phi(n),e) = 1` gilt; d. h. :math:`e` und :math:`\phi(n)` sind teilerfremd/*coprime*.
+
+.. math::
+    :class: smaller
+
+    \begin{matrix}
+    ex + \phi(n)y & = & GGT(e,\phi(n)) \\
+                    & = & 1 \\
+    \text{Umgestellt:} \\
+    ex & = & - \phi(n)y +1 \\
+    \Rightarrow  \\
+    ex\; mod\; \phi(n) & = & 1 
+    \end{matrix}
+
+.. math::
+    :class: smaller incremental margin-top-2em
+    
+    \text{somit}\;  x\; \hat{=}\; d
+
+.. ex & \equiv & 1\; (mod\; \phi(n))
+
+.. [#] Zur Erinnerung: der erweiterte Euklidische Algorithmus berechnet den größten gemeinsamen Teiler von zwei Zahlen (:math:`a`, :math:`b`) und zusätzlich zwei Koeffizienten (:math:`x`, :math:`y`), so dass gilt:  :math:`ax + by = gcd(a,b)`.
+
+.. supplemental:: 
+
+    `Jupyter Notebook zur Berechnung <./resources/extended_gcd.ipynb>`__
+
+
 
 Beispiel für den RSA-Algorithmus
 ---------------------------------
 
 :p und q: 
 
-    :math:`p = 11; q = 17; n = 187`
+    :math:`p = 11;\quad q = 17;\quad n = 187\qquad\qquad (\phi(n) = 10 \times 16 = 160)`
 
 :Klartext:
-    88
+    :math:`88`
 
 :Verschlüsselung:
     :math:`PU =\lbrace e= 7, n= 187 \rbrace`:
@@ -453,6 +493,12 @@ Beispiel für den RSA-Algorithmus
     :math:`11^{23}\; mod\; 187 = 88 = P`
 
 
+:Alternativer Exponent: 
+    
+    :math:`e = 137 \Rightarrow d = 153`
+
+    :math:`\qquad 88^{137}\; mod\; 187 = 99 C\qquad 88^{153}\; mod\; 187 = 88`
+
 
 Potenzierung in der Modularen Arithmetik
 -------------------------------------------
@@ -464,9 +510,9 @@ Potenzierung in der Modularen Arithmetik
 
     Beispiel: 
   
-    :math:`2^{11} = 2^1 \times 2^2 \times 2^8 = 2  \times  4  \times  256`
+    :math:`[11 = 1011_b]\qquad 2^{11} = 2^1 \times 2^2 \times 2^8 = 2 \times 4 \times  256`
     
-    :math:`2^9\; mod\; 13 = [(2^1\; mod\; 13) \times (2^8 \; mod\; 13)]\; mod\; 13` 
+    :math:`[09 = 1001_b] \qquad 2^9\; mod\; 13 = [(2^1\; mod\; 13) \times (2^8 \; mod\; 13)]\; mod\; 13` 
 
 
 - Bei RSA haben Sie es mit potenziell großen Exponenten zu tun, so dass die Effizienz der Potenzierung eine wichtige Rolle spielt.
@@ -475,7 +521,17 @@ Potenzierung in der Modularen Arithmetik
 
     Wiederholung
 
+.. supplemental::
 
+    .. math::
+        
+        \begin{matrix}
+           & 2^3 =8 & 2^2 = 4 & 2^1 = 2 & 2^0 = 1 \\            
+           11 = & 1_b & 0_b & 1_b & 1_b \\
+        \end{matrix}
+
+
+    
 
 Algorithmus zur Berechnung von :math:`a^b\; mod\; n` 
 ----------------------------------------------------
@@ -499,6 +555,12 @@ Die Ganzzahl :math:`b` wird als Binärzahl ``b[k]b[k-1]...b[0]`` ausgedrückt:
             then c := c + 1
                  f := (f * a) mod n
     return f
+
+
+.. supplemental:: 
+
+    `Jupyter Notebook mit Implementierung <./resources/extended_gcd.ipynb>`__
+
 
 
 
@@ -655,7 +717,7 @@ Gewählter Chiffretext-Angriff
 
 
 
-.. class:: integrated-exercise
+.. class:: integrated-exercise transition-fade
 
 Übung
 ----------
@@ -664,14 +726,14 @@ Gewählter Chiffretext-Angriff
    
    .. exercise::
     
-     .. rubric::  Führen Sie den Square-and-Multiply Algorithmus für :math:`3^{17}\, mod\, 23` aus.
+     .. rubric::  Führen Sie den Square-and-Multiply Algorithmus Schritt-für-Schritt für :math:`3^{17}\, mod\, 23` aus.
 
      .. solution::
         :pwd: hochzwei
      
         ::
 
-            k = 0001 0001b 
+            k = ___1 0001b 
         
             i = 4; f =   3 =>
             i = 3; f =   9 =>
@@ -679,36 +741,97 @@ Gewählter Chiffretext-Angriff
             i = 1; f = 144 mod 23 = 6 =>
             i = 0; f = (((6 * 6) mod 23) * 3) mod 23 = 16
 
+
+
+
 2. \
  
    .. exercise::
  
-        .. rubric:: Verschlüsseln Sie eine Nachricht mit RSA.
+        .. rubric:: Entschlüsseln sie die folgende Nachricht
 
-        D. h., wählen Sie 2 kleine Primzahlen, berechnen Sie dann :math:`e`, :math:`d`, :math:`n`. Verschlüsseln Sie dann die Nachricht (d. h. einen (eher) kleinen Wert) mit dem öffentlichen Schlüssel einer anderen Person und senden Sie der Person die verschlüsselte Nachricht. Die Zielperson soll Ihre Nachricht entschlüsseln. Überprüfen Sie anschließend, ob die Verschlüsselung erfolgreich war. 
+        .. math::
+
+            C = 70789294130501 \text{(Verschlüsselte Nachricht)}
+
+            n = 2000557908870247; \quad \phi(n) = 2000557818857736
+            
+            e = 65537
+        
+        Berechnen Sie d und wandeln Sie die (Klartext)zahl in Text (ASCII 7-Bit pro Zeichen) um. (Nutzen Sie ggf. das Jupyter Notebook als Hilfestellung.)
 
         .. solution::
-            :pwd: Nachrichtenaustausch
+            :pwd: s#u+c+c+e+s#s
+
+            In Python (siehe Jupyter Notebook):
+
+            .. code:: python 
+
+                m = 509822222563827
+                p = 40005739
+                q = 50006773
+                n = p * q
+                phi_n = (p - 1) * (q - 1)
+                e = 65537
+                d = inverse(e, phi_n)
+                print("d=", d)
+                # c = square_and_multiply(m,e, n)
+                c = 70789294130501
+                print("C=", c)
+                print("M=", square_and_multiply(c, d, n))
+
+                # Umwandlung in String:
+                bstr = bin(m)
+                chars = [bstr[i : i + 7] for i in range(2, len(bstr) - 1, 7)]
+                "".join(list(map(lambda x: chr(int(x, 2)), chars)))
+
+            Das Ergebnis ist: "success"
+
+
+.. supplemental::
+
+    Um einen Integer-Wert (``m``) in einen String umzuwandeln, können Sie den folgenden Pyhton-Code verwenden:
+
+    .. code:: python 
+        :class: copy-to-clipboard far-smaller
+
+        bstr = bin(m) # the string will start with '0b' 
+        chars = [bstr[i:i+7] for i in range(2, len(bstr)-1, 7)] # Segmentierung in 7-Bit-Blöcke
+        "".join(list(map(lambda x : chr(int(x,2)), chars))) # Umwandlung in ASCII-Zeichen und Konkatenation
+
+
+.. class:: integrated-exercise transition-fade
+
+Übung
+----------
+
+.. exercise::
+
+    .. rubric:: Verschlüsseln Sie eine Nachricht mit RSA mit selber gewählten Parametern
+
+    D. h., wählen Sie 2 kleine Primzahlen, berechnen Sie dann :math:`e`, :math:`d`, :math:`n`. Verschlüsseln Sie dann die Nachricht (d. h. einen (eher) kleinen Wert) mit dem öffentlichen Schlüssel einer anderen Person und senden Sie der Person die verschlüsselte Nachricht. Die Zielperson soll Ihre Nachricht entschlüsseln. Überprüfen Sie anschließend, ob die Verschlüsselung erfolgreich war. 
+
+    .. solution::
+        :pwd: Nachrichtenaustausch
+    
+        Wir nehmen an, dass :math:`p = 7` und :math:`q = 11` ist.
+
+        .. math::
+
+            n = p \times q = 77
+
+            \phi(n) = (p-1)(q-1) = 6 \times 10 = 60; 
         
-            Wir nehmen an, dass :math:`p = 7` und :math:`q = 11` ist.
+        Daher muss die Nachricht ein ganzzahliger Wert kleiner als 60 sein. 
+        
+        Berechne :math:`e` so, dass :math:`GGT(\phi(n),e) = 1`. 
+        
+        In diesem Fall sind die Zahlen 2 bis 6 nicht möglich, da sie alle 60 teilen. Wir wählen :math:`e = 7`.
+        
+        Berechne :math:`d`; d. h., :math:`ed\; mod\; \phi(n) = 1 \rightarrow d=43 \qquad\qquad (43 \times 7) \; mod\; \phi(77) = (43 \times 7) \; mod\; 60 = 1` 
+        
+        Es folgt: :math:`PU = \lbrace7,77\rbrace`, :math:`PR = \lbrace 43,77 \rbrace`. 
+        
+        Sei die Nachricht :math:`M` "13": :math:`C = 13^7\; mod\; 77 = 62`. 
 
-            .. math::
-
-                n = p \times q = 77
-
-                \phi(n) = (p-1)(q-1) = 6 \times 10 = 60; 
-            
-            Daher muss die Nachricht ein ganzzahliger Wert kleiner als 60 sein. 
-            
-            Berechne :math:`e` so, dass :math:`GGT(\phi(n),e) = 1`. 
-            
-            In diesem Fall sind die Zahlen 2 bis 6 nicht möglich, da sie alle 60 teilen. Wir wählen :math:`e = 7`.
-            
-            Berechne :math:`d`; d. h., :math:`ed\; mod\; \phi(n) = 1`. :math:`d=43`; :math:`(43 \times 7) \; mod\; \phi(60) = 1` 
-            
-            Es folgt: :math:`PU = \lbrace7,77\rbrace`, :math:`PR = \lbrace 43,77 \rbrace`. 
-            
-            Sei die Nachricht :math:`M` "13": :math:`C = 13^7\; mod\; 77 = 62`. 
-
-            Der Klartext berechnet sich wie folgt: :math:`P = 62^{43}\; mod\; 77`.
-
+        Der Klartext berechnet sich wie folgt: :math:`P = 62^{43}\; mod\; 77 = 13`.
