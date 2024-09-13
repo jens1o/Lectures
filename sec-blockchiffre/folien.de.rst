@@ -431,7 +431,7 @@ DES: Design
     :Permuted Choice 1: Permutation und Selektion (d. h. Entfernung der Paritätsbits) der 56 (Schlüssel-)bits
 
               .. csv-table:: 
-                :class: monospaced far-far-smaller
+                :class: monospaced far-far-smaller highlight-cell-on-hover
 
                 57, 49,  41, 33,  25,  17,  9
                 1, 58,  50, 42,  34,  26, 18
@@ -445,7 +445,7 @@ DES: Design
     :\<\<\<: Rotation der Schlüsselbits
 
               .. csv-table:: 
-                :class: monospaced far-far-smaller
+                :class: monospaced far-far-smaller highlight-cell-on-hover
                 :header: Iteration, Anzahl der Linksverschiebungen
 
                           1,  1
@@ -469,7 +469,7 @@ DES: Design
     :Permuted Choice 2: Auswahl der 48 zur Verschlüsselung zu verwendenden Bits aus den 56 Eingabebits
 
               .. csv-table:: 
-                :class: monospaced far-far-smaller
+                :class: monospaced far-far-smaller highlight-cell-on-hover
 
                 14,  17, 11,  24,   1,  5
                 3,  28, 15,   6,  21, 10
@@ -501,6 +501,23 @@ DES: Rundenfunktion (:ger-quote:`F`)
 .. image:: drawings/des/round_function.svg
     :width: 840px
     :align: left
+
+
+.. supplemental::
+
+    **Expansionsfunktion 32 → 48 Bit**
+
+    .. csv-table::
+        :class: monospaced far-far-smaller highlight-cell-on-hover
+
+        32, 1, 2, 3, 4, 5
+        4, 5, 6, 7, 8, 9
+        8, 9, 10, 11, 12, 13
+        12, 13, 14, 15, 16, 17
+        16, 17, 18, 19, 20, 21
+        20, 21, 22, 23, 24, 25
+        24, 25, 26, 27, 28, 29
+        28, 29, 30, 31, 32, 1
 
 
 .. class:: vertical-title
