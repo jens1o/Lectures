@@ -468,7 +468,7 @@ Wir wissen dass :math:`GGT(\phi(n),e) = 1` gilt; d. h. :math:`e` und :math:`\ph
 
 .. supplemental:: 
 
-    `Jupyter Notebook zur Berechnung <./resources/extended_gcd.ipynb>`__
+    `Jupyter Notebook zur Berechnung <https://github.com/Delors/delors.github.io/blob/main/sec-public-key-kryptographie/resources/extended_gcd.ipynb>`__
 
 
 
@@ -497,7 +497,7 @@ Beispiel für den RSA-Algorithmus
     
     :math:`e = 137 \Rightarrow d = 153`
 
-    :math:`\qquad 88^{137}\; mod\; 187 = 99 C\qquad 88^{153}\; mod\; 187 = 88`
+    :math:`\qquad 88^{137}\; mod\; 187 = 99 = C\qquad\qquad 99^{153}\; mod\; 187 = 88`
 
 
 Potenzierung in der Modularen Arithmetik
@@ -559,7 +559,7 @@ Die Ganzzahl :math:`b` wird als Binärzahl ``b[k]b[k-1]...b[0]`` ausgedrückt:
 
 .. supplemental:: 
 
-    `Jupyter Notebook mit Implementierung <./resources/extended_gcd.ipynb>`__
+    `Jupyter Notebook mit Implementierung <https://github.com/Delors/delors.github.io/blob/main/sec-public-key-kryptographie/resources/extended_gcd.ipynb>`__
 
 
 
@@ -717,6 +717,17 @@ Gewählter Chiffretext-Angriff
 
 
 
+.. class:: transition-scale
+
+Zusammenfassung - Hashes, Macs und digitale Signaturen
+--------------------------------------------------------
+
+- Hashes dienen der Gewährleistung der Integrität von Daten.
+- Macs dienen der Authentifizierung von Daten. Da jedoch ein gemeinsamer Schlüssel vom Sender und Empfänger verwendet wird, können beide Seiten Nachrichten fälschen. Sie bieten keine Nichtabstreitbarkeit.
+- Digitale Signaturen bieten Integrität, Authentizität und Nichtabstreitbarkeit. Sie basieren auf asymmetrischen Verschlüsselungsalgorithmen und sind daher langsamer als Macs.
+
+
+
 .. class:: integrated-exercise transition-fade
 
 Übung
@@ -767,7 +778,8 @@ Gewählter Chiffretext-Angriff
 
             .. code:: python 
 
-                m = 509822222563827
+                m = 509822222563827 # Klartext 
+                # Parameter für den RSA Algorithmus
                 p = 40005739
                 q = 50006773
                 n = p * q
@@ -780,7 +792,7 @@ Gewählter Chiffretext-Angriff
                 print("C=", c)
                 print("M=", square_and_multiply(c, d, n))
 
-                # Umwandlung in String:
+                # Umwandlung des int Wertes in Array of Chars:
                 bstr = bin(m)
                 chars = [bstr[i : i + 7] for i in range(2, len(bstr) - 1, 7)]
                 "".join(list(map(lambda x: chr(int(x, 2)), chars)))
