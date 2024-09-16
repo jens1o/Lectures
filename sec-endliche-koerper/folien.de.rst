@@ -32,7 +32,7 @@ Endliche Körper
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Kontakt: michael.eichberg@dhbw-mannheim.de
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
-:Version: 1.0
+:Version: 1.0.1
 
 .. supplemental::
 
@@ -106,12 +106,18 @@ Abel'sche Gruppen
     :math:`a \cdot b = b \cdot a` für alle :math:`a, b \in G`
 
 
+.. class:: excursion
 
-Zyklische Gruppen
--------------------
+Zyklische Gruppen - Exkursion
+------------------------------
+
+.. class:: incremental
 
 - Die Potenzierung ist innerhalb einer Gruppe als eine wiederholte Anwendung des Gruppenoperators definiert, so dass :math:`a^3 = a \cdot a \cdot a`.
-- Wir definieren :math:`a^0 = e` als das neutrale Element, und :math:`a^{-n} = (a')^n` , wobei :math:`a'` das inverse Element von :math:`a` innerhalb der Gruppe ist.
+- Wir definieren: 
+  
+  - :math:`a^0 = e` als das neutrale Element
+  - :math:`a^{-n} = (a')^n` , wobei :math:`a'` das inverse Element von :math:`a` innerhalb der Gruppe ist.
 - Eine Gruppe :math:`G` ist zyklisch, wenn jedes Element von :math:`G` eine Potenz :math:`a^k` (:math:`k` ist eine ganze Zahl) eines festen Elements :math:`a \in G` ist.
 - Das Element :math:`a` erzeugt somit die Gruppe :math:`G`. :math:`a` ist somit der Generator von :math:`G`.
 - Eine zyklische Gruppe ist immer abelsch und kann endlich oder unendlich sein.
@@ -141,35 +147,41 @@ Zyklische Gruppen
 Ringe
 ------
 
-- Ein Ring :math:`R`, manchmal auch als :math:`\lbrace R , + , \times \rbrace` bezeichnet, ist eine Menge von Elementen mit zwei binären Operationen, genannt Addition und Multiplikation, so dass für alle :math:`a , b , c \in R` die Axiome (A1-A5) erfüllt sind.
+.. container:: scrollable
 
-- :math:`R` ist eine abelsche Gruppe in Bezug auf die Addition; das heißt, :math:`R` erfüllt die Axiome A1 bis A5. Für den Fall einer additiven Gruppe bezeichnen wir das neutrale Element als :math:`0` und den Kehrwert von :math:`a` als :math:`-a`.
+    .. class:: incremental
+
+    - Ein Ring :math:`R`, manchmal auch als :math:`\lbrace R , + , \times \rbrace` bezeichnet, ist eine Menge von Elementen mit zwei binären Operationen, genannt Addition und Multiplikation, so dass für alle :math:`a , b , c \in R` die Axiome (A1-A5) erfüllt sind.
+
+    - :math:`R` ist eine abelsche Gruppe in Bezug auf die Addition; das heißt, :math:`R` erfüllt die Axiome A1 bis A5. Für den Fall einer additiven Gruppe bezeichnen wir das neutrale Element als :math:`0` und den Kehrwert von :math:`a` als :math:`-a`.
+
+    .. class:: incremental
+
+    :(M1) Abgeschlossenheit der Multiplikation:
+        Wenn :math:`a` und :math:`b` teil von :math:`R` sind, dann ist :math:`ab` auch in :math:`R` 
+
+    .. class:: incremental
+
+    :(M2) Assoziativität der Multiplikation:
+        :math:`a(bc) = (ab)c` für alle :math:`a,b,c \in R` 
+
+    .. class:: incremental
+
+    :(M3) Distributivgesetz:
+        :math:`a(b+c) = ab+ac` für alle :math:`a,b,c \in R` 
+
+        :math:`(a+b)c = ac+bc` für alle :math:`a,b,c \in R` 
+
+    .. container:: incremental summary
+
+        Im Wesentlichen ist ein Ring eine Menge, in der wir Addition, Subtraktion :math:`[a - b = a + (-b )]` und Multiplikation durchführen können, ohne die Menge zu verlassen.
 
 
+    .. class:: incremental
 
-Ringe
-------
-
-:(M1) Abgeschlossenheit der Multiplikation:
-    Wenn :math:`a` und :math:`b` teil von :math:`R` sind, dann ist :math:`ab` auch in :math:`R` 
-
-:(M2) Assoziativität der Multiplikation:
-    :math:`a(bc) = (ab)c` für alle :math:`a,b,c \in R` 
-
-:(M3) Distributivgesetz:
-    :math:`a(b+c) = ab+ac` für alle :math:`a,b,c \in R` 
-
-    :math:`(a+b)c = ac+bc` für alle :math:`a,b,c \in R` 
-
-Im Wesentlichen ist ein Ring eine Menge, in der wir Addition, Subtraktion :math:`[a - b = a + (-b )]` und Multiplikation durchführen können, ohne die Menge zu verlassen.
-
-
-Ringe
-------
-
-- Ein Ring wird als kommutativ bezeichnet, wenn er die folgende zusätzliche Bedingung erfüllt:
+    - Ein Ring wird als kommutativ bezeichnet, wenn er die folgende zusätzliche Bedingung erfüllt:
       
-  :(M4) Kommutativität der Multiplikation:
+      :(M4) Kommutativität der Multiplikation:
         :math:`ab = ba` für alle :math:`a, b \in R`
 
 
@@ -190,47 +202,57 @@ Ein kommutativer Ring, der den folgenden Axiomen gehorcht:
 Körper
 --------------------
 
-- Ein Körper :math:`F`, manchmal auch bezeichnet als :math:`\lbrace F, +, \times \rbrace`, ist eine Menge von Elementen mit zwei binären Operationen, genannt Addition und Multiplikation, so dass für alle :math:`a, b, c \in F` die Axiome (A1-M6) gelten. 
-- :math:`F` ist ein Integritätsbereich, d. h. :math:`F` erfüllt die Axiome A1 bis A5 und M1 bis M6 
+.. container:: scrollable
+
+    .. class:: incremental
+
+    - Ein Körper :math:`F`, manchmal auch bezeichnet als :math:`\lbrace F, +, \times \rbrace`, ist eine Menge von Elementen mit zwei binären Operationen, genannt Addition und Multiplikation, so dass für alle :math:`a, b, c \in F` die Axiome (A1-M6) gelten. 
+
   
-.. class:: incremental 
+    .. class:: incremental 
     
     :(M7) Existenz der multiplikativen Inversen:
         Für jedes :math:`a` in :math:`F`, außer :math:`0`, gibt es ein Element :math:`a^{-1} \in F`, so dass :math:`aa^{-1} = (a^{-1})a = 1`
 
 
+    .. class:: incremental 
+
+    - Im Wesentlichen ist ein Körper eine Menge, in der wir Addition, Subtraktion, Multiplikation und Division durchführen können, ohne die Menge zu verlassen. Die Division ist mit der folgenden Regel definiert: :math:`a/b = a (b^{-1})`
+
+    .. admonition:: Beispiel
+        :class: incremental
+
+        Bekannte Beispiele für Körper sind die rationalen Zahlen, die reellen Zahlen und die komplexen Zahlen. 
+    
+    .. hint:: 
+        :class: incremental
+
+        Die Menge aller ganzen Zahlen mit den üblichen Operationen bildet keinen Körper, da nicht jedes Element der Menge ein multiplikatives Inverses hat.
+
+
 .. supplemental::
+
+    :math:`F` ist ein Integritätsbereich, d. h. :math:`F` erfüllt die Axiome A1 bis A5 und M1 bis M6 
 
     Körper ≘ :eng:`Field`
 
 
-
-Körper
-----------
-
-- Im Wesentlichen ist ein Körper eine Menge, in der wir Addition, Subtraktion, Multiplikation und Division durchführen können, ohne die Menge zu verlassen. Die Division ist mit der folgenden Regel definiert: :math:`a/b = a (b^{-1})`
-
-.. admonition:: Beispiel
-    :class: incremental
-
-    Bekannte Beispiele für Körper sind die rationalen Zahlen, die reellen Zahlen und die komplexen Zahlen. 
-    
-.. admonition:: Hinweis
-    :class: incremental
-
-    Die Menge aller ganzen Zahlen mit den üblichen Operationen bildet keinen Körper, da nicht jedes Element der Menge ein multiplikatives Inverses hat.
-
-
-
 .. class:: vertical-title smaller-slide-title
 
-Eigenschaften von Gruppen, Ringen und Körpern :raw-html:`<br>` :far-smaller:`Zusammenfassung`
+Eigenschaften von Gruppen, Ringen und Körpern 
 ------------------------------------------------------------------------------------------------------------------
+ 
+.. container::
 
-.. image:: drawings/algebraische_strukturen/algebraische_strukturen.svg
-    :alt: Eigenschaften von Gruppen, Ringen und Körpern
-    :align: center
-    :height: 1100px
+    .. container:: text-align-center far-smaller bolder
+        
+        Zusammenfassung
+
+    .. image:: drawings/algebraische_strukturen/algebraische_strukturen.svg
+        :alt: Eigenschaften von Gruppen, Ringen und Körpern
+        :align: center
+        :height: 1100px
+    
 
 
 
@@ -259,41 +281,49 @@ Endliche Körper der Form :math:`GF(p)`
     - GF steht für :eng:`Galois Field` (:ger:`Galoiskörper`), zu Ehren des Mathematikers, der als erster endliche Körper untersucht hat.
 
 
-Addition Modulo 8
-------------------
+klassische Rechnung mit ganzen Zahlen modulo 8\ [#]_
+------------------------------------------------------
 
-.. csv-table::
-    :align: center
-    :class: highlight-on-hover fake-header-row fake-header-column highlight-identical-cells
+.. container:: two-columns
 
-    ":math:`+`", *0*, *1*, *2*, *3*, *4*, *5*, *6*, *7*
-    *0*, :red:`0`, 1, 2, 3, 4, 5, 6, 7
-    *1*, 1, 2, 3, 4, 5, 6, 7, :red:`0`
-    *2*, 2, 3, 4, 5, 6, 7, :red:`0`, 1
-    *3*, 3, 4, 5, 6, 7, :red:`0`, 1, 2
-    *4*, 4, 5, 6, 7, :red:`0`, 1, 2, 3
-    *5*, 5, 6, 7, :red:`0`, 1, 2, 3, 4
-    *6*, 6, 7, :red:`0`, 1, 2, 3, 4, 5
-    *7*, 7, :red:`0`, 1, 2, 3, 4, 5, 6
+    .. container:: column no-separator
+
+        Addition Modulo 8
+
+        .. csv-table::
+            :align: center
+            :class: highlight-on-hover fake-header-row fake-header-column highlight-identical-cells
+
+            ":math:`+`", *0*, *1*, *2*, *3*, *4*, *5*, *6*, *7*
+            *0*, :red:`0`, 1, 2, 3, 4, 5, 6, 7
+            *1*, 1, 2, 3, 4, 5, 6, 7, :red:`0`
+            *2*, 2, 3, 4, 5, 6, 7, :red:`0`, 1
+            *3*, 3, 4, 5, 6, 7, :red:`0`, 1, 2
+            *4*, 4, 5, 6, 7, :red:`0`, 1, 2, 3
+            *5*, 5, 6, 7, :red:`0`, 1, 2, 3, 4
+            *6*, 6, 7, :red:`0`, 1, 2, 3, 4, 5
+            *7*, 7, :red:`0`, 1, 2, 3, 4, 5, 6
+
+    .. container:: column incremental
+
+        Multiplikation Modulo 8
 
 
-Multiplikation Modulo 8
------------------------
+        .. csv-table::
+            :align: center
+            :class: highlight-on-hover fake-header-row fake-header-column highlight-identical-cells
 
-.. csv-table::
-    :align: center
-    :class: highlight-on-hover fake-header-row fake-header-column highlight-identical-cells
+            ":math:`\times`", *0*, *1*, *2*, *3*, *4*, *5*, *6*, *7*
+            *0*, 0, 0, 0, 0, 0, 0, 0, 0
+            *1*, 0, :red:`1`, 2, 3, 4, 5, 6, 7
+            *2*, 0, 2, 4, 6, 0, 2, 4, 6
+            *3*, 0, 3, 6, :red:`1`, 4, 7, 2, 5
+            *4*, 0, 4, 0, 4, 0, 4, 0, 4
+            *5*, 0, 5, 2, 7, 4, :red:`1`, 6, 3
+            *6*, 0, 6, 4, 2, 0, 6, 4, 2
+            *7*, 0, 7, 6, 5, 4, 3, 2, :red:`1`
 
-    ":math:`\times`", *0*, *1*, *2*, *3*, *4*, *5*, *6*, *7*
-    *0*, 0, 0, 0, 0, 0, 0, 0, 0
-    *1*, 0, :red:`1`, 2, 3, 4, 5, 6, 7
-    *2*, 0, 2, 4, 6, 0, 2, 4, 6
-    *3*, 0, 3, 6, :red:`1`, 4, 7, 2, 5
-    *4*, 0, 4, 0, 4, 0, 4, 0, 4
-    *5*, 0, 5, 2, 7, 4, :red:`1`, 6, 3
-    *6*, 0, 6, 4, 2, 0, 6, 4, 2
-    *7*, 0, 7, 6, 5, 4, 3, 2, :red:`1`
-
+.. [#] Hervorgehoben ist jeweils das inverse Element.
 
 
 Additive and Muliplikative Inverse Modulo 8
@@ -314,41 +344,47 @@ Additive and Muliplikative Inverse Modulo 8
     7,1,7
 
 
+klassische Rechnung mit ganzen Zahlen modulo 7\ [#]_
+------------------------------------------------------
 
-Addition Modulo 7
------------------
+.. container:: two-columns
 
-.. csv-table::
-    :align: center    
-    :class: highlight-on-hover fake-header-row fake-header-column highlight-identical-cells
+    .. container:: column no-separator
 
-    ":math:`+`", *0*, *1*, *2*, *3*, *4*, *5*, *6*
-    *0*, :red:`0`, 1, 2, 3, 4, 5, 6
-    *1*, 1, 2, 3, 4, 5, 6, :red:`0`
-    *2*, 2, 3, 4, 5, 6, :red:`0`, 1
-    *3*, 3, 4, 5, 6, :red:`0`, 1, 2
-    *4*, 4, 5, 6, :red:`0`, 1, 2, 3
-    *5*, 5, 6, :red:`0`, 1, 2, 3, 4
-    *6*, 6, :red:`0`, 1, 2, 3, 4, 5
+        Addition Modulo 7
+
+        .. csv-table::
+            :align: center    
+            :class: highlight-on-hover fake-header-row fake-header-column highlight-identical-cells
+
+            ":math:`+`", *0*, *1*, *2*, *3*, *4*, *5*, *6*
+            *0*, :red:`0`, 1, 2, 3, 4, 5, 6
+            *1*, 1, 2, 3, 4, 5, 6, :red:`0`
+            *2*, 2, 3, 4, 5, 6, :red:`0`, 1
+            *3*, 3, 4, 5, 6, :red:`0`, 1, 2
+            *4*, 4, 5, 6, :red:`0`, 1, 2, 3
+            *5*, 5, 6, :red:`0`, 1, 2, 3, 4
+            *6*, 6, :red:`0`, 1, 2, 3, 4, 5
 
 
+    .. container:: column incremental
 
-Multiplikation Modulo 7
------------------------
+        Multiplikation Modulo 7
 
-.. csv-table::
-    :align: center
-    :class: highlight-on-hover fake-header-row fake-header-column highlight-identical-cells
+        .. csv-table::
+            :align: center
+            :class: highlight-on-hover fake-header-row fake-header-column highlight-identical-cells
 
-    ":math:`\times`", *0*, *1*, *2*, *3*, *4*, *5*, *6*
-    *0*, 0, 0, 0, 0, 0, 0, 0
-    *1*, 0, :red:`1`, 2, 3, 4, 5, 6
-    *2*, 0, 2, 4, 6, :red:`1`, 3, 5
-    *3*, 0, 3, 6, 2, 5, :red:`1`, 4
-    *4*, 0, 4, :red:`1`, 5, 2, 6, 3
-    *5*, 0, 5, 3, :red:`1`, 6, 4, 2
-    *6*, 0, 6, 5, 4, 3, 2, :red:`1`
+            ":math:`\times`", *0*, *1*, *2*, *3*, *4*, *5*, *6*
+            *0*, 0, 0, 0, 0, 0, 0, 0
+            *1*, 0, :red:`1`, 2, 3, 4, 5, 6
+            *2*, 0, 2, 4, 6, :red:`1`, 3, 5
+            *3*, 0, 3, 6, 2, 5, :red:`1`, 4
+            *4*, 0, 4, :red:`1`, 5, 2, 6, 3
+            *5*, 0, 5, 3, :red:`1`, 6, 4, 2
+            *6*, 0, 6, 5, 4, 3, 2, :red:`1`
 
+.. [#] Hervorgehoben ist jeweils das inverse Element.
 
 
 Additive und Muliplikative Inverse Modulo 7
@@ -373,27 +409,43 @@ Der Körper GF(2)
 
 .. container:: three-columns
 
-    .. csv-table:: Addition
-        :class: monospaced
+    .. container:: incremental
 
-        ":math:`+`", 0, 1
-        0, 0, 1
-        1, 1, 0
+        Addition
 
-    .. csv-table:: Multiplikation
-        :class: monospaced
+        .. csv-table:: 
+            :class: monospaced
 
-        ":math:`\times`",0,1
-        0, 0, 0
-        1, 0, 1
+            ":math:`+`", 0, 1
+            0, 0, 1
+            1, 1, 0
+
+    .. container:: incremental
         
-    .. csv-table:: Inverse
-        :class: monospaced
+        Multiplikation
 
-        ":math:`w`", ":math:`-w`", ":math:`w^{-1}`"
-        0, 0, 0
-        1, 0, 1
+        .. csv-table:: 
+            :class: monospaced
 
+            ":math:`\times`",0,1
+            0, 0, 0
+            1, 0, 1
+
+    .. container:: incremental border-left padding-left-2em
+            
+        Inverse 
+
+        .. csv-table:: 
+            :class: monospaced
+
+            ":math:`w`", ":math:`-w`", ":math:`w^{-1}`"
+            0, 0, 0
+            1, 0, 1
+
+
+.. supplemental::
+
+    Die Addition ist die XOR-Operation und die Multiplikation ist die AND-Operation.
 
 
 Endliche Körper - Konstruktion
@@ -420,6 +472,16 @@ In diesem Abschnitt haben wir gezeigt, wie man endliche Körper der Ordnung :mat
 
 
 
+.. class:: transition-scale center-child-elements no-title organic-red
+
+Benötigt wird ein endlicher Körper der Form :math:`GF(2^n)`
+---------------------------------------------------------------
+
+Für eine effiziente Nutzung klassischer Computer benötigen wir einen endlichen Körper der Form :math:`GF(2^n)`.
+
+
+.. class:: transition-fade
+
 Die Behandlung von Polynomen
 -------------------------------
 
@@ -437,56 +499,55 @@ Die Behandlung von Polynomen
 Beispiel für gewöhnliche Polynomarithmetik
 ------------------------------------------
 
-:Addition:
-    .. math::
+.. container:: scrollable
 
-        (x^3 + x^2 + 2) + (x^2 - x + 1) 
+    :Addition:
+        .. math::
 
+            (x^3 + x^2 + 2) + (x^2 - x + 1) 
 
-    .. math::
-        :class: incremental
-
-        = x^3 + 2x^2 - x + 3
-
-.. class:: incremental
-
-  :Subtraktion:
-
-    .. math::
-
-        (x^3 + x^2 + 2) - (x^2 - x + 1) 
-    
-
-    .. math::
-        :class: incremental
-
-        = x^3 + x + 1
-
-
-Beispiel für gewöhnliche Polynomarithmetik
-------------------------------------------
-
-:Multiplikation:
-    .. math::
-        (x^3 + x^2 + 2) \times (x^2 - x + 1) = 
-
-    .. class:: small incremental
 
         .. math::
+            :class: incremental
+
+            = x^3 + 2x^2 - x + 3
+
+    .. class:: incremental
+
+    :Subtraktion:
+
+        .. math::
+
+            (x^3 + x^2 + 2) - (x^2 - x + 1) 
         
-            \begin{matrix}   & & & & x^3 & + & x^2 & &  & + & 2 \\
-                                & - & x^4 & - & x^3 & & & - & 2x & & & \\
-                                x^5 & + & x^4 & & & + & 2x^2 & & & & &  = \\
-                                x^{5} & & & + & 3x^2 & -& 2x & & & + & 2 & 
-            \end{matrix}
-        
 
-.. class:: incremental
+        .. math::
+            :class: incremental
 
-  :Division:
-    .. math::
+            = x^3 + x + 1
 
-        (x^3 + x^2 + 2) : (x^2 - x + 1) = x + 2 + \left ( \frac{x}{x^2 - x + 1} \right )
+    .. class:: incremental
+
+        :Multiplikation:
+            .. math::
+                (x^3 + x^2 + 2) \times (x^2 - x + 1) = 
+
+            .. math::
+            
+                \begin{array}{ c c c c c c c c c c c c c}   
+                                    & & & & x^3 & + & x^2 & &  & + & 2 \\
+                                    & - & x^4 & - & x^3 & & & - & 2x & & & \\
+                                    x^5 & + & x^4 & & & + & 2x^2 & & & & &  = \\
+                                    \hline 
+                                    x^{5} & & & & & + & 3x^2 & -& 2x & + & 2 & 
+                \end{array} 
+
+    .. class:: incremental
+
+    :Division:
+        .. math::
+
+            (x^3 + x^2 + 2) : (x^2 - x + 1) = x + 2 + \left ( \frac{x}{x^2 - x + 1} \right )
 
 
 
@@ -503,7 +564,7 @@ Polynomarithmetik mit Koeffizienten in :math:`Z_p`
 
     - Wenn wir versuchen, eine Polynomdivision über eine Koeffizientenmenge durchzuführen, die kein Körper ist, dann ist die Division nicht immer definiert.
 
-      - Auch wenn die Koeffizientenmenge ein Körper ist, ist die Polynomdivision nicht unbedingt exakt.
+      - Auch wenn die Koeffizientenmenge ein Körper ist, ist die Polynomdivision nicht unbedingt exakt; d. h. es gibt ggf. einen Rest.
 
         .. container:: note  width-40
 
@@ -545,7 +606,7 @@ Beispiel für Polynomarithmetik über GF(2)
 -------------------------------------------
 
 .. admonition:: Erinnerung
-    :class: small
+    :class: far-far-smaller
 
     .. math::
 
@@ -555,7 +616,7 @@ Beispiel für Polynomarithmetik über GF(2)
         0 + 1 & = 0 - 1 & = 1
         \end{matrix}
 
-.. container:: incremental stack
+.. container:: incremental stack smaller
 
     .. container:: layer 
             
@@ -578,6 +639,7 @@ Beispiel für Polynomarithmetik über GF(2)
         .. rubric:: Multiplikation
 
         .. math::
+            :class: margin-bottom-2em
 
             (x^7 + x^5 + x^4 + x^3 + x + 1) \times (x^3 + x + 1) = 
 
@@ -585,23 +647,31 @@ Beispiel für Polynomarithmetik über GF(2)
 
             .. math::
             
-                \begin{matrix} & & & & & & x^7 & + & & & x^5 & +&  x^4 & + & x^3 & + & & & x & + & 1 \\
-                                & & & & x^8 & + & & & x^6 & + & x^5 & + & x^4 &+ & & & x^2 & + & x &  & & \\
-                                x^{10} & + & & & x^8 & + & x^7 & + & x^6 & + & & & x^4 & + & x^3 & & & & & & &  =
-                \end{matrix}
+                \begin{array}{cccccccccccccccccccc} 
+                                 & & & & x^7 & + & & & x^5 & +&  x^4 & + & x^3 & + & & & x & + & 1 \\
+                                 & & x^8 & + & & & x^6 & + & x^5 & + & x^4 &+ & & & x^2 & + & x &  & & \\
+                                x^{10} & +  & x^8 & + & x^7 & + & x^6 & + & & & x^4 & + & 
+                                x^3 & & & & & & &  = \\
+                                \hline
+                                x^{10} & & & & & & & & & + & x^4 & & & + & x^2 & & & + & 1 
+                \end{array}
 
-        .. math::
 
-            x^{10} + x^4 +x^2 +1 
 
     .. container:: layer incremental 
 
         .. rubric:: Division
 
+        .. class:: far-smaller
+
         .. math::
-            (x^7 + x^5 + x^4 + x^3 + x + 1) : (x^3 + x + 1) = x^4 + 1 \\
-           - (x^7 + x^5 + x^4) \quad \qquad \qquad \qquad ≙ x^4 \times (x^3 + x + 1) \\
-           -                  (x^3 + x + 1) \qquad ≙ 1 \times (x^3 + x + 1)
+
+            \begin{array}{rccclcrccclcccccl} 
+                ( x^7 & + &  x^5 & + &  x^4 & + & x^3 & +& x & +&  1 ) : (  x^3 & +& x&  + & 1 ) & =&  x^4  +  1 \\
+                - ( x^7 & + & x^5 & + & x^4) & & & & & & & & & & & \hat{=}& -1 \times (x^3 + x + 1) \times x^4  \\
+                & & & & & & - (x^3 & + & x & + & 1) & & &  & & \hat{=}& -1 \times (x^3 + x + 1)\times 1
+            \end{array}
+
 
 
 Bestimmung des GGTs zweier Polynome
@@ -640,7 +710,9 @@ Arithmetik in :math:`GF(2^3)`: Addition
     *110*,  *6*, 6, 7, 4, 5, 2, 3, :red:`0`, 1
     *111*,  *7*, 7, 6, 5, 4, 3, 2, 1, :red:`0`
 
-:far-smaller:`(Die Definition der Addition des endlichen Körpers GF(2^3) wird in Kürze behandelt.)`
+.. container:: far-smaller margin-top-1em
+
+    Die Definition der Addition des endlichen Körpers :math:`GF(2^3)` wird in Kürze behandelt.
 
 .. supplemental::
     
@@ -668,10 +740,9 @@ Arithmetik in :math:`GF(2^3)`: Multiplikation
     *110*,  *6*, 0, 6, 7, :red:`1`, 5, 3, 2, 4
     *111*,  *7*, 0, 7, 5, 2, :red:`1`, 6, 4, 3
 
-.. container:: smaller
+.. container:: far-smaller margin-top-1em
 
-    :smaller:`(Die Definition der Addition des endlichen Körpers GF(2^3) wird in Kürze behandelt.)`
-
+    Die Definition der Multiplikation des endlichen Körpers :math:`GF(2^3)` wird in Kürze behandelt.
 
         Die Anzahl der Vorkommen der ganzen Zahlen ungleich Null ist bei der Multiplikation einheitlich (Vor allem im Vergleich zu :math:`Z_8`); dies ist für kryptographische Zwecke förderlich. 
 
@@ -715,7 +786,8 @@ Um den endlichen Körper :math:`GF(2^3)` zu konstruieren, müssen wir ein irredu
         0, 1, x, x^2, x+1, x^2 + 1, x^2 + x, x^2 + x + 1
 
 
-.. container:: foundations incremental margin-top-2em
+.. hint:: 
+    :class: far-far-smaller margin-top-2em incremental
 
     Der Verschlüsselungsalgorithmus **AES** führt die Arithmetik im endlichen Körper :math:`GF(2^8)` mit dem folgenden irreduziblen Polynom aus:
 
@@ -730,27 +802,29 @@ Um den endlichen Körper :math:`GF(2^3)` zu konstruieren, müssen wir ein irredu
 
 
 
-Polynomial Arithmetic in :math:`GF(2^3)` Modulo :math:`(x^3 + x + 1)` 
+Polynomarithmetik im :math:`GF(2^3)` Modulo :math:`(x^3 + x + 1)` 
 ---------------------------------------------------------------------
 
 Addition
 ________
 
-.. csv-table:: 
-    :class: tiny highlight-on-hover fake-header-column fake-header-row fake-header-2nd-column fake-header-2nd-row 
-    :align: center 
-    :width: 100%
+.. container:: smaller
 
-    " ", " ", *000*, *001*, *010*, *011*, *100*, *101*, *110*, *111*
-    " ", ":math:`+`", :math:`0`, :math:`1`, :math:`x`, :math:`x+1`, :math:`x^2`, :math:`x^2+1`, :math:`x^2+x`, :math:`x^2+x+1`
-    *000*,  :math:`0`, :red:`0`, :math:`1`, :math:`x`, :math:`x+1`, :math:`x^2`, :math:`x^2 + 1`, :math:`x^2 + x`, :math:`x^2 + x + 1` 
-    *001*,  :math:`1`, :math:`1`, :red:`0`, :math:`x+1`, :math:`x`, :math:`x^2 + 1`, :math:`x^2`, :math:`x^2 + x + 1`, :math:`x^2 + x` 
-    *010*,  :math:`x`, :math:`x`, :math:`x+1`, :red:`0`, :math:`1`, :math:`x^2 + x`, :math:`x^2 + x + 1`, :math:`x^2`, :math:`x^2 + 1` 
-    *011*,  :math:`x+1`, :math:`x+1`, :math:`x`, :math:`1`, :red:`0`, :math:`x^2 + x + 1`, :math:`x^2 + x`, :math:`x^2 + 1`, :math:`x^2` 
-    *100*,  :math:`x^2`, :math:`x^2`, :math:`x^2 + 1`, :math:`x^2 + x`, :math:`x^2 + x + 1`, :red:`0`, :math:`1`, :math:`x`, :math:`x+1` 
-    *101*,  :math:`x^2+1`, :math:`x^2 + 1`, :math:`x^2`, :math:`x^2 + x + 1`, :math:`x^2 + x`, 1, :red:`0`, :math:`x+1`, :math:`x`
-    *110*,  :math:`x^2+x`, :math:`x^2 + x`, :math:`x^2 + x + 1`, :math:`x^2`, :math:`x^2 + 1`, x, :math:`x+1`, :red:`0`, :math:`1`
-    *111*,  :math:`x^2+x+1`, :math:`x^2 + x + 1`, :math:`x^2 + x`, :math:`x^2 + 1`, :math:`x^2`, :math:`x+1`, :math:`x`, :math:`1`, :red:`0` 
+    .. csv-table:: 
+        :class: far-far-smaller highlight-on-hover fake-header-column fake-header-row fake-header-2nd-column fake-header-2nd-row 
+        :align: center 
+        :width: 100%
+
+        " ", " ", *000*, *001*, *010*, *011*, *100*, *101*, *110*, *111*
+        " ", ":math:`+`", :math:`0`, :math:`1`, :math:`x`, :math:`x+1`, :math:`x^2`, :math:`x^2+1`, :math:`x^2+x`, :math:`x^2+x+1`
+        *000*,  :math:`0`, :red:`0`, :math:`1`, :math:`x`, :math:`x+1`, :math:`x^2`, :math:`x^2 + 1`, :math:`x^2 + x`, :math:`x^2 + x + 1` 
+        *001*,  :math:`1`, :math:`1`, :red:`0`, :math:`x+1`, :math:`x`, :math:`x^2 + 1`, :math:`x^2`, :math:`x^2 + x + 1`, :math:`x^2 + x` 
+        *010*,  :math:`x`, :math:`x`, :math:`x+1`, :red:`0`, :math:`1`, :math:`x^2 + x`, :math:`x^2 + x + 1`, :math:`x^2`, :math:`x^2 + 1` 
+        *011*,  :math:`x+1`, :math:`x+1`, :math:`x`, :math:`1`, :red:`0`, :math:`x^2 + x + 1`, :math:`x^2 + x`, :math:`x^2 + 1`, :math:`x^2` 
+        *100*,  :math:`x^2`, :math:`x^2`, :math:`x^2 + 1`, :math:`x^2 + x`, :math:`x^2 + x + 1`, :red:`0`, :math:`1`, :math:`x`, :math:`x+1` 
+        *101*,  :math:`x^2+1`, :math:`x^2 + 1`, :math:`x^2`, :math:`x^2 + x + 1`, :math:`x^2 + x`, 1, :red:`0`, :math:`x+1`, :math:`x`
+        *110*,  :math:`x^2+x`, :math:`x^2 + x`, :math:`x^2 + x + 1`, :math:`x^2`, :math:`x^2 + 1`, x, :math:`x+1`, :red:`0`, :math:`1`
+        *111*,  :math:`x^2+x+1`, :math:`x^2 + x + 1`, :math:`x^2 + x`, :math:`x^2 + 1`, :math:`x^2`, :math:`x+1`, :math:`x`, :math:`1`, :red:`0` 
 
 
 Polynomarithmetik im :math:`GF(2^3)` Modulo :math:`(x^3 + x + 1)` 
@@ -759,21 +833,23 @@ Polynomarithmetik im :math:`GF(2^3)` Modulo :math:`(x^3 + x + 1)`
 Multiplikation
 ______________
 
-.. csv-table:: 
-    :class: tiny highlight-on-hover fake-header-column fake-header-row fake-header-2nd-column fake-header-2nd-row 
-    :align: center 
-    :width: 100%
+.. container:: smaller
 
-    " ", " ", *000*, *001*, *010*, *011*, *100*, *101*, *110*, *111*
-    " ", ":math:`\times`", *0*, *1*, :math:`x`, :math:`x+1`, :math:`x^2`, :math:`x^2+1`, :math:`x^2+x`, :math:`x^2+x+1`
-    *000*,  *0*, 0, 0, 0, 0, 0, 0, 0, 0
-    *001*,  *1*, 0, :red:`1`, :math:`x`, :math:`x+1`, :math:`x^2`, :math:`x^2 + 1`, :math:`x^2 + x`, :math:`x^2 + x + 1` 
-    *010*,  :math:`x`, 0, :math:`x`, :math:`x^2`, :math:`x^2 + x`, :math:`x+1`, :red:`1`, :math:`x^2 + x + 1`, :math:`x^2 + 1`
-    *011*,  :math:`x+1`, 0, :math:`x+1`, :math:`x^2 + x`, :math:`x^2 + 1`, :math:`x^2 + x + 1`, :math:`x^2`, :red:`1`, :math:`x`
-    *100*,  :math:`x^2`, 0, :math:`x^2`, :math:`x+1`, :math:`x^2 + x + 1`, :math:`x^2 + x`, :math:`x`, :math:`x^2 + 1`, :red:`1` 
-    *101*,  :math:`x^2+1`, 0, :math:`x^2 + 1`, :red:`1`, :math:`x^2`, :math:`x`, :math:`x^2 + x + 1`, :math:`x+1`, :math:`x^2 + x` 
-    *110*,  :math:`x^2+x`, 0, :math:`x^2 + x`, :math:`x^2 + x + 1`, :red:`1`, :math:`x^2 + 1`, :math:`x+1`, :math:`x`, :math:`x^2` 
-    *111*,  :math:`x^2+x+1`, 0, :math:`x^2 + x + 1`, :math:`x^2 + 1`, :math:`x`, :red:`1`, :math:`x^2 + x`, :math:`x^2`, :math:`x+1`    
+    .. csv-table:: 
+        :class: far-far-smaller highlight-on-hover fake-header-column fake-header-row fake-header-2nd-column fake-header-2nd-row 
+        :align: center 
+        :width: 100%
+
+        " ", " ", *000*, *001*, *010*, *011*, *100*, *101*, *110*, *111*
+        " ", ":math:`\times`", *0*, *1*, :math:`x`, :math:`x+1`, :math:`x^2`, :math:`x^2+1`, :math:`x^2+x`, :math:`x^2+x+1`
+        *000*,  *0*, 0, 0, 0, 0, 0, 0, 0, 0
+        *001*,  *1*, 0, :red:`1`, :math:`x`, :math:`x+1`, :math:`x^2`, :math:`x^2 + 1`, :math:`x^2 + x`, :math:`x^2 + x + 1` 
+        *010*,  :math:`x`, 0, :math:`x`, :math:`x^2`, :math:`x^2 + x`, :math:`x+1`, :red:`1`, :math:`x^2 + x + 1`, :math:`x^2 + 1`
+        *011*,  :math:`x+1`, 0, :math:`x+1`, :math:`x^2 + x`, :math:`x^2 + 1`, :math:`x^2 + x + 1`, :math:`x^2`, :red:`1`, :math:`x`
+        *100*,  :math:`x^2`, 0, :math:`x^2`, :math:`x+1`, :math:`x^2 + x + 1`, :math:`x^2 + x`, :math:`x`, :math:`x^2 + 1`, :red:`1` 
+        *101*,  :math:`x^2+1`, 0, :math:`x^2 + 1`, :red:`1`, :math:`x^2`, :math:`x`, :math:`x^2 + x + 1`, :math:`x+1`, :math:`x^2 + x` 
+        *110*,  :math:`x^2+x`, 0, :math:`x^2 + x`, :math:`x^2 + x + 1`, :red:`1`, :math:`x^2 + 1`, :math:`x+1`, :math:`x`, :math:`x^2` 
+        *111*,  :math:`x^2+x+1`, 0, :math:`x^2 + x + 1`, :math:`x^2 + 1`, :math:`x`, :red:`1`, :math:`x^2 + x`, :math:`x^2`, :math:`x+1`    
 
 .. replacements, e.g., 5 == x^2+1
 
@@ -827,7 +903,7 @@ Multiplikation in :math:`GF(2^n)`
 
     .. math::
 
-        x^8 / x^8 + x^4 + x^3 + x + 1 = 1\; Rest\; x^4 + x^3 + x + 1.
+        { x^8 \over { x^8 + x^4 + x^3 + x + 1 } } = 1\; Rest\; x^4 + x^3 + x + 1.
 
     1. Beispiel:
 
@@ -839,12 +915,12 @@ Multiplikation in :math:`GF(2^n)`
 
     .. math::
         \begin{matrix}
-        x^8 + & x^7 + & & &  & & & x & & / x^8 + x^4 + x^3 + x + 1 = 1\; Rest\; x^7 +x^4 + x^3 +1 \\
+        x^8 + & x^7 + & & &  & & & x & & / ( x^8 + x^4 + x^3 + x + 1 )= 1\; Rest\; x^7 +x^4 + x^3 +1 \\
         - (x^8 + & & & & x^4 + & x^3 +& & x + & 1 ) \\
           & x^7 + & & & x^4 + &x ^3 + & & & 1 & 
         \end{matrix}
 
-    1. Beispiel:
+    2. Beispiel:
    
     .. math::
     
@@ -854,7 +930,7 @@ Multiplikation in :math:`GF(2^n)`
 
     .. math::
         \begin{matrix}
-        x^9 + & & & & & & & & & / x^8 + x^4 + x^3 + x + 1 = x\; Rest\; x^5 + x^4 + x^2 + x \\
+        x^9 & & & & & & & & & / ( x^8 + x^4 + x^3 + x + 1 ) = x\; Rest\; x^5 + x^4 + x^2 + x \\
         -( x^9 + & & & & x^5 + & x^4 + & & x^2 + & x )
         \end{matrix}
 
@@ -869,10 +945,12 @@ Multiplikation in :math:`GF(2^n)`
 
 - Da die Koeffizienten 0 oder 1 sind, kann ein solches Polynom als Bitfolge dargestellt werden
   
+  .. class:: list-with-explanations
+
   - Addition ist ein XOR dieser Bitstrings 
   - Multiplikation ist eine Linksverschiebung gefolgt von einem XOR
 
-    (vgl klassische Multiplikation per Hand.)
+    (vgl. klassische Multiplikation per Hand.)
 
 - Die Modulo-Reduktion erfolgt durch wiederholtes Ersetzen der höchsten Potenz durch den Rest des irreduziblen Polynoms (auch Shift und XOR)
 
@@ -971,9 +1049,11 @@ Multiplikation in :math:`GF(2^n)`
 
 .. exercise::
 
+    .. class:: list-with-explanations
+
     - Berechne: :math:`(0x03\; \times\; 0x46) \qquad` 
   
-      (0x3 und 0x46 sind die Hexadezimaldarstellungen der Koeffizienten des Polynoms.)
+      (0x3 und 0x46 sind die Hexadezimaldarstellungen der Koeffizienten des Polynoms und diese repräsentieren (auch nur) die Bitmuster der Koeffizienten des Polynoms)
 
     .. solution::
         :pwd: 0xCA
