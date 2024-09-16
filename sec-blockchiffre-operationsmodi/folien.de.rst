@@ -283,6 +283,11 @@ Spezielle Betriebsmodi
 --------------------------------
 
 
+.. TODO: Diskussion von GCM hinzufügen..
+
+
+
+
 
 XTS-AES Modus für blockorientierte Speichergeräte
 ---------------------------------------------------
@@ -311,7 +316,7 @@ Modus ist auch ein IEEE-Standard, IEEE Std 1619-2007
 - Der XTS-AES-Modus basiert auf dem Konzept einer veränderbaren (:eng:`tweakable`) Blockchiffre.
 - Allgemeine Struktur:
   
-  Um Chiffriertextes a zu berechnen, wird benötigt:
+  Um den Chiffriertext zu berechnen, wird benötigt:
 
   - **Klartext**
   - **Symmetrischer Schlüssel**
@@ -530,4 +535,3 @@ XTS-AES Operation auf einem Block
                 
                     E(IV) = 3, M = T \oplus 3 = P\qquad (10011_b \oplus 11100_b = 01111_b = P) 
 
-.. TODO: Diskussion von AES GCM hinzufügen..
