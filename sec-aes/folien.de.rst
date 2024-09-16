@@ -31,7 +31,7 @@ Advanced Encryption Standard (AES)
 ===============================================
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-:Version: 1.0
+:Version: 1.0.1
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 :Quellen: `NIST FIPS PUB 197, "Advanced Encryption Standard (AES)" <https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197.pdf>`_
 
@@ -69,15 +69,15 @@ Arithmetik endlicher Körper
 Arithmetik endlicher Körper 
 --------------------------------------------------
 
-.. class:: incremental list-with-explanations
+.. class:: smaller  list-with-explanations  incremental
 
-- Der Einfachheit halber und aus Gründen der Implementierungseffizienz möchten wir mit ganzen Zahlen arbeiten, die genau in eine bestimmte Anzahl von Bits passen, ohne dass Bitmuster verschwendet werden.
+- Der Einfachheit halber — und aus Gründen der Implementierungseffizienz — möchten wir mit ganzen Zahlen arbeiten, die genau in eine bestimmte Anzahl von Bits passen, ohne dass Bitmuster verschwendet werden.
   
   Ganze Zahlen im Bereich 0 bis :math:`2^n - 1`, die in ein n-Bit-Wort passen.
   
 - Wenn eine Operation des verwendeten Algorithmus die Division ist, dann müssen wir Arithmetik anwenden, die über einem (ggf. endlichen) Körper definiert ist.
 
-  Division erfordert, dass jedes nichtnull-Element ein multiplikatives Inverses hat.
+  Division erfordert, dass jedes nicht-null-Element ein multiplikatives Inverses hat.
   
 - Wenn wir modulare Arithmetik auf die Menge der ganzen Zahlen :math:`Z_{2^n}` (mit :math:`n > 1`) anwenden, dann erhalten wir :dhbw-red:`keinen` Körper!
   
@@ -184,10 +184,10 @@ AES Detaillierter Aufbau
 AES verwendet vier verschiedene Stufen
 ------------------------------------------
 
-:*Substitute Bytes*: verwendet eine S-Box, um eine byteweise Ersetzung des Blocks vorzunehmen.
-:*ShiftRows*: ist eine einfache Permutation.
-:*MixColumns*: ist eine Substitution, mit Hilfe von Polynomarithmetik über :math:`GF(2^8)`.
-:*AddRoundKey*: ist ein einfaches bitweises XOR des aktuellen Blocks mit einem Teil des expandierten Schlüssels.
+:*Substitute Bytes*: verwendet eine S-Box, um eine byteweise Ersetzung des Blocks vorzunehmen
+:*ShiftRows*: ist eine einfache Permutation
+:*MixColumns*: ist eine Substitution, mit Hilfe von Polynomarithmetik über :math:`GF(2^8)`
+:*AddRoundKey*: ist ein einfaches bitweises XOR des aktuellen Blocks mit einem Teil des expandierten Schlüssels
 
 
 
@@ -204,7 +204,7 @@ AES S-box
 -----------
 
 .. csv-table::
-    :class: footnotesize monospaced highlight-on-hover       
+    :class: far-smaller monospaced highlight-on-hover       
     :align: center 
     :name: s-box
 
@@ -235,7 +235,7 @@ AES Inverse S-box
 -----------------
 
 .. csv-table::
-    :class: footnotesize monospaced highlight-on-hover        
+    :class: far-smaller monospaced highlight-on-hover        
     :align: center
     :name: inverse-s-box
 
@@ -422,7 +422,7 @@ AES Schlüsselexpansion
 - Dies liefert einen vier Worte umfassenden Rundenschlüssel für die initiale *AddRoundKey*-Stufe sowie für jede der folgenden 10 Runden der Chiffre.
 - Der Schlüssel wird in die ersten vier Wörter des erweiterten Schlüssels kopiert.
 - Der Rest des expandierten Schlüssels wird in Blöcken von jeweils vier Wörtern aufgefüllt.
-- Jedes hinzugefügte Wort :math:`w[i]` hängt vom unmittelbar vorangehenden Wort :math:`w[i - 1]`, und dem vier Positionen zurückliegenden Wort, :math:`w[i - 4]`, ab.
+- Jedes hinzugefügte Wort :math:`w[i]` hängt vom unmittelbar vorangehenden Wort :math:`w[i - 1]` und dem vier Positionen zurückliegenden Wort :math:`w[i - 4]` ab.
 - In drei von vier Fällen wird ein einfaches XOR verwendet.
 - Für ein Wort dessen Position im Array :math:`w` ein Vielfaches von 4 ist, wird die komplexere Funktion :math:`g` angewandt.
 
@@ -484,7 +484,14 @@ AES *Round Key* Berechnung
 AES Schlüsselexpansion - Beispiel (Runde 1)
 ---------------------------------------------
 
-:Gegeben sei: 
+.. container:: two-columns
+
+    .. container:: 
+
+        Gegeben:
+
+    .. container:: 
+
         :math:`w[0] = (54,68,61,74)`
 
         :math:`w[1] = (73,20,6D,79)`
@@ -510,7 +517,7 @@ AES Schlüsselexpansion - Beispiel (Runde 1)
 
 .. container:: incremental
 
-  - Der erste Rundenschlüssel ist: :math:`w[4] || w[5] || w[6] || w[7]` 
+  - Der erste Rundenschlüssel ist: :math:`w[4] \quad || \quad  w[5] \quad  || \quad  w[6] \quad  || \quad  w[7]` 
 
 
 
