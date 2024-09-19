@@ -7,3 +7,15 @@ images/prototype_chain/pseudoclassical_inheritance_2.svg
 images/prototype_chain/pseudoclassical_Inheritance.svg
 lib/timeline/timeline.js
 lib/timeline/timeline.css
+
+code/Queue.mjs
+code/log.mjs
+
+code/Variables_const_let.mjs
+code/Variables_var.mjs
+code/Datatypes.js
+code/Functions_basics.js
+code/Functions_this.js
+code/ComparingValues.mjs
+code/LoopsAndConditions.mjs
+code/Errors.js
