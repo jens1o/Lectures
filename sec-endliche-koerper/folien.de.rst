@@ -274,7 +274,7 @@ Endliche Körper der Form :math:`GF(p)`
         
     .. container:: note small width-40
 
-        Die Ordnung eines endlichen Feldes ist die Anzahl der Elemente des Feldes.
+        Die Ordnung eines endlichen Körpers ist die Anzahl der Elemente des Körpers.
 
     - Es kann gezeigt werden, dass die Ordnung eines endlichen Körpers eine Potenz einer Primzahl :math:`p^n` sein muss, wobei :math:`n` eine positive ganze Zahl ist.
     - Der endliche Körper der Ordnung :math:`p^n` wird allgemein als :math:`GF(p^n)` bezeichnet. 
