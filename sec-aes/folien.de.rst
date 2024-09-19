@@ -395,7 +395,7 @@ AddRoundKey Transformation
 - Die Operation wird als spaltenweise Operation zwischen den 4 Bytes einer Spalte des Zustands (*State*) und einem Wort des runden Schlüssels betrachtet.
 - *Kann auch als eine Operation auf Byte-Ebene betrachtet werden*.
 
-.. admonition:: Designbebegründung
+.. admonition:: Designbegründung
     :class: incremental margin-top-2em
 
     - Sie ist so einfach wie möglich und betrifft jedes Bit des Staates.
@@ -644,7 +644,7 @@ Vertausch von `InvShiftRows` und `InvSubBytes`
 ----------------------------------------------
 
 :*InvShiftRows*: :dhbw-red:`beeinflusst die Reihenfolge` der Bytes im Zustand (*State*), ändert aber nicht den Inhalt der Bytes und ist nicht vom Inhalt der Bytes abhängig, um seine Transformation durchzuführen.
-:*InvSubBytes*: :the-blue:`beeinflusst den Inhalt` von Bytes im Zutand (*State*), ändert aber nicht die Byte-Reihenfolge und hängt nicht von der Byte-Reihenfolge ab, um seine Transformation durchzuführen.
+:*InvSubBytes*: :the-blue:`beeinflusst den Inhalt` von Bytes im Zustand (*State*), ändert aber nicht die Byte-Reihenfolge und hängt nicht von der Byte-Reihenfolge ab, um seine Transformation durchzuführen.
 
 
 .. container:: assessment
