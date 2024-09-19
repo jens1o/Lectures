@@ -32,13 +32,13 @@
 Webprogrammierung mit JavaScript
 ================================================
 
-JavaScript und die Webprogrammierung
+Eine kurze Einführung/eine kurze Übersicht über JavaScript für erfahrene Programmierer.
 
 .. container:: line-above tiny
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
-    :Version: 1.0
+    :Version: 2.0 (alpha)
 
 .. supplemental::
 
@@ -79,42 +79,166 @@ Historie
 Seit 2016 gibt es jährliche Updates (ECMAScript 2016, 2017, 2018, 2019, 2020, 2021, 2022, ...)
 
 
+
 Grundlagen
 --------------
 
-.. class:: incremental
-
-- Objektorientiert
-  
-  .. class:: list-with-explanations incremental
-
-  - Protoypische Vererbung
-  - Objekte *erben* von anderen Objekten.
-  - Objekte als allgemeine Container
-  
-    (Im Grunde eine Vereinheitlichung von Objekten und Hashtabellen.)
-  - seit ES6 werden auch Klassen unterstützt; diese sind aber nur syntaktischer Zucker.
-- Skriptsprache
-
+.. container:: scrollable
+   
   .. class:: incremental
 
-  - *Loose Typing*/*Dynamische Typisierung*
-  - *Load and go-delivery* (Lieferung als Text/Quellcode)
-  - Garbage Collected
-  - Single-Threaded
-- Funktionen sind Objekte erster Klasse
-- Ein (globaler) Namespace
-- Syntaktisch eine Sprache der "C"-Familie (viele Ähnlichkeiten zu Java)
-- Standardisiert durch die ECMA (ECMAScript)
-- Verwendet ganz insbesondere in Browsern, aber auch Serverseitig (`Node.js <http://nodejs.org/>`__) oder in Desktop-Anwendungen (Electron)
+  - Objektorientiert
+  
+      .. class:: list-with-explanations 
 
-.. TODO: 
-   - adding JavaScript to HTML files (in particular "defer" and "async" and type="module" )
-   - adding major events DOMContentLoaded, onload, etc.
-   - 
+      - Protoypische Vererbung
+      - Objekte *erben* von anderen Objekten
+      - Objekte als allgemeine Container
+      
+         (Im Grunde eine Vereinheitlichung von Objekten und Hashtabellen.)
+      - seit ES6 werden auch Klassen unterstützt; diese sind aber nur syntaktischer Zucker
+  - Skriptsprache
+
+      - *Loose Typing*/*Dynamische Typisierung*
+      - *Load and go-delivery* (Lieferung als Text/Quellcode)
+      - Garbage Collected
+      - Single-Threaded
+
+  - Funktionen sind Objekte erster Klasse
+  - Ein (globaler) Namespace
+  - Syntaktisch eine Sprache der "C"-Familie (viele Ähnlichkeiten zu Java)
+  - Standardisiert durch die ECMA (ECMAScript)
+  - Verwendet ganz insbesondere in Browsern, aber auch Serverseitig (`Node.js <http://nodejs.org/>`__) oder in Desktop-Anwendungen (Electron)
 
 
-Datentypen
+
+Reservierte Schlüsselworte
+-----------------------------
+
+Schlüsselworte:
+
+.. class:: incremental
+
+  - ``function, async, await, return, yield``
+  - ``break, continue, case, default, do, else, for, if, instanceof, of, typeof, switch, while``
+  - ``throw, try, finally, catch``
+  - ``class, delete, extends, in, new, static, super, this``
+  - ``const, let, var``
+  - ``export, import``
+
+.. container:: incremental
+
+   Nicht genutzte Schlüsselworte:
+
+   ``enum, implements, interface, package, private, protected, public, void, with`` (no longer)
+
+
+
+Bezeichner (*Identifier*)
+---------------------------
+ 
+.. container:: minor
+
+   (Sehr vergleichbar mit Java.)
+
+.. class:: incremental
+
+- Buchstaben (Unicode), Ziffern, Unterstriche, Dollarzeichen
+- Ein Identifier darf nicht mit einer Ziffer beginnen
+  
+- Nameskonventionen: 
+  
+  - Klassen beginnen mit einem Großbuchstaben (*UpperCamelCase*)
+  - Variablen und Funktionen beginnen mit einem Kleinbuchstaben (*lowerCamelCase*)
+  - Konstanten sind komplett in Großbuchstaben
+
+
+
+Global Verfügbare Objekte
+--------------------------------
+
+Standard
+_________
+
+.. class:: smaller
+
+- ``console``
+- ``Number``, ``Boolean``,  ``Date``, ``BigInt``, ``Math``, ...
+
+
+
+`Von Browsern zur Verfügung gestellte Objekte <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects>`__ (Ein Auszug) 
+________________________________________________________________________________________________________________________________________________________
+
+.. class:: smaller
+
+.. container:: two-columns
+
+   .. container:: column
+
+     - ``window`` 
+     - ``document`` (bzw. ``window.document``)
+
+   .. container:: column margin-left-1em
+
+     - ``alert`` 
+     - ``navigator``
+     - ``location``
+
+
+
+`Von Node.js zur Verfügung gestellte Objekte <https://nodejs.org/api/globals.html>`__ (Ein Auszug)
+_____________________________________________________________________________________________________
+
+.. class:: smaller
+
+.. container:: two-columns
+
+   .. container:: column
+
+     - ``module``
+     - ``exports``
+     - ``require``
+  
+   .. container:: column  margin-left-1em
+
+     - ``process``
+     - ``crypto``
+
+
+
+`Deklaration von Variablen <./code/Variables_const_let.mjs>`__ (``const`` und ``let``)
+---------------------------------------------------------------------------------------
+
+.. container:: scrollable
+
+   .. include:: code/Variables_const_let.mjs
+      :code: javascript
+      :start-line: 3
+      :end-before: ilog('"changed done"', change());
+      :number-lines:
+      :class: code far-far-smaller copy-to-clipboard
+      :tab-width: 4
+
+.. supplemental::
+
+   Um diesen und den Code auf den folgenden Folien ggf. mit Hilfe von Node.js auszuführen, muss am Anfang der Datei:
+
+      ``import { ilog, log, done } from "./log.mjs";``
+
+   und am Ende der Datei:
+
+     ``done();``
+   
+   hinzugefügt werden.
+
+   Den entsprechenden Code der Bibliotheken (log.mjs und Queue.mjs) finden Sie auf:
+
+   `https://github.com/Delors/delors.github.io/tree/main/web-javascript/code <https://github.com/Delors/delors.github.io/tree/main/web-javascript/code>`__
+
+
+
+`Datentypen <./code/Datatypes.js>`__
 ------------------------------------------------
 
 .. container:: scrollable
@@ -122,60 +246,291 @@ Datentypen
    .. include:: code/Datatypes.js
       :code: javascript
       :number-lines:
-      :class: far-far-smaller copy-to-clipboard
+      :class: code far-far-smaller copy-to-clipboard
       :tab-width: 4
 
 
-
-Vergleich von Werten
-------------------------------------------------
+`Funktionsdefinitionen <./code/Functions_basics.js>`__
+-------------------------------------------------------
 
 .. container:: scrollable
 
-   .. include:: code/ComparingValues.js
+   .. include:: code/Functions_basics.js
       :code: javascript
+      :start-line: 3
+      :end-before: ////////////////////////////////////////////////////////////////////////////////
+      :number-lines:
+      :class: code far-far-smaller copy-to-clipboard
+      :tab-width: 4
+
+
+.. class:: exercise
+
+Übung
+--------------
+
+**Voraussetzung: Installieren Sie Node.js (http://nodejs.org/).**
+
+.. exercise:: Hello World in Node.js
+
+   Starten Sie die Konsole/Terminal und schreiben Sie ein einfaches JavaScript Programm, das "Hello World" ausgibt.
+
+   .. solution:: 
+      :pwd: HelloWorld
+
+      .. code:: javascript
+            
+         console.log("Hello World");
+
+.. exercise:: Hello World auf der JavaScript Console 
+
+   Starten Sie einen Browser und aktivieren Sie die JavaScript Console. Schreiben Sie ein einfaches JavaScript Programm, das "Hello World" ausgibt.
+
+   .. solution:: 
+      :pwd: HelloWorld
+
+      .. code:: javascript
+            
+         console.log("Hello World");
+
+
+.. class:: exercise
+
+Übung - die JavaScript Konsole
+------------------------------------
+
+.. exercise:: Prototyping mit der JavaScript Konsole
+
+   Schreiben Sie ein kurzes JavaScript Programm, das programmatisch zum Ende des Dokuments scrollt.
+
+   .. container:: smaller
+   
+      Hinweise: 
+
+      - document.body enthält den gesamten Inhalt des Dokuments
+      - die aktuellen Abmaße des Dokuments können Sie mit der Funktion ``window.getComputedStyle(<HTML Element>).height`` ermitteln
+      - um zu scrollen, können Sie window.scrollTo(x,y) verwenden
+      - um den Integer Wert eines Wertes in Pixeln zu bestimmen, können Sie ``parseInt`` verwenden
+
+   .. solution:: 
+      :pwd: scrollTo(x,y)
+
+      .. code:: javascript
+
+         const h = window.getComputedStyle(document.body).height
+         window.scrollTo(0,parseInt(h));
+
+
+`Vergleich von Werten <./code/ComparingValues.mjs>`__
+-------------------------------------------------------
+
+.. container:: scrollable
+
+   .. include:: code/ComparingValues.mjs
+      :code: javascript
+      :start-line: 2
+      :end-before: done();
       :number-lines:
       :class: far-far-smaller copy-to-clipboard
       :tab-width: 4
 
 
 
-Bedingungen und Schleifen
-------------------------------------------------
+`Bedingungen und Schleifen <./code/LoopsAndConditions.mjs>`__
+--------------------------------------------------------------
 
 .. container:: scrollable
 
-   .. include:: code/LoopsAndConditions.js
+   .. include:: code/LoopsAndConditions.mjs
       :code: javascript
+      :start-line: 2
+      :end-before: done();
       :number-lines:
-      :class: far-far-smaller copy-to-clipboard
+      :class: code far-far-smaller copy-to-clipboard
+      :tab-width: 4
+
+
+`Fehlerbehandlung <./code/Errors.js>`__
+--------------------------------------------------------------
+
+.. container:: scrollable
+
+   .. include:: code/Errors.js
+      :code: javascript
+      :start-line: 2
+      :number-lines:
+      :class: code far-far-smaller copy-to-clipboard
       :tab-width: 4
 
 
 
-Functions
+Übung - Bedingungen und Schleifen
+------------------------------------
+
+.. exercise:: removeNthElement
+
+   Implementieren Sie eine Funktion, die ein Array übergeben bekommt und ein neues Array zurückgibt in dem jedes n-te Element nicht vorkommt.
+
+   Beispiel: ``removeNthElement([1,2,3,4,5,6,7], 2)`` :math:`\Rightarrow` ``[1,3,5,7]``
+
+   - Schreiben Sie Ihren Code in eine JavaScript Datei und führen Sie diese mit Hilfe von Node.js aus. 
+   
+   - Testen Sie Ihre Funktion mit verschiedenen Eingaben und lassen Sie sich das Ergebnis ausgeben!
+
+   .. solution::
+      :pwd: _RemoveNthElement
+
+      .. code:: javascript
+
+         function removeNthElement(arr, n) {
+            const a = [];
+            for (i = 0; i < arr.length ; i ++) {
+               if ((i+1) % n === 0) continue;
+               a.push(arr[i]);
+            }
+            return a;
+         }
+
+         console.log(removeNthElement([1,2,3,4,5,6,7],2))
+         console.log(removeNthElement([1],2))
+         console.log(removeNthElement([1,2,3],1))
+         console.log(removeNthElement([1,2,3,4,5,6],4))
+
+
+
+Übung - Fehlerbehandlung
+------------------------------------
+
+.. exercise:: removeNthElement mit Fehlerbehandlung
+
+   - Erweitern Sie die Implementierung von ``removeNthElement`` so, dass die Funktion einen Fehler wirft, wenn das übergebene Array kein Array ist oder wenn der zweite Parameter kein positiver Integer ist.
+  
+   - Testen Sie alle Fehlerzustände und fangen Sie die entsprechenden Fehler ab (``catch``) und geben Sie die Nachrichten aus.
+
+   .. solution:: 
+      :pwd: removeNthElementWithErrorHandling
+
+      .. code:: javascript
+
+         function removeNthElement(arr, n) {
+            if (!Array.isArray(arr)) 
+               throw new Error("arr must be an array.");
+            if (!Number.isInteger(n)) {
+               throw new Error("n must be an integer.");
+            }
+            if (n <= 0) {
+               throw new RangeError("n must be a positive integer.");
+            }
+
+            const a = [];
+            for (i = 0; i < arr.length ; i ++) {
+               if ((i+1) % n === 0) continue;
+               a.push(arr[i]);
+            }
+            return a;
+         }
+
+         try {
+            console.log(removeNthElement(undefined,2))
+         } catch (e) {
+            console.error(e.message);
+         }
+         try {
+            console.log(removeNthElement([1],{}))
+         } catch (e) {
+            console.error(e.message);
+         }
+         try {
+            console.log(removeNthElement([1],-2))
+         } catch (e) {
+            console.error(e.message);
+         }
+         
+
+
+.. class:: exercise
+
+Übung - Funktionen 
+---------------------
+
+.. exercise:: Einfacher RPN Calculator
+
+   Implementieren Sie einen einfachen RPN (Reverse Polish Notation) Calculator, der eine Liste von Zahlen und Operatoren (``+``, ``-``, ``*``, ``/``) als Array entgegennimmt und das Ergebnis berechnet.
+
+   Nutzen Sie keine ``if`` oder ``switch`` Anweisung, um die Operatoren zu unterscheiden. Nutzen Sie stattdessen ein Objekt. Sollte der Operator unbekannt sein, dann geben Sie eine entsprechende Fehlermeldung aus.
+
+   Beispiel: ``eval([2,3,"+",4,"*"])`` :math:`\Rightarrow` ``20``
+
+   .. solution::
+      :pwd: _RPNCalculator+
+
+      .. code:: javascript
+
+         const ops = {
+            "+": (a,b) => a+b,
+            "-": (a,b) => a-b,
+            "*": (a,b) => a*b,
+            "/": (a,b) => a/b
+         }
+
+         function eval(expr) {
+            const stack = [];
+            for (const e of expr) {
+               if (Number.isInteger(e)) {
+                  stack.push(e);
+               } else {
+                  const b = stack.pop();
+                  const a = stack.pop();
+                  const op = ops[e];
+                  if (!op) {
+                     throw new Error("Unknown operator: "+e);
+                  } 
+                  stack.push(op(a,b));
+               }
+            }
+            return stack.pop();
+         }
+
+         eval([2,3,"+",4,"*"]) 
+         eval([2,3,"+",4,"%"]) 
+
+
+
+.. TODO ALLES ÜBERARBEITEN!!!!!!!!!!!!
+
+.. TODO: 
+   - adding JavaScript to HTML files (in particular "defer" and "async" and type="module" )
+   - adding major events DOMContentLoaded, onload, etc.
+   - 
+
+
+
+`Variables (var) <./code/Variables_var.mjs>`__
 ------------------------------------------------
 
 .. container:: scrollable
 
-   .. include:: code/Functions.js
+   .. include:: code/Variables_var.mjs
       :code: javascript
       :number-lines:
-      :class: far-far-smaller copy-to-clipboard
+      :class: code far-far-smaller copy-to-clipboard
       :tab-width: 4
 
 
-
-Variables
-------------------------------------------------
+``this`` `in Funktionen und partielle Funktionsaufrufe <./code/Functions_this.js>`__
+------------------------------------------------------------------------------------------
 
 .. container:: scrollable
 
-   .. include:: code/Variables.js
+   .. include:: code/Functions_this.js
       :code: javascript
+      :start-line: 3
+      :end-before: ////////////////////////////////////////////////////////////////////////////////
       :number-lines:
-      :class: far-far-smaller copy-to-clipboard
+      :class: code far-far-smaller copy-to-clipboard
       :tab-width: 4
+
+
 
 
 
@@ -184,10 +539,10 @@ Destructuring
 
 .. container:: scrollable
       
-   .. include:: code/Destructuring.js
+   .. include:: code/Destructuring.mjs
       :code: javascript
       :number-lines:
-      :class: far-far-smaller copy-to-clipboard
+      :class: code far-far-smaller copy-to-clipboard
       :tab-width: 4
 
 
@@ -200,11 +555,11 @@ JSON
    .. include:: code/JSON.js
       :code: javascript
       :number-lines:
-      :class: far-far-smaller copy-to-clipboard
+      :class: code far-far-smaller copy-to-clipboard
       :tab-width: 4
 
 
-Regular Expressions
+Reguläre Ausdrücke
 ------------------------------------------------
 
 - Built-in support by means of regular expression literals and an API
@@ -217,7 +572,7 @@ Regular Expressions
    .. include:: code/RegularExpressions.js
       :code: javascript
       :number-lines:
-      :class: far-far-smaller copy-to-clipboard
+      :class: code far-far-smaller copy-to-clipboard
       :tab-width: 4
 
 

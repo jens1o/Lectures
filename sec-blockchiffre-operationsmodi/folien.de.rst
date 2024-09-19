@@ -439,7 +439,7 @@ XTS-AES Operation auf einem Block
      Sie möchten feststellen, ob ein Programm zur Verschlüsselung von Dateien den ECB-Modus verwendet. Was müssen Sie tun?
 
      .. solution::
-        :pwd: ecb_erkennung
+        :pwd: ecb_Erkennung
 
         Verwenden Sie ein Dokument, das aus mehreren Blöcken besteht, wobei jeder Block die Größe der zugrunde liegenden Chiffre hat und jeder Block den gleichen Inhalt hat. Bei Verwendung des ECB-Modus werden alle Blöcke auf die gleiche Weise verschlüsselt.
 
@@ -513,7 +513,7 @@ XTS-AES Operation auf einem Block
         Verschlüsseln Sie nun einige Nachrichten mit dieser Chiffre. Welchen Effekt hat die Anwendung des OFB-Modus auf die Nachrichten?
 
         .. solution::
-            :pwd: caesar_ofb
+            :pwd: Caesar_ofb
 
             Das gleiche Klartextzeichen wird nicht mehr (notwendigerweise) dem gleichen Chiffretextzeichen zugeordnet, wenn es in der ursprünglichen Nachricht wieder auftaucht, d. h. es liegt eine gewisse Diffusion vor.
 

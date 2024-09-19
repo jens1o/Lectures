@@ -7,7 +7,7 @@
             function makeScriptsEditable() {
                 const scripts = document.getElementsByTagName('script')
                 for (const scriptElement of scripts) {
-                    scriptElement.contentEditable = true;
+                    scriptElement.contentEditable = false;
                     scriptElement.style.display = 'block';
                     scriptElement.style.whiteSpace = 'preserve';
                     scriptElement.style.padding = '1em';

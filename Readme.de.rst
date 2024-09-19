@@ -61,16 +61,17 @@ Vorlesung mit Bezug zu "IT Sicherheit"
 .. container:: scrollable
 
    1. [Optional] Klassische Sicherheitsprinzipien (`<sec-klassische-sicherheitsprinzipien/folien.de.rst.html>`__)
-   2. Einführung in die Zahlentheorie (`<sec-einfuehrung-in-die-zahlentheorie/folien.de.rst.html>`__)
-   3. Klassische Verschlüsselungsverfahren (`<sec-klassische-verschluesselungsverfahren/folien.de.rst.html>`__)
-   4. Blockchiffre (`<sec-blockchiffre/folien.de.rst.html>`__)
-   5. Endliche Körper (`<sec-endliche-koerper/folien.de.rst.html>`__)
-   6. AES (`<sec-aes/folien.de.rst.html>`__)
-   7. Betriebsmodi von Blockchiffren (`<sec-blockchiffre-operationsmodi/folien.de.rst.html>`__)
-   8. Stromchiffren (`<sec-stromchiffre/folien.de.rst.html>`__)
-   9. Public-Key-Kryptographie (`<sec-public-key-kryptographie/folien.de.rst.html>`__)
-   10. Hashfunktionen (`<sec-hashfunktionen/folien.de.rst.html>`__)
-   11. Passwortwiederherstellung (`<sec-passwortwiederherstellung/folien.de.rst.html>`__)
+   2. [Optional] Cybersecurity (`<sec-cybersecurity/folien.de.rst.html>`__)
+   3. Einführung in die Zahlentheorie (`<sec-einfuehrung-in-die-zahlentheorie/folien.de.rst.html>`__)
+   4. Klassische Verschlüsselungsverfahren (`<sec-klassische-verschluesselungsverfahren/folien.de.rst.html>`__)
+   5. Blockchiffre (`<sec-blockchiffre/folien.de.rst.html>`__)
+   6. Endliche Körper (`<sec-endliche-koerper/folien.de.rst.html>`__)
+   7. AES (`<sec-aes/folien.de.rst.html>`__)
+   8. Betriebsmodi von Blockchiffren (`<sec-blockchiffre-operationsmodi/folien.de.rst.html>`__)
+   9. Stromchiffren (`<sec-stromchiffre/folien.de.rst.html>`__)
+   10. Public-Key-Kryptographie (`<sec-public-key-kryptographie/folien.de.rst.html>`__)
+   11. Hashfunktionen (`<sec-hashfunktionen/folien.de.rst.html>`__)
+   12. Passwortwiederherstellung (`<sec-passwortwiederherstellung/folien.de.rst.html>`__)
 
 
 
