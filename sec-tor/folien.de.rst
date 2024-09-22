@@ -67,7 +67,7 @@ Tor (The Onion Router)
 
 
 
-Tor - Verwendung und Sicherheit
+Tor - Verwendung 
 --------------------------------
 
 .. class:: incremental
@@ -79,27 +79,57 @@ Tor - Verwendung und Sicherheit
 
     Es wird geschätzt, dass etwa 80% des Datenverkehrs im Zusammenhang mit dem Zugriff auf Kinderpornografie steht. Solche Schätzungen sind allerdings mit Vorsicht zu genießen!
 
-- Mehrere Sicherheitslücken wurden in der Vergangenheit gefunden und geschlossen. Die Angriffe [#]_ waren:
-  
-  - :minor:`DoS Attacken`
-  - Deanonymisierungsattacken
-  - Identifikation von *Onion Services* (aka *Hidden Services*)
-
-.. [#] `Aufstellung von Angriffen auf Tor <https://github.com/Attacks-on-Tor/Attacks-on-Tor#correlation-attacks>`__.
-
-
 .. supplemental::
 
-    .. epigraph::
-
-        [Sicherheitslücke gefunden in 2013] Wenn ein einzelner Nutzer Tor über einen längeren Zeitraum [3 bis 6-Monate, abhängig von einigen Faktoren] regelmäßig nutzt, ist es fast sicher, dass er *de-anonymisiert* werden kann.
-        
-        [Übersetzt mit DeepL.]
-
-        -- https://www.infosecurity-magazine.com/news/tor-is-not-as-safe-as-you-may-think/
+    Wir können unterscheiden zwischen: 
+    
+    :*Surface Web*: Das frei-verfügbare Internet.
+    :*Deep Web*: Das Internet, das durch Zugriffsbeschränkungen nicht öffentlich zugänglich ist.
+    :*Dark Web*: Das Internet, das nicht indiziert ist und nur über spezielle Software (z. B. Tor) erreichbar ist. Häufig - aber nicht ausschließlich - wird das Dark Web für illegale Aktivitäten genutzt und ist meist zusätzlich durch Zugriffsbeschränkungen geschützt.
 
 
-    Surface web vs. Deep web vs. Dark web
+
+Tor - potentielle Sicherheitslücken
+-----------------------------------------------------------------------
+
+- :minor:`DoS Attacken`
+
+.. container:: incremental  
+
+  - Identifikation von *Onion Services* (aka *Hidden Services*)
+  
+.. container:: incremental  
+
+  - Deanonymisierungsattacken
+
+.. container:: incremental
+    
+    `Aufstellung von Angriffen auf Tor <https://github.com/Attacks-on-Tor/Attacks-on-Tor#correlation-attacks>`__.
+
+
+
+Tor - Deanonymisierungsattacke 2013
+------------------------------------
+
+.. epigraph::
+
+    Wenn ein einzelner Nutzer Tor über einen längeren Zeitraum [3 bis 6-Monate, abhängig von einigen Faktoren] regelmäßig nutzt, ist es fast sicher, dass er *de-anonymisiert* werden kann.
+    
+    [Übersetzt mit DeepL.]
+
+    -- 2013 - `Tor is not as safe as you may think <https://www.infosecurity-magazine.com/news/tor-is-not-as-safe-as-you-may-think/>`__
+
+   
+
+Tor - Deanonymisierungsattacke 2024
+------------------------------------
+
+.. epigraph::
+
+    Strafverfolgungsbehörden haben offenbar einen Weg gefunden, Nutzer des Tor-Netzwerkes gezielt zu deanonymisieren. Möglich sein soll dies [...] durch sogenannte Timing-Analysen, die bisher als praktisch nicht umsetzbar galten. Dadurch sei es aufgrund der verschlüsselten Datenpakete zwar nicht möglich zu sehen, was Nutzer verschickten, dass sie überhaupt kommunizierten, sei aber sichtbar. [...] ist dafür allerdings eine teils jahrelange Überwachung einzelner Tor-Nodes erforderlich. [...]
+
+    -- 2024 - `Behörden unterwandern Tor <https://www.golem.de/news/deanonymisierung-von-nutzern-behoerden-unterwandern-tor-netzwerk-2409-189076.html>`__    
+
 
 
 Tor - Hintergrund
@@ -111,6 +141,7 @@ Tor - Hintergrund
 - Der Datenverkehr wird über *mehrere Knoten* (*Relays*) umgeleitet, die jeweils nur den vorherigen und den nächsten Knoten kennen. Der Weg den ein Datenpaket nimmt, wird als *Circuit* oder *Path* bezeichnet.
 - Der Pfad wird dazu vorher ausgewählt und der gesamte Datenverkehr entsprechend des Pfades verschlüsselt.
 - Tor bietet Anonymität auch für die Serverseite durch *Onion Services* (auch *Hidden Services*), die nur über eine von Tor vergebene Onion-Adresse erreicht werden können.
+
 
 
 Tor - Bedrohungsmodel
@@ -127,6 +158,8 @@ Tor bietet Schutz for folgenden Angreifern: Einem Angreifer dem es gelingt ...
    Folgendes Szenario ist nicht abgedeckt: Ein Angreifer, der beide Enden der Kommunikation, den ``Entry Guard`` und den ``Exit Node`` überwachen kann.
    
    Gegen solche Angreifer bietet Tor keine Anonymität.
+
+
 
 .. class:: vertical-title tiny
 
@@ -192,6 +225,7 @@ Tor - Aufbau
     .. admonition:: Hinweis
     
         In älteren Dokumenten wird der *Client* auch als *Onion Proxy (OP)* bezeichnet und die Tor-Knoten als *Onion Router (OR)*. Die Tor-Knoten (:eng:`Nodes`) werden auch als *Onion Relay* bezeichnet.
+
 
 
 .. class:: vertical-title tiny
@@ -291,6 +325,7 @@ Informationen über Tor Relays
         1337 Services GmbH / RDP.sh (AS210558)
 
 
+
 Tor Exit Nodes
 -----------------
 
@@ -304,6 +339,8 @@ Die Anzahl der Exit nodes ist deutlich kleiner (2. Jan. 2024 - 1314 Einträge) a
 .. supplemental::
 
     Reverse IP Lookup für 130.149.80.199 durchgeführt mit `IP Location Service <https://www.iplocation.net/ip-lookup>`__.
+
+    Die (aktuell) geringe Anzahl an Exit Nodes ist ein (steigendes?) Problem, da es dadurch ggf. einfach(er) ist den Datenverkehr zu überwachen.
 
 .. [#] `Tor Exit Node Guidelines <https://community.torproject.org/relay/community-resources/tor-exit-guidelines/>`__
 
@@ -319,9 +356,6 @@ Jeder ``Node`` legt in seiner ``Exit Policy`` genau fest welchen Datenverkehr we
 - Es gibt Knoten, die die Daten nur an weitere Tor-Knoten weiterleiten.
 - Es gibt Knoten, die nur bestimmte Dienste (z. B. HTTPs) weiterleiten.
 - Es gibt :ger-quote:`private Exit Nodes`, die nur zu einem bestimmten Netz Verbindungen aufbauen.
-
-
-
 
 
 
