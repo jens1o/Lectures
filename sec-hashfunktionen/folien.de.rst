@@ -486,9 +486,4 @@ HMAC Berechnung in Python
 
 
 
-
-GCM - Glaois Counter Mode
-----------------------------
-
-TODO
-
+.. TODO discuss CBC-MAC
