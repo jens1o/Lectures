@@ -140,7 +140,7 @@ Programmieren bezeichnet das Formulieren eines Lösungskonzeptes (Algorithmus) i
 .. hint:: 
     :class: incremental
     
-    Ohne Programmierkenntnisse ist es unmöglich zu beurteilen wie komplex eine Aufgabenstellung ist. 
+    Ohne Programmierkenntnisse ist es unmöglich zu beurteilen, wie komplex eine Aufgabenstellung ist. 
 
 
 Programmiersprachen
@@ -274,9 +274,11 @@ Zentrale Eigenschaften von Algorithmen
 
     :Komplexität:
 
-      Zeit und Platzbedarf sind endlich und in einem gewissen Rahmen abschätzbar. :incremental:`Normalerweise versucht man den besten, schlechtesten und durchschnittlichen Fall zu bestimmen in Abhängigkeit von der Eingabegröße. (Insbesondere Thema des nächsten Semesters).`
+      Zeit und Platzbedarf sind endlich und in einem gewissen Rahmen abschätzbar. 
+      
+      :minor:`Normalerweise versucht man den besten, schlechtesten und durchschnittlichen Fall zu bestimmen in Abhängigkeit von der Eingabegröße. (Insbesondere Thema des nächsten Semesters).`
     
-      :incremental:`Diese Angaben erfolgen unabhängig von einer konkreten Implementierung bzw. Verwendung einer bestimmten Programmiersprache oder Hardware.`
+      :minor:`Diese Angaben erfolgen unabhängig von einer konkreten Implementierung bzw. Verwendung einer bestimmten Programmiersprache oder Hardware.`
 
     .. class:: incremental
 
@@ -320,28 +322,22 @@ Beispiel: Berechnung bzw. Approximation von :math:`e`
 
     .. container:: column incremental
 
-        .. rubric:: Java Programm bzw. Skript
+        .. rubric:: `Java Programm bzw. Skript <code/e.java>`__
 
         .. code:: Java
             :class: far-smaller
 
-            import java.math.MathContext;
-            import java.math.BigDecimal;
-            import static java.math.BigDecimal.*;
-
-            /** Approximates the value "e" by 
-             *  performing the given number of 
-             *  steps. */
-            BigDecimal e(int steps){
-              BigDecimal e = ZERO;
-              while(steps >= 0){ 
-                e = e.add(ONE.divide(
-                          new BigDecimal(fak(steps)),
-                          MathContext.DECIMAL128));
-                steps--;
-              }
-              return e;
+            BigDecimal e(int steps) {
+                BigDecimal e = BigDecimal.ZERO;
+                while (steps >= 0) {
+                    e = e.add(BigDecimal.ONE.divide(
+                            new BigDecimal(fak(steps)),
+                            MathContext.DECIMAL128));
+                    steps--;
+                }
+                return e;
             }
+
 
 .. supplemental::
 
@@ -408,21 +404,12 @@ Syntax und Semantik von formalen Sprachen
         Häufig wird die Semantik :ger-quote:`nur` in einem Standard oder :ger-quote:`sogar nur` in durch eine Implementierung festgelegt.
 
 
-Formale Sprachen: Beispiel
-----------------------------
+Formale Sprachen: Beispiel in EBNF
+--------------------------------------------
 
-.. rubric:: Beispiel in EBNF (Extended Backus-Naur Form\ [#]_): 
+.. stack:: incremental
 
-.. code:: ebnf
-
-    Satz = Subjekt Prädikat Objekt "."
-    Subjekt = "Tim" | "Sie"
-    Prädikat = "geht" | "fährt" | "schwimmt" | "fliegt"
-    Objekt = "nach Hause" | "in die Schule" | "auf den Mond"
-
-.. stack:: margin-top-1em
-
-    .. layer:: incremental
+    .. layer:: 
         
         **Syntaktisch gültiger Satz**
 
@@ -442,10 +429,17 @@ Formale Sprachen: Beispiel
         
         Tim geht in die Schule
 
+.. code:: ebnf
+    :class: margin-top-1em
 
-.. [#] Es gibt zahlreiche Varianten der `EBNF <https://en.wikipedia.org/wiki/Extended_Backus–Naur_form#:~:text=In%20computer%20science%2C%20extended%20Backus,as%20a%20computer%20programming%20language.>`__. Die grundlegenden Ideen und Konzepte sind jedoch überall gleich. 
+    Satz = Subjekt Prädikat Objekt "."
+    Subjekt = "Tim" | "Sie"
+    Prädikat = "geht" | "fährt" | "schwimmt" | "fliegt"
+    Objekt = "nach Hause" | "in die Schule" | "auf den Mond"
 
 .. supplemental::
+
+    Es gibt zahlreiche Varianten der `EBNF (Extended Backus-Naur Form) <https://en.wikipedia.org/wiki/Extended_Backus–Naur_form#:~:text=In%20computer%20science%2C%20extended%20Backus,as%20a%20computer%20programming%20language.>`__. Die grundlegenden Ideen und Konzepte sind jedoch überall gleich. 
 
     Beispiele für verschiedene Fehler in Java Programmen
 
@@ -453,11 +447,12 @@ Formale Sprachen: Beispiel
 
             int fak(long n){
               if (n == 0) 
-                return 1l // "missing ;" 
-                          // - syntaktischer Fehler"
+                return 1l // ';' expected
+                          // ⇒ "Syntaktischer Fehler"
               else 
                 return n * fak(n-1); 
-                          // Typfehler: semantischer Fehler
+                          // incompatible types: possible lossy conversion from long to int
+                          // ⇒ "Semantischer Fehler"
             }
 
 
@@ -612,5 +607,7 @@ Voraussetzungen
 
 Zu installieren (für den Anfang):
 
-- Java 22 (Java Development Kit (JDK))
+- Java 23 (Java Development Kit (JDK)) 
+  
+  https://adoptium.net/en-GB/temurin/releases/?version=23
 - Visual Studio Code inkl. Java Tools (oder Eclipse Theia)
