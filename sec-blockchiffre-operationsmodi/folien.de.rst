@@ -379,6 +379,8 @@ XTS-AES Operation auf einem Block
       - :math:`\otimes` Modulare Multiplikation mit Binärkoeffizienten modulo :math:`x^{128}+x^7+x^2+x+1`.  
 
 
+.. TODO Discuss Galois Counter Mode
+
 
 .. class:: integrated-exercise transition-scale
 
