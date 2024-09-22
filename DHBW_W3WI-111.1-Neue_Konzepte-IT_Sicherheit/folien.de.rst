@@ -1,0 +1,100 @@
+.. meta:: 
+    :author: Michael Eichberg
+    :keywords: "IT Sicherheit", "Neue Konzepte"
+    :description lang=de: Einführung in ausgewählte Konzepte der IT Sicherheit
+    :id: lecture-w3wi_111.1-neue-konzepte-it-sicherheit
+    :first-slide: last-viewed
+
+.. |html-source| source::
+    :prefix: https://delors.github.io/
+    :suffix: .html
+.. |pdf-source| source::
+    :prefix: https://delors.github.io/
+    :suffix: .html.pdf
+
+.. |at| unicode:: 0x40
+
+.. role:: incremental   
+.. role:: eng
+.. role:: ger
+.. role:: red
+.. role:: green
+.. role:: the-blue
+.. role:: minor
+.. role:: ger-quote
+.. role:: obsolete
+.. role:: line-above
+.. role:: huge
+.. role:: xxl
+
+.. role:: raw-html(raw)
+   :format: html
+
+
+
+W3WI_111.1 - Neue Konzepte (IT Sicherheit)
+================================================
+
+.. container:: line-above
+
+    :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
+    :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
+    :Version: 22EG/EH 
+
+
+.. supplemental : :
+  :Folien: 
+      [HTML] |html-source|
+
+      [PDF] |pdf-source|
+  :Fehler melden:
+      https://github.com/Delors/delors.github.io/issues
+
+
+
+Ausgewählte Inhalte gem. MHB
+---------------------------------
+
+.. rubric:: Kerninhalte
+
+.. epigraph::
+
+  In diesem Modul sollen aktuelle Themen aus allen Bereichen der Wirtschaftsinformatik aufgegriffen und den Studierenden vermittelt werden.
+
+
+.. rubric:: ÜBERGREIFENDE HANDLUNGSKOMPETENZ
+
+.. epigraph::
+
+  Die Studierenden können ein aktuelles Thema in seiner jetzigen oder zukünftigen Relevanz für ihre Tätigkeit im Unternehmen beurteilen. Sie können die vermittelten neuen Konzepte im Rahmen von Fallstudien einsetzen und anwenden.
+
+
+Prüfungsleistung - Klausur
+------------------------------------------
+
+.. admonition::  Hintergrund
+
+    - 25VL (Modul: 50 VL)
+    - Modul 5 ECTS
+    - Klausuranteil: 60 Minuten (Modul: Klausur 120 Minuten)
+    
+
+Themen
+------------------------------------------
+
+(6 Termine - wir werden ggf. nicht alle Themengebiete behandeln.)
+
+- `Cybersecurity <https://delors.github.io/sec-cybersecurity/folien.de.rst.html>`__
+- `Klassische Sicherheitsprinzipien <https://delors.github.io/sec-klassische-sicherheitsprinzipien/folien.de.rst.html>`__
+
+- `CVSS etc. <https://delors.github.io/sec-cvss-cve-vep/folien.de.rst.html>`__
+
+- `Stromchiffre <https://delors.github.io/sec-stromchiffre/folien.de.rst.html>`__
+- `Hashfunktionen <https://delors.github.io/sec-hashfunktionen/folien.de.rst.html>`__
+- `Public-Key Kryptografie <https://delors.github.io/sec-public-key-kryptographie/folien.de.rst.html>`__
+  
+- `Netzwerksicherheit <https://delors.github.io/sec-tcp-ssh-firewalls/folien.de.rst.html>`__
+
+- `CWEs und OWASP <https://delors.github.io/sec-cwe-owasp/folien.de.rst.html>`__
+
+- [`Pentesting <https://delors.github.io/sec-pentesting/folien.de.rst.html>`__]
