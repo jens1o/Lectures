@@ -1,5 +1,3 @@
 void main() {
-    var name = readln("What is your name? ");
-
-    println("Hello "+ name);
+    println("Hello "+ readln("What is your name? "));
 }
