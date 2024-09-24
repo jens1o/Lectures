@@ -846,13 +846,13 @@ Fokussiert bleiben!
 Live Exercise
 --------------------------------------
 
+.. rubric:: Gegeben
+
+:Programm: `Simplesecure++ <./exercise/simplesecurepp/simplesecurepp-0.0.1.jar>`__
+:Datei: `42.enc <./exercise/simplesecurepp/42.enc>`__
+:Hinweise: `Hints.pdf <./exercise/reversing_aufgaben.pdf>`__
+
 .. exercise:: Reversing SimpleSecure++ 
-
-    .. rubric:: Gegeben
-
-    :Programm: `Simplesecure++ <./exercise/simplesecurepp/simplesecurepp-0.0.1.jar>`__
-    :Datei: `42.enc <./exercise/simplesecurepp/42.enc>`__
-    :Hinweise: `Hints.pdf <./exercise/reversing_aufgaben.pdf>`__
 
     .. container
         .. rubric:: Programm
@@ -992,7 +992,7 @@ Reverse Engineering Übung
 
 .. exercise:: Reversing Secure++
 
-    Entschlüsseln Sie die Datei Poem.enc, die mit dem Program Secure++ verschlüsselt wurde.
+    Entschlüsseln Sie die Datei Poem.enc, die mit Secure++ verschlüsselt wurde.
 
     .. solution::
         :pwd: 5ZeilenInPython;
@@ -1030,3 +1030,4 @@ Reverse Engineering Übung
                 print(aes.decrypt(encryptedData))
 
 
+.. TODO add discussion how to use FRIDA to hook into the Java program SecureRandom class and extract the seed.
