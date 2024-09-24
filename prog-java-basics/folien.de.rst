@@ -56,8 +56,14 @@ Einführung in die Programmierung mit Java
 
 .. class:: new-section transition-move-to-top
 
-Einführung
+Mein erstes Java-Programm
 ------------------------------------------------
+
+.. include:: code/HelloWorld.java
+    :code: java
+    
+
+
 
 
 Ziele

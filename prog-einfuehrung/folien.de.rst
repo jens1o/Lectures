@@ -233,6 +233,7 @@ Beispiel: Berechnung der Fakultät (rekursiv)
         .. rubric:: Java Programm bzw. Skript
 
         .. code:: Java
+            :class: smaller
 
             long fak(long n){
               if (n == 0) return 1;
@@ -325,17 +326,19 @@ Beispiel: Berechnung bzw. Approximation von :math:`e`
         .. rubric:: `Java Programm bzw. Skript <code/e.java>`__
 
         .. code:: Java
-            :class: far-smaller
+            :class: smaller
 
             BigDecimal e(int steps) {
-                BigDecimal e = BigDecimal.ZERO;
-                while (steps >= 0) {
-                    e = e.add(BigDecimal.ONE.divide(
-                            new BigDecimal(fak(steps)),
-                            MathContext.DECIMAL128));
-                    steps--;
-                }
-                return e;
+              BigDecimal e = BigDecimal.ZERO;
+              while (steps >= 0) {
+                e = e.add(
+                    BigDecimal.ONE.divide(
+                      new BigDecimal(fak(steps)
+                    ),
+                    MathContext.DECIMAL128));
+                steps--;
+              }
+              return e;
             }
 
 
@@ -346,6 +349,7 @@ Beispiel: Berechnung bzw. Approximation von :math:`e`
     In diesem Fall wurde folgende Implementierung der Fakultät verwendet:
 
     .. code:: Java
+        :class: smaller
 
         import java.math.BigInteger;
 
@@ -444,6 +448,7 @@ Formale Sprachen: Beispiel in EBNF
     Beispiele für verschiedene Fehler in Java Programmen
 
     .. code:: Java
+        :class: smaller
 
             int fak(long n){
               if (n == 0) 
@@ -607,7 +612,11 @@ Voraussetzungen
 
 Zu installieren (für den Anfang):
 
-- Java 23 (Java Development Kit (JDK)) 
+- (mind.) Java 23 JDK (Java Development Kit) 
   
   https://adoptium.net/en-GB/temurin/releases/?version=23
+
+  oder
+
+  https://www.azul.com/downloads/?package=jdk#zulu
 - Visual Studio Code inkl. Java Tools (oder Eclipse Theia)
