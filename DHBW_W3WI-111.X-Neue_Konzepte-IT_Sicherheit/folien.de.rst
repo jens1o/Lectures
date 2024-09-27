@@ -32,7 +32,7 @@
 
 
 
-W3WI_111.1 - Neue Konzepte (IT Sicherheit)
+W3WI_111.X - Neue Konzepte (IT Sicherheit)
 ================================================
 
 .. container:: line-above
@@ -87,14 +87,14 @@ Themen
 - `Cybersecurity <https://delors.github.io/sec-cybersecurity/folien.de.rst.html>`__
 - `Klassische Sicherheitsprinzipien <https://delors.github.io/sec-klassische-sicherheitsprinzipien/folien.de.rst.html>`__
 
-- `CVSS etc. <https://delors.github.io/sec-cvss-cve-vep/folien.de.rst.html>`__
+- `Schwachstellen - Bewertung und Handhabung <https://delors.github.io/sec-cvss-cve-vep/folien.de.rst.html>`__
+
+- `Netzwerksicherheit <https://delors.github.io/sec-tcp-ssh-firewalls/folien.de.rst.html>`__
+- `CWEs und OWASP <https://delors.github.io/sec-cwe-owasp/folien.de.rst.html>`__
 
 - `Stromchiffre <https://delors.github.io/sec-stromchiffre/folien.de.rst.html>`__
 - `Hashfunktionen <https://delors.github.io/sec-hashfunktionen/folien.de.rst.html>`__
 - `Public-Key Kryptografie <https://delors.github.io/sec-public-key-kryptographie/folien.de.rst.html>`__
-  
-- `Netzwerksicherheit <https://delors.github.io/sec-tcp-ssh-firewalls/folien.de.rst.html>`__
 
-- `CWEs und OWASP <https://delors.github.io/sec-cwe-owasp/folien.de.rst.html>`__
-
+- [`Passwortwiederherstellung <https://delors.github.io/sec-password-recovery/folien.de.rst.html>`__]
 - [`Pentesting <https://delors.github.io/sec-pentesting/folien.de.rst.html>`__]

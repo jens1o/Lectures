@@ -24,7 +24,7 @@
 .. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
-
+.. role:: far-smaller
 .. role:: raw-html(raw)
    :format: html
 
@@ -34,7 +34,7 @@ Eine erste Einführung in die Sicherheit von (verteilten) Systemen
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Kontakt: michael.eichberg@dhbw-mannheim.de
-:Version: 1.0
+:Version: 1.1
 
 .. container:: footer-left tiny
     
@@ -102,9 +102,9 @@ Dreifacher Handshake:
 
     **Verbindungsaufbau - Ablauf**:
 
-    1. Client sendet SYN Paket mit initialer Sequenznummer 1000 an den Server.
-    2. Server sendet ein SYN-ACK Paket mit einem SYN mit seiner initialen Sequenznummer 2000 und ein ACK mit der Sequenznummer 1001 an den Client
-    3. Client sendet ein ACK Paket mit Sequenznummer 2001 an den Server; danach ist die Verbindung aufgebaut.
+    1. Client sendet SYN Paket mit initialer Sequenznummer (hier) 1000 an den Server.
+    2. Server sendet ein SYN-ACK Paket mit seiner initialen Sequenznummer (hier) 2000 und ein ACK mit der Sequenznummer 1001 (initiale Sequenznummer des Clients +1) an den Client
+    3. Client sendet ein ACK Paket mit Sequenznummer 2001 (initiale Sequenznummer des Servers +1) an den Server; danach ist die Verbindung aufgebaut.
 
     Das Betriebssystem sollte die initialen Sequenznummern zufällig wählen, so dass ein Angreifer diese nicht leicht vorhersagen kann. Beide Seiten haben eigene Sequenznummern, die unabhängig voneinander sind.
 
@@ -417,7 +417,7 @@ Bei allen bisher betrachteten Scans kann der Scanner prinzipiell identifiziert w
 
 .. supplemental:: 
 
-    Zombies: ein Rechner (Computer, Drucker oder anderes IoT Gerät) im Internet *möglichst ohne eigenen Netzverkehr* und mit :ger-quote:`altem` Betriebssystem, bei dem die IP ID in vorhersehbarer Weise inkrementiert wird.
+    Zombies: ein Rechner (Computer, Drucker oder anderes IoT Gerät) im Internet *möglichst ohne eigenen Netzverkehr* und mit *altem* Betriebssystem, bei dem die IP ID in vorhersehbarer Weise inkrementiert wird. (Bei modernen Betriebssystemen ist die IP ID zufällig, **konstant** oder sogar ``null``.)
 
     Sollte ein Intrusion Detection System vorhanden sein, so wird dieses den Zombie als Angreifer identifizieren.
 
@@ -468,6 +468,9 @@ Port Scans: Idle Scan - Zusammenfassung
 
     Mit einem IDLE Scan kann nicht unterschieden werden, ob der Port geschlossen oder gefiltert ist.
 
+
+
+
 Port Scans mit nmap
 -----------------------
 
@@ -475,7 +478,7 @@ Port Scans mit nmap
 
 - alle Arten von Port-Scans möglich
 - auch OS fingerprinting
-- u. U. sogar Ermittlung der Versionsnummern von Diensten
+- u. U. sogar Ermittlung der Versionsnummern von Diensten
 
 .. code:: bash 
     :class: incremental smaller copy-to-clipboard
@@ -508,24 +511,25 @@ Port Scans mit nmap
 Port Knocking
 ---------------- 
 
-.. class:: incremental
+.. class:: incremental list-with-explanations
 
 - Ein Knock-Daemon versteckt offene Ports auf dem Server.
 - Zugriffe auf alle Ports werden im Log-File protokolliert.
 - Knock-Daemon beobachtet das Log-File.
 - Erst nach Erkennen einer vordefinierten (Einmal-)Klopfsequenz öffnet der Knock-Daemon den gewünschten Port für diesen Client.
 - Client kann nun die Verbindung aufbauen.
+- Weiterentwicklung: TCP Stealth 
+  
+  In diesem Fall werden offene Ports dadurch versteckt, dass sie nur auf spezielle SYN-Pakete mit bestimmten Sequenznummern reagieren. Die Sequenznummern sind ggf. kryptografisch abgesichert und basieren auf vorher ausgetauschten Schlüsseln.
 
 .. supplemental::
-
     
     **Weiterführend**
 
     Alternativen zu einer Knock-Sequenz ist zum Beispiel, dass der Port nur dann als offen gilt, wenn die IP ID eine bestimmte Sequenznummer aufweist.
 
-    M. Krzywinski: Port Knocking: Network Authentication Across Closed Ports in SysAdmin Magazine 12: 12-17. (2003)
+    M.\ Krzywinski: Port Knocking: Network Authentication Across Closed Ports in SysAdmin Magazine 12: 12-17. (2003)
 
-    TCP Stealth
 
 Connection Hijacking
 -------------------------
@@ -548,7 +552,7 @@ Angreifer übernimmt eine bestehende - zum Beispiel eine bereits durch (Einmal-)
     
       *(Dies kann dann in einem ACK-Storm enden, was ggf. unterbunden werden muss (zum Beispiel durch das Senden eines RSTs), oder ignoriert werden kann.)*
 
-    - Der Angreifer macht einen Client mit einem DoS-Angriff unerreichbar, um sich dann mit dem Anderen zu verbinden, indem er die Netzwerk-ID des ausgeschalteten Clients nutzt.
+    - Der Angreifer macht einen Client em DoS-Angriff unerreichbar, um sich dann mit dem Anderen zu verbinden, indem er die Netzwerk-ID des ausgeschalteten Clients nutzt.
 
 
 Denial-of-Service (DoS) Angriffe
@@ -564,7 +568,7 @@ Ziel des Angreifers: Lahmlegen eines Dienstes oder des ganzen Systems ...
 
     (Historisch: aus dem Jahr 1997)
 
-    Ein ``ping`` verwendet Internet Control Message Protocol (ICMP) üblicherweise kleine Nachrichten, verwendete Länge ist aber einstellbar.
+    Ein ``ping`` (vgl. Internet Control Message Protocol (ICMP)) verwendet üblicherweise kleine Nachrichten, verwendete Länge ist aber einstellbar.
 
     Falls zu groß ⇒ Buffer Overflow ⇒ Systemabsturz!
     
@@ -718,24 +722,36 @@ Distributed Denial-of-Service (DDoS) Angriff
 Distributed-Reflected-Denial-of-Service (DRDoS) Angriff
 ------------------------------------------------------------
 
-- Idee:
+.. container:: two-columns
 
-  .. class:: incremental smaller
-  
-  - Es wird eine Anfrage an einen Server gesendet, die eine große Antwort auslöst. (z. B. hat(te) der NTP Monlist Befehl eine Antwort, die ca. 200 Fach größer ist als die Anfrage!)
-  - Mittels IP-Spoofing wird die IP-Adresse des Opfers als Absenderadresse verwendet.
-  - Es werden insbesondere Dienste basierend auf UDP verwendet, da hier keine Verbindung aufgebaut werden muss.
+    .. container:: column no-separator smaller
+
+      - Idee:
+
+        
+        
+        - Es wird eine Anfrage an einen Server gesendet, die eine große Antwort auslöst. (Z. B. hat(te) der NTP Monlist Befehl eine Antwort, die ca. 200 Fach größer ist als die Anfrage!)
+        - Mittels IP-Spoofing wird die IP-Adresse des Opfers als Absenderadresse verwendet.
+        
+        .. class:: incremental
+
+        - Es werden insbesondere Dienste basierend auf UDP verwendet, da hier keine Verbindung aufgebaut werden muss.
+
+    .. image:: images/drdos.svg 
+        :alt: DRDoS Angriff
+        :align: center
+        :width: 600px
 
 .. class:: incremental smaller
 
 - Nehmen einen signifikanten Teil aller DDoS-Angriffe ein. 
 - Die Tatsache, dass die Sender legitime Server sind, erschwert die Abwehr.
-- :eng:`Egress Filtering` kann helfen, die Verwendung von IP-Spoofing zu verhindern. 
+- :eng:`Egress Filtering` kann helfen, die Verwendung von IP-Spoofing zu verhindern.     
 
 
 .. supplemental::
     
-    Bereits im Jahr 2018 wurde ein Angriff mit einer Bandbreite von 1,7 TBit/s beobachtet.
+    Bereits im Jahr 2018 wurde ein Angriff er Bandbreite von 1,7 TBit/s beobachtet.
 
     :Egress Filtering: Der Router verwirft alle Pakete, die eine Absenderadresse verwenden, die nicht aus dem eigenen Netzwerk stammt. 
 
@@ -751,23 +767,21 @@ Distributed-Reflected-Denial-of-Service (DRDoS) Angriff
 
 
 
-Distributed Denial-of-Service (DDoS) Angriffe 
-------------------------------------------------
+Distributed Denial-of-Service Angriffe - Beispiele
+---------------------------------------------------
 
-.. container:: incremental 
+.. container:: smaller
 
-    Beispiele:
-
-    - TCP Stack Attacks (SYN, FIN, RST, ACK, SYN-ACK, URG-PSH, other combinations of TCP Flags, slow TCP attacks)
-    - Application Attacks (HTTP GET/POST Floods, slow HTTP Attacks, SIP Invite Floods, DNS Attacks, HTTPS Protocol Attacks)
-    - SSL/TLS Attacks (Malformed SSL Floods, SSL Renegotiation, SSL Session Floods)
-    - DNS Cache Poisoning
-    - Reflection Amplification Flood Attacks (TCP, UDP, ICMP, DNS, mDNS, SSDP, NTP, NetBIOS, RIPv1, rpcbind, SNMP, SQL RS, Chargen, L2TP, Microsoft SQL Resolution Service)
-    - Fragmentation Attacks (Teardrop, Targa3, Jolt2, Nestea)
-    - Vulnerability Attacks
-    - Resource Exhaustion Attacks (Slowloris, Pyloris, LOIC, etc.)
-    - Flash Crowd Protection
-    - Attacks on Gaming Protocols.
+   - **TCP Stack Attacks** SYN, FIN, RST, ACK, SYN-ACK, URG-PSH, other combinations of TCP Flags, slow TCP attacks
+   - **Application Attacks**:HTTP GET/POST Floods, slow HTTP Attacks, SIP Invite Floods, DNS Attacks, HTTPS Protocol Attacks
+   - **SSL/TLS Attacks**: Malformed SSL Floods, SSL Renegotiation, SSL Session Floods
+   - **DNS Cache Poisoning**
+   - **Reflection Amplification Flood Attacks**: TCP, UDP, ICMP, DNS, mDNS, SSDP, NTP, NetBIOS, RIPv1, rpcbind, SNMP, SQL RS, Chargen, L2TP, Microsoft SQL Resolution Service
+   - **Fragmentation Attacks**: Teardrop, Targa3, Jolt2, Nestea
+   - **Vulnerability Attacks**
+   - **Resource Exhaustion Attacks**: Slowloris, Pyloris, LOIC, etc.
+   - **Flash Crowd Protection**
+   - **Attacks on Gaming Protocols**
 
 
 
@@ -811,8 +825,10 @@ Password Sniffing
 ---------------------
 
 :In der Anfangszeit: unverschlüsselte Übertragung von Passwörtern (telnet, ftp, ...)
-:In der Übergangszeit (bzw. in bestimmten Szenarien auch heute): Verwendung von Einmal-Passwörtern (S/Key, ...)
-:Heute: Passwörter werden verschlüsselt übertragen (ssh, https, ...)
+:In der Übergangszeit: Verwendung von Einmal-Passwörtern (S/Key, ...)
+:Heute: Passwörter werden verschlüsselt übertragen (ssh, https, ...) 
+
+    Zusätzliche Absicherung durch Zwei-Faktor-Authentifizierung (TOTP, ...)
 
 
 .. supplemental::
@@ -827,7 +843,7 @@ Die Idee ist, dass Passwörter nur genau einmal gültig sind und nicht wiederver
 
 - Tokens (z. B. RSA SecurID)
 - Codebuch: Liste von Einmal-Passwörtern, die das gemeinsame Geheimnis sind.
-- S/Key: Passwort "wird mit einem Zähler kombiniert" und dann gehasht.
+- S/Key: Passwort :ger-quote:`wird em Zähler kombiniert` und dann gehasht.
 
 
 Das S/Key Verfahren 
@@ -846,7 +862,7 @@ Einmal-Passwort-System nach Codebuch-Verfahren, dass im Original auf der kryptog
         1) Der Nutzer gibt sein Passwort W ein; dies ist der geheime Schlüssel. (Sollte W bekannt werden, dann ist die Sicherheit des Verfahrens nicht mehr gewährleistet.)
         2) Eine kryptografische Hash-Funktion H wird n-mal auf W angewandt, wodurch eine Hash-Kette von n einmaligen Passwörtern entsteht. :math:`H(W), H(H(W)), \dots, H^{n}(W)`
         3) Das initiale Passwort wird verworfen.
-        4) Der Benutzer erhält die n Passwörter, die in umgekehrter Reihenfolge ausgedruckt werden: :math:`H^n(W), H^{n-1}(W), ..., H(H(W)), H(W)`.
+        4) Der Benutzer erhält die :math:`n` Passwörter, die in umgekehrter Reihenfolge ausgedruckt werden: :math:`H^n(W), H^{n-1}(W), ..., H(H(W)), H(W)`.
         5) Nur das Passwort :math:`H^n(W)`, das an erster Stelle der Liste des Benutzers steht, der Wert von :math:`n` und ggf. ein Salt, wird auf dem Server gespeichert.
 
     .. layer:: incremental
@@ -865,6 +881,81 @@ Einmal-Passwort-System nach Codebuch-Verfahren, dass im Original auf der kryptog
 .. supplemental::
 
     Intern verwendet S/KEY 64-bit Zahlen. Für die Benutzbarkeit werden diese Zahlen auf sechs kurze Wörter, von ein bis vier Zeichen, aus einem öffentlich zugänglichen 2048-Wörter-Wörterbuch (:math:`2048 = 2^{11}`) abgebildet. Zum Beispiel wird eine 64-Bit-Zahl auf "ROY HURT SKI FAIL GRIM KNEE" abgebildet. 
+
+
+
+HMAC-based one-time password (HOTP)\ [#]_
+--------------------------------------------
+
+- ermöglicht die Erzeugung von Einmal-Passwörtern auf Basis eines geheimen Schlüssels und eines Zählers; Parameter:
+
+    .. class:: incremental far-smaller
+
+    - Ein kryptografisches Hash-Verfahren :math:`H` (Standard ist SHA-1)
+    - einen geheimen Schlüssel :math:`K`, der eine beliebige Bytefolge ist
+    - Ein Zähler :math:`C`, der die Anzahl der Iterationen zählt
+    - Länge des Passworts: :math:`d` (6-10, Standardwert ist 6, empfohlen werden 6-8)
+
+.. class:: incremental
+
+- Zur Authentifizierung berechnen beide das Einmalpasswort (HOTP) und dann vergleicht der Server den Wert mit dem vom Client übermittelten Wert:
+
+  .. container:: far-smaller
+
+    Berechnung aus dem Schlüssel :math:`K` und dem Zähler :math:`C`:
+
+        .. class:: incremental
+
+        :math:`HOTP(K, C) = truncate(HMAC_H(K, C))`
+
+        .. container:: incremental
+
+                :math:`truncate(MAC) = extract31(MAC, MAC[(19 × 8 + 4):(19 × 8 + 7)])`
+            
+        .. class:: incremental
+
+        :math:`HOTP\; value = HOTP(K, C)\; mod\; 10^d\qquad` (führende Nullen werden nicht abgeschnitten)
+
+.. [#] https://www.rfc-editor.org/rfc/rfc4226
+
+
+.. supplemental::
+
+    :math:`truncate` verwendet die 4 niederwertigsten Bits des MAC als Byte-Offset i in den MAC.
+    Der Wert :math:`19` kommt daher, dass ein SHA-1 :math:`160` Bit hat und :math:`160/8 = 20` Byte. 
+
+    Eine Schwäche des Algorithmus ist, dass beide Seiten den Zähler erhöhen müssen und, falls die Zähler aus dem Tritt geraten, ggf. eine Resynchronisation notwendig ist.
+
+
+Time-based one-time password (TOTP)\ [#]_
+--------------------------------------------
+
+- Erzeugung von zeitlich limitierten Einmal-Passwörtern (z. B. 30 Sekunden)
+
+.. class:: incremental list-with-explanations
+
+- Basierend auf einem vorher ausgetauschten geheimen Schlüssel und der aktuellen Zeit 
+
+  Z. B. Unix-Zeit in Sekunden (ganzzahlig) und danach gerundet auf 30 Sekunden.
+
+
+- Es wird das HOTP Verfahren mit der Zeit als Zähler verwendet und entweder SHA-256 oder SHA-512, d. h. TOTP :math:`value(K)` = HOTP :math:`value(K, C_T)`, wobei :math:`T` die :ger-quote:`aktuelle Zeit` ist.
+
+  :math:`C_T = \lfloor { T - T_0 \over T_X } \rfloor`
+  
+  - :math:`T_X` ist die Länge eines Zeitintervalls (z. B. 30 Sekunden) 
+  - :math:`T` ist die aktuelle Zeit in Sekunden seit einer bestimmten Epoche
+  - :math:`T_0` ist bei Verwendung der Unix-Zeit :math:`0`
+  - :math:`C_T` ist somit die Anzahl der Dauern :math:`T_X` zwischen :math:`T_0` und :math:`T`
+
+
+.. [#] https://www.rfc-editor.org/rfc/rfc6238
+
+
+.. supplemental::
+
+   Das verfahren verlangt somit, dass die Uhren von Server und Client (hinreichend) synchronisiert sind.
+
 
 
 `Secure Shell (SSH) <https://datatracker.ietf.org/doc/html/rfc4254>`__
@@ -890,7 +981,7 @@ SSH ermöglicht die sichere Fernanmeldung von einem Computer bei einem anderen (
 
 .. supplemental::
 
-    Die Authentifizierung mittels eines Schlüsselpaars dient primäre der Automatisierung (dann wird auch keine :ger-quote:`Schlüsselphrase` zum Schutz des Passworts verwendet). Auf jeden Fall ist effektives Schlüsselmanagement erforderlich:
+    Die Authentifizierung mittels eines Schlüsselpaars dient primär der Automatisierung (dann wird auch keine :ger-quote:`Schlüsselphrase` zum Schutz des Passworts verwendet). Auf jeden Fall ist effektives Schlüsselmanagement erforderlich:
 
     .. epigraph::
 
@@ -913,12 +1004,12 @@ Secure Shell (SSH) - Protokoll
     Beide Seiten haben einen Public-private Key Schlüsselpaar zur Gegenseitigen Authentifizierung
 
     :User Keys: 
-     - ``Authorized keys`` - Datei mit den öffentlichen Schlüsseln der Nutzer, gespeichert auf Serverseite
-     - ``Identity keys`` private Schlüssel der Nutzer
+     - ``Authorized keys`` - Serverseitige Datei mit den öffentlichen Schlüsseln der Nutzer
+     - ``Identity keys`` - private Schlüssel der Nutzer
 
-    :Host keys: benötigt für die Authentifizierung von Servern, um Man-in-the-Middle-Angriffe zu verhindern.
+    :Host keys: dienen der Authentifizierung von Servern (verhindern Man-in-the-Middle-Angriffe)
 
-    :Session Keys: werden für die symmetrische Verschlüsselung der Daten in einer Verbindung verwendet. Session Keys (:ger:`Sitzungsschlüssel`) werden während des  Verbindungsaufbaus ausgehandelt.
+    :Session Keys: werden für die symmetrische Verschlüsselung der Daten in einer Verbindung verwendet. Session Keys (:ger:`Sitzungsschlüssel`) werden während des Verbindungsaufbaus ausgehandelt.
 
 .. supplemental:: 
 
@@ -932,7 +1023,7 @@ Secure Shell (SSH) - Verbindungsaufbau - Beispiel
 .. container:: scrollable 
 
     .. code:: text
-        :class: smallest
+        :class: far-far-smaller
 
         debug1: Reading configuration data /etc/ssh/ssh_config
         debug1: Applying options for *
@@ -1002,10 +1093,12 @@ SSH Tunneling
 - ermöglicht die Übertragung beliebiger Netzwerkdaten über eine verschlüsselte SSH-Verbindung. z. B. 
 
   - um ältere Anwendungen zu verschlüsseln. 
-  - um VPNs (Virtual Private Networks) zu implementieren 
+  - um VPNs (Virtual Private Networks) zu implementieren.
   - um über Firewalls hinweg auf Intranetdienste zuzugreifen.
 
-- ermöglicht auch Port-forwarding (lokale Ports werden auf entfernten Rechner weitergeleitet)
+- ermöglicht auch Port-forwarding 
+  
+  :far-smaller:`(Lokale Ports werden auf entfernten Rechner weitergeleitet.)`
 
 .. image:: images/ssh/tunneling.svg 
     :alt: SSH Protokoll
@@ -1055,14 +1148,14 @@ Schwachstellen in SSH
 
 .. exercise:: Port Scans - IDLE Scan
 
-  - Warum kann mit einem IDLE Scan nicht festgestellt werden warum ein Port geschlossen oder gefiltert ist?
-  - Welchen Wert hat die IP ID des Zombies, der einem IDLE Scan durchführt, wenn der Zielport offen bzw. geschlossen ist wenn der Scanner diesen wieder abfragt?
+  - Warum kann bei einem IDLE Scan nicht festgestellt werden warum ein Port geschlossen oder gefiltert ist?
+  - Welchen Wert hat die IP ID des Zombies, der einem IDLE Scan durchführt, wenn der Zielport offen bzw. geschlossen ist, wenn der Scanner diesen wieder abfragt?
 
   .. solution::
      :pwd: IDLEPort
 
      - Wenn der Port geschlossen ist, dann sendet der Zielrechner ein RST Paket an den Zombie. Dieses wird vom Zombie ignoriert. Daher erhöht sich die IP ID des Zombies nicht.
-     - Wenn der Port offen ist, dann sendet der Zielrechner ein SYN/ACK Paket an den Zombie. Dieser antwortet mit einem RST Paket und erhöht seine IP ID um 1. d. h. der Wert der IP ID des Zombies ist um 2 höher wenn der Port offen ist und "nur" eins höher sonst.
+     - Wenn der Port offen ist, dann sendet der Zielrechner ein SYN/ACK Paket an den Zombie. Dieser antwortet mit einem RST Paket und erhöht seine IP ID um 1. D. h. der Wert der IP ID des Zombies ist um 2 höher, wenn der Port offen ist und :ger-quote:`nur` eins höher sonst.
 
 
 
@@ -1111,6 +1204,31 @@ Schwachstellen in SSH
         7. Keine
 
 
+
+.. class:: integrated-exercise transition-move-left
+
+Übung
+--------------
+
+.. exercise:: TOTP
+
+  Identifizieren Sie die Vor- und Nachteile von TOTP gegenüber S/Key und fragen Sie sich an welcher Stelle es (aus Sicherheitsperspektive) mögliche Schwächen gibt? 
+
+  Die Standardzeitspanne ist 30 Sekunden. Welcher Konsequenzen hätte eine deutliche Verlängerung bzg. Verkürzung der Zeitspanne?
+  
+  .. solution::
+    :pwd: TOTPandSKey
+
+    - Bei TOTP gibt es keine beschränkte Liste von Passwörtern. Die Passwörter werden dynamisch generiert und es stehen :ger-quote:`unendlich` viele zur Verfügung. Es kann auch keine Verwirrung über das nächste bzw. bereits verbrauchte Passwort geben. Die Synchronisation ist ggf. einfacher.
+    - Bei TOTP gibt es ein Shared Secret, das auf dem Server gespeichert wird. Bei S/Key werden keine entsprechenden Informationen auf dem Server gespeichert. D. h. selbst wenn der Server kompromittiert wird, kann nicht auf das ursprüngliche Secret geschlossen werden.
+    - SKey verwendet ursprünglich MD4, was heute als unsicher gilt. TOTP verwendet (z. B.) HMAC-SHA-256, was als sicher gilt. Dies ist jedoch kein konzeptioneller Unterschied und eine Einsatz sicherer Hashverfahren ist/wäre auch bei SKey möglich.
+   
+    - Kürzer: mehr Sicherheit, aber ggf. auch schlechtere Bedienbarkeit. 
+    - Länger: ggf. bessere Bedienbarkeit (man muss sich nicht beeilen.)
+    - Sehr lange (z. B. >> 10 min): ggf. auch schlechtere Bedienbarkeit, da man sich nach ein Logout nicht direkt wieder anmelden kann.
+
+
+
 .. class:: integrated-exercise transition-move-left
 
 Übung
@@ -1140,10 +1258,10 @@ Schwachstellen in SSH
 
        Slowloris ist ein *low and slow* DDoS-Angriffsvektor. Die Idee des Slowloris-Angriffs besteht darin, den gesamten TCP-Stack für den HTTP/S-Daemon zu sättigen. Dies geschieht, indem langsam Verbindungen geöffnet und dann eine unvollständige Anfrage gesendet wird, um die Verbindung so lange wie möglich am Leben zu erhalten. Das Tool geht dabei langsam vor, so dass es in einigen Fällen möglich ist, dass ein einziger Angreifer einen Webserver zum Absturz bringen kann. Wenn das Limit der gleichzeitigen Verbindungen auf dem angegriffenen Server erreicht ist, kann der Server nicht mehr auf legitime Anfragen von anderen Benutzern reagieren, was zu einer Dienstverweigerung führt.
     
-       Der Slowloris-Angriff zielt darauf ab, die Verbindungstabelle zu füllen, so dass der Server nicht mehr in der Lage ist, neue legitime Anfragen von legitimen Benutzern zu bedienen. Dies wird durch den Einsatz von zwei Hauptfunktionen erreicht: 1. Instabile Öffnungsrate für neue Verbindungen - neue TCP-Verbindungen werden stoßweise angefordert, wobei zwischen jedem Stoß eine gewisse Zeit gewartet wird, was es schwierig macht, von ratenbasierten Abhilfemaßnahmen entdeckt zu werden. 2. Aufrechterhaltung neu eingerichteter TCP-Verbindungen - neu eingerichtete TCP-Verbindungen werden aufrechterhalten, indem Teildaten über mehrere HTTP-Anforderungen unter Verwendung derselben TCP-Verbindung gesendet werden. Dadurch wird das Ziel gezwungen, die Verbindungen offen zu halten, während gleichzeitig Platz in der Verbindungstabelle und Speicherplatz verbraucht werden.
+       Der Slowloris-Angriff zielt darauf ab, die Verbindungstabelle zu füllen, so dass der Server nicht mehr in der Lage ist, neue legitime Anfragen von legitimen Benutzern zu bedienen. Dies wird durch den Einsatz von zwei Hauptfunktionen erreicht: 1. Instabile Öffnungsrate für neue Verbindungen - neue TCP-Verbindungen werden stoßweise angefordert, wobei zwischen jedem Stoß eine gewisse Zeit gewartet wird, was es schwierig macht, von ratenbasierten (:eng:`rate limiting`) Abhilfemaßnahmen entdeckt zu werden. 2. Aufrechterhaltung neu eingerichteter TCP-Verbindungen - neu eingerichtete TCP-Verbindungen werden aufrechterhalten, indem Teildaten über mehrere HTTP-Anforderungen unter Verwendung derselben TCP-Verbindung gesendet werden. Dadurch wird das Ziel gezwungen, die Verbindungen offen zu halten, während gleichzeitig Platz in der Verbindungstabelle und Speicherplatz verbraucht werden.
 
 
-    3. Dies kann zum Beispiel auf Seiten eines ISPs geschehen.
+    3. Dies kann zum Beispiel auf Seiten eines ISPs geschehen oder auch bei Firmennetzwerken
 
 
 .. class:: new-section transition-fade
@@ -1168,6 +1286,9 @@ Unabhängiges Netz - :ger-quote:`Ideale Situation`
     - kein Schutz gegen Insider
     - kein Zugang zum Internet
 
+.. supplemental::
+
+    Wie bereits diskutiert gibt es auch Angriffsmuster gegen Air-Gapped-Systeme. Ein Beispiel ist der Stuxnet-Wurm, der sich initial über USB-Sticks verbreitet.
 
 
 Von der Notwendigkeit des Schutzes von Rechnern
@@ -1278,7 +1399,7 @@ DoS Attacke auf Anwendungsebene
 
     Angriff auf die Kleinen
 
-    Waren bei früheren Spamangriffen massenhaft Accounts auf der größten Mastodon-Instanz mastodon.social angelegt worden, die dann von dort ihre Inhalte verbreiteten, trifft es nun nicht die größte, sondern die kleinsten. Automatisiert werden dabei Instanzen ausgesucht, auf denen eine Registrierung ohne Überprüfung und sogar ohne ein Captcha möglich ist. Das können etwa solche mit wenigen Accounts sein, die von Enthusiasten etwa für eine Gemeinde betrieben werden. Waren die Verantwortlichen in den vergangenen Tagen nicht aufmerksam, wurden diese Instanzen dann regelrecht überrannt. Die Spam-Accounts verschickten massenhaft Nachrichten mit einem Bild des namensgebenden Frühstücksfleischs und Links zu Discord-Servern, die wohl lahmgelegt werden sollten.
+    Waren bei früheren Spamangriffen massenhaft Accounts auf der größten Mastodon-Instanz ``mastodon.social`` angelegt worden, die dann von dort ihre Inhalte verbreiteten, trifft es nun nicht die größte, sondern die kleinsten. Automatisiert werden dabei Instanzen ausgesucht, auf denen eine Registrierung ohne Überprüfung und sogar ohne ein Captcha möglich ist. Das können etwa solche mit wenigen Accounts sein, die von Enthusiasten etwa für eine Gemeinde betrieben werden. Waren die Verantwortlichen in den vergangenen Tagen nicht aufmerksam, wurden diese Instanzen dann regelrecht überrannt. Die Spam-Accounts verschickten massenhaft Nachrichten mit einem Bild des namensgebenden Frühstücksfleischs und Links zu Discord-Servern, die wohl lahmgelegt werden sollten.
 
     -- `Mastodon: Spamwelle zeigt Schwächen auf [...] <https://www.heise.de/news/Mastodon-Spamwelle-zeigt-Schwaechen-auf-und-weckt-Sorge-vor-schlimmerer-Methode-9632055.html>`__
 
@@ -1344,9 +1465,9 @@ Screening Router
 
         **Bewertung**
 
-        .. container:: two-columns width-60
+        .. container:: two-columns 
 
-            .. container:: column
+            .. container:: column no-separator
                 
                 .. class:: positive-list
 
@@ -1519,12 +1640,12 @@ IDS-Erkennungstechniken
 
            Ein Risiko bei Dual Homed Hosts ist die Übernahme des Hosts durch einen Angreifer. Dieser hat dann über die entsprechende Netzwerkschnittstelle des Dual Homed Hosts vollständigen Zugriff auf das interne Netz.
 
-        3. \
+        2. \
 
            - Hintertüren - sollte es Kommunikationsübergänge an der Firewall vorbei geben,  so können diese von Angreifern genutzt werden.
            - Interne Angriffe - diesbezüglich gibt es keine Unterschiede zu einem Netzwerk ohne Firewall.
            - Vertrauenswürdigkeit der Kommunikationspartner.
 
-        4. Die Hauptaufgabe von Firewalls ist es Angriffen entgegenzuwirken (3.). Eine Reaktion auf Angriffe ist für klassische Firewalls nicht möglich. Eine Reaktion auf Angriffe ist Aufgabe von Intrusion Detection Systemen. Moderne Firewalls integrieren jedoch häufig auch Funktionen von *Intrusion Detection Systemen*. (Angriffe können nicht vermieden werden, da dies nicht in der Macht der Firewall liegt. Klassische/Einfache Firewalls können keine Angriffe erkennen.)
-        5. ... die Mails sollen ja den Mailserver erreichen; eine inhaltsbasierte Beurteilung des Inhalts einer Mail ist nicht Aufgabe einer Firewall. 
+        3. Die Hauptaufgabe von Firewalls ist es Angriffen entgegenzuwirken (3.). Eine Reaktion auf Angriffe ist für klassische Firewalls nicht möglich. Eine Reaktion auf Angriffe ist Aufgabe von Intrusion Detection Systemen. Moderne Firewalls integrieren jedoch häufig auch Funktionen von *Intrusion Detection Systemen*. (Angriffe können nicht vermieden werden, da dies nicht in der Macht der Firewall liegt. Klassische/Einfache Firewalls können keine Angriffe erkennen.)
+        4. ... die Mails sollen ja den Mailserver erreichen; eine inhaltsbasierte Beurteilung des Inhalts einer Mail ist nicht Aufgabe einer Firewall. 
 

@@ -32,7 +32,7 @@ Klassische Sicherheitsprinzipien
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Kontakt: michael.eichberg@dhbw-mannheim.de
-:Version: 1.0
+:Version: 1.1
 
 .. supplemental::
 
@@ -59,7 +59,17 @@ Klassische Sicherheitsprinzipien
 
 .. class:: incremental
 
-:Principle of Complete Mediation: Jeder Zugriff auf eine Ressource sollte überprüft werden.
+:Principle of Complete Mediation: Zugriffsanfragen eines Subjekts auf ein Objekt werden jedes Mal vollständig auf ihre Zulässigkeit hin überprüft.
+
+
+.. supplemental::
+
+    :Principle of Economy of Mechanism (aka Principle of Simplicity): dies fördert zum Beispiel die Korrektheit der Implementierung/Anwendung, da diese schneller verstanden wird und auch einfacher getestet werden kann. Weiterhin reduziert es die Angriffsfläche.
+
+    :Principle of Complete Mediation: Bei der Entwicklung einer Serveranwendung besagt das *Principle of Complete Mediation* somit, dass bei jeder Anfrage zu überprüfen ist, ober der Nutzer die entsprechenden Rechte besitzt.
+
+
+
 
 
 Klassische Sicherheitsprinzipien
@@ -70,7 +80,10 @@ Klassische Sicherheitsprinzipien
 
 .. class:: incremental
 
-:Principle of Separation of Privilege: Ein System sollte in mehrere POLA konforme Komponenten unterteilt sein. Sollte eine Komponente kompromittiert sein, dann sind die Möglichkeiten des Angreifers dennoch begrenzt. (Eng verwandt mit dem POLA.)
+:Principle of Separation of Privilege: Ein System sollte in mehrere POLA konforme Komponenten unterteilt sein. Sollte eine Komponente kompromittiert sein, dann sind die Möglichkeiten des Angreifers dennoch begrenzt. 
+
+    (Eng verwandt mit dem POLA.)
+
 
 
 Klassische Sicherheitsprinzipien
@@ -85,10 +98,17 @@ Klassische Sicherheitsprinzipien
 .. supplemental:: 
 
     **Beispiel - Principle of Least Common Mechanism**
+    (~ :ger:`Grundsatz des kleinsten gemeinsamen Mechanismus``)
 
-    z. B. sollten keine gemeinsamen Speicherbereiche verwendet werden und es ist deswegen sinnvoll - wenn möglich - auf Implementierungen im Kernel zu verzichten und statt dessen auf User-Space-Implementierungen zu setzen. 
+    Das Prinzip besagt zum Beispiel, dass die Mechanismen, die von mehreren Benutzern verwendet werden oder von dem mehrere Nutzer abhängen, minimiert werden sollten.
+
+    Das Prinzip kann/sollte auf ganz verschiedenen Ebenen angewendet werden:
+
+    - Z. B. sollten keine gemeinsamen Speicherbereiche verwendet werden in denen möglicherweise sicherheitsrelevantes Material vorgehalten wird. Es ist deswegen z. B. sinnvoll - wenn möglich - auf Implementierungen im Kernel zu verzichten und statt dessen auf User-Space-Implementierungen zu setzen. 
     
-       TCP Connection Hijacking Angriffe wird bzw. wurden z. B. durch die Implementierung des TCP Stacks im Kernel ermöglicht (:math:`\Leftrightarrow` :ger-quote:`Principle of Least Common Mechanism`).
+       TCP Connection Hijacking Angriffe werden bzw. wurden z. B. durch die Implementierung des TCP Stacks im Kernel ermöglicht (:math:`\Leftrightarrow` :ger-quote:`Principle of Least Common Mechanism`).
+    
+    - Z. B. sollten keine geteilten Passworte verwendet werden, um sich gegenüber einem System zu authentifizieren. (Dies bezieht sich sowohl auf die Passwörter einer Person als auch auf Passwörter über Personen und Systemgrenzen hinweg!)
 
 
 
@@ -123,8 +143,7 @@ Ergänzende Sicherheitsprinzipien
 
 .. class:: incremental
 
-:Principle of Least Astonishment: Die Sicherheitsmechanismen sollten so entworfen sein, dass sie keine Überraschungen für die Benutzer bereithalten.
-
+:Principle of Least Astonishment: Die Sicherheitsmechanismen sollten so entworfen sein, dass sie keine Überraschungen für die Benutzer bereithalten.    
 
 .. supplemental::
 
@@ -132,4 +151,91 @@ Ergänzende Sicherheitsprinzipien
 
     - einfache (und effiziente) Paketfilter auf unterster Ebene
     - zustandsbehaftete Paketfilter auf der nächsten bzw. der Anwendungsebene
+  
+
+    
+
+
+.. class:: integrated-exercise
+
+Übung
+-----------------------------------------------
+
+.. exercise:: Principle of Open Design
+
+    Benennen Sie ein historisches Verschlüsselungsverfahren, das gegen das *Principle of Open Design* verstoßen hat.
+
+    .. solution:: 
+        :pwd: Caesar
+
+        Das Verschlüsselungsverfahren von Caesar verletzt das *Principle of Open Design*, da die Sicherheit des Verfahrens von der Geheimhaltung des Verfahrens abhängt. Selbst zu Zeiten Caesars wäre ein Brute-Force Angriff trivial möglich gewesen.
+
+.. exercise:: Verletzung
+
+    Stellen Sie sich vor, dass Sie als Pin (z. B. für ein Tablet), folgende Zahl verwenden wollen (Leerzeichen dienen nur der besseren Lesbarkeit): 
+
+       ``3671 1197 4769``
+
+    Während als Pin das folgende Passwort akzeptiert wird:
+
+       ``1364 7964 1364``
+
+    Welches Prinzip ist verletzt?
+
+    .. container:: minor far-smaller 
+        
+        Hinweis: Schauen Sie sich ggf. ein Pinpad an.
+
+    .. solution::
+        :pwd: PrincipleOfLeastAstonishment
+
+        Bei der zweiten Pin handelt es sich um einen einfach *Keypad Walk*. Während die erste Pin eine scheinbar zufällige Zahlenfolge ist. Das *Principle of Least Astonishment* wird hier verletzt, da der Benutzer davon ausgehen würde, dass, wenn die erste Pin nicht akzeptiert wird, die zweite Pin erst recht nicht akzeptiert wird.
+
+
+
+.. class:: integrated-exercise
+
+Übung
+-----------------------------------------------
+
+.. exercise:: Browser
+
+    Der Chrome-Browser (zum Beispiel) unterstützt die so genannten `Isolierung von besuchten Webseiten <https://support.google.com/chrome/a/answer/7581529?hl=en>`__.
+    Bei dieser werden Seiten von verschiedenen Websites in unterschiedliche Prozesse aufgeteilt. 
+
+    Welches Prinzip bzw. welche Prinzipien wird/werden hier umgesetzt?
+
+    .. solution:: 
+        :pwd: ChromeWasFirst
+
+        Das *Principle of Isolation* wird hier umgesetzt. Ist die Sicherheit einer Webseite kompromittiert, so betrifft dies nicht sie Sicherheit der anderen Webseiten.
+
+        Weiterhin wird auch das *Principle of Least Common Mechanism* umgesetzt, da die Webseiten in unterschiedlichen Prozessen laufen und somit viele Angriffsvektoren unterbunden werden, da es nur minimalen geteilten Speicher gibt.
+
+        
+
+.. exercise:: Quantum Algorithmen für die Verschlüsselung
+
+    Zukünftige Verschlüsselungsalgorithmen, z. B. solche die auch im Zeitalter der Quantencomputer noch sicher sein sollen, werden häufig im Rahmen von offenen Wettbewerben entwickelt bzw. ausgesucht. Wie bewerten Sie dieses Vorgehen?
+
+    .. solution::
+        :pwd: OpenDesignIsTheKey
+
+        Das *Principle of Open Design* wird hier umgesetzt und dient letztlich dazu Sicherheitslücken möglichst früh zu entdecken. Dies hat auch dazu geführt, dass kein Algorithmus, der in den letzten Jahren ausgewählt wurde (insbesondere zum Beispiel AES), von bekannten Sicherheitsproblemen betroffen ist.
+
+
+.. class:: integrated-exercise
+
+Übung
+-----------------------------------------------
+
+
+.. exercise:: Rechte von im Hintergrund laufenden Prozessen auf Servern
+
+    Es ist üblich, dass für Prozesse, die auf Servern im Hintergrund laufen, extra Nutzerkonten eingerichtet werden. Warum ist dies so? Welche Rechte sollten diese :ger-quote:`Nutzer` bekommen? Was sollte weiterhin beachtet werden?
+
+    .. solution:: 
+        :pwd: LeastPrivilege
+
+        Das *Principle of Least Privilege* wird hier umgesetzt. Ein Prozess sollte nur die Rechte bekommen, die er wirklich benötigt. D. h. die Nutzerkonten sollten auf keinen Fall über Administrationsrechte verfügen. Normalerweise sollte auch kein Einloggen möglich sein. Ggf. notwendige Rechte (zum Beispiel für die Verwendung von privilegierten Ports) sollten explizit vergeben werden. Zugriff nur auf die Verzeichnisse/Dateien sollte möglich sein, die wirklich benötigt werden. 
 
