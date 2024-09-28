@@ -30,7 +30,7 @@ Betriebsmodi bei Blockchiffren
 ===============================================
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-:Version: 1.0
+:Version: 1.1
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 
 .. supplemental::
@@ -107,7 +107,7 @@ Electronic Codebook
     :width: 1200px
     :align: center 
 
-.. container:: small
+.. container:: far-far-smaller
     
     Autor: https://commons.wikimedia.org/wiki/User:WhiteTimberwolf
 
@@ -150,7 +150,7 @@ Cipher Block Chaining
         :width: 1200px
         :align: center 
 
-    .. container:: small
+    .. container:: far-far-smaller
         
         Autor: https://commons.wikimedia.org/wiki/User:WhiteTimberwolf
 
@@ -199,7 +199,7 @@ Bei AES, DES oder jeder anderen Blockchiffre erfolgt die Verschlüsselung immer 
         :width: 1200px
         :align: center 
 
-    .. container:: small
+    .. container:: far-far-smaller
         
         Autor: https://commons.wikimedia.org/wiki/User:WhiteTimberwolf
 
@@ -227,7 +227,7 @@ Bei AES, DES oder jeder anderen Blockchiffre erfolgt die Verschlüsselung immer 
         :width: 1200px
         :align: center 
 
-    .. container:: small
+    .. container:: far-far-smaller
         
         Autor: https://commons.wikimedia.org/wiki/User:WhiteTimberwolf
 
@@ -248,7 +248,7 @@ Bei AES, DES oder jeder anderen Blockchiffre erfolgt die Verschlüsselung immer 
         :width: 1200px
         :align: center 
 
-    .. container:: small
+    .. container:: far-far-smaller
         
         Autor: https://commons.wikimedia.org/wiki/User:WhiteTimberwolf
 
@@ -283,13 +283,78 @@ Spezielle Betriebsmodi
 --------------------------------
 
 
-.. TODO: Diskussion von GCM hinzufügen..
+Drei Ansätze in Hinblick auf *Authenticated Encryption* 
+--------------------------------------------------------
+
+.. container:: two-columns
+
+    .. container:: column no-separator
+
+        **Encrypt-then-MAC**
+
+        .. image:: drawings/operationsmodi/encrypt_then_mac.svg
+            :width: 675px
+            :align: center
+
+        .. container:: incremental margin-top-1em
+
+            **Encrypt-and-MAC**
+
+            .. image:: drawings/operationsmodi/encrypt_and_mac.svg
+                :width: 675px
+                :align: center
+
+    .. container:: column incremental
+
+        **MAC-then-Encrypt**
+
+        .. image:: drawings/operationsmodi/mac_then_encrypt.svg
+            :width: 675px
+            :align: center        
+
+
+.. supplemental::
+
+    .. rubric:: Modi
+
+    - **Encrypt-then-MAC**: Der Klartext wird verschlüsselt und dann wird ein MAC über den Chiffretext berechnet. Dieser Ansatz wird von IPSec und TLS 1.3 verwendet.
+    - **Encrypt-and-MAC**: Der Klartext wird verschlüsselt und ein MAC über den Klartext berechnet. Beides wird versendet. Dieser Ansatz wird von SSH verwendet. Es wurde gezeigt, dass kleinere Änderungen die Sicherheit weiter verbessern können.
+    - **MAC-then-Encrypt**: Ein MAC wird über den Klartext berechnet und dann wird der Klartext und der MAC verschlüsselt. Dies war bis TLS 1.2 der Standard. Aufgrund von erfolgreichen Angriffen insbesondere gegen das Padding wird dieser Ansatz nicht mehr verwendet/empfohlen.
+
+    .. rubric:: Integrität und Authentizität
+
+    Es ist möglich Integrität ohne Authentizität zu gewährleisten. Durch einen einfachen MAC kann gewährleistet werden, dass die Daten während der Übertragung nicht verändert wurden (insbesondere durch einen Fehler). Wenn ich jedoch Authentizität gewährleisten möchte, dann muss ich einen MAC verwenden, der auf einem Schlüssel basiert, der nur dem Sender und dem Empfänger bekannt ist. Dies verhindert, dass ein Angreifer einfach die Daten verändert und den MAC neu berechnet.
+
+    Authentizität ohne Integrität ist nicht sinnvoll. Der Nutzen zu wissen, dass eine Nachricht von einer bestimmten Person kam, aber nicht zu wissen ob die Nachricht verändert wurde, ist sehr gering.
 
 
 
+AES-GCM Modus (Galois/Counter Mode)
+--------------------------------------
+
+.. image:: drawings/operationsmodi/aes_gcm.svg
+    :height: 975px
+    :align: center
+
+.. container:: footer far-far-smaller
+
+    Die Visualisierung stellt nur zwei Schritte dar; eine Erweiterung auf n-Blöcke ist jedoch offensichtlich.
+
+.. supplemental::
+
+    - Standardisiert durch NIST in SP 800-38D.
+
+    - Es handelt sich um eine Verknüpfung des CTR-Modus und Galois-Modus. Ziel ist eine hohe Parallelisierung und Effizienz.
+    - Der Algorithmus ist in der Lage, Authentizität (+ Integrität) und Vertraulichkeit zu gewährleisten.
+    - Die Eingabe in den Algorithmus ist der Klartext (:eng:`Plaintext`), der Schlüssel, ein Initialisierungsvektor (IV) und zusätzliche (optionale) authentifizierte Daten A.
+    - Das Authentication Tag wird mittels Arithmetik über dem Körper :math:`GF(2^{128})` berechnet und wird am Ende des Chiffretextes angehängt. Es wird das bekannte Polynom: :math:`x^128 + x^7 + x^2 + x + 1` verwendet.
+    - Die Blockgröße ist 128Bit (d. h. die AES-Blockgröße).
+    - :math:`H` ist der Hash Key und :math:`mult` ist Multiplikation im Körper :math:`GF(2^128)`. :math:`H = E(K,0^{128})`
+    - Die optionalen authentifizierten Daten A werden zum Beispiel benötigt, um den Kontext einer Nachricht zu erfassen (und zum Beispiel Replay-attacken vorzubeugen). Ein konkretes Beispiel könnte die Ziel-IP-Adresse sein, wenn die Nachricht über das Internet übertragen wird.
 
 
-XTS-AES Modus für blockorientierte Speichergeräte
+
+XTS-AES Modus für block-orientierte Speichergeräte
 ---------------------------------------------------
 
 2010 vom NIST als zusätzlicher Blockchiffre-Betriebsmodus genehmigt.
@@ -304,7 +369,7 @@ Modus ist auch ein IEEE-Standard, IEEE Std 1619-2007
     .. many similar blocks
     .. data is freely accessible
 
-- Die Norm beschreibt eine Verschlüsselungsmethode für Daten, die in sektorbasierten Geräten gespeichert sind, wobei das Bedrohungsmodell einen möglichen Zugriff des Gegners auf die gespeicherten Daten beinhaltet.
+- Die Norm beschreibt eine Verschlüsselungsmethode für Daten, die in sektor-basierten Geräten gespeichert sind, wobei das Bedrohungsmodell einen möglichen Zugriff des Gegners auf die gespeicherten Daten beinhaltet.
   
 - Hat breite Unterstützung der Industrie erhalten.
 
@@ -314,15 +379,17 @@ Modus ist auch ein IEEE-Standard, IEEE Std 1619-2007
 -----------------------------------------------
 
 - Der XTS-AES-Modus basiert auf dem Konzept einer veränderbaren (:eng:`tweakable`) Blockchiffre.
-- Allgemeine Struktur:
-  
-  Um den Chiffriertext zu berechnen, wird benötigt:
+- Um den Chiffriertext zu berechnen, wird benötigt:
 
   - **Klartext**
   - **Symmetrischer Schlüssel**
   - **Tweak**
 
-- Der *Tweak* muss nicht geheim gehalten werden; der Zweck ist, Variabilität zu bieten.
+- Der *Tweak* muss nicht geheim gehalten werden; der Zweck ist, Variabilität zu bieten. 
+
+.. supplemental::
+
+    Ein Tweak ist insbesondere bei der Verschlüsselung von Daten auf Speichergeräten wichtig, da der gleiche Klartext an verschiedenen Stellen in verschiedene Chiffretexte verschlüsselt wird, aber immer in denselben Chiffretext, wenn er wieder an dieselbe Stelle geschrieben wird.
 
 
 
@@ -340,7 +407,7 @@ Anforderungen an die Speicherverschlüsselung
 
 Die Anforderungen an die Verschlüsselung gespeicherter Daten, die auch als *data at rest* bezeichnet werden, unterscheiden sich von denen für übertragene Daten.
 
-Die Norm P1619 wurde in Hinblick auf folgende Eigenschaften entwickelt:
+Die IEEE Norm P1619 wurde in Hinblick auf folgende Eigenschaften entwickelt:
 
 .. class:: incremental smaller
 
@@ -360,12 +427,12 @@ XTS-AES Operation auf einem Block
     :width: 1750px
     :align: center 
 
-.. container:: tiny two-columns
+.. container:: far-far-smaller two-columns margin-top-1em
     
     .. container:: column no-separator
 
       - Schlüssel: es gilt: :math:`Schlüssel = Schlüssel_1\, ||\, Schlüssel_2` 
-      - :math:`P_j`: Der j-te Block des Klartexts. Alle Blöcke haben eine Länge von 128 bits. Eine Klartextdateneinheit – in der Regel ein Festplattensektor – besteht aus einer Folge von Klartextblöcken.
+      - :math:`P_j`: Der j-te Block des Klartexts. Alle Blöcke haben eine Länge von 128 bits. Eine (Klartext)dateneinheit – in der Regel ein Festplattensektor – besteht aus einer Folge von Klartextblöcken.
       - :math:`C_j`: Der j-te Block des Chiffretextes.
       - :math:`j`: Die fortlaufende Nummer des 128-Bit-Blocks innerhalb der Dateneinheit.
     
@@ -379,9 +446,6 @@ XTS-AES Operation auf einem Block
       - :math:`\otimes` Modulare Multiplikation mit Binärkoeffizienten modulo :math:`x^{128}+x^7+x^2+x+1`.  
 
 
-.. TODO Discuss Galois Counter Mode
-
-
 .. class:: integrated-exercise transition-scale
 
 Übung
@@ -389,19 +453,19 @@ XTS-AES Operation auf einem Block
 
 - \
   
-  .. exercise:: 
+  .. exercise:: Der Initialisierungsvektor (IV) bei CBC
 
      Warum ist es bei CBC wichtig, den Initialisierungsvektor (IV) zu schützen?
 
      .. solution::
         :pwd: IV und CBC
     
-        Wenn der IV im Klartext gesendet wird, können wir in bestimmten Szenarien einige Bytes des Klartextes (des ersten Blocks) umdrehen, wenn wir den IV ändern. 
+        Wenn der IV im Klartext gesendet wird, können wir in bestimmten Szenarien einige Bits des Klartextes (des ersten Blocks) im Rahmen einer MITM Attacke umdrehen, wenn wir den IV ändern (`Bit Flipping Attack <https://en.wikipedia.org/wiki/Bit-flipping_attack>`__). D. h. wir fangen die Nachricht ab, ändern den IV und senden die Nachricht weiter. Wenn der Empfänger die Nachricht entschlüsselt, dann ist der erste Block des Klartextes gezielt verändert. Wenn man Kenntnisse über den Aufbau/Inhalt des ersten Blocks hat, dann kann dies dazu führen, dass man die Daten gezielt verändert.
 
 
 - \
   
-  .. exercise:: 
+  .. exercise:: Padding
     
      In welchen Betriebsarten ist eine Auffüllung (:eng:`Padding`) notwendig?
 
@@ -411,7 +475,7 @@ XTS-AES Operation auf einem Block
 
 - \
   
-  .. exercise::
+  .. exercise:: Auswirkungen eines Bitflips
 
      Was geschieht im Falle eines Übertragungsfehlers (einzelner Bitflip im Chiffretext) bei ECB, CBC, CFB, OFB, CTR?
    
@@ -425,18 +489,30 @@ XTS-AES Operation auf einem Block
 
 - \
   
-  .. exercise::
+  .. exercise:: Nonce bei OFB
  
-     Warum muss der IV im Falle von OFB eine Nonce (:eng:`Number used ONCE`) sein (d. h. eine Zahl, die nur einmal für die Ausführung des Verschlüsselungsalgorithmus verwendet wird)?
+     Warum muss der IV bei OFB eine Nonce sein?
 
      .. solution::
         :pwd: nOnce
  
         Die O_i hängen nur vom Schlüssel und dem Initialisierungsvektor ab. Wenn der IV mit demselben Schlüssel wiederverwendet wird und wir zufällig einen bestimmten Klartext kennen, können wir möglicherweise einen entsprechenden Chiffretext in einer anderen Nachricht entschlüsseln.
 
+
+.. supplemental::
+
+    Eine Nonce (:eng:`Number used ONCE`) ist eine Zahl, die nur einmal für die Ausführung des Verschlüsselungsalgorithmus verwendet wird.
+
+
+
+.. class:: integrated-exercise transition-scale
+
+Übung
+---------------------
+
 - \
   
-  .. exercise::
+  .. exercise:: ECB?
 
      Sie möchten feststellen, ob ein Programm zur Verschlüsselung von Dateien den ECB-Modus verwendet. Was müssen Sie tun?
 
@@ -446,17 +522,47 @@ XTS-AES Operation auf einem Block
         Verwenden Sie ein Dokument, das aus mehreren Blöcken besteht, wobei jeder Block die Größe der zugrunde liegenden Chiffre hat und jeder Block den gleichen Inhalt hat. Bei Verwendung des ECB-Modus werden alle Blöcke auf die gleiche Weise verschlüsselt.
 
 
+- \
+
+  .. exercise:: AES-GCM
+
+    Warum ist es wichtig, dass der IV bei AES-GCM nur einmal verwendet wird?
+
+    .. solution:: 
+        :pwd: ASE-GCM->StreamCipher
+
+        Bei AES-GCM handelt es sich effektiv um eine Stromchiffre. Als solche ist es wichtig, dass der IV nur einmal verwendet wird, da sonst die Sicherheit des Verfahrens beeinträchtigt wird. 
+
+
+- \
+
+  .. exercise:: XTS-AES
+
+    Wie viele Blöcke hat eine Dateneinheiten, wenn ein Festplattensektor 4 KiB groß ist?
+
+    Welchen praktischen Vorteil hat es, das der Hash T vor und nach der Verschlüsselung des Klartextes mit dem aktuellen Wert XOR-verknüpft wird?
+
+    .. solution:: 
+        :pwd: XTS-AES
+
+        Wenn ein Festplattensektor 4 KiB groß ist und ein Block eine Größe von 128 Bit (16 Byte) hat, dann gilt, dass ein Sektor 4096/16 = 256 Blöcke hat.
+
+        Dadurch kann der Selbe Algorithmus für die Verschlüsselung und die Entschlüsselung verwendet werden. 
+
+
+
+
 
 .. class:: integrated-exercise
 
-Übung
+Übung 
 ---------------------
 
 .. container:: tiny
 
-    .. exercise:: 
+    .. exercise:: OFB-Modus
         
-        Verwenden Sie den OFB-Modus in Kombination mit einer Caesar-Chiffre. Die Blockgröße ist ein einzelnes Zeichen. Der Schlüssel ist die Anzahl der Zeichen, um die Sie ein Zeichen verschieben wollen - wie zuvor. Die IV ist ein Zeichen. Damit sie ein XOR durchführen können, ordnen wir jedem Zeichen einen Wert zu und erweitern das Alphabet um die Ziffern 1 bis 3, "!", "?" und das "_". Auf diese Weise ist es immer möglich, ein sinnvolles Zeichen auszugeben. 
+        Verwenden Sie den OFB-Modus in Kombination mit einer Caesar-Chiffre, bei der die Blockgröße ein Zeichen sei. Der Schlüssel ist die Anzahl der Zeichen, um die Sie ein Zeichen verschieben wollen - wie zuvor. Der IV ist ein Zeichen. Damit sie ein XOR durchführen können, ordnen wir jedem Zeichen einen Wert zu und erweitern das Alphabet um die Ziffern 1 bis 3, "!", "?" und das "_". Auf diese Weise ist es immer möglich, ein sinnvolles Zeichen auszugeben. 
 
         Daraus ergibt sich die folgende Kodierung:
 
@@ -533,7 +639,7 @@ XTS-AES Operation auf einem Block
             
                 .. math:: 
                     
-                    IV = 7, k = 3, C = T
+                    IV = Z, k = 3, C = T
                 
                     E(IV) = 3, M = T \oplus 3 = P\qquad (10011_b \oplus 11100_b = 01111_b = P) 
 
