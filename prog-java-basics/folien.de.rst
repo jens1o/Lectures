@@ -105,7 +105,7 @@ Von der Konsole lesen\ [#]_
 
 .. exercise:: Lesen von und Schreiben auf die Konsole
 
-    Schreiben Sie ein Java-Programm, das erst nach dem Namen des Nutzers ``X`` fragt und dann ``Guten Morgen X!`` auf der Konsole ausgibt. Beachten Sie dabei, dass der Text ``X`` durch den eingegebenen Namen ersetzt wird und am Ende ein Ausrufezeichen steht.
+    Schreiben Sie ein Java-Programm (``GutenMorgen.java``), das erst nach dem Namen des Nutzers ``X`` fragt und dann ``Guten Morgen X!`` auf der Konsole ausgibt. Beachten Sie dabei, dass der Text ``X`` durch den eingegebenen Namen ersetzt wird und am Ende ein Ausrufezeichen steht.
 
     Als zweites soll das selbe Programm dann nach dem Wohnort ``Y`` des Nutzers fragen und dann ``Y ist wirklich schön!`` auf der Konsole ausgeben. 
 
@@ -332,10 +332,10 @@ Ganzzahlige Datentypen - Hintergrund
     Die Größenwahl für ``long`` und ``int`` ist teilweise historisch bedingt. Auf gängigen Prozessoren sind jedoch 64 Bit und 32 Bit die natürlichen Größen für Ganzzahlen und können effizient verarbeitet werden. 
 
 
-Gleitkommatypen - Hintergrund
---------------------------------------------
+Gleitkommatypen - Hintergrund (Konzeptionell)
+----------------------------------------------
 
-- Gleitkommazahlen werden in Java nach Norm IEEE 754 durch die Mantisse :math:`m` und den Exponent :math:`e` dargestellt: :math:`z = m \times 2^e`
+- Gleitkommazahlen werden in `Java nach Norm IEEE 754 (Seit Java 15 Version 2019) <https://docs.oracle.com/javase/specs/jls/se23/html/jls-4.html#jls-4.2.3>`__ durch die Mantisse :math:`m` und den Exponent :math:`e` dargestellt: :math:`z = m \times 2^e`
 
 .. stack:: incremental
 
@@ -357,25 +357,29 @@ Gleitkommatypen - Hintergrund
 
             .. class:: incremental
                 
-            :math:`-7 \times 2^{-3} = { 7 \over 8 } = 1.125`
+            :math:`7 \times 2^{-3} = { 7 \over 8 } = 1.125`
 
             .. class:: incremental
                 
-            :math:`-7 \times 2^{0} = { 7 \over 1 } = 7`
+            :math:`7 \times 2^{0} = { 7 \over 1 } = 7`
 
     .. layer:: incremental
 
         .. csv-table::
             :header: Datentyp, Genauigkeit, Mantisse, Exponent, Wertebereich
             :align: center
-            :class: highlight-cell-on-hover
+            :class: highlight-cell-on-hover smaller
         
-            :code:`float`, 32, 23, 8, ca. :math:`-2*10^{38} \text{bis} 2 \times 10^{38}`
-            :code:`double`, 64, 52, 11, ca. :math:`-2*10^{308} \text{bis} 2 \times 10^{308}`
+            :code:`float`, 32, 23, 8, ca. :math:`-3.4*10^{38}\; \text{bis}\; 3.4 \times 10^{38}`
+            :code:`double`, 64, 52, 11, ca. :math:`-1.8*10^{308}\; \text{bis}\; 1.8 \times 10^{308}`
+
+
 
 .. supplemental::
 
-    Ganzzahlen :math:`< 2^{23}` können bei Verwendung des Datentyps :code:`float` exakt dargestellt werden; bei :code:`double` sind es Ganzzahlen :math:`< 2^{52}`.
+    Ganzzahlen :math:`< 2^{24}` können bei Verwendung des Datentyps :code:`float` exakt dargestellt werden; bei :code:`double` sind es Ganzzahlen :math:`< 2^{53}`.
+
+    In beiden Fällen gibt es noch die Möglichkeit +/- Unendlich und NaN (Not a Number) zu repräsentieren.
 
 
 
@@ -525,14 +529,17 @@ Literale stellen konstante Werte eines bestimmten Datentyps dar
     :align: center
     :class: highlight-cell-on-hover
 
-    :code:`int`, 127 
-    :code:`long`, 123_456_789l oder 123456789L
+    :code:`int`, :minor:`Dezimal:` 127 :minor:`; Hexadezimal:` 0xcafebabe\ [#]_ :minor:`; Oktal:` 010 :minor:`; Binär:` 0b1010
+    :code:`long`, 123_456_789l oder 123456789L  :minor:`("_" dient nur der besseren Lesbarkeit)`
     :code:`float`, 0.123456789f oder 0.123456789F
     :code:`double`, "0.123456789 oder 0.123456789d oder 0.123456789D"
     :code:`char`, "'a' (Zeichen-Darstellung) oder 97 (Zahlen-Darstellung) oder 
     '\u0061' (Unicode-Darstellung) oder Sonderzeichen (siehe nächste Folie)"
     :code:`String`, \"Hallo\"
     :code:`boolean`, true oder false
+
+.. [#] 0xcafebabe ist der Header aller kompilierten Java-Klassen-Dateien.
+
 
 
 Literale - Sonderzeichen ("\\" ist das Escape-Zeichen)
@@ -553,4 +560,244 @@ Literale - Sonderzeichen ("\\" ist das Escape-Zeichen)
     \\r, Wagenrücklauf
 
 
-.. TODO ab Folie 29 in 03_Grundlagen_Teil1.key
+.. class:: new-section transition-scale
+
+Variablen und Konstanten
+---------------------------
+
+
+Variablen - Übersicht
+--------------------------------------------
+
+.. stack:: 
+
+    .. layer::
+
+        - Variablen stellen einen logischen Bezeichner für einen Wert eines bestimmten Datentyps dar.
+        - Variablen müssen erst deklariert werden. Danach können sie weiter initialisiert werden, wenn der Standardwert nicht ausreicht.
+        
+            .. class:: incremental
+
+            :Deklaration: Variablennamen und Datentyp werden festgelegt
+
+            .. class:: incremental
+
+            :Initialisierung (optional): Variablen werden mit einem bestimmten Wert versehen
+        
+        .. class:: incremental
+
+        - der Wert einer Variablen kann jederzeit geändert werden
+
+    .. layer:: incremental
+
+        *Beispieldeklaration und -initialisierung*
+
+        .. include:: code/Variables.java
+            :code: java
+            :class: far-smaller
+
+
+
+Konstanten - Übersicht
+--------------------------------------------
+
+
+.. stack:: 
+
+    .. layer::
+
+      - Konstanten sind Variablen, die nach der Initialisierung nicht mehr verändert werden können
+      - Konstanten werden in Java mit dem Schlüsselwort :code:`final` deklariert
+      - Es wird überprüft, dass keine weitere Zuweisung erfolgt
+      - Konvention: Konstanten werden in Großbuchstaben geschrieben
+
+    .. layer:: incremental
+
+      *Beispieldeklaration und -initialisierung*
+
+      .. include:: code/Constants.java
+          :code: java
+          :class: far-smaller
+
+
+Bezeichner (:eng:`Identifier`) - Übersicht
+--------------------------------------------
+
+.. class:: incremental
+
+- Bezeichner sind Namen für Variablen, Konstanten, Methoden, Klassen, Interfaces, Enums, etc.
+- Erstes Zeichen: Buchstabe, Unterstrich (_) oder Dollarzeichen ($); 
+- Folgende Zeichen: Buchstaben, Ziffern, Unterstrich oder Dollarzeichen
+- Groß- und Kleinschreibung wird unterschieden
+- Schlüsselworte (z. B. :code:`var`, :code:`int`, etc.) dürfen nicht als Bezeichner verwendet werden
+- Konvention: 
+  
+    .. class:: incremental smaller
+
+    - Variablen (z. B. :code:`aktuellerHerzschlag`) und Methoden (z. B. :code:`println`) verwenden *lowerCamelCase* 
+    
+    - Konstanten verwenden *UPPER_CASE* und Unterstriche (z. B. :code:`GEWICHT_BEI_GEBURT`)
+    
+    - Klassen, Interfaces und Enums verwenden *UpperCamelCase* (z. B. :code:`BigDecimal`)
+
+
+.. supplemental:: 
+    
+    In Java ist es unüblich, das Dollarzeichen ($) in eigenem Code zu verwenden und es wird in der Regel nur von der JVM (der Java Virtual Machine; d. h. der Ausführungsumgebung) verwendet; ein Unterstrich am Anfang des Bezeichners sollte ebenfalls vermieden werden. Ganz insbesondere ist darauf zu verzichten den Unterstrich als alleinige Variablennamen zu verwenden, da der "reine" Unterstrich auch andere Bedeutungen hat bzw. bekommen könnte/wird.
+
+
+Java Shell
+------------------------------------------------
+
+.. stack::
+
+    .. layer::
+
+        - Die Java Shell (``jshell``) ist ein interaktives Werkzeug, das es ermöglicht, Java-Code direkt auszuführen.
+        - Starten Sie die Java Shell mit dem Befehl ``jshell --enable-preview`` in der Konsole.
+        - Den gültigen Java-Code können Sie direkt in der Java Shell eingeben oder über ``/edit`` als Ganzes bearbeiten.
+        - Sie beenden die Java Shell mit dem Befehl ``/exit``.
+        - Die Java Shell eignet sich insbesondere für das Ausprobieren von Code-Schnipseln und das Testen von Methoden.
+
+    .. layer:: incremental  
+
+        .. code:: Java
+            :class: far-smaller
+
+            # jshell --enable-preview
+
+            |  Welcome to JShell -- Version 23
+            |  For an introduction type: /help intro
+
+            jshell> var x = "X";
+            x ==> "X"
+
+            jshell> x + "Y"
+            $2 ==> "XY"
+
+            jshell> $2.length()
+            $3 ==> 2
+
+
+
+.. class:: integrated-exercise
+
+Übung - Variablen und Konstanten
+--------------------------------
+
+.. hint::
+    :class: far-far-smaller
+
+    Für diese Aufgabe können Sie sowohl die Java Shell verwenden als auch Ihren Code in eine Datei schreiben. Denken Sie in diesem Fall daran, dass der Code in einer Methode :code:`main` stehen muss (:code:`void main(){ <IHRE CODE> }`).
+
+.. exercise::
+
+
+  - Deklarieren und initialisieren Sie eine Variable x mit dem Ganzzahlwert 42. 
+  
+    - Welche Datentypen können Sie verwenden, wenn eine präzise Darstellung des Wertes notwendig ist? 
+    - Welcher Datentyp wird verwendet, wenn Sie keinen Typ angeben (d. h. wenn Sie :code:`var` schreiben bzw. anders ausgedrückt welchen Typ hat das Literal ``42``)? 
+
+  - Weisen Sie den Wert der Variable ``x`` einer Variable ``f`` vom Typ :code:`float` zu. 
+  - Ändern Sie den Wert der Variablen ``x``. Welche Auswirkungen hat das auf die Variable ``f`` vom Typ :code:`float`?
+  - Deklarieren und initialisieren Sie die Konstante π (Wert 3.14159265359).
+
+  .. solution::
+        :pwd: DatentypenKonstantenUndVariablen
+
+        Der Wert 42 kann von allen primitiven Datentypen präzise dargestellt werden. Wenn Sie 
+        keinen Typ angeben, wird der Typ :code:`int` verwendet.
+
+        .. code:: Java
+            :class: far-smaller
+ 
+            jshell> int i = 42
+            i ==> 42
+
+            jshell> byte b = 42
+            b ==> 42
+
+            jshell> char c = 42
+            c ==> '*'
+
+            jshell> short s = 42
+            s ==> 42
+
+            jshell> long l = 42
+            l ==> 42
+
+            jshell> float f = 42
+            f ==> 42.0
+
+            jshell> double d = 42
+            d ==> 42.0
+
+            jshell> var v = 42
+            v ==> 42
+
+            jshell> float vf = v
+            vf ==> 42.0
+
+            jshell> v = 43 // Änderung von v
+            v ==> 43
+
+            jshell> vf // hat keine Auswirkung auf vf, da vf eine Kopie von v ist
+            vf ==> 42.0
+
+            jshell> double PI = 3.14159265359d // π wäre auch ein gültiger, aber ungewöhnlicher Bezeichner 
+            d ==> 3.14159265359
+
+
+
+
+.. class:: new-section transition-scale
+
+Ausdrücke und Operatoren
+---------------------------
+
+
+Ausdrücke und Operatoren - Übersicht
+--------------------------------------------
+
+- Berechnungen erfolgen über Ausdrücke, die sich aus Variablen, Konstanten, Literalen, Methodenaufrufen und Operatoren zusammensetzen.
+
+.. class:: incremental list-with-explanations 
+    
+- Jeder Ausdruck hat ein Ergebnis (d. h. Rückgabewert).
+
+  Beispiel: (``age + 1``) addiert zwei Werte und liefert das Ergebnis der Addition zurück.
+  
+- Einfache Ausdrücke sind Variablen, Konstanten, Literale und Methodenaufrufe.
+- Komplexe Ausdrücke werden aus einfachen Ausdrücken und Operatoren (z. B. +, -, \*, /, %, >, <, >=, \<=) zusammengesetzt
+- Ergebnisse von Ausdrücken können insbesondere Variablen zugewiesen werden (z.B. :code:`int newAge = age + 1` oder :code:`var isAdult = age >= 18`) 
+- Ausdrücke, die einen Wahrheitswerte ergeben können zusätzlich in Bedingungen (z. B. :code:`if(age + 5 >= 18) ...`) verwendet werden.
+
+
+
+Ausdrücke und Operatoren - Beispiele
+--------------------------------------------
+
+.. include:: code/Expressions.java
+    :code: java
+    :class: far-smaller
+
+
+
+Operatoren
+--------------------------------------------
+
+- Operatoren sind spezielle Zeichen, die auf Variablen, Konstanten und Literale angewendet werden, um Ausdrücke zu bilden.
+
+.. class:: incremental list-with-explanations
+
+- Die Auswertungsreihenfolge wird durch die Priorität der Operatoren bestimmt. 
+  
+  (Wie aus der Schulmathematik bekannt gilt auch in Java: ``*`` oder ``/`` vor ``+`` und ``-``.)
+
+- Runde Klammern können verwendet werden, um eine bestimmt Auswertungsreihenfolge zu erzwingen bzw. dienen zur Strukturierung
+
+- Es gibt Operatoren, die auf eine, zwei oder drei Operanden angewendet werden: diese nennt man dann ein-, zwei- oder dreistellige Operatoren. 
+- Für einstellige Operatoren wird die Präfix- oder Postfix-Notation (z.B. :code:`++a` oder :code:`a++`) verwendet, 
+- Für mehrstellige Operatoren wird die Infix-Notation (z.B. :code:`a + b`) verwendet
+
+.. TODO ab Folie 40 in 03_Grundlagen_Teil1.key
