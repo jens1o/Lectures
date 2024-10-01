@@ -5,10 +5,6 @@ drawings/operationsmodi/cfb_s_bits.svg
 drawings/operationsmodi/feedback_characteristics.svg
 drawings/operationsmodi/tweakable_block_cipher.svg
 drawings/operationsmodi/xts_aes.svg
-drawings/operationsmodi/aes_gcm.svg
-drawings/operationsmodi/encrypt_and_mac.svg
-drawings/operationsmodi/encrypt_then_mac.svg
-drawings/operationsmodi/mac_then_encrypt.svg
 opensource-drawings/cbc_decryption.svg
 opensource-drawings/cbc_encryption.svg
 opensource-drawings/cfb_decryption.svg

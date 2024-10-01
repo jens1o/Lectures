@@ -11,10 +11,9 @@ try {
   console.log("error: ", error.message);
 }
 
-// THIS IS NOT RECOMMENDED!
+// ADDING FUNCTIONS TO Array.prototpye IS NOT RECOMMENDED!
 // IF ECMAScript EVENTUALLY ADDS THIS METHOD (I.E. fold)
-// TO THE PROTOTYPE OF ARRAY OBJECTS),
-// IT MAY CAUSE HAVOC.
+// TO THE PROTOTYPE OF ARRAY OBJECTS, IT MAY CAUSE HAVOC.
 Array.prototype.fold = function (f) {
   if (this.length === 0) {
     throw new Error("array is empty");

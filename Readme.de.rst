@@ -71,7 +71,8 @@ Vorlesung mit Bezug zu "IT Sicherheit"
    9. Stromchiffren (`<sec-stromchiffre/folien.de.rst.html>`__)
    10. Public-Key-Kryptographie (`<sec-public-key-kryptographie/folien.de.rst.html>`__)
    11. Hashfunktionen (`<sec-hashfunktionen/folien.de.rst.html>`__)
-   12. Passwortwiederherstellung (`<sec-passwortwiederherstellung/folien.de.rst.html>`__)
+   12. Authentifizierte Verschlüsselung (`<sec-authentifizierte-verschluesselung/folien.de.rst.html>`__)
+   13. Passwortwiederherstellung (`<sec-passwortwiederherstellung/folien.de.rst.html>`__)
 
 
 

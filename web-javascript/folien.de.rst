@@ -214,11 +214,11 @@ ________________________________________________________________________________
 
    .. include:: code/Variables_const_let.mjs
       :code: javascript
-      :start-line: 3
-      :end-before: ilog('"changed done"', change());
+      :start-line: 2
+      :end-before: done();
       :number-lines:
       :class: code far-far-smaller copy-to-clipboard
-      :tab-width: 4
+      :tab-width: 2
 
 .. supplemental::
 
@@ -232,14 +232,14 @@ ________________________________________________________________________________
    
    hinzugefügt werden.
 
-   Den entsprechenden Code der Bibliotheken (log.mjs und Queue.mjs) finden Sie auf:
+   Den entsprechenden Code der Module (log.mjs und später Queue.mjs) finden Sie auf:
 
    `https://github.com/Delors/delors.github.io/tree/main/web-javascript/code <https://github.com/Delors/delors.github.io/tree/main/web-javascript/code>`__
 
 
 
-`Datentypen <./code/Datatypes.js>`__
-------------------------------------------------
+`Datentypen und Operatoren <./code/Datatypes.js>`__
+-----------------------------------------------------
 
 .. container:: scrollable
       
@@ -247,7 +247,8 @@ ________________________________________________________________________________
       :code: javascript
       :number-lines:
       :class: code far-far-smaller copy-to-clipboard
-      :tab-width: 4
+      :tab-width: 2
+
 
 
 `Funktionsdefinitionen <./code/Functions_basics.js>`__
@@ -261,13 +262,14 @@ ________________________________________________________________________________
       :end-before: ////////////////////////////////////////////////////////////////////////////////
       :number-lines:
       :class: code far-far-smaller copy-to-clipboard
-      :tab-width: 4
+      :tab-width: 2
+
 
 
 .. class:: exercise
 
-Übung
---------------
+Übung - vertraut machen mit JavaScript und Node.js
+----------------------------------------------------
 
 **Voraussetzung: Installieren Sie Node.js (http://nodejs.org/).**
 
@@ -284,7 +286,7 @@ ________________________________________________________________________________
 
 .. exercise:: Hello World auf der JavaScript Console 
 
-   Starten Sie einen Browser und aktivieren Sie die JavaScript Console. Schreiben Sie ein einfaches JavaScript Programm, das "Hello World" ausgibt.
+   Starten Sie einen Browser und aktivieren Sie die JavaScript Console in den Entwicklerwerkzeugen. Schreiben Sie ein einfaches JavaScript Programm, das "Hello World" ausgibt.
 
    .. solution:: 
       :pwd: HelloWorld
@@ -307,8 +309,8 @@ ________________________________________________________________________________
    
       Hinweise: 
 
-      - document.body enthält den gesamten Inhalt des Dokuments
-      - die aktuellen Abmaße des Dokuments können Sie mit der Funktion ``window.getComputedStyle(<HTML Element>).height`` ermitteln
+      - das von :code:`document.body` referenziert HTML Element enthält den gesamten Inhalt des Dokuments
+      - die aktuellen Abmaße des Dokuments können Sie mit der Funktion :code`window.getComputedStyle(<HTML Element>).height` ermitteln; geben Sie den Wert auf der Konsole aus bevor Sie das Dokument scrollen; was fällt Ihnen auf?
       - um zu scrollen, können Sie window.scrollTo(x,y) verwenden
       - um den Integer Wert eines Wertes in Pixeln zu bestimmen, können Sie ``parseInt`` verwenden
 
@@ -321,8 +323,9 @@ ________________________________________________________________________________
          window.scrollTo(0,parseInt(h));
 
 
-`Vergleich von Werten <./code/ComparingValues.mjs>`__
--------------------------------------------------------
+
+`Vergleich von Werten und implizite Typumwandlung <./code/ComparingValues.mjs>`__
+------------------------------------------------------------------------------------------
 
 .. container:: scrollable
 
@@ -334,6 +337,9 @@ ________________________________________________________________________________
       :class: far-far-smaller copy-to-clipboard
       :tab-width: 4
 
+.. supplemental::
+
+   NaN (Not a Number) repräsentiert das Ergebnis einer Operation die keinen sinnvollen Wert hat. Ein Vergleich mit NaN ist *immer* :code:`false`. Um zu überprüfen, ob ein Wert NaN ist muss :code:`isNaN(<Value>)` verwendet werden.
 
 
 `Bedingungen und Schleifen <./code/LoopsAndConditions.mjs>`__
@@ -350,6 +356,12 @@ ________________________________________________________________________________
       :tab-width: 4
 
 
+.. supplemental::
+
+  Die Tatsache, dass insbesondere null als auch undefined falsy sind, wird of in Bedingungen ausgenutzt (z. B., :code:`if (!x)...`).
+
+
+
 `Fehlerbehandlung <./code/Errors.js>`__
 --------------------------------------------------------------
 
@@ -361,6 +373,11 @@ ________________________________________________________________________________
       :number-lines:
       :class: code far-far-smaller copy-to-clipboard
       :tab-width: 4
+
+
+.. supplemental::
+
+   In JavaScript können während der Laufzeit Fehler auftreten, die (z. B.) in Java während des kompilierens erkannt werden. 
 
 
 
@@ -375,7 +392,7 @@ ________________________________________________________________________________
 
    - Schreiben Sie Ihren Code in eine JavaScript Datei und führen Sie diese mit Hilfe von Node.js aus. 
    
-   - Testen Sie Ihre Funktion mit verschiedenen Eingaben und lassen Sie sich das Ergebnis ausgeben!
+   - Testen Sie Ihre Funktion mit verschiedenen Eingaben und lassen Sie sich das Ergebnis ausgeben (z. B. :code:`console.log(removeNthElement([1,2,3,4,5,6,7],2))`)!
 
    .. solution::
       :pwd: _RemoveNthElement
@@ -505,8 +522,10 @@ ________________________________________________________________________________
 
 
 
-`Variables (var) <./code/Variables_var.mjs>`__
-------------------------------------------------
+`Variables (var) <./code/Variables_var.mjs>`__ 
+-----------------------------------------------------------------------------------------------
+
+**(Neuer Code sollte var nicht mehr verwenden!)**
 
 .. container:: scrollable
 
@@ -514,7 +533,61 @@ ________________________________________________________________________________
       :code: javascript
       :number-lines:
       :class: code far-far-smaller copy-to-clipboard
+      :tab-width: 2
+      :start-line: 2
+      :end-before: done();
+
+
+
+Destrukturierung (:eng:`Destructuring`)
+------------------------------------------------
+
+.. container:: scrollable
+      
+   .. include:: code/Destructuring.mjs
+      :code: javascript
+      :number-lines:
+      :class: code far-far-smaller copy-to-clipboard
+      :tab-width: 2
+      :start-line: 2
+      :end-before: done();
+
+
+
+JSON (JavaScript Object Notation)
+------------------------------------------------
+
+.. container:: scrollable
+      
+   .. include:: code/JSON.js
+      :code: javascript
+      :number-lines:
+      :class: code far-far-smaller copy-to-clipboard
       :tab-width: 4
+
+
+.. supplemental::
+
+   JSON requires that keys must be strings and strings must be enclosed in double quotes.
+
+
+
+`Reguläre Ausdrücke <./code/RegularExpressions.js>`__
+-------------------------------------------------------
+
+- Built-in support by means of regular expression literals and an API
+- Use Perl syntax
+- Methods on regular expression objects: test (e.g., RegExp.test(String)).
+- Methods on strings that take RegExps: search, match, replace, split,...
+
+.. container:: scrollable
+      
+   .. include:: code/RegularExpressions.js
+      :code: javascript
+      :number-lines:
+      :class: code far-far-smaller copy-to-clipboard
+      :tab-width: 2
+
 
 
 ``this`` `in Funktionen und partielle Funktionsaufrufe <./code/Functions_this.js>`__
@@ -528,52 +601,8 @@ ________________________________________________________________________________
       :end-before: ////////////////////////////////////////////////////////////////////////////////
       :number-lines:
       :class: code far-far-smaller copy-to-clipboard
-      :tab-width: 4
+      :tab-width: 2
 
-
-
-
-
-Destructuring
-------------------------------------------------
-
-.. container:: scrollable
-      
-   .. include:: code/Destructuring.mjs
-      :code: javascript
-      :number-lines:
-      :class: code far-far-smaller copy-to-clipboard
-      :tab-width: 4
-
-
-
-JSON
-------------------------------------------------
-
-.. container:: scrollable
-      
-   .. include:: code/JSON.js
-      :code: javascript
-      :number-lines:
-      :class: code far-far-smaller copy-to-clipboard
-      :tab-width: 4
-
-
-Reguläre Ausdrücke
-------------------------------------------------
-
-- Built-in support by means of regular expression literals and an API
-- Use Perl syntax
-- Methods on regular expression objects: test (e.g., RegExp.test(String)).
-- Methods on strings that take RegExps: search, match, replace, split,...
-
-.. container:: scrollable
-      
-   .. include:: code/RegularExpressions.js
-      :code: javascript
-      :number-lines:
-      :class: code far-far-smaller copy-to-clipboard
-      :tab-width: 4
 
 
 Alles ist ein Objekt

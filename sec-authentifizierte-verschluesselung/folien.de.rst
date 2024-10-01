@@ -1,0 +1,132 @@
+.. meta:: 
+    :author: Michael Eichberg
+    :keywords: "Authentifizierte Verschlüsselung", AES-GCM
+    :description lang=en: Authenticated Encryption
+    :description lang=de: Authentifizierte Verschlüsselung
+    :id: lecture-security-authentifizierte-verschlüsselung
+    :first-slide: last-viewed
+    :exercises-master-password: WirklichSchwierig!
+
+.. |html-source| source::
+    :prefix: https://delors.github.io/
+    :suffix: .html
+.. |pdf-source| source::
+    :prefix: https://delors.github.io/
+    :suffix: .html.pdf
+
+.. role:: incremental
+.. role:: ger
+.. role:: red
+.. role:: green 
+.. role:: blue 
+.. role:: smaller
+.. role:: eng
+.. role:: raw-html(raw)
+    :format: html
+    
+    
+
+Authentifizierte Verschlüsselung
+===============================================
+
+:Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
+:Version: 0.1
+:Teilweise basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
+
+.. supplemental::
+
+  :Folien: 
+      :HTML: |html-source|
+
+      :PDF: |pdf-source|
+  :Fehler melden:
+      https://github.com/Delors/delors.github.io/issues
+
+
+
+
+Drei Ansätze in Hinblick auf *Authenticated Encryption* 
+--------------------------------------------------------
+
+.. container:: two-columns
+
+    .. container:: column no-separator
+
+        **Encrypt-then-MAC**
+
+        .. image:: drawings/authentifizierte-verschluesselung/encrypt_then_mac.svg
+            :width: 675px
+            :align: center
+
+        .. container:: incremental margin-top-1em
+
+            **Encrypt-and-MAC**
+
+            .. image:: drawings/authentifizierte-verschluesselung/encrypt_and_mac.svg
+                :width: 675px
+                :align: center
+
+    .. container:: column incremental
+
+        **MAC-then-Encrypt**
+
+        .. image:: drawings/authentifizierte-verschluesselung/mac_then_encrypt.svg
+            :width: 675px
+            :align: center        
+
+
+.. supplemental::
+
+    .. rubric:: Modi
+
+    - **Encrypt-then-MAC**: Der Klartext wird verschlüsselt und dann wird ein MAC über den Chiffretext berechnet. Dieser Ansatz wird von IPSec und TLS 1.3 verwendet.
+    - **Encrypt-and-MAC**: Der Klartext wird verschlüsselt und ein MAC über den Klartext berechnet. Beides wird versendet. Dieser Ansatz wird von SSH verwendet. Es wurde gezeigt, dass kleinere Änderungen die Sicherheit weiter verbessern können.
+    - **MAC-then-Encrypt**: Ein MAC wird über den Klartext berechnet und dann wird der Klartext und der MAC verschlüsselt. Dies war bis TLS 1.2 der Standard. Aufgrund von erfolgreichen Angriffen insbesondere gegen das Padding wird dieser Ansatz nicht mehr verwendet/empfohlen.
+
+    .. rubric:: Integrität und Authentizität
+
+    Es ist möglich Integrität ohne Authentizität zu gewährleisten. Durch einen einfachen MAC kann gewährleistet werden, dass die Daten während der Übertragung nicht verändert wurden (insbesondere durch einen Fehler). Wenn ich jedoch Authentizität gewährleisten möchte, dann muss ich einen MAC verwenden, der auf einem Schlüssel basiert, der nur dem Sender und dem Empfänger bekannt ist. Dies verhindert, dass ein Angreifer einfach die Daten verändert und den MAC neu berechnet.
+
+    Authentizität ohne Integrität ist nicht sinnvoll. Der Nutzen zu wissen, dass eine Nachricht von einer bestimmten Person kam, aber nicht zu wissen ob die Nachricht verändert wurde, ist sehr gering.
+
+
+
+AES-GCM Modus (Galois/Counter Mode)
+--------------------------------------
+
+.. image:: drawings/authentifizierte-verschluesselung/aes_gcm.svg
+    :height: 975px
+    :align: center
+
+.. container:: footer far-far-smaller
+
+    Die Visualisierung stellt nur zwei Schritte dar; eine Erweiterung auf n-Blöcke ist jedoch offensichtlich.
+
+.. supplemental::
+
+    - Standardisiert durch NIST in SP 800-38D.
+
+    - Es handelt sich um eine Verknüpfung des CTR-Modus und Galois-Modus. Ziel ist eine hohe Parallelisierung und Effizienz.
+    - Der Algorithmus ist in der Lage, Authentizität (+ Integrität) und Vertraulichkeit zu gewährleisten.
+    - Die Eingabe in den Algorithmus ist der Klartext (:eng:`Plaintext`), der Schlüssel, ein Initialisierungsvektor (IV) und zusätzliche (optionale) authentifizierte Daten A.
+    - Das Authentication Tag wird mittels Arithmetik über dem Körper :math:`GF(2^{128})` berechnet und wird am Ende des Chiffretextes angehängt. Es wird das bekannte Polynom: :math:`x^128 + x^7 + x^2 + x + 1` verwendet.
+    - Die Blockgröße ist 128Bit (d. h. die AES-Blockgröße).
+    - :math:`H` ist der Hash Key und :math:`mult` ist Multiplikation im Körper :math:`GF(2^128)`. :math:`H = E(K,0^{128})`
+    - Die optionalen authentifizierten Daten A werden zum Beispiel benötigt, um den Kontext einer Nachricht zu erfassen (und zum Beispiel Replay-attacken vorzubeugen). Ein konkretes Beispiel könnte die Ziel-IP-Adresse sein, wenn die Nachricht über das Internet übertragen wird.
+
+
+
+.. class:: integrated-exercise transition-scale
+
+Übung
+---------------------
+
+.. exercise:: AES-GCM
+
+    Warum ist es wichtig, dass der IV bei AES-GCM nur einmal verwendet wird?
+
+    .. solution:: 
+        :pwd: ASE-GCM->StreamCipher
+
+        Bei AES-GCM handelt es sich effektiv um eine Stromchiffre. Als solche ist es wichtig, dass der IV nur einmal verwendet wird, da sonst die Sicherheit des Verfahrens beeinträchtigt wird. 
+

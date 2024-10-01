@@ -223,7 +223,7 @@ Kommentare
 
         Erzeugte Dokumentation (mit Java 23)
 
-        .. image:: code/Fak_java23_javadoc.png
+        .. image:: images/Fak_java23_javadoc.png
             :alt: Generierte Dokumentation für die Funktion fak(long n) 
             :height: 600px
             :align: center
