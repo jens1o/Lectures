@@ -38,7 +38,7 @@ Cybersecurity
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de
-    :Version: 2.0
+    :Version: 2.1
 
 .. supplemental::
 
@@ -345,6 +345,28 @@ Schutzziele der IT-Sicherheit: CIA-Triade
     Integrity ≘dt. Integrität
 
     Availability ≘dt. Verfügbarkeit
+
+
+
+Erweiterte Schutzziele
+--------------------------------------------
+
+Neben den primären Schutzzielen, gibt es eine Reihe weiterer kontextabhängiger Schutzziele:
+
+.. class:: incremental
+
+:Verbindlichkeit/Nichtabstreitbarkeit (`Accountability/Non-repudiation`:eng:):
+    Ein Akteur kann seine Handlungen nicht abstreiten.
+
+.. class:: incremental
+
+:Pseudo-/Anonymisierung: Eine Person kann nicht oder nicht unmittelbar identifiziert werden.
+
+.. class:: incremental
+
+:Authentizität (`Authenticity`:eng:): Ist eine Information echt bzw. vertrauenswürdig?
+
+
 
 
 
