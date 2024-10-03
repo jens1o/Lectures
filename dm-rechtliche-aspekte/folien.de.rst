@@ -35,7 +35,7 @@ Rechtliche Anforderungen an das Dokumentenmanagement
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
-    :Version: 1.0
+    :Version: 1.0.1
 
 .. supplemental::
 
@@ -226,7 +226,7 @@ Elektronische Signaturen
 
     .. class:: smaller
 
-    Die Daten sind keine Person zugeordnet. 
+    Die Daten sind keiner Person zugeordnet. 
 
 .. class:: incremental
 
@@ -266,7 +266,7 @@ Scannen von externen Dokumenten
 - Die Dokumente sind nach dem Stand der Technik zu scannen. (TR-ESOR 03125 bzw. TR-RESISCAN 03138)
 - Bei gescannten öffentlichen Urkunden gilt §371 B ZPO; d. h. der Beweiswert bleibt erhalten wenn der Scan von einer öffentlichen Behörde oder einer mit öffentlichen Glauben versehen Personen durchgeführt wurde.
 - Relevante Vorschriften ergeben sich aus TR 3138 Resiscan des BSI.
-- Durch eine verbindliche Auskunft nach Paragraph 38 AO kann eine Garantie für die Akzeptanz gescannte Dokumente durch das Finanzamt erwirkt werden.
+- Durch eine verbindliche Auskunft nach Paragraph 38 AO kann eine Garantie für die Akzeptanz gescannter Dokumente durch das Finanzamt erwirkt werden.
 
 
 
@@ -311,7 +311,7 @@ Datenschutz - Grundlagen
 §32 DSGVO
 ------------
 
-Stellen, die mit personenbezogenen Daten umgehen müssen, technische und organisatorische Maßnahmen zu treffen, um die Anforderungen der DSGVO zu gewährleisten.
+Stellen, die mit personenbezogenen Daten umgehen, müssen technische und organisatorische Maßnahmen treffen, um die Anforderungen der DSGVO zu gewährleisten.
 
 .. container:: smaller incremental
 
@@ -365,12 +365,12 @@ Anforderung an die Revisionssicherheit gemäß GoBD
 .. class:: incremental
 
 - das Verfahren zur Vergabe von Zugriffsberechtigungen muss dokumentiert und nachvollziehbar sein.
-- Zugriffsberechtigung sind Personen zu bezogen zu vergeben. 
+- Zugriffsberechtigungen sind Personen bezogen zu vergeben. 
 - Zugriffe sind zu protokollieren.
 - Bild und Datenträger müssen vor fremden Zugriff sicher aufbewahrt werden.
 - Sicherheitsmaßnahmen sind regelmäßig zu hinterfragen und auf einer Risikoanalyse basieren.
 - das Verfahren zur Vergabe von Zugriffsberechtigungen muss dokumentiert und nachvollziehbar sein.
-- die Schutzziele Vertraulichkeit, Authenzität, Integrität, Verfügbarkeit und Revisionssicherheit sind einzuhalten.
+- die Schutzziele Vertraulichkeit, Integrität, Verfügbarkeit sowie Authentizität und Revisionssicherheit sind einzuhalten.
 
 
 Rechte von Betroffenen gemäß DSGVO
@@ -474,6 +474,7 @@ Gesetzliche Aufbewahrungsfristen
   Z.B. § 257 HGB vs. §§ 140-147 AO; d. h. Aufbewahrungspflicht 6 oder 10 Jahre.
 
   Vgl. `IHK Konstanz - Aufbewahrungsfristen (Stand 2020) <https://www.ihk.de/konstanz/recht-und-steuern/steuer-und-finanzpolitik/finverwal/aufbewahrung-von-geschaeftsunterlagen-1672476#:~:text=Die%20Aufbewahrungsfrist%20für%20Bücher%20und,und%20Rechnungen%20beträgt%20zehn%20Jahre.>`__
+- Werden auch gel. angepasst (2024 wurde die Aufbewahrungspflicht für Belege verkürzt).
 - **Direkte Aufbewahrungspflichten werden in der Fachliteratur zusammengetragen und können dort entnommen werden.**
 
 
@@ -583,7 +584,7 @@ Sicherstellung der Beweiskraft vor Gericht
 
 .. supplemental::
 
-  Vor Gericht sind auch noch Zeugen, Sachverständigen, Augenschein und Parteivernehmung als Beweismittel zulässig.
+  Vor Gericht sind auch noch Zeugen, (Sachverständige Zeugen), Sachverständige, Augenschein und Parteivernehmung als Beweismittel zulässig.
 
   .. rubric:: Urkunden
 
@@ -613,8 +614,8 @@ Zertifizierungen von Dokumentenmanagementsystemen
 
 - Die (Entwicklungs-)Prozesse des Herstellers sind zertifiziert (z. B. ISO 9000).
 - Die DMS Lösung wird von anderen Herstellern zertifiziert (Zweck garantierte Interoperabilität).
-- Die Lösung ist Teil einer Prozesszertifizierung und dient der Qualitätsverbesserung des Prozesses zu zertifizierenden Prozesses. (z. B. ISO 9000 und ISO 14001)
-- Die DMS-Software bzw. Teile davon sind nach anerkannten Prüfungsgrundlagen zertifiziert
+- Die Lösung ist Teil einer Prozesszertifizierung und dient der Qualitätsverbesserung des zu zertifizierenden Prozesses. (z. B. ISO 9000 und ISO 14001)
+- Die DMS-Software bzw. Teile davon sind nach anerkannten Prüfungsgrundlagen zertifiziert.
 - Die DMS-Lösung ist in der Gesamtheit (inkl. administrativer und organisatorischer Prozesse) zertifiziert.
 
 
@@ -626,7 +627,10 @@ Typische Zertifizierungsgrundlagen
 
 - IEC/ISO 12119
   
-  Allgemeine Anforderungen an Software in Hinblick auf (a) die Dokumentation und (b) die Zuverlässigkeit und Funktionalität der Software.
+  Allgemeine Anforderungen an Software in Hinblick auf 
+
+  (a) die Dokumentation und 
+  (b) die Zuverlässigkeit und Funktionalität der Software.
 - IDW PS 880: :ger-quote:`Softwaretestat`
     
   Orientiert sich an gesetzlichen Grundlagen - insbesondere in Hinblick auf die Rechnungslegung.
