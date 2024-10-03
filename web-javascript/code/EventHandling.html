@@ -3,8 +3,17 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Eventhandling</title>
-    </head>
-    <body>
+        <style>
+            body {
+                display: flex;
+                width: 100vw;
+                height: 100vh;
+                flex-direction: column;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+            }
+        </style>
         <script>
             const box = document.getElementById("box");
             let color = 0;
@@ -12,32 +21,14 @@
                 color = (color + 1) % 512;
                 let rgb = color;
                 if (rgb > 255) rgb = 256 - (rgb - 255);
-                // console.log(rgb);
                 document.body.style.backgroundColor = `rgb(${rgb}, ${rgb}, ${rgb})`;
             };
             setInterval(setColor, 10); // the function setColor is called every 10ms
-
-            /* Using Promises:
-            function getUsers() {
-                fetch('http://127.0.0.1:4080/users')
-                    .then(response => response.json())
-                    .then(users => {
-                        const usersElement = document.getElementById('users');
-                        usersElement.innerText = JSON.stringify(users);
-                    });
-                    }
-            */
-
-            /* Using async/await: */
-            async function getUsers() {
-                let response = await fetch("http://127.0.0.1:4080/users");
-                let users = await response.json();
-                const usersElement = document.getElementById("users");
-                usersElement.innerText = JSON.stringify(users);
-            }
         </script>
-
-        <div id="users"></div>
-        <button onclick="getUsers()">Get Users</button>
+    </head>
+    <body>
+       <div id="users" style="width: fit-content;">
+            Damit es nicht langweilig wird, ändert sich die Hintergrundfarbe dieser Seite ständig.
+       </div>
     </body>
 </html>
