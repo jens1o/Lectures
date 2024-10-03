@@ -45,7 +45,9 @@ function sendNextQuestion() {
 }
 
 function sendResults() {
-    const results = playerWSs.map(player => { return { "id": player.id, "name": player.name, "wins": player.wins } });
+    const results = playerWSs.map(player => {
+        return { "id": player.id, "name": player.name, "wins": player.wins }
+    });
     const sortedResults = results.sort((a, b) => b.wins - a.wins);
     const resultsMsg = JSON.stringify({
         "type": "results",
@@ -71,7 +73,11 @@ function handleAnswer(clientId, answer) {
         // sendNextQuestion();
         sendResults();
     } else {
-        adminWS.send(JSON.stringify({ "type": "answers", "count": answersCount, "correctAnswersCount" : correctAnswersCount }));
+        adminWS.send(JSON.stringify({
+            "type": "answers",
+            "count": answersCount,
+            "correctAnswersCount": correctAnswersCount
+        }));
     }
 }
 
@@ -127,7 +133,7 @@ app.ws('/admin', function (ws, req) {
                 break;
         }
     };
-    
+
     ws.onclose = (event) => {
         console.log("Admin disconnected");
         adminWS = null;
@@ -142,6 +148,6 @@ app.ws('/admin', function (ws, req) {
 });
 
 
-var server = app.listen(8888, function () {
-    console.log("Quizzy running at http://127.0.0.1:8888/");
+var server = app.listen(8800, function () {
+    console.log("Quizzy running at http://127.0.0.1:8800/");
 })

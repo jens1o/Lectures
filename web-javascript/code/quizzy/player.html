@@ -3,7 +3,7 @@
 
 <head>
     <script>
-        const ws = new WebSocket("ws://localhost:8888/player");
+        const ws = new WebSocket("ws://localhost:8800/player");
         ws.onmessage = (event) => {
             const data = JSON.parse(event.data);
             switch (data.type) {
@@ -12,7 +12,8 @@
                     showQuestion(data);
                     break;
                 case "results":
-                    document.getElementById("main").innerText = "Results: " + event.data;
+                    const main = document.getElementById("main")
+                    main.innerText = "Results: " + event.data;
                     break;
                 default:
                     console.log("Unknown message: " + data);
@@ -28,9 +29,7 @@
 
         function showQuestion(data) {
             const main = document.getElementById("main")
-            main.innerHTML = `
-            <h1>Question</h1>
-            <p>${data.question}</p>`;
+            main.innerHTML = `<h1>Question</h1><p>${data.question}</p>`;
 
             function createAnswerButton(answer) {
                 const button = document.createElement("button");
@@ -39,11 +38,10 @@
                 return button;
             }
 
-            for (answer of data.answers) {    
+            for (answer of data.answers) {
                 main.appendChild(createAnswerButton(answer));
             }
         }
-
 
         function submitAnswer(answer) {
             return () => {
@@ -51,7 +49,6 @@
                     "type": "answer",
                     "answer": answer
                 }));
-
                 doWait();
             }
         }
@@ -67,7 +64,8 @@
         }
 
         function doWait() {
-            document.getElementById("main").innerHTML = "Waiting for other players...";
+            const main = document.getElementById("main");
+            main.innerHTML = "Waiting for other players...";
         }
     </script>
 

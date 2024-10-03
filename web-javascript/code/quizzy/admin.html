@@ -3,7 +3,7 @@
 
 <head>
     <script>
-        const ws = new WebSocket("ws://localhost:8888/admin");
+        const ws = new WebSocket("ws://localhost:8800/admin");
 
         ws.onmessage = (event) => {
             const data = JSON.parse(event.data);
@@ -21,7 +21,8 @@
                     showQuestion(data);
                     break;
                 case "results":
-                    document.getElementById("main").innerText = "Result: " + event.data;
+                    const main = document.getElementById("main")
+                    main.innerText = "Result: " + event.data;
                     break;
                 default:
                     console.log("unknown: " + event.data);
@@ -31,7 +32,8 @@
 
         ws.onclose = (event) => {
             console.log("Connection closed: " + event);
-            document.getElementById("main").innerText = "Connection closed - you need to restart.";
+            const main = document.getElementById("main")
+            main.innerText = "Connection closed - you need to restart.";
         };
         ws.onerror = (event) => {
             console.log("Connection error: " + event);
@@ -43,7 +45,7 @@
 
         function showQuestion(data) {
             document.getElementById("main").innerText = `
-                Current question: ${data.question}; correct answer: ${data.correct}
+                question: ${data.question}; correct answer: ${data.correct}
                 `
         }
     </script>
