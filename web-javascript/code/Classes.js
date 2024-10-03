@@ -42,8 +42,6 @@ class Queue {
   #last = null;
   #first = null;
 
-  constructor() {}
-
   enqueue(elem) {
     if (this.#first === null) {
       const c = { e: elem, next: null };
@@ -56,13 +54,19 @@ class Queue {
     }
   }
 
-  dequeue() {
-    if (this.#first === null) {
-      return null;
-    } else {
-      const c = this.#first;
-      this.#first = c.next;
-      return c.e;
+  foreach(f) {
+    let c = this.#first;
+    while (c !== null) {
+      f(c.e);
+      c = c.next;
+    }
+  }
+
+  *[Symbol.iterator]() { // Implementation of the iterator protocol using a generator
+    let c = this.#first;
+    while (c !== null) {
+      yield c.e;
+      c = c.next;
     }
   }
 
@@ -73,11 +77,20 @@ class Queue {
 
 const q = new Queue();
 q.enqueue(1);
-console.log("new Queue().enqueu(1).dequeue()", q.dequeue());
-q.enqueue("first");
+console.log("new Queue().enqueue(1).foreach(console.log): "); q.foreach(console.log);
+for (let v of q) { console.log(v); }
+
 try {
-  /* q.first is not our private field: */ console.log("q.first", q.first);
-  // Compile(!) time error: console.log("q.#first", q.#first);
+  /* "first" is not the name of the private fiedl!
+     Hence, q.first is not our private field and:
+     
+      console.log("q.first", q.first); 
+
+    would result in a run-time error.
+  */
+  /* Accessing the private field #first results in a error at load time:
+     Load time error: console.log("q.#first", q.#first);
+  */
 } catch (error) {
   console.error(error);
 }
