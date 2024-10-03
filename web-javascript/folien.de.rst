@@ -38,7 +38,7 @@ Eine kurze Einführung/eine kurze Übersicht über JavaScript für erfahrene Pro
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
-    :Version: 2.0 (alpha)
+    :Version: 2.0
 
 .. supplemental::
 
@@ -310,7 +310,7 @@ ________________________________________________________________________________
       Hinweise: 
 
       - das von :code:`document.body` referenziert HTML Element enthält den gesamten Inhalt des Dokuments
-      - die aktuellen Abmaße des Dokuments können Sie mit der Funktion :code`window.getComputedStyle(<HTML Element>).height` ermitteln; geben Sie den Wert auf der Konsole aus bevor Sie das Dokument scrollen; was fällt Ihnen auf?
+      - die aktuellen Abmaße des Dokuments können Sie mit der Funktion :code:`window.getComputedStyle(<HTML Element>).height` ermitteln; geben Sie den Wert auf der Konsole aus bevor Sie das Dokument scrollen; was fällt Ihnen auf?
       - um zu scrollen, können Sie window.scrollTo(x,y) verwenden
       - um den Integer Wert eines Wertes in Pixeln zu bestimmen, können Sie ``parseInt`` verwenden
 
@@ -539,8 +539,8 @@ ________________________________________________________________________________
 
 
 
-Destrukturierung (:eng:`Destructuring`)
-------------------------------------------------
+`Destrukturierung <./code/Destructuring.mjs>`__ (:eng:`Destructuring`)
+-------------------------------------------------------------------------
 
 .. container:: scrollable
       
@@ -554,8 +554,8 @@ Destrukturierung (:eng:`Destructuring`)
 
 
 
-JSON (JavaScript Object Notation)
-------------------------------------------------
+`JSON <./code/JSON.js>`__ (JavaScript Object Notation)
+----------------------------------------------------------
 
 .. container:: scrollable
       
@@ -575,10 +575,10 @@ JSON (JavaScript Object Notation)
 `Reguläre Ausdrücke <./code/RegularExpressions.js>`__
 -------------------------------------------------------
 
-- Built-in support by means of regular expression literals and an API
-- Use Perl syntax
-- Methods on regular expression objects: test (e.g., RegExp.test(String)).
-- Methods on strings that take RegExps: search, match, replace, split,...
+- Eingebaute Unterstützung basierend auf entsprechenden Literalen (Strings in "/") und einer API
+- inspiriert von der Perl Syntax
+- Methoden auf regulären Objekten: :code:`test` (e.g., :code:`RegExp.test(String)`).
+- Methoden auf Strings, die reguläre Ausdrücke verarbeiten: :code:`search`, :code:`match`, :code:`replace`, :code:`split`, ...
 
 .. container:: scrollable
       
@@ -590,18 +590,46 @@ JSON (JavaScript Object Notation)
 
 
 
-``this`` `in Funktionen und partielle Funktionsaufrufe <./code/Functions_this.js>`__
-------------------------------------------------------------------------------------------
+`Klassen und Vererbung <./code/Classes.js>`__
+------------------------------------------------
+
+.. include:: code/Classes.js
+   :code: javascript
+   :number-lines:
+   :class: far-far-smaller scrollable copy-to-clipboard
+   :tab-width: 4
+   :end-before: class Queue {
+
+
+
+Grundlagen von ECMAScript Modulen
+------------------------------------------------
 
 .. container:: scrollable
 
-   .. include:: code/Functions_this.js
+   `Queue.mjs <./code/Queue.mjs>`__ exportiert die Klasse Queue
+
+   .. include:: code/Queue.mjs
       :code: javascript
-      :start-line: 3
-      :end-before: ////////////////////////////////////////////////////////////////////////////////
       :number-lines:
       :class: code far-far-smaller copy-to-clipboard
-      :tab-width: 2
+      :tab-width: 4
+
+   `log.mjs <./code/log.mjs>`__ verwendet (:code:`import`) die Klasse Queue und exportiert Funktionen zum Loggen
+   
+   .. include:: code/log.mjs
+      :code: javascript
+      :number-lines:
+      :class: code far-far-smaller copy-to-clipboard
+      :tab-width: 4
+      :end-before: /**
+
+
+.. supplemental::
+
+   ECMAScript Module verwenden immer den *strict mode*.
+
+   Import Statements erlauben das selektierte importieren als auch das Umbenennen von importierten Elementen (z. B., :code:`import { Queue as Q } from "./Queue.mjs";`).
 
 
 
@@ -622,12 +650,27 @@ Alles ist ein Objekt
 
 
 
-Prototype basierte Vererbung
-------------------------------------------------
+`Partial Function Application <./code/Functions_partiell.js>`__
+------------------------------------------------------------------------------------------
+
+.. container:: scrollable
+
+   .. include:: code/Functions_partiell.js
+      :code: javascript
+      :number-lines:
+      :class: code far-far-smaller copy-to-clipboard
+      :tab-width: 2
+
+
+
+`Prototype basierte Vererbung <./code/ObjectCreate.js>`__
+-------------------------------------------------------------
 
 .. stack::
 
    .. layer::
+
+      Verwendung von :code:`Object.create` zur Initialisierung der *Prototype Chain*:
 
       .. code:: javascript
          :number-lines:
@@ -643,6 +686,8 @@ Prototype basierte Vererbung
 
    .. layer:: incremental
       
+      Verwendung der Eigenschaften von Prototypen:
+
       .. code:: javascript
          :number-lines:
          :class: copy-to-clipboard far-smaller
@@ -655,6 +700,16 @@ Prototype basierte Vererbung
       .. image:: images/prototype_chain/object_literals_and_the_prototype_chain_with_update.svg
          :width: 1400px
          :align: center
+         :class: margin-top-1em margin-bottom-1em
+
+      .. code:: javascript
+         :number-lines: 5
+         :class: copy-to-clipboard far-smaller incremental
+
+         gc.s = "gc"
+         console.log(gc.s); // gc
+         delete gc.s;
+         console.log(gc.s); // p
 
    .. layer:: incremental
       
@@ -702,31 +757,30 @@ Prototype basierte Vererbung
          :width: 1000px
          :align: center
 
+.. supplemental::
+
+   Die Eigenschaft :code:`prototype` einer Funktion (``F``) verweist auf das Objekt, dass als Prototype (:code:`__proto__`) verwendet wird, wenn die Funktion als Konstruktor verwendet wird. D. h. im Falle einer Instantiierung von :code:`F` (d. h. :code:`const newF = new F()`) wird das Objekt, das durch :code:`F.prototype` referenziert wird, als Prototype (:code:`newF.__proto__`) des neu erstellten Objekts (:code:`newF`) verwendet.
+
+   .. include:: code/Prototypes.js
+      :code: javascript
+      :number-lines:
+      :class: far-far-smaller scrollable copy-to-clipboard
+      :tab-width: 4
 
 
 
-Prototype basierte Vererbung
-------------------------------------------------
+Praktische Verwendung von Prototypen basierter Vererbung
+-------------------------------------------------------------
 
-.. include:: code/Prototypes.js
+.. include:: code/Array.prototype.js
    :code: javascript
    :number-lines:
    :class: far-far-smaller scrollable copy-to-clipboard
    :tab-width: 4
 
 
-Classes
-------------------------------------------------
 
-.. include:: code/Classes.js
-   :code: javascript
-   :number-lines:
-   :class: far-far-smaller scrollable copy-to-clipboard
-   :tab-width: 4
-
-
-
-DOM Manipulation
+`DOM Manipulation <./code/DOM.html>`__
 ------------------------------------------------
 
 .. include:: code/DOM.html
@@ -736,21 +790,123 @@ DOM Manipulation
    :tab-width: 4
 
 
-.. TODO: 
-   Promises,
-   async-await, 
 
-Interaktion mit Server
---------------------------
+`Minimaler Server mit Express JS <./code/UsersServer.mjs>`__
+--------------------------------------------------------------
 
-.. include:: code/EventHandling.html
+.. include:: code/UsersServer.mjs
+   :code: javascript
+   :number-lines:
+   :class: far-far-smaller scrollable copy-to-clipboard
+   :tab-width: 4
+
+.. supplemental::
+
+   `Express <https://expressjs.com>`__ ist ein minimalistisches Web-Framework für Node.js, das die Entwicklung von Webanwendungen vereinfacht. Die Installation kann über einen Packagemanager erfolgen.
+
+   Installieren Sie (z. B.) pnpm (https://pnpm.io/) und nutzen Sie danach pnpm, um die benötigten Module zu installieren:
+
+   .. code:: bash
+
+      $ pnpm init
+      $ pnpm install express 
+
+   Danach starten Sie Ihren Server mit:
+
+   .. code:: bash
+
+      node --watch UsersServer.mjs
+
+
+
+`Interaktion mit Server mit Hilfe von Fetch <./code/Users.html>`__
+--------------------------------------------------------------------
+
+.. include:: code/Users.html
    :code: html
    :number-lines:
    :class: far-far-smaller scrollable copy-to-clipboard
    :tab-width: 4
 
+.. TODO add (more :-)) explanations related to Promises, async-await, etc.
 
-.. TODO: ECMAScript Modules (Plug-in Architektur mit Modules)
+
+
+Beispiel - Rumpf einer einfachen Webanwendung ("Quizzy")
+------------------------------------------------------------
+
+Im Folgenden verwenden wir zur Client-/Server-Kommunikation insbesondere Websockets.
+
+.. container:: scrollable
+
+   **Server**
+
+   .. include:: code/quizzy/game.js
+      :code: javascript
+      :number-lines:
+      :class: far-far-smaller copy-to-clipboard
+      :tab-width: 4
+
+   **Client - Players**
+
+   .. include:: code/quizzy/player.html
+      :code: html
+      :number-lines:
+      :class: far-far-smaller copy-to-clipboard
+      :tab-width: 4
+
+   **Client - Admin**
+
+   .. include:: code/quizzy/admin.html
+      :code: html
+      :number-lines:
+      :class: far-far-smaller copy-to-clipboard
+      :tab-width: 4
+
+
+.. supplemental::
+
+   Die Implementierung dient nur dazu die grundlegenden Konzepte zu verdeutlichen. Es fehlen **viele** Aspekte wie z. B., Sicherheit.
+
+
+.. TODO basic authentication and JSON Web Tokens (JWT)
+
+Authentifizierung mit JWT (und Express)
+------------------------------------------------
+
+.. container:: scrollable
+
+   **Server**
+
+   .. include:: code/authentication/server.mjs
+      :code: javascript
+      :number-lines:
+      :class: far-far-smaller copy-to-clipboard
+      :tab-width: 4
+
+   **Client (JavaScript)**
+
+   .. include:: code/authentication/admin.js
+      :code: javascript
+      :number-lines:
+      :class: far-far-smaller copy-to-clipboard
+      :tab-width: 4
+
+.. supplemental::
+
+   Alle Quellen:
+
+   `admin.js <./code/authentication/admin.js>`__
+
+   `admin.html <./code/authentication/admin.html>`__
+   
+   `admin.css <./code/authentication/admin.css>`__
+   
+   `server.mjs <./code/authentication/server.mjs>`__
+   
+   `start_server.sh <./code/authentication/start_server.sh>`__
+   
+   `Users.json <./code/authentication/users.json>`__
 
 
 Referenzen

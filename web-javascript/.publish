@@ -27,3 +27,9 @@ code/ObjectCreate.js
 code/DOM.html
 code/UsersServer.mjs
 code/Users.html
+code/authentication/admin.js
+code/authentication/admin.html
+code/authentication/admin.css
+code/authentication/server.mjs
+code/authentication/start_server.sh
+code/authentication/users.json
