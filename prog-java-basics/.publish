@@ -1,6 +1,12 @@
 folien.de.rst.html
 folien.de.rst.html.pdf
 
+images/Fak_java23_javadoc.png
+
 code/HelloWorld.java
 code/HelloYou.java
-images/Fak_java23_javadoc.png
+code/ArithmetischeOperatoren.jshell.java
+code/Vergleichsoperatoren.jshell.java
+code/LogischeOperatoren.jshell.java
+code/EncryptionWithXOR.jshell.java
+
