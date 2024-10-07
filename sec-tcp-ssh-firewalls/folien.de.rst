@@ -246,7 +246,7 @@ Angriffe auf TCP - Motivation
 - Netzwerkprogrammierung mit TCP ist relativ komfortabel. 
 - Viele Dienste sind mit TCP implementiert.
 - Angreifer nutzen Schwachstellen in TCP Diensten aus.
-- Server haben heutzutage i. Allg. alle nicht verwendeten Dienste geschlossen. Angreifer muss verwundbare Dienste zum Beispiel durch Port Scans finden.
+- Server haben heutzutage im Allgemeinen alle nicht verwendeten Dienste geschlossen. Ein Angreifer muss verwundbare Dienste zum Beispiel erst durch Port Scans finden.
 
 
 Port Scans: TCP Connect Scan
@@ -828,7 +828,7 @@ Password Sniffing
 :In der Übergangszeit: Verwendung von Einmal-Passwörtern (S/Key, ...)
 :Heute: Passwörter werden verschlüsselt übertragen (ssh, https, ...) 
 
-    Zusätzliche Absicherung durch Zwei-Faktor-Authentifizierung (TOTP, ...)
+    Zusätzliche Absicherung durch Zwei-Faktor-Authentifizierung (basierend auf Einmalpassworten: TOTP, ...)
 
 
 .. supplemental::
@@ -843,7 +843,7 @@ Die Idee ist, dass Passwörter nur genau einmal gültig sind und nicht wiederver
 
 - Tokens (z. B. RSA SecurID)
 - Codebuch: Liste von Einmal-Passwörtern, die das gemeinsame Geheimnis sind.
-- S/Key: Passwort :ger-quote:`wird em Zähler kombiniert` und dann gehasht.
+- S/Key: Passwort :ger-quote:`wird mit einem Zähler kombiniert` und dann gehasht.
 
 
 Das S/Key Verfahren 
@@ -857,10 +857,12 @@ Einmal-Passwort-System nach Codebuch-Verfahren, dass im Original auf der kryptog
 
         **Initialisierung**
 
-        .. class:: incremental smaller
+        .. class:: incremental smaller list-with-explanations
 
-        1) Der Nutzer gibt sein Passwort W ein; dies ist der geheime Schlüssel. (Sollte W bekannt werden, dann ist die Sicherheit des Verfahrens nicht mehr gewährleistet.)
-        2) Eine kryptografische Hash-Funktion H wird n-mal auf W angewandt, wodurch eine Hash-Kette von n einmaligen Passwörtern entsteht. :math:`H(W), H(H(W)), \dots, H^{n}(W)`
+        1) Der Nutzer gibt sein Passwort :math:`W` ein; dies ist der geheime Schlüssel. 
+
+           (Sollte :math:`W` bekannt werden, dann ist die Sicherheit des Verfahrens nicht mehr gewährleistet.)
+        2) Eine kryptografische Hash-Funktion :math:`H` wird n-mal auf :math:`W` angewandt, wodurch eine Hash-Kette von n einmaligen Passwörtern entsteht. :math:`H(W), H(H(W)), \dots, H^{n}(W)`
         3) Das initiale Passwort wird verworfen.
         4) Der Benutzer erhält die :math:`n` Passwörter, die in umgekehrter Reihenfolge ausgedruckt werden: :math:`H^n(W), H^{n-1}(W), ..., H(H(W)), H(W)`.
         5) Nur das Passwort :math:`H^n(W)`, das an erster Stelle der Liste des Benutzers steht, der Wert von :math:`n` und ggf. ein Salt, wird auf dem Server gespeichert.
@@ -869,7 +871,7 @@ Einmal-Passwort-System nach Codebuch-Verfahren, dass im Original auf der kryptog
 
         **Anmeldung**
 
-        Identifiziere :math:`n` das letzte verwendete Passwort.
+        Identifiziere das letzte verwendete Passwort :math:`n`.
 
         .. class:: incremental smaller
        
@@ -939,7 +941,7 @@ Time-based one-time password (TOTP)\ [#]_
   Z. B. Unix-Zeit in Sekunden (ganzzahlig) und danach gerundet auf 30 Sekunden.
 
 
-- Es wird das HOTP Verfahren mit der Zeit als Zähler verwendet und entweder SHA-256 oder SHA-512, d. h. TOTP :math:`value(K)` = HOTP :math:`value(K, C_T)`, wobei :math:`T` die :ger-quote:`aktuelle Zeit` ist.
+- Es wird das HOTP Verfahren mit der Zeit als Zähler verwendet und entweder SHA-256 oder SHA-512 als Hashverfahren, d. h. TOTP :math:`value(K)` = HOTP :math:`value(K, C_T)`, wobei :math:`T` die :ger-quote:`aktuelle Zeit` ist.
 
   :math:`C_T = \lfloor { T - T_0 \over T_X } \rfloor`
   

@@ -21,6 +21,7 @@
 .. role:: red
 .. role:: green 
 .. role:: blue 
+.. role:: minor
     
     
 
@@ -29,7 +30,7 @@ Erzeugung von Zufallsbits und Stromchiffren
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
-:Version: 1.0
+:Version: 2.0
 
 .. supplemental::
 
@@ -41,6 +42,11 @@ Erzeugung von Zufallsbits und Stromchiffren
       https://github.com/Delors/delors.github.io/issues
 
 
+
+.. class:: new-section
+
+Erzeugung und Zufälligkeit von Zufallszahlen
+----------------------------------------------
 
 
 Zufallszahlen
@@ -185,7 +191,7 @@ Pseudozufallszahlengenerator (PRNG) und Pseudozufallsfunktion (PRF)
 
             *Pseudorandom function (PRF)*
 
-            - Wird verwendet, um eine pseudozufällige Bitfolge mit einer bestimmten Länge zu erzeugen.
+            - Wird verwendet, um eine pseudozufällige Bitfolge *mit einer bestimmten Länge* zu erzeugen.
             - Beispiele sind symmetrische Verschlüsselungsschlüssel und Nonces.
             
     .. layer:: incremental no-number
@@ -223,16 +229,20 @@ PRNG-Anforderungen
 Zufälligkeit
 --------------
 
-- Der erzeugte Bitstrom muss zufällig erscheinen, obwohl er deterministisch ist.
+- Der erzeugte Bitstrom muss zufällig erscheinen, obwohl er deterministisch ist:
 
-.. class:: incremental 
+  .. class:: incremental 
 
-- Es gibt keinen einzigen Test, mit dem festgestellt werden kann, ob ein PRNG Zahlen erzeugt, die die Eigenschaft der Zufälligkeit aufweisen
-- Wenn der PRNG auf der Grundlage mehrerer Tests Zufälligkeit aufweist, kann davon ausgegangen werden, dass er die Anforderung der Zufälligkeit erfüllt.
+  - Es gibt keinen einzigen Test, mit dem festgestellt werden kann, ob ein PRNG Zahlen erzeugt, die die Eigenschaft der Zufälligkeit aufweisen
+  - Wenn der PRNG auf der Grundlage mehrerer Tests Zufälligkeit aufweist, kann davon ausgegangen werden, dass er die Anforderung der Zufälligkeit erfüllt.
 
-.. container:: incremental box-shadow padding-1em rounded-corners
+    .. container:: incremental box-shadow padding-1em rounded-corners
 
-    NIST SP 800-22 legt fest, dass die Tests auf drei Merkmale ausgerichtet sein sollten: (1) gleichmäßige Verteilung, (2) Skalierbarkeit, (3) Konsistenz    
+        NIST SP 800-22 legt fest, dass die Tests auf drei Merkmale ausgerichtet sein sollten: 
+
+        (1) gleichmäßige Verteilung, 
+        (2) Skalierbarkeit, 
+        (3) Konsistenz    
 
 
 
@@ -241,7 +251,7 @@ Tests auf Zufälligkeit
 
 .. container:: slightly-more-smaller
 
-    SP 800-22 listet 15 verschiedene Zufallstests auf.
+    SP 800-22 listet 15 verschiedene Zufallstests auf (Auszug):
     
 .. container:: slightly-more-smaller
 
@@ -264,31 +274,36 @@ Tests auf Zufälligkeit
         - Fokus ist die Anzahl der Bits zwischen übereinstimmenden Mustern.
         - Ziel ist es, festzustellen, ob die Sequenz ohne Informationsverlust erheblich komprimiert werden kann oder nicht. Eine signifikant komprimierbare Sequenz wird als nicht zufällig betrachtet.
 
-    
+
+
 Unvorhersehbarkeit 
 --------------------
 
-Ein Strom von Pseudozufallszahlen sollte zwei Formen der Unvorhersehbarkeit aufweisen:
+.. stack::
 
-.. container:: slightly-more-smaller 
-    
-    .. container:: incremental 
-    
-        .. rubric:: 1. Vorwärtsgerichtete Unvorhersehbarkeit
-    
-        Wenn der Seed unbekannt ist, sollte das nächste erzeugte Bit in der Sequenz trotz Kenntnis der vorherigen Bits in der Sequenz unvorhersehbar sein.
-    
-    .. container:: incremental 
-    
-        .. rubric:: 2. Rückwärtsgerichtete Unvorhersehbarkeit
+    .. layer::
 
-        - Es sollte nicht möglich sein, den Seed aus der Kenntnis der erzeugten Werte zu bestimmen.
-        - Es sollte keine Korrelation zwischen einem Seed und einem aus diesem Seed generierten Wert erkennbar sein.
-        - Jedes Element der Sequenz sollte wie das Ergebnis eines unabhängigen Zufallsereignisses erscheinen, dessen Wahrscheinlichkeit 1/2 ist.
+        Ein Strom von Pseudozufallszahlen sollte zwei Formen der Unvorhersehbarkeit aufweisen:
 
-.. class:: incremental smaller shiny-green line-above padding-top-1em
+        .. container:: smaller
+            
+            .. class:: incremental 
+            
+            1. **Vorwärtsgerichtete Unvorhersehbarkeit**
 
-Dieselbe Reihe von Tests für die Zufälligkeit liefert auch einen Test für die Unvorhersehbarkeit: Eine Zufallsfolge hat keine Korrelation mit einem festen Wert (dem Seed).
+               Wenn der Seed unbekannt ist, sollte das nächste erzeugte Bit in der Sequenz trotz Kenntnis der vorherigen Bits in der Sequenz unvorhersehbar sein.
+
+            2. **Rückwärtsgerichtete Unvorhersehbarkeit**
+
+               - Es sollte nicht möglich sein, den Seed aus der Kenntnis der erzeugten Werte zu bestimmen.
+               - Es sollte keine Korrelation zwischen einem Seed und einem aus diesem Seed generierten Wert erkennbar sein.
+               - Jedes Element der Sequenz sollte wie das Ergebnis eines unabhängigen Zufallsereignisses erscheinen, dessen Wahrscheinlichkeit 1/2 ist.
+
+    .. layer:: incremental center-child-elements
+
+        .. hint::
+
+            Dieselbe Reihe von Tests für die Zufälligkeit liefert auch einen Test für die Unvorhersehbarkeit: Eine Zufallsfolge hat keine Korrelation mit einem festen Wert (dem Seed).
 
 
 
@@ -297,7 +312,7 @@ Anforderungen an den Seed
 
 - Der Seed, der als Eingabe für den PRNG dient, muss sicher und unvorhersehbar sein
 - Der Seed selbst muss eine Zufalls- oder Pseudozufallszahl sein.
-- Normalerweise wird der Seed von TRNG erzeugt.
+- Normalerweise wird der Seed von einem TRNG erzeugt.
 
 .. image:: drawings/stream_ciphers/generation_of_seed_input.svg
     :alt: Generierung von Seeds
@@ -312,17 +327,19 @@ Algorithmus-Entwurf
 
 Algorithmen lassen sich in zwei Kategorien einteilen:
 
-.. class:: incremental
+.. class:: incremental 
 
 1. Speziell entwickelte Verfahren.
 
-   Algorithmen, die speziell und ausschließlich für die Erzeugung pseudozufälliger Bitströme entwickelt wurden.
+   .. container:: smaller
+
+        Algorithmen, die speziell und ausschließlich für die Erzeugung pseudozufälliger Bitströme entwickelt wurden.
 
 2. Algorithmen, die auf bestehenden kryptographischen Algorithmen basieren.
  
    Sie bewirken eine Zufallsverteilung der Eingabedaten.
 
-   .. container:: incremental 
+   .. container:: smaller incremental 
     
      Kryptografische Algorithmen aus den folgenden drei Kategorien werden üblicherweise zur Erstellung von PRNGs verwendet:
 
@@ -351,7 +368,16 @@ Die Folge von Zufallszahlen :math:`\lbrace{X_n}\rbrace` erhält man durch die fo
 
     Wenn :math:`m` , :math:`a` , :math:`c` und :math:`X_0` ganze Zahlen sind, dann erzeugt diese Technik eine Folge von ganzen Zahlen, wobei jede ganze Zahl im Bereich :math:`0 \leq X_n < m` liegt.
 
-    Die Auswahl der Werte für :math:`a` , :math:`c` und :math:`m` ist entscheidend für die Entwicklung eines guten Zufallszahlengenerators.
+    Die Auswahl der Werte für :math:`a` , :math:`c` und :math:`m` ist entscheidend für die Entwicklung eines brauchbaren Zufallszahlengenerators.
+
+
+.. supplemental::
+
+    .. warning::
+
+        Lineare Kongruenzgeneratoren sind einfach zu implementieren und erfordern nur wenig Speicherplatz. Sie sind jedoch nicht für kryptografische Anwendungen geeignet, da sie eine viel zu kurze Periode haben und leicht zu brechen sind. 
+        
+    Im Bereich der Simulation können sie jedoch nützlich sein.
 
 
 
@@ -378,7 +404,7 @@ Blum Blum Shub Block Diagram
     :align: center
     :width: 1400px
  
-:math:`n` ist das Produkt von zwei (sehr großen) Primzahlen :math:`p` und :math:`q`: :math:`n = p \times q`.
+:math:`n` ist das Produkt von zwei (sehr großen) Primzahlen :math:`p` und :math:`q`: :math:`n = p \times q`. Weiterhin muss gelten: :math:`p \equiv q \equiv 3 \; (mod \; 4)`.
 
 Der Seed :math:`s` sollte eine ganze Zahl sein, die zu :math:`n` *coprime* ist (d. h. :math:`p` und :math:`q` sind keine Faktoren von :math:`s`) und nicht 1 oder 0.
 
@@ -386,22 +412,26 @@ Der Seed :math:`s` sollte eine ganze Zahl sein, die zu :math:`n` *coprime* ist (
 Beispiel - Blum Blum Shub (BBS) Generator
 ------------------------------------------
 
-.. csv-table::
-    :align: center 
-    :class: no-table-borders table-rows-align-right
-    :header: i, x_i, B_i
+Sei :math:`p = 383` und :math:`q = 503`, dann ist :math:`n = 192649`. Weiterhin sei der Seed :math:`s = 101355`. 
 
-    0, 20749, 
-    1, 143135,1
-    2,177671,1
-    3,97048,0
-    4,89992,0
-    5,174051,1
-    6,80649,1
-    7,45663,1
-    8,69442,0
-    9,186894,0
-    10,177046,0
+.. container:: align-center
+
+    .. csv-table::
+        :align: right 
+        :class: no-table-borders table-rows-align-right
+        :header: :math:`i`, :math:`x_i`, :math:`B_i`
+
+        :minor:`0`, :minor:`20749`, 
+        1, 143135,1
+        2,177671,1
+        3,97048,0
+        4,89992,0
+        5,174051,1
+        6,80649,1
+        7,45663,1
+        8,69442,0
+        9,186894,0
+        10,177046,0
 
 
 
@@ -415,9 +445,181 @@ Zwei Ansätze, die eine Blockchiffre zum Aufbau eines PNRG verwenden, haben weit
 - CTR Modus: Empfohlen in NIST SP 800-90, ANSI standard X.82, und RFC 4086
 - OFB Modus: Empfohlen in X9.82 und RFC 4086
 
-.. Reasons are efficiency and simplicity
 
-.. IMPROVE Discussion of using Block Cipher Modes for PRNGs
+.. container:: two-columns 
+
+    .. container:: column no-separator center-child-elements
+
+        .. image:: drawings/stream_ciphers/prng-ctr-mode.svg
+            :alt: PRNG CTR Mode
+            :align: center
+            :width: 600px
+
+    .. container:: column center-child-elements
+
+        .. image:: drawings/stream_ciphers/prng-ofb-mode.svg
+            :alt: PRNG OFB Mode
+            :align: center
+            :width: 600px
+
+
+.. supplemental::
+
+    Die initialen Werte für V und K basieren auf dem Seed, der von einem TRNG erzeugt wird/erzeugt werden sollte. Zum Beispiel kann von einem 256-Bit-Zufallswert die ersten 128 Bit für V und die nächsten 128 Bit für K verwendet werden.
+    
+    Die Blockchiffre wird verwendet, um den Seed zu verschlüsseln und den Schlüsselstrom zu erzeugen. Im CTR Mode wird der initiale Wert für V inkrementiert.
+
+    Gründe für die Verwendung von Blockchiffren ist die Einfachheit der Implementierung und die Tatsache, dass Blockchiffren bereits in vielen Anwendungen vorhanden sind und die kryptografischen Eigenschaften von Blockchiffren gut verstanden sind.
+
+
+
+.. class:: integrated-exercise
+
+Übung
+-------
+
+.. exercise:: Test auf Zufälligkeit
+
+    Test auf Zufälligkeit: Gegeben sei eine Bitfolge, die von einem RNG erzeugt wurde. Was ist das erwartete Ergebnis, wenn man gängige Komprimierungsprogramme (z. B. 7zip, gzip, rar, ...) verwendet, um die Datei zu komprimieren; d. h. welchen Kompressionsgrad erwarten Sie?
+
+    .. solution:: 
+        :pwd: NixKompression
+
+        Es sollte keine relevante Kompression möglich sein! Wenn dem so ist, ist die Zufälligkeit höchst fragwürdig. Eine hohe Zufälligkeit impliziert eine hohe Entropie und damit nichts, was man komprimieren könnte. Im Endeffekt müsste die :ger-quote:`komprimierte` Datei aufgrund der erforderlichen Metadaten sogar größer sein.
+
+
+.. class:: integrated-exercise
+
+Übung
+-------
+
+.. exercise:: Lineare Kongruenzgeneratoren
+
+    Implementiere einen linearen Kongruenzgenerator, um zu untersuchen, wie er sich verhält, wenn sich die Zahlenwerte von :math:`a`, :math:`c` und :math:`m` ändern. Versuchen Sie Werte zu finden, die eine vermeintlich zufällige Folge ergeben.
+
+    Testen Sie Ihren Zufallszahlengenerator unter anderem mit den folgenden Werten:
+
+    .. code:: pseudocode
+        :class: slightly-more-smaller
+
+        lcg(seed,a,c,m,number_of_random_values_to_generate)
+        lcg(1234,8,8,256,100)
+        lcg(1234,-8,8,256,100)
+        
+    .. solution::
+        :pwd: Jupyter...!
+
+        Vgl. `Jupyter Notebook <https://github.com/Delors/delors.github.io/blob/main/sec-stromchiffre/code/stream_ciphers.ipynb>`__.
+
+
+
+.. class:: integrated-exercise
+
+Übung
+-------
+
+.. exercise:: Blum Blum Shub 
+
+    Sei :math:`p = 83` und :math:`q = 47`.
+
+    Berechnen Sie die ersten 8 Bits der Folge, die von einem Blum Blum Shub Generator erzeugt wird, wenn der Seed :math:`s = 253` ist. Nutzen Sie einen Taschenrechner oder schreiben Sie einfach ein Script in einer Sprache Ihrer Wahl.
+    
+    .. solution::
+        :pwd: BBS_rules
+
+        :math:`n = 83 \times 47 = 3901`
+
+        Die Berechnung der ersten 8 Bits der Folge, die von einem Blum Blum Shub Generator erzeugt wird, wenn der Seed :math:`s = 253` ist, ergibt:
+        
+        .. csv-table::
+            :header: i, Wert, Bit
+            :align: right
+
+            :minor:`0`, :math:`253^2\; mod\; n` :minor:`= 1.593`,
+            1, 1999, 1
+            2, 1377, 1
+            3, 243, 1
+            4, 534, 0
+            5, 383, 1
+            6, 2352, 0
+            7, 286, 0
+            8, 3776, 0
+            9, 21, 1
+            10, 441, 1
+
+        Java Code (für JShell):
+
+        .. code:: java
+
+            long n = 83*47;
+            var x = 253 * 253 % n;
+            for(int i = 0 ; i < 10; i ++) { 
+                x = x * x % n; 
+                System.out.println(x + " " + x % 2);
+            }
+
+         
+Quellen der Entropie
+---------------------
+
+- Ein echter Zufallszahlengenerator (TRNG) verwendet eine nicht-deterministische Quelle zur Erzeugung von Zufälligkeit.
+
+.. class:: incremental
+
+- Die meisten funktionieren durch Messung unvorhersehbarer natürlicher Prozesse, wie z. B. Impulsdetektoren für ionisierende Strahlung, Gasentladungsröhren und undichte Kondensatoren.
+- Intel hat einen kommerziell erhältlichen Chip entwickelt, der das thermische Rauschen durch Verstärkung der an nicht angesteuerten Widerständen gemessenen Spannung erfasst.
+
+
+
+Vergleich von PRNGs und TRNGs 
+-----------------------------
+
+.. csv-table::
+    :class: header-column no-table-borders
+    :header: , Pseudozufallszahlengeneratoren, echte Zufallszahlengeneratoren
+
+    Effizienz, sehr effizient, im Allgemeinen ineffizient
+    Determinismus, deterministisch, nicht Deterministisch
+    Periodizität, periodisch, aperiodisch
+
+
+
+Konditionierung
+----------------
+
+Ein TRNG kann eine Ausgabe erzeugen, die in irgendeiner Weise verzerrt ist (z. B. gibt es mehr Einsen als Nullen oder umgekehrt)
+
+.. stack::  incremental
+
+    .. layer:: 
+
+        :Verzerrt: NIST SP 800-90B definiert einen Zufallsprozess als verzerrt in Bezug auf einen angenommenen diskreten Satz möglicher Ergebnisse, wenn einige dieser Ergebnisse eine größere Wahrscheinlichkeit des Auftretens haben als andere.
+        
+        .. class:: incremental
+
+        :Entropierate: NIST 800-90B definiert die Entropierate als die Rate, mit der eine digitalisierte Rauschquelle Entropie liefert.
+
+          - Ist ein Maß für die Zufälligkeit oder Unvorhersehbarkeit einer Bitfolge.
+          - Ein Wert zwischen 0 (keine Entropie) und 1 (volle Entropie).
+        
+    .. layer:: incremental
+
+       *Konditionierungsalgorithmen/Entzerrungsalgorithmen*\ :
+      
+       Verfahren zur Modifizierung eines Bitstroms zur weiteren Randomisierung der Bits.
+
+       
+    
+        - Die Konditionierung erfolgt in der Regel durch die Verwendung eines kryptografischen Algorithmus zur Verschlüsselung der Zufallsbits, um Verzerrungen zu vermeiden und die Entropie zu erhöhen.
+    
+        - Die beiden gängigsten Ansätze sind die Verwendung einer Hash-Funktion oder einer symmetrischen Blockchiffre.
+
+
+
+.. class:: new-section transition-fade
+
+Stromchiffren
+----------------
 
 
 
@@ -489,97 +691,263 @@ Allgemeine Struktur einer typischen Stromchiffre
 
 
 
-Quellen der Entropie
----------------------
+RC 4
+------
 
-- Ein echter Zufallszahlengenerator (TRNG) verwendet eine nicht-deterministische Quelle zur Erzeugung von Zufälligkeit.
+- 1987 von Ron Rivest für RSA Security entwickelt.
+- Stromchiffre mit variabler Schlüsselgröße und byteorientierten Operationen, die in Software sehr schnell ausgeführt werden können.
+- Basiert auf der Verwendung einer zufälligen Permutation.
 
-.. class:: incremental
+.. warning:: 
+    :class: incremental
 
-- Die meisten funktionieren durch Messung unvorhersehbarer natürlicher Prozesse, wie z. B. Impulsdetektoren für ionisierende Strahlung, Gasentladungsröhren und undichte Kondensatoren.
-- Intel hat einen kommerziell erhältlichen Chip entwickelt, der das thermische Rauschen durch Verstärkung der an nicht angesteuerten Widerständen gemessenen Spannung erfasst.
+    In der RC 4-Schlüsselableitungsfunktion wurde eine grundlegende Schwachstelle aufgedeckt, die den Aufwand für die Ermittlung des Schlüssels verringert.
+
+    Es wurde gezeigt, dass es möglich ist *wiederholt* verschlüsselte Klartexte wiederherzustellen. 
+
+    Aufgrund der Schwachstellen hat die IETF RFC 7465 herausgegeben, der die Verwendung von RC4 in TLS verbietet. In seinen jüngsten TLS-Richtlinien verbietet das NIST ebenfalls die Verwendung von RC4 für Regierungszwecke.
 
 
 
-Comparison of PRNGs and TRNGs 
------------------------------
+ChaCha20
+----------
+
+.. class:: incremental list-with-explanations
+
+- ChaCha20 ist eine Stromchiffre, die von Daniel J. Bernstein entwickelt wurde.
+- ChaCha20 ist ein schneller Verschlüsselungsalgorithmus (ohne besondere Hardwareanforderungen). 
+  
+  Reine Softwareimplementierungen von ChaCha20 sind reinen Softwareimplementierungen von AES in Bezug auf die Geschwindigkeit überlegen.
+- ChaCha20 ist im `RFC 8439 <https://datatracker.ietf.org/doc/html/rfc8439>`__ spezifiziert.
+- ChaCha20 ist eine spezielle Form von ChaCha, die 20 Runden (oder *80 Quarter Rounds*) durchläuft.
+
+
+ChaCha20 Zustand - Matrix - Indizierung
+-----------------------------------------
 
 .. csv-table::
-    :class: header-column no-table-borders
-    :header: , Pseudozufallszahlengeneratoren, echte Zufallszahlengeneratoren
+    :class: no-inner-borders no-table-borders 
+    :align: center
 
-    Effizienz, sehr effizient, im Allgemeinen ineffizient
-    Determinismus, deterministisch, nicht Deterministisch
-    Periodizität, periodisch, aperiodisch
+    0, 1, 2, 3
+    4, 5, 6 ,7
+    8, 9, 10, 11
+    12, 13, 14, 15
+
+Die 16 Werte der Matrix sind vorzeichenlose 32-Bit Ganzzahlen (:eng:`Integers`).
 
 
+ChaCha Quarter Round
+----------------------
 
-Konditionierung
-----------------
+Grundlegende Operation in ChaCha20.
 
-.. container:: smaller
+.. container:: two-columns
 
-    .. class:: incremental
+    .. container:: column no-separator
 
-    Ein TRNG kann eine Ausgabe erzeugen, die in irgendeiner Weise verzerrt ist (z. B. gibt es mehr Einsen als Nullen oder umgekehrt)
+        1. :code:`a += b; d ^= a; d <<<= 16;`
+        2. :code:`c += d; b ^= c; b <<<= 12;`
+        3. :code:`a += b; d ^= a; d <<<=  8;`
+        4. :code:`c += d; b ^= c; b <<<=  7;`
 
-    .. container:: incremental
+    .. container:: far-smaller column padding-left-1em
 
-        *Verzerrt*: NIST SP 800-90B definiert einen Zufallsprozess als verzerrt in Bezug auf einen angenommenen diskreten Satz möglicher Ergebnisse, wenn einige dieser Ergebnisse eine größere Wahrscheinlichkeit des Auftretens haben als andere.
+        :``+``: ist die Addition modulo :math:`2^{32}`.
+        :``^``: ist die XOR-Operation.
+        :``<<<``: ist die zyklische Linksverschiebung um die angegebene Anzahl von Stellen.  
+
+
+.. container:: two-columns incremental
+
+    .. container:: column no-separator
+
+        Gegeben seien die folgenden Werte:
+
+        .. code:: java
+            :class: far-smaller
+
+            a = 0x11111111
+            b = 0x01020304
+            c = 0x77777777
+            d = 0x01234567
+
+    .. container:: column
+
+        Anwendung der vierten Formel:
+
+        .. code:: java
+            :class: far-smaller
+
+            c = c + d = 0x77777777 + 0x01234567 
+                      = 0x789abcde
+            
+            b = b ^ c = 0x01020304 ^ 0x789abcde 
+                      = 0x7998bfda
+
+            b = b <<< 7 = 0x7998bfda <<< 7 
+                        = 0xcc5fed3c
+
+
+.. supplemental::
+
+    ChaCha20-Poly1305 - was ChaCha20 mit zusätzlicher Authentifizierung ist (Poly 1305) - wird unter anderem von IPsec, SSH, TLS 1.2, DTLS 1.2, TLS 1.3, WireGuard, S/MIME 4.0, und OTRv4[22].
+
+
+Anwendung der *Quarter Round Operation* 
+----------------------------------------------------------------------------
+
+
+.. stack:: incremental
+
+    .. layer:: 
+
+        - Die *Quarter Round Operation* operiert immer auf **vier der sechszehn Werte** des Zustands.
+        - :code:`QUARTERROUND(x, y, z, w)` operiert auf den vier Werten identifiziert durch die Indizes: ``x``, ``y``, ``z`` und ``w``.
+
+    .. layer:: incremental
+
+        Beispiel - *Column Round*:
+
+        Die QUARTERROUND(1, 5, 3, 9) operiert somit auf den Werten ``a``, ``b``, ``c``, ``d`` der Matrix.
+
+        .. csv-table::
+            :class: no-inner-borders no-table-borders monospaced far-smaller
+
+            0, :red:`a`, 2, 3
+            4, :red:`b`, 6 ,7
+            8, :red:`c`, 10, 11
+            12, :red:`d`, 14, 15  
+
+
+    .. layer:: incremental
     
-    .. container:: incremental
+        Beispiel - *Diagonal Round*:
 
-       *Entropierate*: NIST 800-90B definiert die Entropierate als die Rate, mit der eine digitalisierte Rauschquelle Entropie liefert.
+        .. container:: two-columns far-smaller
 
-       - Ist ein Maß für die Zufälligkeit oder Unvorhersehbarkeit einer Bitfolge.
-       - Ein Wert zwischen 0 (keine Entropie) und 1 (volle Entropie).
+            .. container:: column 
+
+                Gegeben seien die Werte:
+
+                .. csv-table::
+                    :class: monospaced highlight-cell-on-hover no-inner-borders no-table-borders smaller
+
+                    879531e0,  c5ecf37d,  516461b1,  c9a62f8a
+                    44c20ef3,  3390af7f,  d9fc690b,  2a5f714c
+                    53372767,  b00a5631,  974c541a,  359e9963
+                    5c971061,  3d631689,  2098d9d6,  91dbd320
+
+            .. container:: column 
+
+                Ergebnis der ``QUARTERROUND(2, 7, 8, 13)``:
+
+                .. csv-table::
+                    :class: monospaced highlight-cell-on-hover no-inner-borders no-table-borders smaller
+
+                    879531e0,  c5ecf37d, :red:`bdb886dc`,  c9a62f8a
+                    44c20ef3,  3390af7f,  d9fc690b, :red:`cfacafd2`
+                    :red:`e46bea80`,  b00a5631,  974c541a,  359e9963
+                    5c971061, :red:`ccc07c79`,  2098d9d6,  91dbd320
+
+.. supplemental::
+
+    Quarter-Round Function ≈ :ger:`Viertel-Runden-Operation`
+
+
+Die ChaCha20 Blockfunktion
+----------------------------
+
+.. stack:: 
+
+    .. layer::
+
+        Eingaben:
+
+        - Ein 256-Bit-Schlüssel (:math:`8 \times 32`-Bit-Werte (little-endian))
+        - Eine 96-Bit-Nonce (:math:`3 \times 32`-Bit-Werte (little-endian))
+        - Ein 32-Bit-Blockzähler
+
+        Ausgabe:
+
+        - 64 Byte (512 Bit) des Schlüsselstroms
+
+    .. layer:: incremental
+
+        Initialer Zustand:
+
+        :Werte 0-3:  ``0x61707865``, ``0x3320646e``, ``0x79622d32``, ``0x6b206574``
+        :Werte 4-11:  Der 256-Bit Schlüssel (:math:`8 \times 32`\ Bit)
+        :Wert 12: der Blockzähler 
+
+            Da ein Block 64 Byte lang ist, können max 256GiB Daten verschlüsselt werden.
+        :Wert 13-15: Die 96-Bit Nonce 
+
+    .. layer:: incremental
+
+        Struktur des initialen Zustands:
+
+        .. csv-table::
+            :class: monospaced highlight-cell-on-hover no-inner-borders no-table-borders
+            :align: center
+
+            cccccccc  cccccccc  cccccccc  cccccccc
+            kkkkkkkk  kkkkkkkk  kkkkkkkk  kkkkkkkk
+            kkkkkkkk  kkkkkkkk  kkkkkkkk  kkkkkkkk
+            bbbbbbbb  nnnnnnnn  nnnnnnnn  nnnnnnnn
+
+        .. container:: smaller
+
+            :``c``: Konstante
+            :``k``: Schlüssel
+            :``b``: Blockzähler
+            :``n``: Nonce
+
+    .. layer:: incremental
+
+        Es werden 20 Runden durchlaufen, wobei in jeder Runde vier *Quarter Rounds* ausgeführt werden.
+
+        .. code::
+            :class: far-smaller
+
+            // Column rounds: 1, 3, 5, 7, 9, 11, 13, 15, 17, 19 Runde
+            {
+                QUARTERROUND(0, 4, 8, 12)
+                QUARTERROUND(1, 5, 9, 13)
+                QUARTERROUND(2, 6, 10, 14)
+                QUARTERROUND(3, 7, 11, 15)
+            }
+            // Diagonal rounds: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 Runde
+            {
+                QUARTERROUND(0, 5, 10, 15)
+                QUARTERROUND(1, 6, 11, 12)
+                QUARTERROUND(2, 7, 8, 13)
+                QUARTERROUND(3, 4, 9, 14)
+            }
+
+    .. layer:: incremental
+
+        Nach den 20 Runden wird der Zustand mit dem initialen Zustand addiert. Auf diese Weise erhält man den Schlüsselstrom. 
+        
+        Dieser wird dann zum Verschlüsseln des Klartexts mittels XOR verwendet. Somit muss der Klartext somit kein vielfaches der Blockgröße sein.
+
+
+
+.. supplemental::
+
+    Es gibt auch eine Variante von ChaCha20, die einen 64-Bit-Blockzähler und eine 64-Bit Nonce verwendet. Hier wird jedoch dei IETF Variante diskutiert.
+
+    .. rubric:: Little-endian
+
+    Bei der Verwendung von *little-endian* (wörtlich etwa: „kleinendigen“) Format wird das niedrigstwertige Byte an der Anfangsadresse gespeichert. 
     
-    .. container:: incremental
+    D. h. die 32-Bit-Zahl ``1`` wird als:
 
-       *Konditionierungsalgorithmen/Entzerrungsalgorithmen*\ :
-      
-       Verfahren zur Modifizierung eines Bitstroms zur weiteren Randomisierung der Bits.
+    .. csv-table::
+        :class: monospaced highlight-cell-on-hover no-table-borders far-far-smaller
+        :align: center
 
-       .. container:: far-smaller incremental
-    
-            - Die Konditionierung erfolgt in der Regel durch die Verwendung eines kryptografischen Algorithmus zur Verschlüsselung der Zufallsbits, um Verzerrungen zu vermeiden und die Entropie zu erhöhen.
-    
-            - Die beiden gängigsten Ansätze sind die Verwendung einer Hash-Funktion oder einer symmetrischen Blockchiffre.
-
-
-
-.. class:: integrated-exercise
-
-Übung
--------
-
-1. \
-
-   .. exercise::
-
-    Test auf Zufälligkeit: Gegeben sei eine Bitfolge, die von einem RNG erzeugt wurde. Was ist das erwartete Ergebnis, wenn man gängige Komprimierungsprogramme (z. B. 7zip, gzip, rar, ...) verwendet, um die Datei zu komprimieren; d. h. welchen Kompressionsgrad erwarten Sie?
-
-    .. solution:: 
-        :pwd: NixKompression
-    
-        Es sollte keine relevante Kompression möglich sein! Wenn dem so ist, ist die Zufälligkeit höchst fragwürdig. Eine hohe Zufälligkeit impliziert eine hohe Entropie und damit nichts, was man komprimieren könnte. Im Endeffekt müsste die Datei aufgrund der erforderlichen Metadaten sogar größer sein.
-
-2. \
-
-   .. exercise::
-
-     Implementiere einen linearen Kongruenzgenerator, um zu untersuchen, wie er sich verhält, wenn sich die Zahlenwerte von :math:`a`, :math:`c` und :math:`m` ändern. Versuchen Sie Werte zu finden, die eine vermeintlich zufällige Folge ergeben.
-
-     Testen Sie Ihren Zufallszahlengenerator unter anderem mit den folgenden Werten:
-
-     .. code:: pseudocode
-        :class: slightly-more-smaller
-
-        lcg(seed,a,c,m,number_of_random_values_to_generate)
-        lcg(1234,8,8,256,100)
-        lcg(1234,-8,8,256,100)
-     
-     .. solution::
-        :pwd: Jupyter...!
-
-        Vgl. `Jupyter Notebook <https://github.com/Delors/delors.github.io/blob/main/sec-stromchiffre/code/stream_ciphers.ipynb>`__.
+        (kleinste Adresse) 0xXX, 0xXX+1, 0xXX+2, (größte Adresse) 0xXX+3 
+        01, 00, 00, 00
+        
+    gespeichert.

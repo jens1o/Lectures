@@ -14,6 +14,7 @@
     :prefix: https://delors.github.io/
     :suffix: .html.pdf
 .. |at| unicode:: 0x40
+.. |qm| unicode:: 0x22 
 
 .. role:: incremental
 .. role:: appear
@@ -127,10 +128,10 @@ Von der Konsole lesen
 
 
 
-.. class:: transition-fade new-section
+.. class:: new-section transition-move-to-top
 
-Einfache Prozedurale Programmierung
---------------------------------------------
+Einfache Prozedurale Programmierung mit Variablen, Konstanten, Literalen und Ausdrücken
+----------------------------------------------------------------------------------------
 
 
 Prozedurale Elemente
@@ -343,11 +344,11 @@ Ganzzahlige Datentypen - Hintergrund
 Gleitkommatypen - Hintergrund (Konzeptionell)
 ----------------------------------------------
 
-- Gleitkommazahlen werden in `Java nach Norm IEEE 754 (Seit Java 15 Version 2019) <https://docs.oracle.com/javase/specs/jls/se23/html/jls-4.html#jls-4.2.3>`__ durch die Mantisse :math:`m` und den Exponent :math:`e` dargestellt: :math:`z = m \times 2^e`
-
-.. stack:: incremental
+.. stack::
 
     .. layer::
+
+        Gleitkommazahlen werden in `Java nach Norm IEEE 754 (Seit Java 15 Version 2019) <https://docs.oracle.com/javase/specs/jls/se23/html/jls-4.html#jls-4.2.3>`__ durch die Mantisse :math:`m` und den Exponent :math:`e` dargestellt: :math:`z = m \times 2^e`.
 
         Für das Vorzeichen wird das erste Bit verwendet, für Mantisse und Exponent werden zusammen 31- (bei :java:`float`) bzw. 63-Bit (bei :java:`double`)  verwendet.
         
@@ -380,8 +381,6 @@ Gleitkommatypen - Hintergrund (Konzeptionell)
         
             :java:`float`, 32, 23, 8, ca. :math:`-3.4*10^{38}\; \text{bis}\; 3.4 \times 10^{38}`
             :java:`double`, 64, 52, 11, ca. :math:`-1.8*10^{308}\; \text{bis}\; 1.8 \times 10^{308}`
-
-
 
 .. supplemental::
 
@@ -530,23 +529,34 @@ Literale
 Literale - Übersicht
 --------------------------------------------
 
-Literale stellen konstante Werte eines bestimmten Datentyps dar
+Literale stellen konstante Werte eines bestimmten Datentyps dar:
 
 .. csv-table::
     :header: Datentyp, Literal (Beispiele)
-    :align: center
-    :class: highlight-cell-on-hover
+    :align: left
+    :class: highlight-cell-on-hover smaller incremental
 
     :java:`int`, :minor:`Dezimal:` 127 :minor:`; Hexadezimal:` 0xcafebabe\ [#]_ :minor:`; Oktal:` 010 :minor:`; Binär:` 0b1010
     :java:`long`, 123_456_789l oder 123456789L  :minor:`("_" dient nur der besseren Lesbarkeit)`
     :java:`float`, 0.123456789f oder 0.123456789F
     :java:`double`, "0.123456789 oder 0.123456789d oder 0.123456789D"
     :java:`char`, "'a' (Zeichen-Darstellung) oder 97 (Zahlen-Darstellung) oder 
-    '\u0061' (Unicode-Darstellung) oder Sonderzeichen (siehe nächste Folie)"
-    :java:`String`, \"Hallo\"
+    '\\u0061' (Unicode-Darstellung) oder Sonderzeichen (siehe nächste Folie)"
+    :java:`String`, "|qm|\ Hallo\ |qm| oder 
+
+    |qm|\ |qm|\ |qm|\  
+    
+    Text-block\ |qm|\ |qm|\ |qm|\ "
+
     :java:`boolean`, true oder false
 
 .. [#] 0xcafebabe ist der Header aller kompilierten Java-Klassen-Dateien.
+
+.. supplemental::
+
+    Textblöcke werde seit Java 15 unterstützt.
+
+    Mittels: :code:`-Xlint:text-blocks` können Sie sich warnen lassen, wenn die Textblöcke potentiell nicht korrekt formatiert sind.
 
 
 
@@ -651,7 +661,9 @@ Bezeichner (:eng:`Identifier`) - Übersicht
 
 .. supplemental:: 
     
-    In Java ist es unüblich, das Dollarzeichen ($) in eigenem Code zu verwenden und es wird in der Regel nur von der JVM (der Java Virtual Machine; d. h. der Ausführungsumgebung) verwendet; ein Unterstrich am Anfang des Bezeichners sollte ebenfalls vermieden werden. Ganz insbesondere ist darauf zu verzichten den Unterstrich als alleinige Variablennamen zu verwenden, da der "reine" Unterstrich auch andere Bedeutungen hat bzw. bekommen könnte/wird.
+    In Java ist es unüblich, das Dollarzeichen ($) in eigenem Code zu verwenden und es wird in der Regel nur von der JVM (der Java Virtual Machine; d. h. der Ausführungsumgebung) verwendet.
+    
+    Ein Unterstrich am Anfang des Bezeichners sollte ebenfalls vermieden werden. Ganz insbesondere ist darauf zu verzichten den Unterstrich als alleinigen Variablennamen zu verwenden, da der *reine* Unterstrich seit `Java 22 für unbenannte Variablen verwendet wird <https://openjdk.org/jeps/456>`__ und dies die Migration von altem Code erschwert.
 
 
 Java Shell
@@ -1721,10 +1733,10 @@ Beispiele zur Auswertungsreihenfolge
 
 
 
+.. class:: transition-fade
 
-
-Zusammenfassung
---------------------------------------------
+Von Variablen, Konstanten, Literalen und Ausdrücken
+-------------------------------------------------------
 
 .. class:: incremental
 
@@ -1734,3 +1746,310 @@ Zusammenfassung
 - Operatoren haben eine Priorität und bestimmen die Auswertungsreihenfolge von Ausdrücken.
 - Ausdrücke sind Kombinationen von Variablen, Konstanten und Operatoren, die einen Wert ergeben.
 - Implizite Typkonvertierung erfolgen automatisch und führen meist zu keinem Verlust von Genauigkeit.
+
+
+.. class:: new-section transition-move-to-top
+
+(Bedingte) Anweisungen, Schleifen und Blöcke
+-------------------------------------------------------
+
+
+
+Anweisungen
+----------------------------------------------------------
+
+Eine Anweisung in einem Java-Programm stellt eine einzelne Vorschrift dar, die während der Abarbeitung des Programms auszuführen ist.
+
+.. class:: incremental
+
+- In Java-Programmen werden einzelne Anweisungen durch einen Semikolon :java:`;` voneinander getrennt.
+
+  .. code:: java
+    :class: far-far-smaller
+
+    void main() { 
+        int a = 1; // Variablendeklaration und Initialisierung
+        println("a = " + a); // Methodenaufruf (hier: println)
+    }
+
+- Programme setzen sich aus einer Abfolge von Anweisungen zusammen.
+- Die einfachste Anweisung ist die leere Anweisung: :java:`;`.
+- Weitere Beispiele für Anweisungen sind Variablendeklarationen und Initialisierungen, Zuweisungsausdrücke, Schleifen, Methoden-Aufrufe.
+
+
+Blöcke
+----------------------------------------------------------
+
+Ein Block in einem Java-Programm ist eine Folge von Anweisungen, die durch geschweifte Klammern { ... } zusammengefasst werden.
+
+.. class:: incremental
+
+- Blöcke werden **nicht** durch einen Semikolon beendet.
+  
+  .. code:: java
+    :class: far-far-smaller
+
+    void main() {
+        {   // Block von Anweisungen
+            int a = 1;
+            println("a = "+a);
+        } 
+    }
+
+- Ein Block kann dort verwendet werden, wo auch eine Anweisung erlaubt ist.
+
+- Ein Block stellt ein Gültigkeitsbereich (:eng:`scope`) für Variablendeklarationen dar. Auf die entsprechenden Variablen kann nur von innerhalb des Blocks zugegriffen werden.
+
+- Leere Blöcke :java:`{}` sind erlaubt und Blöcke können verschachtelt werden.
+
+
+
+Anweisungen und Blöcke - Beispiele
+----------------------------------------------------------
+
+.. code:: java
+    :class: far-far-smaller
+
+    // Deklaration und Initialisierung von Variablen
+    int age = 18 + 1;
+    char gender = 'm';
+
+    ; // Leere Anweisung
+    
+    // Block
+    {
+        boolean vegi = true;
+        gender = 'f';
+        System.out.println("vegi=" + vegi);
+        {} // leerer Block
+    }
+    
+    // Methodenaufruf
+    println("age=" + age);
+    println("gender=" + gender);
+    /* println("vegi=" + vegi); =>  Error: cannot find symbol: variable vegi */
+
+
+Bedingte Anweisungen und Ausdrücke
+----------------------------------------------------------
+
+Bedingte Anweisungen und Ausdrücke in einem Java-Programm dienen dazu Anweisungen bzw. Blöcke nur dann auszuführen wenn eine logische Bedingung eintrifft.
+
+.. class:: incremental
+
+- Bedingte Anweisungen und Ausdrücke zählen zu den Befehlen zur Ablaufsteuerung.
+
+- Bedingte Anweisungen und Ausdrücke können in Java-Programmen mittels :java:`if`-Anweisungen, :java:`if`-/:java:`else`-Anweisung und :java:`switch`-Anweisungen/-Ausdrücken umgesetzt werden.
+
+- Der Bedingungs-Operator (:java:`<Ausdruck> ? <Ausdruck> : <Ausdruck>`) stellt in bestimmten Fällen eine Alternative zu den bedingten Anweisungen dar.
+
+
+:java:`if`-Anweisung
+----------------------------------------------------------
+
+Die :java:`if`-Anweisung setzt sich zusammen aus dem Schlüsselwort :java:`if`, einem Prüf-Ausdruck in runden Klammern und einer Anweisung bzw. einem Block.
+
+:Syntax: :java:`if(<Ausdruck>) <Anweisung> bzw. <Block>`
+
+.. stack:: 
+
+    .. layer:: 
+
+        .. include:: code/SimpleIf.java
+            :code: java
+            :class: far-far-smaller
+            :number-lines:
+
+    .. layer:: incremental
+
+        .. include:: code/NestedIf.java
+            :code: java
+            :class: far-far-smaller
+            :number-lines:
+
+.. supplemental::
+
+    Der :java:`<Ausdruck>` muss einen Wert vom Datentyp :java:`boolean` zurückliefern
+
+    Die :java:`<Anweisung>` bzw. der :java:`<Block>` wird ausgeführt, wenn der Ausdruck :java:`true` zurück liefert 
+
+    Ansonsten wird die nächste Anweisung nach der :java:`if`-Anweisung ausgeführt
+
+    :java:`if`-Anweisungen können verschachtelt werden (in der Anweisung bzw. im Block).
+
+
+
+:java:`if`-:java:`else`-Anweisung
+----------------------------------------------------------
+
+.. stack::
+
+    .. layer:: 
+
+        .. include:: code/IfElse.java
+            :code: java
+            :class: far-smaller
+            :number-lines:
+
+    .. layer:: incremental
+
+        .. include:: code/IfElseReformatted.java
+            :code: java
+            :class: far-smaller
+            :number-lines:
+
+.. supplemental::
+
+    Die :java:`if`-Anweisung kann um einen :java:`else`-Zweig erweitert werden, der aus dem Schlüsselwort :java:`else` und einer Anweisung bzw. einem Block besteht.
+
+    :Syntax: :java:`if(<Ausdruck>) <Anweisung bzw. Block> else <Anweisung bzw. Block>`
+
+    Die :java:`<Anweisung>` bzw. der :java:`<Block>` im else-Zweig wird ausgeführt, wenn der Ausdruck in der :java:`if`-Anweisung :java:`false` zurück liefert.
+
+    Im :java:`else`-Zweig kann wieder eine weitere :java:`if`-Anweisung verwendet werden (:java:`if` / :java:`else-if` Kaskade).
+
+    Bei verschachtelten :java:`if`-Anweisungen gehört der :java:`else`-Zweig zur direkt vorhergehenden :java:`if`-Anweisung ohne :java:`else`-Zweig.
+
+
+
+:java:`switch`-Anweisung/-Ausdruck (Grundlagen)
+----------------------------------------------------------
+
+.. stack::
+
+    .. layer:: 
+
+        Die :java:`switch`-Anweisung bzw. der :java:`switch`-Ausdruck setzt sich aus dem Schlüsselwort :java:`switch`, einem Prüf-Ausdruck in runden Klammern und einem oder mehreren :java:`case`-Blöcken zusammen.
+
+        :Syntax: :java:`switch(<Ausdruck>) <case-Block>* [<default-Block>]`
+
+        Im Gegensatz zur :java:`if`-\ :java:`else` Anweisung wird hier nur ein <Ausdruck> ausgewertet für den mehrere Alternativen (:java:`case`-Blöcke) angegeben werden können.
+
+        .. container:: margin-top-1em
+
+            Der :java:`default`-Zweig stellt eine Möglichkeit dar, die immer dann ausgeführt wird, wenn kein anderer :java:`case`-Block zutrifft 
+
+            :Syntax: :java:`default: <Anweisungen>`
+
+    .. layer:: incremental
+
+        .. rubric::  :java:`case L :`
+
+        :Syntax: :java:`case <Literal>: <Anweisungen>`.
+
+        Ein :java:`case`\ -Block setzt sich zusammen aus dem Schlüsselwort :java:`case`, einem oder mehreren :java:`Literal`\ en (konstanter Ergebniswert) und einer Abfolge von Anweisungen.
+
+        Die Anweisung in einem :java:`case :`-Block werden bis zur folgenden :java:`break`-Anweisung ausgeführt (:eng:`fall-through`).
+
+        Gibt es keine :java:`break`-Anweisung in einem :java:`case`-Block werden alle Anweisungen bis zum Ende der :java:`switch`-Anweisung ausgeführt.
+
+    .. layer:: incremental
+
+        .. include:: code/Switch.java
+            :code: java
+            :class: far-smaller
+            :number-lines:
+
+    .. layer:: incremental
+
+        .. include:: code/SwitchMultipleLabels.java
+            :code: java
+            :class: far-smaller
+            :number-lines:
+            
+    .. layer:: incremental
+
+        .. include:: code/SwitchYieldExpression.java
+            :code: java
+            :class: far-smaller
+            :number-lines:
+
+
+    .. layer:: incremental
+
+        .. rubric:: :java:`case L ->`
+
+        :Syntax: :java:`case <Literal> -> <Ausdruck oder Block>`.
+
+        Auf der rechten Seite ist nur ein Ausdruck oder ein Block erlaubt - keine Anweisung. 
+
+        Bei dieser Variante gibt es kein *durchfallen* :eng:`Fall-Through-Effekt`, d. h. ein :java:`break` ist nicht zur Beendigung eines :java:`case`-Blocks zu verwenden!
+
+
+    .. layer:: incremental
+    
+        .. include:: code/SwitchArrowMultipleLabels.java
+            :code: java
+            :class: far-smaller
+            :number-lines:
+
+    .. layer:: incremental
+
+        .. include:: code/SwitchArrowExpression.java
+            :code: java
+            :class: far-smaller
+            :number-lines:
+
+
+
+
+.. supplemental::
+
+    Als Wert im :java:`case`-Block können Literale vom Datentyp :java:`int` und ab Java 7 auch :java:`String` und Aufzählungen (:java:`enum` Klassen) verwendet werden; ab Java 21 wird der Musterabgleich (:eng:`pattern matching`) unterstützt es können auch beliebige (sogenannte) Referenztypen (nicht nur :java:`String`) verwendet werden. Wir werden dies später bei der Diskussion von Referenztypen detailliert behandeln.
+
+    :java:`case L ->` wird erst seit `Java 14 <https://openjdk.org/jeps/361>`__ unterstützt. Ein Mischen ist nicht möglich.
+
+    switch-Anweisung ≘ :eng:`switch-statement`
+
+    switch-Ausdruck ≘ :eng:`switch-expression`
+
+
+
+:java:`switch`-Anweisung/-Ausdruck mit Musterabgleich und :java:`when` Bedingungen (seit Java 21)
+---------------------------------------------------------------------------------------------------
+
+.. stack::
+
+    .. layer::
+
+        Seit `Java 21 <https://openjdk.org/jeps/441>`__  werden auch :java:`case`-Label unterstützt, die Muster abgleichen (:eng:`match a pattern`), und die mit :java:`when`-Bedingungen kombiniert werden können.
+
+        :Syntax: :java:`case <Pattern> when <Bedingung> -> <Ausdruck oder Block>`.
+
+    .. layer:: incremental
+
+        .. include:: code/SwitchAndWhen.java
+            :code: java
+            :class: far-smaller
+            :number-lines:
+
+        .. exercise:: Erfolgreicher Musterabgleich?
+            :class: far-smaller
+
+            Bei welchem Name wäre ein erfolgreicher Musterabgleich in mehreren Fällen möglich? 
+
+            .. solution:: 
+                :pwd: ErfolgreicherMusterabgleich
+
+                Bei "Eva-Maria". 
+
+
+.. supplemental::
+
+    Wir werden Pattern Matching später detailliert behandeln.
+
+        
+Effizienz von bedingten Anweisungen
+------------------------------------------
+
+.. class:: incremental
+
+- Bei :java:`if`-/\ :java:`else`-Anweisungen werden die Prüf-Ausdrücke sequentiell (in der angegebenen Reihenfolge) ausgewertet (ein Ausdruck pro Alternative).
+
+- Bei :java:`switch`-Anweisungen/-Ausdrücken wird nur ein einziger Prüf-Ausdruck ausgewertet und die entsprechende(n) Alternative(n) direkt oder zumindest sehr effizient ausgeführt.
+
+- Daher benötigt die Auswertung einer :java:`switch`-Anweisung i. d. R. weniger Rechenschritte als eine äquivalente :java:`if`-/\ :java:`else`-Anweisung.
+
+        
+
+.. TODO ab Folie 22 fortsetzen 04_Grundlagen_Teil2

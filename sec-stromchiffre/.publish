@@ -7,4 +7,6 @@ drawings/stream_ciphers/distribution_3d_expected.svg
 drawings/stream_ciphers/generation_of_seed_input.svg
 drawings/stream_ciphers/rng_and_prng.svg
 drawings/stream_ciphers/typical_stream_cipher.svg
+drawings/stream_ciphers/prng-ctr-mode.svg
+drawings/stream_ciphers/prng-ofb-mode.svg
 code/stream_ciphers.ipynb
