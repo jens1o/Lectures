@@ -56,11 +56,39 @@ Ausgewählte Inhalte gem. MHB
 ---------------------------------
 
 .. rubric:: Kerninhalte
-    
-...
+
+- Indexstrukturen (B-/B*-/B+-Bäume, ....)
+- Transaktionsverwaltung (ACID, Recovery, Mehrbenutzersynchronisation)
+- Anfrageverarbeitung und Anfrageoptimierung
+- Verteilte Datenbanken
+- Alternative Datenbankmodelle (z. B. Document Stores, Column Family Stores)
+- In Memory Datenbanken
+- Anbindung einer Datenbank an objektorientierte Programmiersprachen ORM (JPA/ADO)
+- Web Frameworks zur Erstellung dynamischer Webanwendungen (AJAX)
+- Konzepte und Umsetzung von Webservices (z.B. REST, JSON)
+- Middleware Technologien (z.B. JEE, .NET)
+- Vergleich unterschiedlicher Middleware-Konzepte und -Architekturen (z. B. JEE vs. .NET,
+Webservices) bzgl. Diverser Kriterien, z. B. der verwendeten Programmiersprache (Java, C#
+usw.).
+- Middlewareprodukte, wie z. B. Applikationsserver, oder darauf aufbauende Frameworks
+Alternativ oder ergänzend können Fragestellungen aus dem Projektmanagement oder aus dem
+Bereich Software-Ergonomie behandelt werden.
+
+VORAUSSETZUNGEN
+Programmierung I & II, Grundlagen der IT
+
 
 Prüfungsleistung - Portfolio
 ------------------------------------------
+
+Dieses Semester 12 VL:
+
+- 14. Oct 2024 at 13:45 to 17:00 
+- 23. Oct 2024 at 13:45 to 17:00 
+- 28. Oct 2024 at 13:45 to 17:00 
+
+Nächstes Semester: 43 VL
+
 
 .. admonition::  Hintergrund
 
