@@ -511,6 +511,20 @@ Zwei Ansätze, die eine Blockchiffre zum Aufbau eines PNRG verwenden, haben weit
 
         Vgl. `Jupyter Notebook <https://github.com/Delors/delors.github.io/blob/main/sec-stromchiffre/code/stream_ciphers.ipynb>`__.
 
+        .. code:: java
+
+
+            void lcg(long s, long a, long c, long m, int valuesToGenerate) {
+                var x = (s * a + c ) % m;
+                while (valuesToGenerate > 0) {
+                    valuesToGenerate --;
+                    System.out.println(x);
+                    x = (x * a + c) % m;
+                }
+            }
+
+            lcg(98346444l,2323, 665458, 987655333, 10);
+
 
 
 .. class:: integrated-exercise
@@ -558,7 +572,21 @@ Zwei Ansätze, die eine Blockchiffre zum Aufbau eines PNRG verwenden, haben weit
                 System.out.println(x + " " + x % 2);
             }
 
-         
+        JavaScrip Code:
+
+        .. code:: javascript
+
+                let n = 83*47;
+                let x = 253**2 % n;
+                function* bitGen() {
+                    x = x ** 2 % n;
+                    yield x % 2;
+                }
+                const g = bitGen()
+                g.next().value;
+
+
+
 Quellen der Entropie
 ---------------------
 
