@@ -33,7 +33,7 @@ Kryptografische Hash Funktionen
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Kontakt: michael.eichberg@dhbw-mannheim.de
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
-:Version: 2.1
+:Version: 2.1.1
 
 .. supplemental::
 
@@ -207,6 +207,7 @@ Nachrichten können auf verschiedene Weisen authentifiziert werden, so dass *Man
         Im allgemeinen Sprachgebrauch wird auch von :eng:`Message Digests` gesprochen.
 
 
+
 Digitale Signaturen - vereinfacht
 -------------------------------------------------------
 
@@ -296,8 +297,8 @@ Effizienzanforderungen an kryptografische Hashfunktionen
 
 
 
-Struktur eines sicheren Hash-Codes
-----------------------------------------------
+Struktur eines sicheren Hash-Codes (vorgeschlagen von Merkle)
+------------------------------------------------------------------------
 
 .. image:: drawings/hash_functions/structure_of_secure_hash_codes.svg
     :width: 1400px
@@ -324,6 +325,10 @@ Struktur eines sicheren Hash-Codes
         :math:`b` = Länge des Eingabeblocks
 
 
+.. supplemental::
+
+    Diese Struktur liegt insbesondere den Hashfunktionen der SHA-2 Familie zugrunde.
+
 
 .. class:: integrated-exercise
 
@@ -333,12 +338,27 @@ Struktur eines sicheren Hash-Codes
 .. exercise:: XOR als Hashfunktion
 
     
-    Warum ist eine einfache :ger-quote:`Hash-Funktion`, die einen 256-Bit-Hash-Wert berechnet, indem sie ein XOR über alle Blöcke einer Nachricht durchführt, im Allgemeinen ungeeignet?
+    Warum ist eine einfache :ger-quote:`Hash-Funktion`, die einen 256-Bit-Hash-Wert berechnet, indem sie ein XOR über alle 256-Bit Blöcke einer Nachricht durchführt, im Allgemeinen ungeeignet?
+
+    .. container:: minor
+
+        Wir nehmen hier an, dass die Nachricht ein Vielfaches von 256 Bit lang ist. Falls nicht, dann wenden wir Padding an.
 
     .. solution:: 
         :pwd: alles nichts
 
-        Je nach Beschaffenheit der zugrunde liegenden Daten können wir die ursprüngliche Nachricht ggf. wiederherstellen bzw. liegt direkt vor. Stellen Sie sich z. B. vor, dass nur der erste Block sinnvolle Daten enthält und alle anderen Blöcke einfach "0" sind; außerdem können wir nicht alle Bits verwenden.
+        Je nach Beschaffenheit der zugrunde liegenden Daten können wir die ursprüngliche Nachricht ggf. wiederherstellen bzw. diese liegt direkt vor. Stellen Sie sich z. B. vor, dass nur ein Block sinnvolle Daten enthält und alle anderen Blöcke einfach "0" sind. 
+        
+        Darüber hinaus wäre es ggf. sehr einfach eine Nachricht zu finden, die denselben Hashwert hat wie die ursprüngliche Nachricht. Somit wäre die Kollisionsresistenz nicht gegeben und eine Integritätssicherung wäre nicht möglich.
+
+        ::
+
+            Nachricht   A:                 B:
+                        10101010101010     01010101010101
+                        10101111101011     01010000010100 
+            "Hash":
+                        00000101000001  =  00000101000001
+            
 
 
 .. class:: integrated-exercise
@@ -400,7 +420,7 @@ Struktur eines sicheren Hash-Codes
         *Message Authentication Codes* könnte ins Deutsche mit 
         Nachrichtenauthentifizierungscodes übersetzt werden, dies ist aber nicht üblich.
 
-        Im allgemeinen Sprachgebrauch wird von *MAC*\ s gesprochen.
+        Im allgemeinen (IT-)Sprachgebrauch wird von *MAC*\ s gesprochen.
 
 
 
