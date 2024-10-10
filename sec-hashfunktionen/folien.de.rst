@@ -22,6 +22,8 @@
 .. role:: green 
 .. role:: blue 
 .. role:: minor
+.. role:: far-far-smaller
+.. role:: far-smaller
     
     
 
@@ -31,7 +33,7 @@ Kryptografische Hash Funktionen
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Kontakt: michael.eichberg@dhbw-mannheim.de
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
-:Version: 1.0
+:Version: 2.1
 
 .. supplemental::
 
@@ -175,13 +177,26 @@ Nachrichten können auf verschiedene Weisen authentifiziert werden, so dass *Man
 
 .. supplemental::
     
+    **Szenarien**
+
     Im ersten Szenario wird der Hash an die Nachricht angehängt und als ganzes verschlüsselt. Wir erhalten Vertraulichkeit und Authentizität.
 
     Im zweiten Szenario wird der Hash der Nachricht berechnet und dann verschlüsselt. Der Empfänger kann den Hash berechnen und mit dem entschlüsselten Hash vergleichen. Wir erhalten Authentizität, aber keine Vertraulichkeit.
 
     Im dritten Szenario wird an die Nachricht ein geteiltes Secret angehängt und  alles zusammen gehasht. Die Nachricht wird dann mit dem Ergebnis der vorhergehenden Operation zusammen verschickt.
 
-    Im letzten Szenario werden alle Ansätze 
+    Im letzten Szenario werden alle Ansätze kombiniert.
+
+    **Legende**
+
+    :M: die Nachricht
+    :H: die Hashfunktion
+    :E: der Verschlüsselungsalgorithmus
+    :D: der Entschlüsselungsalgorithmus
+    :K: ein geheimer Schlüssel
+    :S: eine geheime Zeichenkette
+    :||: die Konkatenation von zwei Werten (d. h. das Aneinanderhängen von zwei Werten)
+
 
     .. admonition:: Hinweis
 
@@ -212,6 +227,18 @@ Digitale Signaturen dienen dem Nachweis der Authentizität einer Nachricht und d
         .. image:: drawings/signatures/authentication_and_encryption.svg
             :align: center
             :width: 1775
+
+.. supplemental::
+
+    **Legende**
+
+    :M: die Nachricht
+    :H: die Hashfunktion
+    :E: der Verschlüsselungsalgorithmus
+    :D: der Entschlüsselungsalgorithmus
+    :`PR_a`:math:: der private Schlüssel von a
+    :`PU_a`:math:: der öffentliche Schlüssel von a
+    :||: die Konkatenation von zwei Werten (d. h. das Aneinanderhängen von zwei Werten)
 
 
 
@@ -250,8 +277,6 @@ Anforderungen an die Resistenz von Hashfunktionen
 
 
 
-
-
 Effizienzanforderungen an kryptografische Hashfunktionen
 ------------------------------------------------------------------------
 
@@ -278,21 +303,25 @@ Struktur eines sicheren Hash-Codes
     :width: 1400px
     :align: center 
 
-.. container:: two-columns smaller
+.. container:: two-columns smaller 
 
-    :math:`IV` = Initialer Wert (Algorithmus-abhängig)
+    .. container:: column no-separator
 
-    :math:`CV_i` = Verkettungsvariable 
-    
-    :math:`Y_i` = ier Eingabeblock
-    
-    :math:`f` = Kompressions-funktion
-    
-    :math:`n` = Länge des Blocks
+        :math:`IV` = Initialer Wert (Algorithmus-abhängig)
 
-    :math:`L` = Anzahl der Eingabeblöcke
-    
-    :math:`b` = Länge des Eingabeblocks
+        :math:`CV_i` = Verkettungsvariable 
+        
+        :math:`Y_i` = i-er Eingabeblock
+
+        :math:`f` = Kompressionsfunktion
+        
+    .. container:: column
+
+        :math:`n` = Länge des Blocks
+
+        :math:`L` = Anzahl der Eingabeblöcke
+        
+        :math:`b` = Länge des Eingabeblocks
 
 
 
@@ -340,9 +369,6 @@ Struktur eines sicheren Hash-Codes
             X_1 \oplus X_2 \oplus \ldots \oplus X_n = [IV \oplus D(K,Y_{1})] \oplus \ldots \oplus [ Y_{N-1} \oplus D(K,Y_{N})]
 
         Somit kann ein Angreifer die Blöcke vertauschen (:math:`\oplus` ist kommutativ), ohne dass dies erkannt werden könnte.
-
-
-
 
 
 
@@ -484,6 +510,135 @@ HMAC Berechnung in Python
               \x16\x87\x87\x0e\xad\xa1\xe1:9\xca'
 
 
+
+MAC: `Poly 1305 <https://datatracker.ietf.org/doc/html/rfc8439#section-2.5>`__
+--------------------------------------------------------------------------------
+
+.. stack::
+
+    .. layer::
+
+        - Ein MAC Algorithmus für die Einmalauthentifizierung von Nachrichten
+        - Entwickelt von Daniel J. Bernstein
+        - Basierend auf einem 256-Bit-Schlüssel und einer Nachricht wird ein 128-Bit-Tag berechnet
+        - In Verbindung mit *ChaCha20* in einer Reihe von Protokollen verwendet
+
+    .. layer:: incremental
+
+        .. image:: drawings/poly1305.svg
+           :alt: Poly 1305 - Verwendung des Schlüssels
+           :align: center
+           :width: 1775px
+
+        .. container:: align-center
+
+            .. rubric:: Aufteilung des Schlüssels 
+
+    .. layer:: incremental
+
+        .. rubric:: Verarbeitung der Nachricht
+
+        .. class:: incremental list-with-explanations
+
+        - initialisiere den Akkumulator :math:`a` mit 0
+        - die Nachricht wird in Blöcke von 16 Byte aufgeteilt und als *little-endian* Zahl verarbeitet; d. h. ein Block hat 16 Oktette (:math:`16 \times 8` Bit)
+        - Füge dem Block :math:`n` ein Bit jenseits der Anzahl der Oktette des aktuellen Blocks hinzu :math:`= n'`; d. h. im Falle eines 16-Byte-Blocks wird die Zahl :math:`2^{128}` addiert 
+        
+          (Danach haben wir ggf. eine 17-Byte-Zahl.)
+        - Addiere :math:`n'` aus dem letzten Schritt zum Akkumulator :math:`a` und multipliziere mit :math:`\text{clamped r}`
+        - Aktualisiere den Akkumulator mit dem Ergebnis :math:`modulo\, P` mit :math:`P = 2^{130} - 5`:
+          :math:`a = ((a + n') \times \text{clamped r}) \mod\, P`
+
+
+    .. layer:: incremental
+
+        :far-smaller:`Beispiel`
+
+        .. code:: text
+            :class: far-far-smaller
+
+            000  43 72 79 70 74 6f 67 72 61 70 68 69 63 20 46 6f  Cryptographic Fo
+            016  72 75 6d 20 52 65 73 65 61 72 63 68 20 47 72 6f  rum Research Gro
+            032  75 70                                            up
+
+        .. container:: far-far-smaller margin-bottom-1em margin-top-1em
+
+            Sei :math:`\text{clamped r} = 806d5400e52447c036d555408bed685`
+
+            Sei :math:`s = 1bf54941aff6bf4afdb20dfb8a800301`
+
+        .. stack:: smaller incremental
+
+            .. layer:: 
+        
+                .. rubric:: Verarbeitung des ersten Blocks
+
+                .. math::
+                    :class: far-far-smaller
+
+                    \begin{array}{rl}
+                        a      & = & 00 \\
+                        n      & = &   6f4620636968706172676f7470797243 \\
+                        n'    & = & 016f4620636968706172676f7470797243 \\
+                        a + n' & = & 016f4620636968706172676f7470797243 \\
+                        (a + n') \times \text{clamped r} & = &
+                                b83fe991ca66800489155dcd69e8426ba2779453994ac90ed284034da565ecf \\
+                        a = ((a + n') \times \text{clamped r})\, mod\, P & = &
+                                2c88c77849d64ae9147ddeb88e69c83fc \\
+                    \end{array}
+
+            .. layer:: incremental
+        
+                .. rubric:: Verarbeitung des letzten Blocks
+
+                .. math::
+                    :class: far-far-smaller
+
+                    \begin{array}{rl}
+                        a      & = & 2d8adaf23b0337fa7cccfb4ea344b30de \\
+                        n      & = &   7075 \\
+                        n'    & = & 017075 \\
+                        a + n' & = & 2d8adaf23b0337fa7cccfb4ea344ca153 \\
+                        (a + n') \times \text{clamped r} & = &
+                                16d8e08a0f3fe1de4fe4a15486aca7a270a29f1e6c849221e4a6798b8e45321f \\
+                        a = ((a + n') \times \text{clamped r})\, mod\, P & = &
+                                28d31b7caff946c77c8844335369d03a7 \\
+                    \end{array}
+
+            .. layer:: incremental far-smaller
+
+                .. rubric:: Abschuss
+
+                Addiere auf den Wert des Akkumulators :math:`a` den Wert :math:`s`.
+                
+                Und somit ist der Tag :math:`2a927010caf8b2bc2c6365130c11d06a8` (als Zahl im little-endian Format)
+
+
+.. supplemental::
+
+    .. rubric:: Hinweise
+
+    In dieser Diskussion betrachten wir jeden Block der Nachricht als :ger-quote:`große Zahl`.
+
+    :math:`P = 2^{130} - 5 = 3fffffffffffffffffffffffffffffffb`
+
+    Dadurch, dass wir den Block als Zahl in *little-endian* Reihenfolge interpretieren, ist das hinzufügen des Bits jenseits der Anzahl der Oktette gleichbedeutend damit, dass wir den Wert 0x01 am Ende des Blocks hinzufügen.
+
+
+Zusammenfassung
+-------------------
+
+.. class:: incremental list-with-explanations
+
+- Ein Hashwert dient der Integritätssicherung von Nachrichten.
+- Ein Mac dient der Authentifizierung von Nachrichten. 
+- Ein Mac sichert auch immer die Integrität der Nachricht.
+  
+  Es ist somit möglich die Integrität einer Nachricht zu sichern ohne Authentizität zu gewährleisten, aber nicht umgekehrt.
+- Ein Mac erlaubt es dem Empfänger eine gefälschte Nachricht zu erkennen aber ggf. auch zu erstellen (:eng:`to forge a message`).
+- Eine Signatur basiert auf einem Hashwert und einem privaten Schlüssel. 
+- Der Empfänger kann bei einer signierten Nachricht, diese nicht verändern und als eine Nachricht des Senders ausgeben. 
+- Nur für Nachrichten, die signiert sind, gilt somit die Nichtabstreitbarkeit (:eng:`non-repudation`).
 
 
 .. TODO discuss CBC-MAC

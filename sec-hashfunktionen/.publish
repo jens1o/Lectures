@@ -11,3 +11,4 @@ drawings/hmac/hmac_i_o_key_derivation.svg
 drawings/hmac/hmac_message_hashing.svg
 drawings/signatures/authentication_and_encryption.svg
 drawings/signatures/just_authentication.svg
+drawings/poly1305.svg
