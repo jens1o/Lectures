@@ -876,6 +876,19 @@ Authentifizierung mit JWT (und Express)
 
 .. container:: scrollable
 
+   Im Folgenden wird primär die Verwendung eines JWTs zur Authentifizierung von Benutzern demonstriert.
+
+   .. class:: minor
+   
+      Die initiale Authentifizierung, die im folgenden Beispiel über ein per get-Request übermittelten Benutzernamen und Passwort erfolgt, ist **nicht sicher**. In einer realen Anwendung sollte für die initiale Authentifizierung ein sicherer Mechanismus verwendet werden. Eine Möglichkeit wäre z. B. die Verwendung von DIGEST Authentication (nicht empfohlen bzw. nur für einfachste Fälle). Sinnvoll wäre Basic Authentication *in Verbindung mit HTTPS* oder zum Beispiel der Einsatz von OAuth. 
+      
+   .. warning::
+      :class: far-smaller
+
+      *Basic Authentication* ohne HTTPS ist nicht sicher! 
+      
+      D.h. *Basic Authentication* ist genauso unsicher wie die hier gezeigte Lösung für die initiale Authentifizierung.
+
    **Server**
 
    .. include:: code/authentication/server.mjs
