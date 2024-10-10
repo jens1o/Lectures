@@ -297,8 +297,10 @@ Effizienzanforderungen an kryptografische Hashfunktionen
 
 
 
-Struktur eines sicheren Hash-Codes (vorgeschlagen von Merkle)
+Struktur eines sicheren Hash-Codes 
 ------------------------------------------------------------------------
+
+(Vorgeschlagen von Merkle.)
 
 .. image:: drawings/hash_functions/structure_of_secure_hash_codes.svg
     :width: 1400px
@@ -353,11 +355,11 @@ Struktur eines sicheren Hash-Codes (vorgeschlagen von Merkle)
 
         ::
 
-            Nachricht   A:                 B:
-                        10101010101010     01010101010101
-                        10101111101011     01010000010100 
-            "Hash":
-                        00000101000001  =  00000101000001
+            Nachricht     A:                 B:
+            1. Block      10101010101010     01010101010101
+            2. Block      10101111101011     01010000010100 
+            
+            "Hash" (XOR): 00000101000001  =  00000101000001
             
 
 
@@ -406,6 +408,64 @@ Struktur eines sicheren Hash-Codes (vorgeschlagen von Merkle)
 
         Wir haben keinen Block der Nachricht, mit dem wir arbeiten können, und wir haben keinen Vorteil davon, zwei beliebige aber verschiedene Nachrichten zu finden, die denselben Hash haben. Bei der Passwortwiederherstellung liegt uns immer ein Hashwert vor, und wir versuchen, *eine* Nachricht zu finden, die diesen Hashwert erzeugt hat.
 
+
+`SHA 512 - Übersicht <https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf>`__
+--------------------------------------------------------------------------------------
+
+.. stack::
+
+    .. layer::
+
+        .. image:: drawings/sha512/sha512-main.svg
+            :alt: Nachricht
+            :align: center
+            :width: 1400px
+
+    .. layer:: incremental overlay
+
+        .. image:: drawings/sha512/sha512-blocks.svg
+            :alt: Nachricht
+            :align: center
+            :width: 1400px
+
+
+    .. layer:: incremental overlay
+
+        .. image:: drawings/sha512/sha512-nth-block.svg
+            :alt: Nachricht
+            :align: center
+            :width: 1400px
+
+
+    .. layer:: incremental overlay
+
+        .. image:: drawings/sha512/sha512-padding.svg
+            :alt: Nachricht
+            :align: center
+            :width: 1400px
+
+
+.. supplemental::
+
+    - SHA-512 nimmt eine Nachricht beliebiger Größe und gibt einen 512-Bit-Hashwert zurück. 
+    - Der IV von SHA-512 besteht aus den folgenden acht 64-Bit-Zahlen:
+    
+      :: 
+
+        6a09e667f3bcc908
+        bb67ae8584caa73b
+        3c6ef372fe94f82b
+        a54ff53a5f1d36f1
+        510e527fade682d1
+        9b05688c2b3e6c1f
+        1f83d9abfb41bd6b
+        5be0cd19137e2179
+  
+    - Die Addition erfolgt Wortweise modulo :math:`2^{64}`.
+
+    - Die Nachricht wird in 1024-Bit-Blöcke unterteilt. Die Nachricht wird - unabhängig von der tatsächlichen Länge - *immer* aufgefüllt (:eng:`padded`) und auf eine Länge  :math:`l \equiv 896 (mod\, 1024)` Bits gebracht. 
+    - Das Padding besteht aus einem Bit mit Wert 1, gefolgt von der notwendigen Anzahl Nullen.
+    - Am Ende wird die Länge der Nachricht als 128-Bit-Wert angehängt, um ein Vielfaches von 1024 zu erhalten.
 
 
 .. class:: new-section transition-move-left
@@ -645,6 +705,9 @@ MAC: `Poly 1305 <https://datatracker.ietf.org/doc/html/rfc8439#section-2.5>`__
     Dadurch, dass wir den Block als Zahl in *little-endian* Reihenfolge interpretieren, ist das hinzufügen des Bits jenseits der Anzahl der Oktette gleichbedeutend damit, dass wir den Wert 0x01 am Ende des Blocks hinzufügen.
 
 
+.. TODO discuss CBC-MAC
+
+
 Zusammenfassung
 -------------------
 
@@ -661,4 +724,3 @@ Zusammenfassung
 - Nur für Nachrichten, die signiert sind, gilt somit die Nichtabstreitbarkeit (:eng:`non-repudation`).
 
 
-.. TODO discuss CBC-MAC

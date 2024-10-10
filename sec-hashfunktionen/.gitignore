@@ -3,3 +3,4 @@ drawings/hmac
 drawings/digests
 drawings/signatures
 drawings/poly1305.svg
+drawings/sha512

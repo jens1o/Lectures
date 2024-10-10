@@ -12,3 +12,7 @@ drawings/hmac/hmac_message_hashing.svg
 drawings/signatures/authentication_and_encryption.svg
 drawings/signatures/just_authentication.svg
 drawings/poly1305.svg
+drawings/sha512/sha512-main.svg
+drawings/sha512/sha512-blocks.svg
+drawings/sha512/sha512-nth-block.svg
+drawings/sha512/sha512-padding.svg
