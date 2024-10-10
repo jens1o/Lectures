@@ -52,34 +52,34 @@ W3WI_AM302 - Fortgeschrittene Systementwicklung
 
 
 
-Ausgewählte Inhalte gem. MHB
+Inhalte
 ---------------------------------
 
-.. rubric:: Kerninhalte
+- dieses Semester:
+  
+  - Cybersecurity
+  - klassische Sicherheitsprinzipien
+  - Schwachstellen: von CVSS bis CWE
 
-- Indexstrukturen (B-/B*-/B+-Bäume, ....)
-- Transaktionsverwaltung (ACID, Recovery, Mehrbenutzersynchronisation)
-- Anfrageverarbeitung und Anfrageoptimierung
-- Verteilte Datenbanken
-- Alternative Datenbankmodelle (z. B. Document Stores, Column Family Stores)
-- In Memory Datenbanken
-- Anbindung einer Datenbank an objektorientierte Programmiersprachen ORM (JPA/ADO)
-- Web Frameworks zur Erstellung dynamischer Webanwendungen (AJAX)
-- Konzepte und Umsetzung von Webservices (z.B. REST, JSON)
-- Middleware Technologien (z.B. JEE, .NET)
-- Vergleich unterschiedlicher Middleware-Konzepte und -Architekturen (z. B. JEE vs. .NET,
-Webservices) bzgl. Diverser Kriterien, z. B. der verwendeten Programmiersprache (Java, C#
-usw.).
-- Middlewareprodukte, wie z. B. Applikationsserver, oder darauf aufbauende Frameworks
-Alternativ oder ergänzend können Fragestellungen aus dem Projektmanagement oder aus dem
-Bereich Software-Ergonomie behandelt werden.
+- nächstes Semester:
+  
+  IT-Sicherheitsthemen mit einem starken Softwareentwicklungsschwerpunkt:
+  Insbesondere Tools und Methoden für die automatische Identifikation von Schwachstellen (d. h. Ausgewählte Aspekte des *Secure Software Development*)
 
-VORAUSSETZUNGEN
-Programmierung I & II, Grundlagen der IT
+.. container:: minor
+
+  - ggf. im 6. Semester: 
+    
+    IT-Security Grundlagen: Verschlüsselung, Hashfunktionen, Signaturen, Zertifikate, etc.
 
 
-Prüfungsleistung - Portfolio
-------------------------------------------
+Ablauf
+--------
+
+.. admonition::  Hintergrund
+
+    - Modul: 55 VL
+    - Modul 5 ECTS
 
 Dieses Semester 12 VL:
 
@@ -89,17 +89,15 @@ Dieses Semester 12 VL:
 
 Nächstes Semester: 43 VL
 
+(Zeitplan wird noch bekannt gegeben)
 
-.. admonition::  Hintergrund
 
-    - Modul: 55 VL
-    
-      - 
-    - Modul 5 ECTS
-    
-    
-
-Themen
+Prüfungsleistung 
 ------------------------------------------
 
-...
+Prüfungsleistung: Portfolio (insgesamt 120 Punkte)
+
+:Dieses Semester:  Kurztest mit 20 Minuten mit 20 Punkten
+:Nächstes Semester: Vorträge, Ausarbeitungen/Projekt mit 100 Punkten
+
+
