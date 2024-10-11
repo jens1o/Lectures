@@ -16,3 +16,7 @@ drawings/sha512/sha512-main.svg
 drawings/sha512/sha512-blocks.svg
 drawings/sha512/sha512-nth-block.svg
 drawings/sha512/sha512-padding.svg
+drawings/sha512-processing_a_block/block.svg
+drawings/sha512-processing_a_block/constants.svg
+drawings/sha512-processing_a_block/main.svg
+drawings/sha512-processing_a_block/wi.svg
