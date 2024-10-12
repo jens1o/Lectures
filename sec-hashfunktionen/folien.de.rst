@@ -600,7 +600,7 @@ SHA-512 Verarbeitung eines 1024-Bit-Blocks
 
     **Exemplarischer Code zur Berechnung der Konstanten**
 
-    Der folgendene JavaScript Code demonstriert, wie die Konstanten für SHA-512 berechnet werden bzw. wurden. Die Präzision von Standard JavaScript Gleitkommazahlen (64-Bit Double) ist jedoch nicht ganz ausreichend, um die Konstanten vollständig zu berechnen. 
+    Der folgende JavaScript Code demonstriert, wie die Konstanten für SHA-512 berechnet werden bzw. wurden. Die Präzision von Standard JavaScript Gleitkommazahlen (64-Bit Double) ist jedoch nicht ganz ausreichend, um die Konstanten vollständig zu berechnen. 
 
     .. code:: javascript
         :class: far-far-smaller
@@ -627,7 +627,7 @@ SHA-512 Verarbeitung eines 1024-Bit-Blocks
             console.log(c.toString(16));
         }
 
-    Der folgenden Java Code demonstriert, wie die Konstanten für SHA-512 berechnet werden. Wir verwenden hier die Klasse `BigDecimal` um die Konstanten zu berechnen, da Java keinen ``long double`` Typ (mit 128 Bit) kennt.
+    Der folgenden Java Code demonstriert, wie die Konstanten für SHA-512 berechnet werden können. Wir verwenden hier die Klasse `BigDecimal`, um die Konstanten zu berechnen, da Java keinen ``long double`` Typ (mit 128 Bit) kennt.
 
     .. code:: java
         :class: far-far-smaller
