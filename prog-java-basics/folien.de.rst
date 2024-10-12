@@ -20,7 +20,7 @@
 .. role:: appear
 .. role:: eng
 .. role:: ger
-.. role:: red
+.. role:: dhbw-red
 .. role:: green
 .. role:: the-blue
 .. role:: minor
@@ -30,6 +30,8 @@
 .. role:: smaller
 .. role:: far-smaller
 .. role:: monospaced
+.. role:: copy-to-clipboard
+.. role:: kbd
 .. role:: java(code)
    :language: java
 
@@ -1080,7 +1082,7 @@ Zweistellige Vergleichsoperatoren
         .. exercise:: Einstellige Operatoren - welche Werte werden ausgegeben?
 
             .. solution::
-                :pwd: Achtung!
+                :pwd: Achtung-
 
                 Strings:
 
@@ -2052,4 +2054,868 @@ Effizienz von bedingten Anweisungen
 
         
 
-.. TODO ab Folie 22 fortsetzen 04_Grundlagen_Teil2
+.. class:: transition-fade integrated-exercise
+
+Übung
+--------
+
+.. exercise:: Wochentag benennen
+
+    Berechnen Sie den Wochentag für ein gegebenes Datum. 
+    Lesen Sie (a) den Tag des Monats, (b) den Monat, (c) ob das Jahr ein Schaltjahr ist und (d) den Wochentag des 1. Januars des Jahres von der Konsole ein. Benutzen Sie die :java:`switch` und/oder :java:`if`-Anweisungen und geben Sie den Wochentag des gegebenen Datums auf der Konsole aus.
+
+    Beispielinteraktion:
+
+    .. code:: text
+        :class: far-far-smaller
+        
+        # java --enable-preview Wochentag.java
+        Welchen Monat haben wir (1-12)? 12
+        Welchen Tag des Monats haben wir (1-28/29/30/31)? 24
+        Welcher Wochentag war der 1. Januar (0=Montag, 1=Dienstag, ..., 6=Sonntag)? 0
+        Ist das Jahr ein Schaltjahr (j/n)? j
+        > Tag im Jahr: 359
+        > Tag in der Woche: 2
+        > Der 24.12. ist ein Dienstag
+
+    .. solution::
+        :pwd: Am241224IstDienstag
+
+        .. include:: code/Wochentag.java
+            :code: java
+            :class: far-smaller
+            :number-lines:
+
+    .. container:: bonus-task far-far-smaller margin-top-1em
+
+        Heimaufgabe: Erlauben Sie statt der Eingabe einer Zahl für den Wochentag auch die Eingabe des Wochentages als Text (z. B. "Montag", "Dienstag", ...).
+
+
+.. class:: new-section transition-move-to-top
+
+Schleifen
+----------------------------------------------------------
+
+
+
+Schleifen
+----------------------------------------------------------
+
+.. class:: incremental
+
+- Schleifen dienen dazu gleiche Anweisungen bzw. Blöcke mehrfach auszuführen
+- Schleifen zählen wie auch bedingte Anweisungen zu den Befehlen der Kontrollflußsteuerung
+- Schleifen können in Java-Programmen mittels for-Anweisungen, while-Anweisung und do-while-Anweisungen umgesetzt werden
+- Es muss darauf geachtet werden, dass keine Endlosschleifen entstehen
+
+
+
+:java:`for`-Schleife
+----------------------------------------------------------
+
+.. stack::
+
+    .. layer::
+
+        .. code:: java
+            :class: far-smaller
+            :number-lines: 1
+
+            int sum = 0;
+
+            // for(<Init>; <Ausdruck>; <Update>) <Anweisung>
+            for(int i = 0; i < 10 ; ++i ){
+                sum += i;
+                System.out.println("sum="+sum);
+            }
+
+    .. layer:: incremental
+
+        Die :java:`for`-Schleife setzt sich zusammen aus einer Initialisierungsliste (<Init>), einer Abbruchbedingung <Ausdruck>, einer Änderungsliste (<Update>) und einen Schleifenrumpf (<Anweisung> bzw. <Block>). Alle drei Teile sind optional.
+
+        :Syntax: ``for(<Init>;<Ausdruck>;<Update>) <Anweisung> bzw. <Block>``
+
+        :Initialisierungsliste: wird vor dem ersten evtl. Schleifendurchlauf ausgeführt
+        :Abbruchbedingung: wird vor jedem Schleifendurchlauf geprüft
+        :Änderungsliste: wird nach einem Schleifendurchlauf ausgeführt
+
+    .. layer:: incremental
+
+        Sowohl die Initialisierungsliste als auch die Änderungsliste können mehrere Ausdrücke enthalten, die durch Kommas getrennt sind.
+        
+        Beispiel:
+
+        .. container:: two-columns
+
+            .. container:: column
+
+                .. code:: java
+                    :class: far-far-smaller
+                    :number-lines: 1
+
+                    int sum=0;
+
+
+                    for(int i = 0, j = 2; i < 10; ++i, j+=2 ){
+                        sum +=j;
+                        System.out.println("sum="+sum);
+                    }
+
+            .. container:: column
+
+                .. code:: java
+                        :class: far-far-smaller
+                        :number-lines: 1
+
+                        int sum=0;
+                        int i=0;
+                        int j=2;
+                        for(i++, j--; i < 10 ; ++i, j+=2 ){
+                            sum +=j;
+                            System.out.println("sum="+sum);
+                        }
+
+
+.. supplemental::
+
+    Gültiger Code:
+
+    .. code:: java
+        :class: far-smaller
+
+        for(;;) { System.out.println("forever"); }
+
+
+
+:java:`while`-Schleife
+----------------------------------------------------------
+
+.. stack::
+
+    .. layer::
+
+        .. code:: java
+            :class: far-smaller
+            :number-lines: 1
+
+            int sum = 0;
+            int i = 0;
+            
+            // while(<Ausdruck>) <Anweisung oder Block>
+            while(i < 10){
+                sum += i;
+                System.out.println("sum=" + sum);
+                ++i;
+            }
+
+    .. layer:: incremental
+
+        Die :java:`while`-Anweisung setzt sich zusammen aus einem <Ausdruck> als Abbruchbedingung und einen Schleifenrumpf (<Anweisung> bzw. <Block>).
+
+        Die Abbruchbedingung wird vor jedem Schleifendurchlauf geprüft.
+
+        :Syntax: while(<Ausdruck>) <Anweisung> bzw. <Block>
+
+
+:java:`do`-:java:`while`-Schleife
+----------------------------------------------------------
+
+.. stack::
+
+    .. layer:: 
+
+        .. code:: java
+
+            int sum=0;
+            int i=0;
+            
+            // do <Anweisung> while (<Ausdruck>);
+            do {
+                sum += i++;
+                System.out.println("sum="+sum);
+            } while(i < 10);
+
+    .. layer:: incremental
+
+        .. class:: list-with-explanations 
+
+        - Die :java:`do`-:java:`while`-Schleife setzt sich zusammen aus einem Schleifenrumpf (<Anweisung> bzw. <Block>) und einem <Ausdruck> als Abbruchbedingung.
+    
+        - Die Abbruchbedingung wird nach jedem Schleifendurchlauf geprüft.
+    
+          Im Gegensatz zur :java:`while`-Schleife wird der Schleifenrumpf mindestens einmal ausgeführt, bevor die Abbruchbedingung geprüft wird.
+
+
+
+Kontrolle des Schleifenablaufs
+----------------------------------------------------------
+
+.. stack::
+
+    .. layer:: 
+
+        .. code:: java
+            :class: far-smaller
+            :number-lines: 1
+
+            int sum = 0;
+
+            for (int i = 0; i < 10; ++i) {
+                if ((i + 1) % 5 == 0)
+                    break;
+
+                sum += i;
+                System.out.println("i=" + i);
+            }
+            System.out.println("sum=" + sum);
+
+    .. layer:: incremental
+
+        .. code:: java
+            :class: far-smaller
+            :number-lines: 1
+
+            int sum = 0;
+
+            for (int i = 0; i < 10; ++i) {
+                if ((i + 1) % 5 == 0)
+                    continue;
+
+                sum += i;
+                System.out.println("i=" + i);
+            }
+            System.out.println("sum=" + sum);
+
+    .. layer:: incremental
+
+        .. code:: java
+            :class: far-smaller
+            :number-lines: 1
+                
+            int sum = 0;
+             
+            outer: for (int i = 0; i < 10; ++i) {
+                System.out.println("i=" + i);
+
+                for (int j = 0; j < i; ++j) {
+                    System.out.println("j=" + j);
+                    if ((j + 1) % 5 == 0)
+                        break outer;
+                    sum += j;
+                }
+
+                sum += i;
+            }
+            System.out.println("sum=" + sum);
+
+
+    .. layer:: incremental
+
+        - Mit den Anweisungen :java:`break`, :java:`break <Marke>`, :java:`continue` und :java:`continue <Marke>` kann die Abarbeitung einer Schleife beeinflusst werden.
+
+        - Bei :java:`break` wird die Ausführung des aktuellen Schleifendurchlaufs abgebrochen und mit der Anweisung direkt nach dem Schleifenrumpf fortgefahren.
+
+        - Bei :java:`continue` wird die Ausführung des aktuellen Schleifendurchlaufs abgebrochen und zum nächsten Schleifendurchlauf gesprungen.
+      
+        - :java:`break <Marke>` bricht auch die Ausführung des aktuellen Schleifendurchlaufs ab und es wird zur Anweisung nach einem Schleifenrumpf der Schleife mit der gegebenen Marke gesprungen.
+        - Eine Marke setzt sich zusammen aus einem Java-Bezeichner und einem „:“ und kann vor einer Schleife bzw. einem Block stehen 
+
+.. supplemental:: 
+
+    *Corner Cases*
+
+    .. code:: java
+
+        jshell> farOuter: for (int j = 0 ; j < 5 ; j++) 
+                    outer: for(int i = 0; i < 5; i++) { 
+                        System.out.println(j+" "+i); break farOuter;
+                    }
+        0 0
+
+        jshell> farOuter: for (int j = 0 ; j < 5 ; j++) 
+                    outer: for(int i = 0; i < 5 ; i++) { 
+                        System.out.println(j+" "+i); continue farOuter;
+                    }
+        0 0
+        1 0
+        2 0
+        3 0
+        4 0
+
+
+.. class:: integrated-exercise transition-scale
+
+Übung
+--------
+
+.. exercise:: Einfacher Primzahltest
+
+    Verwenden Sie eine Schleife, um festzustellen ob eine Zahl eine Primzahl ist. Lesen Sie die Zahl von der Konsole ein. Geben Sie am Ende aus, ob die Zahl eine Primzahl ist oder nicht; geben Sie ggf. auch den kleinsten Teiler der Zahl aus.
+    
+    .. container:: minor smaller
+
+        - Schreiben Sie den Code für den Java Interpreter.
+        - Es ist nicht erforderlich, dass der Algorithmus effizient ist.
+
+    Beispielinteraktion:
+
+    .. code:: bash
+        :class: far-smaller
+
+        # java --enable-preview Primzahltest.java
+        Geben Sie eine ganze positive Zahl ein? 97
+        97 ist eine Primzahl
+        # java --enable-preview Primzahltest.java
+        Geben Sie eine ganze positive Zahl ein? 123
+        3 ist ein Teiler von 123
+
+    .. solution:: 
+        :pwd: NaivUndIneffizient
+
+        .. include:: code/Primzahltest.java
+            :code: Java
+            :class: smaller
+
+
+.. class:: integrated-exercise transition-scale
+
+Übung
+--------
+
+.. exercise:: Berechnung der Kubikwurzel mit Newton-Raphson
+
+    Berechnen Sie die Kubikwurzel :math:`x` einer Zahl :math:`n` mit Hilfe einer Schleife. Nutzen Sie dazu das schnell konvergierende, iterative Verfahren von Newton-Raphson. 
+    
+    .. math:: 
+        :class: smaller
+        
+        x_{n+1} = x_n - \frac{x_n^3 - n}{3 \times x_n^2}\qquad\qquad\text{ein mgl. Startwert:}\; x_0 = 1
+
+    .. stack:: 
+
+        .. layer::
+
+            Beispielinteraktion:
+
+            .. code:: bash
+                :class: far-far-smaller
+
+                # java --enable-preview KubikwurzelMitSchleife.java  10:43:30
+                Geben Sie eine Zahl n ein deren Kubikwurzel w Sie berechnen wollen
+                (d.h. n = w*w*w): 1000000
+                Wie viele Schritte wollen Sie machen? 50
+                ...
+                Das Ergebnis ist: 100.0
+
+
+        .. layer:: incremental
+
+            .. container:: minor far-smaller
+
+                Stellen Sie sich die folgenden Fragen:
+
+                .. class:: list-with-explanations
+
+                - Welchen Datentyp sollten Sie für die Kubikwurzeln verwenden?
+                - Macht es Sinn die Anzahl der Iterationen zu begrenzen? 
+            
+                  (D. h. wie schnell konvergiert das Verfahren?)
+
+                - Können Sie die Kubikwurzel von 2.251.748.274.470.911 (:java:`2251748274470911`) berechnen?
+
+                - Wie kann man feststellen ob eine gute Näherung an die Kubikwurzel vorliegt?
+
+    .. solution::
+        :pwd: KubikwurzelnMitNewtonRaphson
+
+        .. include:: code/KubikwurzelMitSchleife.java
+            :code: Java
+            :class: far-smaller
+
+        Bei iterativen Algorithmen ist es fast immer möglich ein Abbruchkriterium über die Änderung zwischen zwei Schritten zu bestimmen. Unterschreitet die Änderung einen bestimmten Wert (z. B. :math:`0,000000000001`) , so kann bzw. könnte die Schleife je nach Anwendungszweck abgebrochen werden.
+
+.. supplemental::  
+
+    Um zu verstehen wie schnell der Algorithmus konvergiert können sie sich den aktuellen Wert :math:`x_n` ausgeben lassen. 
+
+    Hausübung: Implementieren Sie den Algorithmus auch mit einem anderen Typ von Schleife.
+
+
+
+.. class:: transition-fade new-section
+
+Methoden
+----------------------------------------------------------
+
+
+Methoden (in Java Scripts)
+----------------------------------------------------------
+
+.. stack::
+
+    .. layer::
+
+        .. class:: incremental list-with-explanations
+
+        - Methoden in Java-Programmen dienen dazu die Anwendungslogik zu strukturieren und in wiederverwendbare *Unterprogramme* zu zerlegen.
+
+        - Methoden können von einer anderen Methode aufgerufen werden.
+
+        - Eine Methode hat einen Namen, eine Parameterliste und einen Rückgabetyp.
+
+          Methoden können bzw. müssen weiterhin deklarieren welche Ausnahmen auftreten können. Dies werden wir aber erst später behandeln.
+
+        - Der Methodenrumpf ist eine Abfolge von Anweisungen bzw. Blöcken.
+        
+        .. class:: incremental
+
+        :Syntax: 
+            .. code:: java
+        
+                <Rückgabetyp> <Methodenname> (<Parameterliste>){
+                    <Methoden-Rumpf>
+                }
+
+        .. class:: incremental
+
+    .. layer:: incremental
+
+        - Wir haben bereits Methoden wie :java:`println(String)` und :java:`double Double.parseDouble(String)` kennengelernt.
+        - Wenn wir :java:`void main() { ... }` verwenden, dann definieren wir eine Methode, die von der Java-Laufzeitumgebung beim Start aufgerufen wird. 
+   
+           Per Konvention ist festgelegt, dass diese Methode :java:`main` heisst.
+
+    .. layer:: incremental
+
+        **Beispiel**
+        
+        Deklaration einer Methode zum Berechnen des größten gemeinsamen Teilers (:java:`ggt`) zweier Zahlen.
+
+        .. code:: java
+            :class: far-smaller
+            :number-lines: 1
+
+            int ggt(int z1, int z2) { // Algorithmus von Euklid
+                z1 = Math.abs(z1);
+                z2 = Math.abs(z2);
+
+                int rest = 0;
+                while (z2 != 0) {
+                    rest = z1 % z2;
+                    z1 = z2;
+                    z2 = rest;
+                }
+                return z1; // return bestimmt welcher Wert zurückgegeben wird
+            }
+
+.. supplemental::
+
+    Im :java:`ggtEuklid`-Beispiel werden die Parameter als normale Variablen behandelt. Dies wurde hier aus Kompaktheitsgründen so gewählt. Im Allgemeinen sollten die Parameter als Konstanten betrachtet werden, d. h. sie sollten nicht verändert werden.
+
+
+
+Methodenparameter und Rückgabewerte
+----------------------------------------------------------
+
+- Die Parameterliste definiert über eine komma-separierte Liste die optionalen formalen Parameter der Methode:
+  
+  :Syntax: :java:`<Typ> <Bezeichner> (, <Typ> <Bezeichner>)*`
+
+- Rückgabewerte werden im Methodenrumpf mit der return Anweisung zurückgegeben:
+  
+  :Syntax: :java:`return <Ausdruck>`
+
+- Bei *Methoden ohne Rückgabewert* (:java:`void`) dient die leere :java:`return` Anweisung (:java:`return ;`) zum - ggf. vorzeitigem - Beenden der Methode. Am Ende der Methode ist in diesem Fall die :java:`return` Anweisung optional.
+
+
+
+Methodenaufruf
+----------------------------------------------------------
+
+.. class:: incremental
+
+- Der Aufruf erfolgt durch die Angabe des Klassennamens, des Methodennamens und der aktuellen Parameterwerte.
+
+  :Syntax: <Methode>(<Parameterwerte>)
+
+- Als aktuelle Parameterwerte können Variablen, Ausdrücke oder Literale übergeben werden.
+
+- Der Datentyp des übergebenen Wertes muss in den Datentyp des formalen Parameters implizit konvertierbar sein. Andernfalls muss explizit konvertiert werden.
+
+.. class:: incremental list-with-explanations   
+
+- Von allen übergebenen Werten wird eine (ggf. flache) Kopie übergeben. 
+
+  D. h. Änderungen an den Parametern innerhalb der Methode haben keine Auswirkungen auf die Werte der Argumente (Fachbegriff: :eng:`call-by-value`).
+
+- Methoden dürfen sich selber aufrufen (**Rekursion**).
+
+
+Rekursive Methoden - Beispiel
+----------------------------------------------------------
+
+.. container:: two-columns
+
+    .. container:: column minor
+
+        Schleifen basierte Implementierung des Algorithmus von Euklid:
+
+        .. code:: java
+            :class: smaller
+            :number-lines: 1
+
+            int ggt(int z1, int z2) { 
+                int rest = 0;
+                while (z2 != 0) {
+                    rest = z1 % z2;
+                    z1 = z2;
+                    z2 = rest;
+                }
+                return z1; 
+            }
+
+    .. container:: column 
+
+        Elegante rekursive Implementierung des Algorithmus von Euklid:
+
+        .. code:: java
+            :class: smaller
+            
+            int ggt(int z1, int z2) {
+                if (z2 == 0)
+                    return z1;
+                else
+                    return ggt(z2, z1 % z2);
+            }
+
+
+Überladen von Methoden (:eng:`Overloading`)
+----------------------------------------------------------
+
+.. stack::
+
+    .. layer::
+
+        .. class:: incremental            
+
+        - Eine überladene Methode ist eine Methode mit dem gleichen Namen wie eine andere Methode, aber mit einer unterschiedlichen Parameterliste. Folgende Unterschiede sind möglich:
+
+        - Eine Methode definiert eine unterschiedliche Anzahl von Parametern
+        - Eine Methode hat unterschiedliche Datentypen für ihre formalen Parameter
+        - :dhbw-red:`Unterschiedliche Rückgabetypen sind in Java nicht ausreichend.`
+        - Zum Beispiel gibt es in Java die Methode :java:`int Math.max(int, int)` und :java:`double Math.max(double, double)`.
+        
+        .. exercise::  max(long, long)?
+            :class: smaller incremental
+
+            Warum definiert Java auch noch die Methode :java:`long Math.max(long, long)` bzw. warum reicht es nicht aus nur :java:`long Math.max(long, long)` zu definieren und auf :java:`int Math.max(int, int)` zu verzichten?
+
+            .. solution::
+                :pwd: WarumMaxLong?
+                
+                Würden wir nur :java:`long Math.max(long, long)` definieren, dann würde bei einem Aufruf mit zwei :java:`int` Werten eine implizite Konvertierung erfolgen. Der Rückgabewert wäre dann ein :java:`long` Wert. In den meisten Fällen ist dies jedoch nicht der gewünschte Typ und es müsste explizit in :java:`int` zurück konvertiert werden. Dies würde den Code unnötig komplizieren und auch (geringfügige) Performanceeinbußen verursachen. Daher ist es sinnvoll die Methode :java:`int Math.max(int, int)` zu definieren.
+
+    .. layer:: incremental  
+
+        .. code:: java
+            :class: far-smaller
+
+            void print(int i) {
+                println("int: " + i);
+            }
+
+            void print(double d) {
+                println("double: " + d);
+            }
+
+            void main() {
+                int i = 1;
+                print(i);
+                float f = 1.0f;
+                print(f);
+            }
+
+
+
+Aufruf von Methoden aus anderen Klassen
+----------------------------------------------------------
+
+.. class:: incremental
+
+- *Für den Moment* ist eine Klasse für uns eine Sammlung von Methoden und Konstanten, die inhaltlich in einem logischen Zusammenhang stehen.
+
+- Der Aufruf einer Methode einer Klasse erfolgt durch die Angabe des Klassennamens, des Methodennamens und der aktuellen Parameterwerte.
+  
+  :Syntax: <Klasse>.<Methode>(<Parameterwerte>)
+
+- Wir haben bereits entsprechende Beispiele gesehen, z. B. :java:`Double.parseDouble(String)` oder :java:`Integer.parseInt(String)`.
+
+.. hint::
+    :class: incremental far-smaller margin-top-2em
+
+    Auf diese Weise können nur statische Methoden aufgerufen werden. Die Details werden wir später beim Thema Klassen und Objekte behandeln.
+
+
+.. class:: transition-fade integrated-exercise
+
+Übung
+--------
+
+.. exercise:: Methoden definieren
+
+    .. class:: list-with-explanations
+
+    1) Nehmen Sie die Ergebnisse der letzten Übung und definieren Sie jeweils eine Methode für die Berechnung der :java:`Kubikwurzel` und für den Primzahltest. Die Methode :java:`isPrime` soll dabei den Rückgabetyp boolean haben. 
+
+       Auf die Ausgabe des kleinsten Teilers soll verzichtet werden.
+
+    2) Rufen Sie die Methoden aus Ihrer :java:`main`-Methode auf. Die :java:`main`-Methode soll dabei nur die Eingabe und die Ausgabe übernehmen.
+
+    3) Wandeln Sie die Methode für die Berechnung der Kubikwurzel in eine rekursive Methode um.
+
+      .. solution::
+          :pwd: MethodenDefinieren
+
+          **Primzahltest**
+
+          .. include:: code/PrimzahltestInMethode.java
+              :code: Java
+              :class: far-smaller
+
+          **Kubikwurzel**
+
+          .. include:: code/KubikwurzelInRekursiverMethode.java
+              :code: Java
+              :class: far-smaller
+
+
+.. class:: transition-move-left integrated-exercise
+
+Übung
+--------
+
+.. exercise:: Fakultät berechnen
+
+    Schreiben Sie eine nicht-rekursive Methode zur Berechnung der Fakultät einer Zahl. Lesen Sie die Zahl von der Konsole ein und geben Sie die Fakultät auf der Konsole aus.
+
+    .. solution::
+        :pwd: FakultaetBerechnen
+
+        Verwendung von :java:`long` ermöglicht es die Fakultät von Zahlen bis einschließlich 20 zu berechnen.
+
+        .. code:: java
+            :class: far-smaller
+
+            long fakultaet(long n) {
+                long fak = 1;
+                for (int i = 1; i <= n; ++i)
+                    fak *= i;
+                return fak;
+            }
+
+        Verwendung von :java:`double` ermöglicht es die Fakultät von Zahlen bis einschließlich 170 zu berechnen. Darüber hinaus wird :java:`Infinity` zurückgegeben.
+
+        .. code:: java
+            :class: far-smaller
+  
+            double fakultaet(int n) {
+                double fak = 1;
+                for (int i = 1; i <= n; ++i)
+                    fak *= i;
+                return fak;
+            }
+
+        
+
+.. class:: transition-fade new-section
+
+Von Codekonventionen und Lesbarkeit
+----------------------------------------------------------
+
+
+Lesbarer Java-Code
+----------------------------------------------------------
+
+.. class:: incremental list-with-explanations
+
+- Halten Sie sich an die `Java-Konventionen <https://www.oracle.com/java/technologies/javase/codeconventions-contents.html>`__.
+  
+  (Die Konventionen haben sich - aus guten Gründen - seit Jahrzehnten nicht geändert.)
+
+- Formatieren Sie Ihren Code konsistent; d. h. stellen Sie konsistente Einrückungen sicher! 
+- Verwenden Sie inhaltsorientierte, sprechende Namen für Variablen, Konstanten, Methoden etc.
+
+.. hint::
+    :class: incremental 
+    
+    .. container:: center-child-elements
+
+        Manuelles formatieren ist nicht sinnvoll. 
+        
+        **Verwenden Sie einen automatische Code-Formatter!**
+
+
+Einrückungen und Blöcke
+----------------------------------------------------------
+
+- Rücken Sie zusammenhängende Blöcke um die gleiche Anzahl von Leerzeichen ein. 
+  
+  Gängig ist ein Vielfaches von :minor:`2 oder` 4 Leerzeichen.
+
+- Verwenden Sie keine Tabulatoren (``\\t``) für Einrückungen.
+
+- Beginnt ein neuer Block innerhalb eines äußeren Blockes, so werden die zugehörigen Anweisungen tiefer eingerückt als der äußere Block.
+- Pro Zeile sollte nur ein Block oder eine Anweisung stehen.
+
+
+
+Einrückungen und Blöcke - Beispiele
+----------------------------------------------------------
+
+.. stack:: 
+
+    .. layer:: 
+
+        .. rubric:: Falsche Einrückung
+
+        .. code:: java
+            :class: far-smaller
+            
+            int ggtNaiv(int z1, int z2){
+                    int min = (z1>z2)?z2:z1; println("current min="+min);
+                for(int ggt=min; ggt>1; --ggt){
+                        if(z1%ggt==0 && z2%ggt==0)
+                        return ggt;
+                }     
+            return 1;
+                }
+            }
+
+    .. layer:: incremental
+
+        .. rubric:: Korrekte Einrückung
+
+        .. code:: java
+            :class: far-smaller
+            
+            int ggtNaiv(int z1, int z2) {
+                int min = (z1 > z2) ? z2 : z1;
+                println("current min=" + min);
+                for (int ggt = min; ggt > 1; --ggt) {
+                    if (z1 % ggt == 0 && z2 % ggt == 0)
+                        return ggt;
+                }
+                return 1;
+            }
+
+
+
+Klammern 
+----------------------------------------------------------
+
+.. class:: list-with-explanations incremental
+
+- Verwenden Sie Klammern um Blöcke, auch wenn sie nur eine Anweisung enthalten.
+  
+  (Insbesondere bei verschachtelten Blöcken bzw. :java:`If`-Anweisungen ist dies wichtig.)
+- Bei bedingten Anweisungen und  Schleifen steht die öffnende geschweifte Klammer am Ende der 1. Zeile. Die schließende geschweifte Klammer steht in einer eigenen Zeile am Ende. Sie hat die gleiche Einrückung wie die Anweisung.
+
+
+
+.. class:: no-title center-child-elements
+
+Zeilenlängen
+----------------------------------------------------------
+
+.. warning:: 
+    :class: incremental
+
+    Zeilen, die länger als 80 oder max. 100 Zeichen erfordern beim Lesen horizontales Scrollen und sind unter allen Umständen zu vermeiden!
+
+    .. class:: incremental
+
+        Konfigurieren Sie Ihren Editor so, dass Sie unmittelbar sehen, wenn eine Zeile zu lang wird.
+
+
+
+Methoden und Kommentare
+----------------------------------------------------------
+
+.. container:: scrollable 
+        
+    .. class:: incremental list-with-explanations
+
+    - Dokumentieren Sie Ihre Methoden und Klassen mit Javadoc-Kommentaren.
+    - Dokumentieren Sie insbesondere die Vor- und Nachbedingungen von Methoden.
+    - Dokumentieren Sie die Anforderungen an die Parameter. 
+      
+      Zum Beispiel: :java:`@param n die Zahl für die die Fakultät berechnet wird; n>=0 und n < 13`
+    - Dokumentieren Sie die Rückgabewerte. 
+  
+      Zum Beispiel: :java:`@return die Fakultät von n`
+    - Der erste Satz eines Javadoc-Kommentar sollte eine kurze, vollständige Beschreibung der Methode enthalten. Dieser wird in der Übersicht verwendet.
+   
+      Zum Beispiel: :java:`Berechnet die Fakultät einer Zahl n`
+    - Dokumentieren Sie keine Trivialitäten 
+     
+      Zum Beispiel: :java:`i++; // erhöhe i um 1`
+    - Wenn Sie einen Bedarf sehen, innerhalb einer Methode Kommentare zu schreiben, dann ist dies häufig ein Hinweis darauf, dass der Code refaktorisiert (:eng:`refactored`) werden sollte. 
+
+      Zum Beispiel könnten die Methode in kleinere Methoden aufgeteilt werden.
+
+    - Dokumentieren Sie insbesondere das, was nicht im Code steht und was nicht offensichtlich ist.
+  
+      KI Tools (zum Beispiel GitHub Copilot) sind bereits jetzt in der Lage gute *initiale* Kommentare zu generieren. Aber häufig fehlt die Dokumentation der (impliziten/globalen) Anforderungen sowie der Vor- und Nachbedingungen. 
+
+.. supplemental::
+
+    Woher könnte die Anforderung :java:`n < 13` für die Fakultät kommen?
+
+    .. danach kommt es bei der Verwendung des :java:`int`-Datentyps zu einem Überlauf.
+
+
+Team und Projektspezifische Konventionen
+----------------------------------------------------------
+
+- die Java-Konventionen sind allgemein gültig und sollten eingehalten werden, decken aber nicht alle Teile des Codes ab. 
+
+.. class:: incremental
+
+- In einem Team oder Projekt können spezifische Konventionen festgelegt werden, die über die allgemeinen Konventionen hinausgehen. Diese sollten dann **automatisiert überprüft und ggf. automatisch formatiert werden**.
+
+- Beispiele sind:
+
+  - Einrückungen der Parameter bei Methoden mit :ger-quote:`vielen` Parametern.
+  - Sprache in der Variablen benannt werden. (z. B. Fachsprache in Englisch oder Deutsch)
+  - Maximale Einrückungstiefe von Schleifen und Bedingungen.
+  - ...
+
+
+.. class:: integrated-exercise transition-scale
+
+Übung
+--------
+
+.. class:: list-with-explanations
+
+1) Überprüfen Sie den von Ihnen geschrieben Code auf korrekte Formatierung. 
+
+2) Installieren Sie für VS Code das Java Extension Pack und verwenden Sie den eingebauten Code Formatter über die entsprechende Tastenkombination.
+   
+   (Auf Mac mit Standardeinstellungen zum Beispiel:  :kbd:`Shift` + :kbd:`Alt` + :kbd:`F`.)
+
+3) Schreiben Sie für die Methoden passende Kommentare im Javadoc-Stil.
+
+Am Ende diskutieren wir Ihren Code/Ihre Kommentare.
+
+
+
+.. class:: center-child-elements
+
+Von Codekonventionen und Lesbarkeit - Zusammenfassung
+----------------------------------------------------------
+
+
+Auf dem Weg zu einem professionellen Programmierer (egal welcher Sprache) ist es wichtig, neben den Sprachkonstrukten auch die geltenden Konventionen zu erlernen und einzuhalten. Diese sind je nach Sprache meist leicht unterschiedlich, aber in der Regel sehr ähnlich.
+
+Das Einhalten fördert die Zusammenarbeit mit anderen Programmieren - *insbesondere auch Ihrem zukünftigen Ich* - und erhöht die Lesbarkeit des Codes.
