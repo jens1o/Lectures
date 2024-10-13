@@ -36,22 +36,24 @@
    :language: java
 
 
-.. class:: animated-symbol
+
+.. class:: animated-symbol 
 
 Einführung in die Programmierung mit Java
 ====================================================
 
-.. container:: line-above tiny
+.. container:: line-above
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
     :Version: 1.0
 
-    .. container:: minor far-far-smaller
+    .. container:: minor
 
-        Die Folien sind teilweise inspiriert von oder basierend auf Lehrmaterial von Prof. Dr. Michael Matt.
+        :Quelle: 
+            Die Folien sind teilweise inspiriert von oder basierend auf Lehrmaterial von Prof. Dr. M. Matt bzw. Prof. C. Binning.
 
-.. Foliensatz von Michael Matt: 03_Grundlagen_Teil1.key
+.. Im Wesentlichen Foliensätze von Michael Matt: 03_Grundlagen_Teil1 und Teil2 und Formatierung.key
 
 .. supplemental::
 
@@ -88,7 +90,7 @@ Einführung
 
     Die Datei enthält ein einfaches Java-Programm, das den Text ``Hello World!`` auf der Konsole ausgibt. 
     
-    In der ersten Zeile wird die Methode :java:`main` definiert. Diese die Einstiegsmethode in das Programm. Der Text ``Hello World!`` wird mit der Methode :java:`println` auf der Konsole ausgegeben. Die Methoden :java:`print`, und :java:`println` sind in Java Skripten immer verfügbar und geben den übergebenen Text auf der Konsole aus (ohne bzw. mit Zeilenumbruch am Ende).
+    In der ersten Zeile wird die Methode :java:`main` definiert. Diese ist die Einstiegsmethode in das Programm. Der Text ``Hello World!`` wird mit der *Methode* :java:`println` auf der Konsole ausgegeben. Die Methoden :java:`print`, und :java:`println` sind in Java Skripten immer verfügbar (bei Verwendung von ``--enable-preview`` (Java 23)) und geben den übergebenen Text auf der Konsole aus. Die Methode :java:`print` tut dies ohne und die Methode :java:`println`  mit Zeilenumbruch (``\\n``) am Ende.
 
 
 
@@ -111,7 +113,7 @@ Von der Konsole lesen
 
 .. class:: integrated-exercise
 
-Übung - einfache Ein-/Ausgabe
+Übung - mein erstes Programm
 --------------------------------
 
 .. exercise:: Lesen von und Schreiben auf die Konsole
@@ -128,6 +130,18 @@ Von der Konsole lesen
         .. include:: code/GutenMorgen.java
             :code: java
 
+.. supplemental::
+
+    .. hint:: 
+        :class: far-smaller
+
+        Vorgehensweise:
+
+        0) :minor:`Stellen Sie sicher, dass Java korrekt installiert ist. Öffnen Sie dazu die Konsole und geben Sie java --version ein.`
+        1) Öffnen Sie einen Texteditor (z. B. Visual Studio Code oder ZED oder ...)
+        2) Schreiben Sie den Rumpf des Programms: :java:`void main() { <IHR CODE> }`
+        3) Ersetzen Sie ``<IHR CODE>`` durch den Code, der den Nutzer nach seinem Namen X fragt und dann "Guten Morgen X!" ausgibt.
+        4) Führen Sie den Code aus in dem Sie die Konsole/ein Terminal öffnen und dort: :code:`java --enable-preview GutenMorgen.java` ausführen.
 
 
 .. class:: new-section transition-move-to-top
@@ -248,10 +262,87 @@ Kommentare
     :@return <descr>: Dokumentiert den Rückgabewert einer Methode.
 
 
+
+Java Shell
+------------------------------------------------
+
+.. stack::
+
+    .. layer::
+
+        - Die Java Shell (``jshell``) ist ein interaktives Werkzeug, das es ermöglicht Java-Code (insbesondere kurze Snippets) direkt auszuführen.
+        - Starten Sie die Java Shell mit dem Befehl ``jshell --enable-preview`` in der Konsole.
+        - Den gültigen Java-Code können Sie direkt in der Java Shell eingeben oder über ``/edit`` als Ganzes bearbeiten.
+        - Sie beenden die Java Shell mit dem Befehl ``/exit``.
+        - Die Java Shell eignet sich insbesondere für das Ausprobieren von Code-Schnipseln und das Testen von Methoden.
+
+    .. layer:: incremental  
+
+        .. code:: Java
+            :class: far-smaller
+
+            # jshell --enable-preview
+
+            |  Welcome to JShell -- Version 23
+            |  For an introduction type: /help intro
+
+            jshell> var x = "X";
+            x ==> "X"
+
+            jshell> x + "Y"
+            $2 ==> "XY"
+
+            jshell> $2.length()
+            $3 ==> 2
+
+
+
+.. class:: integrated-exercise
+
+Übung - Java als Taschenrechner
+--------------------------------
+
+.. exercise:: Rechnen auf der Konsole
+
+    Verwenden Sie die JShell als Taschenrechner und lösen Sie die folgenden Aufgaben in der angegebenen Reihenfolge jeweils mit Hilfe von *einer* Formel:
+
+    1. Berechnen Sie, wie viele Sekunden ein Schaltjahr hat.
+    2. Sie nehmen einen Kredit über 47865 € auf und zahlen monatlich 3,6% Zinsen. Wie viele Zinsen haben Sie nach 5 Jahren bezahlt?
+    3. Ein Bauer hat 120 Äpfel. Er möchte die Äpfel gleichmäßig auf 4 Körbe verteilen. Nachdem er die Äpfel aufgeteilt hat, isst er 5 Äpfel aus jedem Korb. Wie viele Äpfel hat er noch?
+    4.  Nehmen Sie an, dass weltweit jeden Tag 1 500 000 000 Plastikflaschen produziert werden. Wie viele Flaschen werden in einem Jahr produziert, wenn das Jahr 365 Tage hat, aber an den Wochenenden nicht produziert werden würde (gehen Sie von 52 Wochenenden aus)?
+
+    .. solution::
+        :pwd: JShellAlsTaschenrechner
+
+        - :java:`366 * 24 * 60 * 60` ⇒ 31622400
+        - :java:`47865 * 0.036 * 12 * 5` ⇒ 103388.4
+        - :java:`(120 / 4 - 5 ) * 4` ⇒ 100
+        - :java:`1_500_000_000*(365-52*2)` ⇒ 657 976 064 ⚠️ (Dieses Ergebnis kann offensichtlich nicht stimmen! Wie dieses Ergebnis zu Stand kam, klären wir als nächstes. Das richtige Ergebnis würden Sie mit folgender Formel erhalten :java:`1_500_000_000l*(365-52*2)`.)
+
+.. supplemental::
+
+    Zum Starten der JShell müssen Sie die Konsole (ein Terminal) öffnen und ``jshell`` eingeben. 
+
+    .. hint:: 
+        :class: smaller
+      
+        - In Programmiersprachen wird generell die englische Schreibweise für Zahlen verwendet. D. h. Sie müssen das Dezimalkomma durch einen Punkt ersetzen.)
+
+        - Die Division wird in (den meisten) Programmiersprachen mit dem Operator ``/`` durchgeführt.
+
+        - Die Multiplikation wird in (den meisten) Programmiersprachen mit dem Operator ``*`` durchgeführt.
+
+        - Sie können Klammern (``(`` und ``)``) so verwenden, wie Sie es von der Mathematik gewohnt sind.
+
+        - Sie können große Zahlen mit einem Unterstrich (``_``) formatieren, um die Lesbarkeit zu erhöhen: z. B. :java:`1_500_000_000`.
+
+
+
 .. class:: new-section transition-scale
 
 Primitive Datentypen
 ---------------------------
+
 
 
 Verwendung von Datentypen
@@ -667,38 +758,6 @@ Bezeichner (:eng:`Identifier`) - Übersicht
     
     Ein Unterstrich am Anfang des Bezeichners sollte ebenfalls vermieden werden. Ganz insbesondere ist darauf zu verzichten den Unterstrich als alleinigen Variablennamen zu verwenden, da der *reine* Unterstrich seit `Java 22 für unbenannte Variablen verwendet wird <https://openjdk.org/jeps/456>`__ und dies die Migration von altem Code erschwert.
 
-
-Java Shell
-------------------------------------------------
-
-.. stack::
-
-    .. layer::
-
-        - Die Java Shell (``jshell``) ist ein interaktives Werkzeug, das es ermöglicht Java-Code (insbesondere kurze Snippets) direkt auszuführen.
-        - Starten Sie die Java Shell mit dem Befehl ``jshell --enable-preview`` in der Konsole.
-        - Den gültigen Java-Code können Sie direkt in der Java Shell eingeben oder über ``/edit`` als Ganzes bearbeiten.
-        - Sie beenden die Java Shell mit dem Befehl ``/exit``.
-        - Die Java Shell eignet sich insbesondere für das Ausprobieren von Code-Schnipseln und das Testen von Methoden.
-
-    .. layer:: incremental  
-
-        .. code:: Java
-            :class: far-smaller
-
-            # jshell --enable-preview
-
-            |  Welcome to JShell -- Version 23
-            |  For an introduction type: /help intro
-
-            jshell> var x = "X";
-            x ==> "X"
-
-            jshell> x + "Y"
-            $2 ==> "XY"
-
-            jshell> $2.length()
-            $3 ==> 2
 
 
 .. class:: integrated-exercise
@@ -2667,7 +2726,7 @@ Aufruf von Methoden aus anderen Klassen
 
     1) Nehmen Sie die Ergebnisse der letzten Übung und definieren Sie jeweils eine Methode für die Berechnung der :java:`Kubikwurzel` und für den Primzahltest. Die Methode :java:`isPrime` soll dabei den Rückgabetyp boolean haben. 
 
-       Auf die Ausgabe des kleinsten Teilers soll verzichtet werden.
+       Auf die Ausgabe des kleinsten Teilers beim Primzahltest soll verzichtet werden.
 
     2) Rufen Sie die Methoden aus Ihrer :java:`main`-Methode auf. Die :java:`main`-Methode soll dabei nur die Eingabe und die Ausgabe übernehmen.
 
@@ -2908,6 +2967,8 @@ Team und Projektspezifische Konventionen
 
 Am Ende diskutieren wir Ihren Code/Ihre Kommentare.
 
+
+.. TODO schreiben Sie ein Programm, dass berechnet wie viele Tage ein Mensch bereits auf der Welt ist. Als Eingaben sollen das Geburtsdatum und das aktuelle Datum eingegeben werden. D.h. Sie fragen erst den Tag, dann den Monat und dann das Jahr der Geburt ab. Anschließend fragen Sie den aktuellen Tag, Monat und das Jahr ab. Geben Sie dann die Anzahl der Tage aus. Verwenden Sie Methoden für sinnvolle Teilaufgaben. (Z. B. Tage eines Jahres. Tag im Jahr (siehe vorhergehende Übung)).
 
 
 .. class:: center-child-elements
