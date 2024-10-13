@@ -8,7 +8,5 @@ logos/filevault.webp
 logos/veracrypt.webp
 graffles/unsichere_passwort_validierung.svg
 graffles/sepass_conceptual_overview.svg
-graffles/hmac/hmac_message_hashing.svg
-graffles/hmac/hmac_i_o_key_derivation.svg
 dgraphs/brute_force.svg
 dgraphs/brute_force-luks2.svg

@@ -41,7 +41,7 @@ Passwortwiederherstellung
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de
-    :Version: 1.1
+    :Version: 2.0
 
 
 .. supplemental::
@@ -380,13 +380,25 @@ Hashfunktionen (Wiederholung)
 Kryptografische Hashfunktionen für Passworte
 ----------------------------------------------------------------------
 
-.. class:: incremental
+.. warning::
+    :class: incremental
 
-- Bekannte kryptografische Hash-Funktionen: :obsolete:`MD4`, :obsolete:`MD5`, SHA-256, SHA-512, RIPE-MD, ...
-- Bekannte Funktion zur Schlüsselableitung: PBKDF2, Argon2 Familie...
-- Beim Hashing von Passwörtern werden die Basisalgorithmen in der Regel mehrfach (ggf. viele hunderttausend Male) angewendet, um die Laufzeit zu verlängern und es für Angreifer schwieriger zu machen.
-- Mehrere Hash-Algorithmen/Schlüsselableitungsfunktionen wurden ausdrücklich für das Hashing von Passwörtern entwickelt, um gängigen Angriffen zu widerstehen. Z. B. bcrypt, scrypt oder die Argon2 Familie.
-- Einige dieser Algorithmen sind hochgradig parametrisierbar und dann ggf. so rechenintensiv, dass sie nicht für Webanwendungen bzw. Situationen geeignet sind, in denen viele Benutzer gleichzeitig autorisiert werden müssen. Diese Algorithmen werden in der Regel zum Schutz von Dateien, Containern oder lokaler Festplatten verwendet.
+    Bekannte kryptografische Hash-Funktionen wie :obsolete:`MD4`, :obsolete:`MD5`, SHA-256, SHA-512 oder auch RIPE-MD sind für das Hashen von Passwörtern nicht geeignet.
+
+
+.. class:: incremental list-with-explanations
+
+- Zur Schlüsselableitung bzw. zum Hashen von Passwörtern wurden spezialisierte Funktionen entwickelt. Zum Beispiel: PBKDF2, Scrypt, Bcrypt und die Argon2 Familie. Diese wiederstehen gängigen Angriffen.
+  
+  .. container:: far-smaller
+  
+    PBKDF2 verwendet zum Beispiel beim Hashing von Passwörtern klassische Basisalgorithmen (z. B. SHA-256) und wiederholt diese mehrfach (ggf. viele hunderttausend Male), um die Laufzeit zu verlängern und es für Angreifer schwieriger zu machen.
+
+- Diese Algorithmen sind parametrisierbar, um sie an verschiedene Zwecke anpassen zu können.  Je nach Parametrisierung sind diese so rechenintensiv, dass sie z. B. nicht für Webanwendungen mit vielen Nutzern geeignet sind.
+
+.. supplemental::
+
+    Parametrisierungen, die die Laufzeit und den Speicherbedarf so stark erhöhen, dass eine Verwendung in Webanwendungen nicht mehr sinnvoll ist, können z. B. ideal sein zum Schutz von Dateien, Containern oder lokaler Festplatten.
 
 
 Vom Salzen (:eng:`Salt`) ...
@@ -428,7 +440,7 @@ Vom Salzen (:eng:`Salt`) ...
     
     .. rubric:: Rainbow Tables
 
-    Eine Rainbow Table (:ger:`Regenbogentabelle` - Verwendung jedoch nicht gängig) bezeichnet eine vorberechnete Tabelle die konzeptionell zum einem Hash ein jeweilig dazugehörendes  Passwort speichert und einen effizienten Lookup ermöglicht. Dies kann ggf. die Angriffsgeschwindigkeit sehr signifikant beschleunigen, auch wenn die Tabellen sehr groß sind und ggf. in die Terabytes gehen.
+    Eine *Rainbow Table* (:ger:`Regenbogentabelle` - Verwendung jedoch nicht gängig) bezeichnet eine vorberechnete Tabelle, die konzeptionell zum einem Hash ein jeweilig dazugehörendes  Passwort speichert und einen effizienten Lookup ermöglicht. Dies kann ggf. die Angriffsgeschwindigkeit sehr signifikant beschleunigen, auch wenn die Tabellen sehr groß sind und ggf. in die Terabytes gehen.
 
     Aufgrund der allgemeinen Verwendung von Salts sind Angriffe mit Hilfe von Regenbogentabellen heute (fast nur noch) von historischer Bedeutung.
 
@@ -438,7 +450,7 @@ Vom Salzen (:eng:`Salt`)...
 
 .. class:: incremental more-space-between-list-items
 
-- Ein *Salt* sollte ausreichend lang sein (zum Beispiel 16 Zeichen oder 16 Byte).
+- Ein *Salt* sollte ausreichend lang sein (zum Beispiel mind. 16 Zeichen oder 16 Byte).
 - Ein *Salt* darf nicht wiederverwendet werden.
 - Ein *Salt* wird am Anfang oder am Ende an das Passwort angehängt bevor selbiges gehasht wird.
 - Ein *Salt* unterliegt (eigentlich) keinen Geheimhaltungsanforderungen. 
@@ -460,25 +472,27 @@ Vom Salzen (:eng:`Salt`)...
 
 .. container:: small
 
-    (In Normen bzw. in anderer Literatur wird statt *Pepper* auch *Secret Key*\ s verwendet.)
+    (In Normen bzw. in anderer Literatur wird häufig statt *Pepper* *Secret Key* verwendet.)
 
 .. class:: incremental more-space-between-list-items
 
 - Wie ein *Salt* geht auch der *Secret Key* in den Hashvorgang des Passworts ein.
 - Der *Secret Key* wird jedoch **nicht** mit den Hashwerten der Passworte gespeichert.
   
-  .. class:: incremental
+  .. class:: incremental list-with-explanations
 
   - Ein *Secret key* kann zum Beispiel in einem Hardwaresicherheitsmodul (z. B. Secure Element oder TPM Chip) gespeichert werden. 
-  - Gel. wird der *Secret Key* bzw. ein Teil davon auch im Code gespeichert.
+  - Gel. wird der *Secret Key* bzw. ein Teil davon auch im Code bzw. einer Konfigurationsdatei gespeichert.
 
 - Der *Secret Key* sollte zufällig sein. 
-- Wie ein Salt sollte auch auch *Secret Key* mind. 16 Byte lang sein. Um ein Brute-Force Angriff auf den *Secret Key* zu verhindern, sollte dem Angreifer zu einem Hash und Salt auch noch das Klartext Passwort bekannt sein.
+- Wie ein Salt sollte auch auch *Secret Key* mind. 16 Byte lang sein. 
+
+  Diese Länge ist erforderlich um einen Brute-Force Angriff auf den *Secret Key* zu verhindern, sollte dem Angreifer zu *einem Hash und Salt auch noch das Klartext Passwort bekannt sein*.
 - Der *Secret Key* sollte pro Instanziierung einer Anwendung einmalig sein. 
 
 
-Sichere Hash- bzw. Schlüsselableitungsfunktionen für Passworte
----------------------------------------------------------------
+Verwendung sicherer Hash- bzw. Schlüsselableitungsfunktionen für Passworte
+----------------------------------------------------------------------------
 
 .. note:: 
     :class: far-smaller
@@ -487,10 +501,9 @@ Sichere Hash- bzw. Schlüsselableitungsfunktionen für Passworte
 
 :Argon2: z. B. verwendete von LUKS2
 :bcrypt: basierend auf Blowfish; z. B. verwendet in OpenBSD
-:scrypt: z. B. ergänzend verwendet für das Hashing von Passwörtern auf Smartphones
+:scrypt: z. B. (ergänzend) verwendet für das Hashing von Passwörtern auf Smartphones
 :yescrypt: z. B. moderne Linux Distributionen
-
-
+:PBKDF2-HMAC-SHA256: Ethereum Wallets
 
 
 
@@ -524,127 +537,12 @@ Sichere Hash- bzw. Schlüsselableitungsfunktionen für Passworte
 
 
 
-HMAC (Hash-based Message Authentication Code)
-----------------------------------------------
-
-.. container:: small
-
-    Auch als *keyed-hash message authentication code* bezeichnet.
-
-    .. math::
-
-        \begin{array}{rcl}
-        HMAC(K,m) & = & H( (K' \oplus opad) || H( ( K' \oplus ipad) || m) ) \\
-        K' & = &\begin{cases}
-                H(K) & \text{falls K größer als die Blockgröße ist}\\
-                K & \text{andernfalls; ggf. Padded}
-                \end{cases}
-        \end{array}
-    
-    :math:`H` is eine kryptografische Hashfunktion (z. B. SHA-256 bzw. SHA-512).
-
-    :math:`m` ist die Nachricht.
-
-    :math:`K` ist der geheime Schlüssel (*Secret Key*).
-
-    :math:`K'` ist vom Schlüssel K abgeleiteter Schlüssel mit Blockgröße (ggf. *padded* oder *gehasht*).
-
-    :math:`||` ist die Konkatenation.
-
-    :math:`\oplus` ist die XOR Operation.
-
-    :math:`opad` ist das äußere Padding bestehend aus Wiederholungen von 0x5c in Blockgröße.
-
-    :math:`ipad` ist das innere Padding bestehend aus Wiederholungen von 0x36 in Blockgröße.
-
-
-\ 
-----------------------------------------------
-
-.. image:: graffles/hmac/hmac_i_o_key_derivation.svg
-        :alt: Schlüsselableitung für den inneren und äußeren Schlüssel K'
-        :align: left
-        :height: 450px
-
-.. image:: graffles/hmac/hmac_message_hashing.svg
-        :alt: Schlüsselableitung für den inneren und äußeren Schlüssel K'
-        :align: right
-        :height: 625px
-        :class: incremental margin-top-1em
-
-.. supplemental::
-
-    **Padding und Hashing**
-
-    Im Rahmen der Speicherung von Passwörtern und *Secret Keys* ist die Verwendung von Padding Operationen bzw. das Hashing von Passwörtern, um Eingaben in einer wohl-definierten Länge zu bekommen, üblich. Neben dem hier gesehenen Padding, bei dem 0x00 Werte angefügt werden, ist zum Beispiel auch das einfache Wiederholen des ursprünglichen Wertes, bis man auf die notwendige Länge kommt, ein Ansatz. 
-    
-    Diese Art Padding darf jedoch nicht verwechselt werden mit dem Padding, dass ggf. im Rahmen der Verschlüsselung von Nachrichten notwendig ist, um diese ggf. auf eine bestimmte Blockgröße zu bringen (zum Beispiel bei ECB bzw. CBC Block Mode Operations.)
-
-
-
-HMAC Computation in Python
----------------------------
-    
-**Implementierung von PBKDF2 mit einer Runde**
-
-.. code:: python
-    :class: slightly-more-smaller
-
-    import hashlib
-    pwd = b"MyPassword"
-    stretched_pwd = pwd + (64-len(pwd)) * b"\x00" 
-    
-    ikeypad = bytes(map(lambda x : x ^ 0x36 , stretched_pwd)) # xor with ipad 
-    okeypad = bytes(map(lambda x : x ^ 0x5c , stretched_pwd)) # xor with opad 
-    
-    hash1 = hashlib.sha256(ikeypad+b"JustASalt"+b"\x00\x00\x00\x01").digest()
-    hmac  = hashlib.sha256(okeypad+hash1).digest()
-
-
-.. container:: incremental
-
-    **Ergebnis**
-
-    .. code:: python
-        :class: slightly-more-smaller
-
-        hmac =
-        b'h\x88\xc2\xb6X\xb7\xcb\x9c\x90\xc2R...
-          \x16\x87\x87\x0e\xad\xa1\xe1:9\xca'
-
-
-.. supplemental::
-    
-    HMAC ist auch direkt als Bibliotheksfunktion verfügbar.
-
-    .. code:: python
-        :class: slightly-more-smaller
-
-        import hashlib
-        import hmac
-        
-        hash_hmac = hmac.new(
-            b"MyPassword",
-            b"JustASalt"+b"\x00\x00\x00\x01",
-            hashlib.sha256).digest()
-
-        hash_hmac = 
-            b'h\x88\xc2\xb6X\xb7\xcb\x9c\x90\xc2R...
-              \x16\x87\x87\x0e\xad\xa1\xe1:9\xca'
-
-    .. code:: python
-
-        b"\x00\x00\x00\x01"
-
-        Ist die Blocknummer (hier: 1).
-
-
 PBKDF2-HMAC 
 -----------------------------------------------------
 
 (HMAC = Hash-based Message Authentication Code)
 
-Im Fall von PBKDF2 ist der Schlüssel :math:`K` also das Passwort und die Nachricht :math:`M` das Salz.
+Im Fall von PBKDF2 ist das Passwort der HMAC Schlüssel (:eng:`Key`) und das Salz die Nachricht :math:`M`.
 
 **Beispielcode**
 
@@ -658,14 +556,72 @@ Im Fall von PBKDF2 ist der Schlüssel :math:`K` also das Passwort und die Nachri
         rounds=1,   # a real value should be >> 500.000
         keylen=32 )
 
-.. class:: incremental footnotesize
-
-    Bei einer Runde und passenden Blockgrößen ist das Ergebnis der PBKDF2 somit gleich mit der Berechnung des HMACs wenn der Salt um die Nummer des Blocks ``\x00\x00\x00\x01`` ergänzt wurde.
 
 .. supplemental::
 
     In der konkreten Anwendung ist es ggf. möglich das *Secret* auch zu Salzen und den *Salt* aus einer anderen Quellen abzuleiten.
 
+
+
+Berechnung der ersten Runde des PBKDF2-HMAC
+----------------------------------------------
+    
+.. class:: far-far-smaller
+
+    Bei einer Runde und passenden Blockgrößen ist das Ergebnis der PBKDF2 somit gleich mit der Berechnung des HMACs wenn der Salt um die Nummer des Blocks ``\x00\x00\x00\x01`` ergänzt wurde.
+
+**Implementierung in Python**
+
+.. code:: python
+    :class: slightly-more-smaller
+
+    import hashlib
+    pwd = b"MyPassword"
+    stretched_pwd = pwd + (64-len(pwd)) * b"\x00" 
+
+    ikeypad = bytes(map(lambda x : x ^ 0x36 , stretched_pwd)) # xor with ipad 
+    okeypad = bytes(map(lambda x : x ^ 0x5c , stretched_pwd)) # xor with opad 
+
+    hash1 = hashlib.sha256(ikeypad+b"JustASalt"+b"\x00\x00\x00\x01").digest()
+    hmac  = hashlib.sha256(okeypad+hash1).digest()
+
+
+.. container:: incremental far-smaller
+
+    **Ergebnis**
+
+    .. code:: text
+
+        hmac = b'h\x88\xc2\xb6X\xb7\xcb\x9c\x90\xc2R\xf8\xb1\xf7\x10
+                 \xb2L\x8a\xba\xfb\x9e|\x16\x87\x87\x0e\xad\xa1\xe1:9\xca'
+
+
+.. supplemental::
+    
+    HMAC ist auch direkt als Bibliotheksfunktion verfügbar.
+
+    .. code:: python
+        :class: black
+
+        import hashlib
+        import hmac
+        
+        hash_hmac = hmac.new(
+            b"MyPassword",
+            b"JustASalt"+b"\x00\x00\x00\x01",
+            hashlib.sha256).digest()
+
+        hash_hmac = 
+            b'h\x88\xc2\xb6X\xb7\xcb\x9c\x90\xc2R...
+              \x16\x87\x87\x0e\xad\xa1\xe1:9\xca'
+
+    Der Wert: 
+
+    .. code:: python
+
+        b"\x00\x00\x00\x01"
+
+    ist die Blocknummer (hier: 1).
 
 
 .. class:: transition-move-left integrated-exercise
