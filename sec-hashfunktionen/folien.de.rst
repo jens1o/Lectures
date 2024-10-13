@@ -722,7 +722,10 @@ HMAC (Hash-based Message Authentication Code)
     :math:`ipad` ist das innere Padding bestehend aus Wiederholungen von 0x36 in Blockgröße.
 
 
-\ 
+
+.. class:: no-title
+
+HMAC Berechnung visualisiert
 ----------------------------------------------
 
 .. image:: drawings/hmac/hmac_i_o_key_derivation.svg
@@ -757,22 +760,16 @@ HMAC Berechnung in Python
     import hashlib
     pwd = b"MyPassword"
     stretched_pwd = pwd + (64-len(pwd)) * b"\x00" 
+
     ikeypad = bytes(map(lambda x : x ^ 0x36 , stretched_pwd)) # xor with ipad 
     okeypad = bytes(map(lambda x : x ^ 0x5c , stretched_pwd)) # xor with opad 
-    hash1 = hashlib.sha256(ikeypad+b"JustASalt"+b"\x00\x00\x00\x01").digest()
+
+    hash1 = hashlib.sha256(ikeypad+b"JustAMessage").digest()
     hmac  = hashlib.sha256(okeypad+hash1).digest()
 
-
-.. container:: incremental small
-
-    **Ausführung**
-
-    .. code:: python
-
-        hmac =
-        b'h\x88\xc2\xb6X\xb7\xcb\x9c\x90\xc2R...
-          \x16\x87\x87\x0e\xad\xa1\xe1:9\xca'
-
+    # hmac = 
+    #        b'\xab\xa0\xd9\xe2\x8ar\xc8\x081\x8e\x1b\x1d,
+    #        \x8f\xa6\xd6L\x94\xab\x89\x9a\x89*\xc7\x0f_no\xc1\xdc6\xfc'
 
 .. supplemental::
     
@@ -786,12 +783,12 @@ HMAC Berechnung in Python
         
         hash_hmac = hmac.new(
             b"MyPassword",
-            b"JustASalt"+b"\x00\x00\x00\x01",
+            b"JustAMessage",
             hashlib.sha256).digest()
 
         hash_hmac = 
-            b'h\x88\xc2\xb6X\xb7\xcb\x9c\x90\xc2R...
-              \x16\x87\x87\x0e\xad\xa1\xe1:9\xca'
+            b'\xab\xa0\xd9\xe2\x8ar\xc8\x081\x8e\x1b\x1d,
+            \x8f\xa6\xd6L\x94\xab\x89\x9a\x89*\xc7\x0f_no\xc1\xdc6\xfc'
 
 
 
