@@ -17,16 +17,13 @@
 .. role:: incremental   
 .. role:: eng
 .. role:: ger
+.. role:: ger-quote
 .. role:: red
 .. role:: green
-.. role:: the-blue
-.. role:: minor
-.. role:: ger-quote
-.. role:: obsolete
-.. role:: line-above
 
 .. role:: raw-html(raw)
    :format: html
+
 
 
 .. class:: animated-symbol organic-red
@@ -95,6 +92,7 @@ Was ist Cybersecurity?
         - Betrug und Diebstahl zu schützen
 
 
+
 .. class:: new-section
 
 Von praktischen und theoretischen Angriffen
@@ -113,6 +111,7 @@ Indonesia - Ransomware Angriff
     [...] The attackers have held data hostage and offered a key for access in return for the $8 million ransom, said PT Telkom Indonesia’s director of network & IT solutions, Herlan Wijanarko, without giving further details. Wijanarko said the company, in collaboration with authorities at home and abroad, is investigating and trying to break the encryption that made data inaccessible. [...]
 
     -- June 25th, 2024 - `AP News <https://apnews.com/article/indonesia-ransomware-attack-national-data-center-213c14c6cc69d7b66815e58478f64cee>`__
+
 
 
 .. class:: no-title center-child-elements
@@ -144,6 +143,7 @@ Cyberangriff auf Fahrräder
     Relatively inexpensive hardware can be used to hack the Shimano Di2 wireless gear-shifting systems used by cyclists [...]. They tested the eavesdrop-and-replay attack with a $1,500 USRP software-defined radio, an antenna, and a laptop but said the setup could be miniaturized. Attackers could spoof signals from up to 30 feet away, causing the target bike to shift gears unexpectedly or lock into the wrong gear. 
 
     --August 2024 - `summary provided by ACM <https://technews.acm.org/archives.cfm?fo=2024-08-aug/aug-16-2024.html>`__; `full article: Wired <https://www.wired.com/story/shimano-wireless-bicycle-shifter-jamming-replay-attacks/>`__
+
 
 
 .. class:: no-title center-child-elements
@@ -233,8 +233,8 @@ Online-Betrug
 
 
 
-Ausgewählte Angriffe und Angriffsmethoden
--------------------------------------------------------------
+Ausgewählte Angriffe, Angriffsmethoden und Bedrohungsszenarien
+----------------------------------------------------------------
 
 .. class:: incremental
 
@@ -244,13 +244,18 @@ Ausgewählte Angriffe und Angriffsmethoden
 - Eavesdropping (:ger:`Abhören`)
 - Malware
 - Man-in-the-middle (MITM) Angriffe
-- Social engineering (z. B. Phishing)
 - Privilege escalation
 - Side-Channel attacks/\ :ger:`Seitenkanalangriffe`
 - Spoofing (z. B. IP-Spoofing)
+- Social engineering (z. B. Phishing)
+  
+.. class:: incremental
 - Advanced Persistent Threats (APT)
 
 
+.. supplemental::
+
+    Der Begriff *Advanced Persistent Threat* (≘ :ger-quote:`fortgeschrittene, andauernde Bedrohung`) bezeichnet Cyberangriffe durch professionelle Gruppen (häufig *state sponsored*). Es werden in der Regel langfristige Ziele verfolgt. Diese dienen zum Beispiel der Spionage oder der Vorbereitung auf einen Cyberkrieg. Häufige Ziele sind Regierungen und Unternehmen sowie Organisationen, die über kritische Daten verfügen. Insbesondere in der Anfangsphase gehen die Angreifer sehr vorsichtig vor, um nicht entdeckt zu werden. Danach unterscheidet sich das Vorgehen je nach Zielsetzung.
 
 
 Schutzziele der IT-Sicherheit: CIA-Triade
@@ -360,7 +365,7 @@ Neben den primären Schutzzielen, gibt es eine Reihe weiterer kontextabhängiger
 
 .. class:: incremental
 
-:Pseudo-/Anonymisierung: Eine Person kann nicht oder nicht unmittelbar identifiziert werden.
+:Pseudo-/Anonymisierung: Eine Person kann nicht (mehr) identifiziert werden.
 
 .. class:: incremental
 
