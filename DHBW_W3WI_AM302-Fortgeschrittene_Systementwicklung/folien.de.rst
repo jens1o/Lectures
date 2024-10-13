@@ -64,11 +64,11 @@ Inhalte
 - nächstes Semester:
   
   IT-Sicherheitsthemen mit einem starken Softwareentwicklungsschwerpunkt:
-  Insbesondere Tools und Methoden für die automatische Identifikation von Schwachstellen (d. h. Ausgewählte Aspekte des *Secure Software Development*)
+  Insbesondere Tools und Methoden für die Entwicklung sicherer, skalierbarer Anwendungen und die automatische Identifikation von Schwachstellen (d. h. Ausgewählte Aspekte des *Secure Software Development*)
 
 .. container:: minor
 
-  - ggf. im 6. Semester: 
+  - voraussichtlich im 6. Semester: 
     
     IT-Security Grundlagen: Verschlüsselung, Hashfunktionen, Signaturen, Zertifikate, etc.
 
@@ -83,9 +83,13 @@ Ablauf
 
 Dieses Semester 12 VL:
 
-- 14. Oct 2024 at 13:45 to 17:00 
-- 23. Oct 2024 at 13:45 to 17:00 
-- 28. Oct 2024 at 13:45 to 17:00 
+- 14. Oct 2024: 13:45 bis 17:00 
+- 23. Oct 2024: 13:45 bis 17:00 
+- 28. Oct 2024: 13:45 bis 17:00 
+  
+  Davon 20Minuten Kurztest! 
+  
+  :minor:`(Test von 16:40 bis 17:00 Uhr; davor 10 Minuten Pause.)`
 
 Nächstes Semester: 43 VL
 
@@ -97,7 +101,7 @@ Prüfungsleistung
 
 Prüfungsleistung: Portfolio (insgesamt 120 Punkte)
 
-:Dieses Semester:  Kurztest mit 20 Minuten mit 20 Punkten
+:Dieses Semester: Kurztest mit 20 Minuten mit 20 Punkten
 :Nächstes Semester: Vorträge, Ausarbeitungen/Projekt mit 100 Punkten
 
 
