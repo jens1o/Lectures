@@ -29,12 +29,14 @@
 .. role:: smaller
 .. role:: far-smaller
 .. role:: monospaced
+.. role:: java(code)
+   :language: java
 
 
 .. class:: animated-symbol
 
-Einführung in die Objekt-orientierte Programmierung
-====================================================
+!WIP! Einführung in die Objekt-orientierte Programmierung
+===========================================================
 
 .. container:: line-above tiny
 
@@ -64,3 +66,18 @@ Ziele
 -------
 
 TODO
+
+
+
+Übung
+-------
+
+Berechnung der Kubikwurzeln mit Hilfe eines einfachen Algorithmus.
+
+https://www.quora.com/How-do-you-find-the-value-of-a-cube-root-with-no-calculator-and-only-using-operations-of-addition-subtraction-multiplication-and-division:
+
+
+ Newton-Raphson algorithm,
+
+
+https://www.quora.com/How-do-you-find-the-value-of-a-cube-root-with-no-calculator-and-only-using-operations-of-addition-subtraction-multiplication-and-division
