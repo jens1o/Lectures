@@ -6,6 +6,15 @@ Die Foliensätze sind modularisiert, um sich an die jeweiligen Anforderungen der
 Im Folgenden sind einige sinnvolle Kombinationen aufgeführt.
 
 
+Vorlesung "Einführung in der Programmierung"
+---------------------------------------------
+
+.. container:: scrollable
+
+   1. Einführung in die Programmierung (`<prog-einfuehrung/folien.de.rst.html>`__)
+   2. Grundlagen der Programmierung in Java (`<prog-java-basics/folien.de.rst.html>`__)
+   3. Objekt-orientierte Programmierung in Java (`<prog-java-oo/folien.de.rst.html>`__)
+
 
 Vorlesung "Verteilte Systeme"
 -----------------------------
@@ -60,8 +69,8 @@ Vorlesung mit Bezug zu "IT Sicherheit"
 
 .. container:: scrollable
 
-   1. [Optional] Klassische Sicherheitsprinzipien (`<sec-klassische-sicherheitsprinzipien/folien.de.rst.html>`__)
-   2. [Optional] Cybersecurity (`<sec-cybersecurity/folien.de.rst.html>`__)
+   1. [Optional] Cybersecurity (`<sec-cybersecurity/folien.de.rst.html>`__)
+   2. [Optional] Klassische Sicherheitsprinzipien (`<sec-klassische-sicherheitsprinzipien/folien.de.rst.html>`__)
    3. Einführung in die Zahlentheorie (`<sec-einfuehrung-in-die-zahlentheorie/folien.de.rst.html>`__)
    4. Klassische Verschlüsselungsverfahren (`<sec-klassische-verschluesselungsverfahren/folien.de.rst.html>`__)
    5. Blockchiffre (`<sec-blockchiffre/folien.de.rst.html>`__)
@@ -72,14 +81,14 @@ Vorlesung mit Bezug zu "IT Sicherheit"
    10. Public-Key-Kryptographie (`<sec-public-key-kryptographie/folien.de.rst.html>`__)
    11. Hashfunktionen (`<sec-hashfunktionen/folien.de.rst.html>`__)
    12. Authentifizierte Verschlüsselung (`<sec-authentifizierte-verschluesselung/folien.de.rst.html>`__)
-   13. Passwortwiederherstellung (`<sec-passwortwiederherstellung/folien.de.rst.html>`__)
+   13. Passwortsicherheit (`<sec-passwortsicherheit/folien.de.rst.html>`__)
+   14. Passwortwiederherstellung (`<sec-passwortwiederherstellung/folien.de.rst.html>`__)
 
 
 
-Fortgeschrittene Themen der IT Sicherheit
+Ausgewählte Themen der IT Sicherheit
 ------------------------------------------
 
-- [Optional] Klassische Sicherheitsprinzipien (`<sec-klassische-sicherheitsprinzipien/folien.de.rst.html>`__)
 - TCP SSH Firewalls (`<sec-tcp-ssh-firewalls/folien.de.rst.html>`__)
 - CVSS-CVE-VEP (`<sec-cvss-cve-vep/folien.de.rst.html>`__)
 - CWE-OWASP (`<sec-cwe-owasp/folien.de.rst.html>`__)
