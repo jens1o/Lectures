@@ -799,10 +799,10 @@ MAC: `Poly 1305 <https://datatracker.ietf.org/doc/html/rfc8439#section-2.5>`__
 
     .. layer::
 
-        - Ein MAC Algorithmus für die Einmalauthentifizierung von Nachrichten
-        - Entwickelt von Daniel J. Bernstein
-        - Basierend auf einem 256-Bit-Schlüssel und einer Nachricht wird ein 128-Bit-Tag berechnet
-        - In Verbindung mit *ChaCha20* in einer Reihe von Protokollen verwendet
+        - Ein MAC Algorithmus für die Einmalauthentifizierung von Nachrichten.
+        - Entwickelt von Daniel J. Bernstein.
+        - Basierend auf einem 256-Bit-Schlüssel und einer Nachricht wird ein 128-Bit-Tag berechnet.
+        - In Verbindung mit *ChaCha20* in einer Reihe von Protokollen verwendet.
 
     .. layer:: incremental
 
@@ -828,7 +828,7 @@ MAC: `Poly 1305 <https://datatracker.ietf.org/doc/html/rfc8439#section-2.5>`__
           (Danach haben wir ggf. eine 17-Byte-Zahl.)
         - Addiere :math:`n'` aus dem letzten Schritt zum Akkumulator :math:`a` und multipliziere mit :math:`\text{clamped r}`
         - Aktualisiere den Akkumulator mit dem Ergebnis :math:`modulo\, P` mit :math:`P = 2^{130} - 5`:
-          :math:`a = ((a + n') \times \text{clamped r}) \mod\, P`
+          :math:`a = ((a + n') \times \text{clamped r})\mod P`
 
 
     .. layer:: incremental
