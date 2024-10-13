@@ -31,12 +31,13 @@
 .. role:: monospaced
 
 
+
 .. class:: animated-symbol
 
 Einführung in die Programmierung
 ================================================
 
-.. container:: line-above tiny
+.. container:: line-above
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
@@ -58,6 +59,7 @@ Einführung in die Programmierung
 
 Einführung
 ------------------------------------------------
+
 
 
 Ziele
@@ -95,6 +97,7 @@ AI Assistenten in der Softwareentwicklung
     -- `Juli 2024 - ZDNET <https://www.zdnet.com/article/ai-accelerates-software-development-to-breakneck-speeds-but-measuring-that-is-tricky/>`__
 
 
+
 Auswirkungen von generativer KI
 ------------------------------------
 
@@ -113,6 +116,8 @@ Auswirkungen von generativer KI
        Damit [GenAI] ließe sich die Produktivität der Softwareentwickler um bis zu 50 Prozent steigern. Das betrifft vor allem die Dokumentation, die Anpassung an neue Anforderungen und Refactoring. Das wird dazu führen, dass mehr Eigenentwicklung betrieben wird und weniger Standardsoftware zum Einsatz kommt. Dieser Trend werde dadurch verstärkt, dass Citizen-Developer demnächst nicht mehr Low-Code/No-Code nutzen, sondern nur noch in natürlicher Sprache und GenAI programmieren. [...]
 
     -- `August 2024, Heise <https://www.heise.de/news/Unternehmensberater-glauben-weiterhin-an-die-GenAI-Revolution-in-der-IT-Branche-9821979.html>`__
+
+
 
 AI Assistenten und Grundlagen der Programmierung
 -------------------------------------------------
@@ -141,6 +146,7 @@ Programmieren bezeichnet das Formulieren eines Lösungskonzeptes (Algorithmus) i
     :class: incremental
     
     Ohne Programmierkenntnisse ist es unmöglich zu beurteilen, wie komplex eine Aufgabenstellung ist. 
+
 
 
 Programmiersprachen
@@ -185,6 +191,7 @@ Programmiersprachen
             TypeScript, 2.93%
             Swift, 2.76%
             Rust, 2.58%
+
 
 
 Was ist ein Algorithmus?
@@ -239,6 +246,7 @@ Beispiel: Berechnung der Fakultät (rekursiv)
               if (n == 0) return 1;
               else return n * fak(n-1);
             }
+
 
 
 Zentrale Eigenschaften von Algorithmen
@@ -341,7 +349,6 @@ Beispiel: Berechnung bzw. Approximation von :math:`e`
               return e;
             }
 
-
 .. supplemental::
 
     :math:`e` steht hier für die eulersche Zahl. 
@@ -362,14 +369,14 @@ Beispiel: Berechnung bzw. Approximation von :math:`e`
           }
         }
 
-    .. hint:: Diese Implementierung kann mit größeren Werten für ``n`` aufgrund der Art der Implementierung nicht umgehen. Die Details werden wir später besprechen.
+
 
 .. class:: integrated-exercise
 
 Übung: Primzahltest
 -----------------------
 
-- Schreiben Sie natürlich-sprachlich einen Algorithmus der eine beliebige natürliche Zahl testet ob diese eine Primzahl ist.
+- Schreiben Sie in natürlicher Sprache einen Algorithmus, der eine beliebige natürliche Zahl testet ob diese eine Primzahl ist.
 
     Achten Sie darauf, dass der Algorithmus die vorher diskutierten Eigenschaften selbiger erfüllt.
 
@@ -386,11 +393,11 @@ Beispiel: Berechnung bzw. Approximation von :math:`e`
 
 :formale Sprachen: 
 
-  Dienen der eindeutigen Beschreibung von Sachverhalten; sind präzise und eindeutig.
+  - Dienen der eindeutigen Beschreibung von Sachverhalten; sind präzise und eindeutig.
 
-  Können ggf. automatisch ausgewertet werden.
+  - Können ggf. automatisch ausgewertet werden.
 
-  Programmiersprachen sind formale Sprachen zur Beschreibung von Algorithmen.
+  - Programmiersprachen sind formale Sprachen zur Beschreibung von Algorithmen.
 
 
 
@@ -408,8 +415,9 @@ Syntax und Semantik von formalen Sprachen
         Häufig wird die Semantik :ger-quote:`nur` in einem Standard oder :ger-quote:`sogar nur` in durch eine Implementierung festgelegt.
 
 
-Formale Sprachen: Beispiel in EBNF
---------------------------------------------
+
+Formale Sprachen: Beispiel in einer *EBNF* Variante
+-----------------------------------------------------
 
 .. stack:: incremental
 
@@ -461,6 +469,7 @@ Formale Sprachen: Beispiel in EBNF
             }
 
 
+
 Extended-Backus-Naur-Form (EBNF)
 -----------------------------------
 
@@ -501,7 +510,11 @@ Die EBNF dient der Beschreibung kontext-freier Grammatiken.
 
     Die Beschreibung einer Programmiersprache in EBNF besteht aus einer Startregel und einer Menge von weiteren Regeln sowie Terminalen, die die Syntax der Sprache beschreiben. Die Terminalen sind die Basiswörter der Sprache (:ger-quote:`reservierte Wörter`).
 
-    Auf der linken Seite einer Regel kommt genau ein Nichtterminal vor, auf der rechten Seite können beliebig viele Nichtterminale und Terminale vorkommen.
+    Bei kontext-freien Sprachen kommt auf der linken Seite einer Regel genau ein Nichtterminal vor, auf der rechten Seite können beliebig viele Nichtterminale und Terminale vorkommen. 
+    
+    .. container:: minor
+        
+        Was genau :ger-quote:`kontext-frei` bedeutet, ist Gegenstand fortgeschrittener  Vorlesungen. Für den Moment reicht es zu wissen, dass dies gewisse Einschränkungen für die Regeln bedeutet. Diese Einschränkungen aber das Verarbeiten zumindest stark vereinfachen bzw. überhaupt erst ermöglichen.
 
 
 
@@ -619,4 +632,6 @@ Zu installieren (für den Anfang):
   oder
 
   https://www.azul.com/downloads/?package=jdk#zulu
-- Visual Studio Code inkl. Java Tools (oder Eclipse Theia)
+- Visual Studio Code :minor:`inkl. Java Tools oder Eclipse Theia oder IntelliJ IDEA oder Eclipse`
+
+  Ich verwende Visual Studio Code mit dem Java Extension Pack.
