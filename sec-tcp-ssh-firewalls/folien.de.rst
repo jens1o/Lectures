@@ -34,7 +34,7 @@ Eine erste Einführung in die Sicherheit von (verteilten) Systemen
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Kontakt: michael.eichberg@dhbw-mannheim.de
-:Version: 1.1
+:Version: 1.2
 
 .. container:: footer-left tiny
     
@@ -207,7 +207,7 @@ Ports bei TCP
 Port-Nummern einiger Standarddienste [#]_
 ------------------------------------------
 
-**Ungeschützte Dienste**
+**Ungeschützte Dienste** (Kommunikation findet ohne Verschlüsselung statt.)
 
 .. csv-table::
     :header: Protokoll, Dienst, Portnummer
@@ -220,7 +220,7 @@ Port-Nummern einiger Standarddienste [#]_
     http, Hypertext Transfer Protocol, 80
     login, Login auf entfernte Rechner, 513
 
-**Geschützte Dienste**
+**Geschützte Dienste** (Die Kommunikation ist verschlüsselt.)
 
 .. csv-table::
     :header: Protokoll, Dienst, Portnummer
@@ -241,12 +241,15 @@ Port-Nummern einiger Standarddienste [#]_
 Angriffe auf TCP - Motivation
 --------------------------------
 
-.. class:: incremental
+.. class:: incremental list-with-explanations
 
 - Netzwerkprogrammierung mit TCP ist relativ komfortabel. 
 - Viele Dienste sind mit TCP implementiert.
-- Angreifer nutzen Schwachstellen in TCP Diensten aus.
-- Server haben heutzutage im Allgemeinen alle nicht verwendeten Dienste geschlossen. Ein Angreifer muss verwundbare Dienste zum Beispiel erst durch Port Scans finden.
+  
+  Insbesondere in der Anfangszeit hatten viele TCP Dienste sowohl technische als auch konzeptionelle Schwachstellen. Einige dieser Schwachstellen sind bis heute nicht behoben.
+- Das Auffinden von angreifbaren Diensten kann mit Hilfe von Port Scans systematisch erfolgen.
+
+  Server haben heutzutage im Allgemeinen alle nicht verwendeten Dienste geschlossen. 
 
 
 Port Scans: TCP Connect Scan
@@ -254,53 +257,49 @@ Port Scans: TCP Connect Scan
 
 .. container:: two-columns
 
-    .. container:: column 
+    .. container:: width-60
         
-        .. class:: incremental
+          :Vorgehen: Aufbau vollständiger Verbindungen zu allen bzw. zu ausgewählten Ports.
 
-          - vollständiger Verbindungsaufbau zu allen bzw. zu ausgewählten Ports
-          
-          .. container:: incremental
+    .. raw:: html
 
-              **Bewertung**:
+        <svg width="900" height="440" viewBox="0 0 1200 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <marker 
+                id="arrow"
+                viewBox="0 0 10 10"
+                refX="10"
+                refY="5"
+                markerWidth="8"
+                markerHeight="8"
+                orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" />
+                </marker>
+            </defs>
+            <text x="125" y="75" style="font-weight: bolder">Scanner</text>
+            <line x1="200" y1="100" x2="200" y2="400" style="stroke:rgb(0,0,0);stroke-width:3" />
+            <text x="925" y="75" style="font-weight: bolder">Server</text>
+            <line x1="1000" y1="100" x2="1000" y2="400" style="stroke:rgb(0,0,0);stroke-width:3" />
+            <line x1="200" y1="400" x2="200" y2="550" stroke-dasharray="5,5" style="stroke:rgb(0,0,0);stroke-width:3" />
+            <line x1="1000" y1="400" x2="1000" y2="550" stroke-dasharray="5,5" style="stroke:rgb(0,0,0);stroke-width:3" />
+            
+            <text x="500" y="65" transform="rotate(6.6)">SYN</text>
+            <line x1="200" y1="110" x2="1000" y2="190" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
 
-              - simpelster Port Scan
-              - große Entdeckungsgefahr (Scan selbst ist kein Angriff)
-              - mögliche Verbesserung: zwischen dem Scannen mehrerer Ports Pausen einstreuen (Wie lange?)
+            <text x="390" y="300" transform="rotate(-6.6)">SYN / ACK</text>
+            <line x1="1000" y1="200" x2="200" y2="290" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
+            
+            <text x="555" y="315" transform="rotate(6.6)">ACK</text>
+            <line x1="200" y1="300" x2="1000" y2="390" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
+        </svg>
 
-    .. container:: column no-border
+.. class:: incremental
 
-        .. raw:: html
+:Bewertung:
 
-            <svg width="900" height="440" viewBox="0 0 1200 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <marker 
-                    id="arrow"
-                    viewBox="0 0 10 10"
-                    refX="10"
-                    refY="5"
-                    markerWidth="8"
-                    markerHeight="8"
-                    orient="auto-start-reverse">
-                    <path d="M 0 0 L 10 5 L 0 10 z" />
-                    </marker>
-                </defs>
-                <text x="125" y="75" style="font-weight: bolder">Scanner</text>
-                <line x1="200" y1="100" x2="200" y2="400" style="stroke:rgb(0,0,0);stroke-width:3" />
-                <text x="925" y="75" style="font-weight: bolder">Server</text>
-                <line x1="1000" y1="100" x2="1000" y2="400" style="stroke:rgb(0,0,0);stroke-width:3" />
-                <line x1="200" y1="400" x2="200" y2="550" stroke-dasharray="5,5" style="stroke:rgb(0,0,0);stroke-width:3" />
-                <line x1="1000" y1="400" x2="1000" y2="550" stroke-dasharray="5,5" style="stroke:rgb(0,0,0);stroke-width:3" />
-                
-                <text x="500" y="65" transform="rotate(6.6)">SYN</text>
-                <line x1="200" y1="110" x2="1000" y2="190" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
-
-                <text x="390" y="300" transform="rotate(-6.6)">SYN / ACK</text>
-                <line x1="1000" y1="200" x2="200" y2="290" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
-                
-                <text x="555" y="315" transform="rotate(6.6)">ACK</text>
-                <line x1="200" y1="300" x2="1000" y2="390" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
-            </svg>
+    - simpelster Port Scan
+    - große Entdeckungsgefahr (Scan selbst ist kein Angriff)
+    - mögliche Verbesserung: zwischen dem Scannen mehrerer Ports Pausen einstreuen (Wie lange?)
 
 
 Port Scans: TCP SYN Scan
@@ -308,76 +307,77 @@ Port Scans: TCP SYN Scan
 
 .. container:: two-columns
 
-    .. container:: column 
+    .. container:: width-60
 
-        .. class:: incremental
+        :Vorgehen:
         
-        1. Senden eines TCP-Segments mit gesetztem SYN-Flag an einen Port
-        2. falls der *Port offen* ist, kommt SYN/ACK zurück danach RST senden
-        3. falls der *Port nicht offen* ist, kommt RST (oder nichts) zurück
+            .. class:: incremental
+        
+            1. Senden eines TCP-Segments mit gesetztem SYN-Flag an einen Port
+            2. falls der *Port offen* ist, kommt SYN/ACK zurück danach RST senden
+            3. falls der *Port nicht offen* ist, kommt RST (oder nichts) zurück
 
-        .. container:: incremental 
-        
-            **Bewertung**:
+    .. raw:: html
+
+        <svg width="900" height="440" viewBox="0 0 1200 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <marker 
+                id="arrow"
+                viewBox="0 0 10 10"
+                refX="10"
+                refY="5"
+                markerWidth="8"
+                markerHeight="8"
+                orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" />
+                </marker>
+            </defs>
+            <text x="125" y="75" style="font-weight: bolder">Scanner</text>
+            <line x1="200" y1="100" x2="200" y2="400" style="stroke:rgb(0,0,0);stroke-width:3" />
+            <text x="925" y="75" style="font-weight: bolder">Server</text>
+            <line x1="1000" y1="100" x2="1000" y2="400" style="stroke:rgb(0,0,0);stroke-width:3" />
+            <line x1="200" y1="400" x2="200" y2="550" stroke-dasharray="5,5" style="stroke:rgb(0,0,0);stroke-width:3" />
+            <line x1="1000" y1="400" x2="1000" y2="550" stroke-dasharray="5,5" style="stroke:rgb(0,0,0);stroke-width:3" />
             
-            - kein vollständiger Verbindungsaufbau
-            - meist nicht protokolliert
-            - geringe(re) Entdeckungsgefahr
+            <text x="500" y="65" transform="rotate(6.6)">SYN</text>
+            <line x1="200" y1="110" x2="1000" y2="190" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
 
-    .. container:: column    
+            <text x="390" y="300" transform="rotate(-6.6)">SYN / ACK</text>
+            <line x1="1000" y1="200" x2="200" y2="290" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
+            
+            <text x="555" y="315" transform="rotate(6.6)">RST</text>
+            <line x1="200" y1="300" x2="1000" y2="390" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
+        </svg>
 
-        .. raw:: html
+.. class:: incremental 
 
-            <svg width="900" height="440" viewBox="0 0 1200 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <marker 
-                    id="arrow"
-                    viewBox="0 0 10 10"
-                    refX="10"
-                    refY="5"
-                    markerWidth="8"
-                    markerHeight="8"
-                    orient="auto-start-reverse">
-                    <path d="M 0 0 L 10 5 L 0 10 z" />
-                    </marker>
-                </defs>
-                <text x="125" y="75" style="font-weight: bolder">Scanner</text>
-                <line x1="200" y1="100" x2="200" y2="400" style="stroke:rgb(0,0,0);stroke-width:3" />
-                <text x="925" y="75" style="font-weight: bolder">Server</text>
-                <line x1="1000" y1="100" x2="1000" y2="400" style="stroke:rgb(0,0,0);stroke-width:3" />
-                <line x1="200" y1="400" x2="200" y2="550" stroke-dasharray="5,5" style="stroke:rgb(0,0,0);stroke-width:3" />
-                <line x1="1000" y1="400" x2="1000" y2="550" stroke-dasharray="5,5" style="stroke:rgb(0,0,0);stroke-width:3" />
-                
-                <text x="500" y="65" transform="rotate(6.6)">SYN</text>
-                <line x1="200" y1="110" x2="1000" y2="190" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
+:Bewertung:
+    
+    - kein vollständiger Verbindungsaufbau
+    - meist nicht protokolliert
+    - geringe(re) Entdeckungsgefahr        
 
-                <text x="390" y="300" transform="rotate(-6.6)">SYN / ACK</text>
-                <line x1="1000" y1="200" x2="200" y2="290" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
-                
-                <text x="555" y="315" transform="rotate(6.6)">RST</text>
-                <line x1="200" y1="300" x2="1000" y2="390" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
-            </svg>
 
-        
+
 Port Scans: Stealth Scans
 -----------------------------
 
-Versenden eines für den Verbindungsaufbau ungültigen TCP-Segments an einen Port:
+:Vorgehen: Versenden eines für den Verbindungsaufbau ungültigen TCP-Segments an einen Port:
 
-  .. class:: incremental
+    .. class:: incremental
 
-  - NULL-Scan (keine Flags)
-  - ACK-Scan (ACK-Flag)
-  - FIN-Scan (FIN-Flag)
-  - XMAS-Scan (alle Flags)
+    - NULL-Scan (keine Flags)
+    - ACK-Scan (ACK-Flag)
+    - FIN-Scan (FIN-Flag)
+    - XMAS-Scan (alle Flags)
 
-  .. class:: incremental
+    .. class:: incremental
 
-  Laut RFC kommt RST zurück, falls Port offen. (Reaktion aber abhängig vom Betriebssystem)
+    Laut RFC kommt RST zurück, falls der Port offen ist. (Reaktion ist de-facto aber abhängig vom Betriebssystem und oft kommt keine Antwort zurück.)
 
-.. container:: incremental 
+.. class:: incremental 
   
-    **Bewertung**:
+:Bewertung:
 
     - Zugriff wird meist nicht protokolliert
     - Scan bleibt unbemerkt
@@ -417,11 +417,27 @@ Bei allen bisher betrachteten Scans kann der Scanner prinzipiell identifiziert w
 
 .. supplemental:: 
 
-    Zombies: ein Rechner (Computer, Drucker oder anderes IoT Gerät) im Internet *möglichst ohne eigenen Netzverkehr* und mit *altem* Betriebssystem, bei dem die IP ID in vorhersehbarer Weise inkrementiert wird. (Bei modernen Betriebssystemen ist die IP ID zufällig, **konstant** oder sogar ``null``.)
+    :Zombie: ein Rechner (Computer, Drucker oder anderes IoT Gerät) im Internet *möglichst ohne eigenen Netzverkehr* und mit *altem* Betriebssystem, bei dem die IP ID in vorhersehbarer Weise inkrementiert wird. (Bei modernen Betriebssystemen ist die IP ID zufällig, **konstant** oder sogar ``null``.)
 
-    Sollte ein Intrusion Detection System vorhanden sein, so wird dieses den Zombie als Angreifer identifizieren.
+    :Grundlegende Idee: Der Zombie sendet ein RST Paket zurück, da er kein SYN gesendet hat und kein SYN/ACK erwarte. Dadurch erfährt der Angreifer die aktuelle IP ID des Zombies. Über diesen Seitenkanal - d. h. die Veränderung der IP ID des Zombies - kann der Angreifer nun den Zustand des Ports auf dem Zielrechner ermitteln.
 
-    **Grundlegende Idee**: Der Zombie sendet ein RST Paket zurück, da er kein SYN gesendet hat und kein SYN/ACK erwarte. Dadurch erfährt der Angreifer die aktuelle IP ID des Zombies. Über diesen Seitenkanal - d. h. die Veränderung der IP ID des Zombies - kann der Angreifer nun den Zustand des Ports auf dem Zielrechner ermitteln.
+    .. hint::
+
+        Sollte ein Intrusion Detection System vorhanden sein, so wird dieses den Zombie als Angreifer identifizieren.
+
+
+    .. rubric:: Hintergrund - IP ID
+
+    Das Feld *IP Identifikation (IP ID)* dient der Identifizierung einer Gruppe von Fragmenten eines einzelnen IP-Datagramms.
+
+    .. image:: images-external/IPv4_Packet-en.svg
+            :alt: IPv4 Packet            
+            :width: 1200px
+
+    .. container:: minor far-smaller
+
+        By Michel Bakni - Postel, J. (September 1981) RFC 791, IP Protocol, DARPA Internet Program Protocol Specification, p. 1 DOI: 10.17487/RFC0791., CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=79949694
+
 
 .. [#] `NMap Book <https://nmap.org/book/idlescan.html>`__
 
@@ -457,11 +473,11 @@ Port Scans: Idle Scan - Zusammenfassung
 
 - Angreifer sendet SYN/ACK Paket an Zombie
 - der Zombie antwortet mit RST und enthüllt seine IP ID (:eng:`IP Fragment Identification Number`).
-- Angreifer sendet SYN ("vom" Zombie) an Port des Servers
-- [**Port offen**] Der Zielrechner antwortet mit SYN/ACK an den Zombie, wenn der Port offen ist.
+- Angreifer sendet SYN (:ger-quote:`mit IP vom Zombie`) an Port des Servers:
+  
+  [**Port offen**] Der Zielrechner antwortet mit SYN/ACK an den Zombie, wenn der Port offen ist. Der Zombie antwortet darauf mit RST an den Server, da er kein SYN gesendet hat und kein SYN/ACK erwartet und *erhöht seine IP ID*. 
   
   [**Port geschlossen**] Der Zielrechner antwortet mit RST an den Zombie, wenn der Port geschlossen ist. Dies wird vom Zombie ignoriert.
-- [**Port offen**] Der Zombie antwortet mit RST, da er kein SYN gesendet hat und kein SYN/ACK erwartet und erhöht seine IP ID. 
 - Der Angreifer sendet wieder ein SYN/ACK an den Zombie, um die IP ID zu erfahren. 
 
 .. supplemental:: 
@@ -560,7 +576,7 @@ Denial-of-Service (DoS) Angriffe
 
 Ziel des Angreifers: Lahmlegen eines Dienstes oder des ganzen Systems ...
 
-- durch Ausnutzen von Schwachstellen (:eng:`vulnerabilities`, z. B. Buffer Overflow)
+- durch Ausnutzen von Schwachstellen (:eng:`vulnerabilities`) wie z. B. Buffer Overflows
 - durch Generierung von Überlast (Ausschöpfen von RAM, CPU, Netzwerkbandbreite, ...)
 
 .. admonition:: Beispiel: Ping-of-Death
@@ -568,9 +584,9 @@ Ziel des Angreifers: Lahmlegen eines Dienstes oder des ganzen Systems ...
 
     (Historisch: aus dem Jahr 1997)
 
-    Ein ``ping`` (vgl. Internet Control Message Protocol (ICMP)) verwendet üblicherweise kleine Nachrichten, verwendete Länge ist aber einstellbar.
+    Ein ``ping`` (vgl. Internet Control Message Protocol (ICMP)) verwendet üblicherweise kleine Nachrichten, aber die verwendete Länge ist einstellbar.
 
-    Falls zu groß ⇒ Buffer Overflow ⇒ Systemabsturz!
+    Falls die Länge zu groß ist ⇒ Buffer Overflow ⇒ Systemabsturz!
     
     Variante: mittels Fragmentierung ließen sich generell übergroße IP-Pakete (>65,536 Byte) erstellen.
 
@@ -719,18 +735,20 @@ Distributed Denial-of-Service (DDoS) Angriff
 
 
 
-Distributed-Reflected-Denial-of-Service (DRDoS) Angriff
+Distributed-Reflected-Denial-of-Service Angriff
 ------------------------------------------------------------
 
 .. container:: two-columns
 
     .. container:: column no-separator smaller
 
-      - Idee:
+      - Idee eines (DRDoS) Angriffs:
 
-        
-        
-        - Es wird eine Anfrage an einen Server gesendet, die eine große Antwort auslöst. (Z. B. hat(te) der NTP Monlist Befehl eine Antwort, die ca. 200 Fach größer ist als die Anfrage!)
+        .. class:: list-with-explanations
+
+        - Es wird eine Anfrage an einen Server gesendet, die eine große Antwort auslöst. 
+      
+          (Z. B. hat(te) der NTP Monlist Befehl eine Antwort, die ca. 200 Fach größer ist als die Anfrage!)
         - Mittels IP-Spoofing wird die IP-Adresse des Opfers als Absenderadresse verwendet.
         
         .. class:: incremental
@@ -751,7 +769,7 @@ Distributed-Reflected-Denial-of-Service (DRDoS) Angriff
 
 .. supplemental::
     
-    Bereits im Jahr 2018 wurde ein Angriff er Bandbreite von 1,7 TBit/s beobachtet.
+    Bereits im Jahr 2018 wurde ein Angriff mit einer Bandbreite von 1,7 TBit/s beobachtet.
 
     :Egress Filtering: Der Router verwirft alle Pakete, die eine Absenderadresse verwenden, die nicht aus dem eigenen Netzwerk stammt. 
 
@@ -805,7 +823,7 @@ Schutz vor DDoS-Angriffen - On-Site Robustheitsmaßnahmen
 .. admonition:: Achtung
     :class: warning incremental
 
-    Diese Maßnahmen sind häufig teuer und ggf. begrenzt effektiv; wenn der Angriff die verfügbare Brandbreite übersteigt, sind diese Maßnahmen wirkungslos.
+    Diese Maßnahmen sind häufig teuer und ggf. begrenzt effektiv; wenn der Angriff die verfügbare Bandbreite übersteigt, sind diese Maßnahmen wirkungslos.
 
 
 
