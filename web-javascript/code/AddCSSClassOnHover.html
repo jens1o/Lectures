@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Demostrates how to use a mouseover-mouseout listener to add a class to elements "on hover".</title>
+    <style>
+        .hover\:to-yellow {
+            /* Using "hover:" at the start ist just a convention. */
+            background-color: yellow;
+        }
+
+        .hover\:to-red {
+            background-color: red;
+            transition: background-color 1s;
+        }
+
+        .hover\:make-bold {
+            font-weight: bold;
+        }
+
+        .turn-green:hover {
+            color: green;
+        }
+    </style>
+    <script>
+        function addClassOnHover(element, cssClass, event) {
+            if (element !== event.currentTarget) return;
+
+            console.log("Adding class: ", cssClass, " to element: ", event.target);
+            event.currentTarget.classList.add(cssClass);
+        }
+
+        function removeClassOnHover(element, cssClass, event) {
+            if (element !== event.currentTarget) return;
+
+            console.log("Removing class: ", cssClass, " from element: ", event.target);
+            event.currentTarget.classList.remove(cssClass);
+        }
+
+        window.onload = function () {
+            console.log("\n\n\nRegistering hover listeners to all elements with a class that contains 'hover:'.");
+            document.
+                querySelectorAll("*[class*=hover\\:]").
+                forEach(function (element) {
+                    const classes = Array.from(element.classList.values().
+                        filter((cssClass) => cssClass.startsWith("hover:")));    
+                    classes.forEach(function (cssClass) {
+                        console.log("Removing class: ", cssClass, " from element: ", element);
+                        element.classList.remove(cssClass);
+                        console.log("Adding hover listeners to element: ", element, cssClass);
+                        element.addEventListener("mouseover", addClassOnHover.bind(null, element, cssClass));
+                        element.addEventListener("mouseout", removeClassOnHover.bind(null, element, cssClass));
+                    });
+                });
+        }
+    </script>
+</head>
+
+<body>
+    <section>
+        <p>
+            The following demonstrates how to use a mouseover-mouseout listener to add a class to elements "on hover".
+            The advantage of not using ccs ":hover" is that the class can be added to any element. This makes it easier
+            to get consistent behavior/styling across different elements.
+
+            This functionality is inspired by tailwindcss hover classes.
+        </p>
+    </section>
+
+    <section>
+        <div class="red hover:to-yellow">
+            Hover over me to change my background color to yellow.
+        </div>
+        <p class="red hover:to-red turn-green">
+            Hover over me to change my -
+            <span class="hover:to-yellow hover:make-bold">
+                Hover over me to change my background color to yellow.
+            </span>
+            - background color to red.
+        </p>
+    </section>
+
+
+</html>
