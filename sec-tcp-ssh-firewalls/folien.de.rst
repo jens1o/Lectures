@@ -803,7 +803,7 @@ Distributed Denial-of-Service Angriffe - Beispiele
 
 
 
-Schutz vor DDoS-Angriffen - On-Site Robustheitsmaßnahmen
+Schutz vor DDoS-Angriffen: On-Site Maßnahmen
 --------------------------------------------------------
 
 .. class:: incremental
@@ -823,17 +823,19 @@ Schutz vor DDoS-Angriffen - On-Site Robustheitsmaßnahmen
 .. admonition:: Achtung
     :class: warning incremental
 
-    Diese Maßnahmen sind häufig teuer und ggf. begrenzt effektiv; wenn der Angriff die verfügbare Bandbreite übersteigt, sind diese Maßnahmen wirkungslos.
+    Diese Maßnahmen sind häufig teuer und ggf. begrenzt effektiv; wenn der Angriff die verfügbare Bandbreite übersteigt, sind diese Maßnahmen darüber hinaus wirkungslos.
 
 
 
-Schutz vor DDoS-Angriffen - Off-Site Robustheitsmaßnahmen
+Schutz vor DDoS-Angriffen: Off-Site Maßnahmen
 ------------------------------------------------------------
 
-.. class:: incremental
+.. class:: incremental list-with-explanations
   
 - Einbinden des ISP
-- Einbinden spezialisierter Dienstleister (im Angriffsfall wird mittels BGP-Rerouting der Traffic an den Dienstleister umgeleitet, der dann die DDos Attacke filtert.)
+- Einbinden spezialisierter Dienstleister 
+
+  (Im Angriffsfall wird mittels BGP-Rerouting der Traffic an den Dienstleister umgeleitet, der dann die DDos Attacke filtert.)
 - Content-Delivery-Networks (CDNs) für statische Inhalte (z. B. Cloudflare, Akamai, ...)
 - Distributed Clouds
 
@@ -867,7 +869,7 @@ Die Idee ist, dass Passwörter nur genau einmal gültig sind und nicht wiederver
 Das S/Key Verfahren 
 ------------------------------
 
-Einmal-Passwort-System nach Codebuch-Verfahren, dass im Original auf der kryptographischen Hashfunktion MD4 basiert.
+Einmal-Passwort-System nach Codebuch-Verfahren.
 
 .. stack:: 
 
@@ -899,6 +901,8 @@ Einmal-Passwort-System nach Codebuch-Verfahren, dass im Original auf der kryptog
 
 
 .. supplemental::
+
+    Im Original basiert S/Key auf der kryptographischen Hashfunktion MD4. Ein Austausch wäre aber selbstverständlich möglich!
 
     Intern verwendet S/KEY 64-bit Zahlen. Für die Benutzbarkeit werden diese Zahlen auf sechs kurze Wörter, von ein bis vier Zeichen, aus einem öffentlich zugänglichen 2048-Wörter-Wörterbuch (:math:`2048 = 2^{11}`) abgebildet. Zum Beispiel wird eine 64-Bit-Zahl auf "ROY HURT SKI FAIL GRIM KNEE" abgebildet. 
 
@@ -943,6 +947,8 @@ HMAC-based one-time password (HOTP)\ [#]_
 
     :math:`truncate` verwendet die 4 niederwertigsten Bits des MAC als Byte-Offset i in den MAC.
     Der Wert :math:`19` kommt daher, dass ein SHA-1 :math:`160` Bit hat und :math:`160/8 = 20` Byte. 
+
+    :math:`extract31` extrahiert 31 Bit aus dem MAC.
 
     Eine Schwäche des Algorithmus ist, dass beide Seiten den Zähler erhöhen müssen und, falls die Zähler aus dem Tritt geraten, ggf. eine Resynchronisation notwendig ist.
 
