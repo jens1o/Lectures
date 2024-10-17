@@ -30,7 +30,7 @@ Authentifizierte Verschlüsselung
 ===============================================
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-:Version: 0.1.1
+:Version: 0.1.2
 :Teilweise basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 
 .. supplemental::
@@ -106,12 +106,13 @@ AES-GCM Modus (Galois/Counter Mode)
 
     - Standardisiert durch NIST in SP 800-38D.
 
-    - Es handelt sich um eine Verknüpfung des CTR-Modus und Galois-Modus. Ziel ist eine hohe Parallelisierung und Effizienz.
+    - Es handelt sich um eine Verknüpfung des CTR-Modus und des Galois-Modus. Ziel ist eine hohe Parallelisierung und Effizienz.
     - Der Algorithmus ist in der Lage, Authentizität (+ Integrität) und Vertraulichkeit zu gewährleisten.
     - Die Eingabe in den Algorithmus ist der Klartext (:eng:`Plaintext`), der Schlüssel, ein Initialisierungsvektor (IV) und zusätzliche (optionale) authentifizierte Daten A.
-    - Das Authentication Tag wird mittels Arithmetik über dem Körper :math:`GF(2^{128})` berechnet und wird am Ende des Chiffretextes angehängt. Es wird das bekannte Polynom: :math:`x^128 + x^7 + x^2 + x + 1` verwendet.
+    - Das Authentication Tag wird mittels Arithmetik über dem Körper :math:`GF(2^{128})` berechnet und wird am Ende des Chiffretextes angehängt. Es wird das bekannte Polynom: :math:`x^{128} + x^7 + x^2 + x + 1` verwendet.
     - Die Blockgröße ist 128Bit (d. h. die AES-Blockgröße).
-    - :math:`H` ist der Hash Key und :math:`mult` ist Multiplikation im Körper :math:`GF(2^{128})`. :math:`H = E(K,0^{128})`
+    - :math:`H` ist der Hash Key:  :math:`H = E(K,0^{128})` (wobei :math:`E` die AES-Verschlüsselung ist).
+    - :math:`mult` ist Multiplikation im Körper :math:`GF(2^{128})`.
     - Die optionalen authentifizierten Daten A werden zum Beispiel benötigt, um den Kontext einer Nachricht zu erfassen (und zum Beispiel Replay-attacken vorzubeugen). Ein konkretes Beispiel könnte die Ziel-IP-Adresse sein, wenn die Nachricht über das Internet übertragen wird.
 
 
