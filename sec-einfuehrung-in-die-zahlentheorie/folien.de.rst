@@ -32,7 +32,7 @@ Einführung in die Zahlentheorie
 ================================
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-:Version: 1.0.2
+:Version: 1.0.3
 :Quelle: Im Wesentlichen *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 
 .. supplemental::
@@ -427,6 +427,7 @@ Modulare Arithmetik (Beispiele für Eigenschaften)
 -------------------------------------------------
 
 .. admonition:: Beispiele
+    :class: smaller
     
     .. container:: margin-bottom-2em
     
@@ -443,7 +444,7 @@ Modulare Arithmetik (Beispiele für Eigenschaften)
             
             (11 + 15)\; mod\; 8 = 26\; mod\; 8 = 2
 
-    .. container:: margin-bottom-1em  line-below
+    .. container:: margin-bottom-1em line-below
 
         .. math::
             :class: incremental 
@@ -458,6 +459,7 @@ Modulare Arithmetik (Beispiele für Eigenschaften)
         [(11\; mod\; 8) \times (15\; mod\; 8)]\; mod\; 8= 21\; mod\; 8 = 5 
         
         (11 \times 15)\; mod\; 8 = 165\; mod\; 8 = 5
+
 
 
 Addition Modulo 8
@@ -565,37 +567,40 @@ Additive und Multiplikative Inverse Modulo 8
 Eigenschaften der modularen Arithmetik für ganze Zahlen in :math:`Z_n`
 -----------------------------------------------------------------------
 
-:Kommutativgesetz:
+.. class:: dd-margin-left-12em
 
-    :math:`(w + x)\; mod\; n = (x + w)\; mod\; n`
+    :Kommutativgesetz:
 
-    :math:`(w \times x)\; mod\; n = (x \times w)\; mod\; n`
+        :math:`(w + x)\; mod\; n = (x + w)\; mod\; n`
 
-.. class:: incremental
+        :math:`(w \times x)\; mod\; n = (x \times w)\; mod\; n`
 
-:Assoziativgesetz:
+    .. class:: incremental 
 
-    :math:`[(w + x) + y]\; mod\; n = [w + (x + y)]\; mod\; n`
+    :Assoziativgesetz:
 
-    :math:`[(w \times x) \times y]\; mod\; n = [w \times (x \times y)]\; mod\; n`
+        :math:`[(w + x) + y]\; mod\; n = [w + (x + y)]\; mod\; n`
 
-.. class:: incremental
+        :math:`[(w \times x) \times y]\; mod\; n = [w \times (x \times y)]\; mod\; n`
 
-:Distributivgesetz:
-    :math:`[w \times (x + y)]\; mod\; n = [(w \times x) + (w \times y)]\; mod\; n`
+    .. class:: incremental
 
-.. class:: incremental
+    :Distributivgesetz:
 
-:Identitäten:
-    
-    :math:`(0 + w)\; mod\; n = w\; mod\; n`
+        :math:`[w \times (x + y)]\; mod\; n = [(w \times x) + (w \times y)]\; mod\; n`
 
-    :math:`(1 \times w)\; mod\; n = w\; mod\; n`
+    .. class:: incremental 
 
-.. class:: incremental
+    :Identitäten:
+        
+        :math:`(0 + w)\; mod\; n = w\; mod\; n`
 
-:Additive Inverse (-w):
-    Für jedes :math:`w \in Z_n` gibt es ein :math:`z`, so dass :math:`w + z \equiv 0\; (mod\; n)`
+        :math:`(1 \times w)\; mod\; n = w\; mod\; n`
+
+    .. class:: incremental
+
+    :Additive Inverse (-w):
+        Für jedes :math:`w \in Z_n` gibt es ein :math:`z`, so dass :math:`w + z \equiv 0\; (mod\; n)`
 
 
 
@@ -701,7 +706,7 @@ Erweiterter Euklidischer Algorithmus :raw-html:`<br>` :scriptsize:`Systematische
         .. image:: drawings/euclidean_algorithm/example.svg
             :width: 800px
 
-    .. container:: column
+    .. container:: column incremental
 
         Umgestellt:
 
@@ -713,7 +718,8 @@ Erweiterter Euklidischer Algorithmus :raw-html:`<br>` :scriptsize:`Systematische
 
     Aufgrund der Umstellung z. B. von :math:`710 = 2 \times 310 + 90` nach :math:`90 = 710 - 2 \times 310` können wir dann im nächsten Schritt/der nächsten Formel die :math:`90` durch :math:`710 - 2 \times 310` ersetzen und werden dann :math:`310 - 3 \times(710 - 2 \times 310) = 40` erhalten.
 
-    D. h. betrachten wir :math:`710` als :math:`a` und :math:`310` als :math:`b`, erhalten wir durch die Umstellung eine Formel, die nur aus :math:`a`\ s und :math:`b`\ s zuzüglich zweiter Koeffizienten besteht.
+    D. h. betrachten wir :math:`710` als :math:`a` und :math:`310` als :math:`b`, erhalten wir durch die Umstellung eine Formel, die nur aus :math:`a`\ s und :math:`b`\ s zuzüglich zweiter Koeffizienten und dem Rest r besteht.
+
 
 
 Erweiterter Euklidischer Algorithmus - systematische Berechnung
@@ -741,6 +747,7 @@ Wir nehmen an, dass wir bei jedem Schritt :math:`i` die ganzen Zahlen :math:`x_i
     b = q_2r_1 + r_2 & r_2 = ax_2 + by_2 \\
     r_1 = q_3r_2 + r_3 & r_3 = ax_3 + by_3 \\
     \vdots & \vdots \\
+    \\
     r_{n-2} = q_nr_{n-1}+r_n & r_n=ax_n + by_n \\
     r_{n-1} = q_{n+1}r_n +0 & \\
     d = ggt(a,b) = r_n &
@@ -868,11 +875,24 @@ Besagt folgendes:
         Sei\; p=7\; und\; a=2:
 
         (2^6 = 64) \equiv 1 (mod\; 7),\qquad da\; 64/7 = 9\; Rest\; 1
+        
 
 
 .. supplemental::
 
     Mit anderen Worten: :math:`a` ist kein vielfaches von :math:`p`.
+
+    Herleitung der alternativen Form:
+
+    .. math::
+
+        \begin{array}{rll}
+            a^{p-1}\; mod\; p & = & 1\; mod\; p \qquad & | \times a\; mod\; p \\
+            a^{p-1}\; mod\; p \times a \; mod\; p & = & a\; mod\; p & | \; mod\; p \\
+            (a^{p-1}\; mod\; p \times a \; mod\; p)\; mod\; p & = & (a\; mod\; p) \; mod\; p \\
+            (a^{p-1} \times a)\; mod\; p & = & a\; mod\; p \\
+            a^p\; mod\; p & = & a\; mod\; p 
+        \end{array}
 
 
 .. class:: smaller
@@ -1001,8 +1021,10 @@ Deterministische Primzahltests
   
 
 
-Chinesischer Restsatz :eng:`Chinese Remainder Theorem (CRT)`
+Chinesischer Restsatz 
 ---------------------------------------------------------------
+
+(:eng:`Chinese Remainder Theorem (CRT)`)
 
 .. container:: note scriptsize
      
@@ -1019,6 +1041,10 @@ Chinesischer Restsatz :eng:`Chinese Remainder Theorem (CRT)`
 
 .. [#] Die Quellenlage bgzl. des genauen Datums ist unsicher und variiert teilweise um bis zu ca. 200 Jahre.
 
+
+.. supplemental::
+
+    Bei RSA rechnen wir mit Zahlen mit weit über 300 Ziffern.
 
 
 Chinesischer Restsatz - Beispiel in :math:`Z_{10}` 
