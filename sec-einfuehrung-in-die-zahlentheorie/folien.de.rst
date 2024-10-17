@@ -32,7 +32,7 @@ Einführung in die Zahlentheorie
 ================================
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-:Version: 1.0.3
+:Version: 1.0.4
 :Quelle: Im Wesentlichen *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 
 .. supplemental::
@@ -1046,15 +1046,19 @@ Chinesischer Restsatz
 
     Bei RSA rechnen wir mit Zahlen mit weit über 300 Ziffern.
 
+    Von der Menge der paarweise relativ primen Moduli interessieren wir uns aber :ger-quote:`nur` für ein paar im Folgenden.
+
 
 Chinesischer Restsatz - Beispiel in :math:`Z_{10}` 
 -------------------------------------------------------------
 
-Nehmen wir an, die (*relativ prim/koprimalen*) Faktoren einer Zahl :math:`x`:  :math:`m_1 = 2` und :math:`m_2 = 5` sind und 
+Nehmen wir an, dass die (*relativ prim/koprimalen*) Faktoren einer Zahl :math:`x`:  
+
+:math:`m_1 = 2` und :math:`m_2 = 5` sind.
 
 .. container:: incremental
 
-    dass die bekannten Reste der Dezimalzahl :math:`x`: :math:`a_1 = r_{m_1} = 0` und :math:`a_2 = r_{m_2} = 3` sind. 
+    Weiterhin seien die bekannten Reste der Division von :math:`x` durch :math:`m_1` bzw. :math:`m_2`: :math:`a_1 = r_{m_1} = 0` und :math:`a_2 = r_{m_2} = 3` sind. 
 
     D. h. :math:`x\; mod \;2 = 0` und :math:`x\; mod\; 5 = 3`; bzw. :math:`x \equiv 0 (mod\; 2)` und :math:`x \equiv 3 (mod\; 5)`.
 
@@ -1064,7 +1068,7 @@ Da :math:`x\; mod \;2 = 0` ist muss :math:`x` eine gerade Zahl sein; außerdem i
 
 .. class:: incremental
 
-Die eindeutige Lösungn in :math:`Z_{10}` ist: :math:`8`.
+Die eindeutige Lösung in :math:`Z_{10}` ist: :math:`8`.
 
 
 .. container:: incremental
