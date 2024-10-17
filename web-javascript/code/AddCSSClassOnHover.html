@@ -16,6 +16,7 @@
 
         .hover\:make-bold {
             font-weight: bold;
+            transition: font-weight 2s ease-in-out;
         }
 
         .turn-green:hover {
@@ -23,34 +24,34 @@
         }
     </style>
     <script>
-        function addClassOnHover(element, cssClass, event) {
+        function addClassOnHover(element, cssClasses, event) {
             if (element !== event.currentTarget) return;
 
-            console.log("Adding class: ", cssClass, " to element: ", event.target);
-            event.currentTarget.classList.add(cssClass);
+            console.log("Adding classes: ", cssClasses, " to element: ", event.target);
+            event.currentTarget.classList.add(...cssClasses);
         }
 
-        function removeClassOnHover(element, cssClass, event) {
+        function removeClassOnHover(element, cssClasses, event) {
             if (element !== event.currentTarget) return;
 
-            console.log("Removing class: ", cssClass, " from element: ", event.target);
-            event.currentTarget.classList.remove(cssClass);
+            console.log("Removing classes: ", cssClasses, " from element: ", event.target);
+            event.currentTarget.classList.remove(...cssClasses);
         }
 
         window.onload = function () {
             console.log("\n\n\nRegistering hover listeners to all elements with a class that contains 'hover:'.");
+            let onHoverId = 1;
             document.
-                querySelectorAll("*[class*=hover\\:]").
+                querySelectorAll("*[class*=hover\\:]"). // this is only a first check...
                 forEach(function (element) {
-                    const classes = Array.from(element.classList.values().
-                        filter((cssClass) => cssClass.startsWith("hover:")));    
-                    classes.forEach(function (cssClass) {
-                        console.log("Removing class: ", cssClass, " from element: ", element);
-                        element.classList.remove(cssClass);
-                        console.log("Adding hover listeners to element: ", element, cssClass);
-                        element.addEventListener("mouseover", addClassOnHover.bind(null, element, cssClass));
-                        element.addEventListener("mouseout", removeClassOnHover.bind(null, element, cssClass));
-                    });
+                    const cssHoverClasses = Array.from(element.classList.values().
+                        filter((cssClass) => cssClass.startsWith("hover:")));
+                    if (cssHoverClasses.length === 0) return; 
+                    
+                    element.dataset.onHoverId = onHoverId++;
+                    element.classList.remove(...cssHoverClasses);
+                    element.addEventListener("mouseover", addClassOnHover.bind(null, element, cssHoverClasses));
+                    element.addEventListener("mouseout", removeClassOnHover.bind(null, element, cssHoverClasses));
                 });
         }
     </script>
