@@ -25,16 +25,16 @@
     </style>
     <script>
         function addClassOnHover(element, cssClasses, event) {
-            if (element !== event.currentTarget) return;
+            /// if (element !== event.currentTarget) return;
 
-            console.log("Adding classes: ", cssClasses, " to element: ", event.target);
+            console.log("Adding classes: ", cssClasses, " to element: ", event.currentTarget);
             event.currentTarget.classList.add(...cssClasses);
         }
 
         function removeClassOnHover(element, cssClasses, event) {
-            if (element !== event.currentTarget) return;
+            //if (element !== event.currentTarget) return;
 
-            console.log("Removing classes: ", cssClasses, " from element: ", event.target);
+            console.log("Removing classes: ", cssClasses, " from element: ", event.currentTarget);
             event.currentTarget.classList.remove(...cssClasses);
         }
 
@@ -50,8 +50,8 @@
                     
                     element.dataset.onHoverId = onHoverId++;
                     element.classList.remove(...cssHoverClasses);
-                    element.addEventListener("mouseover", addClassOnHover.bind(null, element, cssHoverClasses));
-                    element.addEventListener("mouseout", removeClassOnHover.bind(null, element, cssHoverClasses));
+                    element.addEventListener("mouseenter", addClassOnHover.bind(null, element, cssHoverClasses));
+                    element.addEventListener("mouseleave", removeClassOnHover.bind(null, element, cssHoverClasses));
                 });
         }
     </script>
