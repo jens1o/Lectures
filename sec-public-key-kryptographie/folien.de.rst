@@ -283,11 +283,11 @@ Anforderungen an Public-Key-Algorithmen
 
 .. class:: incremental 
 
-- Benötigt wird eine Falltürfunktion (:ger-quote:`Trapdoor-Einwegfunktion`)
+- Benötigt wird eine Falltürfunktion (:eng:`Trapdoor one-way function`)
   
   .. container:: smaller
 
-    Eine Einwegfunktion ist eine Funktion, bei der jeder Funktionswert eine eindeutige Umkehrung hat, wobei die *Berechnung der Funktion einfach* ist, während die *Bestimmung der Umkehrfunktion praktisch undurchführbar ist*.
+    Eine Einwegfunktion ist im Allgemeinen eine Funktion, bei der jeder Funktionswert eine eindeutige Umkehrung hat, wobei die *Berechnung der Funktion einfach* ist, während die *Bestimmung der Umkehrfunktion praktisch undurchführbar ist*.
 
     - :math:`Y = f(X)` einfach  
     - :math:`X = f^{–1}(Y)` :ger-quote:`unmöglich`
@@ -304,7 +304,7 @@ Anforderungen an Public-Key-Algorithmen
 
 .. supplemental::
 
-    Ein Falltürfunktion lässt sich nicht trivial umkehren; bzw. die Umkehrung erfordert spezielle (weitergehende) Informationen.
+    Ein Falltürfunktion lässt sich nicht trivial umkehren; bzw. die Umkehrung erfordert spezielle (weitergehende) Informationen; d. h. die Falltür.
 
 
 
@@ -754,7 +754,6 @@ Zusammenfassung - Hashes, Macs und digitale Signaturen
 
 
 
-
 2. \
  
    .. exercise::
@@ -769,7 +768,7 @@ Zusammenfassung - Hashes, Macs und digitale Signaturen
             
             e = 65537
         
-        Berechnen Sie d und wandeln Sie die (Klartext)zahl in Text (ASCII 7-Bit pro Zeichen) um. (Nutzen Sie ggf. das Jupyter Notebook als Hilfestellung.)
+        Berechnen Sie d und wandeln Sie die (Klartext)zahl in Text (ASCII 7-Bit pro Zeichen) um. (Nutzen Sie ggf. das `Jupyter Notebook <https://github.com/Delors/delors.github.io/blob/main/sec-public-key-kryptographie/resources/extended_gcd.ipynb>`__ als Hilfestellung.)
 
         .. solution::
             :pwd: s#u+c+c+e+s#s
