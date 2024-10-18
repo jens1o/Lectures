@@ -699,4 +699,4 @@ NIS 2 - zentrale Einrichtungen
 
 .. supplemental::
 
-    Ein zentraler Gedanke ist die Vernetzung der zuständigen Behörden sowohl auf nationaler als auch auf europäischer Ebene sicherzustellen. Die 
+    Ein zentraler Gedanke ist die Vernetzung der zuständigen Behörden sowohl auf nationaler als auch auf europäischer Ebene sicherzustellen.
