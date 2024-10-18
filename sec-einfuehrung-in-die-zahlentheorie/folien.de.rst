@@ -768,7 +768,7 @@ Erweiterter Euklidischer Algorithmus
     :header: Berechne, Was erfüllt, Berechne, Was erfüllt
 
     :math:`r_{-1} = a`, , :math:`x_{-1}=1;\quad y_{-1}=0`, :math:`a = ax_{-1} + by_{-1}`
-    :math:`r_{0} = b`, , :math:`x_0=0;\quad y_{0}=0`, :math:`b = ax_{0} + by_{0}`
+    :math:`r_{0} = b`, , :math:`x_0=0;\quad y_{0}=1`, :math:`b = ax_{0} + by_{0}`
     ":math:`r_{1} = a\;mod\;b;\quad q_1= \lfloor a/b \rfloor`", :math:`a=q_1b+r_1` , :math:`x_1=x_{-1} -q_1x_0 = 1`; :math:`y_1=y_{-1} -q_1y_0 = -q_1`, :math:`r_1 = ax_{1} + by_{1}` 
     :math:`r_{2} = b\;mod\;r_1;\quad q_2= \lfloor b/r_1 \rfloor`, :math:`b=q_2r_1+r_2` , :math:`x_2=x_{0} -q_2x_1;\quad y_2=y_{0} -q_2y_1`, :math:`r_2 = ax_{2} + by_{2}`
     :math:`r_{3} = r_1\;mod\;r_2;\quad q_3= \lfloor r_1/r_2 \rfloor`, :math:`r_1=q_3r_2+r_3` , :math:`x_3=x_{1} -q_3x_2;\quad y_3=y_{1} -q_3y_2`, :math:`r_3 = ax_{3} + by_{3}`
@@ -1166,7 +1166,7 @@ Das CRT findet in der Public-Key-Kryptographie Einsatz.
             
         :math:`|\lbrace 1,2,4,5,8,10,11,13,16,17,19,20 \rbrace| = 12`
             
-        (Erinnere: :math:`ggt(6,21)` ist 3 und deshalb sind 6 und 21 nicht relativ prim.) 
+        (Zum Beispiel ist die :math:`6` nicht relativ prim zu :math:`21`, da :math:`ggt(6,21) = 3` gilt. Somit sind :math:`6` und :math:`21` nicht relativ prim.) 
 
 3. \ 
  
