@@ -877,7 +877,7 @@ Triple-DES mit drei Schlüsseln
   2. Was passiert, wenn f nur 0x01-Werte zurückgibt (unabhängig vom Rundenschlüssel)?
   3. Was passiert, wenn f einfach ein *xor* der entsprechende Hälfte mit dem Ergebnis der Verschiebung des Schlüssels durchführt?
   4. Was passiert, wenn man eine Nachricht ändert? Testen Sie insbesondere, was passiert wenn die Nachricht nur aus 0x00 besteht (und Sie eine :ger-quote:`vernünftigere` f-Funktion verwenden.)
-  5. Was passiert, wenn du deinen Schlüssel änderst? Was passiert in extremen Fällen (z. B. wenn das Passwort nur aus "0 "s besteht?
+  5. Was passiert, wenn man den Schlüssel änderst? Was passiert in extremen Fällen (z. B. wenn das Passwort nur aus "0" besteht?
 
   .. solution:: 
     :pwd: OhFeistel
