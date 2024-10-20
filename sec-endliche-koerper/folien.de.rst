@@ -32,7 +32,7 @@ Endliche Körper
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Kontakt: michael.eichberg@dhbw-mannheim.de
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
-:Version: 1.0.1
+:Version: 1.0.2
 
 .. supplemental::
 
@@ -520,7 +520,6 @@ Beispiel für gewöhnliche Polynomarithmetik
 
             (x^3 + x^2 + 2) - (x^2 - x + 1) 
         
-
         .. math::
             :class: incremental
 
@@ -961,7 +960,7 @@ Multiplikation in :math:`GF(2^n)`
 Übung
 ------
 
-.. exercise::
+.. exercise:: Repräsentation von Polynomen
 
     Füllen Sie die fehlenden Werte aus (:math:`GF(2^m)`)
 
@@ -995,9 +994,9 @@ Multiplikation in :math:`GF(2^n)`
 Übung
 ------
 
-.. exercise::
+.. exercise:: Polynomarithmetik im GF(2^5)
 
-    Gegeben sei :math:`GF(2^5)` mit dem irreduziblen Polynom :math:`p(x) = x^5 + x^2 + 1`
+   Gegeben sei :math:`GF(2^5)` mit dem irreduziblen Polynom :math:`p(x) = x^5 + x^2 + 1`
    
    .. class:: list-with-explanations
 
@@ -1026,10 +1025,10 @@ Multiplikation in :math:`GF(2^n)`
 
 .. class:: integrated-exercise transition-fade
 
-Übung - :math:`GF(2^8)`
+Übung
 ----------------------------
 
-.. exercise:: 
+.. exercise:: Einfache Polynomarithmetik im GF(2^8)
 
     Nehmen wir an, dass 7 und 3 stellvertretend für die Bitmuster der Koeffizienten des Polynoms stehen.
  
@@ -1047,13 +1046,13 @@ Multiplikation in :math:`GF(2^n)`
 
         Die Lösung ist in beiden Fällen: 4 (d. h. Addition und Subtraktion sind gleich; jeder Wert ist sein additiver Kehrwert).
 
-.. exercise::
+.. exercise:: Polynommultiplikation im GF(2^8)
 
     .. class:: list-with-explanations
 
     - Berechne: :math:`(0x03\; \times\; 0x46) \qquad` 
   
-      (0x3 und 0x46 sind die Hexadezimaldarstellungen der Koeffizienten des Polynoms und diese repräsentieren (auch nur) die Bitmuster der Koeffizienten des Polynoms)
+      (0x3 und 0x46 sind die Hexadezimaldarstellungen der Koeffizienten des Polynoms und diese repräsentieren (auch nur) die Bitmuster der Koeffizienten des Polynoms.)
 
     .. solution::
         :pwd: 0xCA
