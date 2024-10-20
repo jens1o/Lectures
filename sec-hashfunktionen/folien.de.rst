@@ -33,7 +33,7 @@ Kryptografische Hash Funktionen
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Kontakt: michael.eichberg@dhbw-mannheim.de
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
-:Version: 2.2
+:Version: 2.2.1
 
 .. supplemental::
 
@@ -857,7 +857,7 @@ MAC: `Poly 1305 <https://datatracker.ietf.org/doc/html/rfc8439#section-2.5>`__
                 .. math::
                     :class: far-far-smaller
 
-                    \begin{array}{rl}
+                    \begin{array}{rr}
                         a      & = & 00 \\
                         n      & = &   6f4620636968706172676f7470797243 \\
                         n'    & = & 016f4620636968706172676f7470797243 \\
@@ -875,7 +875,7 @@ MAC: `Poly 1305 <https://datatracker.ietf.org/doc/html/rfc8439#section-2.5>`__
                 .. math::
                     :class: far-far-smaller
 
-                    \begin{array}{rl}
+                    \begin{array}{rr}
                         a      & = & 2d8adaf23b0337fa7cccfb4ea344b30de \\
                         n      & = &   7075 \\
                         n'    & = & 017075 \\
@@ -892,7 +892,7 @@ MAC: `Poly 1305 <https://datatracker.ietf.org/doc/html/rfc8439#section-2.5>`__
 
                 Addiere auf den Wert des Akkumulators :math:`a` den Wert :math:`s`.
                 
-                Und somit ist der Tag :math:`2a927010caf8b2bc2c6365130c11d06a8` (als Zahl im little-endian Format)
+                Und somit ist der Tag :math:`2a927010caf8b2bc2c6365130c11d06a8` (als Zahl im little-endian Format).
 
 
 .. supplemental::
