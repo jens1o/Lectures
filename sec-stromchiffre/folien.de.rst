@@ -30,7 +30,7 @@ Erzeugung von Zufallsbits und Stromchiffren
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
-:Version: 2.0
+:Version: 2.0.1
 
 .. supplemental::
 
@@ -421,7 +421,7 @@ Sei :math:`p = 383` und :math:`q = 503`, dann ist :math:`n = 192649`. Weiterhin 
         :class: no-table-borders table-rows-align-right
         :header: :math:`i`, :math:`x_i`, :math:`B_i`
 
-        :minor:`0`, :minor:`20749`, 
+        :minor:`0`, :math:`101355 ^ 2 \;mod\; 192649 = 20749`, 
         1, 143135,1
         2,177671,1
         3,97048,0
@@ -503,8 +503,8 @@ Zwei Ansätze, die eine Blockchiffre zum Aufbau eines PNRG verwenden, haben weit
         :class: slightly-more-smaller
 
         lcg(seed,a,c,m,number_of_random_values_to_generate)
-        lcg(1234,8,8,256,100)
-        lcg(1234,-8,8,256,100)
+        lcg(1234,8,8,4096,100)
+        lcg(1234,4,8,4096,100)
         
     .. solution::
         :pwd: Jupyter...!
@@ -565,7 +565,7 @@ Zwei Ansätze, die eine Blockchiffre zum Aufbau eines PNRG verwenden, haben weit
 
         .. code:: java
 
-            long n = 83*47;
+            long n = 83 * 47;
             var x = 253 * 253 % n;
             for(int i = 0 ; i < 10; i ++) { 
                 x = x * x % n; 
@@ -576,7 +576,7 @@ Zwei Ansätze, die eine Blockchiffre zum Aufbau eines PNRG verwenden, haben weit
 
         .. code:: javascript
 
-                let n = 83*47;
+                let n = 83 * 47;
                 let x = 253**2 % n;
                 function* bitGen() {
                     x = x ** 2 % n;
@@ -819,7 +819,7 @@ Grundlegende Operation in ChaCha20.
 
 .. supplemental::
 
-    ChaCha20-Poly1305 - was ChaCha20 mit zusätzlicher Authentifizierung ist (Poly 1305) - wird unter anderem von IPsec, SSH, TLS 1.2, DTLS 1.2, TLS 1.3, WireGuard, S/MIME 4.0, und OTRv4[22].
+    ChaCha20-Poly1305 - d. h. ChaCha20 mit zusätzlicher Authentifizierung (Poly 1305) - wird unter anderem von IPsec, SSH, TLS 1.2, DTLS 1.2, TLS 1.3, WireGuard, S/MIME 4.0, und OTRv4[22].
 
 
 Anwendung der *Quarter Round Operation* 
@@ -837,7 +837,7 @@ Anwendung der *Quarter Round Operation*
 
         Beispiel - *Column Round*:
 
-        Die QUARTERROUND(1, 5, 3, 9) operiert somit auf den Werten ``a``, ``b``, ``c``, ``d`` der Matrix.
+        Die QUARTERROUND(1, 5, 9, 13) operiert somit auf den Werten ``a``, ``b``, ``c``, ``d`` der Matrix.
 
         .. csv-table::
             :class: no-inner-borders no-table-borders monospaced far-smaller
