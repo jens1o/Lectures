@@ -30,7 +30,7 @@ Public-Key-Kryptographie und RSA
 ===============================================
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-:Version: 1.0
+:Version: 1.1
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 
 .. supplemental::
@@ -60,18 +60,11 @@ Terminologie bzgl. asymmetrischer Verschlüsselung
     :Asymmetrische Schlüssel:
             Zwei zusammengehörige Schlüssel, ein öffentlicher und ein privater Schlüssel, die zur Durchführung komplementärer Operationen verwendet werden, z. B. Ver- und Entschlüsselung oder Signaturerstellung und Signaturprüfung.
 
-    .. class:: incremental
-
     :Public-Key-Zertifikat:
             Ein digitales Dokument, das mit dem privaten Schlüssel einer Zertifizierungsstelle (eng:`Certification Authority`) ausgestellt und digital signiert wird und den Namen eines Teilnehmers an einen öffentlichen Schlüssel bindet. Das Zertifikat gibt an, dass der im Zertifikat genannte Teilnehmer die alleinige Kontrolle und den Zugriff auf den entsprechenden privaten Schlüssel hat.
 
-    .. class:: incremental
-
     :Public-Key (asymmetrischer) kryptografischer Algorithmus:
             Ein kryptographischer Algorithmus, der zwei zusammengehörige Schlüssel verwendet, einen öffentlichen und einen privaten Schlüssel. Die beiden Schlüssel haben die Eigenschaft, dass die Ableitung des privaten Schlüssels aus dem öffentlichen Schlüssel rechnerisch nicht machbar ist bzw. sein sollte (vgl. Quantenkryptografie).
-
-
-    .. class:: incremental
 
     :Public-Key-Infrastruktur (PKI):
             Eine Reihe von Richtlinien, Prozessen, Serverplattformen, Software und Workstations, die für die Verwaltung von Zertifikaten und öffentlich-privaten Schlüsselpaaren verwendet werden, einschließlich der Möglichkeit, Public-Key-Zertifikate auszustellen, zu pflegen und zu widerrufen.
@@ -231,36 +224,35 @@ Public-Key-Kryptosystem: Authentifizierung und Geheimhaltung
 Anwendungen für Public-Key-Kryptosysteme
 ------------------------------------------
 
-- Kryptosysteme mit öffentlichen Schlüsseln lassen sich in drei Kategorien einteilen:
+.. stack::
 
-  .. class:: incremental
+    .. layer::
 
-  1. *Ver-/Entschlüsselung*: Der Absender verschlüsselt eine Nachricht mit dem öffentlichen Schlüssel des Empfängers.
-  2. *Digitale Unterschriften*: Der Absender :ger-quote:`unterschreibt` eine Nachricht mit seinem privaten Schlüssel.
-  3. *Schlüsselaustausch*: Zwei Seiten arbeiten zusammen, um einen Sitzungsschlüssel (d. h. einen symmetrischen Schlüssel) auszutauschen.
+      Kryptosysteme mit öffentlichen Schlüsseln lassen sich in drei Kategorien einteilen:
 
-.. class:: incremental
+      .. class:: incremental
 
-- Einige Algorithmen eignen sich für alle drei Anwendungen, während andere nur für eine oder zwei verwendet werden können.
+      1. *Ver-/Entschlüsselung*: Der Absender verschlüsselt eine Nachricht mit dem öffentlichen Schlüssel des Empfängers.
+      2. *Digitale Unterschriften*: Der Absender :ger-quote:`unterschreibt` eine Nachricht mit seinem privaten Schlüssel.
+      3. *Schlüsselaustausch*: Zwei Seiten arbeiten zusammen, um einen Sitzungsschlüssel (d. h. einen symmetrischen Schlüssel) auszutauschen.
 
+    .. layer:: incremental
 
+        Einige Algorithmen eignen sich für alle drei Anwendungen, während andere nur für eine oder zwei verwendet werden können:
 
-Anwendungen für Public-Key-Kryptosysteme
-------------------------------------------
+        .. csv-table::
+            :header: Algorithmus, Ver-/ Entschlüsselung, Digitale Signaturen, Schlüssel-austausch
+            :class: incremental
+            :widths: 13, 10, 10, 10
 
-.. csv-table::
-    :header: Algorithmus, Ver-/ Entschlüsselung, Digitale Signaturen, Schlüssel-austausch
-    :class: incremental wobble
-    :widths: 13, 10, 10, 10
+            RSA,:shiny-green:`✓`,:shiny-green:`✓`,:shiny-green:`✓`
+            Elliptic Curve,:shiny-green:`✓`,:shiny-green:`✓`,:shiny-green:`✓`
+            Diffie-Hellman,:shiny-red:`✗`,:shiny-red:`✗`,:shiny-green:`✓`
+            DSS,:shiny-red:`✗`,:shiny-green:`✓`,:shiny-red:`✗`
 
-    RSA,:shiny-green:`✓`,:shiny-green:`✓`,:shiny-green:`✓`
-    Elliptic Curve,:shiny-green:`✓`,:shiny-green:`✓`,:shiny-green:`✓`
-    Diffie-Hellman,:shiny-red:`✗`,:shiny-red:`✗`,:shiny-green:`✓`
-    DSS,:shiny-red:`✗`,:shiny-green:`✓`,:shiny-red:`✗`
+        .. container:: smaller
 
-.. container:: small
-
-    *DSS = Digital Signature Standard*, entwickelt von der NSA (National Security Agency)
+            *DSS = Digital Signature Standard*, entwickelt von der NSA (National Security Agency)
 
 
 
@@ -464,7 +456,7 @@ Wir wissen dass :math:`GGT(\phi(n),e) = 1` gilt; d. h. :math:`e` und :math:`\ph
 
 .. ex & \equiv & 1\; (mod\; \phi(n))
 
-.. [#] Zur Erinnerung: der erweiterte Euklidische Algorithmus berechnet den größten gemeinsamen Teiler von zwei Zahlen (:math:`a`, :math:`b`) und zusätzlich zwei Koeffizienten (:math:`x`, :math:`y`), so dass gilt:  :math:`ax + by = gcd(a,b)`.
+.. [#] Zur Erinnerung: der erweiterte Euklidische Algorithmus berechnet den größten gemeinsamen Teiler von zwei Zahlen (:math:`a`, :math:`b`) und zusätzlich zwei Koeffizienten (:math:`x`, :math:`y`), so dass gilt:  :math:`ax + by = ggt(a,b)`.
 
 .. supplemental:: 
 
@@ -503,7 +495,14 @@ Beispiel für den RSA-Algorithmus
 Potenzierung in der Modularen Arithmetik
 -------------------------------------------
 
-- Sowohl bei der Verschlüsselung als auch bei der Entschlüsselung in RSA wird eine ganze Zahl potenziert mit einer weiteren ganzen Zahl :math:`mod\; n`
+.. class:: list-with-explanations
+
+- Sowohl bei der Verschlüsselung als auch bei der Entschlüsselung in RSA wird eine ganze Zahl potenziert mit einer weiteren ganzen Zahl :math:`mod\; n`.
+
+  Weiterhin haben wir es mit potenziell großen Exponenten zu tun, so dass die Effizienz der Potenzierung eine wichtige Rolle spielt.
+
+.. class:: incremental 
+
 - Eine Eigenschaft der modularen Arithmetik kann genutzt werden:
 
   :math:`[(a\; mod\; n) \times (b\; mod\; n)]\; mod\; n =(a \times b)\; mod\; n`
@@ -515,7 +514,7 @@ Potenzierung in der Modularen Arithmetik
     :math:`[09 = 1001_b] \qquad 2^9\; mod\; 13 = [(2^1\; mod\; 13) \times (2^8 \; mod\; 13)]\; mod\; 13` 
 
 
-- Bei RSA haben Sie es mit potenziell großen Exponenten zu tun, so dass die Effizienz der Potenzierung eine wichtige Rolle spielt.
+
 
 .. container:: block-footer white dhbw-gray-background text-align-center
 
@@ -573,6 +572,7 @@ Ergebnis des schnellen modularen Exponierungsalgorithmus für :math:`a^b\;mod\;n
     :header: i, 9,8,7,6,5,4,3,2,1,0
     :widths: 6, 10,10,10,10,10,10,10,10,10,10
     :width: 100%
+    :class: fake-header-row
 
     ":math:`b_i`", 1,0,0,0,1,1,0,0,0,0
     c, 1,2,4,8,17,35,70,140,280,560
@@ -583,12 +583,12 @@ Ergebnis des schnellen modularen Exponierungsalgorithmus für :math:`a^b\;mod\;n
 Effiziente Verschlüsselung mit dem öffentlichen Schlüssel
 ---------------------------------------------------------------------
 
-- Um den RSA-Algorithmus bei Verwendung des öffentlichen Schlüssels zu beschleunigen, wird in der Regel eine bestimmte Wahl von :math:`e` getroffen:
+Um den RSA-Algorithmus bei Verwendung des öffentlichen Schlüssels zu beschleunigen, wird in der Regel eine bestimmte Wahl von :math:`e` getroffen:
   
-  - Die häufigste Wahl ist 65537 (:math:`2^{16} + 1`)
-  - Zwei weitere beliebte Wahlmöglichkeiten sind :math:`e=3` und :math:`e=17`
-  - Jede dieser Möglichkeiten hat nur zwei 1-Bits, so dass die Anzahl der Multiplikationen, die für die Potenzierung erforderlich sind, minimiert wird.
-  - Mit einem sehr kleinen öffentlichen Schlüssel, wie :math:`e = 3`, wird RSA jedoch anfällig für einen einfachen Angriff.
+- Die häufigste Wahl ist 65537 (:math:`2^{16} + 1`).
+- Zwei weitere beliebte Wahlmöglichkeiten sind :math:`e=3` und :math:`e=17`.
+- Jede dieser Möglichkeiten hat nur zwei 1-Bits, so dass die Anzahl der Multiplikationen, die für die Potenzierung erforderlich sind, minimiert wird.
+- Mit einem sehr kleinen öffentlichen Schlüssel, wie :math:`e = 3`, wird RSA jedoch anfällig für einen einfachen Angriff.
 
 
 
@@ -597,12 +597,15 @@ Effiziente Entschlüsselung mit dem privaten Schlüssel
 -----------------------------------------------------------
 
 - Die Entschlüsselung verwendet die Potenzierung mit :math:`d`.
-- Ein kleiner Wert von :math:`d` ist anfällig für einen Brute-Force-Angriff und für andere Formen der Kryptoanalyse.
+
+.. class:: incremental
+
+- Ein kleiner Wert von :math:`d` ist jedoch anfällig für einen Brute-Force-Angriff und für andere Formen der Kryptoanalyse.
 - Der Chinesischen Restsatz (CRT) kann verwendet werden, um Berechnungen zu beschleunigen:
 
-  Die Größen :math:`d\; mod\; (p - 1)` und :math:`d\; mod\; (q - 1)` können vorberechnet werden.
+    Die Größen :math:`d\; mod\; (p - 1)` und :math:`d\; mod\; (q - 1)` können vorberechnet werden.
 
-  Das Ergebnis ist, dass die Berechnung etwa viermal so schnell ist wie die direkte Berechnung von :math:`M = C^d\; mod\; n`.
+    Das Ergebnis ist, dass die Berechnung etwa viermal so schnell ist wie die direkte Berechnung von :math:`M = C^d\; mod\; n`.
 
 
 
@@ -630,13 +633,25 @@ Schlüsselgenerierung
 Die Sicherheit von RSA - Fünf mögliche Ansätze für einen Angriff
 ----------------------------------------------------------------------
 
-.. class:: incremental 
+.. class:: dd-margin-left-10em
 
-- Brute-Force: Dabei werden alle möglichen privaten Schlüssel ausprobiert.
-- Mathematische Angriffe: Es gibt mehrere Ansätze, die vom Aufwand her alle dem Faktorisieren des Produkts aus zwei Primzahlen entsprechen.
-- Zeitliche Angriffe: Diese hängen von der Laufzeit des Entschlüsselungsalgorithmus ab.
-- Hardware-Fehler-basierter Angriff: Hier geht es darum, Hardware-Fehler in den Prozessor zu induzieren, der digitale Signaturen erzeugt.
-- Gewählte Chiffretext-Angriffe: Bei dieser Art von Angriffen werden Eigenschaften des RSA-Algorithmus ausgenutzt.
+:Brute-Force: Dabei werden alle möglichen privaten Schlüssel ausprobiert.
+
+.. class:: incremental dd-margin-left-10em
+
+:Mathematische Angriffe: Es gibt mehrere Ansätze, die vom Aufwand her alle dem Faktorisieren des Produkts aus zwei Primzahlen entsprechen.
+
+.. class:: incremental dd-margin-left-10em
+
+:Zeitliche Angriffe: Diese hängen von der Laufzeit des Entschlüsselungsalgorithmus ab.
+
+.. class:: incremental dd-margin-left-10em
+
+:Hardware-Fehler-basierter Angriff: Hier geht es darum, Hardware-Fehler in den Prozessor zu induzieren, der digitale Signaturen erzeugt.
+
+.. class:: incremental dd-margin-left-10em
+
+:Gewählte Chiffretext-Angriffe: Ziel ist es Eigenschaften des RSA-Algorithmus auszunutzen.
 
 
 
@@ -646,10 +661,11 @@ Faktorisierungsproblem
 
 Es gibt drei Ansätze für einen mathematischen Angriff auf RSA:
 
+.. class:: incremental
+
 1. Faktorisierung von :math:`n` in seine beiden Primfaktoren. Dies ermöglicht die Berechnung von :math:`\phi(n) = (p - 1) \times (q - 1)`, was wiederum die Bestimmung von :math:`d = e^{-1} (mod\; ø(n))` ermöglicht.
 2. Direkte Bestimmung von :math:`\phi(n)`, ohne vorher :math:`p` und :math:`q` zu bestimmen. Dies ermöglicht wiederum die Bestimmung von :math:`d = e^{-1} (mod\; \phi(n))`.
 3. Direkte Bestimmung von :math:`d`, ohne vorher :math:`\phi(n)` zu bestimmen. 
-
 
 
 
@@ -689,8 +705,6 @@ Gegenmaßnahmen gegen Timing-Angriffe
 Fehlerbasierter Angriff
 ------------------------
 
-(:eng:`Fault-based attack`)
-
 - Ein Angriff auf einen Prozessor, der digitale RSA-Signaturen erzeugt.
   
   - Verursacht Fehler in der Signaturberechnung, indem er die Leistung des Prozessors reduziert.
@@ -701,6 +715,10 @@ Fehlerbasierter Angriff
 
   - Er setzt voraus, dass der Angreifer physischen Zugriff auf den Zielcomputer hat und in der Lage ist, die Eingangsleistung des Prozessors direkt zu kontrollieren.
 
+
+.. supplemental:: 
+
+    (:eng:`Fault-based attack`)
 
 
 Gewählter Chiffretext-Angriff 
@@ -713,7 +731,11 @@ Gewählter Chiffretext-Angriff
   - Der Angreifer könnte also einen Klartext auswählen, ihn mit dem öffentlichen Schlüssel des Ziels verschlüsseln und dann den Klartext zurückerhalten, indem er ihn mit dem privaten Schlüssel entschlüsselt.
   - Der Angreifer macht sich die Eigenschaften von RSA zunutze und wählt Datenblöcke aus, die, wenn sie mit dem privaten Schlüssel des Ziels verarbeitet werden, die für die Kryptoanalyse benötigten Informationen liefern.
   
-- Um solche Angriffe abzuwehren, empfiehlt RSA Security Inc., den Klartext mit einem Verfahren zu modifizieren, das als optimales asymmetrisches Verschlüsselungs-Padding (OAEP) bekannt ist
+- Um solche Angriffe abzuwehren, empfiehlt RSA Security Inc., den Klartext mit einem Verfahren zu modifizieren, das als optimales asymmetrisches Verschlüsselungs-Padding (OAEP) bekannt ist.
+
+.. supplemental::
+
+    Die Idee bei OAEP ist, dass der Klartext vor der Verschlüsselung mit dem öffentlichen Schlüssel des Empfängers mit einem *zufälligen* Padding versehen wird, um ein Element des Zufalls in den sonst deterministischen Verschlüsselungsvorgang einzuführen.
 
 
 
@@ -733,15 +755,13 @@ Zusammenfassung - Hashes, Macs und digitale Signaturen
 Übung
 ----------
 
-1. \
-   
-   .. exercise::
-    
-     .. rubric::  Führen Sie den Square-and-Multiply Algorithmus Schritt-für-Schritt für :math:`3^{17}\, mod\, 23` aus.
+.. exercise:: Square-and-Multiply
 
-     .. solution::
+    Führen Sie den Square-and-Multiply Algorithmus Schritt-für-Schritt für :math:`3^{17}\, mod\, 23` aus.
+
+    .. solution::
         :pwd: hochzwei
-     
+        
         ::
 
             k = ___1 0001b 
@@ -751,52 +771,48 @@ Zusammenfassung - Hashes, Macs und digitale Signaturen
             i = 2; f =  81 mod 23 = 12 =>
             i = 1; f = 144 mod 23 = 6 =>
             i = 0; f = (((6 * 6) mod 23) * 3) mod 23 = 16
-
-
-
-2. \
  
-   .. exercise::
- 
-        .. rubric:: Entschlüsseln sie die folgende Nachricht
+.. exercise::  Nachrichtenentschlüsselung
 
-        .. math::
+    Entschlüsseln sie die folgende mit RSA verschlüsselte Nachricht
 
-            C = 70789294130501 \text{(Verschlüsselte Nachricht)}
+    .. math::
 
-            n = 2000557908870247; \quad \phi(n) = 2000557818857736
-            
-            e = 65537
+        C = 70789294130501\qquad \text{(Verschlüsselte Nachricht)}
+
+        n = 2000557908870247 \qquad \phi(n) = 2000557818857736
         
-        Berechnen Sie d und wandeln Sie die (Klartext)zahl in Text (ASCII 7-Bit pro Zeichen) um. (Nutzen Sie ggf. das `Jupyter Notebook <https://github.com/Delors/delors.github.io/blob/main/sec-public-key-kryptographie/resources/extended_gcd.ipynb>`__ als Hilfestellung.)
+        e = 65537
+    
+    Berechnen Sie :math:`d` und wandeln Sie die (Klartext)zahl in Text (ASCII 7-Bit pro Zeichen) um. (Nutzen Sie ggf. das `Jupyter Notebook <https://github.com/Delors/delors.github.io/blob/main/sec-public-key-kryptographie/resources/extended_gcd.ipynb>`__ als Hilfestellung.)
 
-        .. solution::
-            :pwd: s#u+c+c+e+s#s
+    .. solution::
+        :pwd: s#u+c+c+e+s#s
 
-            In Python (siehe Jupyter Notebook):
+        In Python (siehe Jupyter Notebook):
 
-            .. code:: python 
+        .. code:: python 
 
-                m = 509822222563827 # Klartext 
-                # Parameter für den RSA Algorithmus
-                p = 40005739
-                q = 50006773
-                n = p * q
-                phi_n = (p - 1) * (q - 1)
-                e = 65537
-                d = inverse(e, phi_n)
-                print("d=", d)
-                # c = square_and_multiply(m,e, n)
-                c = 70789294130501
-                print("C=", c)
-                print("M=", square_and_multiply(c, d, n))
+            m = 509822222563827 # Klartext 
+            # Parameter für den RSA Algorithmus
+            p = 40005739
+            q = 50006773
+            n = p * q
+            phi_n = (p - 1) * (q - 1)
+            e = 65537
+            d = inverse(e, phi_n)
+            print("d=", d)
+            # c = square_and_multiply(m,e, n)
+            c = 70789294130501
+            print("C=", c)
+            print("M=", square_and_multiply(c, d, n))
 
-                # Umwandlung des int Wertes in Array of Chars:
-                bstr = bin(m)
-                chars = [bstr[i : i + 7] for i in range(2, len(bstr) - 1, 7)]
-                "".join(list(map(lambda x: chr(int(x, 2)), chars)))
+            # Umwandlung des int Wertes in Array of Chars:
+            bstr = bin(m)
+            chars = [bstr[i : i + 7] for i in range(2, len(bstr) - 1, 7)]
+            "".join(list(map(lambda x: chr(int(x, 2)), chars)))
 
-            Das Ergebnis ist: "success"
+        Das Ergebnis ist: "success"
 
 
 .. supplemental::
@@ -816,11 +832,11 @@ Zusammenfassung - Hashes, Macs und digitale Signaturen
 Übung
 ----------
 
-.. exercise::
+.. exercise:: Verschlüsselung mit RSA
 
-    .. rubric:: Verschlüsseln Sie eine Nachricht mit RSA mit selber gewählten Parametern
+    Verschlüsseln Sie eine Nachricht mit RSA mit selber gewählten Parametern.
 
-    D. h., wählen Sie 2 kleine Primzahlen, berechnen Sie dann :math:`e`, :math:`d`, :math:`n`. Verschlüsseln Sie dann die Nachricht (d. h. einen (eher) kleinen Wert) mit dem öffentlichen Schlüssel einer anderen Person und senden Sie der Person die verschlüsselte Nachricht. Die Zielperson soll Ihre Nachricht entschlüsseln. Überprüfen Sie anschließend, ob die Verschlüsselung erfolgreich war. 
+    D. h., wählen Sie 2 kleine Primzahlen, berechnen Sie dann :math:`e`, :math:`d`, :math:`n`. Verschlüsseln Sie dann die Nachricht (d. h. einen (eher) kleinen Wert) mit dem öffentlichen Schlüssel einer anderen Person und senden Sie der Person die verschlüsselte Nachricht. Die Zielperson soll Ihre Nachricht entschlüsseln. 
 
     .. solution::
         :pwd: Nachrichtenaustausch
