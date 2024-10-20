@@ -31,7 +31,7 @@ Advanced Encryption Standard (AES)
 ===============================================
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-:Version: 1.0.1
+:Version: 1.0.2
 :Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
 :Quellen: `NIST FIPS PUB 197, "Advanced Encryption Standard (AES)" <https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197.pdf>`_
 
@@ -725,13 +725,13 @@ AES kann effizient auf einem 32-Bit-Prozessor implementiert werden:
 
 Sei der folgende *RoundKey* gegeben: 
 
-:math:`rc_1=w[4]\,||\,w[5]\,||\,w[6]\,||\,w[7]` :math:`=` 
+:math:`rk_1=w[4]\,||\,w[5]\,||\,w[6]\,||\,w[7]` :math:`=` 
 
 ``-w[4]------   -w[5]------   -w[6]------   -w[7]------``  
 
 ``E2 32 FC F1   91 12 91 88   B1 59 E4 E6   D6 79 A2 93``  
 
-In Hinblick auf die Berechnung von :math:`rc_2`; d. h. den Rundschlüssel (*Roundkey*) für die zweite Runde, führe folgende Schritte durch.
+In Hinblick auf die Berechnung von :math:`rk_2`; d. h. den Rundschlüssel (*Roundkey*) für die zweite Runde, führe folgende Schritte durch.
 
 .. exercise:: 
     
@@ -765,8 +765,8 @@ In Hinblick auf die Berechnung von :math:`rc_2`; d. h. den Rundschlüssel (*Ro
 
             g(w[7]): 
                 1. after left shift of w[7]:              79 A2 93 D6
-                2. after s-box substituion:               B6 3A DC F6
-                3. after add RoundConstant (02 00 00 00):  B4 3A DC F6
+                2. after s-box substitution:              B6 3A DC F6
+                3. after add RoundConstant (02 00 00 00): B4 3A DC F6
 
             w[8] = E2 32 FC F1 xor B4 3A DC F6 = 56 08 20 07
             w[9] = w[8]                      xor 91 12 91 88 = C7 1A B1 8F
