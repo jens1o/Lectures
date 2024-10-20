@@ -468,6 +468,7 @@ Struktur eines sicheren Hash-Codes
     - Am Ende wird die Länge der Nachricht als 128-Bit-Wert angehängt, um ein Vielfaches von 1024 zu erhalten.
 
 
+
 SHA-512 Verarbeitung eines 1024-Bit-Blocks
 ------------------------------------------------------------
 
@@ -482,11 +483,17 @@ SHA-512 Verarbeitung eines 1024-Bit-Blocks
 
     .. layer:: incremental overlay
 
-        .. image:: drawings/sha512-processing_a_block/block.svg
+        .. image:: drawings/sha512-processing_a_block/main-pass-through.svg
             :alt: Nachricht
             :align: center
             :width: 1600px
 
+    .. layer:: incremental overlay
+
+        .. image:: drawings/sha512-processing_a_block/block.svg
+            :alt: Nachricht
+            :align: center
+            :width: 1600px
 
     .. layer:: incremental overlay
 
@@ -495,14 +502,12 @@ SHA-512 Verarbeitung eines 1024-Bit-Blocks
             :align: center
             :width: 1600px
 
-
     .. layer:: incremental overlay
 
         .. image:: drawings/sha512-processing_a_block/constants.svg
             :alt: Nachricht
             :align: center
             :width: 1600px
-
 
 .. supplemental:: 
 
