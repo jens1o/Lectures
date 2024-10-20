@@ -118,6 +118,22 @@ Auswirkungen von generativer KI
     -- `August 2024, Heise <https://www.heise.de/news/Unternehmensberater-glauben-weiterhin-an-die-GenAI-Revolution-in-der-IT-Branche-9821979.html>`__
 
 
+Der wirkliche Effekt von AI Coding Assistenten
+-------------------------------------------------
+
+.. epigraph::
+
+    **Devs gaining little (if anything) from AI coding assistants**
+
+    Code analysis firm sees no major benefits from AI dev tool when measuring key programming metrics, though others report incremental gains from coding copilots with emphasis on code review.
+
+
+    Many developers say AI coding assistants make them more productive, but a recent study set forth to measure their output and found no significant gains. Use of GitHub Copilot also introduced 41% more bugs, according to the study from Uplevel, a company providing insights from coding and collaboration data.
+
+    -- `September 2024, cio.com <https://www.cio.com/article/3540579/devs-gaining-little-if-anything-from-ai-coding-assistants.html>`__
+
+
+
 
 AI Assistenten und Grundlagen der Programmierung
 -------------------------------------------------
@@ -632,6 +648,8 @@ Zu installieren (für den Anfang):
   oder
 
   https://www.azul.com/downloads/?package=jdk#zulu
+
+  (Java 22 ist nicht ausreichend.)
 - Visual Studio Code :minor:`inkl. Java Tools oder Eclipse Theia oder IntelliJ IDEA oder Eclipse`
 
   Ich verwende Visual Studio Code mit dem Java Extension Pack.
