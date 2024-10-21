@@ -13,7 +13,8 @@ Vorlesung "Einführung in der Programmierung"
 
    1. Einführung in die Programmierung (`<prog-einfuehrung/folien.de.rst.html>`__)
    2. Grundlagen der Programmierung in Java (`<prog-java-basics/folien.de.rst.html>`__)
-   3. Objekt-orientierte Programmierung in Java (`<prog-java-oo/folien.de.rst.html>`__)
+   3. Verwendung von Arrays in Java (`<prog-java-arrays/folien.de.rst.html>`__)
+   4. Objekt-orientierte Programmierung in Java (`<prog-java-oo/folien.de.rst.html>`__)
 
 
 Vorlesung "Verteilte Systeme"
