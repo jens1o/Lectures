@@ -1723,11 +1723,9 @@ Beispiele zur Auswertungsreihenfolge
 Übung
 --------    
 
-.. exercise:: BMI berechnen
+.. exercise:: Body-Mass-Index (BMI) berechnen mit Java Script
 
-    Schreiben Sie ein Java Script, dass den Body-Mass-Index (BMI) berechnet. Lesen Sie das Gewicht in Kilogramm und die Größe in Metern von der Konsole ein und geben Sie den BMI auf der Konsole aus. Geben Sie auch aus, ob die Person Untergewicht, Normalgewicht oder Übergewicht hat. Falls die Person nicht das Normalgewicht hat, geben Sie auch an, wie viel Gewicht sie bis zum Normalgewicht zunehmen oder abnehmen muss.
-
-    Der BMI wird nach folgender Formel berechnet: :math:`BMI = \frac{Gewicht}{Größe^2}`.
+    Lesen Sie das Gewicht in Kilogramm und die Größe in Metern von der Konsole ein und geben Sie den BMI auf der Konsole aus. Geben Sie auch aus, ob die Person Untergewicht, Normalgewicht oder Übergewicht hat. Falls die Person nicht das Normalgewicht hat, geben Sie auch an, wie viel Gewicht sie bis zum Normalgewicht zunehmen oder abnehmen muss. Berechnungsvorschrift: :math:`BMI = \frac{Gewicht}{Größe^2}`.
 
     Beispielinteraktion:
 
@@ -2551,7 +2549,7 @@ Methoden (in Java Scripts)
         Deklaration einer Methode zum Berechnen des größten gemeinsamen Teilers (:java:`ggt`) zweier Zahlen.
 
         .. code:: java
-            :class: far-smaller
+            :class: far-smaller copy-to-clipboard
             :number-lines: 1
 
             int ggt(int z1, int z2) { // Algorithmus von Euklid
@@ -2620,7 +2618,7 @@ Rekursive Methoden - Beispiel
         Schleifen basierte Implementierung des Algorithmus von Euklid:
 
         .. code:: java
-            :class: smaller
+            :class: smaller copy-to-clipboard
             :number-lines: 1
 
             int ggt(int z1, int z2) { 
@@ -2638,7 +2636,7 @@ Rekursive Methoden - Beispiel
         Elegante rekursive Implementierung des Algorithmus von Euklid:
 
         .. code:: java
-            :class: smaller
+            :class: smaller copy-to-clipboard
             
             int ggt(int z1, int z2) {
                 if (z2 == 0)
@@ -2838,7 +2836,7 @@ Einrückungen und Blöcke - Beispiele
         .. rubric:: Falsche Einrückung
 
         .. code:: java
-            :class: far-smaller
+            :class: far-smaller copy-to-clipboard
             
             int ggtNaiv(int z1, int z2){
                     int min = (z1>z2)?z2:z1; println("current min="+min);
@@ -2855,7 +2853,7 @@ Einrückungen und Blöcke - Beispiele
         .. rubric:: Korrekte Einrückung
 
         .. code:: java
-            :class: far-smaller
+            :class: far-smaller copy-to-clipboard
             
             int ggtNaiv(int z1, int z2) {
                 int min = (z1 > z2) ? z2 : z1;
@@ -2980,3 +2978,140 @@ Von Codekonventionen und Lesbarkeit - Zusammenfassung
 Auf dem Weg zu einem professionellen Programmierer (egal welcher Sprache) ist es wichtig, neben den Sprachkonstrukten auch die geltenden Konventionen zu erlernen und einzuhalten. Diese sind je nach Sprache meist leicht unterschiedlich, aber in der Regel sehr ähnlich.
 
 Das Einhalten fördert die Zusammenarbeit mit anderen Programmieren - *insbesondere auch Ihrem zukünftigen Ich* - und erhöht die Lesbarkeit des Codes.
+
+
+.. class:: new-section transition-move-to-top
+
+Assertions
+----------------------------------------------------------
+
+
+Java Assertions
+----------------------------------------------------------
+
+.. stack:: 
+
+    .. layer:: 
+
+        Assertions sind eine Möglichkeit, um sicherzustellen, dass bestimmte Bedingungen erfüllt sind.
+
+        :Syntax: :java:`assert <Bedingung>;`
+
+            bzw. 
+
+        :Syntax: :java:`assert <Bedingung>: <Ausdruck>;`
+
+        Die Bedingung muss ein boolescher Ausdruck sein. Der Ausdruck ist optional und wird nur ausgewertet, wenn die Bedingung falsch ist. Normalerweise wird der Ausdruck verwendet, um eine Fehlermeldung zu erzeugen.
+
+
+    .. layer:: incremental
+
+        Beispiel: Funktion mit Assertion
+
+        .. code:: java
+            :class: far-smaller copy-to-clipboard
+
+            
+            /// Berechnet den GGT
+            /// 
+            /// @param z1 die erste Zahl; `z1 >= 0`
+            /// @param z2 die zweite Zahl; `z2 >= 0`
+            /// @return den GGT von z1 und z2
+            int ggt(int z1, int z2) {
+                assert z1 >= 0 && z2 >= 0 : "z1 und z2 müssen >= 0 sein";
+                if (z2 == 0)
+                    return z1;
+                else
+                    return ggt(z2, z1 % z2);
+            }
+
+        .. code:: java
+            :class: far-smaller incremental
+    
+            ggt(-2,4) // ==>  Exception java.lang.AssertionError: z1 und z2 müssen >= 0 sein
+
+    .. layer:: incremental
+
+        Assertions sind gut geeignet zur Überprüfung von:
+        
+        - (Internen) Invarianten
+        - Kontrollfluss-Varianten
+        - Vorbedingungen, Nachbedingungen
+  
+    .. layer:: incremental
+
+        .. warning:: 
+
+            Die Auswertung der Bedingung sollte keine Seiteneffekte haben, da diese nur bei aktivierten Assertions überhaupt ausgeführt wird und dies auch *die Erwartungen anderer Programmierer verletzen würde*.
+
+        Beispiel: Assertion mit Seiteneffekt
+
+        .. code:: java
+            :class: far-smaller copy-to-clipboard
+
+            int ggt(int z1, int z2) {
+                // ⚠️ Seiteneffekt, der den Fehler (sogar) korrigiert... 
+                assert (z1 = Math.abs(z1)) >= 0 && (z2 = Math.abs(z2)) >= 0;
+
+                if (z2 == 0) return z1;
+                else         return ggt(z2, z1 % z2);
+            }
+
+
+    .. layer:: incremental
+
+        .. hint::
+
+            Java Assertions sollten nur für Bedingungen verwendet werden, die niemals falsch sein dürfen. 
+            
+        Assertions dienen der Identifikation von Programmierfehlern und sollten nicht für Bedingungen verwendet werden, die auf zu erwartende Fehler zurückzuführen sind. (Z. B. falsche Nutzereingaben oder Netzwerkfehler etc.)
+
+    .. layer:: incremental
+                
+        - Assertions werden in Java *nur bei expliziter Aktivierung überprüft*.
+        - Um im Code zu prüfen, ob Assertions aktiviert sind, kann folgender (auf einem Seiteneffekt basierender) Code verwendet werden:
+
+          .. code:: java
+            :class: copy-to-clipboard smaller
+
+            var assertionsEnabled = false;
+            assert (assertionsEnabled = true);
+            if (assertionsEnabled) { ... }
+
+        - Um Assertions zu aktivieren, müssen Sie den Kommandozeilenparameter :java:`-ea` oder :java:`-enableassertions` verwenden. Bzw. bei der JShell :java:`-R -ea`.
+
+          .. container:: incremental
+
+            Zum Beispiel können Sie die JShell wie folgt starten:
+
+            .. code:: bash
+            
+                jshell --enable-preview -R -ea
+
+.. supplemental::
+
+    Die Tatsache, dass Assertions nur bei expliziter Aktivierung überprüft werden, ist einer der größten Kritikpunkte an Java Assertions.
+
+
+.. class:: integrated-exercise transition-scale
+
+Übung
+--------    
+
+.. exercise:: Assertions
+
+    Erweitern Sie Ihre Methode zur Berechnung der Fakultät um Assertions, die sicherstellen, dass die Eingabe nicht negativ und nicht größer als 20 ist.
+
+    .. solution::
+        :pwd: ZweiOderEineAssertion?
+
+        .. code:: java
+        
+            long fak(long n){ // TODO mögliche Fehlerfälle abfangen
+                // ⚠️ Seiteneffekt, der den Fehler (sogar) korrigiert... 
+                assert n >= 0: "n muss >= 0 sein";
+                assert n <= 20: "n muss <= 20 sein";
+        
+                if (n == 0) return 1;
+                else return n * fak(n-1);
+            }
