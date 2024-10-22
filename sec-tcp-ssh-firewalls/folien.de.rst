@@ -34,7 +34,7 @@ Eine erste Einführung in die Sicherheit von (verteilten) Systemen
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Kontakt: michael.eichberg@dhbw-mannheim.de
-:Version: 1.2
+:Version: 1.2.1
 
 .. container:: footer-left tiny
     
@@ -899,7 +899,6 @@ Einmal-Passwort-System nach Codebuch-Verfahren.
         - Der Server hasht das Passwort und vergleicht es dann mit dem gespeicherten Passwort :math:`H^n(W)`.
         - Ist das Passwort korrekt, dann wird der Nutzer angemeldet und der Server speichert das Passwort :math:`H^{n-1}(W)` als neues Passwort :math:`H^n(W)` und dekrementiert n.
 
-
 .. supplemental::
 
     Im Original basiert S/Key auf der kryptographischen Hashfunktion MD4. Ein Austausch wäre aber selbstverständlich möglich!
@@ -942,7 +941,6 @@ HMAC-based one-time password (HOTP)\ [#]_
 
 .. [#] https://www.rfc-editor.org/rfc/rfc4226
 
-
 .. supplemental::
 
     :math:`truncate` verwendet die 4 niederwertigsten Bits des MAC als Byte-Offset i in den MAC.
@@ -951,6 +949,7 @@ HMAC-based one-time password (HOTP)\ [#]_
     :math:`extract31` extrahiert 31 Bit aus dem MAC.
 
     Eine Schwäche des Algorithmus ist, dass beide Seiten den Zähler erhöhen müssen und, falls die Zähler aus dem Tritt geraten, ggf. eine Resynchronisation notwendig ist.
+
 
 
 Time-based one-time password (TOTP)\ [#]_
@@ -1303,14 +1302,18 @@ Unabhängiges Netz - :ger-quote:`Ideale Situation`
     :align: center
     :height: 700px
 
+.. class:: incremental
+
 :Vorteile: 
     
     - keinerlei Angriffsmöglichkeiten von außen 
 
+.. class:: incremental
+
 :Nachteile:
 
     - kein Schutz gegen Insider
-    - kein Zugang zum Internet
+    - kein Zugang zum Internet (d. h. kein direkter Zugriff auf externe Dienste wie NTP, Einspielen von Updates ist nur über Umwege möglich, etc.)
 
 .. supplemental::
 
@@ -1352,7 +1355,7 @@ Realisierung von Virtual Private Networks (VPN)
     :align: center
     :width: 1500px
 
-- Aufbau einer scheinbar privaten Verbindung von Firmenteilnetzen über das (öffentliche) Internet
+- Aufbau einer scheinbar privaten Verbindung von Firmenteilnetzen über das (öffentliche) Internet.
 - Zusätzliche Verbindungsverschlüsselung zwischen den Firewalls.
 
 .. supplemental::
@@ -1373,14 +1376,13 @@ Kommerzielle VPNs für Endnutzer
 
     **Motivation**
 
-    - Schutz der Privatsphäre; der ISP kennt nicht mehr die Webseiten, die man aufruft
+    - Schutz der Privatsphäre; der ISP kennt nicht mehr die Webseiten, die man aufruft. 
     - Die IP-Adresse des Nutzers ist den aufgerufenen Webseiten nicht mehr bekannt und kann deswegen der Umgehung von Geo-Blocking dienen.
 
     **Nachteile?**
 
-    - Vertrauen in den VPN-Anbieter muss vorhanden sein. Insbesondere, beim Einsatz zum Stärken der Privatsphäre, muss der VPN-Anbieter vertrauenswürdig sein und sollte ein so genannter "no-log" Anbieter sein. Es gibt auch (kostenlose) VPN-Anbieter, die die Daten der Nutzer verkaufen (ehemals: `Facebook Onavo <https://techcrunch.com/2019/02/21/facebook-removes-onavo/?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAGVIppEgEOd9Z0FoMbmk2TCleRmD9wCMWDmIzGYEjIo1c7Cmz8NpiSoibthFG5IZQzmZ-kiJq-5Wj1bj21byh7YUrC_aSJJk1Bapwz80GSgzLFS-LHCF2OOetUYLSKwEG7W75znuqJJBJcNTTbtJ1UGB95Yu90saK9aIIkEywcRq>`__).
-
-
+    - Vertrauen in den VPN-Anbieter muss vorhanden sein. Insbesondere, beim Einsatz zum Stärken der Privatsphäre, muss der VPN-Anbieter vertrauenswürdig sein und sollte ein so genannter :ger-quote:`no-log` Anbieter sein. 
+    - Es gibt auch (scheinbar kostenlose) VPN-Anbieter, die die Daten der Nutzer dann aber verkaufen (ehemals: `Facebook Onavo <https://techcrunch.com/2019/02/21/facebook-removes-onavo/?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAGVIppEgEOd9Z0FoMbmk2TCleRmD9wCMWDmIzGYEjIo1c7Cmz8NpiSoibthFG5IZQzmZ-kiJq-5Wj1bj21byh7YUrC_aSJJk1Bapwz80GSgzLFS-LHCF2OOetUYLSKwEG7W75znuqJJBJcNTTbtJ1UGB95Yu90saK9aIIkEywcRq>`__).
 
 
 
@@ -1393,17 +1395,22 @@ Zentraler Schutz des gesamten internen Netzwerks durch:
 
 - Paket Filter (:eng:`Packet Filtering`) 
 
+  .. class:: list-with-explanations
+
   - Blockieren bestimmter IP-Empfänger-Adressen (extern / intern)
   - Blockieren bestimmter IP-Absender-Adressen (extern / intern)
     
-    :minor:`(z. B. aus dem Internet mit internen IP-Absender-Adressen.)`
+    (z. B. aus dem Internet mit internen IP-Absender-Adressen)
   
   - Blockieren bestimmter Dienste; ggf. nur für bestimmte IP-Adressen
 
 - Filter auf Anwendungsebene (:eng:`Application-level Filtering`)
 
+  .. class:: list-with-explanations
+
   - inhaltsbezogene Filterung der Verkehrsdaten eines Dienstes
-  - z. B. Virenfilter
+  
+    (z. B. Virenfilter oder Spamfilter)
   - wirkungslos bei verschlüsselten Verkehrsdaten
 
 - Protokollierungsmöglichkeit der Kommunikation von / nach extern
@@ -1414,16 +1421,13 @@ Zentraler Schutz des gesamten internen Netzwerks durch:
     Firewalls (alleine) können die Struktur des Netzwerks nicht verbergen.
 
 
-.. class:: smaller
 
 DoS Attacke auf Anwendungsebene
 ------------------------------------------------
 
 .. epigraph::
 
-    [...]
-
-    Angriff auf die Kleinen
+    [...] Angriff auf die Kleinen
 
     Waren bei früheren Spamangriffen massenhaft Accounts auf der größten Mastodon-Instanz ``mastodon.social`` angelegt worden, die dann von dort ihre Inhalte verbreiteten, trifft es nun nicht die größte, sondern die kleinsten. Automatisiert werden dabei Instanzen ausgesucht, auf denen eine Registrierung ohne Überprüfung und sogar ohne ein Captcha möglich ist. Das können etwa solche mit wenigen Accounts sein, die von Enthusiasten etwa für eine Gemeinde betrieben werden. Waren die Verantwortlichen in den vergangenen Tagen nicht aufmerksam, wurden diese Instanzen dann regelrecht überrannt. Die Spam-Accounts verschickten massenhaft Nachrichten mit einem Bild des namensgebenden Frühstücksfleischs und Links zu Discord-Servern, die wohl lahmgelegt werden sollten.
 
@@ -1449,7 +1453,7 @@ Realisierungsmöglichkeiten von Firewalls
 
 .. supplemental::
 
-    Im Falle eines :eng:`Bastion Host`, ist dies der einzige unmittelbar erreichbare Rechner.
+    Im Falle eines :eng:`Bastion Host`, ist dies der einzige unmittelbar aus dem Internet erreichbare Rechner.
 
 
 .. .. class:: vertical-title
@@ -1469,11 +1473,15 @@ Dual-Homed Host
 - Screening Router & Gate: Packet Filter und Application-Level Filter
 - Proxy-Dienste installieren 
 - Benutzer-Logins von extern
-- Konf. der Netzwerkkarten: IP-Pakete nicht automat. weiterleiten
+
+.. class:: incremental
+
+- Konf. der Netzwerkkarten: *IP-Pakete nicht automat. weiterleiten*
+
 
 
 Screening Router
----------------------
+----------------------------------------------------
 
 .. container:: two-columns no-default-width
 
@@ -1481,11 +1489,10 @@ Screening Router
 
         **Aufbau**
 
-        - programmierbarer Hardwarerouter 
-        - simple Filterfunktionen:
+        Programmierbarer Hardwarerouter mit simplen Filterfunktionen:
 
         - nur Paket-Header prüfen  
-        - schnelle Auswertung ermöglicht hohen Durchsatz
+        -  schnelle Auswertung ermöglicht hohen Durchsatz
 
         - Realisierung eines Packet Filters
 
@@ -1493,14 +1500,14 @@ Screening Router
 
         .. container:: two-columns 
 
-            .. container:: column no-separator
+            .. container:: incremental column no-separator
                 
                 .. class:: positive-list
 
                 - einfach und billig
                 - flexibel
                 
-            .. container:: column
+            .. container:: incremental column
 
                 .. class:: negative-list
 
@@ -1542,6 +1549,8 @@ Screened Host
 
 .. supplemental::
 
+    *Source-Routed Pakete* sind Pakete, die den Weg durch das Netzwerk explizit angeben. (*Source-routing* wird auch als *Path Addressing* bezeichnet und wird im Allgemeinen als Sicherheitsproblem angesehen.)
+
     Gibt es für eine bestimmte Anwendung kein Application-level Proxy, dann kann auf einen für TCP/UDP generischen Proxy zurückgegriffen werden. Dieser arbeitet auf dem Session Layer und kann nur die Header-Informationen auswerten. Es handelt sich dann um ein :eng:`Circuit-level Proxy/Gateway`. Im Vergleich zu einem Application-level Proxy ist die Sicherheit geringer, da der Circuit-level Proxy nicht in der Lage ist, die Daten zu interpretieren.
 
     Ein allgemeines Problem ist, dass viele Anwendungen auf generische Protokolle wie HTTP aufsetzen. Weiterhin betreiben einige Anwendungen :ger-quote:`Port Hopping`, d. h. sie wechseln den Port wenn der Standardport nicht offen ist.
@@ -1558,13 +1567,26 @@ Das Ziel der Konfiguration muss eine minimale angreifbare Oberfläche sein.
 
 - Abschalten aller nicht-benötigten Netzdienste
 - Löschen aller nicht benötigter Programme
-- Rechte von /bin/sh auf 500 setzen
+- Rechte von ``/bin/sh`` auf 500 setzen
 - Rechte aller Systemverzeichnisse auf 711 setzen
 - keine regulären Benutzerkennungen
-- root-Login mit Einmal-Passwortsystem
+- root-Login mit Einmal-Passwortsystem bzw. 2-Faktor Authentifizierung
 - setzen von Platten- und Prozess-Quotas
 - volle Protokollierung, möglichst auf Hardcopy-Gerät
 - möglichst sichere, stabile und regelmäßig aktualisierte Betriebssystemversion einsetzen
+
+.. supplemental::
+
+    Die Rechte von ``/bin/sh`` auf 500 setzen bedeutet, dass nur der Eigentümer (root) es ausführen kann.
+
+    Default: 
+
+    .. code:: sh
+        :class: far-smaller
+
+        $ ls -al /bin/sh
+        -rwxr-xr-x  1 root  wheel  101232 Oct  1 06:10 /bin/sh
+
 
 
 Screened Subnet
@@ -1586,6 +1608,7 @@ Screened Subnet
   - lässt nur Pakete zum / vom Gate durch
 
 - äußeres Netz realisiert Demilitarisierte Zone (DMZ) für HTTP-Server, Mail-Server, ...
+
 
 
 Intrusion Detection Systeme (IDS)
@@ -1624,6 +1647,8 @@ Intrusion Detection Systeme (IDS)
 IDS-Erkennungstechniken
 ----------------------------
 
+.. class:: incremental
+
 - Signaturerkennung
 - statistische Analyse
 - Anomalieerkennung
@@ -1636,7 +1661,12 @@ IDS-Erkennungstechniken
     - nicht gemeldete Angriffe (false negatives) (insb. bei neuartigen Angriffen)
     - Echtzeitanforderung, insb. bei Hochgeschwindigkeitsnetzen 
     - Aufzeichnung bei Netzwerken mit Switches ( ⇒ spez. SPAN Port)
-    - Sensoren sollen unbeobachtbar sein (stealth)
+    - Sensoren sollen unbeobachtbar sein (*stealth*)
+
+
+.. supplemental::
+
+    SPAN (:eng:`Switched Port Analyzer`) Ports sind spezielle Ports auf Switches, die bestimmten Verkehr (z. B. bestimmte Pakete) die über ein Switch gehen, an einen definierten Port weiterleiten können. An diesem Port kann dann eine Analyse des Verkehrs durchgeführt werden / ein Sensor angeschlossen werden.
 
 
 .. class:: integrated-exercise transition-move-left
