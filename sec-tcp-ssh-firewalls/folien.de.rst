@@ -34,7 +34,7 @@ Eine erste Einführung in die Sicherheit von (verteilten) Systemen
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Kontakt: michael.eichberg@dhbw-mannheim.de
-:Version: 1.2.1
+:Version: 1.2.2
 
 .. container:: footer-left tiny
     
@@ -547,6 +547,7 @@ Port Knocking
     M.\ Krzywinski: Port Knocking: Network Authentication Across Closed Ports in SysAdmin Magazine 12: 12-17. (2003)
 
 
+
 Connection Hijacking
 -------------------------
 
@@ -571,6 +572,7 @@ Angreifer übernimmt eine bestehende - zum Beispiel eine bereits durch (Einmal-)
     - Der Angreifer macht einen Client em DoS-Angriff unerreichbar, um sich dann mit dem Anderen zu verbinden, indem er die Netzwerk-ID des ausgeschalteten Clients nutzt.
 
 
+
 Denial-of-Service (DoS) Angriffe
 ------------------------------------
 
@@ -591,6 +593,7 @@ Ziel des Angreifers: Lahmlegen eines Dienstes oder des ganzen Systems ...
     Variante: mittels Fragmentierung ließen sich generell übergroße IP-Pakete (>65,536 Byte) erstellen.
 
 
+
 Denial-of-Service: SYN-flooding Angriff
 -----------------------------------------
 
@@ -607,6 +610,7 @@ Denial-of-Service: SYN-flooding Angriff
 
 - Angreifer verwendet i. Allg. IP-Spoofing weswegen Firewalls wirkungslos sind.
 - Abwehr: SYN-Cookies 
+
 
 
 `SYN-Cookies - D J. Bernstein <https://cr.yp.to/syncookies.html>`__
@@ -663,7 +667,7 @@ SYN-Cookies sind speziell konstruiert initiale Sequenznummern.
                     </marker>
                 </defs>
 
-                <text x="270" y="290" transform="rotate(-4.25)">SYN(2000), ACK(with cookie)</text>
+                <text x="270" y="290" transform="rotate(-4.25)">SYN(with cookie), ACK(1001)</text>
                 <line x1="1500" y1="200" x2="200" y2="290" style="stroke:rgb(0,0,0);stroke-width:3" marker-end="url(#arrow)"/>
             </svg>
 
