@@ -396,30 +396,27 @@ Primitive Datentypen
 
 
 
-Verwendung von Datentypen
----------------------------
+Arten und Verwendung von Datentypen
+-----------------------------------
 
-- Um die erlaubten Werte von Parametern, Variablen und Rückgabewerten genauer spezifizieren zu können, werden Datentypen verwendet.
-
-
-.. class:: incremental
-
-- Java stellt hierzu primitive Datentypen, Aufzählungen (:java:`enum`), Klassen und Interfaces zur Verfügung
-
-.. stack:: incremental
+.. stack:: 
 
     .. layer::
 
-        Ein primitiver Datentyp ist z. B. :java:`int` (d. h. :eng:`integer` bzw. :ger:`Ganzzahl`)
+        Um die erlaubten Werte von Parametern, Variablen und Rückgabewerten genauer spezifizieren zu können, werden Datentypen verwendet. Java stellt hierzu (unter anderem) primitive Datentypen zur Verfügung.
 
-        Dieser Datentyp legt fest, dass ein Wert eine Ganzzahl mit dem Wertebereich: :math:`[-2147483648, 2147483647]`
 
+    .. layer:: incremental
+
+        Ein primitiver Datentyp ist z. B. :java:`int` (d. h. :eng:`integer` bzw. :ger:`Ganzzahl`).
+
+        Dieser Datentyp legt fest, dass ein Wert eine Ganzzahl mit dem Wertebereich: :math:`[-2147483648, 2147483647]` ist.
 
     .. layer:: incremental
 
         .. csv-table::
             :header: "Art", "Datentyp", "Beispiel"
-            :align: center
+            :width: 100%
             :class: highlight-cell-on-hover
 
             Ganzzahlen, ":java:`byte`, :java:`short`, :java:`int`, :java:`long`", :java:`123`
@@ -427,11 +424,16 @@ Verwendung von Datentypen
             Zeichen, :java:`char`, :java:`'a'`
             Wahrheitswerte, :java:`boolean`, ":java:`true`"
 
+        .. container:: margin-bottom-1em smaller text-align-center
+
+            Alle von Java unterstützten primitiven Datentypen. 
+
 .. supplemental::
 
     Bitte beachten Sie, dass in Code für Zahlen immer die Englische Schreibweise verwendet wird. D. h. das Dezimalkomma wird durch einen Punkt ersetzt.
 
     Java kennt neben den primitiven Datentypen auch noch Arrays, Aufzählungen (:java:`enum`) sowie Klassen und Interfaces. Diese werden wir später behandeln.
+
 
 
 Ganzzahlige Datentypen - Hintergrund
@@ -2298,60 +2300,55 @@ Schleifen
 :java:`while`-Schleife
 ----------------------------------------------------------
 
-.. stack::
+.. code:: java
+    :class: far-smaller
+    :number-lines: 1
 
-    .. layer::
+    int sum = 0;
+    int i = 0;
+    
+    // while(<Ausdruck>) <Anweisung oder Block>
+    while(i < 10){
+        sum += i;
+        System.out.println("sum=" + sum);
+        ++i;
+    }
 
-        .. code:: java
-            :class: far-smaller
-            :number-lines: 1
+.. container:: incremental margin-top-1em
 
-            int sum = 0;
-            int i = 0;
-            
-            // while(<Ausdruck>) <Anweisung oder Block>
-            while(i < 10){
-                sum += i;
-                System.out.println("sum=" + sum);
-                ++i;
-            }
+    Die :java:`while`-Anweisung setzt sich zusammen aus einem ``<Ausdruck>`` als Abbruchbedingung und einen Schleifenrumpf (``<Anweisung>`` bzw. ``<Block>``).
 
-    .. layer:: incremental
+    :Syntax: :java:`while(<Ausdruck>) <Anweisung> bzw. <Block>`
 
-        Die :java:`while`-Anweisung setzt sich zusammen aus einem <Ausdruck> als Abbruchbedingung und einen Schleifenrumpf (<Anweisung> bzw. <Block>).
+    Die Abbruchbedingung wird vor jedem Schleifendurchlauf geprüft.
 
-        Die Abbruchbedingung wird vor jedem Schleifendurchlauf geprüft.
-
-        :Syntax: while(<Ausdruck>) <Anweisung> bzw. <Block>
 
 
 :java:`do`-:java:`while`-Schleife
 ----------------------------------------------------------
 
-.. stack::
+.. code:: java
+    :class: far-smaller
+    :number-lines: 1
 
-    .. layer:: 
-
-        .. code:: java
-
-            int sum=0;
-            int i=0;
-            
-            // do <Anweisung> while (<Ausdruck>);
-            do {
-                sum += i++;
-                System.out.println("sum="+sum);
-            } while(i < 10);
-
-    .. layer:: incremental
-
-        .. class:: list-with-explanations 
-
-        - Die :java:`do`-:java:`while`-Schleife setzt sich zusammen aus einem Schleifenrumpf (<Anweisung> bzw. <Block>) und einem <Ausdruck> als Abbruchbedingung.
+    int sum=0;
+    int i=0;
     
-        - Die Abbruchbedingung wird nach jedem Schleifendurchlauf geprüft.
-    
-          Im Gegensatz zur :java:`while`-Schleife wird der Schleifenrumpf mindestens einmal ausgeführt, bevor die Abbruchbedingung geprüft wird.
+    // do <Anweisung> while (<Ausdruck>);
+    do {
+        sum += i++;
+        System.out.println("sum="+sum);
+    } while(i < 10);
+
+.. container:: incremental
+
+    .. class:: list-with-explanations 
+
+    - Die :java:`do`-:java:`while`-Schleife setzt sich zusammen aus einem Schleifenrumpf (<Anweisung> bzw. <Block>) und einem <Ausdruck> als Abbruchbedingung.
+
+    - Die Abbruchbedingung wird nach jedem Schleifendurchlauf geprüft.
+
+        Im Gegensatz zur :java:`while`-Schleife wird der Schleifenrumpf mindestens einmal ausgeführt, bevor die Abbruchbedingung geprüft wird.
 
 
 
