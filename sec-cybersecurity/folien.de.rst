@@ -99,6 +99,7 @@ Von praktischen und theoretischen Angriffen
 -------------------------------------------------------------
 
 
+
 .. class:: no-title center-child-elements
 
 Indonesia - Ransomware Angriff
@@ -232,7 +233,6 @@ Online-Betrug
 
 
 
-
 Ausgewählte Angriffe, Angriffsmethoden und Bedrohungsszenarien
 ----------------------------------------------------------------
 
@@ -257,6 +257,7 @@ Ausgewählte Angriffe, Angriffsmethoden und Bedrohungsszenarien
 .. supplemental::
 
     Der Begriff *Advanced Persistent Threat* (≘ :ger-quote:`fortgeschrittene, andauernde Bedrohung`) bezeichnet Cyberangriffe durch professionelle Gruppen (häufig *state sponsored*). Es werden in der Regel langfristige Ziele verfolgt. Diese dienen zum Beispiel der Spionage oder der Vorbereitung auf einen Cyberkrieg. Häufige Ziele sind Regierungen und Unternehmen sowie Organisationen, die über kritische Daten verfügen. Insbesondere in der Anfangsphase gehen die Angreifer sehr vorsichtig vor, um nicht entdeckt zu werden. Danach unterscheidet sich das Vorgehen je nach Zielsetzung.
+
 
 
 Schutzziele der IT-Sicherheit: CIA-Triade
@@ -375,13 +376,10 @@ Neben den primären Schutzzielen, gibt es eine Reihe weiterer kontextabhängiger
 
 
 
-
 .. class:: new-section transition-fade
 
 Social-Engineering Angriffe
 -------------------------------------------------------------
-
-
 
 
 
@@ -576,6 +574,7 @@ Ausgewählte Social-Engineering Angriffe
 - Vertrauen
 
 
+
 .. class:: new-section transition-fade
 
 Cybersicherheit stärken - NIS 2
@@ -617,6 +616,7 @@ NIS 2 Richtlinie (:eng:`NIS 2 Directive`)
         (2)   Die Mitgliedstaaten stellen sicher, dass die Mitglieder der Leitungsorgane wesentlicher und wichtiger Einrichtungen an Schulungen teilnehmen müssen, und fordern wesentliche und wichtige Einrichtungen auf, allen Mitarbeitern regelmäßig entsprechende Schulungen anzubieten, um ausreichende Kenntnisse und Fähigkeiten zur Erkennung und Bewertung von Risiken sowie Managementpraktiken im Bereich der Cybersicherheit und deren Auswirkungen auf die von der Einrichtung erbrachten Dienste zu erwerben.
    
         -- NIS 2 - KAPITEL IV `RISIKOMANAGEMENTMAẞNAHMEN UND BERICHTSPFLICHTEN IM BEREICH DER CYBERSICHERHEIT <https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32022L2555#d1e3310-80-1>`__
+
 
 
 NIS 2 - Berichtspflichten
@@ -674,6 +674,7 @@ Von NIS2 betroffene Öffentliche und private Einrichtungen\ [#]_
 .. [#] `Details siehe Anhang I und II der NIS 2 Richtlinie <https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32022L2555#d1e32-143-1>`__
 
 
+
 .. class:: no-title center-child-elements
 
 NIS 2 - Nationale Cybersicherheitsstrategie
@@ -682,6 +683,7 @@ NIS 2 - Nationale Cybersicherheitsstrategie
 .. attention::
 
     Jeder Mitgliedstaat erlässt eine *nationale Cybersicherheitsstrategie*, die die strategischen Ziele, die zur Erreichung dieser Ziele erforderlichen Ressourcen sowie angemessene politische und regulatorische Maßnahmen zur Erreichung und Aufrechterhaltung eines hohen Cybersicherheitsniveaus enthält.
+
 
 
 NIS 2 - zentrale Einrichtungen
