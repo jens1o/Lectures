@@ -1,0 +1,7 @@
+#!/usr/bin/env java --source 23 --enable-preview -ea
+
+// THIS FILE MUST NOT END WITH ".java" ACCORDING TO JEP 330!
+
+void main() {
+    println("Hello World!");
+}
