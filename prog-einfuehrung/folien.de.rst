@@ -210,6 +210,40 @@ Programmiersprachen
 
 
 
+Programmiersprachen und -paradigmen
+---------------------------------------
+
+.. class:: incremental list-with-explanations
+
+- Maschinensprachen (Zahlenkombinationen als Befehle) 
+  
+  (Eine Programmierung in Maschinensprache wird heute nicht mehr durchgeführt.)
+- Assemblersprachen (wie Maschinensprachen nur besser lesbar)
+
+  (Es gibt auch heute noch (vereinzelt) Anwendungsbereiche für Assemblersprachen.)
+- Höhere Programmiersprachen:
+
+  .. class:: incremental
+
+  - Prozedurale Programmiersprachen (z. B. C - noch immer sehr verbreitet)
+  - Objekt-orientierte Programmiersprachen (z. B. C++, Java, ... - noch immer sehr verbreitet)
+  - Funktionale Programmiersprachen (z. B. Clojure, F#, ...) 
+  - Logische Programmiersprachen (z. B. Prolog - nur noch in (sehr) speziellen Anwendungsgebieten)
+
+- Sprachen für spezielle Anwendungsgebiete (z. B. SQL oder Low-code Ansätze) 
+
+  (Meist deklarative Sprachen, die für spezielle Anwendungsgebiete entwickelt wurden.)
+
+.. supplemental::
+
+    Bei deklarativen Sprachen beschreibt man nicht wie etwas berechnet wird, sondern was berechnet werden soll. Maschinensprachen und Assemblersprachen  sind imperative Sprachen. Höhere Programmiersprachen sind meist imperative Sprachen, aber es gibt auch deklarative Sprachen (insbesondere Prolog bzw. Datalog).
+
+    Seit ca. 10 bis 15 Jahren kann man beobachten, dass die Grenzen zwischen den verschiedenen Paradigmen immer mehr verschwimmen und einst rein objekt-orientierte Sprachen auch funktionale Elemente enthalten und umgekehrt.
+
+    Sprachen für spezielle Anwendungsgebiete werden auch *Domain-specific Languages* (DSLs) genannt.
+
+
+
 Was ist ein Algorithmus?
 ----------------------------------
 
@@ -222,6 +256,26 @@ Was ist ein Algorithmus?
 .. supplemental::
 
     Es ist zum Beispiel nicht möglich alle reellen Zahlen aufzuzählen - das Problem ist nicht lösbar und es kann kein Algorithmus angegeben werden!
+
+
+
+Klassifizierung von Algorithmen 
+-----------------------------------
+
+:Entscheidungsprobleme: 
+    Für eine Eingabe eine bestimmte Eigenschaft feststellen 
+
+    :Beispiel: Ist eine gegebene Zahl eine Primzahl?
+
+:Aufzählungsprobleme: 
+    Alle Daten mit einer gegeben Eigenschaft aufzuzählen 
+
+    :Beispiel: Zähle alle Primzahlen kleiner als 100 auf!
+
+:Berechnungsprobleme: 
+    Eine gegebene Eingabe in eine Ausgabe zu transformieren.
+
+    :Beispiel: Addition zweier gegebener Zahlen
 
 
 
@@ -414,6 +468,47 @@ Beispiel: Berechnung bzw. Approximation von :math:`e`
   - Können ggf. automatisch ausgewertet werden.
 
   - Programmiersprachen sind formale Sprachen zur Beschreibung von Algorithmen.
+
+
+
+Einsatzbereiche verschiedener Programmiersprachen
+----------------------------------------------------
+
+- Systemprogrammierung
+- Anwendungsprogrammierung / Web-Entwicklung
+- Skriptsprachen
+  
+
+
+Arten der Programmierung
+-------------------------
+
+.. stack::
+
+    .. layer::
+
+        .. image:: images/Programmiermodelle/skript.svg
+            :width: 1400px
+            :align: center
+
+    .. layer:: incremental overlay
+
+        .. image:: images/Programmiermodelle/anwendung.svg
+            :width: 1400px
+            :align: center
+
+    .. layer:: incremental overlay
+
+        .. image:: images/Programmiermodelle/systemcode.svg
+            :width: 1400px
+            :align: center
+
+
+    .. layer:: incremental overlay
+
+        .. image:: images/Programmiermodelle/repl.svg
+            :width: 1400px
+            :align: center
 
 
 
