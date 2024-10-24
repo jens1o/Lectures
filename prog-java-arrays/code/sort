@@ -1,0 +1,6 @@
+#!/usr/bin/java --source 23 --enable-preview -ea
+
+void main(String []args) {
+    Arrays.sort(args);
+    println(Arrays.toString(args));
+}

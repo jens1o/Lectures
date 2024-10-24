@@ -391,7 +391,7 @@ Beispiel mit :java:`<Array>.clone()`:
 
 .. supplemental::
 
-    Dokumentation: `java.util.Arrays <https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Arrays.html>`__
+    Dokumentation: `java.util.Arrays (Java 23) <https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Arrays.html>`__
 
 
 
@@ -555,7 +555,323 @@ Die Parameter und der Rückgabewert einer Methode können vom Typ eines Feldes s
 
 .. class:: new-section transition-move-to-top
 
-Mehrdimensionale Felder (:eng:`Arrays`)
+Mehrdimensionale Felder
 ------------------------------------------------
 
-TODO
+
+
+Multidimensional Arrays
+----------------------------------------------------------
+
+.. stack::
+
+    .. layer::
+
+        Mehrdimensionale Felder sind Datentypen, die es ermöglichen ein Feld von Feldern (gleichen Datentyps) zu verwalten.
+
+        Beispiel: Matrix für Umsätze pro Jahr (1. Dim.) und Monat (2. Dim.) bei 10 Jahren.
+
+        .. code:: java
+            :class: far-far-smaller
+
+            int[][] sales = new int[10][12]; 
+
+        .. csv-table::
+            :header: Jahr, , Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez,
+            :class: far-far-smaller
+            :width: 100%
+            
+            :java:`sales[0]` =, [,  1000€, 2000€, 3000€, 4000€, 3000€, 2500€, 700€, 8000€, 2000€, 1000€, 1100€, 1250€, ] 
+            :java:`sales[1]` = , [,   1200€, 3200€, 3200€, 4500€, 2000€, 3000€, 900€, 8000€, 2900€, 1060€, 100€, 1300€ , ]
+            ...
+            :java:`sales[9]` = , [,  1000€, 2000€, 3000€, 350€, 300€, 500€, 600€, 600€, 900€, 1900€, 1000€, 2000€ , ]
+
+        .. csv-table::
+            :class: far-far-smaller fake-header-column
+            :header: Jahr, Jan, ..., Dez
+            :width: 100%
+
+            :java:`sales[0] =`, :java:`sales[0][0]`, ...  , :java:`sales[0][9]`
+            ... ,... , ..., ...
+            :java:`sales[9] =`, :java:`sales[9][0]`, ...  , :java:`sales[9][9]`
+
+
+    .. layer:: incremental
+
+        Mehrdimensionale Felder werden durch den Datentyp gefolgt von mehreren Paaren von eckigen Klammern deklariert (ein Paar pro Dimension)
+        
+        :Syntax:
+                :java:`<Typ> ([])+ <Bezeichner>` 
+
+                oder	
+
+                :java:`<Typ> <Bezeichner> ([])+` :minor:`(unüblich)`
+        
+
+    .. layer:: incremental
+
+        - direkte Initialisierung eines mehrdimensionalen Feldes:
+
+          .. code:: java
+            :class: far-smaller
+
+            int [][] a = {{1,2,3},{4,5,6,7}};
+            // a ==> a ==> int[2][] { int[3] { 1, 2, 3 }, int[3] { 4, 5, 6, 7 } }
+
+        - Initialisierung mittels :java:`new`-Operator:
+
+          (Die Größe der einzelnen Dimensionen muss angegeben werden, kann unterschiedlich sein und kann auch Schritt-für-Schritt erfolgen.)
+
+          .. code:: java
+            :class: far-smaller
+
+            int [][] a = new int[2][];
+            a[0] = new int[3];
+            a[1] = new int[5];
+            // a ==> int[2][] { int[3] { 0, 0, 0 }, int[5] { 0, 0, 0, 0, 0 } }
+
+    .. layer:: incremental
+
+        Auf die einzelnen Dimensionen eines mehrdimensionalen Feldes kann mittels einer Folge von Feldzugriff-Operatoren :java:`[]`  mit Indizes zugegriffen werden.
+
+        Der erste Feldzugriff-Operator liefert das Element der 1. Dimension, der zweite Feldzugriff-Operator liefert das Element der 2. Dimension, usw.
+
+        .. code:: java
+            :class: far-smaller
+
+            int [][][] a = {{{1,2,3},{4,5,6,7}},{{8,9,10},{11,12,13,14}}};
+
+        :java:`var x = a[0]` ``// ==>`` :incremental:`int[2][] { int[3] { 1, 2, 3 }, int[4] { 4, 5, 6, 7 } }`
+
+        :java:`var y = a[1][1]]` ``// ==>`` :incremental:`int[4] { 11, 12, 13, 14 }`
+
+    .. layer:: incremental
+
+        .. image:: images/MultiDimensionalArrays.svg
+            :width: 100%
+            :alt: Visualisierung von mehrdimensionalen Feldern
+
+
+
+.. class:: integrated-exercise transition-scale
+
+Übung
+-------
+
+.. exercise:: Matrixmultiplikation
+
+    Schreiben Sie eine Methode :java:`multiply`, die zwei 2-dimensionale Matrizen von :java:`int` Werten entgegennimmt und die Matrixmultiplikation der beiden Matrizen berechnet.\ [#]_ 
+
+    Dokumentieren Sie die Anforderungen an die Parameter und dokumentieren Sie den Rückgabewert. Überprüfen Sie die Anforderungen an die übergebenen Argumente mit :java:`assert`-Anweisungen.
+
+    :java:`<TYP> multiply(<TYP> a, <TYP> b)`
+
+    Lesen Sie die Matrizen mit Hilfe von :java:`readln` Anweisungen schrittweise ein. Implementieren Sie die Funktionalität in einer Methode :java:`initMatrix`. Schreiben Sie weiterhin eine Methode :java:`printToConsole`, die eine Matrix auf der Konsole ausgibt.
+
+    .. solution::
+        :pwd: Matrixmultiplikation
+
+        .. include:: code/MatrixMultiplikation.java
+            :code: java
+            :number-lines:
+            :class: far-smaller copy-to-clipboard
+
+.. [#] Matrixmultiplikation: Die Verrechnung erfolgt Zeile mal Spalte.
+
+
+.. supplemental::
+
+    Beispiel für die main Methode:
+
+    .. code:: java
+        :class: far-smaller copy-to-clipboard
+
+        void main() {
+
+            final int[][] a = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9},
+                {10, 11, 12}
+            };
+            final int[][] b = {
+                {9, 8, 7},
+                {6, 5, 4},
+                {3, 2, 7}
+            };
+
+            final var c = multiply(a, b);
+            // println(Arrays.deepToString(c));
+            for (int i = 0; i < c.length; i++) {
+                println(Arrays.toString(c[i]));
+            }
+        }   
+
+
+.. class:: integrated-exercise transition-scale
+
+Übung
+-------
+
+.. exercise:: Sattelpunkte
+
+    Schreiben Sie eine Methode :java:`printSaddlePoints` (:java:`void printSaddlePoints(int [][] m)`), die die Sattelpunkte einer :math:`n \times m` Matrix von :java:`int` Werten berechnet und auf der Konsole ausgibt. 
+
+    Die Sattelpunkte einer Matrix sind die Elemente der Matrix (n x m), die in Ihrer Zeile am kleinsten sind und in der Spalte am größten.
+ 
+    Zum Beispiel hat die folgende Matrize die zwei Sattelpunkte bei :math:`(0,1)` und :math:`(0,2)` jeweils mit dem Wert :math:`0`.
+
+    .. math:: 
+        :class: smaller
+
+        \left( \begin{matrix}
+            1 & 0 & 0 \\
+            0 & -1 & -3 \\
+            10 & -2 & -4
+        \end{matrix} \right)
+
+    .. solution:: 
+        :pwd: SattelpunkteSindAuchNichtSchwer!
+
+        .. include:: code/Sattelpunkte.java
+            :code: java
+            :number-lines:
+            :class: far-smaller copy-to-clipboard
+
+    :minor:`Verwenden Sie Methoden aus der vorherigen Übung wieder (zum Beispiel zum Einlesen einer Matrize bzw. zur Ausgabe.)`
+
+
+
+.. class:: integrated-exercise transition-scale
+
+Übung
+-------
+
+.. exercise:: java.util.Arrays
+
+    Lesen Sie ein Array von der Kommandozeile ein und sortieren Sie es lexikalisch. Danach geben Sie das sortierte Array aus. Schreiben Sie ein Java Script.
+
+    Beispielinteraktion:
+
+    .. code:: java
+
+        $ ./sort 3 2 1 4 5 6 7 8 9 10 
+        [1, 10, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    Studieren Sie die verfügbaren Methoden der Klasse :java:`Arrays` (https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Arrays.html). Suchen Sie nach einer Methode zum sortieren von Arrays mit dem Datentyp :java:`String`. Suchen Sie weiterhin nach einer Methode, um ein String-Array :ger-quote:`vernünftig` auszugeben.
+
+    .. solution::
+        :pwd: SortierenUndAusgebenMitEchtemScript
+
+        .. include:: code/sort
+            :code: java
+            :number-lines:
+            :class: far-smaller copy-to-clipboard
+
+
+.. supplemental::
+
+    .. hint::
+
+        Denken Sie daran, dass die erste Zeile eines echten Java Scripts mit einem Shebang anfangen muss und der Dateiname des Scripts nicht mit :java:`.java` enden darf. Denken Sie auch daran, dass das Script ausführbar sein muss (z. B. Rechte 755).
+
+        Alternativ schreiben Sie eine Java Datei mit der entsprechenden Logik und führen Sie diese mit :java:`java` aus.
+
+    .. important::
+
+        Die *erste Zeile* eines *echten* Java Scripts:
+
+        .. code:: java
+
+            #!/usr/bin/env java --source 23 --enable-preview -ea
+
+
+
+.. class:: new-section transition-move-to-top
+
+Varargs-Methoden
+------------------------------------------------
+
+
+
+Methoden mit einer variablen Anzahl von Parametern (:java:`varargs`)
+----------------------------------------------------------------------
+
+.. stack:: 
+
+    .. layer::
+
+        .. rubric:: Beispiel
+
+        .. code:: java
+            :class: far-smaller copy-to-clipboard
+
+            void printAll(String separator, String... strings) {
+                for (int i = 0; i < strings.length; i++) {
+                    print(strings[i]);
+                    if (i < strings.length - 1) {
+                        print(separator);
+                    }
+                }
+            }
+
+            printAll(" + ", "2", "2", "3")
+            // ==> 2 + 2 + 3
+
+    .. layer:: incremental
+
+        .. class:: incremental list-with-explanations
+
+        - Pro Methode kann es nur einen *varargs* Parameter geben und dies muss der letzte Parameter sein.
+        - Der Compiler erzeugt ein Array, das die übergebenen Parameter enthält.
+          
+          *Best Practice: das varargs-Array sollte die Methode nicht verlassen*.
+          
+        .. class:: incremental
+
+        :Syntax für den letzten Methodenparameter: :java:`<Typ>... <Bezeichner>`
+
+
+.. class:: integrated-exercise transition-move-left
+
+Übung
+-------
+
+.. exercise:: varargs
+
+    Schreiben Sie eine Methode :java:`join`, die eine beliebige Anzahl von :java:`int` Arrays (:java:`int[]`) entgegennimmt und daraus ein Array erzeugt.
+
+    Beispielinteraktion:
+
+    .. code:: java
+        :class: far-smaller copy-to-clipboard
+
+        jshell>var r = join(new int[]{1,2}, new int[]{3,4})
+        r ==> int[4] { 1, 2, 3, 4 }
+
+        jshell>var r = join(
+                new int[]{1,2}, 
+                new int[]{3,4}, 
+                new int[]{5,6,7,8,9})
+        r ==> int[9] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
+
+    .. solution::
+        :pwd: JoinMit_Varargs+
+
+        .. code:: java
+            :class: far-smaller copy-to-clipboard
+
+            int[] join(int[]... arrays) {
+                int totalLength = 0;
+                for (int[] a : arrays) {
+                    totalLength += a.length;
+                }
+                int[] result = new int[totalLength];
+                int index = 0;
+                for (int[] a : arrays) {
+                    for (int i : a) {
+                        result[index++] = i;
+                    }
+                }
+                return result;
+            }
