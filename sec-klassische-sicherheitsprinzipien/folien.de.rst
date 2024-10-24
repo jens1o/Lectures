@@ -32,7 +32,7 @@ Klassische Sicherheitsprinzipien
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Kontakt: michael.eichberg@dhbw-mannheim.de
-:Version: 1.1
+:Version: 1.1.1
 
 .. supplemental::
 
@@ -172,7 +172,7 @@ Ergänzende Sicherheitsprinzipien
 
 .. exercise:: Verletzung
 
-    Stellen Sie sich vor, dass Sie als Pin (z. B. für ein Tablet), folgende Zahl verwenden wollen (Leerzeichen dienen nur der besseren Lesbarkeit): 
+    Stellen Sie sich vor, dass Sie als Pin (z. B. für ein Tablet) folgende Zahl verwenden wollen, diese aber abgelehnt wird (Leerzeichen dienen nur der Lesbarkeit): 
 
        ``3671 1197 4769``
 
@@ -180,7 +180,7 @@ Ergänzende Sicherheitsprinzipien
 
        ``1364 7964 1364``
 
-    Welches Prinzip ist verletzt?
+    Wie bewerten Sie dies?
 
     .. container:: minor far-smaller 
         
@@ -189,7 +189,7 @@ Ergänzende Sicherheitsprinzipien
     .. solution::
         :pwd: PrincipleOfLeastAstonishment
 
-        Bei der zweiten Pin handelt es sich um einen einfach *Keypad Walk*. Während die erste Pin eine scheinbar zufällige Zahlenfolge ist. Das *Principle of Least Astonishment* wird hier verletzt, da der Benutzer davon ausgehen würde, dass, wenn die erste Pin nicht akzeptiert wird, die zweite Pin erst recht nicht akzeptiert wird.
+        Bei der zweiten Pin handelt es sich um einen einfachen *Keypad Walk*. Während die erste Pin eine (scheinbar ?) zufällige Zahlenfolge ist. Das *Principle of Least Astonishment* wird hier verletzt, da der Benutzer davon ausgehen würde, dass, wenn die erste Pin nicht akzeptiert wird, die zweite Pin erst recht nicht akzeptiert wird.
 
 
 
