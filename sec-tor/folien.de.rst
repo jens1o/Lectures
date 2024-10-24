@@ -34,7 +34,7 @@ TOR - The Onion Router
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Kontakt: michael.eichberg@dhbw-mannheim.de
-:Version: 1.0
+:Version: 1.1
 
 .. supplemental::
 
@@ -50,9 +50,10 @@ TOR - The Onion Router
 Tor (The Onion Router)
 ---------------------------
 
+Anwendungsunabhängiger **low-latency Anonymisierungsdienst für TCP-Verbindungen**, der den Standort und die IP des Nutzers verschleiert.
+
 .. class:: incremental
 
-- Anwendungsunabhängiger **low-latency Anonymisierungsdienst für TCP-Verbindungen**, der den Standort und die IP des Nutzers verschleiert
 - Typische Anwendung: anonymes Surfen im Internet und Instant Messaging (z. B. Briar)
 - Frei und Open Source
 - gegründet 2002, öffentlich nutzbar seit 2003, Code seit 2004 frei verfügbar
@@ -73,11 +74,16 @@ Tor - Verwendung
 .. class:: incremental
 
 - legale/intendierte Nutzungen: Nutzer mit allg. Datenschutzbedürfnissen, *Whistleblowers*, Dissidenten, Journalisten, ...
-- illegale Zwecke (Darknet). 
+- illegale Zwecke (**Darknet**)
 
-  .. container:: smaller minor
+  .. container:: smaller minor incremental
+    
+    Marktplatz für illegale Waren und Dienstleistungen, z. B. Drogen, Waffen, gefälschte Dokumente, ... (z. B. `Silk Road <https://en.wikipedia.org/wiki/Silk_Road_(marketplace)>`__, oder `CyberBunker <https://en.wikipedia.org/wiki/CyberBunker>`__ als Hosting-Provider für illegale Dienst)
+
+  .. container:: smaller minor incremental
 
     Es wird geschätzt, dass etwa 80% des Datenverkehrs im Zusammenhang mit dem Zugriff auf Kinderpornografie steht. Solche Schätzungen sind allerdings mit Vorsicht zu genießen!
+
 
 .. supplemental::
 
@@ -126,7 +132,11 @@ Tor - Deanonymisierungsattacke 2024
 
 .. epigraph::
 
-    Strafverfolgungsbehörden haben offenbar einen Weg gefunden, Nutzer des Tor-Netzwerkes gezielt zu deanonymisieren. Möglich sein soll dies [...] durch sogenannte Timing-Analysen, die bisher als praktisch nicht umsetzbar galten. Dadurch sei es aufgrund der verschlüsselten Datenpakete zwar nicht möglich zu sehen, was Nutzer verschickten, dass sie überhaupt kommunizierten, sei aber sichtbar. [...] ist dafür allerdings eine teils jahrelange Überwachung einzelner Tor-Nodes erforderlich. [...]
+    Strafverfolgungsbehörden haben offenbar einen Weg gefunden, Nutzer des Tor-Netzwerkes gezielt zu deanonymisieren. Möglich sein soll dies [...] durch sogenannte Timing-Analysen, die bisher als praktisch nicht umsetzbar galten. Dadurch sei es aufgrund der verschlüsselten Datenpakete zwar nicht möglich zu sehen, was Nutzer verschickten, dass sie überhaupt kommunizierten, sei aber sichtbar. 
+    
+    .. container:: incremental
+
+        [...] ist dafür allerdings eine teils jahrelange Überwachung einzelner Tor-Nodes erforderlich. [...]
 
     -- 2024 - `Behörden unterwandern Tor <https://www.golem.de/news/deanonymisierung-von-nutzern-behoerden-unterwandern-tor-netzwerk-2409-189076.html>`__    
 
