@@ -83,6 +83,10 @@ Einführung
 .. include:: code/HelloWorld.java
     :code: java
 
+.. class:: incremental
+
+    Die Ausführung des Programms ist (in der Konsole/im Terminal) mit ``java --enable-preview HelloWorld.java`` möglich.
+
 
 .. [#]  Die Datei ``HelloWorld.java`` kann `hier <https://delors.github.io/prog-java-basics/code/HelloWorld.java>`__ heruntergeladen werden und mit ``java --enable-preview HelloWorld.java`` ausgeführt werden.
 
@@ -106,9 +110,26 @@ Von der Konsole lesen
 
     Mit Hilfe von ``readln`` können Sie von der Konsole lesen. In Java Skripten ist ``readln`` immer verfügbar. Das Programm gibt den Text ``Hello`` gefolgt von dem eingegebenen Text aus. Die Methode ``readln`` gibt erst den übergebenen String aus und liest dann eine Zeile von der Konsole ein. Der eingelesene Text wird dann an das Wort "Hello " angehängt (mittels des "+" Operators) und als ganzes zurückgegeben.
 
-
 .. [#] `HelloYou.java <https://delors.github.io/prog-java-basics/code/HelloYou.java>`__     
 
+
+
+Ausführung von Java Skripten
+--------------------------------------------
+
+.. class:: list-with-explanations
+
+- Java Skripte können direkt mit ``java --enable-preview <Datei mit Sourcecode>`` ausgeführt werden.
+  
+  Die Option ``--enable-preview`` ermöglicht die Verwendung der neuesten Features von Java, die sich in Zukunft aber ggf. noch ändern können.
+
+.. class:: incremental
+
+- Java Skripte können aber auch direkt ausgeführt werden, wenn sie ein Shebang (``#!``) in der ersten Zeile enthalten, die Datei nicht mit *.java* endet und die Dateirechte (ausführbar) entsprechend gesetzt sind (Auf Unixoiden: ``-rwxr-xr-x`` ... `HelloWorldScript <https://delors.github.io/prog-java-basics/code/HelloWorldScript>`__):
+  
+  .. include:: code/HelloWorldScript
+        :code: java
+        :class: far-smaller copy-to-clipboard
 
 
 .. class:: integrated-exercise
@@ -142,6 +163,36 @@ Von der Konsole lesen
         2) Schreiben Sie den Rumpf des Programms: :java:`void main() { <IHR CODE> }`
         3) Ersetzen Sie ``<IHR CODE>`` durch den Code, der den Nutzer nach seinem Namen X fragt und dann "Guten Morgen X!" ausgibt.
         4) Führen Sie den Code aus in dem Sie die Konsole/ein Terminal öffnen und dort: :code:`java --enable-preview GutenMorgen.java` ausführen.
+
+
+
+.. class:: integrated-exercise
+
+Übung - *Java Scripting*
+--------------------------------
+
+.. exercise:: Java Scripting
+
+    Zur Ausführung der vorhergehenden Programme mussten Sie immer den Java Interpreter starten und das Programm ausführen. Stellen Sie Ihr letztes Programm so um, dass eine direkte Ausführung - wenn Java korrekt installiert ist - möglich ist.
+
+    Beispielausführung auf der Kommandozeile:
+
+    .. code:: bash
+
+        $ ./GutenMorgen
+        Wie ist Dein Name? Michael
+        Hallo Michael!
+        Wo wohnst Du? In einem schönen Ort
+        In einem schönen Ort ist wirklich schön!
+
+    .. solution::
+        :pwd: Programmieren!NochEinfacher
+
+        Es ist nur ein Shebang hinzuzufügen und die Rechte sind anzupassen:
+
+        .. include:: code/GutenMorgen
+            :code: java
+
 
 
 .. class:: new-section transition-move-to-top
