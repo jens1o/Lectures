@@ -41,7 +41,7 @@ Einführung in die Programmierung
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
-    :Version: 1.0
+    :Version: 1.0.1
 
 .. supplemental::
 
@@ -711,9 +711,9 @@ Die EBNF dient der Beschreibung kontext-freier Grammatiken.
             Ausdruck = 
                 ( "(", Ausdruck , ")" ) |
                 Zahl | 
-                Term;
-            Term = Ausdruck, ("+" | "-"), Ausdruck
-            Zahl = Ziffer, { Ziffer };
+                Term ;
+            Term = Ausdruck, ("+" | "-"), Ausdruck ;
+            Zahl = Ziffer, { Ziffer } ;
             Ziffer = 
                 ( "1" | "2" | "3" | "4" | "5" | "6" | 
                   "7" | "8" | "9" | "0" ) ;
