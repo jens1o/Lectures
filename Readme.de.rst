@@ -9,12 +9,15 @@ Im Folgenden sind einige sinnvolle Kombinationen aufgeführt.
 Vorlesung "Einführung in der Programmierung"
 ---------------------------------------------
 
+Die grundlegende Idee hinter der folgenden Reihenfolge ist, dass die Studierenden zuerst die Grundlagen der Programmierung in Java lernen und sich dann (kurz) mit der objekt-orientierten Modellierung realer Systeme beschäftigen, bevor dann mit der objekt-orientierten Programmierung in Java begonnen wird.
+
 .. container:: scrollable
 
    1. Einführung in die Programmierung (`<prog-einfuehrung/folien.de.rst.html>`__)
    2. Grundlagen der Programmierung in Java (`<prog-java-basics/folien.de.rst.html>`__)
    3. Verwendung von Arrays in Java (`<prog-java-arrays/folien.de.rst.html>`__)
-   4. Objekt-orientierte Programmierung in Java (`<prog-java-oo/folien.de.rst.html>`__)
+   4. Objekt-orientierte Modellierung mit UML (`<prog-modellierung_mit_uml/folien.de.rst.html>`__)
+   5. Objekt-orientierte Programmierung in Java (`<prog-java-oo/folien.de.rst.html>`__)
 
 
 Vorlesung "Verteilte Systeme"
