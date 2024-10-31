@@ -40,7 +40,7 @@ CWE/OWASP
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Kontakt: michael.eichberg@dhbw-mannheim.de
-:Version: 1.0
+:Version: 1.1
 
 .. supplemental::
 
@@ -67,6 +67,8 @@ Relevante Schwachstellen (`CWEs <https://cwe.mitre.org>`__)
 CWE-787: Out-of-bounds Write (Memory Corruption)
 --------------------------------------------------------
 
+
+
 CWE-787: Out-of-bounds Write
 ----------------------------
 
@@ -77,13 +79,14 @@ CWE-787: Out-of-bounds Write
 
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-787: Out-of-bounds Write - Beispiel 1
 --------------------------------------------------------
 
 
 .. code:: c
+    :number-lines:
 
     int id_sequence[3];
 
@@ -96,7 +99,7 @@ CWE-787: Out-of-bounds Write - Beispiel 1
 
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-787: Out-of-bounds Write - Beispiel 2
 --------------------------------------------------------
@@ -104,6 +107,7 @@ CWE-787: Out-of-bounds Write - Beispiel 2
 .. exercise::
 
     .. code:: C
+        :number-lines:
 
         int returnChunkSize(void *) {
 
@@ -128,7 +132,7 @@ CWE-787: Out-of-bounds Write - Beispiel 2
 
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-787: Out-of-bounds Write - Beispiel 3
 --------------------------------------------------------
@@ -136,6 +140,7 @@ CWE-787: Out-of-bounds Write - Beispiel 3
 .. exercise::
 
     .. code:: C
+        :number-lines:
 
         void host_lookup(char *user_supplied_addr){
             struct hostent *hp;
@@ -155,11 +160,12 @@ CWE-787: Out-of-bounds Write - Beispiel 3
     .. solution:: 
         :pwd: gethostbyaddr
 
-        - Problem 1: hostname hat nur 64 Bytes, aber der Name des Hosts kann länger sein.
-        - Problem 2: `gethostbyaddr` kann NULL zurückgeben, wenn der Host nicht gefunden werden kann. (Null pointer dereference)
+        - Problem 1: ``hostname`` hat nur 64 Bytes, aber der Name des Hosts kann länger sein.
+        - Problem 2: ``gethostbyaddr`` kann ``NULL`` zurückgeben, wenn der Host nicht gefunden werden kann. (:eng:`Null-pointer Dereference`)
 
 
-.. class:: scriptsize
+
+.. class:: far-far-smaller
 
 CWE-787: Out-of-bounds Write - Beispiel 4
 --------------------------------------------------------
@@ -167,58 +173,62 @@ CWE-787: Out-of-bounds Write - Beispiel 4
 .. exercise::
 
     .. code:: C
+        :number-lines:
 
         char * copy_input(char *user_supplied_string){
-        int i, dst_index;
-        char *dst_buf = (char*)malloc(4*sizeof(char) * MAX_SIZE);
-        if ( MAX_SIZE <= strlen(user_supplied_string) ) die("string too long");
-        dst_index = 0;
-        for ( i = 0; i < strlen(user_supplied_string); i++ ){
-            if( '&' == user_supplied_string[i] ){
-            dst_buf[dst_index++] = '&';
-            dst_buf[dst_index++] = 'a';
-            dst_buf[dst_index++] = 'm';
-            dst_buf[dst_index++] = 'p';
-            dst_buf[dst_index++] = ';';
+            int i, dst_index;
+            char *dst_buf = (char*)malloc(4*sizeof(char) * MAX_SIZE);
+            if ( MAX_SIZE <= strlen(user_supplied_string) ) die("string too long");
+            dst_index = 0;
+            for ( i = 0; i < strlen(user_supplied_string); i++ ){
+                if( '&' == user_supplied_string[i] ){
+                    dst_buf[dst_index++] = '&';
+                    dst_buf[dst_index++] = 'a';
+                    dst_buf[dst_index++] = 'm';
+                    dst_buf[dst_index++] = 'p';
+                    dst_buf[dst_index++] = ';';
+                }
+                else if ( '<' == user_supplied_string[i] ){ /* encode to &lt; */ }
+                else dst_buf[dst_index++] = user_supplied_string[i];
             }
-            else if ( '<' == user_supplied_string[i] ){ /* encode to &lt; */ }
-            else dst_buf[dst_index++] = user_supplied_string[i];
-        }
-        return dst_buf;
+            return dst_buf;
         }
 
     .. solution:: 
         :pwd: dst_buf
 
-        Das Problem ist, dass :code:`dst_buf` nur :code:`4*sizeof(char) * MAX_SIZE`` Bytes hat. Wenn der Nutzer einen sehr langen String mit (fast) nur `&` übermittelt, dann wird der Puffer überlaufen, da das Encoding 5 Zeichen benötigt.
+        Das Problem ist, dass :code:`dst_buf` nur :code:`4*sizeof(char) * MAX_SIZE`` Bytes hat. Wenn der Nutzer einen sehr langen String mit (fast) nur `&` enkodierten Zeichen übermittelt, dann wird der Puffer überlaufen, da das Encoding 5 Zeichen benötigt.
 
 
-.. class:: scriptsize
+
+.. class:: far-far-smaller
 
 CWE-787: Out-of-bounds Write - Beispiel 5
 --------------------------------------------------------
 
-.. code:: C
+.. exercise:: 
 
-    char* trimTrailingWhitespace(char *strMessage, int length) {
-      char *retMessage;
-      char message[length+1];                    // copy input string to a 
-      int index;                                 //      temporary string
-      for (index = 0; index < length; index++) { //
-        message[index] = strMessage[index];      //
-      }                                          //
-      message[index] = '\0';                     //
+    .. code:: C
+        :number-lines:
 
-      int len = index-1;                         // trim trailing whitespace
-      while (isspace(message[len])) {            //
-        message[len] = '\0';                     //
-        len--;                                   //
-      }                                          //
-      
-      retMessage = message;
-      return retMessage;                         // return trimmed string
-    }
+        char* trimTrailingWhitespace(char *strMessage, int length) {
+            char *retMessage;
+            char message[length+1];                    // copy input string to a 
+            int index;                                 //      temporary string
+            for (index = 0; index < length; index++) { //
+                message[index] = strMessage[index];    //
+            }                                          //
+            message[index] = '\0';                     //
 
+            int len = index-1;                         // trim trailing whitespace
+            while (isspace(message[len])) {            //
+                message[len] = '\0';                   //
+                len--;                                 //
+            }                                          //
+            
+            retMessage = message;
+            return retMessage;                         // return trimmed string
+        }
 
     .. solution:: 
         :pwd: Whitespace
@@ -231,7 +241,7 @@ CWE-787: Out-of-bounds Write - Beispiel 5
     :isspace: If an argument (character) passed to the isspace() function is a white-space character, it returns non-zero integer. If not, it returns 0.
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-787: Out-of-bounds Write - Beispiel 6
 --------------------------------------------------------
@@ -239,6 +249,7 @@ CWE-787: Out-of-bounds Write - Beispiel 6
 .. exercise::
 
     .. code:: C
+        :number-lines:
 
         int i;
         unsigned int numWidgets;
@@ -246,16 +257,15 @@ CWE-787: Out-of-bounds Write - Beispiel 6
 
         numWidgets = GetUntrustedSizeValue();
         if ((numWidgets == 0) || (numWidgets > MAX_NUM_WIDGETS)) {
-        ExitError("Incorrect number of widgets requested!");
+            ExitError("Incorrect number of widgets requested!");
         }
         WidgetList = (Widget **)malloc(numWidgets * sizeof(Widget *));
         printf("WidgetList ptr=%p\n", WidgetList);
         for(i=0; i<numWidgets; i++) {
-        WidgetList[i] = InitializeWidget();
+            WidgetList[i] = InitializeWidget();
         }
         WidgetList[numWidgets] = NULL;
         showWidgets(WidgetList);
-
 
     .. solution::
         :pwd: malloc!!
@@ -286,6 +296,8 @@ CWE-787: Out-of-bounds Write - Mögliche Abhilfemaßnahmen
 
 CWE-79: Improper Neutralization of Input During Web Page Generation (*Cross-site Scripting* or *XSS*)
 ----------------------------------------------------------------------------------------------------------
+
+
 
 CWE-79: Improper Neutralization of Input During Web Page Generation
 ---------------------------------------------------------------------
@@ -343,7 +355,7 @@ Dom-based XSS (Typ 0)
 
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-79: XSS - Beispiel 1 - XSS Typ 1 (Php)
 --------------------------------------------------------
@@ -351,6 +363,7 @@ CWE-79: XSS - Beispiel 1 - XSS Typ 1 (Php)
 .. exercise::
 
     .. code:: php
+        :number-lines:
 
         # Rückgabe einer Willkommensnachricht basierend auf dem 
         # HTTP Get username Parameter
@@ -360,11 +373,11 @@ CWE-79: XSS - Beispiel 1 - XSS Typ 1 (Php)
     .. solution:: 
         :pwd: beliebig_lange
 
-        Das Problem ist, dass der Nutzername "beliebig lange" sein kann und insbesondere beliebigen JavaScript Code enthalten. Beispiel :code:`http://trustedSite.example.com/welcome.php?username=<Script Language="Javascript">alert("You've been attacked!");</Script>`. Komplexerer Code könnte zum Beispiel ein Fakelogin nachbauen und so die Zugangsdaten des Nutzers abgreifen. Entsprechende Links könnten mit Hilfe von Werkzeugen so verschleiert werden, dass der Nutzer nicht bemerkt, dass er auf einen Link mit Schadfunktion klickt.
+        Das Problem ist, dass der Nutzername :ger-quote:`beliebig lange`` sein kann und insbesondere beliebigen JavaScript Code enthalten. Beispiel :code:`http://trustedSite.example.com/welcome.php?username=<Script Language="Javascript">alert("You've been attacked!");</Script>`. Komplexerer Code könnte zum Beispiel ein Fakelogin nachbauen und so die Zugangsdaten des Nutzers abgreifen. Entsprechende Links könnten mit Hilfe von Werkzeugen so verschleiert werden, dass der Nutzer nicht bemerkt, dass er auf einen Link mit Schadfunktion klickt.
 
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-79: XSS - Beispiel 2 - XSS Typ 2 (JSP)
 --------------------------------------------------------
@@ -372,13 +385,14 @@ CWE-79: XSS - Beispiel 2 - XSS Typ 2 (JSP)
 .. exercise::
 
     .. code:: jsp
+        :number-lines:
 
         <%  String eid = request.getParameter("eid");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from emp where id="+eid);
             if (rs != null) {
-            rs.next();
-            String name = rs.getString("name");
+                rs.next();
+                String name = rs.getString("name");
             }
         %>
 
@@ -387,11 +401,11 @@ CWE-79: XSS - Beispiel 2 - XSS Typ 2 (JSP)
     .. solution:: 
         :pwd: Mein Name
 
-        - Problem: Falls der Nutzer in der Lage war seinen Namen selber zu wählen und beim Anlegen keine ausreichenden Prüfungen stattgefunden haben, ist ggf. ein XSS Angriff möglich. 
-        - Weiteres Problem : In dem Beispiel wird der Parameter :code:`eid` nicht validiert. Der Angreifer kann beliebige SQL-Statements ausführen. 
+        - Problem: Falls der Nutzer in der Lage war seinen Namen selber zu wählen und beim Anlegen keine ausreichenden Prüfungen stattgefunden haben, ist ggf. ein XSS Angriff möglich. Zum Beispiel wenn in einem Forum angezeigt wird, wer gerade online ist und der Nutzer seinen Namen auf z. B. :code:`<script>alert('Mein Name')</script>` setzt.
+        - Weiteres Problem : In dem Beispiel wird der Parameter :code:`eid` nicht validiert. Der Angreifer kann beliebige SQL-Statements ausführen. (SQL-Injection)
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-79: XSS - Beispiel 3 - XSS Typ 2 (PHP)
 --------------------------------------------------------
@@ -399,6 +413,7 @@ CWE-79: XSS - Beispiel 3 - XSS Typ 2 (PHP)
 .. exercise:: 
 
     .. code:: php
+        :number-lines:
 
         $username = mysql_real_escape_string($username);
         $fullName = mysql_real_escape_string($fullName);
@@ -412,7 +427,7 @@ CWE-79: XSS - Beispiel 3 - XSS Typ 2 (PHP)
     .. solution::
         :pwd: HTML code
 
-        Hier wird zwar die Eingabe validiert (mysql_real_escape_string) aber *nur* in Hinblick auf SQL Injections! Der Angreifer kann so einen Nutzer anlegen, der HTML code enthält.
+        Hier wird zwar die Eingabe validiert (``mysql_real_escape_string``) aber *nur* in Hinblick auf SQL Injections! Der Angreifer kann so einen Nutzer anlegen, der HTML/JavaScript code enthält. Auch in diesem Fall ist es erforderlich, dass der Name an einer anderen Stelle angezeigt wird, wenn ein anderer (ggf. authentifizierter) Nutzer die Seite besucht. 
 
 
 
@@ -423,8 +438,8 @@ CWE-79: Improper Neutralization of Input During Web Page Generation - Abhilfema�
 
 - Verwendung von geprüften/sicheren APIs
 - Verringerung der Angriffsfläche mit dem Ziel möglichst wenig Daten in Cookies etc. zu speichern.
-- Prüfung dass alle Client-seitigen Prüfungen auch Server-seitig vorgenommen werden.
-- Prüfe jeden Input.
+- Prüfung dass alle auf dem Client durchgeführten Prüfungen auch auf dem Server vorgenommen werden.
+- **Prüfe jeden Input.**
 - Verwendung von HttpOnly Cookies (d. h. Cookies, die nicht über JavaScript ausgelesen werden können)
 - Statische Analyse Werkzeuge
 - Beherzigen von Best Practices (`XSS Prevention Cheat Sheet <https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html>`__)
@@ -441,7 +456,7 @@ CWE-89: Improper Neutralization of Special Elements used in an SQL Command (*SQL
 CWE-89: Improper Neutralization of Special Elements used in an SQL Command 
 ----------------------------------------------------------------------------
 
-:Kurzbeschreibung: Ein SQL-Befehl wird ganz oder teilweise unter Verwendung extern beeinflusster Eingaben von einer vorgelagerten Komponente erzeugt, bereinigt aber spezielle Elemente nicht oder falsch, die den beabsichtigten SQL-Befehl verändern könnten, wenn er an eine nachgelagerte Komponente gesendet wird.
+:Kurzbeschreibung: Ein SQL-Befehl wird ganz oder teilweise unter Verwendung extern beeinflusster Eingaben von einer vorgelagerten Komponente erzeugt. Dabei werden aber spezielle Elemente nicht oder falsch bereinigt, die den beabsichtigten SQL-Befehl verändern könnten, wenn er an eine nachgelagerte Komponente gesendet wird.
 
 :Wahrscheinlichkeit des Missbrauchs: Hoch
 :Technologie: Datenbanken
@@ -449,19 +464,23 @@ CWE-89: Improper Neutralization of Special Elements used in an SQL Command
 
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
-CWE-89: SQL Injection - Beispiel 1 (MS SQl)
+CWE-89: SQL Injection - Beispiel 1 (MS SQL)
 --------------------------------------------------------
 
 .. exercise:: 
 
     .. code:: sql
+        :number-lines:
 
-        SELECT ITEM,PRICE FROM PRODUCT WHERE ITEM_CATEGORY='$user_input' ORDER BY PRICE
+        SELECT ITEM,PRICE 
+            FROM PRODUCT 
+            WHERE ITEM_CATEGORY='$user_input' 
+            ORDER BY PRICE
 
-    .. admonition:: Hintergrund
-        :class: margin-top-2em
+    .. warning::
+        :class: incremental margin-top-2em larger
 
         MS SQL hat eine eingebaute Funktion, die es erlaubt Shell Befehle auszuführen. Diese Funktion kann auch in einem SQL Statement verwendet werden.
 
@@ -471,7 +490,8 @@ CWE-89: SQL Injection - Beispiel 1 (MS SQl)
         Sollte der Nutzername :code:`'; exec master..xp_cmdshell 'dir' --` sein, dann wird das entsprechende Kommando ausgeführt.
 
 
-.. class:: scriptsize
+
+.. class:: far-far-smaller
 
 CWE-89: SQL Injection - Beispiel 2 (PHP)
 --------------------------------------------------------
@@ -479,9 +499,12 @@ CWE-89: SQL Injection - Beispiel 2 (PHP)
 .. exercise::
 
     .. code:: php
+        :number-lines:
 
         $id = $_COOKIE["mid"];
-        mysql_query("SELECT MessageID, Subject FROM messages WHERE MessageID = '$id'");
+        mysql_query(
+            "SELECT MessageID, Subject FROM messages WHERE MessageID = '$id'"
+        );
 
 
     .. solution::
@@ -498,7 +521,9 @@ CWE-89: Improper Neutralization of Special Elements used in an SQL Command - Abh
 
 - Verwendung von geprüften/sicheren APIs.
 - Verwendung von *Prepared Statements*.
-- Datenbank nur mit den notwendigen Rechten betreiben (*Principle of Least Privilege*)
+- Datenbank nur mit den notwendigen Rechten betreiben 
+  
+  (*Principle of Least Privilege*)
 - Sollte es notwendig sein einen dynamischen SQL Befehl zu erstellen, dann sollten geprüfte Escapefunktionen verwendet werden.
 - Statische Analyse Werkzeuge
 - ggf. Application-level Firewall einsetzen
@@ -523,31 +548,46 @@ CWE-416: Use After Free
 
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-416: Use After Free - Triviales Beispiel
 ----------------------------------------------------------------------------
 
 .. code:: C
+    :number-lines:
 
     char* ptr = (char*)malloc (SIZE);
     if (err) {
       abrt = 1;
       free(ptr);
     }
-    ...
+
+.. code:: C
+    :number-lines: 6   
+    :class: incremental
+
+    // ... somewhere else in the code
+    //    char* otherPtr = (char*)malloc (SIZE);
+    //    otherPtr* = <HACKER CONTROLLED VALUE>;
+    // ...
+
+.. code:: C
+    :number-lines: 10
+    :class: incremental
+
     if (abrt) {
-      logError("operation aborted before commit", ptr); // Use of ptr after free
+      // Next: use of ptr after free which uses the hacker controlled value
+      logError("operation aborted before commit", ptr); 
     }
 
 .. admonition:: Hinweis
-    :class: margin-top-2em
+    :class: margin-top-1em
 
     Ziel ist es im Allgemeinen eine Referenz auf einen interessanten Speicherbereich zu erhalten, der bereits freigegeben wurde und dann den Inhalt dieses Speicherbereichs auszulesen bzw. zu manipulieren, um die nächste Verwendung zu kontrollieren.
 
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-416: Use After Free - Beispiel
 ----------------------------------------------------------------------------
@@ -556,30 +596,32 @@ CWE-416: Use After Free - Beispiel
 
     .. container:: two-columns
 
-        .. container:: column
+        .. container:: column no-separator
 
             .. code:: C
+                :number-lines: 
 
                 #include <stdlib.h>
                 #include <stdio.h>
                 #include <string.h>
                 #define BUFSIZER1 512
                 int main(int argc, char **argv) {
-                char *buf1R1, *buf2R1, *buf2R2;
-                buf1R1 = (char *) malloc(BUFSIZER1);
-                buf2R1 = (char *) malloc(BUFSIZER1);
-                printf("buf2R1 -> %p\n",buf2R1); 
-                free(buf2R1);
-                buf2R2 = (char *) malloc(BUFSIZER1);
-                strncpy(buf2R1, argv[1], BUFSIZER1-1);
-                printf("[FREED]   %p\n",buf2R1);
-                printf("buf2R2 -> %p\n",buf2R2);
-                printf("buf2R2  = %s\n",buf2R2);
-                free(buf1R1);
-                free(buf2R2);
+                    char *buf1R1, *buf2R1, *buf2R2;
+                    buf2R1 = (char *) malloc(BUFSIZER1);
+                    printf("buf2R1     -> %p\n",buf2R1); 
+                    free(buf2R1);
+                    printf("[FREED]       %p\n",buf2R1);
+                    
+                    buf2R2 = (char *) malloc(BUFSIZER1);
+                    strncpy(buf2R2, argv[1], BUFSIZER1-1);
+                    printf("buf2R2     -> %p\n",buf2R2);
+                    printf("buf2R2     =  %s\n",buf2R2);
+                    printf("!!! buf2R1 =  %s\n",buf2R1);
+                    free(buf2R2);
                 }
 
-        .. container:: column
+
+        .. container:: column margin-left-1em
 
             **Fragen**:
 
@@ -598,44 +640,49 @@ CWE-416: Use After Free - Beispiel
 
         .. code:: text
 
-            buf2R1 -> 0xaaaabc1fc4b0
-            [FREED]   0xaaaabc1fc4b0
-            buf2R2 -> 0xaaaabc1fc4b0
-            buf2R2  = Test
+            buf2R1     -> 0xaaaafd8982a0
+            [FREED]       0xaaaafd8982a0
+            buf2R2     -> 0xaaaafd8982a0
+            buf2R2     =  Test
+            !!! buf2R1 =  Test
 
         Ausgabe - 2. Lauf:
 
         .. code:: text
 
-            buf2R1 -> 0xaaaad5de54b0
-            [FREED]   0xaaaad5de54b0
-            buf2R2 -> 0xaaaad5de54b0
-            buf2R2  = Test
+            buf2R1     -> 0xaaab070812a0
+            [FREED]       0xaaab070812a0
+            buf2R2     -> 0xaaab070812a0
+            buf2R2     =  Test
+            !!! buf2R1 =  Test
 
+        Der Inhalt von :code:`buf2R2` ist :code:`Test`, obwohl dort nie explizit etwas hineinkopiert wurde. Die Ausgabe (Adressen) ist bei jedem Lauf anders, da wir Position-Independent-Code haben und der Kernel ASLR verwendet.
 
-        Der Inhalt von :code:`buf2R2` ist :code:`Test`, obwohl dort nie explizit etwas hineinkopiert wurde. Die Ausgabe ist bei jedem Lauf anders, da wir Position-Independent-Code haben und der Kernel ASLR verwendet.
-
-        Die Ausgabe wird bei jedem Lauf gleich, wenn man beides explizit unterbindet.
+        Die Ausgabe wird bei jedem Lauf gleich sein, wenn man beides explizit unterbindet.
 
         .. code:: bash
         
-            gcc uaf.c -fno-stack-protector -D_FORTIFY_SOURCE=0 -no-pie -fno-pic
+            # Kompiliert 2023 mit GCC
+            gcc uaf.c -fno-stack-protector -D_FORTIFY_SOURCE=0 -no-pie -fno-pic -o uaf
             echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
         
-            $ ./a.out Test
-            buf2R1 -> 0x4214b0
-            [FREED]   0x4214b0
-            buf2R2 -> 0x4214b0
-            buf2R2  = Test
-            $ ./a.out Test
-            buf2R1 -> 0x4214b0
-            [FREED]   0x4214b0
-            buf2R2 -> 0x4214b0
-            buf2R2  = Test
+            $ ./uaf Test
+            buf2R1     -> 0x294562a0
+            [FREED]       0x294562a0
+            buf2R2     -> 0x294562a0
+            buf2R2     =  Test
+            !!! buf2R1 =  Test
+
+            $ ./uaf Test
+            buf2R1     -> 0x294562a0
+            [FREED]       0x294562a0
+            buf2R2     -> 0x294562a0
+            buf2R2     =  Test
+            !!! buf2R1 =  Test
 
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-416: CVE-2006-4997 IP over ATM clip_mkip dereference freed pointer (Linux Kernel)
 ---------------------------------------------------------------------------------------
@@ -650,7 +697,7 @@ CWE-416: CVE-2006-4997 IP over ATM clip_mkip dereference freed pointer (Linux Ke
             234         memset(ATM_SKB(skb), 0, sizeof(struct atm_skb_data));
             235         netif_rx(skb);
             236 }
-            ...
+            ...         // PROBLEMATIC CODE STARTS HERE: 
             510         clip_push(vcc,skb);
             511         PRIV(skb->dev)->stats.rx_packets--;
             512         PRIV(skb->dev)->stats.rx_bytes -= len;
@@ -705,7 +752,7 @@ CWE-78: Improper Neutralization of Special Elements used in an OS Command
     2. Die Anwendung bestimmt basierend auf den Nutzerdaten welches Program mit welchen Parametern ausgeführt wird.
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-78: Improper Neutralization of Special Elements used in an OS Command - Beispiel (Java)
 -------------------------------------------------------------------------------------------
@@ -713,13 +760,14 @@ CWE-78: Improper Neutralization of Special Elements used in an OS Command - Beis
 .. exercise:: 
 
     .. code:: java
+        :number-lines:
 
         ...
         String btype = request.getParameter("backuptype");
-        String cmd = new String("cmd.exe /K \"
-        c:\\util\\rmanDB.bat "
-        +btype+
-        "&&c:\\utl\\cleanup.bat\"")
+        String cmd = new String(
+            "cmd.exe /K \"c:\\util\\rmanDB.bat "
+            +btype+
+            "&&c:\\utl\\cleanup.bat\"")
 
         System.Runtime.getRuntime().exec(cmd);
         ...
@@ -787,20 +835,25 @@ CWE-20: Improper Input Validation - zu verifizierende Werte und Eigenschaften
 
 
 
-.. class:: center-child-elements
+.. class:: no-title center-child-elements
 
-\ 
+O'Reilly ist keine SQL Injection
 -------------------------------------------------------------------------------
 
-.. admonition:: Improper Input Validation vs. Injection
-    
+.. admonition:: Beobachtung
+    :class: hint
+
     Ein Name wie ``O'Reily`` stellt ein Problem dar, wenn er in ein SQL Statement eingefügt wird, sollte jedoch von der Anwendung verarbeitet werden können und die Eingabevalidierung passieren.
+
+
+.. admonition:: Improper Input Validation vs. Injection
+    :class: incremental
 
     Die Validierung muss immer in Hinblick auf den Kontext erfolgen.
 
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-20: Improper Input Validation - Beispiel partielle Validierung
 ---------------------------------------------------------------------
@@ -810,6 +863,7 @@ CWE-20: Improper Input Validation - Beispiel partielle Validierung
     C:
 
     .. code:: c
+        :number-lines:
 
         #define MAX_DIM 100   
         int m,n, error; /* m,n = board dimensions */
@@ -875,33 +929,33 @@ CWE-125: Out-of-bounds Read
     Die Ausnutzung dieser Schwachstelle ist häufig schwierig, da nicht immer bekannt ist welche und wie viele Daten gelesen werden können. Es kann allerdings möglich sein Speicheradressen auszulesen. Dies kann ggf. genutzt werden, um Mechanismen wie ASLR zu umgehen.
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-125: Out-of-bounds Read - Beispiel: partielle Validierung
 -------------------------------------------------------------
 
 .. exercise::
 
-
     C:
 
     .. code:: C
+        :number-lines:
 
         int getValueFromArray(int *array, int len, int index) {
-        int value;
+            int value;
 
-        // check that the array index is less than the maximum length of the array
-        if (index < len) {
-            // get the value at the specified index of the array
-            value = array[index];
-        }
-        // if array index is invalid then output error message
-        // and return value indicating error
-        else {
-            printf("Value is: %d\n", array[index]);
-            value = -1;
-        }
-        return value;
+            // check that the array index is less than the maximum length of the array
+            if (index < len) {
+                // get the value at the specified index of the array
+                value = array[index];
+            }
+            // if array index is invalid then output error message
+            // and return value indicating error
+            else {
+                printf("Value is: %d\n", array[index]);
+                value = -1;
+            }
+            return value;
         }
 
 
@@ -909,6 +963,7 @@ CWE-125: Out-of-bounds Read - Beispiel: partielle Validierung
         :pwd: index   
 
         Der Wert von :code:`index` wird nicht gegen zu kleine Werte validiert. Der Angreifer kann so beliebige Speicherbereiche auslesen.
+
 
 
 CWE-125: Out-of-bounds Read - Abhilfemaßnahmen und Erkennung
@@ -942,7 +997,7 @@ CWE-22: Improper Limitation of a Pathname to a Restricted Directory
 :Betrifft: Vertraulichkeit, Integrität, Verfügbarkeit
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-22: Path Traversal - Beispiel: fehlende Validierung
 --------------------------------------------------------
@@ -952,6 +1007,7 @@ CWE-22: Path Traversal - Beispiel: fehlende Validierung
     PHP:
 
     .. code:: php
+        :number-lines:
 
         <?php
         $file = $_GET['file'];
@@ -964,7 +1020,7 @@ CWE-22: Path Traversal - Beispiel: fehlende Validierung
         Das Problem ist, dass der Wert von :code:`file` nicht validiert wird. Der Angreifer kann so beliebige Dateien auslesen.
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-22: Path Traversal - Beispiel: partielle Validierung
 --------------------------------------------------------
@@ -974,6 +1030,7 @@ CWE-22: Path Traversal - Beispiel: partielle Validierung
     Perl:
 
     .. code:: Perl
+        :number-lines:
 
         my $Username = GetUntrustedInput();
         $Username =~ s/\.\.\///;                # Remove ../
@@ -985,11 +1042,12 @@ CWE-22: Path Traversal - Beispiel: partielle Validierung
         Java: 
 
         .. code:: java
+            :number-lines:
 
             String path = getInputPath();
             if (path.startsWith("/safe_dir/")) {
-            File f = new File(path);
-            f.delete()
+                File f = new File(path);
+                f.delete()
             }
 
     .. solution::
@@ -1001,18 +1059,17 @@ CWE-22: Path Traversal - Beispiel: partielle Validierung
 
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
-CWE-22: Path Traversal - Beispiel: verwirrende API
---------------------------------------------------------
+CWE-22: Path Traversal - Beispiel: verwirrende Python API\ [#]_
+----------------------------------------------------------------
 
 .. container:: two-columns
 
     .. container:: column
 
-        Python:
-
         .. code:: Python
+            :number-lines:
 
             import os
             import sys
@@ -1028,17 +1085,19 @@ CWE-22: Path Traversal - Beispiel: verwirrende API
     
             # do something with file_data
 
-    .. container:: column
-
-        Dokumentation ``os.path.join``:
+    .. container:: column incremental larger
 
         .. epigraph:: 
+
+            **Dokumentation os.path.join**
 
             Join one or more path components intelligently. The return value is the concatenation of path and any members of \*paths with exactly one directory separator following each non-empty part except the last, meaning that the result will only end in a separator if the last part is empty. 
             
             If a component is an absolute path [...], all previous components are thrown away and joining continues from the absolute path component.
             
             -- `Python 3.11.7 <https://docs.python.org/3.11/library/os.path.html#os.path.join>`__
+
+.. [#] Verwirrende APIs gibt es in praktischen allen Sprachen!
 
 
 
@@ -1070,14 +1129,14 @@ CWE-352: Cross-Site Request Forgery (CSRF)
 
     Die Webanwendung prüft nicht bzw. kann nicht prüfen, ob eine Anfrage absichtlich von dem Benutzer gestellt wurde, von dessen Browser sie übermittelt wurde.
 
-    d. h. eine CSRF Schwachstelle nutzt das Vertrauen aus, das eine Webseite in den Browser eines Nutzers hat. Bei einem CSRF-Angriff wird ein legitimer Nutzer von einem Angreifer dazu gebracht, ohne sein Wissen eine Anfrage zu übermitteln, die er nicht beabsichtigt hat und auch nicht bemerkt.
+    D. h. eine CSRF Schwachstelle nutzt das Vertrauen aus, das eine Webseite in den Browser eines Nutzers hat. Bei einem CSRF-Angriff wird ein legitimer Nutzer von einem Angreifer dazu gebracht, ohne sein Wissen eine Anfrage zu übermitteln, die er nicht beabsichtigt hat und auch nicht bemerkt.
 
 :Missbrauchswahrscheinlichkeit: Mittel
 :Auswirkung: Hängt von den Nutzerrechten ab
 :Ausmaß: Vertraulichkeit, Integrität, Verfügbarkeit
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-352: Cross-Site Request Forgery (CSRF) - ursprüngliche Form
 ------------------------------------------------------------------
@@ -1153,7 +1212,7 @@ CWE-434: Unrestricted Upload of File with Dangerous Type
 
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-434: Unrestricted Upload of File with Dangerous Type - Beispiel
 ----------------------------------------------------------------------------
@@ -1163,6 +1222,7 @@ CWE-434: Unrestricted Upload of File with Dangerous Type - Beispiel
     HTML:
 
     .. code:: HTML
+        :number-lines:
 
         <form action="upload_picture.php" method="post" enctype="multipart/form-data">
             Choose a file to upload:
@@ -1175,6 +1235,7 @@ CWE-434: Unrestricted Upload of File with Dangerous Type - Beispiel
     PHP:
 
     .. code:: PHP
+        :number-lines:
 
         // Define the target location where the picture being
         // uploaded is going to be saved.
@@ -1238,7 +1299,8 @@ CWE-122: Heap-based Buffer Overflow
 :Ausmaß: Vertraulichkeit, Integrität, Verfügbarkeit, Zugriffskontrolle
 
 
-.. class:: scriptsize
+
+.. class:: far-far-smaller
 
 CWE-122: Heap-based Buffer Overflow
 -------------------------------------------------------------------
@@ -1248,6 +1310,7 @@ CWE-122: Heap-based Buffer Overflow
     :ger-quote:`Basisbeispiel` in C:
 
     .. code:: C
+        :number-lines:
 
         #define BUFSIZE 256
         int main(int argc, char **argv) {
@@ -1260,7 +1323,7 @@ CWE-122: Heap-based Buffer Overflow
     .. solution:: 
         :pwd: buf-to-small
 
-        Problem: Die Größe von buf ist unabhängig von der Größe von :code:`argv[1]`. 
+        Problem: Die Größe von ``buf`` ist unabhängig von der Größe von :code:`argv[1]`. 
 
 
 
@@ -1308,7 +1371,7 @@ CWE-502: Deserialization of Untrusted Data
 
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-502: Deserialization of Untrusted Data - Beispiel
 -------------------------------------------------------------------
@@ -1316,6 +1379,7 @@ CWE-502: Deserialization of Untrusted Data - Beispiel
 Java
 
 .. code:: java
+    :number-lines:
 
     File file = new File("object.obj");
     try ( FileInputStream fin = new FileInputStream(file);
@@ -1331,7 +1395,7 @@ Java
 
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-502: Deserialization of Untrusted Data - Beispiel
 -------------------------------------------------------------------
@@ -1341,7 +1405,7 @@ CWE-502: Deserialization of Untrusted Data - Beispiel
     Python
 
     .. code:: Python
-
+        :number-lines:
         
         class ExampleProtocol(protocol.Protocol):
 
@@ -1357,19 +1421,17 @@ CWE-502: Deserialization of Untrusted Data - Beispiel
                     self.secure_data = token['data']
                 except:
                     raise AuthFail
-        
-
 
     .. solution::
         :pwd: PicklingAtItsBest
 
-        In diesem Fall könnte man der Funktion ein Objekt unterschieben, dass bei der Deserialisierung beliebigen Code ausführt (zum Beispiel, um einen weitere Prozess zu starten.).
+        In diesem Fall könnte man der Funktion ein Objekt unterschieben, dass bei der Deserialisierung beliebigen Code ausführt (zum Beispiel, um einen weitere Prozess zu starten).
 
-        Dieses Problem wird in der Dokumentation  auch explizit erwähnt:
+        Dieses Problem wird in der Dokumentation auch explizit erwähnt:
 
         .. epigraph::
 
-            Warning The pickle module is not secure. Only unpickle data you trust.
+            **Warning The pickle module is not secure**. Only unpickle data you trust.
             It is possible to construct malicious pickle data which will execute arbitrary code during unpickling. Never unpickle data that could have come from an untrusted source, or that could have been tampered with.
 
             -- `Python 3.12 <https://docs.python.org/3/library/pickle.html>`__
@@ -1398,8 +1460,10 @@ CWE-502: Deserialization of Untrusted Data - Abhilfemaßnahmen und Erkennung
 
 
 
-CWE-918: Server-Side Request Forgery (SSRF)
+CWE-918: Server-Side Request Forgery (SSRF)\ [#]_
 --------------------------------------------------------------------------------
+
+.. [#] ≈ :ger:`Serverseitige Anfragefälschung`
 
 
 CWE-918: Server-Side Request Forgery 
@@ -1423,10 +1487,10 @@ CWE-918: Server-Side Request Forgery
 
 
 
-.. class:: scriptsize
-
-CWE-918: Server-Side Request Forgery - Beispiel: CVE-2002-1484
+CWE-918: Server-Side Request Forgery 
 -----------------------------------------------------------------
+
+**Beispiel: CVE-2002-1484**
 
 :Beschreibung:  
     Wenn der DB4Web-Server so konfiguriert ist, dass er ausführliche Debug-Meldungen verwendet, können entfernte Angreifer DB4Web als Proxy verwenden und über eine Anfrage an eine URL, die die Ziel-IP-Adresse und den Port angibt, TCP-Verbindungen zu anderen Systemen (Port-Scan) versuchen, was einen Verbindungsstatus in der resultierenden Fehlermeldung erzeugt.
@@ -1438,10 +1502,15 @@ CWE-918: Server-Side Request Forgery - Beispiel: CVE-2002-1484
 .. class:: incremental
 
 :Workaround:
-    Der Hersteller betrachtet die Funktionalität nicht als Fehler, sondern als nützliches Feature für Entwickler. Um die Ausnutzung dieses Features zu verhindern, muss die Standardfehlerseite durch eine benutzerdefinierte Fehlerseite ersetzt werden.
+    Um die Ausnutzung dieses Features zu verhindern, muss die Standardfehlerseite durch eine benutzerdefinierte ersetzt werden.
+
+    .. container:: far-smaller minor
+
+        Der Hersteller betrachtet die Funktionalität nicht als Fehler, sondern als Feature für Entwickler.
 
 
-.. class:: scriptsize
+
+.. class:: far-far-smaller
 
 CWE-918: Server-Side Request Forgery - Beispiel: NodeJS Unicode Handling Fehler [#]_
 ---------------------------------------------------------------------------------------
@@ -1449,6 +1518,7 @@ CWE-918: Server-Side Request Forgery - Beispiel: NodeJS Unicode Handling Fehler 
 JavaScript:
 
 .. code:: JavaScript
+    :number-lines:
 
     var base = "http://orange.tw/sandbox/";
     var path = req.query.path;
@@ -1485,7 +1555,7 @@ JavaScript:
 
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-918: Server-Side Request Forgery - Beispiel: URL Parser vs. Abfrage der URL
 ---------------------------------------------------------------------------------
@@ -1493,6 +1563,7 @@ CWE-918: Server-Side Request Forgery - Beispiel: URL Parser vs. Abfrage der URL
 PHP (> 7.0.13):
 
 .. code:: php
+    :number-lines:
 
     $url = 'http://foo@127.0.0.1⬜@google.com:11211/'; // ⬜ is "just" a space
     $parsed = parse_url($url);
@@ -1504,12 +1575,16 @@ Ergebnis:
 
 .. container:: incremental
 
-    ``curl`` fragt die URL ``127.0.0.1:11211`` abfragen.
+    ``curl`` fragt die URL ``127.0.0.1:11211`` ab.
+
+    D. h. ``curl`` und php interpretieren die URL unterschiedlich.
 
 
 
-CWE-918: Server-Side Request Forgery - Variante: Blind SSRF
+CWE-918: Server-Side Request Forgery
 -----------------------------------------------------------------------------
+
+.. rubric:: Variante: Blind SSRF
 
 Bei *Blind SSRF*-Schwachstellen werden auch Back-End-HTTP-Anfragen an eine bereitgestellte URL gestellt, die Antwort der Back-End-Anfrage jedoch nicht an die Front-End-Antwort der Anwendung zurückgegeben.
 
@@ -1526,7 +1601,7 @@ CWE-918: Server-Side Request Forgery - Abhilfemaßnahmen und Erkennung
 - sichere APIs
 - statische Analyse (insbesondere Datenflußanalysen)
 - Behandlung von Zugriffen von lokalen Maschinen sollte mit der gleichen sorgfalt überprüft werden wie Zugriffe von externen Maschinen; andernfalls können kritische SSRF Angriffe durchgeführt werden
-- Firewall/Network Policy um Zugriff auf interne Systeme zu verhindern
+- Firewall/Network Policy, um Zugriff auf interne Systeme zu verhindern
 
 
 
@@ -1550,7 +1625,7 @@ CWE-843: Access of Resource Using Incompatible Type (Type Confusion)
 :Ausmaß: Integrität, Verfügbarkeit, Vertraulichkeit
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-843: Access of Resource Using Incompatible Type - Beispiel in C
 ----------------------------------------------------------------------
@@ -1558,15 +1633,18 @@ CWE-843: Access of Resource Using Incompatible Type - Beispiel in C
 .. exercise::
 
     .. code:: c
+        :number-lines:
 
         #define NAME_TYPE 1
         #define ID_TYPE 2
+        
         struct MessageBuffer {
             int msgType;
             union {
                 char *name;
                 int nameID;
         };  };
+
         int main (int argc, char **argv) {
             struct MessageBuffer buf;
             char *defaultMessage = "Hello World";
@@ -1577,14 +1655,16 @@ CWE-843: Access of Resource Using Incompatible Type - Beispiel in C
             else                          printf("ID %d\n", buf.nameID);
         }
 
+    Welche Ausgabe erzeugt das Programm?
+
     .. solution:: 
         :pwd: bufbuf
 
-        Der Zugriff auf ``buf.nameId`` manipuliert den Zeiger auf ``buf.name``. Dieser zeigt nun auf die Speicherstelle ``defaultMessage +1`` weswegen der nachfolgende Zugriff ``buf.name`` :ger-quote:`nur` noch ``ello World`` ausgibt und nicht mehr ``Hello World``.
+        Der Zugriff auf ``buf.nameId`` manipuliert den Zeiger auf ``buf.name``. Dieser zeigt nun auf die Speicherstelle ``defaultMessage + 1`` weswegen der nachfolgende Zugriff ``buf.name`` :ger-quote:`nur` noch ``ello World`` ausgibt und nicht mehr ``Hello World``.
 
 
 
-.. class:: scriptsize
+.. class:: far-far-smaller
 
 CWE-843: Access of Resource Using Incompatible Type - Beispiel in Perl
 ------------------------------------------------------------------------
@@ -1592,6 +1672,7 @@ CWE-843: Access of Resource Using Incompatible Type - Beispiel in Perl
 .. exercise::
 
     .. code:: perl
+        :number-lines:
 
         my $UserPrivilegeArray = ["user", "user", "admin", "user"];
         my $userID = get_current_user_ID();
@@ -1616,20 +1697,21 @@ CWE-843: Access of Resource Using Incompatible Type - Beispiel in Perl
 
 .. class:: new-subsection transition-move-to-top
 
-
 CWE-306: Missing Authentication for Critical Function
 --------------------------------------------------------------------------------
 
 
+
+
 CWE-306: Missing Authentication for Critical Function
 ----------------------------------------------------------------------
-
 
 :Beschreibung: 
 
     Eine Anwendung führt eine kritische Funktion aus, ohne die Identität des Nutzers zu überprüfen. Kritischer Funktionen sind solche, die entweder signifikante Ressourcen verbrauchen oder nur von privilegierten Nutzern ausgeführt werden sollten.
 
 :Sprachen: "alle"
+
 
 
 CWE-306: Missing Authentication for Critical Function - Abhilfemaßnahmen und Erkennung
@@ -1639,6 +1721,7 @@ CWE-306: Missing Authentication for Critical Function - Abhilfemaßnahmen und Er
 
 - manuelle Code Reviews 
 - statische Analyse (Binärcode und/oder Quellcode)
+
 
 
 .. class:: no-title
@@ -1701,7 +1784,7 @@ OWASP
 
 .. container:: far-smaller
 
-  .. exercise:: 
+  .. exercise:: malloc verstehen
     
     1. Benenne die Schwachstelle(n) entsprechend der CWEs (ohne ID).
     2. Identifiziere die für die Schwachstelle(n) relevanten Zeilen im Code.
@@ -1740,12 +1823,13 @@ OWASP
 
 .. container:: far-smaller
 
-  .. exercise:: 
+  .. exercise:: REST API
 
     Sie analysieren eine REST API die folgendes Verhalten aufweist, wenn man einem Blog einen Kommentar hinzufügen möchte:
 
     .. code:: HTTP
         :class: smaller
+        :number-lines:
 
         POST /post/comment HTTP/1.1
         Host: important-website.com
@@ -1757,6 +1841,7 @@ OWASP
 
     .. code:: HTML
         :class: smaller
+        :number-lines:
 
         <div class="comment">
             <div class="name">Karl Gustav</div>
@@ -1781,7 +1866,7 @@ OWASP
 
 .. container:: far-smaller
 
-  .. exercise:: 
+  .. exercise:: SQL Abfrage mit Java
 
     Java:
 
@@ -1824,13 +1909,14 @@ OWASP
     :%2F: /
 
 
-  .. exercise:: 
+  .. exercise:: Verwendung von HTTP Query Parametern
 
     Sie beobachten folgendes Verhalten einer Webseite:
 
     **Anfrage**
 
     .. code:: http
+        :number-lines:
 
         https://my-website.com/search?
               term=This%20is%20a%20%3C%22%3Egift%3C%2F%22%3E
@@ -1838,6 +1924,7 @@ OWASP
     **Antwort**
 
     .. code:: HTML
+        :number-lines:
 
         <div class="search-result">
             <div class="title">This is a <">gift</"></div>
