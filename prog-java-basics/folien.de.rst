@@ -46,7 +46,7 @@ Einführung in die Programmierung mit Java
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
-    :Version: 1.0
+    :Version: 1.1.1
 
     .. container:: minor
 
@@ -863,20 +863,17 @@ Welche der folgenden Bezeichner sind (a) ungültig, (b) gültig aber sollten den
         :Gültig aber nicht verwenden: (3.), (6.) , 7., 9., 11.
         :Gültig und entsprechen den Konventionen: (3.), 4., 5., (6.), 8., 10., 12.
 
-
+        1. und 6. sind in altem Java Code noch gültig üblich. In modernem Java Code sollten sie jedoch vermieden werden.
+        
+                
 
 .. class:: integrated-exercise
 
 Übung - Variablen und Konstanten
 --------------------------------
 
-.. hint::
-    :class: far-far-smaller
-
-    Für diese Aufgabe können Sie sowohl die Java Shell verwenden als auch Ihren Code in eine Datei schreiben. Denken Sie in diesem Fall daran, dass der Code in einer Methode :java:`main` stehen muss (:java:`void main(){ <IHRE CODE> }`).
-
-.. exercise:: Grundlegende Datentypen
-
+.. exercise:: Grundlegende Datentypen 
+  :class: far-smaller
 
   - Deklarieren und initialisieren Sie eine Variable x mit dem Ganzzahlwert 42. 
   
@@ -886,6 +883,18 @@ Welche der folgenden Bezeichner sind (a) ungültig, (b) gültig aber sollten den
   - Weisen Sie den Wert der Variable ``x`` einer Variable ``f`` vom Typ :java:`float` zu. 
   - Ändern Sie den Wert der Variablen ``x``. Welche Auswirkungen hat das auf die Variable ``f`` vom Typ :java:`float`?
   - Deklarieren und initialisieren Sie die Konstante π (Wert 3.14159265359).
+  - Deklarieren Sie eine Variable :java:`poem`. Die folgendes - von GitHub Copilot erzeugtes -  Gedicht enthält: 
+
+    .. code:: 
+        :number-lines:
+
+        Roses are red,
+        Violets are blue,
+        Sugar is sweet,
+        And so are you.
+
+    Achten Sie auf eine konsistente Einrückung/Formatierung des Gedichts.
+    
 
   .. solution::
         :pwd: DatentypenKonstantenUndVariablen
@@ -931,6 +940,20 @@ Welche der folgenden Bezeichner sind (a) ungültig, (b) gültig aber sollten den
 
             jshell> double PI = 3.14159265359d // π wäre auch ein gültiger, aber ungewöhnlicher Bezeichner 
             d ==> 3.14159265359
+
+            jshell> var poem = """
+            ...>         Roses are red,
+            ...>         Violets are blue,
+            ...>         Sugar is sweet,
+            ...>         And so are you."""
+            oem ==> "Roses are red,\nViolets are blue,\nSugar is sweet,\nAnd so are you."
+
+.. supplemental::
+
+    .. hint::
+        :class: far-far-smaller
+
+        Für diese Aufgabe können Sie sowohl die Java Shell verwenden als auch Ihren Code in eine Datei schreiben. Denken Sie in diesem Fall daran, dass der Code in einer Methode :java:`main` stehen muss (:java:`void main(){ <IHR CODE> }`).
 
 
 
@@ -1191,7 +1214,7 @@ Zweistellige Vergleichsoperatoren
             :number-lines:
             :start-line: 2
 
-        .. exercise:: Einstellige Operatoren - welche Werte werden ausgegeben?
+        .. exercise:: Zweistellige Operatoren - welche Werte werden ausgegeben?
 
             .. solution::
                 :pwd: Achtung-
@@ -1203,6 +1226,7 @@ Zweistellige Vergleichsoperatoren
                 Numerische Werte:
 
                     true, true, false
+
 
 
 Ein- und zweistellige logische Operatoren
@@ -1426,7 +1450,6 @@ Bitoperatoren
 Zuweisungs- und Verbundoperatoren
 ----------------------------------------------------------
 
-
 .. stack::
 
     .. layer::
@@ -1455,7 +1478,6 @@ Zuweisungs- und Verbundoperatoren
             jshell> age += 1;
             age ==> 3
 
-
         .. container:: incremental
 
             Folgendes wäre auch erlaubt, aber *nicht* empfehlenswert, da schwer(er) zu lesen:
@@ -1468,7 +1490,6 @@ Zuweisungs- und Verbundoperatoren
 
                 jshell> var newAge = age += 1;
                 newAge ==> 5
-
 
     .. layer:: incremental
 
@@ -1489,14 +1510,13 @@ Zuweisungs- und Verbundoperatoren
 String Konkatenation (Verbinden von Zeichenketten)
 ----------------------------------------------------------
 
-
 .. stack::
 
     .. layer::
 
         Literale, Variablen, Konstanten vom Datentyp String werden durch den Konkatenationsoperator + zu einem neuen String-Wert verkettet.
 
-    .. layer::
+    .. layer:: incremental
 
         .. code:: java
             :class: far-smaller
@@ -1506,6 +1526,7 @@ String Konkatenation (Verbinden von Zeichenketten)
 
             jshell> String greeting = "Hallo " + name + "!";
             greeting ==> "Hallo Max!"
+
 
 
 Implizite Typkonvertierung
@@ -1575,7 +1596,6 @@ Explizite Typkonvertierung
 
 Das Ergebnis eines Ausdruckes kann durch explizite Typkonvertierung in einen anderen primitiven Datentyp umgewandelt werden.
 
-
 .. stack::
 
     .. layer::
@@ -1614,6 +1634,7 @@ Das Ergebnis eines Ausdruckes kann durch explizite Typkonvertierung in einen and
                 $2 ==> 0
 
 
+
 Überlauf und Unterlauf
 ----------------------------------------------------------
 
@@ -1628,7 +1649,7 @@ Unter-/Überschreitet das Ergebnis eines Ausdruckes den minimalen/maximalen Wert
     :class: far-smaller incremental
 
     Integer.toBinaryString(Integer.MIN_VALUE) //    "10000000000000000000000000000000"
-    Integer.toBinaryString(Integer.MIN_VALUE - 1) //"01111111111111111111111111111111"
+    Integer.toBinaryString(Integer.MIN_VALUE -1) // "01111111111111111111111111111111"
     Long.toBinaryString(Integer.MIN_VALUE -1l)
                  // "1111111111111111111111111111111101111111111111111111111111111111"
 
@@ -1636,7 +1657,7 @@ Unter-/Überschreitet das Ergebnis eines Ausdruckes den minimalen/maximalen Wert
 
     In der Praxis wird häufig der Begriff Overflow verwendet, wenn bei einer Berechnung der Wertebereich eines Datentyps nicht ausreicht, um das Ergebnis zu speichern. D. h. die Unterscheidung zwischen Über- und Unterlauf ist nicht immer eindeutig.
 
-    Bei Double erfolgt der Überlauf erst, wenn man eine Zahl auf :java:`Double.MAX_VALUE` addiert, die mehr als 292 Stellen vor dem Komma hat.
+    Bei Double erfolgt der Überlauf erst, wenn man eine Zahl auf :java:`Double.MAX_VALUE` addiert, die mind. 292 Stellen vor dem Komma hat.
 
     .. code:: java
         :class: far-smaller
@@ -1644,22 +1665,22 @@ Unter-/Überschreitet das Ergebnis eines Ausdruckes den minimalen/maximalen Wert
         jshell> Double.MAX_VALUE + 1
         $0 ==> 1.7976931348623157E308
 
-        jshell> Double.MAX_VALUE + 1999999999999999999999999
+        jshell> Double.MAX_VALUE + 8999999999999999999999999
         9999999999999999999999999999999999999999999999999999
         9999999999999999999999999999999999999999999999999999
         9999999999999999999999999999999999999999999999999999
         9999999999999999999999999999999999999999999999999999
         9999999999999999999999999999999999999999999999999999
-        9999999d // Eins gefolgt von 291 Neunen(!)
+        9999999d // Acht gefolgt von 291 Neunen(!)
         $1 ==> 1.7976931348623157E308 // 16 Nachkommastellen
 
-        jshell> Double.MAX_VALUE + 1000000000000000000000000
-        0000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000
-        0000000000000000000000000000000000000000000000000000
-        00000000d // 1 gefolgt von 292 Nullen(!)
+        jshell> Double.MAX_VALUE + 9999999999999999999999999
+        9999999999999999999999999999999999999999999999999999
+        9999999999999999999999999999999999999999999999999999
+        9999999999999999999999999999999999999999999999999999
+        9999999999999999999999999999999999999999999999999999
+        9999999999999999999999999999999999999999999999999999
+        9999999d // 292 Neunen(!)
         $2 ==> Infinity
 
 
