@@ -2,6 +2,7 @@ folien.de.rst.html
 folien.de.rst.html.pdf
 
 images/srp.svg
+
 images/uml-cd/assoziation_aggregation.svg
 images/uml-cd/assoziation_einfach.svg
 images/uml-cd/assoziation_generalisierung.svg
@@ -16,3 +17,20 @@ images/uml-cd/complete.svg
 images/uml-cd/klassen.svg
 images/uml-cd/methoden_einfach.svg
 images/uml-cd/methoden_mit_in_out.svg
+images/uml-cd/enumeration.svg
+images/uml-cd/assoziationsklasse.svg
+
+images/uml-state/check_state.svg
+images/uml-state/compartment.svg
+images/uml-state/end_state.svg
+images/uml-state/events.svg
+images/uml-state/startstate.svg
+images/uml-state/states.svg
+images/uml-state/transition_to_feiert.svg
+
+images/uml-state-exercise.svg
+
+images/uml-sd/2nd_alarm.svg
+images/uml-sd/aktivieren.svg
+images/uml-sd/alarm.svg
+images/uml-sd/objekte.svg

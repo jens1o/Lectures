@@ -23,7 +23,6 @@
 .. role:: green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 .. role:: smaller
@@ -59,6 +58,23 @@ Einführung in die Objekt-orientierte Modellierung - Erste Grundlagen der Modell
 
     :Fehler melden:
         https://github.com/Delors/delors.github.io/issues
+
+
+UML (Unified Modeling Language)
+-----------------------------------------------------------------------
+
+.. class:: incremental list-with-explanations
+
+- UML (Unified Modeling Language) ist eine standardisierte Modellierungssprache, die zur Beschreibung von Software-Systemen verwendet wird.
+- UML besteht aus verschiedenen Diagrammtypen, die unterschiedliche Aspekte eines Systems beschreiben.
+- UML wird in der Softwareentwicklung verwendet, um Konzepte und Entwürfe zu kommunizieren und zu besprechen. Eine detaillierte Modellierung ist nicht (mehr) das Ziel/üblich.
+- :minor:`Die Hoffnungen/Erwartungen, die an UML Anfang der 2000er gestellt wurden, wurden nicht erfüllt. Seit 2017 ist die Version 2.5.1 aktuell.`
+
+.. admonition:: Warning
+    :class: incremental far-smaller
+
+    Wenn Sie UML verwenden, dann verwenden Sie die Notationen spezifikationskonform, da sonst der Sinn der Notation (vollständig) verloren geht oder es sogar zu Missverständnissen kommt.
+
 
 
 
@@ -113,7 +129,7 @@ Modellierung einer Party - Klassen\ [#]_
 
     Wir haben erst einmal nur die Klassen identifiziert/modelliert, die für Parties zentral sind. 
 
-    Hierbei repräsentieren die Klassen verschiedene :ger-quote:`Dinge``:
+    Hierbei repräsentieren die Klassen verschiedene „Dinge“:
 
     - Eine Party als virtuelles Konstrukt, das eine bestimmte Anzahl von Partyteilnehmern hat.
     - Ein Gast, der an einer Party teilnimmt.
@@ -160,38 +176,38 @@ Modellierung einer Party - Attribute
 
         .. image:: images/uml-cd/klassen.svg
             :alt: Klassen
-            :height: 1000px
+            :height: 1100px
             :align: center
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/attribute_einfach.svg
             :alt: Einfache Attribute
-            :height: 1000px
+            :height: 1100px
             :align: center
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/attribute_mit_default.svg
-            :height: 1000px
+            :height: 1100px
             :align: center    
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/attribute_mit_mengen.svg
-            :height: 1000px
+            :height: 1100px
             :align: center            
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/attribute_keine.svg
-            :height: 1000px
+            :height: 1100px
             :align: center            
     
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/attribute_abgeleitet.svg
-            :height: 1000px
+            :height: 1100px
             :align: center            
 
 
@@ -231,38 +247,38 @@ Modellierung einer Party - Operationen/Methoden
 
         .. image:: images/uml-cd/klassen.svg
             :alt: Klassen
-            :height: 1000px
+            :height: 1100px
             :align: center
 
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_einfach.svg
             :alt: Einfache Attribute
-            :height: 1000px
+            :height: 1100px
             :align: center
 
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_mit_default.svg
-            :height: 1000px
+            :height: 1100px
             :align: center    
 
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_mit_mengen.svg
-            :height: 1000px
+            :height: 1100px
             :align: center            
 
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_keine.svg
-            :height: 1000px
+            :height: 1100px
             :align: center            
     
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_abgeleitet.svg
-            :height: 1000px
+            :height: 1100px
             :align: center            
 
     .. layer:: overlay incremental faded-to-white
@@ -272,13 +288,13 @@ Modellierung einer Party - Operationen/Methoden
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/methoden_einfach.svg
-            :height: 1000px
+            :height: 1100px
             :align: center  
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/methoden_mit_in_out.svg
-            :height: 1000px
+            :height: 1100px
             :align: center  
 
 
@@ -317,87 +333,100 @@ Modellierung einer Party - Beziehungen
 
         .. image:: images/uml-cd/klassen.svg
             :alt: Klassen
-            :height: 1000px
+            :height: 1100px
             :align: center
 
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_einfach.svg
             :alt: Einfache Attribute
-            :height: 1000px
+            :height: 1100px
             :align: center
 
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_mit_default.svg
-            :height: 1000px
+            :height: 1100px
             :align: center    
 
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_mit_mengen.svg
-            :height: 1000px
+            :height: 1100px
             :align: center            
 
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_keine.svg
-            :height: 1000px
+            :height: 1100px
             :align: center            
     
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_abgeleitet.svg
-            :height: 1000px
+            :height: 1100px
             :align: center            
 
     .. layer:: overlay 
 
         .. image:: images/uml-cd/methoden_einfach.svg
-            :height: 1000px
+            :height: 1100px
             :align: center  
 
     .. layer:: overlay
 
         .. image:: images/uml-cd/methoden_mit_in_out.svg
-            :height: 1000px
+            :height: 1100px
             :align: center  
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/assoziation_einfach.svg
-            :height: 1000px
+            :height: 1100px
             :align: center  
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/assoziation_gerichtet.svg
-            :height: 1000px
+            :height: 1100px
             :align: center  
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/assoziation_komposition.svg
-            :height: 1000px
+            :height: 1100px
             :align: center  
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/assoziation_aggregation.svg
-            :height: 1000px
+            :height: 1100px
             :align: center  
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/assoziation_generalisierung.svg
-            :height: 1000px
+            :height: 1100px
             :align: center  
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/benennung.svg
-            :height: 1000px
+            :height: 1100px
             :align: center  
+
+    .. layer:: overlay incremental
+
+        .. image:: images/uml-cd/enumeration.svg
+            :height: 1100px
+            :align: center  
+
+    .. layer:: overlay incremental
+
+        .. image:: images/uml-cd/assoziationsklasse.svg
+            :height: 1100px
+            :align: center  
+
 
 
 .. supplemental::
@@ -416,9 +445,9 @@ Modellierung einer Party - Beziehungen
 
         Im Beispiel ist explizit modelliert, dass ein Cocktail immer genau von einem Bartender produziert wird. Ein Bartender kann aber mehrere Cocktails produzieren.
 
-      - **Aggregation**: Eine Aggregation (:math:`\lozenge`) ist eine spezielle Form der Assoziation, bei der eine Klasse eine andere Klasse besitzt.
+      - **Aggregation**: Eine Aggregation (:math:`\lozenge` „am Anfang“) ist eine spezielle Form der Assoziation, bei der eine Klasse eine andere Klasse besitzt.
       
-      - **Komposition**: Eine Komposition (:math:`\blacklozenge`) ist eine spezielle Form der Aggregation, bei der die Lebensdauer des Besitzers die Lebensdauer des Besitzten bestimmt.
+      - **Komposition**: Eine Komposition (:math:`\blacklozenge` „am Anfang“) ist eine spezielle Form der Aggregation, bei der die Lebensdauer des Besitzers die Lebensdauer des Besitzten bestimmt.
     
           Im Beispiel ist modelliert, dass ein Cocktail aus mehreren Zutaten besteht. Weiterhin gilt, dass nach dem Genuss des Cocktails die Zutaten nicht mehr existieren.
 
@@ -432,6 +461,7 @@ Modellierung einer Party - Beziehungen
 
       (Beispiele wären Methodenparameter oder Rückgabewerte, die auf einmal einen anderen Wertebereich haben. Oder, wenn andere Seiteneffekte auftreten.)
 
+    - **Assoziationsklasse**: Eine Assoziationsklasse (eine Klasse verbunden mit einer Assoziation über einen gestrichelte Linie) beschreibt eine Assoziation zwischen zwei anderen Klassen detaillierter und wird insbesondere dann verwendet, wenn die Attribute und Operationen nicht sinnvoll den beteiligten Klassen zugeordnet werden können. Sie kann Attribute und Methoden haben, die die Beziehung zwischen den beiden Klassen beschreiben.
 
 
 
@@ -456,14 +486,13 @@ Modellierungsfehler
 
 .. warning::
 
-    Ein falsches Verständnis von **Generalisierung** kann zu schweren Fehlern in der Modellierung führen.
-
+    Ein falsches Verständnis — insbesondere von der **Generalisierung** — kann zu schweren Fehlern in der Modellierung führen.
 
 .. image:: images/srp.svg
     :alt: Quadrat erbt von Rechteck
-    :width: 1100px
+    :width: 800px
     :align: center
-    :class: incremental
+    :class: incremental margin-top-2em
 
 .. supplemental::
 
@@ -480,8 +509,209 @@ Sequenzdiagramme
 -----------------------------------------------------------------------
 
 
+Beispiel: Sequenzdiagram für ein Alarmsystem
+---------------------------------------------------------
+
+
+.. stack:: invisible
+
+    .. layer:: incremental
+
+        .. image:: images/uml-sd/objekte.svg
+            :alt: Compartment
+            :height: 1000px
+            :align: center
+
+    .. layer:: overlay incremental
+
+        .. image:: images/uml-sd/aktivieren.svg
+            :alt: Zustände
+            :height: 1000px
+            :align: center
+
+    .. layer:: overlay incremental
+
+        .. image:: images/uml-sd/alarm.svg
+            :alt: Zustände
+            :height: 1000px
+            :align: center            
+
+    .. layer:: overlay incremental
+
+        .. image:: images/uml-sd/2nd_alarm.svg
+            :alt: Zustände
+            :height: 1000px
+            :align: center            
+
+
+.. supplemental::
+
+    In Sequenzdiagrammen wird der zeitliche Ablauf von Interaktionen zwischen Objekten dargestellt.
+
+    - Eine Ausführungssequenz wird durch eine vertikales Rechteck über der Lebenslinie dargestellt.
+    - Bei einem synchronen Nachrichtenaustausch wartet der Sender, bis der Empfänger diese abgearbeitet hat. Er wird durch eine durchgezogene Linie mit einem gefüllten Dreieck dargestellt.
+    - Bei einem asynchronen Nachrichtenaustausch wartet der Sender nicht auf eine Antwort des Empfängers. Er wird durch eine durchgezogene Linie mit einem offenen Pfeil (:math:`\rightarrow`) dargestellt.
+    - Eine Nachricht, die ein Objekt erzeugt wird mit einer gestrichelten Linie dargestellt.
+    - Eine Antwortnachricht wird durch eine gestrichelte Linie mit einem offenen Pfeil (:math:`\leftarrow`) dargestellt.
+
+
+    .. admonition:: warning
+
+        In vielen Diagrammen wird auf die Feinheiten bzgl. der korrekten Darstellung der Nachrichten wenig Wert gelegt. Sollte sie sich nicht sicher sein, dass der Ersteller bewusst synchrone und asynchrone Nachrichten unterschieden hat, dann sollten Sie davon ausgehen, dass es sich um synchrone Nachrichten handelt.
+
+
+.. class:: integrated-exercise transition-move-to-top
+
+Übung
+-------------------
+
+.. exercise:: Erstellen Sie ein Sequenzdiagramm für die Bestellung eines Cocktails.
+
+    - Ein Gast bestellt einen Cocktail beim Barkeeper.
+    - Der Barkeeper bereitet dann den Cocktail zu indem er erst die Zutaten hinzufügt und danach diese fachgerecht mixt. Sobald er fertig ist, überreicht er den Cocktail an den Gast.
+    - Da der Gast sehr durstig ist, trinkt er den Cocktail in einem Zug aus.
+  
+    Hinweis: es gibt mehrere Möglichkeiten, wie das obige Szenario modelliert werden kann, da nicht alles explizit vorgegeben ist. Treffen Sie eine bewusste Entscheidung, wie Sie das Szenario modellieren.
+
+    .. solution:: 
+        :pwd: Bestellung_Eines#Cocktails
+
+        Ein mögliches Sequenzdiagramm für die Bestellung eines Cocktails. In diesem Fall darf der Gast zum Beispiel weiterfeiern, nachdem er den Cocktail bestellt hat. Er muss nicht auf die Fertigstellung des Cocktails warten.
+
+        .. image:: images/uml-sd-exercise.svg
+            :alt: Sequenzdiagramm für die Bestellung eines Cocktails
+            :width: 800px
+            :align: center
+
+        
+
+
+.. class:: new-section transition-move-to-top
+
+Zustandsautomaten
+-----------------------------------------------------------------------
+
+
+Beispiel: Zustandsautomat für einen Partyteilnehmer
+---------------------------------------------------------
+
+.. stack:: invisible
+
+    .. layer:: 
+
+        .. image:: images/uml-state/compartment.svg
+            :alt: Compartment
+            :height: 1000px
+            :align: center
+
+    .. layer:: overlay incremental
+
+        .. image:: images/uml-state/states.svg
+            :alt: Zustände
+            :height: 1000px
+            :align: center
+
+    .. layer:: overlay incremental
+
+        .. image:: images/uml-state/startstate.svg
+            :alt: Startzustand
+            :height: 1000px
+            :align: center
+
+    .. layer:: overlay incremental
+
+        .. image:: images/uml-state/transition_to_feiert.svg
+            :alt: Zustandsübergang zur "feiert"
+            :height: 1000px
+            :align: center
+
+    .. layer:: overlay incremental
+
+        .. image:: images/uml-state/check_state.svg
+            :alt: Überprüfen des Zustands des Partyteilnehmers
+            :height: 1000px
+            :align: center
+
+    .. layer:: overlay incremental
+
+        .. image:: images/uml-state/end_state.svg
+            :alt: Endzustände
+            :height: 1000px
+            :align: center
+
+    .. layer:: overlay incremental
+
+        .. image:: images/uml-state/events.svg
+            :alt: Ereignisse
+            :height: 1000px
+            :align: center
+
+.. supplemental::
+
+    Ein Zustandsautomat beschreibt das Verhalten eines Objekts in Abhängigkeit von seinem Zustand. 
+
+    Ein Zustandsautomat besteht aus:
+
+    :Startknoten: Startpunkt des Zustandsautomaten. Er hat höchstens eine ausgehende Transition.
+
+        Dargestellt mit einem schwarzen Kreis (⚫️).
+    :Endzustand:  Endpunkt des Zustandsautomaten. Er hat keine ausgehenden Transitionen. Es kann mehrere Endzustände geben.
+
+    :Entscheidung: In Abhängigkeit vom Ergebnis (Auswertung der Entscheidungsbedingung), der auf dem Weg zur Entscheidung getroffenen Aktionen, wird der Zustandsautomat in unterschiedliche Zustände überführt.
+
+        Es gibt mindestens zwei ausgehende Transitionen.
+
+        Dargestellt mit einer Raute (◊). 
+
+    :Terminator: 
+        Beendet (auch) einen Zustandsautomaten. 
+        
+        Beendet die Lebensdauer des Zustandsautomaten. (In diesem Fall könnte man dies so interpretieren, dass der Partyteilnehmer die Party verlässt/rausgeworfen wird und wir uns auch nicht weiter für den Partyteilnehmer interessieren.)
+
+        Dargestellt mit einem großen X.
+    
+    :Transitionen (Übergänge): 
+        Verbinden Zustände und Entscheidungen. 
+
+        :Syntax: Trigger [Guard] / Verhalten
+
+        Der Trigger beschreibt das Ereignis, das den Übergang auslöst. Ein Guard (Wächter) beschreibt die Bedingung, die wahr sein muss. Das Verhalten beschreibt die Aktion, die ausgeführt wird beim Durchlaufen des Übergangs.
+
+        Dargestellt mit einem Pfeil (:math:`\rightarrow`).
+
+
+    - Zuständen und Übergängen dazwischen
+    - Ereignissen, die einen Übergang auslösen, 
+    - Aktionen (``entry``, ``exit``, ``do``), die ausgeführt werden, 
+    - Start- und Endzuständen.
+    - Entscheidungsknoten
+
+    In diesem Fall modellieren wir die Zustände eines Partyteilnehmers.
+
+    - Ein Partyteilnehmer kann in den Zuständen „eingeladen“, „wird begrüßt“, „feiert“ und „ist betrunken“ sein.
 
 
 
+.. class:: integrated-exercise
 
+Übung
+-------------------
 
+.. exercise:: Modellieren Sie den Zustandsautomaten für einen Zimmerventilator.
+
+    - Der Ventilator kann in drei Zuständen sein: „Aus“, „Stufe 1“, „Stufe 2“. 
+    - Der Endzustand ist der Zustand „Aus“. 
+    - Zwischen Stufe 1 und Stufe 2 kann beliebig oft hin und her gewechselt werden.
+    - In Stufe 1 dreht der Ventilator langsam, in Stufe 2 schnell.
+    
+    .. solution:: 
+        :pwd: DerVentilatorDrehtNoch
+
+        Modellierung eines Zimmerventilator mit zwei Zuständen für Stufe 1 und Stufe 2.
+
+        .. image:: images/uml-state-exercise.svg
+            :alt: Zustandsautomat für einen Zimmerventilator
+            :width: 500px
+            :align: center
+
+        Das Beispiel ist stark angelehnt an Abb. 14.25 aus UML2 Glasklar, Hanser Verlag
