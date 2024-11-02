@@ -1,13 +1,13 @@
 void main() {
-    final var month = Integer.parseInt(readln("Welchen Monat haben wir (1-12)? "));
-    final var dayInMonth = Integer.parseInt(readln("Welchen Tag des Monats haben wir (1-28/29/30/31)? "));
-    final var dayOnJanuary1st = Integer
-            .parseInt(readln("Welcher Wochentag war der 1. Januar (1=Montag, 2=Dienstag, ..., 7=Sonntag)? "))-1;
-    final var leapYear = readln("Ist das Jahr ein Schaltjahr (j/n)? ").charAt(0) == 'j';
+    final var month = Integer.parseInt(
+            readln("Welchen Monat haben wir (1-12)? "));
+    final var dayInMonth = Integer.parseInt(
+            readln("Welchen Tag des Monats haben wir (1-28/29/30/31)? "));
+    final var dayOnJanuary1st = Integer.parseInt(
+            readln("Welcher Wochentag war der 1.1. (1=Montag, ..., 7=Sonntag)? ")) - 1;
 
     var dayInYear = dayInMonth; // Wir summieren hier die Tage des Jahres auf
-    switch (month-1) {
-        case 12:
+    switch (month - 1) {
         case 11:
             dayInYear += 30;
         case 10:
@@ -28,16 +28,17 @@ void main() {
             dayInYear += 31;
         case 2:
             dayInYear += 28;
-            if (leapYear)
+            if (readln("Ist das Jahr ein Schaltjahr (j/n)? ").charAt(0) == 'j')
                 dayInYear++;
         case 1:
             dayInYear += 31;
+            break;
+        case 0:
             break;
         default:
             println("Fehler: Monat nicht bekannt");
             return;
     }
-    ;
     println("Tag im Jahr: " + dayInYear);
 
     var dayInWeek = (dayOnJanuary1st + dayInYear) % 7;
