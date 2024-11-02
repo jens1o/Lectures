@@ -24,7 +24,6 @@
 .. role:: green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 .. role:: smaller
@@ -1725,6 +1724,7 @@ Priorität der Operatoren
         "++, --, +, - (Vorzeichen), ~, !, (cast)", Einstellige Operatoren, 13 (höchste)
 
 
+
 Beispiele zur Auswertungsreihenfolge
 ----------------------------------------------------------
 
@@ -1797,30 +1797,25 @@ Beispiele zur Auswertungsreihenfolge
 Übung
 --------    
 
-.. exercise:: Body-Mass-Index (BMI) berechnen mit Java Script
+.. exercise:: Umrechnung von Sekunden
 
-    Lesen Sie das Gewicht in Kilogramm und die Größe in Metern von der Konsole ein und geben Sie den BMI auf der Konsole aus. Geben Sie auch aus, ob die Person Untergewicht, Normalgewicht oder Übergewicht hat. Falls die Person nicht das Normalgewicht hat, geben Sie auch an, wie viel Gewicht sie bis zum Normalgewicht zunehmen oder abnehmen muss. Berechnungsvorschrift: :math:`BMI = \frac{Gewicht}{Größe^2}`.
+    Schreiben Sie ein Java Script, dass die Anzahl von Sekunden in Stunden, Minuten und Sekunden umrechnet. Lesen Sie die Anzahl von Sekunden von der Konsole ein und geben Sie die Umrechnung auf der Konsole aus.
 
     Beispielinteraktion:
 
     .. code:: text
         :class: far-smaller
     
-        Bitte geben Sie Ihr Gewicht in Kilogramm ein: 80
-        Bitte geben Sie Ihre Größe in Metern ein: 1.80
-        Ihr BMI beträgt 24.69
-        Untergewicht: nein
-        Normalgewicht: nein
-        Übergewicht: 5.897499999999994 kg bis Normalgewicht
+        Bitte geben Sie die Sekunden ein: 3455
+        0 Stunde(n), 57 Minute(n) und 35 Sekunde(n)
 
     .. solution::
-        :pwd: BmiBerechnen
+        :pwd: SekundenUmrechnen
 
-        .. include:: code/BmiBerechnen.java
+        .. include:: code/SekundenUmrechnen.java
             :code: java
             :class: far-smaller
             :number-lines:
-
 
 .. supplemental::
 
@@ -1844,22 +1839,26 @@ Beispiele zur Auswertungsreihenfolge
 Übung
 --------    
 
-.. exercise:: Umrechnung von Sekunden
+.. exercise:: Body-Mass-Index (BMI) berechnen mit Java Script
 
-    Schreiben Sie ein Java Script, dass die Anzahl von Sekunden in Stunden, Minuten und Sekunden umrechnet. Lesen Sie die Anzahl von Sekunden von der Konsole ein und geben Sie die Umrechnung auf der Konsole aus.
+    Lesen Sie das Gewicht in Kilogramm und die Größe in Metern von der Konsole ein und geben Sie den BMI auf der Konsole aus. Geben Sie auch aus, ob die Person Untergewicht (:java:`BMI < 18,5`), Normalgewicht oder Übergewicht (:java:`BMI >= 25`) hat. Falls die Person nicht das Normalgewicht hat, geben Sie auch an, wie viel Gewicht sie bis zum Normalgewicht zunehmen oder abnehmen muss. Berechnungsvorschrift: :math:`BMI = \frac{Gewicht}{Größe^2}`.
 
     Beispielinteraktion:
 
     .. code:: text
         :class: far-smaller
     
-        Bitte geben Sie die Sekunden ein: 3455
-        0 Stunde(n), 57 Minute(n) und 35 Sekunde(n)
+        Bitte geben Sie Ihr Gewicht in Kilogramm ein: 80
+        Bitte geben Sie Ihre Größe in Metern ein: 1.80
+        Ihr BMI beträgt 24.69
+        Untergewicht: nein
+        Normalgewicht: nein
+        Übergewicht: 5.897499999999994 kg bis Normalgewicht
 
     .. solution::
-        :pwd: SekundenUmrechnen
+        :pwd: BmiBerechnen
 
-        .. include:: code/SekundenUmrechnen.java
+        .. include:: code/BmiBerechnen.java
             :code: java
             :class: far-smaller
             :number-lines:
@@ -2045,6 +2044,25 @@ Die :java:`if`-Anweisung setzt sich zusammen aus dem Schlüsselwort :java:`if`, 
 
 
 
+.. class:: integrated-exercise transition-scale
+
+Übung
+--------
+
+.. exercise:: Berechnung des BMI mit if-else Anweisung
+
+    Stellen Sie die vorherige Lösung zum Berechnen des BMI so um, dass Sie nur   :java:`if`-:java:`else`-Anweisungen verwenden.
+
+    .. solution::
+        :pwd: BmiBerechnenMitIfElse!
+
+        .. include:: code/BmiBerechnenMitIfElse.java
+            :code: java
+            :class: far-smaller
+            :number-lines:
+
+
+
 :java:`switch`-Anweisung/-Ausdruck (Grundlagen)
 ----------------------------------------------------------
 
@@ -2220,6 +2238,7 @@ Effizienz von bedingten Anweisungen
     .. container:: bonus-task far-far-smaller margin-top-1em
 
         Heimaufgabe: Erlauben Sie statt der Eingabe einer Zahl für den Wochentag auch die Eingabe des Wochentages als Text (z. B. "Montag", "Dienstag", ...).
+
 
 
 .. class:: new-section transition-move-to-top
@@ -2501,6 +2520,44 @@ Kontrolle des Schleifenablaufs
         .. include:: code/Primzahltest.java
             :code: Java
             :class: smaller
+
+
+
+.. class:: integrated-exercise transition-scale
+
+Übung
+--------
+
+.. exercise:: Berechnung der Fibonacci Zahlen
+
+    Schreiben Sie ein Programm, das die n-te Fibonacci-Zahl berechnet und auf der Konsole ausgibt. Lesen Sie n von der Konsole ein.
+
+    Die Fibonacci-Zahlen sind definiert durch die Rekursionsformel :math:`F(n) = F(n-1) + F(n-2)` mit den Anfangswerten :math:`F(0) = 0` und :math:`F(1) = 1`.
+
+    Die ersten 10 Fibonacci Zahlen: 
+
+    .. csv-table::
+        :class: smaller
+        :header: F0, F1, F2, F3, F4, F5, F6, F7, F8, F9, F10
+
+        0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55
+
+    Beispielinteraktion:
+
+    .. code:: bash
+        :class: far-smaller
+
+        # java --enable-preview Fibonacci.java
+        Welche Fibonacci Zahl möchten Sie berechnen? 10
+        55
+
+    .. solution::
+        :pwd: FibonacciZahlen
+
+        .. include:: code/Fibonacci.java
+            :code: Java
+            :class: smaller
+
 
 
 .. class:: integrated-exercise transition-scale
@@ -2852,6 +2909,35 @@ Aufruf von Methoden aus anderen Klassen
             }
 
         
+.. class:: transition-move-left integrated-exercise
+
+Übung
+--------
+
+.. exercise:: Fibonacci berechnen
+
+    Stellen Sie Ihre Lösung zur Berechnung der Fibonacci Zahl (siehe vorherige Übung) so um, dass die Berechnung eine rekursive Methode verwendet.
+    
+    Die rekursive Methode soll kein :java:`if` verwenden (aber ggf. ein :java:`switch` **Ausdruck**).
+
+    Vergleichen Sie die beiden Lösungen insbesondere für die Berechnung von größeren Fibonacci Zahlen (30, 40, 50, ...).
+
+    .. solution::
+        :pwd: FibonacciRRRekursiv
+
+        .. code:: java
+            :class: far-smaller
+
+            long fibonacci(int n) {
+                return switch (n) {
+                    case 0 -> 0;
+                    case 1 -> 1;
+                    default -> fibonacci(n - 1) + fibonacci(n - 2);
+                };
+            }
+
+
+
 
 .. class:: transition-fade new-section
 
@@ -3011,7 +3097,7 @@ Team und Projektspezifische Konventionen
 
 - Beispiele sind:
 
-  - Einrückungen der Parameter bei Methoden mit :ger-quote:`vielen` Parametern.
+  - Einrückungen der Parameter bei Methoden mit „vielen“ Parametern.
   - Sprache in der Variablen benannt werden. (z. B. Fachsprache in Englisch oder Deutsch)
   - Maximale Einrückungstiefe von Schleifen und Bedingungen.
   - ...
