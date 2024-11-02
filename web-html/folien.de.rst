@@ -21,7 +21,6 @@
 .. role:: green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 .. role:: smaller
@@ -71,7 +70,7 @@ HyperText Markup Language (HTML)
 
     .. layer::
 
-        - Sprache zur Beschreibung der Darstellung von Inhalten (Markup Language), zwischen denen :ger-quote:`navigiert` werden kann (Hypertext).
+        - Sprache zur Beschreibung der Darstellung von Inhalten (Markup Language), zwischen denen „navigiert“ werden kann (Hypertext).
         - Auszeichnungssprache abgeleitet aus SGML (Standard Generalized Markup Language).
     
     .. layer:: incremental
@@ -350,7 +349,7 @@ HTML Grundgerüst
 
 
 
-HTML ``<head>`` Element - :ger-quote:`obligatorische` Elemente
+HTML ``<head>`` Element - „obligatorische“ Elemente
 -----------------------------------------------------------------
 
 Im Head sollten immer die folgenden Informationen deklariert werden:
@@ -427,7 +426,7 @@ Im Head können weitere Informationen und Pragmas deklariert werden bzw. sollten
 
 
 
-Semantisches HTML vs. :ger-quote:`generisches` HTML
+Semantisches HTML vs. „generisches“ HTML
 -----------------------------------------------------------
 
 .. container:: two-columns
@@ -456,7 +455,7 @@ Semantisches HTML vs. :ger-quote:`generisches` HTML
         
 
 
-Semantisches HTML vs. :ger-quote:`generisches` HTML - Beispiel
+Semantisches HTML vs. „generisches“ HTML - Beispiel
 ---------------------------------------------------------------------
 
 .. container:: two-columns smallest
@@ -1328,7 +1327,7 @@ HTML Erweiterbarkeit
 
 - Hinzufügen von Meta-daten (``<meta name="" content="">``)
 - ``class`` Attribute
-- :ger-quote:`Custom Elements` (z. B. ``<my-element>``)
+- „Custom Elements“ (z. B. ``<my-element>``)
 - Autoren können APIs mit Hilfe des JavaScript-Prototyping-Mechanismus erweitern
 
 
@@ -1343,7 +1342,7 @@ Veraltetes - aber noch unterstütztes - HTML
 - kein ``type`` Attribute auf ``style`` Elementen (``text/css`` ist der Standard)
 
 
-HTML - :ger-quote:`nicht mehr unterstützt - April Stand 2024`
+HTML - „nicht mehr unterstützt - April Stand 2024“
 --------------------------------------------------------------
 
 Nicht mehr unterstützte Elemente (Auswahl):
@@ -1400,7 +1399,7 @@ Einige Anforderungen\ [#]_:
 
 .. container:: smaller
 
-    .. rubric:: :ger-quote:`Harte` Kriterien
+    .. rubric:: „Harte“ Kriterien
 
     .. class:: incremental smaller
 
@@ -1410,7 +1409,7 @@ Einige Anforderungen\ [#]_:
     - Um einen ausreichenden Kontrast zu erzeugen, muss die Schrift wenigstens 4,5-mal dunkler sein als der Hintergrund. 
     - Klickflächen schließlich müssen wenigstens 44 x 44 Pixel groß sein.
 
-    .. rubric:: :ger-quote:`Weiche` Kriterien
+    .. rubric:: „Weiche“ Kriterien
 
     .. class:: incremental smaller
 

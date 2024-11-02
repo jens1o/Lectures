@@ -20,7 +20,6 @@
 .. role:: green
 .. role:: blue
 .. role:: not-important
-.. role:: ger-quote
 .. role:: smaller
 
 
@@ -59,7 +58,7 @@ Ein |WS| ist lediglich eine Webseite, die von einem Computer angefordert und ver
 
 .. container:: incremental 
 
-    Ein |WS| ist eine :ger-quote:`Webseite`, die von einem *autonomen Programm* - im Gegensatz zu einem Webbrowser oder einem ähnlichen UI-Tool - konsumiert werden soll.
+    Ein |WS| ist eine „Webseite“, die von einem *autonomen Programm* - im Gegensatz zu einem Webbrowser oder einem ähnlichen UI-Tool - konsumiert werden soll.
 
 .. supplemental::
 
@@ -87,7 +86,7 @@ REST\ [#]_
   Von untergeordneter Bedeutung:
 
   - Mehrere Repräsentationen werden akzeptiert oder gesendet
-  - :ger-quote:`Hypertext` repräsentiert den Anwendungszustand
+  - „Hypertext“ repräsentiert den Anwendungszustand
  
 
 .. [#] REST wurde von Roy Fielding in seiner Dissertation beschrieben.
@@ -134,7 +133,7 @@ RESTful Web Services - Grundlagen
 
 .. class:: incremental
 
-:`Repräsentation`:ger-quote:: **JSON**, XML, SVG, WebP, XML, ...
+:„Repräsentation“: **JSON**, XML, SVG, WebP, XML, ...
 
 
 
@@ -148,7 +147,7 @@ Zwei Arten von Zustand: (1) Anwendungs-/Sitzungszustand
     (:eng:`Application State / Session State`)
 
 
-- :ger-quote:`Zustand` bedeutet Anwendungs-/Sitzungsstatus 
+- „Zustand“ bedeutet Anwendungs-/Sitzungsstatus 
 
    Der Anwendungsstatus ist die Information, die notwendig ist, um den Kontext einer Interaktion zu verstehen 
 
@@ -171,7 +170,7 @@ Zwei Arten von Zustand: (2) Ressourcenzustand
 
 - Der Ressourcenzustand ist die Art von Zustand, auf die sich das *S* in *REST* bezieht.
 
-- Die Einschränkung :ger-quote:`zustandslos` bedeutet, dass alle Nachrichten den gesamten Anwendungsstatus enthalten müssen (d. h., dass wir effektiv keine Sitzungen haben).
+- Die Einschränkung „zustandslos“ bedeutet, dass alle Nachrichten den gesamten Anwendungsstatus enthalten müssen (d. h., dass wir effektiv keine Sitzungen haben).
 
 
 Mehrere Repräsentationen

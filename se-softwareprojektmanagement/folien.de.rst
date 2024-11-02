@@ -19,7 +19,6 @@
 .. role:: green
 .. role:: blue
 .. role:: not-important
-.. role:: ger-quote
 
 
 .. class:: animated-symbol
@@ -488,7 +487,7 @@ Beispielaufzeichnung von User Stories
     "", **ID**, 2
     , Name, Admin-Login
     , Beschreibung, "Als Administrator*in muss ich mich am System mittels Benutzername und Passwort authentifizieren können, um Änderungen vornehmen zu können."
-    :ger-quote:`Mit allen abzustimmen` , Akzeptanzkriterium, "Der Dialog zum Einloggen wird korrekt angezeigt und es ist möglich sich als Administrator*in zu authentifizieren. Ungültige Eingaben werden ignoriert und normale Nutzer*innen erhalten nicht die Rolle Administrator."
+    „Mit allen abzustimmen“ , Akzeptanzkriterium, "Der Dialog zum Einloggen wird korrekt angezeigt und es ist möglich sich als Administrator*in zu authentifizieren. Ungültige Eingaben werden ignoriert und normale Nutzer*innen erhalten nicht die Rolle Administrator."
     "Beim Anlegen", Geschätzter Aufwand in Story Points (SPs), 3
     Bei Iterationsstart festzulegen, Entwickler*in, Michaela Müller
     , Umgesetzt in Iteration, 2

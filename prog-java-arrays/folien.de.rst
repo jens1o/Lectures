@@ -23,7 +23,6 @@
 .. role:: green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 .. role:: smaller
@@ -183,7 +182,7 @@ Auf einzelne Elemente eines Feldes kann mittels eines Indexes und dem Feldzugrif
     .. layer::
 
         - Wertzuweisung eines Feldelementes: Verwendung des Feldzugriffoperators auf der linken Seite einer Zuweisung, z.B. :java:`a[1] = 1`;
-        - Auslesen eines Feldelementes: :ger-quote:`jegliche andere Verwendung des Feldzugriffoperators`.
+        - Auslesen eines Feldelementes: „jegliche andere Verwendung des Feldzugriffoperators“.
   
         .. class:: incremental
 
@@ -302,7 +301,7 @@ Eine Variable mit einem Feld-Datentyp speichert eine (virtuelle) Speicheradresse
 
 .. supplemental::
 
-    Dies ist insbesondere in älteren Programmiersprachen (z. B. C) ein häufiger Fehler, der zu Speicherlecks führt. Dies hat dazu geführt, dass das :ger-quote:`Weisse Hause` die Empfehlung ausgesprochen hat, solche alten Sprachen nicht mehr zu verwenden. In Java und vielen anderen modernen Programmiersprachen ist dies nicht möglich.
+    Dies ist insbesondere in älteren Programmiersprachen (z. B. C) ein häufiger Fehler, der zu Speicherlecks führt. Dies hat dazu geführt, dass das „Weisse Hause“ die Empfehlung ausgesprochen hat, solche alten Sprachen nicht mehr zu verwenden. In Java und vielen anderen modernen Programmiersprachen ist dies nicht möglich.
 
 
 
@@ -758,7 +757,7 @@ Multidimensional Arrays
         $ ./sort 3 2 1 4 5 6 7 8 9 10 
         [1, 10, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    Studieren Sie die verfügbaren Methoden der Klasse :java:`Arrays` (https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Arrays.html). Suchen Sie nach einer Methode zum sortieren von Arrays mit dem Datentyp :java:`String`. Suchen Sie weiterhin nach einer Methode, um ein String-Array :ger-quote:`vernünftig` auszugeben.
+    Studieren Sie die verfügbaren Methoden der Klasse :java:`Arrays` (https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Arrays.html). Suchen Sie nach einer Methode zum sortieren von Arrays mit dem Datentyp :java:`String`. Suchen Sie weiterhin nach einer Methode, um ein String-Array „vernünftig“ auszugeben.
 
     .. solution::
         :pwd: SortierenUndAusgebenMitEchtemScript

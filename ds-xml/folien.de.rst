@@ -22,7 +22,6 @@
 .. role:: green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 .. role:: smaller
@@ -568,7 +567,7 @@ Namensräume
         <comment>e = mc^2</comment>
     </pseudocode>
 
-.. rubric:: Definition eines Präfixes (hier: :ger-quote:`m`)
+.. rubric:: Definition eines Präfixes (hier: „m“)
 
 .. code:: xml
     :class: far-smaller
@@ -578,7 +577,7 @@ Namensräume
     </m:pseudocode>
 
 
-.. rubric:: Redefinition eines Präfixes (hier: :ger-quote:`m`)
+.. rubric:: Redefinition eines Präfixes (hier: „m“)
 
 .. code:: xml
     :class: far-smaller

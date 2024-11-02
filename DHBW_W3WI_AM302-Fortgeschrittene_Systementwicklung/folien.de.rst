@@ -21,7 +21,6 @@
 .. role:: green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 .. role:: huge
@@ -92,6 +91,17 @@ Dieses Semester 12 VL:
   :minor:`(Test von 16:40 bis 17:00 Uhr; davor 10 Minuten Pause.)`
 
 Nächstes Semester: 43 VL
+
+**Mögliche** Inhalte:
+
+1. Crashkrus JavaScript Wiederholung
+2. Authentifizierung in Webanwendungen (JSON Web Token, Cookies, Sessions)
+3. RESTful Web Services
+4. Buildprozesse und Continuous Integration / Continuous Deployment
+   
+   Schwerpunkt: automatisiertes Finden von Schwachstellen in der Softwareentwicklung.
+5. Virtualisierung und Containerisierung
+
 
 (Zeitplan wird noch bekannt gegeben)
 

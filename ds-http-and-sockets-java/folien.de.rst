@@ -18,7 +18,6 @@
 .. role:: incremental
 .. role:: eng
 .. role:: ger
-.. role:: ger-quote
 .. role:: minor
 .. role:: obsolete
 .. role:: dhbw-red
@@ -159,7 +158,7 @@ Konzeptioneller Ablauf
 
     .. rubric:: HTTP-Kommandos 
     
-    (:ger-quote:`Verben`)
+    („Verben“)
 
     - HEAD
     - GET

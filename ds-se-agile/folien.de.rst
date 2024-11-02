@@ -23,7 +23,6 @@
 .. role:: shiny-green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 
@@ -71,7 +70,7 @@ Agile Softwareentwicklung und Ihre Bedeutung für verteilte Anwendungsarchitektu
 
     Die Notwendigkeit auf Veränderungen reagieren zu können ist essentiell, da sich die Anforderungen an die Software bzw. die auftauchenden Probleme sich während der Entwicklung verändern können bzw. im Normalfall bei Projektstart noch nicht vollständig verstanden sind.
 
-    Es ist dennoch essentiell zentrale Anforderungen, die ggf. eine massive Auswirkung auf den Entwurf haben, am Anfang zu erfassen: eine neue Anforderung auch die Titel der Kunden zu erfassen ist ggf. :ger-quote:`immer` umsetzbar. Eine Anforderung wie zum Beispiel Mandantenfähigkeit oder Anforderungen an die Skalierbarkeit sind dagegen anders zu bewerten.
+    Es ist dennoch essentiell zentrale Anforderungen, die ggf. eine massive Auswirkung auf den Entwurf haben, am Anfang zu erfassen: eine neue Anforderung auch die Titel der Kunden zu erfassen ist ggf. „immer“ umsetzbar. Eine Anforderung wie zum Beispiel Mandantenfähigkeit oder Anforderungen an die Skalierbarkeit sind dagegen anders zu bewerten.
 
 
 Agile Softwareentwicklung

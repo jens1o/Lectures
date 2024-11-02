@@ -16,7 +16,6 @@
 
 .. role:: incremental
 .. role:: ger
-.. role:: ger-quote
 .. role:: eng
 .. role:: minor
 
@@ -230,7 +229,7 @@ Brute-Force Angriff
 
 - Im Durchschnitt muss die Hälfte aller möglichen Schlüssel ausprobiert werden, um Erfolg zu haben.
 
-- Zur Durchführung des Brute-Force-Ansatzes ist ein gewisses Maß an Wissen über den zu erwartenden Klartext erforderlich. Es werden Mittel zur automatischen Unterscheidung von Klartext und :ger-quote:`Müll` benötigt.
+- Zur Durchführung des Brute-Force-Ansatzes ist ein gewisses Maß an Wissen über den zu erwartenden Klartext erforderlich. Es werden Mittel zur automatischen Unterscheidung von Klartext und „Müll“ benötigt.
 
   .. admonition:: Frage
 
@@ -393,7 +392,7 @@ Monoalphabetische Chiffren
 
 .. class:: incremental
 
-  - Wenn die :ger-quote:`Chiffre`-Zeile (siehe Cäsar-Chiffre) eine beliebige Permutation der 26 alphabetischen Zeichen sein kann, dann gibt es :math:`26!` oder mehr als :math:`4 \times 10^{26}` mögliche Schlüssel.
+  - Wenn die „Chiffre“-Zeile (siehe Cäsar-Chiffre) eine beliebige Permutation der 26 alphabetischen Zeichen sein kann, dann gibt es :math:`26!` oder mehr als :math:`4 \times 10^{26}` mögliche Schlüssel.
 
     - Dies ist um 10 Größenordnungen größer als der Schlüsselraum für DES!
     - Der Ansatz wird als monoalphabetische Substitutions-Chiffre bezeichnet, da pro Nachricht ein einziges Chiffre-Alphabet verwendet wird.
@@ -597,7 +596,7 @@ Beispiel einer Vigenère-Verschüsselung
 .. admonition:: Beispiel
     :class: incremental
 
-    Wenn das Schlüsselwort ``deceptive`` ist, wird die Nachricht :ger-quote:`Wir wurden entdeckt, rette dich` wie folgt verschlüsselt:
+    Wenn das Schlüsselwort ``deceptive`` ist, wird die Nachricht „Wir wurden entdeckt, rette dich“ wie folgt verschlüsselt:
 
     :: 
 
@@ -672,7 +671,7 @@ Schwierigkeiten von One-Time-Pads
 
      Jedes stark genutzte System könnte regelmäßig Millionen von zufälligen Zeichen benötigen.
 
-  2. Ein :ger-quote:`gigantisches` Schlüsselverteilungsproblem
+  2. Ein „gigantisches“ Schlüsselverteilungsproblem
 
      Für jede zu übermittelnde Nachricht benötigen Sender und Empfänger einen gleich langen Schlüssel.
 
@@ -696,7 +695,7 @@ Rail Fence Chiffre
 .. admonition:: Beispiel
     :class: incremental
 
-    Um die Nachricht: :ger-quote:`Meet me after the Toga-Party` mit einer Rail Fence Chiffre der Tiefe 2 (Schlüssel) zu verschlüsseln, würden wir schreiben:
+    Um die Nachricht: „Meet me after the Toga-Party“ mit einer Rail Fence Chiffre der Tiefe 2 (Schlüssel) zu verschlüsseln, würden wir schreiben:
     
     ::
 
@@ -715,7 +714,7 @@ Skytale
 
 - Ältestes bekannte (militärische) Verschlüsselungsverfahren. 
 - Vor mehr als 2500 Jahren (vermutlich) von den Spartanern entwickelt. 
-- Die Verschlüsselung erfolgte mit einen (Holz-)Stab mit einem bestimmten Durchmesser (:ger-quote:`Schlüssel`) (Skytale).
+- Die Verschlüsselung erfolgte mit einen (Holz-)Stab mit einem bestimmten Durchmesser („Schlüssel“) (Skytale).
 
 .. image:: drawings/skytale.svg
     :alt: Skytale

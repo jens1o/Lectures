@@ -18,7 +18,6 @@
 .. role:: incremental
 .. role:: eng
 .. role:: ger
-.. role:: ger-quote
 .. role:: minor
 .. role:: obsolete
 .. role:: dhbw-red
@@ -198,7 +197,7 @@ Python Thread States
 
 
 
-Beispiel: Multiprocessing - :ger-quote:`IO-Bound`
+Beispiel: Multiprocessing - „IO-Bound“
 ---------------------------------------------------------------------
 
 .. container:: two-columns
@@ -296,7 +295,7 @@ Beispiel: Multiprocessing - CPU-Bound
   Je nach Betriebssystem werden die Kindprozesse ggf. anders ausgeführt (``fork`` oder ``spawn``). Linux/Posix bietet die beste Unterstützung gefolgt von MacOS und Windows.
 
 
-Beispiel: Threading - :ger-quote:`IO-Bound`
+Beispiel: Threading - „IO-Bound“
 -------------------------------------------------
 
 .. container:: two-columns
@@ -435,7 +434,7 @@ Beispiel: Coroutines
 
 .. supplemental::
 
-  - Beide ``Task``\ s werden von dem gleichen Thread ausgeführt. Der Thread gibt :ger-quote:`die Kontrolle an die Event-Loop ab`, wenn er auf eine entsprechende blockierende Methode trifft. Die Event-Loop kann dann die Kontrolle an einen anderen Task übergeben.
+  - Beide ``Task``\ s werden von dem gleichen Thread ausgeführt. Der Thread gibt „die Kontrolle an die Event-Loop ab“, wenn er auf eine entsprechende blockierende Methode trifft. Die Event-Loop kann dann die Kontrolle an einen anderen Task übergeben.
   - Warten (``await``) ist nur möglich in asynchronen Methoden (``async def``). 
   - ``asyncio.run(<fn>)`` startet die Event-Loop und führt die übergebene asynchrone Methode aus. 
   - Die Verwendung von Koroutinen erfordert explizite Unterstützung in den Bibliotheken.
@@ -1178,7 +1177,7 @@ Thread Safety Level
 
 .. class:: incremental
 
-:Thread-hostile `Thread-schädlich`:ger-quote:: Objekte, die nicht thread-sicher sind und auch nicht thread-sicher gemacht werden können, da sie zum Beispiel globalen Zustand manipulieren.
+:Thread-hostile „Thread-schädlich“: Objekte, die nicht thread-sicher sind und auch nicht thread-sicher gemacht werden können, da sie zum Beispiel globalen Zustand manipulieren.
 
 
 .. supplemental::

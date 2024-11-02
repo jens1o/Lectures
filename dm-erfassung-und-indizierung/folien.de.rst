@@ -20,7 +20,6 @@
 .. role:: green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 .. role:: monospaced
@@ -423,7 +422,7 @@ Umwandlung von NCI zu CI
 
 :*Optical Mark Recognition (OMR)*:
 
-    Es werden Markierungen in vordefinierten Feldern/Bereichen ausgelesen. Z. B. Selektionsfelder aus Fragebögen oder es wird geprüft, ob :ger-quote:`eine Unterschrift` in dem vorgesehenen Feld erfolgt ist.
+    Es werden Markierungen in vordefinierten Feldern/Bereichen ausgelesen. Z. B. Selektionsfelder aus Fragebögen oder es wird geprüft, ob „eine Unterschrift“ in dem vorgesehenen Feld erfolgt ist.
 
 
 
@@ -669,7 +668,7 @@ Beschreibt **die direkte digitale Speicherung von Druck- und Listenausgaben  bet
 
 .. supplemental::
 
-    d. h. bei COLD werden die Daten nicht mehr - bzw. nur optional - auf Papier ausgegeben, sondern stattdessen direkt in ein DMS übernommen. Da kein OCR notwendig ist, sondern die Daten direkt :ger-quote:`beim Drucken` abgegriffen werden, ist die Qualität der Daten sehr hoch.
+    d. h. bei COLD werden die Daten nicht mehr - bzw. nur optional - auf Papier ausgegeben, sondern stattdessen direkt in ein DMS übernommen. Da kein OCR notwendig ist, sondern die Daten direkt „beim Drucken“ abgegriffen werden, ist die Qualität der Daten sehr hoch.
 
 
 COLD-Verfahren (historisch)
@@ -778,5 +777,5 @@ Evtl. ergänzt um semantische Hilfsmittel (Thesaurus, etc. ).
 
 .. class:: negative-list
 
-- Unstrukturiert, :ger-quote:`langsam`, Ressourcenbedarf, keine semantisch zusammenfassenden Informationen abfragbar.
+- Unstrukturiert, „langsam“, Ressourcenbedarf, keine semantisch zusammenfassenden Informationen abfragbar.
 

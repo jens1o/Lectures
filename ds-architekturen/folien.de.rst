@@ -18,7 +18,6 @@
 .. role:: incremental
 .. role:: eng
 .. role:: ger
-.. role:: ger-quote
 .. role:: minor
 .. role:: obsolete
 .. role:: smaller
@@ -329,7 +328,7 @@ Microservices und Conway's Law
 Microservices und Technologieeinsatz
 -------------------------------------
 
-Microservices sind flexibel bzgl. des Technologieeinsatzes und ermöglichen den Einsatz :ger-quote:`der geeignetsten` Technologie.
+Microservices sind flexibel bzgl. des Technologieeinsatzes und ermöglichen den Einsatz „der geeignetsten“ Technologie.
 
 .. image:: images/microservices/technologische-flexibilitaet.svg
    :height: 700px
@@ -431,7 +430,7 @@ Optimierung der Abarbeitungsreihenfolge zwecks Minimierung von mgl. *Rollbacks*
 
 .. supplemental::
 
-  Die Abarbeitungsreihenfolge der Aktionen kann so optimiert werden, dass die Wahrscheinlichkeit von *Rollbacks* minimiert wird. In diesem Falle ist die Wahrscheinlichkeit, dass es zu einem *Rollback* während des Schritts :ger-quote:`Versand der Bestellung` kommt, wesentlich höher als beim Schritt :ger-quote:`Kundenbonus gutschreiben`.
+  Die Abarbeitungsreihenfolge der Aktionen kann so optimiert werden, dass die Wahrscheinlichkeit von *Rollbacks* minimiert wird. In diesem Falle ist die Wahrscheinlichkeit, dass es zu einem *Rollback* während des Schritts „Versand der Bestellung“ kommt, wesentlich höher als beim Schritt „Kundenbonus gutschreiben“.
 
 
 
@@ -494,7 +493,7 @@ Langlebige Transaktionen mit choreografierten Sagas
         .. admonition:: Warnung
           :class: warning incremental
           
-          Das :ger-quote:`Schreiben` auf zwei unterschiedliche Systeme (hier: Datenbank und Event-processing Middleware) erfordert immer einen transaktionalen Kontext. 
+          Das „Schreiben“ auf zwei unterschiedliche Systeme (hier: Datenbank und Event-processing Middleware) erfordert immer einen transaktionalen Kontext. 
           
           Kann dieser nicht hergestellt werden, dann kann es zu Inkonsistenzen kommen (:eng:`Dual-write Problem`).
 

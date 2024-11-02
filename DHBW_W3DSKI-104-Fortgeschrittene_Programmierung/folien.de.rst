@@ -14,7 +14,6 @@
 .. role:: green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 
@@ -330,7 +329,7 @@ Svelte (4 Personen)
 - Javascript Web Framework
 
   - Svelte
-  - SvelteKit (:ger-quote:`Server Side Rendering`)
+  - SvelteKit („Server Side Rendering“)
 - https://svelte.dev/
   
 

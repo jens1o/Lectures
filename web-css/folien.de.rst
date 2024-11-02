@@ -22,7 +22,6 @@
 .. role:: green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 .. role:: smaller
@@ -764,7 +763,7 @@ Elemente
   - Inline-Elemente generieren eine Box innerhalb einer Zeile und unterbrechen den Fluss der Zeile nicht.
   - Mittels CSS kann der Formatierungskontext geändert werden.
 
-  .. [#] Es gibt noch :ger-quote:`viel mehr` Kontexte für spezielle Anwendungsfälle.
+  .. [#] Es gibt noch „viel mehr“ Kontexte für spezielle Anwendungsfälle.
 
 
 Block und Inline Elemente - Beispiel
@@ -1226,7 +1225,7 @@ Der ``&`` Operator kann immer verwendet werden, ist aber oft optional.
         
     .. container:: incremental
 
-        2. Erweitern Sie den CSS Code, um das finale Layout zu erhalten. Dazu müssen sie die folgenden CSS Eigenschaften passend :ger-quote:`einfügen`.
+        2. Erweitern Sie den CSS Code, um das finale Layout zu erhalten. Dazu müssen sie die folgenden CSS Eigenschaften passend „einfügen“.
    
            .. code:: css
              :class: far-far-smaller copy-to-clipboard
@@ -1448,7 +1447,7 @@ Grundlagen
 
     ``lh`` computed line-height
 
-    ``ch`` Breite des Zeichens :ger-quote:`0` (ZERO, U+0030) (Ein Wert von 60ch entspricht bei vielen Fonts einer effektiven Breite von ca. 80 Zeichen im Durchschnitt.)
+    ``ch`` Breite des Zeichens „0“ (ZERO, U+0030) (Ein Wert von 60ch entspricht bei vielen Fonts einer effektiven Breite von ca. 80 Zeichen im Durchschnitt.)
 
     ``calc`` erlaubt verschiedenste Berechnungen ist aber an einigen Stellen *Whitespace-sensitive* und unterliegt bestimmten Einschränkungen welche Arten von Werten verrechnet werden können. (+ und - müssen immer mit Leerraum umgeben sein.)
 
@@ -1505,7 +1504,7 @@ Box-Modell - Einführung
       .. container : : hint
         ``content`` ist die einzige Eigenschaft, die nicht verändert werden kann.
 
-  - Die Größe der Box berechnet sich :ger-quote:`nur` aus der Größe des Inhalts (d. h. der ``content`` Bereich); dies kann geändert werden durch: ``box-sizing: border-box;``
+  - Die Größe der Box berechnet sich „nur“ aus der Größe des Inhalts (d. h. der ``content`` Bereich); dies kann geändert werden durch: ``box-sizing: border-box;``
 
       ``box-sizing: border-box;`` setzt die Größe der Box auf die Größe des Inhalts plus Padding und Border. (Der Standardwert ist ``content-box``.)
 
@@ -1904,7 +1903,7 @@ Flexbox
 
 .. supplemental::
 
-    - Flexbox ist ein :ger-quote:`ganzes CSS-Modul`, dass aus mehreren Eigenschaften besteht.
+    - Flexbox ist ein „ganzes CSS-Modul“, dass aus mehreren Eigenschaften besteht.
     - Eigenschaften des Container: ``flex-direction``, ``flex-wrap``, ``justify-content``, ``align-items``, ``align-content``, (``row-``\|\ ``column-``)\ ``gap``
     - Eigenschaften der Elemente des Containers: ``align-self``, ``flex-grow``, ``flex-shrink``, ``flex-basis``, ``order``
     - Flexbox unterscheidet zwischen der *Main Axis* und *Cross Axis*. ``flex-direction`` legt die Hauptachse fest.
@@ -2058,7 +2057,7 @@ Flexbox - Beispielhaft
   
 .. supplemental::
 
-    Der :ger-quote:`Trick` ist, dass die Berechnung für ``flex-basis`` so gewählt ist, dass ab einer bestimmten Größe der Wert für flex-basis entweder sehr groß ist (und damit nur noch ein Element in die Zeile passt oder eben sehr klein ist und damit alle Elemente in eine Zeile passen.)
+    Der „Trick“ ist, dass die Berechnung für ``flex-basis`` so gewählt ist, dass ab einer bestimmten Größe der Wert für flex-basis entweder sehr groß ist (und damit nur noch ein Element in die Zeile passt oder eben sehr klein ist und damit alle Elemente in eine Zeile passen.)
 
 
 
@@ -2124,7 +2123,7 @@ Nicht Behandelte Themen
 
 .. supplemental::
 
-    Es gibt sehr, sehr viele CSS Tricks die Dinge ermöglichen, die nicht unmittelbar zu erwarten gewesen wären. Z. B. kann man einem Element einen Index zuordnen basierend auf dem ":nth-child()" Selektor. Dieser Index kann dann für :ger-quote:`die Berechnung` von weiteren Werten verwendet werden.
+    Es gibt sehr, sehr viele CSS Tricks die Dinge ermöglichen, die nicht unmittelbar zu erwarten gewesen wären. Z. B. kann man einem Element einen Index zuordnen basierend auf dem ":nth-child()" Selektor. Dieser Index kann dann für „die Berechnung“ von weiteren Werten verwendet werden.
 
 .. class:: integrated-exercise transition-move-up
 

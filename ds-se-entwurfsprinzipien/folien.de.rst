@@ -16,7 +16,6 @@
 .. role:: incremental
 .. role:: eng
 .. role:: ger
-.. role:: ger-quote
 .. role:: minor
 .. role:: obsolete
 .. role:: dhbw-red
@@ -84,7 +83,7 @@ Die Entitäten (:dhbw-light-gray:`Klassen`, :dhbw-gray:`Module`, :dhbw-gray:`Kom
 .. admonition:: Hinweis
   :class: warning incremental
 
-  Diese Kriterien erlauben es uns einen :ger-quote:`fertigen` Entwurf zu beurteilen ohne zu sagen, wie das Ziel erreicht werden kann.
+  Diese Kriterien erlauben es uns einen „fertigen“ Entwurf zu beurteilen ohne zu sagen, wie das Ziel erreicht werden kann.
 
 .. supplemental::
 
@@ -112,7 +111,7 @@ Die Entitäten (:dhbw-light-gray:`Klassen`, :dhbw-gray:`Module`, :dhbw-gray:`Kom
 
 .. supplemental::
 
-  Es muss Leitlinien geben, die uns helfen einen guten Entwurf zu erstellen, der die genannten Ziele erreicht. Weiterhin muss klar sein wie dieser beurteilt werden kann. d. h. Code darf nicht beliebig :ger-quote:`platziert` werden; Schnittstellen sollten nicht aus dem Bauch heraus entworfen werden.
+  Es muss Leitlinien geben, die uns helfen einen guten Entwurf zu erstellen, der die genannten Ziele erreicht. Weiterhin muss klar sein wie dieser beurteilt werden kann. d. h. Code darf nicht beliebig „platziert“ werden; Schnittstellen sollten nicht aus dem Bauch heraus entworfen werden.
 
   Die folgenden Prinzipien wurden (zumindest teilweise) im Kontext der objekt-orientierten Programmierung identifiziert und beschrieben; passen jedoch auf verschiedensten Abstraktionsgeraden, deswegen ist im Folgenden auch von Entitäten die Rede.
 
@@ -168,7 +167,7 @@ Niedrige statische Kopplung (:eng:`low (static) coupling`)
 -------------------------------------------------------------------------------------------------
 
 - Eine niedrige Kopplung unterstützt den Entwurf von vergleichsweise unabhängigen und deswegen besser wiederverwendbaren Entitäten.
-- :ger-quote:`generische` Entitäten mit einer hohen Wiederverwendungswahrscheinlichkeit sollten eine geringe Kopplung aufweisen.
+- „generische“ Entitäten mit einer hohen Wiederverwendungswahrscheinlichkeit sollten eine geringe Kopplung aufweisen.
 
 .. image:: images/coupling/applied-isp.svg
   :width: 100% 
@@ -251,7 +250,7 @@ Ausgewählte Typen von Zusammenhalt:
 
 .. supplemental::
 
-  Eine wesentliche Frage ist: :ger-quote:`Worin besteht der abgeschlossene Kontext, um etwas auf einer entsprechenden Abstraktionsebene kohäsiv erscheinen zu lassen?`
+  Eine wesentliche Frage ist: „Worin besteht der abgeschlossene Kontext, um etwas auf einer entsprechenden Abstraktionsebene kohäsiv erscheinen zu lassen?“
 
   Technische Kohäsion entsteht zum Beispiel an der Schnittstelle für den Zugriff auf die Datenbank.
 
@@ -278,7 +277,7 @@ Sie sind:
 Hoher Zusammenhalt (:eng:`High Cohesion`)
 ----------------------------------------------------------------------
 
-Alle Funktionalität und alle Daten sollten :ger-quote:`natürlich` zum Konzept gehören, das von der Entität realisiert wird.
+Alle Funktionalität und alle Daten sollten „natürlich“ zum Konzept gehören, das von der Entität realisiert wird.
 
 
 
@@ -643,7 +642,7 @@ Command-Query Separation (CQS)
 
 .. supplemental::
 
-  Ein Java Iterator mit seiner :ger-quote:`next` Methode verletzt ganz klar dieses Prinzip!
+  Ein Java Iterator mit seiner „next“ Methode verletzt ganz klar dieses Prinzip!
 
 
 
@@ -721,7 +720,7 @@ Command-Query Responsibility Segregation Principle (CQRS)
 .. class:: incremental
 
 - Die Anzahl an Schreibe- und Leseoperationen ist extrem unterschiedlich.
-- Die Datenmodelle bzgl. Abfragen und :ger-quote:`Kommandos` unterscheiden sich deutlich und es kommen ggf. mehrere Datenbanken zum Einsatz.
+- Die Datenmodelle bzgl. Abfragen und „Kommandos“ unterscheiden sich deutlich und es kommen ggf. mehrere Datenbanken zum Einsatz.
 - Die Validierung der Daten ist komplex.
 
 .. container:: incremental
@@ -801,7 +800,7 @@ Ein einfacher RESTful Web Service mit Spring
 
 .. container:: foundations incremental
 
-  Eine gute Anwendungsarchitektur erlaubt es Entscheidungen, die sich *nicht* aus den Geschäftsanforderungen ergeben, zu verzögern bzw. :ger-quote:`leicht` anpassbar zu machen.
+  Eine gute Anwendungsarchitektur erlaubt es Entscheidungen, die sich *nicht* aus den Geschäftsanforderungen ergeben, zu verzögern bzw. „leicht“ anpassbar zu machen.
 
 .. supplemental::
 
@@ -874,7 +873,7 @@ Hexagonal Architecture (Ports & Adapters) [#]_
   Für die Implementierung von *Primary Ports* werden oft *Inversion of Control Frameworks* verwendet.
   Die Implementierung von *Secondary Ports* erfordert üblicherweise den Einsatz von *Dependency Inversion*.
 
-  Im Allgemeinen ist es oft notwendig in den Adaptern Entity Klassen hin und zurück :ger-quote:`zu Mappen`, um sicherzustellen, dass keine technischen Abhängigkeiten in den Kern einsickern.
+  Im Allgemeinen ist es oft notwendig in den Adaptern Entity Klassen hin und zurück „zu Mappen“, um sicherzustellen, dass keine technischen Abhängigkeiten in den Kern einsickern.
 
   Die hexagonale Architektur wird von einigen als Ausgangsarchitektur für *Microservices* gesehen, da häufig einzelne Services nach diesem Architekturmuster implementiert werden.
 
@@ -969,7 +968,7 @@ Hexagonal Architecture (Ports & Adapters) [#]_
   - Funktionen
   - ... 
 
-  Entitäten sind :ger-quote:`Dinge`, die sich nicht aufgrund externer (technischer) Änderungen ändern sollten. Zum Beispiel aufgrund von geänderten Sicherheitsanforderungen oder der verwendeten Datenbank. 
+  Entitäten sind „Dinge“, die sich nicht aufgrund externer (technischer) Änderungen ändern sollten. Zum Beispiel aufgrund von geänderten Sicherheitsanforderungen oder der verwendeten Datenbank. 
 
   .. rubric:: Use Cases
 

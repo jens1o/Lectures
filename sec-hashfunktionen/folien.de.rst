@@ -17,7 +17,6 @@
 .. role:: incremental
 .. role:: ger
 .. role:: eng
-.. role:: ger-quote
 .. role:: red
 .. role:: green 
 .. role:: blue 
@@ -124,9 +123,9 @@ Sicherheitsanforderungen an kryptografische Hashfunktion II
 
     **Hintergrund**
 
-    Im Deutschen wird auch von Urbild-Angriffen gesprochen. In dem Fall ist *preimage resistance* (d. h. die Einweg Eigenschaft) gleichbedeutend damit, dass man nicht effektiv einen :ger-quote:`Erstes-Urbild-Angriff` durchführen kann. Hierbei ist das Urbild die ursprüngliche Nachricht :math:`M`, die *gehasht* wurde.
+    Im Deutschen wird auch von Urbild-Angriffen gesprochen. In dem Fall ist *preimage resistance* (d. h. die Einweg Eigenschaft) gleichbedeutend damit, dass man nicht effektiv einen „Erstes-Urbild-Angriff“ durchführen kann. Hierbei ist das Urbild die ursprüngliche Nachricht :math:`M`, die *gehasht* wurde.
 
-    *Second preimage resistance* ist dann gleichbedeutend damit, dass man nicht effektiv einen :ger-quote:`Zweites-Urbild-Angriff` durchführen kann. Es ist nicht möglich zu einer Nachricht M eine zweite Nachricht N (d. h. ein zweites Urbild) zu finden, die für eine gegebene Hashfunktion den gleich Hash aufweist.
+    *Second preimage resistance* ist dann gleichbedeutend damit, dass man nicht effektiv einen „Zweites-Urbild-Angriff“ durchführen kann. Es ist nicht möglich zu einer Nachricht M eine zweite Nachricht N (d. h. ein zweites Urbild) zu finden, die für eine gegebene Hashfunktion den gleich Hash aufweist.
 
 
 Beziehung zwischen den Sicherheitsanforderungen an Hashfunktionen
@@ -340,7 +339,7 @@ Struktur eines sicheren Hash-Codes
 .. exercise:: XOR als Hashfunktion
 
     
-    Warum ist eine einfache :ger-quote:`Hash-Funktion`, die einen 256-Bit-Hash-Wert berechnet, indem sie ein XOR über alle 256-Bit Blöcke einer Nachricht durchführt, im Allgemeinen ungeeignet?
+    Warum ist eine einfache „Hash-Funktion“, die einen 256-Bit-Hash-Wert berechnet, indem sie ein XOR über alle 256-Bit Blöcke einer Nachricht durchführt, im Allgemeinen ungeeignet?
 
     .. container:: minor
 
@@ -904,7 +903,7 @@ MAC: `Poly 1305 <https://datatracker.ietf.org/doc/html/rfc8439#section-2.5>`__
 
     .. rubric:: Hinweise
 
-    In dieser Diskussion betrachten wir jeden Block der Nachricht als :ger-quote:`große Zahl`.
+    In dieser Diskussion betrachten wir jeden Block der Nachricht als „große Zahl“.
 
     :math:`P = 2^{130} - 5 = 3fffffffffffffffffffffffffffffffb`
 

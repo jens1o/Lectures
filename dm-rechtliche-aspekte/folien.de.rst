@@ -19,7 +19,6 @@
 .. role:: eng
 .. role:: ger
 
-.. role:: ger-quote
 .. role:: minor
 .. role:: obsolete
 
@@ -484,9 +483,9 @@ Aufbewahrungspflichten Ermitteln
 .. class:: incremental
 
 - Einzelheiten zu der steuerrechtlichen Aufbewahrungspflicht werden in der Abgabenordnung (primär in § 147) geregelt. 
-- Jedoch ergeben sich steuerrechtliche Aufbewahrungspflichten auch durch :ger-quote:`andere Gesetze` (z. B. Steuergesetze wie das Umsatzsteuergesetz).  
+- Jedoch ergeben sich steuerrechtliche Aufbewahrungspflichten auch durch „andere Gesetze“ (z. B. Steuergesetze wie das Umsatzsteuergesetz).  
 
-- Bzgl. :ger-quote:`andere Gesetze`:
+- Bzgl. „andere Gesetze“:
   
   .. epigraph::
 
@@ -544,7 +543,7 @@ Sicherstellung des gesetzlichen Zugriffs
 
     "Innerhalb angemessener Zeit" bedeutet in der Regel innerhalb weniger Stunden bzw. Tage.
 
-    In den GoBD (Grundsätze zur ordnungsmäßigen Führung und Aufbewahrung von Büchern, Aufzeichnungen und Unterlagen in elektronischer Form sowie zum Datenzugriff) werden  in Hinblick auf Datenzugriff und Prüfbarkeit von digitalen Dokumenten Vorgaben gemacht, die aber :ger-quote:`nur` bzgl. steuerlich relevanter Dokumente Anwendung finden.
+    In den GoBD (Grundsätze zur ordnungsmäßigen Führung und Aufbewahrung von Büchern, Aufzeichnungen und Unterlagen in elektronischer Form sowie zum Datenzugriff) werden  in Hinblick auf Datenzugriff und Prüfbarkeit von digitalen Dokumenten Vorgaben gemacht, die aber „nur“ bzgl. steuerlich relevanter Dokumente Anwendung finden.
 
     Grundsätzlich gilt, dass steuerrechtliche Dokumente in Deutschland aufbewahrt werden müssen; Ausnahmen sind auf Antrag ggf. möglich.
 
@@ -631,10 +630,10 @@ Typische Zertifizierungsgrundlagen
 
   (a) die Dokumentation und 
   (b) die Zuverlässigkeit und Funktionalität der Software.
-- IDW PS 880: :ger-quote:`Softwaretestat`
+- IDW PS 880: „Softwaretestat“
     
   Orientiert sich an gesetzlichen Grundlagen - insbesondere in Hinblick auf die Rechnungslegung.
-- RAL GZ 901: :ger-quote:`Prospektprüfung`
+- RAL GZ 901: „Prospektprüfung“
   
   Leistet das Produkt das Versprochene?
   

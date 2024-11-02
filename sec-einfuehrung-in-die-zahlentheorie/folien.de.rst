@@ -18,7 +18,6 @@
 
 .. role:: incremental
 .. role:: ger
-.. role:: ger-quote
 .. role:: eng
 .. role:: minor
 .. role:: smaller
@@ -218,7 +217,7 @@ Alternative Definition des :ab:`GGT`
 
 
 
-:ab:`GGT` und :ger-quote:`relativ prim`
+:ab:`GGT` und „relativ prim“
 -----------------------------------------
 
 Wir stellten fest:
@@ -1017,7 +1016,7 @@ Deterministische Primzahltests
 
   - Vor 2002 gab es keine bekannte Methode, um für sehr große Zahlen effizient zu beweisen, dass diese Primzahlen sind.
   - Alle verwendeten Algorithmen lieferten ein probabilistisches Ergebnis.
-  - Im Jahr 2002 entwickelten Agrawal, Kayal und Saxena einen Algorithmus, der :ger-quote:`effizient` bestimmt, ob eine gegebene große Zahl eine Primzahl ist:
+  - Im Jahr 2002 entwickelten Agrawal, Kayal und Saxena einen Algorithmus, der „effizient“ bestimmt, ob eine gegebene große Zahl eine Primzahl ist:
   
     - Auch bekannt als AKS-Algorithmus.
     - Er scheint nicht so effizient zu sein wie der Miller-Rabin-Algorithmus.
@@ -1049,7 +1048,7 @@ Chinesischer Restsatz
 
     Bei RSA rechnen wir mit Zahlen mit weit über 300 Ziffern.
 
-    Von der Menge der paarweise relativ primen Moduli interessieren wir uns aber :ger-quote:`nur` für ein paar im Folgenden.
+    Von der Menge der paarweise relativ primen Moduli interessieren wir uns aber „nur“ für ein paar im Folgenden.
 
 
 Chinesischer Restsatz - Beispiel in :math:`Z_{10}` 

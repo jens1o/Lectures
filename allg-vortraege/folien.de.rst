@@ -20,7 +20,6 @@
 .. role:: green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 .. role:: smaller
@@ -86,7 +85,7 @@ Bewertungskriterien
    - Wiederholungen und Füllwörter vermeiden.
 3. Effektive Gestaltung der Präsentation (~ 30% der Gesamtnote)
     
-   Es kommt hierbei insbesondere darauf an, ob die Inhalte verständlich und nachvollziehbar präsentiert werden. Insbesondere ob Tabellen und Grafiken effektiv eingesetzt werden und :ger-quote:`Textgräber` vermieden werden.
+   Es kommt hierbei insbesondere darauf an, ob die Inhalte verständlich und nachvollziehbar präsentiert werden. Insbesondere ob Tabellen und Grafiken effektiv eingesetzt werden und „Textgräber“ vermieden werden.
 
    Auch Animationen sollten kein Selbstzweck sein, sondern die Inhalte unterstützen.
 

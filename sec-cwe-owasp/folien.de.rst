@@ -17,7 +17,6 @@
 .. role:: incremental   
 .. role:: eng
 .. role:: ger
-.. role:: ger-quote
 .. role:: minor
 .. role:: obsolete
 .. role:: dhbw-red
@@ -373,7 +372,7 @@ CWE-79: XSS - Beispiel 1 - XSS Typ 1 (Php)
     .. solution:: 
         :pwd: beliebig_lange
 
-        Das Problem ist, dass der Nutzername :ger-quote:`beliebig lange`` sein kann und insbesondere beliebigen JavaScript Code enthalten. Beispiel :code:`http://trustedSite.example.com/welcome.php?username=<Script Language="Javascript">alert("You've been attacked!");</Script>`. Komplexerer Code könnte zum Beispiel ein Fakelogin nachbauen und so die Zugangsdaten des Nutzers abgreifen. Entsprechende Links könnten mit Hilfe von Werkzeugen so verschleiert werden, dass der Nutzer nicht bemerkt, dass er auf einen Link mit Schadfunktion klickt.
+        Das Problem ist, dass der Nutzername „beliebig lange“` sein kann und insbesondere beliebigen JavaScript Code enthalten. Beispiel :code:`http://trustedSite.example.com/welcome.php?username=<Script Language="Javascript">alert("You've been attacked!");</Script>`. Komplexerer Code könnte zum Beispiel ein Fakelogin nachbauen und so die Zugangsdaten des Nutzers abgreifen. Entsprechende Links könnten mit Hilfe von Werkzeugen so verschleiert werden, dass der Nutzer nicht bemerkt, dass er auf einen Link mit Schadfunktion klickt.
 
 
 
@@ -1307,7 +1306,7 @@ CWE-122: Heap-based Buffer Overflow
 
 .. exercise::
 
-    :ger-quote:`Basisbeispiel` in C:
+    „Basisbeispiel“ in C:
 
     .. code:: C
         :number-lines:
@@ -1660,7 +1659,7 @@ CWE-843: Access of Resource Using Incompatible Type - Beispiel in C
     .. solution:: 
         :pwd: bufbuf
 
-        Der Zugriff auf ``buf.nameId`` manipuliert den Zeiger auf ``buf.name``. Dieser zeigt nun auf die Speicherstelle ``defaultMessage + 1`` weswegen der nachfolgende Zugriff ``buf.name`` :ger-quote:`nur` noch ``ello World`` ausgibt und nicht mehr ``Hello World``.
+        Der Zugriff auf ``buf.nameId`` manipuliert den Zeiger auf ``buf.name``. Dieser zeigt nun auf die Speicherstelle ``defaultMessage + 1`` weswegen der nachfolgende Zugriff ``buf.name`` „nur“ noch ``ello World`` ausgibt und nicht mehr ``Hello World``.
 
 
 

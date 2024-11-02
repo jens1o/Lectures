@@ -15,7 +15,6 @@
     :suffix: .html.pdf
 
 .. role:: incremental
-.. role:: ger-quote
 .. role:: eng
 .. role:: bold
 .. role:: smaller
@@ -269,7 +268,7 @@ Diffusion
 
 - Dies wird dadurch erreicht, dass jede Klartextziffer(bzw. -zeichen) den Wert vieler Chiffretextziffern (bzw. -zeichen) beeinflusst.
   
-  (:ger-quote:`Lawineneffekt`)
+  („Lawineneffekt“)
 - Die Diffusion kann z. B. durch *Permutationen* erreicht werden.
 
 
@@ -481,7 +480,7 @@ DES: Design
                 46,  42, 50,  36,  29, 32
 
 
-DES: Rundenfunktion (:ger-quote:`F`)
+DES: Rundenfunktion („F“)
 --------------------------------------
 
 .. TODO add .. caption :: (dt. Legende)
@@ -876,7 +875,7 @@ Triple-DES mit drei Schlüsseln
   1. Was passiert, wenn f nur 0x00-Werte zurückgibt (unabhängig vom Rundenschlüssel)?
   2. Was passiert, wenn f nur 0x01-Werte zurückgibt (unabhängig vom Rundenschlüssel)?
   3. Was passiert, wenn f einfach ein *xor* der entsprechende Hälfte mit dem Ergebnis der Verschiebung des Schlüssels durchführt?
-  4. Was passiert, wenn man eine Nachricht ändert? Testen Sie insbesondere, was passiert wenn die Nachricht nur aus 0x00 besteht (und Sie eine :ger-quote:`vernünftigere` f-Funktion verwenden.)
+  4. Was passiert, wenn man eine Nachricht ändert? Testen Sie insbesondere, was passiert wenn die Nachricht nur aus 0x00 besteht (und Sie eine „vernünftigere“ f-Funktion verwenden.)
   5. Was passiert, wenn man den Schlüssel änderst? Was passiert in extremen Fällen (z. B. wenn das Passwort nur aus "0" besteht?
 
   .. solution:: 

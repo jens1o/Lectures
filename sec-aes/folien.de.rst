@@ -22,7 +22,6 @@
 .. role:: the-blue 
 .. role:: smaller
 .. role:: far-smaller
-.. role:: ger-quote
 .. role:: raw-html(raw)
     :format: html
 
@@ -699,7 +698,7 @@ AES kann effizient auf einem 32-Bit-Prozessor implementiert werden:
 - Es ist möglich 4 Tabellen für die *MixColumns* Transformation mit je 256 Wörtern vorzuberechnen.
   
   - Dann kann jede Spalte in jeder Runde mit 4 Tabellen-Lookups + 4 XORs berechnet werden.
-  - Die Kosten für die Speicherung der Tabellen belaufen sich auf :ger-quote:`4Kb`.
+  - Die Kosten für die Speicherung der Tabellen belaufen sich auf „4Kb“.
 
 - Die Entwickler glauben, dass die Möglichkeit einer effizienten Implementierung ein Schlüsselfaktor für die Wahl der AES-Chiffre zum neuen Standard war.
 

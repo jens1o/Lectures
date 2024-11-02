@@ -16,7 +16,6 @@
 
 .. role:: incremental
 .. role:: ger
-.. role:: ger-quote
 .. role:: eng
 .. role:: red
 .. role:: green 
@@ -102,7 +101,7 @@ Visualisierung von Zufallszahlengeneratoren\ [#]_
 
     .. container:: column incremental
 
-        Verteilung von :ger-quote:`zufälligen` Werten eines schlechten RNGs im 3D-Raum.
+        Verteilung von „zufälligen“ Werten eines schlechten RNGs im 3D-Raum.
 
         .. image:: drawings/stream_ciphers/distribution_3d_bad_lcg.svg
             :alt: Schlechte Verteilung der Werte im 3D-Raum
@@ -485,7 +484,7 @@ Zwei Ansätze, die eine Blockchiffre zum Aufbau eines PNRG verwenden, haben weit
     .. solution:: 
         :pwd: NixKompression
 
-        Es sollte keine relevante Kompression möglich sein! Wenn dem so ist, ist die Zufälligkeit höchst fragwürdig. Eine hohe Zufälligkeit impliziert eine hohe Entropie und damit nichts, was man komprimieren könnte. Im Endeffekt müsste die :ger-quote:`komprimierte` Datei aufgrund der erforderlichen Metadaten sogar größer sein.
+        Es sollte keine relevante Kompression möglich sein! Wenn dem so ist, ist die Zufälligkeit höchst fragwürdig. Eine hohe Zufälligkeit impliziert eine hohe Entropie und damit nichts, was man komprimieren könnte. Im Endeffekt müsste die „komprimierte“ Datei aufgrund der erforderlichen Metadaten sogar größer sein.
 
 
 .. class:: integrated-exercise

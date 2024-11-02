@@ -21,7 +21,6 @@
 .. role:: green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 
@@ -365,7 +364,7 @@ Jeder ``Node`` legt in seiner ``Exit Policy`` genau fest welchen Datenverkehr we
 - Es gibt offene Exit Nodes, die alle Anfragen weiterleiten.
 - Es gibt Knoten, die die Daten nur an weitere Tor-Knoten weiterleiten.
 - Es gibt Knoten, die nur bestimmte Dienste (z. B. HTTPs) weiterleiten.
-- Es gibt :ger-quote:`private Exit Nodes`, die nur zu einem bestimmten Netz Verbindungen aufbauen.
+- Es gibt „private Exit Nodes“, die nur zu einem bestimmten Netz Verbindungen aufbauen.
 
 
 

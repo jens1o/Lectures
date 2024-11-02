@@ -19,7 +19,6 @@
 .. role:: ger
 .. role:: red
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 
@@ -106,7 +105,7 @@ Klassische Sicherheitsprinzipien
 
     - Z. B. sollten keine gemeinsamen Speicherbereiche verwendet werden in denen möglicherweise sicherheitsrelevantes Material vorgehalten wird. Es ist deswegen z. B. sinnvoll - wenn möglich - auf Implementierungen im Kernel zu verzichten und statt dessen auf User-Space-Implementierungen zu setzen. 
     
-       TCP Connection Hijacking Angriffe werden bzw. wurden z. B. durch die Implementierung des TCP Stacks im Kernel ermöglicht (:math:`\Leftrightarrow` :ger-quote:`Principle of Least Common Mechanism`).
+       TCP Connection Hijacking Angriffe werden bzw. wurden z. B. durch die Implementierung des TCP Stacks im Kernel ermöglicht (:math:`\Leftrightarrow` „Principle of Least Common Mechanism“).
     
     - Z. B. sollten keine geteilten Passworte verwendet werden, um sich gegenüber einem System zu authentifizieren. (Dies bezieht sich sowohl auf die Passwörter einer Person als auch auf Passwörter über Personen und Systemgrenzen hinweg!)
 
@@ -232,7 +231,7 @@ Ergänzende Sicherheitsprinzipien
 
 .. exercise:: Rechte von im Hintergrund laufenden Prozessen auf Servern
 
-    Es ist üblich, dass für Prozesse, die auf Servern im Hintergrund laufen, extra Nutzerkonten eingerichtet werden. Warum ist dies so? Welche Rechte sollten diese :ger-quote:`Nutzer` bekommen? Was sollte weiterhin beachtet werden?
+    Es ist üblich, dass für Prozesse, die auf Servern im Hintergrund laufen, extra Nutzerkonten eingerichtet werden. Warum ist dies so? Welche Rechte sollten diese „Nutzer“ bekommen? Was sollte weiterhin beachtet werden?
 
     .. solution:: 
         :pwd: LeastPrivilege

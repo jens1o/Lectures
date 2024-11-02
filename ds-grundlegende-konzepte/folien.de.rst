@@ -18,7 +18,6 @@
 .. role:: incremental
 .. role:: eng
 .. role:: ger
-.. role:: ger-quote
 .. role:: minor
 .. role:: obsolete
 .. role:: dhbw-red
@@ -292,7 +291,7 @@ Lamport-Uhren (*logical clocks*)
   
    Ereignis *receive* ist zeitlich immer nach *send*.
 
-   Ereignisse werden eingeordnet nach der :ger-quote:`happened-before` Relation: 
+   Ereignisse werden eingeordnet nach der „happened-before“ Relation: 
    
    a → b
 
@@ -352,7 +351,7 @@ Verteilte Transaktionen
 --------------------------------------------------------------------------------
 
 
-:ger-quote:`Atomic Commit Protocol`
+„Atomic Commit Protocol“
 --------------------------------------------------------------------------------
 
 .. class:: incremental smaller
@@ -465,7 +464,7 @@ In **verteilten** (*Datenbank-*)\ *Systemen* können nur zwei der drei folgenden
 
 .. supplemental::
 
-  Das CAP Theorem bezieht sich :ger-quote:`nur` auf verteilte Systeme. In solchen Systemen kann es immer zu Netzwerkpartitionierungen kommen. Deswegen ist Partitionstoleranz eine natürliche Eigenschaft und man kann häufig :ger-quote:`nur` zwischen Konsistenz und Verfügbarkeit wählen.
+  Das CAP Theorem bezieht sich „nur“ auf verteilte Systeme. In solchen Systemen kann es immer zu Netzwerkpartitionierungen kommen. Deswegen ist Partitionstoleranz eine natürliche Eigenschaft und man kann häufig „nur“ zwischen Konsistenz und Verfügbarkeit wählen.
 
   Welche Eigenschaften sind in welchen Szenarien wichtig?
 

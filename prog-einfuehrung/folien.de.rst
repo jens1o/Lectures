@@ -23,7 +23,6 @@
 .. role:: green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 .. role:: smaller
@@ -523,7 +522,7 @@ Syntax und Semantik von formalen Sprachen
 
   .. container:: incremental dhbw-gray
 
-        Häufig wird die Semantik :ger-quote:`nur` in einem Standard oder :ger-quote:`sogar nur` in durch eine Implementierung festgelegt.
+        Häufig wird die Semantik „nur“ in einem Standard oder „sogar nur“ in durch eine Implementierung festgelegt.
 
 
 
@@ -619,13 +618,13 @@ Die EBNF dient der Beschreibung kontext-freier Grammatiken.
 
 .. supplemental::
 
-    Die Beschreibung einer Programmiersprache in EBNF besteht aus einer Startregel und einer Menge von weiteren Regeln sowie Terminalen, die die Syntax der Sprache beschreiben. Die Terminalen sind die Basiswörter der Sprache (:ger-quote:`reservierte Wörter`).
+    Die Beschreibung einer Programmiersprache in EBNF besteht aus einer Startregel und einer Menge von weiteren Regeln sowie Terminalen, die die Syntax der Sprache beschreiben. Die Terminalen sind die Basiswörter der Sprache („reservierte Wörter“).
 
     Bei kontext-freien Sprachen kommt auf der linken Seite einer Regel genau ein Nichtterminal vor, auf der rechten Seite können beliebig viele Nichtterminale und Terminale vorkommen. 
     
     .. container:: minor
         
-        Was genau :ger-quote:`kontext-frei` bedeutet, ist Gegenstand fortgeschrittener  Vorlesungen. Für den Moment reicht es zu wissen, dass dies gewisse Einschränkungen für die Regeln bedeutet. Diese Einschränkungen aber das Verarbeiten zumindest stark vereinfachen bzw. überhaupt erst ermöglichen.
+        Was genau „kontext-frei“ bedeutet, ist Gegenstand fortgeschrittener  Vorlesungen. Für den Moment reicht es zu wissen, dass dies gewisse Einschränkungen für die Regeln bedeutet. Diese Einschränkungen aber das Verarbeiten zumindest stark vereinfachen bzw. überhaupt erst ermöglichen.
 
 
 

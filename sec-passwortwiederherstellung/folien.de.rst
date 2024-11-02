@@ -21,7 +21,6 @@
 .. role:: shiny-green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 .. role:: huge
@@ -121,7 +120,7 @@ Welches Vorgehen müssen wir wählen, um Passworte der folgenden Art  wiederherz
 .. important::
     :class: smaller 
 
-    Es gibt :ger-quote:`einfach sichere Passworte`, die in vernünftiger Zeit mit angemessenen Ressourcen nicht wiederhergestellt werden können.
+    Es gibt „einfach sichere Passworte“, die in vernünftiger Zeit mit angemessenen Ressourcen nicht wiederhergestellt werden können.
 
 
 .. class:: new-section transition-fade
@@ -477,7 +476,7 @@ Verschlüsselter USB Stick (APFS Volume)
 -----------------------------------------
 
 1. Installation von `apfs2hashcat <https://github.com/Banaanhangwagen/apfs2hashcat>`__ (umfasst das Kompilieren der Sourcen)
-2. Hash extrahieren durch :ger-quote:`Copy-and-Paste` aus dem Logfile/der Konsole.
+2. Hash extrahieren durch „Copy-and-Paste“ aus dem Logfile/der Konsole.
 
    .. code:: bash
 
@@ -663,7 +662,7 @@ Ein mit MD5 gehashtes Passwort in der Datei: ``password.md5``. Ein erster Angrif
     
         Der zum Beugen der Passwortkandidaten verwendete Regelsatz. 
     
-        Der Regelsatz best64 hat sich in einem Wettbewerb als :ger-quote:`bester` Regelsatz erwiesen. 
+        Der Regelsatz best64 hat sich in einem Wettbewerb als „bester“ Regelsatz erwiesen. 
 
 
 .. class:: small
@@ -858,7 +857,7 @@ Szenario 7: Wörterbuch mit Maske
 
     **Beispiel**
     
-    In diesem Falle verwenden wir einen Hybridangriff, der eine Wordliste mit einer Maske kombiniert. Hier definieren wir unseren eigenen :ger-quote:`Zeichensatz` mit dem Parameter ``-1 '$.!'`` und referenzieren diesen in unserer Maske später mit ``?1``.
+    In diesem Falle verwenden wir einen Hybridangriff, der eine Wordliste mit einer Maske kombiniert. Hier definieren wir unseren eigenen „Zeichensatz“ mit dem Parameter ``-1 '$.!'`` und referenzieren diesen in unserer Maske später mit ``?1``.
 
     Ein Beispielpasswort, dass wir mit dem Ansatz ermitteln könnten, wäre:
 
@@ -877,7 +876,7 @@ Szenario 8: Passwörter mit Muster
 
 **Ausgangssituation**
 
-Wir möchten ein Wörterbuch erstellen mit :ger-quote:`Wörtern`, die Buchstabenvervielfältigungen enthalten, aber nicht länger als 16 Zeichen sind. Zum Beispiel: ``aaaaBBBBcccc`` oder auch ``AFFFFFE``. 
+Wir möchten ein Wörterbuch erstellen mit „Wörtern“, die Buchstabenvervielfältigungen enthalten, aber nicht länger als 16 Zeichen sind. Zum Beispiel: ``aaaaBBBBcccc`` oder auch ``AFFFFFE``. 
 Weiterhin soll die Liste nach der Länge der gefundenen Einträge aufsteigend sortiert sein und Zeichen, die keine Buchstaben sind, einfach gelöscht werden.
 
 **Lösung**

@@ -17,7 +17,6 @@
 .. role:: incremental
 .. role:: ger
 .. role:: eng
-.. role:: ger-quote
 .. role:: red
 .. role:: green 
 .. role:: blue 
@@ -233,7 +232,7 @@ Anwendungen für Public-Key-Kryptosysteme
       .. class:: incremental
 
       1. *Ver-/Entschlüsselung*: Der Absender verschlüsselt eine Nachricht mit dem öffentlichen Schlüssel des Empfängers.
-      2. *Digitale Unterschriften*: Der Absender :ger-quote:`unterschreibt` eine Nachricht mit seinem privaten Schlüssel.
+      2. *Digitale Unterschriften*: Der Absender „unterschreibt“ eine Nachricht mit seinem privaten Schlüssel.
       3. *Schlüsselaustausch*: Zwei Seiten arbeiten zusammen, um einen Sitzungsschlüssel (d. h. einen symmetrischen Schlüssel) auszutauschen.
 
     .. layer:: incremental
@@ -282,7 +281,7 @@ Anforderungen an Public-Key-Algorithmen
     Eine Einwegfunktion ist im Allgemeinen eine Funktion, bei der jeder Funktionswert eine eindeutige Umkehrung hat, wobei die *Berechnung der Funktion einfach* ist, während die *Bestimmung der Umkehrfunktion praktisch undurchführbar ist*.
 
     - :math:`Y = f(X)` einfach  
-    - :math:`X = f^{–1}(Y)` :ger-quote:`unmöglich`
+    - :math:`X = f^{–1}(Y)` „unmöglich“
   
 - Eine Einwegfunktion mit Falltür ist eine Familie invertierbarer Funktionen :math:`f_k`, für die gilt:
   
@@ -330,7 +329,7 @@ Public-Key-Kryptoanalyse
 
 .. supplemental::
 
-    Bei einem Angriff mit :ger-quote:`wahrscheinlicher Nachricht`, verschlüsselt der Angreifer eine Reihe von Nachrichten (z. B. alle DES Schlüssel mit dem öffentlichen Schlüssel des Adressaten) und analysiert die resultierenden Chiffretexte, um den privaten Schlüssel zu ermitteln.
+    Bei einem Angriff mit „wahrscheinlicher Nachricht“, verschlüsselt der Angreifer eine Reihe von Nachrichten (z. B. alle DES Schlüssel mit dem öffentlichen Schlüssel des Adressaten) und analysiert die resultierenden Chiffretexte, um den privaten Schlüssel zu ermitteln.
 
 
 Rivest-Shamir-Adleman (RSA) Algorithm

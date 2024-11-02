@@ -21,7 +21,6 @@
 .. role:: green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 
@@ -81,7 +80,7 @@ Reverse Engineering ist die Analyse von Systemen mit dem Ziel, ihren Aufbau und 
 
 .. supplemental:: 
 
-    Vom Reverse Engineering ist das **Reengineering** zu unterscheiden. Im Fall von letzteren geht es :ger-quote:`nur` darum die Funktionalität eines bestehenden Systems mit neuen Techniken wiederherzustellen.  
+    Vom Reverse Engineering ist das **Reengineering** zu unterscheiden. Im Fall von letzteren geht es „nur“ darum die Funktionalität eines bestehenden Systems mit neuen Techniken wiederherzustellen.  
 
 
 Zweck von Reverse Engineering
@@ -141,7 +140,7 @@ Bootrom Lücke
 
   *Entstandener Schaden*: vermutlich gering, da (gerade noch) keine offiziellen Releases (von Debian, Ubuntu, etc.) betroffen waren.
 
-  Dem Angriff ging ein sehr langer Social Engineering Angriff voraus, weswegen mit höherer Wahrscheinlichkeit ein :ger-quote:`State-sponsored Actor` dahintersteckt.
+  Dem Angriff ging ein sehr langer Social Engineering Angriff voraus, weswegen mit höherer Wahrscheinlichkeit ein „State-sponsored Actor“ dahintersteckt.
 
 
 .. [#] `InnoQ  Podcast <https://www.innoq.com/de/podcast/030-xz-open-ssh-backdoor/transcript/>`__
@@ -229,7 +228,7 @@ Gegeben sei eine App zum Ver- und Entschlüsseln von Dateien sowie ein paar vers
 
     .. container:: layer incremental
 
-       - Eine Datei mit einem wohldefinierten Muster verschlüsseln, um ggf. den :ger-quote:`Mode of Operation` (insbesondere ECB) zu identifizieren.
+       - Eine Datei mit einem wohldefinierten Muster verschlüsseln, um ggf. den „Mode of Operation“ (insbesondere ECB) zu identifizieren.
 
     .. container:: layer incremental
 
@@ -432,7 +431,7 @@ Obfuscation → für Menschen unverständlich Code
   -  Adware (im Kontext von Android ein häufig beobachtetes Phänomen)
   -  zum Schutz geistigen Eigentums
   -  für DRM / Durchsetzung von Kopierrechten
-  -  zur Prävention von :ger-quote:`Cheating` (insbesondere im Umfeld von Online Games)
+  -  zur Prävention von „Cheating“ (insbesondere im Umfeld von Online Games)
   -  Wenn das Programm als Source Code vertrieben wird bzw. vertrieben werden muss (JavaScript)
 
 - Arbeiten auf Quellcode oder Maschinencode Ebene
@@ -501,7 +500,7 @@ Obfuscation - Techniken (Auszug)
 
    **Verschleierung von Strings**
 
-   Das Verschleiern von Strings kann insbesondere das Reversen von Binärcode erschweren, da ein Angreifer häufig :ger-quote:`nur` an einer ganz bestimmten Funktionalität interessiert ist und dann Strings ggf. einen sehr guten Einstiegspunkt für die weitergehende Analyse bieten. 
+   Das Verschleiern von Strings kann insbesondere das Reversen von Binärcode erschweren, da ein Angreifer häufig „nur“ an einer ganz bestimmten Funktionalität interessiert ist und dann Strings ggf. einen sehr guten Einstiegspunkt für die weitergehende Analyse bieten. 
    
    Stellen Sie sich eine komplexe Java Anwendung vor, in der alle Namen von Klassen, Methoden und Attributen durch einzelne oder kurze Sequenzen von Buchstaben ersetzt wurden und sie suchen danach wie von der Anwendung Passworte verarbeitet werden. Handelt es sich um eine GUI Anwendung, dann wäre zum Beispiel die Suche nach Text, der in den Dialogen vorkommt (z. B. ``"Password"``) z. B. ein sehr guter Einstiegspunkt.
 
@@ -657,7 +656,7 @@ Die Java Virtual Machine
 
 - **Java Bytecode** ist die Sprache, in der Java (oder Scala, Kotlin, ...) Programme auf der Java Virtual Machine (JVM) [#]_ ausgeführt werden.
 - :minor:`In den meisten Fällen arbeiten Java Decompiler so gut, dass ein tiefgehendes Verständnis von Java Bytecode selten notwendig ist.`
-- Java Bytecode kann — muss aber nicht — interpretiert werden. (Z. B. können :ger-quote:`virtuelle Methodenaufrufe` in Java schneller sein als in C++.)
+- Java Bytecode kann — muss aber nicht — interpretiert werden. (Z. B. können „virtuelle Methodenaufrufe“ in Java schneller sein als in C++.)
 
 
 .. [#] `Java Bytecode Spezifikation <https://docs.oracle.com/javase/specs/jvms/se21/html/index.html>`__
@@ -755,7 +754,7 @@ Die Zeilennummern und die Informationen über die lokalen Variablen sind optiona
 
 .. supplemental:: 
 
-    Es gibt weitere Metainformationen, die :ger-quote:`nur` für Debugging-Zwecke benötigt werden, z. B. Informationen über die ursprünglich Quelle des Codes oder die sogenannte "Local Variable Type Table" in Hinblick auf generische Typinformationen. Solche Informationen werden häufig vor Auslieferung entfernt bzw. nicht hineinkompiliert. 
+    Es gibt weitere Metainformationen, die „nur“ für Debugging-Zwecke benötigt werden, z. B. Informationen über die ursprünglich Quelle des Codes oder die sogenannte "Local Variable Type Table" in Hinblick auf generische Typinformationen. Solche Informationen werden häufig vor Auslieferung entfernt bzw. nicht hineinkompiliert. 
 
 
 Beispiel: Aufruf einer komplexeren Methode

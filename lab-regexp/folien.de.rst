@@ -21,7 +21,6 @@
 .. role:: green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 
@@ -126,7 +125,7 @@ Reguläre Ausdrücke - Zeichenklassen
    
          LANG=C; echo "aä" | grep -Eo "[a-z]"       
 
-      findet :ger-quote:`nur`: ``a`` 
+      findet „nur“: ``a`` 
 
    .. container:: incremental line-above
 
@@ -221,7 +220,7 @@ Reguläre Ausdrücke - Alternativen
 
 .. class:: incremental
 
-   Aufgrund des :ger-quote:`gierigem` Musterabgleichs ist bei dem Abgleich von Alternativen generell darauf zu achten, dass zuerst auf den letzten Abgleich geprüft wird.
+   Aufgrund des „gierigem“ Musterabgleichs ist bei dem Abgleich von Alternativen generell darauf zu achten, dass zuerst auf den letzten Abgleich geprüft wird.
 
    .. code:: bash
 
@@ -294,7 +293,7 @@ Fingerübungen
 
 .. exercise:: Wiederholungen von Sequenzen in Passwörtern
    
-   Finden Sie alle Passworte, in denen eine Sequenz mit mindestens 3 Zeichen wiederholt wird, z. B. :ger-quote:`TestTest`` oder :ger-quote:`1AffeIstAffe#`.
+   Finden Sie alle Passworte, in denen eine Sequenz mit mindestens 3 Zeichen wiederholt wird, z. B. „TestTest“` oder „1AffeIstAffe#“.
 
    .. solution::
       :pwd: Wiederholungen

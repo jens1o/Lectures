@@ -22,7 +22,6 @@
 .. role:: green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 .. role:: huge
@@ -199,7 +198,7 @@ Sichtweisen auf verteilte Systeme
 
 .. class:: incremental
 
-- Welche Architekturen und :ger-quote:`Architekturellen Stile` (:eng:`architectural styles`) gibt es?
+- Welche Architekturen und „Architekturellen Stile“ (:eng:`architectural styles`) gibt es?
 - Prozesse: Welche Art von Prozessen gibt es und wie sind deren Beziehungen?
 - Kommunikation: Welche Möglichkeiten zum Austausch von Daten gibt es?
 - Koordinierung: Wie erfolgt die Koordinierung der beteiligten Systeme?
@@ -469,7 +468,7 @@ Es geht im Wesentlichen um das Ver- und Entschlüsseln von Daten (:math:`X`) mit
 
                 **Signierung von Nachrichten**
 
-                Alice :ger-quote:`signiert` (:math:`S`) eine Nachricht mit ihrem privaten Schlüssel.
+                Alice „signiert“ (:math:`S`) eine Nachricht mit ihrem privaten Schlüssel.
 
                 .. math::
                     Y = E(PR_{Alice},X) \\
@@ -606,7 +605,7 @@ Formale Analyse der Skalierbarkeit zentralisierter Systeme
 .. container:: presenter-notes
 
     Anschaulich kann man die Formel:
-    :math:`p_x  = \bigl(1 - \frac{\lambda}{\mu}\bigr)\bigl(\frac{\lambda}{\mu}\bigr)^x` so verstehen, dass die Wahrscheinlichkeit, dass sich :math:`x` Anfragen im System befinden, mit der Anzahl der Anfragen im System abnimmt. Deswegen gilt :math:`\bigl(\frac{\lambda}{\mu}\bigr)^x` weiterhin müssen wir modellieren, dass es :ger-quote:`nur` zwei Anfragen gibt (d. h. das System ist sonst `idle`). Deswegen müssen wir noch mit :math:`p_0 = 1 - \frac{\lambda}{\mu}` multiplizieren.
+    :math:`p_x  = \bigl(1 - \frac{\lambda}{\mu}\bigr)\bigl(\frac{\lambda}{\mu}\bigr)^x` so verstehen, dass die Wahrscheinlichkeit, dass sich :math:`x` Anfragen im System befinden, mit der Anzahl der Anfragen im System abnimmt. Deswegen gilt :math:`\bigl(\frac{\lambda}{\mu}\bigr)^x` weiterhin müssen wir modellieren, dass es „nur“ zwei Anfragen gibt (d. h. das System ist sonst `idle`). Deswegen müssen wir noch mit :math:`p_0 = 1 - \frac{\lambda}{\mu}` multiplizieren.
 
 
 
@@ -727,7 +726,7 @@ Probleme der administrativen Skalierbarkeit
     - File-Sharing-Systeme (z. B. auf der Grundlage von BitTorrent) 
     - Peer-to-Peer-Telefonie (frühe Versionen von Skype) 
 
-    .. [#] :eng:`Peer` ist im hier im Sinne von :ger-quote:`Gleichgestellter` zu verstehen. D. h. wir haben ein Netz von gleichgestellten Rechnern.
+    .. [#] :eng:`Peer` ist im hier im Sinne von „Gleichgestellter“ zu verstehen. D. h. wir haben ein Netz von gleichgestellten Rechnern.
 
 Ansätze, um Skalierung zu erreichen
 ------------------------------------
@@ -1081,7 +1080,7 @@ Klassifikation Verteilte Systeme
 Cluster Computing
 --------------------
 
-Eine Gruppe von :ger-quote:`High-End-Systemen`, die über ein LAN verbunden sind.
+Eine Gruppe von „High-End-Systemen“, die über ein LAN verbunden sind.
 
 .. image:: images/cluster-computing.svg
     :width: 85%
@@ -1137,7 +1136,7 @@ Grundlegende Architektur für Grid-Computing
 Peer-to-Peer-Systeme
 ----------------------
 
-:Vision: :ger-quote:`Das Netzwerk ist der Computer.` Es gibt einen Datenbestand, der immer weltweit erreichbar ist.
+:Vision: „Das Netzwerk ist der Computer.“ Es gibt einen Datenbestand, der immer weltweit erreichbar ist.
 :Idee: 
    Keine dedizierten Clients und Server, jeder Teilnehmer (Peer) ist gleichzeitig Anbieter und Kunde.
 
@@ -1262,7 +1261,7 @@ Transaktionen auf Geschäftsprozessebene
 
         .. container:: bold margin-top-2em line-above
 
-            :ger-quote:`Alles oder nichts.`
+            „Alles oder nichts.“
 
     .. container:: column footnotesize
 
@@ -1438,7 +1437,7 @@ Moderne verteilte Systeme
 
 Die Knoten, an denen Sensoren angebracht sind:
 
-- :ger-quote:`viele`
+- „viele“
 - einfach (geringe Speicher- / Rechen- / Kommunikationskapazität) 
 - oft batteriebetrieben (oder sogar batterielos)
 

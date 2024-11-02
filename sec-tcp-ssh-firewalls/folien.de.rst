@@ -21,7 +21,6 @@
 .. role:: green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 .. role:: far-smaller
@@ -473,7 +472,7 @@ Port Scans: Idle Scan - Zusammenfassung
 
 - Angreifer sendet SYN/ACK Paket an Zombie
 - der Zombie antwortet mit RST und enthüllt seine IP ID (:eng:`IP Fragment Identification Number`).
-- Angreifer sendet SYN (:ger-quote:`mit IP vom Zombie`) an Port des Servers:
+- Angreifer sendet SYN („mit IP vom Zombie“) an Port des Servers:
   
   [**Port offen**] Der Zielrechner antwortet mit SYN/ACK an den Zombie, wenn der Port offen ist. Der Zombie antwortet darauf mit RST an den Server, da er kein SYN gesendet hat und kein SYN/ACK erwartet und *erhöht seine IP ID*. 
   
@@ -867,7 +866,7 @@ Die Idee ist, dass Passwörter nur genau einmal gültig sind und nicht wiederver
 
 - Tokens (z. B. RSA SecurID)
 - Codebuch: Liste von Einmal-Passwörtern, die das gemeinsame Geheimnis sind.
-- S/Key: Passwort :ger-quote:`wird mit einem Zähler kombiniert` und dann gehasht.
+- S/Key: Passwort „wird mit einem Zähler kombiniert“ und dann gehasht.
 
 
 Das S/Key Verfahren 
@@ -968,7 +967,7 @@ Time-based one-time password (TOTP)\ [#]_
   Z. B. Unix-Zeit in Sekunden (ganzzahlig) und danach gerundet auf 30 Sekunden.
 
 
-- Es wird das HOTP Verfahren mit der Zeit als Zähler verwendet und entweder SHA-256 oder SHA-512 als Hashverfahren, d. h. TOTP :math:`value(K)` = HOTP :math:`value(K, C_T)`, wobei :math:`T` die :ger-quote:`aktuelle Zeit` ist.
+- Es wird das HOTP Verfahren mit der Zeit als Zähler verwendet und entweder SHA-256 oder SHA-512 als Hashverfahren, d. h. TOTP :math:`value(K)` = HOTP :math:`value(K, C_T)`, wobei :math:`T` die „aktuelle Zeit“ ist.
 
   :math:`C_T = \lfloor { T - T_0 \over T_X } \rfloor`
   
@@ -1010,7 +1009,7 @@ SSH ermöglicht die sichere Fernanmeldung von einem Computer bei einem anderen (
 
 .. supplemental::
 
-    Die Authentifizierung mittels eines Schlüsselpaars dient primär der Automatisierung (dann wird auch keine :ger-quote:`Schlüsselphrase` zum Schutz des Passworts verwendet). Auf jeden Fall ist effektives Schlüsselmanagement erforderlich:
+    Die Authentifizierung mittels eines Schlüsselpaars dient primär der Automatisierung (dann wird auch keine „Schlüsselphrase“ zum Schutz des Passworts verwendet). Auf jeden Fall ist effektives Schlüsselmanagement erforderlich:
 
     .. epigraph::
 
@@ -1135,7 +1134,7 @@ SSH Tunneling
     :width: 1450px
 
 
-SSH und :ger-quote:`Back-tunneling`
+SSH und „Back-tunneling“
 --------------------------------------
 
 .. class:: incremental
@@ -1184,7 +1183,7 @@ Schwachstellen in SSH
      :pwd: IDLEPort
 
      - Wenn der Port geschlossen ist, dann sendet der Zielrechner ein RST Paket an den Zombie. Dieses wird vom Zombie ignoriert. Daher erhöht sich die IP ID des Zombies nicht.
-     - Wenn der Port offen ist, dann sendet der Zielrechner ein SYN/ACK Paket an den Zombie. Dieser antwortet mit einem RST Paket und erhöht seine IP ID um 1. D. h. der Wert der IP ID des Zombies ist um 2 höher, wenn der Port offen ist und :ger-quote:`nur` eins höher sonst.
+     - Wenn der Port offen ist, dann sendet der Zielrechner ein SYN/ACK Paket an den Zombie. Dieser antwortet mit einem RST Paket und erhöht seine IP ID um 1. D. h. der Wert der IP ID des Zombies ist um 2 höher, wenn der Port offen ist und „nur“ eins höher sonst.
 
 
 
@@ -1248,7 +1247,7 @@ Schwachstellen in SSH
   .. solution::
     :pwd: TOTPandSKey
 
-    - Bei TOTP gibt es keine beschränkte Liste von Passwörtern. Die Passwörter werden dynamisch generiert und es stehen :ger-quote:`unendlich` viele zur Verfügung. Es kann auch keine Verwirrung über das nächste bzw. bereits verbrauchte Passwort geben. Die Synchronisation ist ggf. einfacher.
+    - Bei TOTP gibt es keine beschränkte Liste von Passwörtern. Die Passwörter werden dynamisch generiert und es stehen „unendlich“ viele zur Verfügung. Es kann auch keine Verwirrung über das nächste bzw. bereits verbrauchte Passwort geben. Die Synchronisation ist ggf. einfacher.
     - Bei TOTP gibt es ein Shared Secret, das auf dem Server gespeichert wird. Bei S/Key werden keine entsprechenden Informationen auf dem Server gespeichert. D. h. selbst wenn der Server kompromittiert wird, kann nicht auf das ursprüngliche Secret geschlossen werden.
     - SKey verwendet ursprünglich MD4, was heute als unsicher gilt. TOTP verwendet (z. B.) HMAC-SHA-256, was als sicher gilt. Dies ist jedoch kein konzeptioneller Unterschied und eine Einsatz sicherer Hashverfahren ist/wäre auch bei SKey möglich.
    
@@ -1266,8 +1265,8 @@ Schwachstellen in SSH
 .. exercise:: DDoS
 
   1.  Welches Problem entsteht wenn zum Schutze vor Angriffen auf die Verfügbarkeit die Ressourcen von IT-Systemen und deren Internet-Anbindung erhöht werden?
-  2. Recherchieren Sie was ein :ger-quote:`Low and Slow Angriff` ist.
-  3. Wo kann überall :ger-quote:`Egress filtering` statt finden.
+  2. Recherchieren Sie was ein „Low and Slow Angriff“ ist.
+  3. Wo kann überall „Egress filtering“ statt finden.
 
   .. solution::
     :pwd: DDoSVerstehen
@@ -1281,7 +1280,7 @@ Schwachstellen in SSH
 
        .. rubric:: R.U.D.Y.
 
-       :ger-quote:`R U Dead Yet?` oder R.U.D.Y. ist ein Denial-of-Service-Angriffstool, das zum Ziel hat, einen Webserver durch Senden von Formulardaten bei unsinnig niedriger Geschwindigkeit zu blockieren. Ein R.U.D.Y.-Exploit wird als Low-and-Slow-Angriff kategorisiert, weil er darauf abzielt, einige wenige langwierige Anfragen zu erzeugen, anstatt einen Server mit einem hohen Volumen schneller Anfragen zu überfluten. Ein erfolgreicher R.U.D.Y.-Angriff bewirkt, dass der Ursprungsserver des Opfers für legitimen Traffic unzugänglich wird.
+       „R U Dead Yet?“ oder R.U.D.Y. ist ein Denial-of-Service-Angriffstool, das zum Ziel hat, einen Webserver durch Senden von Formulardaten bei unsinnig niedriger Geschwindigkeit zu blockieren. Ein R.U.D.Y.-Exploit wird als Low-and-Slow-Angriff kategorisiert, weil er darauf abzielt, einige wenige langwierige Anfragen zu erzeugen, anstatt einen Server mit einem hohen Volumen schneller Anfragen zu überfluten. Ein erfolgreicher R.U.D.Y.-Angriff bewirkt, dass der Ursprungsserver des Opfers für legitimen Traffic unzugänglich wird.
 
        .. rubric:: Slowloris
 
@@ -1298,7 +1297,7 @@ Schwachstellen in SSH
 Firewalls
 ------------
 
-Unabhängiges Netz - :ger-quote:`Ideale Situation` 
+Unabhängiges Netz - „Ideale Situation“ 
 ---------------------------------------------------
 
 .. image:: images/firewalls/all-save.svg
@@ -1385,7 +1384,7 @@ Kommerzielle VPNs für Endnutzer
 
     **Nachteile?**
 
-    - Vertrauen in den VPN-Anbieter muss vorhanden sein. Insbesondere, beim Einsatz zum Stärken der Privatsphäre, muss der VPN-Anbieter vertrauenswürdig sein und sollte ein so genannter :ger-quote:`no-log` Anbieter sein. 
+    - Vertrauen in den VPN-Anbieter muss vorhanden sein. Insbesondere, beim Einsatz zum Stärken der Privatsphäre, muss der VPN-Anbieter vertrauenswürdig sein und sollte ein so genannter „no-log“ Anbieter sein. 
     - Es gibt auch (scheinbar kostenlose) VPN-Anbieter, die die Daten der Nutzer dann aber verkaufen (ehemals: `Facebook Onavo <https://techcrunch.com/2019/02/21/facebook-removes-onavo/?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAGVIppEgEOd9Z0FoMbmk2TCleRmD9wCMWDmIzGYEjIo1c7Cmz8NpiSoibthFG5IZQzmZ-kiJq-5Wj1bj21byh7YUrC_aSJJk1Bapwz80GSgzLFS-LHCF2OOetUYLSKwEG7W75znuqJJBJcNTTbtJ1UGB95Yu90saK9aIIkEywcRq>`__).
 
 
@@ -1557,9 +1556,9 @@ Screened Host
 
     Gibt es für eine bestimmte Anwendung kein Application-level Proxy, dann kann auf einen für TCP/UDP generischen Proxy zurückgegriffen werden. Dieser arbeitet auf dem Session Layer und kann nur die Header-Informationen auswerten. Es handelt sich dann um ein :eng:`Circuit-level Proxy/Gateway`. Im Vergleich zu einem Application-level Proxy ist die Sicherheit geringer, da der Circuit-level Proxy nicht in der Lage ist, die Daten zu interpretieren.
 
-    Ein allgemeines Problem ist, dass viele Anwendungen auf generische Protokolle wie HTTP aufsetzen. Weiterhin betreiben einige Anwendungen :ger-quote:`Port Hopping`, d. h. sie wechseln den Port wenn der Standardport nicht offen ist.
+    Ein allgemeines Problem ist, dass viele Anwendungen auf generische Protokolle wie HTTP aufsetzen. Weiterhin betreiben einige Anwendungen „Port Hopping“, d. h. sie wechseln den Port wenn der Standardport nicht offen ist.
 
-    Eine Anforderung an :ger-quote:`Next-generation Firewalls` ist, dass diese die Analyse von den Daten einer Anwendung unabhängig vom Port und Protokoll ermöglichen.
+    Eine Anforderung an „Next-generation Firewalls“ ist, dass diese die Analyse von den Daten einer Anwendung unabhängig vom Port und Protokoll ermöglichen.
 
 
 Konfiguration eines Gateways

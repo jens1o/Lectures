@@ -21,7 +21,6 @@
 .. role:: shiny-green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 .. role:: huge
@@ -148,7 +147,7 @@ Angriffe auf Passworte
 
 .. class:: no-title center-child-elements
 
-Ist Passwortwiederherstellung nicht :ger-quote:`trivial`?
+Ist Passwortwiederherstellung nicht „trivial“?
 ----------------------------------------------------------------
 
 .. epigraph::
@@ -165,7 +164,7 @@ Ist Passwortwiederherstellung nicht :ger-quote:`trivial`?
 
 .. class:: no-title 
 
-Ist Passwortwiederherstellung nicht :ger-quote:`trivial`?
+Ist Passwortwiederherstellung nicht „trivial“?
 ----------------------------------------------------------
 
 .. epigraph::
@@ -349,7 +348,7 @@ Hashfunktionen (Wiederholung)
 
     **Kollisionen bei Hashes**
 
-    Wenn ein Passwort :ger-quote:`nur` als Hash gespeichert wird, dann gibt es zwangsläufig Kollisionen und es kann theoretisch passieren, dass ein Angreifer (zufällig) ein völlig anderes Passwort findet, dass bei der Überprüfung des Passworts akzeptiert wird. Die Konstruktion kryptografischer Hashfunktionen stellt jedoch sicher, dass dies in der Praxis nicht auftritt. Sollte jedoch eine :ger-quote:`normale Hashfunktion` genommen werden, dann ist dieses Szenario durchaus realistisch.
+    Wenn ein Passwort „nur“ als Hash gespeichert wird, dann gibt es zwangsläufig Kollisionen und es kann theoretisch passieren, dass ein Angreifer (zufällig) ein völlig anderes Passwort findet, dass bei der Überprüfung des Passworts akzeptiert wird. Die Konstruktion kryptografischer Hashfunktionen stellt jedoch sicher, dass dies in der Praxis nicht auftritt. Sollte jedoch eine „normale Hashfunktion“ genommen werden, dann ist dieses Szenario durchaus realistisch.
 
 
 
@@ -435,7 +434,7 @@ Vom Salzen (:eng:`Salt`) ...
     
     **Lösung**  
 
-    Passwörter sollten immer mit einem einzigartigen und zufälligen :ger-quote:`Salt` gespeichert werden, um Angriffe mittels Regenbogentabellen zu verhindern. 
+    Passwörter sollten immer mit einem einzigartigen und zufälligen „Salt“ gespeichert werden, um Angriffe mittels Regenbogentabellen zu verhindern. 
 
     .. csv-table::
         :class: tiny highlight-line-on-hover
@@ -509,7 +508,7 @@ Verwendung sicherer Hash- bzw. Schlüsselableitungsfunktionen für Passworte
 .. note:: 
     :class: far-smaller
 
-    Häufig werden die :ger-quote:`Hashwerte` von Passwörtern in Datenbanken oder Dateien  als Base64 kodierter String gespeichert.
+    Häufig werden die „Hashwerte“ von Passwörtern in Datenbanken oder Dateien  als Base64 kodierter String gespeichert.
 
 :Argon2: z. B. verwendete von LUKS2
 :bcrypt: basierend auf Blowfish; z. B. verwendet in OpenBSD
@@ -543,7 +542,7 @@ Verwendung sicherer Hash- bzw. Schlüsselableitungsfunktionen für Passworte
 
 .. supplemental:: 
     
-    Die PBKDF2 ist nicht für das eigentliche Hashen zuständig sondern :ger-quote:`nur` für das Iterieren der Hashfuntion und das eigentliche Key-stretching.
+    Die PBKDF2 ist nicht für das eigentliche Hashen zuständig sondern „nur“ für das Iterieren der Hashfuntion und das eigentliche Key-stretching.
 
     Laut OWASP sollten zum Beispiel für PBKDF2-HMAC-SHA512 600.000 Iterationen verwendet werden.
 
@@ -672,7 +671,7 @@ Effizienz eines Brute-Force Angriffs auf Luks2
 
     - Die Daten auf der SSD/FP sind hardwareverschlüsselte Festplatte.
     - Die Verschlüsselung erfolgt mit XTS-AES 256.
-    - Es gibt eine spezielle Software, die der Kunde installieren muss, um das Passwort zu setzen. Erst danach wird die Festplatte :ger-quote:`freigeschaltet` und kann in das Betriebssystem eingebunden werden. Davor erscheint die SSD/FP wie ein CD Laufwerk auf dem die Software liegt.
+    - Es gibt eine spezielle Software, die der Kunde installieren muss, um das Passwort zu setzen. Erst danach wird die Festplatte „freigeschaltet“ und kann in das Betriebssystem eingebunden werden. Davor erscheint die SSD/FP wie ein CD Laufwerk auf dem die Software liegt.
     - Die SSD/FP ist FIPS zertifiziert und gegen Hardwaremanipulation geschützt; zum Beispiel eingegossen mit Epox. 
     - Das Passwort wird von der Software gehasht und dann als Hash an den Controller der externen FP/SSD übertragen. 
     - Im Controller wird der übermittelte Hash direkt zur Autorisierung des Nutzers verwendet. Dazu wird der Hash mit dem im EPROM hinterlegten verglichen.
@@ -809,7 +808,7 @@ Die Struktur von Passwörtern verstehen
 
 .. container:: scriptsize
     
-    Analyse auf Grundlage des :ger-quote:`berühmten` Rockyou-Lecks.
+    Analyse auf Grundlage des „berühmten“ Rockyou-Lecks.
 
     Hier haben wir alle Kleinbuchstaben auf l, Großbuchstaben auf u, Ziffern auf d und Sonderzeichen auf s abgebildet.
 
@@ -930,7 +929,7 @@ Gedankenexperiment
 
 .. exercise:: Verstehen des Suchraums
 
-    Sie haben :ger-quote:`ganz viele` Grafikkarten und einen sehr schnellen Hash. Sie kommen auf eine Hashrate von 1 THash/Sekunde (:math:`1 \times 10^{12}`). Sie haben einen Monat Zeit für das Knacken des Passworts.
+    Sie haben „ganz viele“ Grafikkarten und einen sehr schnellen Hash. Sie kommen auf eine Hashrate von 1 THash/Sekunde (:math:`1 \times 10^{12}`). Sie haben einen Monat Zeit für das Knacken des Passworts.
     Gehen Sie vereinfacht davon aus, dass Ihr Zeichensatz 100 Zeichen umfasst. 
 
     Berechnen Sie den Anteil des Suchraums, den Sie abgesucht haben, wenn das Passwort 32 Zeichen lang sein sollte und Sie dies wissen. Drücken Sie den Anteil des abgesuchten Raums in Relation zu der Anzahl der Sandkörner der Sahara aus. Gehen Sie davon aus, dass die Sahara ca. 70 Trilliarden (:math:`70 \times 10^{21}`) Sandkörner hat.\ [#]_
@@ -1020,7 +1019,7 @@ Aufbau von Passwörtern - Zusammenfassung
 
 .. class:: more-space-between-list-items
 
-- Passwörter, die häufig eingegeben werden müssen, basieren in den allermeisten Fällen auf :ger-quote:`echten` Wörtern.
+- Passwörter, die häufig eingegeben werden müssen, basieren in den allermeisten Fällen auf „echten“ Wörtern.
 - Echte Wörter werden oft nicht unverändert verwendet, sondern nach einfachen Regeln umgewandelt, z. B. durch Anhängen einer Zahl oder eines Sonderzeichens, Veränderung der Groß-/Kleinschreibung, etc.
 
 .. admonition:: Frage 
@@ -1046,7 +1045,7 @@ Das Vorgehen von Angreifern verstehen
 Vorgehensweise beim Testen/Generieren von Passwörtern
 -----------------------------------------------------------
 
-Aufgrund der :ger-quote:`Unmöglichkeit` eines Brute-Force-Angriffs ist folgendes zu beachten:
+Aufgrund der „Unmöglichkeit“ eines Brute-Force-Angriffs ist folgendes zu beachten:
 
 .. class:: incremental
 
@@ -1060,7 +1059,7 @@ Aufgrund der :ger-quote:`Unmöglichkeit` eines Brute-Force-Angriffs ist folgende
     
     Technisch sinnvolle Passwörter sind solche, die die zu Grunde liegenden Passwortrichtlinien und auch weiteren technischen Anforderungen erfüllen. Zum Beispiel den von der Software verwendeten Zeichensatz (UTF-8, ASCII, ...) oder im Falle eines Smartphones/Krytosticks die eingebbaren Zeichen.
 
-        Auf einer deutschen Standardtastatur für Macs können in Kombination mit :ger-quote:`Shift`, :ger-quote:`Alt` und :ger-quote:`Alt+Shift` zum Beispiel 192 verschiedene Zeichen eingegeben werden – ohne auf Unicode oder Zeichentabellen zurückgreifen zu müssen.
+        Auf einer deutschen Standardtastatur für Macs können in Kombination mit „Shift“, „Alt“ und „Alt+Shift“ zum Beispiel 192 verschiedene Zeichen eingegeben werden – ohne auf Unicode oder Zeichentabellen zurückgreifen zu müssen.
 
     Sollte der Algorithmus zum Generieren der Passwörter langsamer sein als die Zeit, die benötigt wird, um ein Passwort zu falsifizieren, dann beschränkt nicht mehr länger nur die Hashrate den Suchraum.
 
@@ -1068,7 +1067,7 @@ Aufgrund der :ger-quote:`Unmöglichkeit` eines Brute-Force-Angriffs ist folgende
 Ansätze und Werkzeuge zum Generieren von Passwortlisten
 ---------------------------------------------------------- 
     
-- Grundlegende Werkzeuge zum :ger-quote:`Vermischen von Wörtern` (:eng:`word mangling`)
+- Grundlegende Werkzeuge zum „Vermischen von Wörtern“ (:eng:`word mangling`)
    - Prince
    - Markov-Modelle (OMEN)
    - Hashcat 
@@ -1107,7 +1106,7 @@ Password Cracking Using Probabilistic Context-Free Grammars [PCFG]_
 
 .. class:: incremental smaller
 
-- Lernt die Muster, Worte, Ziffern und verwendeten Sonderzeichen basierend auf der Auswertung von realen Leaks. Die gelernte Grammatik wird als Schablone verwendet und aus :ger-quote:`Wörterbüchern` befüllt. (Zum Beispiel: ``S → D1L3S2 → 1L3!! → 1luv!!`` ) 
+- Lernt die Muster, Worte, Ziffern und verwendeten Sonderzeichen basierend auf der Auswertung von realen Leaks. Die gelernte Grammatik wird als Schablone verwendet und aus „Wörterbüchern“ befüllt. (Zum Beispiel: ``S → D1L3S2 → 1L3!! → 1luv!!`` ) 
 - Generiert Passwortkandidaten mit absteigender Wahrscheinlichkeit.
   
 - Prozeß:
@@ -1235,7 +1234,7 @@ Zusätzliche Wortkandidaten werden mithilfe von *Worteinbettungen* identifiziert
 
     .. container:: column margin-left-1em
 
-        :ger-quote:`Offensichtliche` Kandidaten für Basiswörter:
+        „Offensichtliche“ Kandidaten für Basiswörter:
 
             .. container:: incremental
 
@@ -1270,7 +1269,7 @@ Vermeidet menschliche Voreingenommenheit.
 
     .. container:: column margin-left-1em
 
-        :ger-quote:`Offensichtliche` Kandidaten für Basiswörter:
+        „Offensichtliche“ Kandidaten für Basiswörter:
 
             .. container:: incremental
 
@@ -1301,7 +1300,7 @@ Vermeidet menschliche Voreingenommenheit.
 
     .. container:: column margin-left-1em
 
-        :ger-quote:`Offensichtliche` Kandidaten für Basiswörter:
+        „Offensichtliche“ Kandidaten für Basiswörter:
 
             .. container:: incremental
 

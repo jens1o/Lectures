@@ -21,7 +21,6 @@
 .. role:: green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 
@@ -921,6 +920,9 @@ Authentifizierung mit JWT (und Express)
    
    `Users.json <./code/authentication/users.json>`__
 
+
+
+.. TODO add a discussion of "ADDCSSClassOnHover"
 
 Referenzen
 ------------------------------------------------

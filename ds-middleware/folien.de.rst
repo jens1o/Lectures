@@ -18,7 +18,6 @@
 .. role:: incremental
 .. role:: eng
 .. role:: ger
-.. role:: ger-quote
 .. role:: tiny
 .. role:: small
 .. role:: smaller
@@ -379,7 +378,7 @@ Entwicklung von Middleware
   - RPC und C
   - CORBA und C++
   - RMI (Corba) und Java
-  - :ger-quote:`Klassische` Webservices und XML
+  - „Klassische“ Webservices und XML
   - RESTful Webservices und JSON
 
 
@@ -417,7 +416,7 @@ Remote Procedure Call (RPC)
 
   Ein Prozess kann eine Prozedur aufrufen deren Implementierung sich auf einem entfernten Rechner befindet:
 
-  - Programmierer von verteilten Systemen müssen sich nicht mehr um alle Details der Netzwerkprogrammierung kümmern (d. h. keine :ger-quote:`expliziten` Sockets mehr).
+  - Programmierer von verteilten Systemen müssen sich nicht mehr um alle Details der Netzwerkprogrammierung kümmern (d. h. keine „expliziten“ Sockets mehr).
   - Überbrückung der konzeptionellen Lücke zwischen dem Aufruf lokaler Funktionalität über Prozeduren und dem Aufruf entfernter Funktionalität über Sockets.
 
 
@@ -497,7 +496,7 @@ High-level View auf RPC
 
 .. container:: assessment
 
-  Für Programmierer sieht ein :ger-quote:`entfernter` Prozeduraufruf fast identisch aus wie ein :ger-quote:`lokaler` Prozeduraufruf und funktioniert auch so - auf diese Weise wird Transparenz erreicht.
+  Für Programmierer sieht ein „entfernter“ Prozeduraufruf fast identisch aus wie ein „lokaler“ Prozeduraufruf und funktioniert auch so - auf diese Weise wird Transparenz erreicht.
 
 .. container:: incremental margin-top-2em
 
@@ -815,7 +814,7 @@ Die Probleme unternehmensübergreifende Punkt-zu-Punkt-Integration zu ermöglich
 
 .. supplemental::
 
-  Jedes Unternehmen verwendet(e) seinen eigenen :ger-quote:`konkreten`` Message-Broker - wenn wir mit mehreren Unternehmen kommunizieren wollen, müssen wir mehrere Adapter/Lösungen implementieren und pflegen.
+  Jedes Unternehmen verwendet(e) seinen eigenen „konkreten“` Message-Broker - wenn wir mit mehreren Unternehmen kommunizieren wollen, müssen wir mehrere Adapter/Lösungen implementieren und pflegen.
 
 
 .. class:: no-title center-child-elements
@@ -1027,7 +1026,7 @@ ZeroMQ
 
 .. class:: incremental
 
-- ZeroMQ ist eine Messaging-Infrastruktur ohne explizite Server (:ger-quote:`Broker`).
+- ZeroMQ ist eine Messaging-Infrastruktur ohne explizite Server („Broker“).
 - ZeroMQ unterstützt verbindungsorientierte aber asynchrone Kommunikation.
 - ZeroMQ basiert auf klassischen Sockets, fügt aber neue Abstraktionen hinzu, um folgende Messaging Patterns zu ermöglichen:
   
@@ -1069,7 +1068,7 @@ ZeroMQ - Messaging Patterns
 
 .. supplemental::
 
-  :*Client-Server*: Ermöglicht die :ger-quote:`übliche` Kommunikation zwischen einem Client und einem Server. Allerdings findet ggf. eine Pufferung statt, wenn der Server nicht erreichbar ist.
+  :*Client-Server*: Ermöglicht die „übliche“ Kommunikation zwischen einem Client und einem Server. Allerdings findet ggf. eine Pufferung statt, wenn der Server nicht erreichbar ist.
 
   :*Publish-Subscribe*: Ermöglicht es den Clients, sich für ein bestimmtes Thema zu registrieren und dann alle Nachrichten zu erhalten, die zu diesem Thema veröffentlicht werden. Ein Nachricht mit einem bestimmten Thema wird an alle dafür registrierten Clients gesendet.
 
@@ -1241,7 +1240,7 @@ MOM - Queue Managers
 
 .. exercise:: Asynchrone, verbindungsorientierte Kommunikation
 
-  Entwickeln Sie einen Client für einen :ger-quote:`Logging Server`\ , der Lognachrichten (Strings) an den Server sendet. Im Fehlerfall, z. B. wenn der Server nicht verfügbar ist oder es zu einer Netzwerkpartitionierung kam, sollen die Nachrichten zwischengepuffert werden und bei Serververfügbarkeit wieder zugestellt werden. Mit anderen Worten: Im Fehlerfall soll der Client nicht blockieren, sondern weiter funktionieren. Der Client stellt stattdessen die Nachrichten dann zu, wenn der Server wieder verfügbar wird.
+  Entwickeln Sie einen Client für einen „Logging Server“\ , der Lognachrichten (Strings) an den Server sendet. Im Fehlerfall, z. B. wenn der Server nicht verfügbar ist oder es zu einer Netzwerkpartitionierung kam, sollen die Nachrichten zwischengepuffert werden und bei Serververfügbarkeit wieder zugestellt werden. Mit anderen Worten: Im Fehlerfall soll der Client nicht blockieren, sondern weiter funktionieren. Der Client stellt stattdessen die Nachrichten dann zu, wenn der Server wieder verfügbar wird.
 
   Stellen Sie sicher, dass Nachrichten immer in der richtigen Reihenfolge am Server ankommen. D. h. stellen Sie zum Beispiel sicher, dass eine gepufferte Nachricht nie nach einer neueren Nachricht ankommt.
 

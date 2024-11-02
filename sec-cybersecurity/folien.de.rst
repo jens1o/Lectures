@@ -17,7 +17,6 @@
 .. role:: incremental   
 .. role:: eng
 .. role:: ger
-.. role:: ger-quote
 .. role:: red
 .. role:: green
 
@@ -256,7 +255,7 @@ Ausgewählte Angriffe, Angriffsmethoden und Bedrohungsszenarien
 
 .. supplemental::
 
-    Der Begriff *Advanced Persistent Threat* (≘ :ger-quote:`fortgeschrittene, andauernde Bedrohung`) bezeichnet Cyberangriffe durch professionelle Gruppen (häufig *state sponsored*). Es werden in der Regel langfristige Ziele verfolgt. Diese dienen zum Beispiel der Spionage oder der Vorbereitung auf einen Cyberkrieg. Häufige Ziele sind Regierungen und Unternehmen sowie Organisationen, die über kritische Daten verfügen. Insbesondere in der Anfangsphase gehen die Angreifer sehr vorsichtig vor, um nicht entdeckt zu werden. Danach unterscheidet sich das Vorgehen je nach Zielsetzung.
+    Der Begriff *Advanced Persistent Threat* (≘ „fortgeschrittene, andauernde Bedrohung“) bezeichnet Cyberangriffe durch professionelle Gruppen (häufig *state sponsored*). Es werden in der Regel langfristige Ziele verfolgt. Diese dienen zum Beispiel der Spionage oder der Vorbereitung auf einen Cyberkrieg. Häufige Ziele sind Regierungen und Unternehmen sowie Organisationen, die über kritische Daten verfügen. Insbesondere in der Anfangsphase gehen die Angreifer sehr vorsichtig vor, um nicht entdeckt zu werden. Danach unterscheidet sich das Vorgehen je nach Zielsetzung.
 
 
 
@@ -471,7 +470,7 @@ Ausgewählte Social-Engineering Angriffe
 
     :Dumpster Diving:
 
-        Durchsuchen von :ger-quote:`Müllcontainern` nach Informationen, die für einen Angriff nützlich sein könnten.
+        Durchsuchen von „Müllcontainern“ nach Informationen, die für einen Angriff nützlich sein könnten.
 
     .. class:: incremental
 
@@ -560,7 +559,7 @@ Ausgewählte Social-Engineering Angriffe
 
 
 
-:ger-quote:`Motivationstechniken` von Angreifern
+„Motivationstechniken“ von Angreifern
 -------------------------------------------------------------
 
 .. class:: incremental

@@ -18,7 +18,6 @@
 .. role:: incremental
 .. role:: eng
 .. role:: ger
-.. role:: ger-quote
 .. role:: minor
 .. role:: obsolete
 .. role:: dhbw-red
@@ -159,7 +158,7 @@ Konzeptioneller Ablauf
 
     .. rubric:: HTTP-Kommandos 
     
-    (:ger-quote:`Verben`)
+    („Verben“)
 
     - HEAD
     - GET
@@ -341,7 +340,7 @@ Austausch von Daten
 
 - Wir können blockierend auf Daten warten bzw. blockierend schreiben, indem wir ``recv`` bzw. ``sendall`` aufrufen. (Siehe nächstes Beispiel.)
   
-  Sollte die Verbindung abbrechen oder die Gegenseite nicht antworten, kann es :ger-quote:`relativ lange dauern`, bis dieser Fehler erkannt bzw. gemeldet wird.
+  Sollte die Verbindung abbrechen oder die Gegenseite nicht antworten, kann es „relativ lange dauern“, bis dieser Fehler erkannt bzw. gemeldet wird.
 - Wir können den Socket auch in den nicht-blockierenden Modus versetzen, indem wir ``setblocking(False)`` aufrufen (ggf. sinnvoll).
 
 

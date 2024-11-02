@@ -21,7 +21,6 @@
 .. role:: green
 .. role:: the-blue
 .. role:: minor
-.. role:: ger-quote
 .. role:: obsolete
 .. role:: line-above
 
@@ -61,7 +60,7 @@ Die grundlegenden Datenströme
 Jedes Programm hat immer Zugriff auf die drei Standarddatenströme:
 
 - ``stdin`` - Eingabedatenstrom.
-- ``stdout`` - Ausgabedatenstrom für :ger-quote:`normale` Nachrichten.
+- ``stdout`` - Ausgabedatenstrom für „normale“ Nachrichten.
 - ``stderr`` - Ausgabedatenstrom für Fehlernachrichten.
 
 .. container:: incremental 
@@ -142,7 +141,7 @@ Linux Shell - Grundlegendes Design-Pattern: **Pipes and Filters**
 ------------------------------------------------------------------
 
 - Grundlegendes Konzept bzw. Entwurfsmuster (:eng:`Design-Pattern`) in Unix-basierten Betriebssystemen.
-- Ermöglicht die effiziente Verkettung von Befehlen. Die :ger-quote:`Pipes-and-Filter` Architektur erlaubt es komplexe Verarbeitungsoperationen mit Hilfe von einfachen Befehlen durchzuführen.
+- Ermöglicht die effiziente Verkettung von Befehlen. Die „Pipes-and-Filter“ Architektur erlaubt es komplexe Verarbeitungsoperationen mit Hilfe von einfachen Befehlen durchzuführen.
 
 .. container:: incremental
         
@@ -162,7 +161,7 @@ Linux Shell - Grundlegendes Design-Pattern: **Pipes and Filters**
 
 .. supplemental::
 
-    :ger-quote:`Filter`: Kommandos/Programme, die von ``stdin`` lesen und nach ``stdout`` schreiben.
+    „Filter“: Kommandos/Programme, die von ``stdin`` lesen und nach ``stdout`` schreiben.
 
 
 
@@ -640,7 +639,7 @@ Fingerübungen
 .. exercise:: MD5 Hash berechnen
     :class: smaller
 
-    Konkatenieren sie die Zeichenkette :ger-quote:`MySalt` (ohne Zeilenumbruch!) mit dem Inhalt von rockyou.txt (als Ganzes) und berechnen Sie davon den md5 Hash. Verwenden Sie keine expliziten Zwischenergebnisse.
+    Konkatenieren sie die Zeichenkette „MySalt“ (ohne Zeilenumbruch!) mit dem Inhalt von rockyou.txt (als Ganzes) und berechnen Sie davon den md5 Hash. Verwenden Sie keine expliziten Zwischenergebnisse.
 
     .. solution::
         :pwd: ech_cat_md5sum
