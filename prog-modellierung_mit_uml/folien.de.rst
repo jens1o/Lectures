@@ -76,6 +76,117 @@ UML (Unified Modeling Language)
     Wenn Sie UML verwenden, dann verwenden Sie die Notationen spezifikationskonform, da sonst der Sinn der Notation (vollständig) verloren geht oder es sogar zu Missverständnissen kommt.
 
 
+.. class:: new-section transition-move-to-top
+
+Aktivitätsdiagramme
+-----------------------------------------------------------------------
+
+Aktivitätsdiagramme - Einführung
+-----------------------------------------------------------------------
+
+.. container:: center-child-elements box-shadow rounded-corners padding-1em dhbw-red-background white
+
+    Zentraler Aspekt: Wie realisiert mein System ein bestimmtes Verhalten?
+
+.. class:: incremental
+
+- dienen der Modellierung von Abläufen
+
+  (Von dem Ablauf einer einfachen Operation bis hin zu einem kompletten Geschäftsvorfall.)
+- können Nebenläufigkeiten und Entscheidungen modellieren
+
+
+Aktivitätsdiagramm für die Abwicklung einer Bestellung
+-----------------------------------------------------------------------
+
+.. stack::
+
+    .. layer:: 
+
+        .. image:: images/uml-activity/start.svg
+            :width: 1800px
+            :align: center
+
+    .. layer:: incremental overlay
+
+        .. image:: images/uml-activity/bestellung_entgegennehmen.svg
+            :width: 1800px
+            :align: center
+
+    .. layer:: incremental overlay
+
+        .. image:: images/uml-activity/fork.svg
+            :width: 1800px
+            :align: center
+
+    .. layer:: incremental overlay
+
+        .. image:: images/uml-activity/bestellung_ausliefern_wie.svg
+            :width: 1800px
+            :align: center
+
+    .. layer:: incremental overlay
+
+        .. image:: images/uml-activity/liefertypen.svg
+            :width: 1800px
+            :align: center
+
+
+    .. layer:: incremental overlay
+
+        .. image:: images/uml-activity/zahlung_empfangen.svg
+            :width: 1800px
+            :align: center
+
+    .. layer:: incremental overlay
+
+        .. image:: images/uml-activity/ausgeliefert.svg
+            :width: 1800px
+            :align: center
+
+    .. layer:: incremental overlay
+
+        .. image:: images/uml-activity/join.svg
+            :width: 1800px
+            :align: center
+
+    .. layer:: incremental overlay
+
+        .. image:: images/uml-activity/bestellung_abschließen.svg
+            :width: 1800px
+            :align: center
+        
+.. supplemental::
+
+    Zentrale Elemente eines Aktivitätsdiagramms:
+
+    - die Aktionen (abgerundete Rechtecke) steht für eine Operation, die im Rahmen des Ablaufs ausgeführt wird und in dem Kontext des Diagramms nicht weiter verfeinert wird.
+    - der Startknoten (gefüllter Kreis); es kann mehrere Startknoten geben.
+    - der Endknoten (gefüllter Kreis mit einem Rand) beendet die Aktivität
+    - Kanten (gerichtete Linien) verbinden die Elemente (Aktionen) und beschreiben den Ablauf. Kanten können mit Bedingungen (in eckigen Klammern) versehen werden. 
+    - Entscheidungen (Rauten) beschreiben, dass der Ablauf in Abhängigkeit von einer Bedingung unterschiedlich weitergeht. Dienen auch dazu mehrere alternative Pfade zusammenzuführen.
+    - Parallelisierungs- und Synchronisierungspunkte (:eng:`Fork` und :eng:`Join`) (schwarze Balken) beschreiben, dass der Ablauf an dieser Stelle in mehrere Pfade aufgeteilt wird und später wieder zusammengeführt wird.
+    
+
+.. class:: integrated-exercise
+
+Übung
+-------------------
+
+
+.. exercise:: Modellieren Sie ein Aktivitätsdiagramm für die Berechnung der Fakultät
+
+    Nehmen Sie ggf. den Code aus der Musterlösung zur  Übung als Grundlage.
+
+    .. solution::
+        :pwd: FakultaetInUML
+
+        .. image:: images/uml-activity-exercise.svg
+            :alt: Aktivitätsdiagramm für die Berechnung der Fakultät
+            :width: 500px
+            :align: center
+
+
 
 
 .. class:: new-section transition-move-to-top
@@ -176,38 +287,38 @@ Modellierung einer Party - Attribute
 
         .. image:: images/uml-cd/klassen.svg
             :alt: Klassen
-            :height: 1100px
+            :height: 1000px
             :align: center
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/attribute_einfach.svg
             :alt: Einfache Attribute
-            :height: 1100px
+            :height: 1000px
             :align: center
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/attribute_mit_default.svg
-            :height: 1100px
+            :height: 1000px
             :align: center    
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/attribute_mit_mengen.svg
-            :height: 1100px
+            :height: 1000px
             :align: center            
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/attribute_keine.svg
-            :height: 1100px
+            :height: 1000px
             :align: center            
     
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/attribute_abgeleitet.svg
-            :height: 1100px
+            :height: 1000px
             :align: center            
 
 
@@ -247,38 +358,38 @@ Modellierung einer Party - Operationen/Methoden
 
         .. image:: images/uml-cd/klassen.svg
             :alt: Klassen
-            :height: 1100px
+            :height: 1000px
             :align: center
 
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_einfach.svg
             :alt: Einfache Attribute
-            :height: 1100px
+            :height: 1000px
             :align: center
 
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_mit_default.svg
-            :height: 1100px
+            :height: 1000px
             :align: center    
 
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_mit_mengen.svg
-            :height: 1100px
+            :height: 1000px
             :align: center            
 
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_keine.svg
-            :height: 1100px
+            :height: 1000px
             :align: center            
     
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_abgeleitet.svg
-            :height: 1100px
+            :height: 1000px
             :align: center            
 
     .. layer:: overlay incremental faded-to-white
@@ -288,13 +399,13 @@ Modellierung einer Party - Operationen/Methoden
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/methoden_einfach.svg
-            :height: 1100px
+            :height: 1000px
             :align: center  
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/methoden_mit_in_out.svg
-            :height: 1100px
+            :height: 1000px
             :align: center  
 
 
@@ -333,98 +444,98 @@ Modellierung einer Party - Beziehungen
 
         .. image:: images/uml-cd/klassen.svg
             :alt: Klassen
-            :height: 1100px
+            :height: 1000px
             :align: center
 
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_einfach.svg
             :alt: Einfache Attribute
-            :height: 1100px
+            :height: 1000px
             :align: center
 
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_mit_default.svg
-            :height: 1100px
+            :height: 1000px
             :align: center    
 
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_mit_mengen.svg
-            :height: 1100px
+            :height: 1000px
             :align: center            
 
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_keine.svg
-            :height: 1100px
+            :height: 1000px
             :align: center            
     
     .. layer:: overlay 
 
         .. image:: images/uml-cd/attribute_abgeleitet.svg
-            :height: 1100px
+            :height: 1000px
             :align: center            
 
     .. layer:: overlay 
 
         .. image:: images/uml-cd/methoden_einfach.svg
-            :height: 1100px
+            :height: 1000px
             :align: center  
 
     .. layer:: overlay
 
         .. image:: images/uml-cd/methoden_mit_in_out.svg
-            :height: 1100px
+            :height: 1000px
             :align: center  
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/assoziation_einfach.svg
-            :height: 1100px
+            :height: 1000px
             :align: center  
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/assoziation_gerichtet.svg
-            :height: 1100px
+            :height: 1000px
             :align: center  
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/assoziation_komposition.svg
-            :height: 1100px
+            :height: 1000px
             :align: center  
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/assoziation_aggregation.svg
-            :height: 1100px
+            :height: 1000px
             :align: center  
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/assoziation_generalisierung.svg
-            :height: 1100px
+            :height: 1000px
             :align: center  
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/benennung.svg
-            :height: 1100px
+            :height: 1000px
             :align: center  
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/enumeration.svg
-            :height: 1100px
+            :height: 1000px
             :align: center  
 
     .. layer:: overlay incremental
 
         .. image:: images/uml-cd/assoziationsklasse.svg
-            :height: 1100px
+            :height: 1000px
             :align: center  
 
 

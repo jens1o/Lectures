@@ -34,3 +34,16 @@ images/uml-sd/2nd_alarm.svg
 images/uml-sd/aktivieren.svg
 images/uml-sd/alarm.svg
 images/uml-sd/objekte.svg
+
+
+images/uml-activity/ausgeliefert.svg
+images/uml-activity/bestellung_abschließen.svg
+images/uml-activity/bestellung_ausliefern_wie.svg
+images/uml-activity/bestellung_entgegennehmen.svg
+images/uml-activity/fork.svg
+images/uml-activity/join.svg
+images/uml-activity/liefertypen.svg
+images/uml-activity/start.svg
+images/uml-activity/zahlung_empfangen.svg
+
+images/uml-activity-exercise.svg
