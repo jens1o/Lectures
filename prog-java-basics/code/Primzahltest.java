@@ -6,11 +6,9 @@ void main() {
         return;
     }
 
-    boolean isPrim = true;
     int i = 2;
     for (; i < n/2; i++) {
         if (n % i == 0) {
-            isPrim = false;
             break;
         }
     }
