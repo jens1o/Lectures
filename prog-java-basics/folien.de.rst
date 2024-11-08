@@ -45,7 +45,7 @@ Einführung in die Programmierung mit Java
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
-    :Version: 1.1.1
+    :Version: 1.1.3
 
     .. container:: minor
 
@@ -795,14 +795,13 @@ Bezeichner (:eng:`Identifier`) - Übersicht
 - Schlüsselworte (z. B. :java:`var`, :java:`int`, etc.) dürfen nicht als Bezeichner verwendet werden
 - Konvention: 
   
-    .. class:: incremental smaller
+  .. class:: incremental smaller
 
-    - Variablen (z. B. :java:`aktuellerHerzschlag`) und Methoden (z. B. :java:`println`) verwenden *lowerCamelCase* 
+  - Variablen (z. B. :java:`aktuellerHerzschlag`) und Methoden (z. B. :java:`println`) verwenden *lowerCamelCase* 
     
-    - Konstanten verwenden *UPPER_CASE* und Unterstriche (z. B. :java:`GEWICHT_BEI_GEBURT`)
+  - Konstanten verwenden *UPPER_CASE* und Unterstriche (z. B. :java:`GEWICHT_BEI_GEBURT`)
     
-    - Klassen, Interfaces und Enums verwenden *UpperCamelCase* (z. B. :java:`BigDecimal`)
-
+  - Klassen, Interfaces und Enums verwenden *UpperCamelCase* (z. B. :java:`BigDecimal`)
 
 .. supplemental:: 
     
@@ -3042,7 +3041,7 @@ Zeilenlängen
 .. warning:: 
     :class: incremental
 
-    Zeilen, die länger als 80 oder max. 100 Zeichen erfordern beim Lesen horizontales Scrollen und sind unter allen Umständen zu vermeiden!
+    Zeilen, mit mehr als 80 bis 100 Zeichen erfordern beim Lesen häufig horizontales Scrollen und sind unter allen Umständen zu vermeiden!
 
     .. class:: incremental
 
@@ -3071,7 +3070,7 @@ Methoden und Kommentare
     - Dokumentieren Sie keine Trivialitäten 
      
       Zum Beispiel: :java:`i++; // erhöhe i um 1`
-    - Wenn Sie einen Bedarf sehen, innerhalb einer Methode Kommentare zu schreiben, dann ist dies häufig ein Hinweis darauf, dass der Code refaktorisiert (:eng:`refactored`) werden sollte. 
+    - Wenn Sie einen Bedarf sehen, innerhalb einer Methode Kommentare zu schreiben, dann ist dies mgl. ein Hinweis darauf, dass der Code refaktorisiert (:eng:`refactored`) werden sollte. 
 
       Zum Beispiel könnten die Methode in kleinere Methoden aufgeteilt werden.
 
