@@ -16,8 +16,21 @@ Die grundlegende Idee hinter der folgenden Reihenfolge ist, dass die Studierende
    1. Einführung in die Programmierung (`<prog-einfuehrung/folien.de.rst.html>`__)
    2. Grundlagen der Programmierung in Java (`<prog-java-basics/folien.de.rst.html>`__)
    3. Verwendung von Arrays in Java (`<prog-java-arrays/folien.de.rst.html>`__)
-   4. Objekt-orientierte Modellierung mit UML (`<prog-modellierung_mit_uml/folien.de.rst.html>`__)
-   5. Objekt-orientierte Programmierung in Java (`<prog-java-oo/folien.de.rst.html>`__)
+   4. Modularisierung von einfachen Java Programming (`<prog-java-modularisierung-101/folien.de.rst.html>`__)
+      
+      Es wird lediglich diskutiert, wie Methoden in Klassen organisiert werden können und wie man diese aus anderen Klassen heraus aufrufen kann. 
+   5. Objekt-orientierte Modellierung mit UML (`<prog-modellierung_mit_uml/folien.de.rst.html>`__)
+   6. Objekt-orientierte Programmierung in Java (`<prog-java-oo/folien.de.rst.html>`__)
+
+
+
+Vorlesung "Theoretische Informatik" bzw. "Algorithmen und Datenstrukturen"
+-----------------------------------------------------------------------------
+
+.. container:: scrollable
+
+   1. Einführung in die Komplexität von Algorithmen (`<theo-algo-komplexitaet/folien.de.rst.html>`__)
+
 
 
 Vorlesung "Verteilte Systeme"
@@ -49,7 +62,7 @@ Vorlesung "Verteilte Systeme"
       - Entwurfsprinzipien für verteilte Systeme (`<ds-se-entwurfsprinzipien/folien.de.rst.html>`__)
       - RESTful Web Services (`<ds-restful/folien.de.rst.html>`_)
       - XML und XPath (`<ds-xml/folien.de.rst.html>`__)
-
+      
 
 
 Vorlesung "Web Engineering"
