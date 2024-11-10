@@ -45,7 +45,7 @@ Einführung in die Programmierung mit Java
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
-    :Version: 1.1.3
+    :Version: 1.2
 
     .. container:: minor
 
@@ -64,6 +64,13 @@ Einführung in die Programmierung mit Java
 
     :Fehler melden:
         https://github.com/Delors/delors.github.io/issues
+
+    :Kontrollfragen:
+
+        .. source:: kontrollfragen.de.rst 
+            :path: relative
+            :prefix: https://delors.github.io/
+            :suffix: .html
 
 
 
@@ -85,7 +92,6 @@ Einführung
 .. class:: incremental
 
     Die Ausführung des Programms ist (in der Konsole/im Terminal) mit ``java --enable-preview HelloWorld.java`` möglich.
-
 
 .. [#]  Die Datei ``HelloWorld.java`` kann `hier <https://delors.github.io/prog-java-basics/code/HelloWorld.java>`__ heruntergeladen werden und mit ``java --enable-preview HelloWorld.java`` ausgeführt werden.
 
@@ -157,11 +163,11 @@ Ausführung von Java Skripten
 
         Vorgehensweise:
 
-        0) :minor:`Stellen Sie sicher, dass Java korrekt installiert ist. Öffnen Sie dazu die Konsole und geben Sie java --version ein.`
-        1) Öffnen Sie einen Texteditor (z. B. Visual Studio Code oder ZED oder ...)
-        2) Schreiben Sie den Rumpf des Programms: :java:`void main() { <IHR CODE> }`
-        3) Ersetzen Sie ``<IHR CODE>`` durch den Code, der den Nutzer nach seinem Namen X fragt und dann "Guten Morgen X!" ausgibt.
-        4) Führen Sie den Code aus in dem Sie die Konsole/ein Terminal öffnen und dort: :code:`java --enable-preview GutenMorgen.java` ausführen.
+        1) :minor:`Stellen Sie sicher, dass Java korrekt installiert ist. Öffnen Sie dazu die Konsole und geben Sie java --version ein.`
+        2) Öffnen Sie einen Texteditor (z. B. Visual Studio Code oder ZED oder ...)
+        3) Schreiben Sie den Rumpf des Programms: :java:`void main() { <IHR CODE> }`
+        4) Ersetzen Sie ``<IHR CODE>`` durch den Code, der den Nutzer nach seinem Namen X fragt und dann "Guten Morgen X!" ausgibt.
+        5) Führen Sie den Code aus in dem Sie die Konsole/ein Terminal öffnen und dort: :code:`java --enable-preview GutenMorgen.java` ausführen.
 
 
 
@@ -2826,7 +2832,7 @@ Aufruf von Methoden aus anderen Klassen
 
 - *Für den Moment* ist eine Klasse für uns eine Sammlung von Methoden und Konstanten, die inhaltlich in einem logischen Zusammenhang stehen.
 
-- Der Aufruf einer Methode einer Klasse erfolgt durch die Angabe des Klassennamens, des Methodennamens und der aktuellen Parameterwerte.
+- Der Aufruf einer sogenannten Klassenmethode (solche mit dem Modifizierer :java:`static`) einer Klasse erfolgt durch die Angabe des Klassennamens, des Methodennamens und der aktuellen Parameterwerte.
   
   :Syntax: <Klasse>.<Methode>(<Parameterwerte>)
 
@@ -2836,6 +2842,7 @@ Aufruf von Methoden aus anderen Klassen
     :class: incremental far-smaller margin-top-2em
 
     Auf diese Weise können nur statische Methoden aufgerufen werden. Die Details werden wir später beim Thema Klassen und Objekte behandeln.
+
 
 
 .. class:: transition-fade integrated-exercise
@@ -2937,7 +2944,6 @@ Aufruf von Methoden aus anderen Klassen
 
 
 
-
 .. class:: transition-fade new-section
 
 Von Codekonventionen und Lesbarkeit
@@ -2964,6 +2970,7 @@ Lesbarer Java-Code
         Manuelles formatieren ist nicht sinnvoll. 
         
         **Verwenden Sie einen automatische Code-Formatter!**
+
 
 
 Einrückungen und Blöcke
@@ -3102,6 +3109,7 @@ Team und Projektspezifische Konventionen
   - ...
 
 
+
 .. class:: integrated-exercise transition-scale
 
 Übung
@@ -3111,7 +3119,7 @@ Team und Projektspezifische Konventionen
 
 1) Überprüfen Sie den von Ihnen geschrieben Code auf korrekte Formatierung. 
 
-2) Installieren Sie für VS Code das Java Extension Pack und verwenden Sie den eingebauten Code Formatter über die entsprechende Tastenkombination.
+2) Installieren Sie für VS Code das Java Extension Pack (falls noch nicht geschehen) und verwenden Sie den eingebauten Code Formatter über die entsprechende Tastenkombination.
    
    (Auf Mac mit Standardeinstellungen zum Beispiel:  :kbd:`Shift` + :kbd:`Alt` + :kbd:`F`.)
 
@@ -3119,8 +3127,6 @@ Team und Projektspezifische Konventionen
 
 Am Ende diskutieren wir Ihren Code/Ihre Kommentare.
 
-
-.. TODO schreiben Sie ein Programm, dass berechnet wie viele Tage ein Mensch bereits auf der Welt ist. Als Eingaben sollen das Geburtsdatum und das aktuelle Datum eingegeben werden. D.h. Sie fragen erst den Tag, dann den Monat und dann das Jahr der Geburt ab. Anschließend fragen Sie den aktuellen Tag, Monat und das Jahr ab. Geben Sie dann die Anzahl der Tage aus. Verwenden Sie Methoden für sinnvolle Teilaufgaben. (Z. B. Tage eines Jahres. Tag im Jahr (siehe vorhergehende Übung)).
 
 
 .. class:: center-child-elements
@@ -3132,6 +3138,42 @@ Von Codekonventionen und Lesbarkeit - Zusammenfassung
 Auf dem Weg zu einem professionellen Programmierer (egal welcher Sprache) ist es wichtig, neben den Sprachkonstrukten auch die geltenden Konventionen zu erlernen und einzuhalten. Diese sind je nach Sprache meist leicht unterschiedlich, aber in der Regel sehr ähnlich.
 
 Das Einhalten fördert die Zusammenarbeit mit anderen Programmieren - *insbesondere auch Ihrem zukünftigen Ich* - und erhöht die Lesbarkeit des Codes.
+
+
+
+.. class:: integrated-exercise transition-fade new-section
+
+Übung
+--------
+
+.. exercise:: Tage seit Geburt berechnen
+
+    Schreiben Sie ein Programm, dass berechnet wie viele Tage ein Mensch bereits auf der Welt ist. Als Eingaben sollen das Geburtsdatum und das aktuelle Datum eingegeben werden. D. h. Sie fragen erst den Tag, dann den Monat und dann das Jahr der Geburt ab. Anschließend fragen Sie den aktuellen Tag, Monat und das Jahr ab. Geben Sie dann die Anzahl der Tage aus. 
+    
+    Verwenden Sie Methoden für sinnvolle Teilaufgaben. (Z. B. Ist ein Jahr ein Schaltjahr, Tage eines Jahres. Tag im Jahr (siehe vorhergehende Übung)).
+
+    Kommentieren Sie Ihre Methoden sinnvoll. 
+
+    Testen Sie Ihren Code mit verschiedenen Eingaben.
+
+    Wenn Sie einen Fehler in der Eingabe finden, geben Sie eine Meldung aus und beenden Ihr Programm mit :java:`System.exit(1)`.
+
+    .. solution:: 
+        :pwd:
+        
+        .. include:: code/TageSeitGeburt.java
+            :code: Java
+            :class: far-smaller
+            :number-lines: 1
+
+.. supplemental::
+
+    Berechnung eines Schaltjahres:
+
+    Ein normales Jahr aus 365 Tagen. Da die Zeit, die die Erde benötigt, um sich einmal um die Sonne zu drehen jedoch 365,2425 Tage beträgt, wird alle vier Jahre ein „Schaltjahr“ von 366 Tagen verwendet, um den durch drei normale (aber kurze) Jahre verursachten Fehler zu beseitigen. Jedes Jahr, das gleichmäßig durch 4 teilbar ist somit ein Schaltjahr: 1988, 1992 und 1996 sind beispielsweise Schaltjahre.
+
+    Um den kleinen entstehenden Fehler zu korrigieren, ist ein Jahr, das durch 100 teilbar ist (z. B. 1900), nur dann ein Schaltjahr ist, wenn es auch durch 400 teilbar ist.
+
 
 
 .. class:: new-section transition-move-to-top
@@ -3245,6 +3287,7 @@ Java Assertions
 .. supplemental::
 
     Die Tatsache, dass Assertions nur bei expliziter Aktivierung überprüft werden, ist einer der größten Kritikpunkte an Java Assertions.
+
 
 
 .. class:: integrated-exercise transition-scale
