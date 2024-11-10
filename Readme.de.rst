@@ -19,7 +19,7 @@ Die grundlegende Idee hinter der folgenden Reihenfolge ist, dass die Studierende
    4. Modularisierung von einfachen Java Programming (`<prog-java-modularisierung-101/folien.de.rst.html>`__)
       
       Es wird lediglich diskutiert, wie Methoden in Klassen organisiert werden können und wie man diese aus anderen Klassen heraus aufrufen kann. 
-   5. Objekt-orientierte Modellierung mit UML (`<prog-modellierung_mit_uml/folien.de.rst.html>`__)
+   5. Einführung in die Modellierung mit UML (`<prog-modellierung_mit_uml/folien.de.rst.html>`__)
    6. Objekt-orientierte Programmierung in Java (`<prog-java-oo/folien.de.rst.html>`__)
 
 
