@@ -39,7 +39,7 @@
 
 .. class:: animated-symbol
 
-Einführung in die Objekt-orientierte Modellierung - Erste Grundlagen der Modellierung mit UML
+Einführung und erste Grundlagen der Modellierung mit UML
 ================================================================================================
 
 .. container:: line-above tiny
