@@ -251,6 +251,9 @@ Auf einzelne Elemente eines Feldes kann mittels eines Indexes und dem Feldzugrif
     .. hint:: Der Index der einzelnen Elemente eines Feldes läuft von 0 bis Größe-1, wobei das erste Element den Index 0 hat.
 
 
+    In Java und vielen anderen moderne(re)n Programmiersprachen ist es nicht möglich auf ein Element eines Feldes zuzugreifen, das außerhalb des definierten Bereichs liegt, da früh erkannt wurde, dass dies insbesondere in älteren Programmiersprachen (z. B. C) ein häufiger Fehler ist, der dann zu Speicherlecks führt. Dies hat dazu geführt, dass das „Weisse Hause“ die Empfehlung ausgesprochen hat, solche alten Sprachen nicht mehr zu verwenden. 
+
+
 
 .. class:: integrated-exercise
 
@@ -293,15 +296,13 @@ Eine Variable mit einem Feld-Datentyp speichert eine (virtuelle) Speicheradresse
         :class: smaller copy-to-clipboard
 
         int[] a = {1, 2, 3};
-        int[] b = a; // b referenziert das gleiche Feld wie a; 
-                     // ist "nur" eine Kopie des Zeigers auf das Feld.
+        int[] b = a; // "b" referenziert das gleiche Feld wie "a".
+                     // "b" ist nur eine Kopie des Zeigers auf das Feld.
+                     // "b" ist keine Kopie des Feldes "a".
         b[0] = 4;
         println(a[0]); 
         // ==> 4
 
-.. supplemental::
-
-    Dies ist insbesondere in älteren Programmiersprachen (z. B. C) ein häufiger Fehler, der zu Speicherlecks führt. Dies hat dazu geführt, dass das „Weisse Hause“ die Empfehlung ausgesprochen hat, solche alten Sprachen nicht mehr zu verwenden. In Java und vielen anderen modernen Programmiersprachen ist dies nicht möglich.
 
 
 
@@ -321,7 +322,7 @@ Visualisierung von Referenzen auf Felder
 .. hint::
     :class: incremental
 
-    Die Werte eines Referenzdatentyp werden automatisch gelöscht (:eng:`Garbage Collected``), wenn keine Referenz (Variable) auf die Inhalte mehr existiert.
+    Die Werte eines Referenzdatentyp werden automatisch gelöscht (:eng:`Garbage Collected`), wenn keine Referenz (Variable) auf die Inhalte mehr existiert.
 
 
 Referenzdatentypen und :java:`final`
@@ -346,7 +347,7 @@ Vergleich von Feldern (:eng:`Arrays`)
 
 Der Vergleich zweier Feldvariablen mit dem :java:`==` bzw. :java:`!=` Operator vergleicht nicht den Inhalt der Felder, sondern die virtuelle Speicheradresse (ähnlich bei Strings).
 
-Der Vergleich der Inhalte muss über den Vergleich der einzelnen Feldelemente erfolgen bzw. über Hilfsmethoden wie z.B. :java:`java.utils.Arrays.equals(...)`.
+Der Vergleich der Inhalte muss über den Vergleich der einzelnen Feldelemente erfolgen bzw. über Hilfsmethoden wie z.B. :java:`Arrays.equals(...)`.
 
 .. container:: incremental
 
@@ -370,7 +371,7 @@ Der Vergleich der Inhalte muss über den Vergleich der einzelnen Feldelemente er
 Felder kopieren
 ---------------------
 
-Eine Kopie der Inhalte muss über das Erzeugen eines neuen Feldes und Kopie der einzelnen Feldelemente erfolgen bzw. über Hilfsmethoden wie z. B. :java:`System.arraycopy(...)` oder :java:`java.utils.Arrays.copyOf(...)` oder :java:`<Array>.clone()`.
+Eine Kopie der Inhalte muss über das Erzeugen eines neuen Feldes und Kopie der einzelnen Feldelemente erfolgen bzw. über Hilfsmethoden wie z. B. :java:`System.arraycopy(...)` oder :java:`Arrays.copyOf(...)` oder :java:`<Array>.clone()`.
 
 Beispiel mit :java:`<Array>.clone()`:
 
@@ -437,9 +438,9 @@ Die Parameter und der Rückgabewert einer Methode können vom Typ eines Feldes s
 
 .. exercise:: Arrays vergleichen
 
-    Schreiben Sie eine Methode, die prüft ob eine Array zum Speichern von :java:`int` Werten, mit dem Beginn eines anderen Arrays von :java:`int`-Werten übereinstimmt. Vergleichen Sie die Elemente der beiden Arrays mit Hilfe des :java:`==` bzw. :java:`!=` Operators.
+    Schreiben Sie eine Methode, die prüft ob ein Array von :java:`int` Werten, mit dem Beginn eines anderen Arrays von :java:`int`-Werten übereinstimmt. Vergleichen Sie die Elemente der beiden Arrays mit Hilfe des :java:`==` bzw. :java:`!=` Operators.
 
-    D. h. die Methode soll :java:`true` zurückgeben, wenn alle Elemente des ersten Arrays (``a``) mit den ersten Elementen des zweiten Arrays ``b`` übereinstimmen.
+    D. h. die Methode soll :java:`true` zurückgeben, wenn *alle Elemente* des ersten Arrays (``a``) mit den ersten Elementen des zweiten Arrays ``b`` übereinstimmen. Das Array ``b`` kann mehr Elemente enthalten als das Array ``a``.
 
     Die Methode soll die folgende Signatur haben und auch alle Sonderfälle abdecken!
 
@@ -456,8 +457,8 @@ Die Parameter und der Rückgabewert einer Methode können vom Typ eines Feldes s
             :class: smaller copy-to-clipboard
 
             boolean startsWith(int[] a, int[] b) {
-                if (a == null && b == null) return true;
-                if (a == null || b == null || a.length > b.length) return false; 
+                if (a == null) return true;
+                if (1111b == null || a.length > b.length) return false; 
                 for (int i = 0; i < a.length; i++) {
                     if (a[i] != b[i]) {
                         return false;
@@ -474,10 +475,13 @@ Die Parameter und der Rückgabewert einer Methode können vom Typ eines Feldes s
 
 .. exercise:: Skalarprodukt
 
+    .. note:: 
+        :class: smaller
+
+        Das Skalarprodukt ist die Summe der Produkte der Elemente an der gleichen Position in den beiden Arrays: ``a[0] * b[0] + a[1] * b[1] + ...``.
+
     Schreiben Sie eine Methode, die zwei gleich lange Arrays von :java:`int` Werten entgegennimmt und das Skalarprodukt der beiden Arrays berechnet. 
     
-    Zur Erinnerung: Das Skalarprodukt ist die Summe der Produkte der Elemente an der gleichen Position in den beiden Arrays (:java:`a[0] * b[0] + a[1] * b[1] + ...`).
-
     .. solution:: 
         :pwd: Mein Skalarprodukt
 
@@ -506,7 +510,7 @@ Die Parameter und der Rückgabewert einer Methode können vom Typ eines Feldes s
 
     .. container:: smaller
 
-        Die :java:`main` Methode eines Java Programms bekommt als Parameter ein Feld von :java:`String`\ s übergeben. Dieser Parameter wird :java:`args` genannt (:java:`void main(String[] args)`).
+        Die :java:`main` Methode eines Java Programms bekommt - wenn der erste Parameter entsprechend spezifiziert ist -  ein Feld von :java:`String`\ s übergeben. Dieser Parameter wird üblicherweise :java:`args` genannt (:java:`void main(String[] args)`).
     
     Nehmen Sie Ihr Programm zur Berechnung des BMIs und verwenden Sie Kommandozeilenargumente  als Parameter für Ihre :java:`bmi` Funktion. 
 
@@ -523,13 +527,17 @@ Die Parameter und der Rückgabewert einer Methode können vom Typ eines Feldes s
 
             Beispielinteraktion:
     
-            .. code:: zsh
-                :class: far-smaller
+            .. container:: faded-to-white
 
-                $ java --enable-preview BMIBerechnen.java                   
-                Bitte geben Sie Ihr Gewicht in Kilogramm und Ihre Größe in Mete an.
+                Bisher: 
 
-            bzw.
+                .. code:: zsh
+                    :class: far-smaller 
+
+                    $ java --enable-preview BMIBerechnen.java                   
+                    Bitte geben Sie Ihr Gewicht in Kilogramm und Ihre Größe in Mete an.
+
+            Neu:
 
             .. code:: zsh
                 :class: far-smaller
@@ -718,16 +726,27 @@ Multidimensional Arrays
 
     Die Sattelpunkte einer Matrix sind die Elemente der Matrix (n x m), die in Ihrer Zeile am kleinsten sind und in der Spalte am größten.
  
-    Zum Beispiel hat die folgende Matrize die zwei Sattelpunkte bei :math:`(0,1)` und :math:`(0,2)` jeweils mit dem Wert :math:`0`.
+    .. container:: smaller box-shadow rounded-corners padding-1em
 
-    .. math:: 
-        :class: smaller
+        .. container:: two-columns
 
-        \left( \begin{matrix}
-            1 & 0 & 0 \\
-            0 & -1 & -3 \\
-            10 & -2 & -4
-        \end{matrix} \right)
+            .. container:: column no-separator 
+
+                Beispiel:
+
+                Die rechte Matrize hat zwei Sattelpunkte bei :math:`(0,1)` und :math:`(0,2)` jeweils mit dem Wert :math:`0`.
+
+            .. container:: column
+
+                .. math:: 
+                    :class: smaller
+
+                    \left( \begin{matrix}
+                        1 & 0 & 0 \\
+                        0 & -1 & -3 \\
+                        10 & -2 & -4
+                    \end{matrix} \right)
+
 
     .. solution:: 
         :pwd: SattelpunkteSindAuchNichtSchwer!
@@ -737,7 +756,11 @@ Multidimensional Arrays
             :number-lines:
             :class: far-smaller copy-to-clipboard
 
-    :minor:`Verwenden Sie Methoden aus der vorherigen Übung wieder (zum Beispiel zum Einlesen einer Matrize bzw. zur Ausgabe.)`
+.. supplemental::
+
+    Verwenden Sie Methoden aus der vorherigen Übung wieder (zum Beispiel zum Einlesen einer Matrize bzw. zur Ausgabe.)
+
+
 
 
 
@@ -766,7 +789,6 @@ Multidimensional Arrays
             :code: java
             :number-lines:
             :class: far-smaller copy-to-clipboard
-
 
 .. supplemental::
 
@@ -845,10 +867,10 @@ Methoden mit einer variablen Anzahl von Parametern (:java:`varargs`)
     .. code:: java
         :class: far-smaller copy-to-clipboard
 
-        jshell>var r = join(new int[]{1,2}, new int[]{3,4})
+        jshell> var r = join(new int[]{1,2}, new int[]{3,4})
         r ==> int[4] { 1, 2, 3, 4 }
 
-        jshell>var r = join(
+        jshell> var r = join(
                 new int[]{1,2}, 
                 new int[]{3,4}, 
                 new int[]{5,6,7,8,9})
@@ -856,6 +878,8 @@ Methoden mit einer variablen Anzahl von Parametern (:java:`varargs`)
 
     .. solution::
         :pwd: JoinMit_Varargs+
+
+        Beispielimplementierung:
 
         .. code:: java
             :class: far-smaller copy-to-clipboard
