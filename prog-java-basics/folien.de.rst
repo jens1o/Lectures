@@ -3141,25 +3141,29 @@ Das Einhalten fördert die Zusammenarbeit mit anderen Programmieren - *insbesond
 
 
 
-.. class:: integrated-exercise transition-fade new-section
+.. class:: integrated-exercise transition-fade
 
 Übung
 --------
 
 .. exercise:: Tage seit Geburt berechnen
 
-    Schreiben Sie ein Programm, dass berechnet wie viele Tage ein Mensch bereits auf der Welt ist. Als Eingaben sollen das Geburtsdatum und das aktuelle Datum eingegeben werden. D. h. Sie fragen erst den Tag, dann den Monat und dann das Jahr der Geburt ab. Anschließend fragen Sie den aktuellen Tag, Monat und das Jahr ab. Geben Sie dann die Anzahl der Tage aus. 
+    .. container:: smaller
+
+        Schreiben Sie ein Programm, dass berechnet wie viele Tage ein Mensch bereits auf der Welt ist. Als Eingaben sollen das Geburtsdatum und das aktuelle Datum eingegeben werden. D. h. Sie fragen erst den Tag, dann den Monat und dann das Jahr der Geburt ab. Anschließend fragen Sie den aktuellen Tag, Monat und das Jahr ab. Geben Sie dann die Anzahl der Tage aus. 
+        
+        Verwenden Sie Methoden für sinnvolle Teilaufgaben. (Z. B. Ist ein Jahr ein Schaltjahr, Tage eines Jahres. Tag im Jahr (siehe vorhergehende Übung)).
+
+    .. container:: smaller box-shadow rounded-corners padding-0_5em
+        
+       .. rubric:: Anforderungen
     
-    Verwenden Sie Methoden für sinnvolle Teilaufgaben. (Z. B. Ist ein Jahr ein Schaltjahr, Tage eines Jahres. Tag im Jahr (siehe vorhergehende Übung)).
-
-    Kommentieren Sie Ihre Methoden sinnvoll. 
-
-    Testen Sie Ihren Code mit verschiedenen Eingaben.
-
-    Wenn Sie einen Fehler in der Eingabe finden, geben Sie eine Meldung aus und beenden Ihr Programm mit :java:`System.exit(1)`.
+       - Kommentieren Sie Ihre Methoden sinnvoll. 
+       - Testen Sie Ihren Code mit verschiedenen Eingaben.
+       - Wenn Sie einen Fehler in der Eingabe finden, geben Sie eine Meldung aus und beenden Ihr Programm mit :java:`System.exit(1)`.
 
     .. solution:: 
-        :pwd:
+        :pwd: UndSoAltIstManSchon
         
         .. include:: code/TageSeitGeburt.java
             :code: Java
