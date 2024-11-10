@@ -54,7 +54,7 @@ Kontrollfragen
 
 .. container:: scrollable
 
-   .. class:: incremental
+   .. class:: incremental long-list
 
    1. \
    
@@ -65,7 +65,7 @@ Kontrollfragen
 
             Wir kennen die primitiven Datentypen :java:`byte`, :java:`short`, :java:`int`, :java:`long`, :java:`float`, :java:`double`, :java:`boolean`, :java:`char`.
 
-   2. \
+   2. 
 
       .. exercise:: Was sind Literale?
 
@@ -74,7 +74,7 @@ Kontrollfragen
 
             Konstante Werte, die direkt in den Code geschrieben werden.
 
-   3. \
+   3. 
 
       .. exercise:: Welche der folgenden Bezeichner sind für Variablen gültig?
 
@@ -99,7 +99,7 @@ Kontrollfragen
             7. ja
             8. ja
 
-   4. \
+   4. 
 
       .. exercise:: Welche der folgenden Bezeichner sollte man für eine Variable verwenden?
 
@@ -120,7 +120,7 @@ Kontrollfragen
             5. nein
             6. (nein)
 
-   5. \
+   5. 
 
       .. exercise:: Sie definieren eine Konstante, welchen Namen würden Sie verwenden?
 
@@ -136,7 +136,7 @@ Kontrollfragen
 
             Wenn die Konstante einen deutschen bekommen  soll, dann sollte man dennoch auf Umlaute verzichten. Daher ist 3. die beste Wahl.
 
-   6. \
+   6. 
 
       .. exercise:: Welchen Typ hat die Variable x in folgendem Code?
 
@@ -157,7 +157,7 @@ Kontrollfragen
             5. float
             6. String
 
-   7. \
+   7. 
 
       .. exercise:: Wieviele Bits hat ein int?
 
@@ -173,7 +173,7 @@ Kontrollfragen
 
             32
 
-   8. \
+   8. 
 
       .. exercise:: Wie ist der Wertebereich von byte?
 
@@ -188,8 +188,7 @@ Kontrollfragen
 
             -128 bis 127
 
-
-   9. \
+   9. 
 
       .. exercise:: Was passiert bei den folgenden Typumwandlungen?
 
@@ -204,7 +203,7 @@ Kontrollfragen
             2. b = -1
             3. b = 0
 
-   10. \
+   10. 
 
        .. exercise:: Warum ist der folgende  Ausdruck wahr obwohl dieser mathematisch falsch ist?
 
@@ -217,7 +216,7 @@ Kontrollfragen
 
             Durch die Typkonvertierung wird der Wert von :java:`Long.MAX_VALUE - Integer.MAX_VALUE` in einen :java:`float` umgewandelt. Da ein float nur 24 Bit für die Mantisse hat kommt es zu einem Präzisionsverlust. Der Wert wird also verändert. In (2) wird der Wert als :java:`long` berechnet und ist daher korrekt.
    
-   11. \
+   11. 
 
        .. exercise:: Ist die Länge eines Strings gleich der Anzahl *sichtbarer* Zeichen? 
 
@@ -227,7 +226,7 @@ Kontrollfragen
 
             Nein - es gibt Zeichen (zum Beispiel Emojis), die mehrere Zeichen (:java:`char`\ s) benötigen.
    
-   12. \
+   12. 
 
        .. exercise:: Sie möchten in einem String ein Anführungszeichen verwenden. Wie machen Sie das?
 
@@ -236,7 +235,7 @@ Kontrollfragen
 
             Sie verwenden ein Backslash: :java:`"\""`.
 
-   13. \
+   13. 
 
        .. exercise:: Muss ich bei der Variablendeklaration den Typ explizit angeben?
 
@@ -245,7 +244,7 @@ Kontrollfragen
 
             Nein, in Java kann der Typ auch implizit durch den Compiler ermittelt werden, wenn die Variable auch direkt initialisiert wird.
 
-   14. \
+   14. 
 
        .. exercise:: Wie deklariert man eine Konstante? Sollte man Werte, die man nicht ändern möchte immer als Konstanten deklarieren?
 
@@ -254,7 +253,7 @@ Kontrollfragen
 
             Durch die Verwendung des Schlüsselwortes :java:`final`. Ja - es ist eine gute Praxis, Werte, die sich nicht ändern sollen, als Konstanten zu deklarieren.
 
-   15. \
+   15. 
 
        .. exercise:: Wie ist der Operator für die Modulorechnung (d. h. Restwertberechnung) in Java?
 
@@ -263,7 +262,7 @@ Kontrollfragen
 
             Das Prozentzeichen :java:`%`. 
 
-   16. \
+   16. 
 
        .. exercise:: Wie sieht der ternäre Operator in Java aus?
 
@@ -272,7 +271,7 @@ Kontrollfragen
 
             Es ist das Fragezeichen :java:`?` und der Doppelpunkt :java:`:`. Beispiel :java:`x > 18 ? "alt" : "jung"`.
 
-   17. \
+   17. 
 
        .. exercise:: Welchen Wert haben die folgenden Ausdrücke, wenn x vor der jeweiligen Auswertung den Wert 5 hat?
 
@@ -292,7 +291,7 @@ Kontrollfragen
 
             (1) 5, (2) 6, (3) 6, (4) 15, (5) 15, (6) 24, (7) true, (8) Division durch 0, (9) 10, (10) 2
 
-   18. \
+   18. 
 
        .. exercise:: Was stellt ein Block in Hinblick auf eine Variable dar?
 
@@ -300,3 +299,256 @@ Kontrollfragen
             :pwd: gibts_mich_oder_nicht
 
             Den Gültigkeitsbereich einer Variable.
+
+   19. 
+
+       .. exercise:: Eine while-Schleife und eine for-Schleife können immer ineinander umgewandelt werden?
+
+         .. solution::
+            :pwd: einfach_ja
+
+            Ja.
+
+   20. 
+
+       .. exercise:: In welcher Weise unterscheidet sich eine do-while-Schleife von einer while-Schleife?
+
+         .. solution::
+            :pwd: einmal wird die do-while ausgefuehrt
+
+            Eine do-while-Schleife wird mindestens einmal ausgeführt, während eine while-Schleife nur dann ausgeführt wird, wenn die Bedingung wahr ist.
+
+   21. 
+
+       .. exercise:: Schleifen und Variablen - wie ist die Ausgabe?
+
+         .. code:: java
+            :class: far-smaller copy-to-clipboard
+
+            int i = 0;
+            for (int i = 0; i < 10; i++) {
+                if (i == 5) {
+                    break;
+                }
+            }
+            System.out.println(i);
+
+         .. solution::
+            :pwd: i ist 0
+
+            Die Ausgabe ist 0. (Die Variable i in der Schleife ist eine andere Variable als die Variable i, die vor der Schleife deklariert wurde.)
+
+   22. 
+
+       .. exercise:: Schleife mit break - wie ist die Ausgabe?
+
+         .. code:: java
+            :class: far-smaller copy-to-clipboard
+
+            int i = 0;
+            for (; i < 10; i++) {
+                if (i == 5) {
+                    break;
+                }
+            }
+            System.out.println(i);
+
+         .. solution::
+            :pwd: i==5
+
+            Die Ausgabe ist 5. (Die Update Anweisung wird nicht ausgeführt, wenn die Schleife durch ein break beendet wird.)
+
+   23. 
+
+       .. exercise:: Ganz einfache Schleife - wie ist die Ausgabe?
+
+         .. code:: java
+            :class: far-smaller copy-to-clipboard
+
+            int i = 10;
+            for (; i < 10; i++) {
+               System.out.println(i);
+            }
+
+         .. solution::
+            :pwd: nix_da
+
+            Die Schleife wird nicht betreten.
+
+   24. 
+   
+       .. exercise:: Schleife mit continue - wie ist die Ausgabe?
+
+         .. code:: java
+            :class: far-smaller copy-to-clipboard
+
+            int i = 0;
+            for (; i < 10; i++) {
+                if (i % 2 == 0) {
+                    continue;
+                }
+                System.out.println(i);
+            }
+            
+         .. solution::
+            :pwd: ungerade
+
+            Es werden die ungeraden Zahlen von 1 bis einschließlich 9 ausgegeben.
+
+   25. 
+   
+       .. exercise:: Verschachteltet Schleifen - wie ist die Ausgabe?
+
+         .. code:: java
+            :class: far-smaller copy-to-clipboard
+
+            int i = 0;
+            outer : for (; i < 10; i++) {
+                if (i % 2 == 0) {
+                    continue;
+                }
+                System.out.println(i);
+                for (int j = 1; j < 10; j++) {
+                    if (j % 3 == 0) {
+                        continue outer;
+                    }
+                    System.out.println(i + " " + j);
+                }
+            }
+            System.out.println(i);
+            
+         .. solution::
+            :pwd: 1__1_1-und_so_weiter
+
+            Ausgabe:
+
+            :: 
+               1
+               1 1
+               1 2
+               3
+               3 1
+               3 2
+               5
+               5 1
+               5 2
+               7
+               7 1
+               7 2
+               9
+               9 1
+               9 2
+
+   26. 
+   
+       .. exercise:: Verschachteltet Schleifen - wie ist die Ausgabe?
+
+         .. code:: java
+            :class: far-smaller copy-to-clipboard
+
+            outer : for (int i = 0; i < 10; i++) {
+                if (i % 2 == 0) {
+                  i = 10;
+                  continue outer;
+                }
+                System.out.println(i);
+                for (int j = 1; j < 10; j++) {
+                    if (j % 3 != i % 5) {
+                        break;
+                    }
+                    System.out.println(i + " " + j);
+                }
+            }
+            
+         .. solution::
+            :pwd: 1_3_5_oder_so...
+
+            Ausgabe:
+
+            :: 
+               1
+               1 1
+               1 2
+               3
+               3 1
+               3 2
+               5
+               5 1
+               5 2
+               7
+               7 1
+               7 2
+               9
+               9 1
+               9 2
+
+   27. 
+   
+       .. exercise:: Rekursive Funktion
+
+         .. class:: incremental
+
+         - Was berechnet diese Funktion?
+         - Ist diese Funktion effizient?
+         - Ist eine Lösung mit for-Schleife besser?
+
+         .. code:: java
+            :class: far-smaller copy-to-clipboard
+
+            int f(int n) {
+               if (n == 0) return 0; return n + f(n-1);
+            }
+            
+         .. solution::
+            :pwd: Summe-rekursiv
+
+            - Die Summe der Zahlen von 1 bis n.
+            - Nein, da die Funktion rekursiv ist und daher für große Werte von n - bei einigen Programmiersprachen (insbesondere Java, Python, etc.) - zu einem Stackoverflow führen wird.
+            - Jein - sie ist nur um einen Konstanten Faktor schneller, aber sie braucht keinen Stack.
+
+   28. 
+   
+       .. exercise:: Funktion mit "Tail-Call"
+
+         .. class:: incremental
+
+         - Was berechnet diese Funktion?
+         - Ist diese Funktion effizient(er)?
+
+         .. code:: java
+            :class: far-smaller copy-to-clipboard
+
+            /* private */ int f(int n, int sum) {
+               if (n == 0) return sum; return f(n-1,n+sum);
+            }
+            inf f(int n) { return f(n,0); }
+
+         .. solution::
+            :pwd: Summe-optimierbar
+
+            - Die Summe der Zahlen von 1 bis n.
+
+            - Dieser Code kann in Scala verwendet werden, um die Summe der Zahlen von 1 bis n zu berechnen. In Scala wird der rekursive Aufruf optimiert, so dass es keinen Stackoverflow gibt.
+          
+               .. code:: scala   
+                  :class: far-smaller copy-to-clipboard
+
+                  import scala.annotation.tailrec
+
+                  object SumN {
+
+                        @tailrec def f(n: Int,sum: Int): Int = { if(n == 0) sum else f(n-1,n+sum); }
+
+                        @main def main(): Unit = {
+                                 println(f(100_000,0));
+                        }
+                  }
+
+   29. 
+   
+       .. exercise:: Wie werden Parameter übergeben?
+
+         .. solution::
+            :pwd: Call-by-value
+
+            Call-by-Value (Java) 
