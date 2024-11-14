@@ -44,7 +44,7 @@ Einführung in die Programmierung mit Java
 .. container:: line-above
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-    :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
+    :Kontakt: michael.eichberg@dhbw.de, Raum 149B
     :Version: 1.2
 
     .. container:: minor
@@ -62,15 +62,15 @@ Einführung in die Programmierung mit Java
 
         |pdf-source|
 
-    :Fehler melden:
-        https://github.com/Delors/delors.github.io/issues
-
     :Kontrollfragen:
 
         .. source:: kontrollfragen.de.rst 
             :path: relative
             :prefix: https://delors.github.io/
             :suffix: .html
+
+    :Fehler melden:
+        https://github.com/Delors/delors.github.io/issues
 
 
 
@@ -1902,7 +1902,7 @@ Eine Anweisung in einem Java-Programm stellt eine einzelne Vorschrift dar, die w
 - In Java-Programmen werden einzelne Anweisungen durch einen Semikolon :java:`;` voneinander getrennt.
 
   .. code:: java
-    :class: far-far-smaller
+    :class: far-far-smaller copy-to-clipboard
 
     void main() { 
         int a = 1; // Variablendeklaration und Initialisierung
@@ -1924,7 +1924,7 @@ Ein Block in einem Java-Programm ist eine Folge von Anweisungen, die durch gesch
 - Blöcke werden **nicht** durch einen Semikolon beendet.
   
   .. code:: java
-    :class: far-far-smaller
+    :class: far-far-smaller copy-to-clipboard
 
     void main() {
         {   // Block von Anweisungen
@@ -1945,7 +1945,7 @@ Anweisungen und Blöcke - Beispiele
 ----------------------------------------------------------
 
 .. code:: java
-    :class: far-far-smaller
+    :class: far-far-smaller copy-to-clipboard
 
     // Deklaration und Initialisierung von Variablen
     int age = 18 + 1;
@@ -2273,7 +2273,7 @@ Schleifen
     .. layer::
 
         .. code:: java
-            :class: far-smaller
+            :class: far-smaller copy-to-clipboard
             :number-lines: 1
 
             int sum = 0;
@@ -2305,7 +2305,7 @@ Schleifen
             .. container:: column
 
                 .. code:: java
-                    :class: far-far-smaller
+                    :class: far-far-smaller copy-to-clipboard
                     :number-lines: 1
 
                     int sum=0;
@@ -2319,7 +2319,7 @@ Schleifen
             .. container:: column
 
                 .. code:: java
-                        :class: far-far-smaller
+                        :class: far-far-smaller copy-to-clipboard
                         :number-lines: 1
 
                         int sum=0;
@@ -2346,7 +2346,7 @@ Schleifen
 ----------------------------------------------------------
 
 .. code:: java
-    :class: far-smaller
+    :class: far-smaller copy-to-clipboard
     :number-lines: 1
 
     int sum = 0;
@@ -2373,7 +2373,7 @@ Schleifen
 ----------------------------------------------------------
 
 .. code:: java
-    :class: far-smaller
+    :class: far-smaller copy-to-clipboard
     :number-lines: 1
 
     int sum=0;
@@ -2405,7 +2405,7 @@ Kontrolle des Schleifenablaufs
     .. layer:: 
 
         .. code:: java
-            :class: far-smaller
+            :class: far-smaller copy-to-clipboard
             :number-lines: 1
 
             int sum = 0;
@@ -2422,7 +2422,7 @@ Kontrolle des Schleifenablaufs
     .. layer:: incremental
 
         .. code:: java
-            :class: far-smaller
+            :class: far-smaller copy-to-clipboard
             :number-lines: 1
 
             int sum = 0;
@@ -2439,7 +2439,7 @@ Kontrolle des Schleifenablaufs
     .. layer:: incremental
 
         .. code:: java
-            :class: far-smaller
+            :class: far-smaller copy-to-clipboard
             :number-lines: 1
                 
             int sum = 0;
@@ -2806,7 +2806,7 @@ Rekursive Methoden - Beispiel
     .. layer:: incremental  
 
         .. code:: java
-            :class: far-smaller
+            :class: far-smaller copy-to-clipboard
 
             void print(int i) {
                 println("int: " + i);
@@ -2893,7 +2893,7 @@ Aufruf von Methoden aus anderen Klassen
         Verwendung von :java:`long` ermöglicht es die Fakultät von Zahlen bis einschließlich 20 zu berechnen.
 
         .. code:: java
-            :class: far-smaller
+            :class: far-smaller copy-to-clipboard
 
             long fakultaet(long n) {
                 long fak = 1;
@@ -2905,7 +2905,7 @@ Aufruf von Methoden aus anderen Klassen
         Verwendung von :java:`double` ermöglicht es die Fakultät von Zahlen bis einschließlich 170 zu berechnen. Darüber hinaus wird :java:`Infinity` zurückgegeben.
 
         .. code:: java
-            :class: far-smaller
+            :class: far-smaller copy-to-clipboard
   
             double fakultaet(int n) {
                 double fak = 1;
@@ -2932,7 +2932,7 @@ Aufruf von Methoden aus anderen Klassen
         :pwd: FibonacciRRRekursiv
 
         .. code:: java
-            :class: far-smaller
+            :class: far-smaller copy-to-clipboard
 
             long fibonacci(int n) {
                 return switch (n) {
@@ -3285,6 +3285,7 @@ Java Assertions
             Zum Beispiel können Sie die JShell wie folgt starten:
 
             .. code:: bash
+                :class: copy-to-clipboard
             
                 jshell --enable-preview -R -ea
 
@@ -3307,9 +3308,9 @@ Java Assertions
         :pwd: ZweiOderEineAssertion?
 
         .. code:: java
+            :class: copy-to-clipboard
         
             long fak(long n){ // TODO mögliche Fehlerfälle abfangen
-                // ⚠️ Seiteneffekt, der den Fehler (sogar) korrigiert... 
                 assert n >= 0: "n muss >= 0 sein";
                 assert n <= 20: "n muss <= 20 sein";
         
