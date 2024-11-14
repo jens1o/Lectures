@@ -40,7 +40,7 @@ Verwendung von Feldern (:eng:`Arrays`) in Java
 .. container:: line-above tiny
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-    :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
+    :Kontakt: michael.eichberg@dhbw.de, Raum 149B
     :Version: 1.0
 
 .. supplemental::
@@ -50,6 +50,13 @@ Verwendung von Feldern (:eng:`Arrays`) in Java
         |html-source| 
 
         |pdf-source|
+
+    :Kontrollfragen:
+
+        .. source:: kontrollfragen.de.rst 
+            :path: relative
+            :prefix: https://delors.github.io/
+            :suffix: .html
 
     :Fehler melden:
         https://github.com/Delors/delors.github.io/issues
@@ -688,7 +695,7 @@ Multidimensional Arrays
 
 .. supplemental::
 
-    Beispiel für die main Methode:
+    Beispiel für die :java:`main` Methode:
 
     .. code:: java
         :class: far-smaller copy-to-clipboard
