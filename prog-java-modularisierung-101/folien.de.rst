@@ -286,7 +286,7 @@ Statische Methoden und statische Attribute von Klassen und Interfaces
 
     .. container:: smaller
 
-        Nehmen Sie Ihren Code (Berechnung der Fibonacci-Zahlen, Fakultät und Kubikwurzel sowie den Primzahltest) und ordnen Sie diesen einer Klasse zu. Überlegen Sie sich diesbezüglich einen geeigneten Namen für die Klasse und speichern Sie die Klasse in einer entsprechenden Datei. In einer zweiten Datei (``Main.java``) schreiben Sie eine :java:`main`\ -Methode, die - basierenden auf Kommandozeilenparametern - die passenden Methoden der Klasse aufruft und die Ergebnisse auf der Konsole ausgibt. Die Main Methode soll dabei die grundlegende Fehlerbehandlung übernehmen, falls die Kommandozeilenargumente nicht passen. 
+        Nehmen Sie Ihren Code (Berechnung der Fibonacci-Zahlen, Fakultät und Kubikwurzel sowie den Primzahltest) und ordnen Sie diesen einer Klasse zu. Überlegen Sie sich diesbezüglich einen geeigneten Namen für die Klasse und speichern Sie die Klasse in einer entsprechenden Datei. In einer zweiten Datei (``Main.java``) schreiben Sie eine :java:`main`\ -Methode, die - basierenden auf Kommandozeilenparametern - die passenden Methoden der Klasse aufruft und die Ergebnisse auf der Konsole ausgibt. Die :java:`main` Methode soll dabei die grundlegende Fehlerbehandlung übernehmen, falls die Kommandozeilenargumente nicht passen. 
 
     .. container:: far-smaller margin-top-1em padding-0_5em box-shadow rounded-corners
 
