@@ -2,7 +2,7 @@
 /**
  * Returns whether a year is a leap year.
  * 
- * @param year The year to check. Year >= 0.
+ * @param year The year to check. Year &gt;= 0.
  * @return true if the year is a leap year, false otherwise.
  */
 boolean isLeapYear(int year) {
@@ -12,7 +12,7 @@ boolean isLeapYear(int year) {
 /**
  * Returns the number of days in a year.    
  * 
- * @param year The year for which you want to know the number of days. Year >= 0.
+ * @param year The year for which you want to know the number of days. Year &gt;= 0.
  * @return The number of days in the year. 365 or 366.  
  */
 int numberOfDays(int year) {
@@ -20,12 +20,12 @@ int numberOfDays(int year) {
 }
 
 /**
- * Returns the day in the year for a given date.
+ * Returns the number of days since the start of a year for a given date. (Including the given date.)    
  * 
- * @param year  The year of the date. Year >= 0.
- * @param month The month of the date. 1 <= month <= 12.
- * @param day   The day of the date. 1 <= day <= 28/29/30/31.
- * @return The day in the year for the given date. 1 <= dayInYear <= 366.
+ * @param year  The year of the date. Year &gt;= 0.
+ * @param month The month of the date. 1 &lt;= month &lt;= 12.
+ * @param day   The day of the date. 1 &lt;= day &lt;= 28/29/30/31.
+ * @return The day in the year for the given date. 1 &lt;= dayInYear &lt;= 366.
  */
 int dayInYear(int year, int month, int day) {
     var dayInYear = day;
@@ -65,6 +65,15 @@ int dayInYear(int year, int month, int day) {
 }
 
 void main() {
+    assert dayInYear(2020, 1, 1) == 1;
+    assert dayInYear(2020, 2, 29) == 60;
+    assert dayInYear(2019, 3, 1) == 60: dayInYear(2019, 3, 1);
+    assert isLeapYear(0);
+    assert isLeapYear(2000);
+    assert !isLeapYear(1900);
+    assert !isLeapYear(1903);
+
+
     final var birthYear = Integer.parseInt(
             readln("In welchem Jahr sind Sie geboren? "));
     final var birthMonth = Integer.parseInt(
