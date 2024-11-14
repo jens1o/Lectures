@@ -37,7 +37,7 @@ W3WI_110.2 - Web-Entwicklung
 .. container:: line-above
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-    :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
+    :Kontakt: michael.eichberg@dhbw.de, Raum 149B
     :Version: 23EG/EH 
 
 

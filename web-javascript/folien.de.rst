@@ -36,7 +36,7 @@ Eine kurze Einführung/eine kurze Übersicht über JavaScript für erfahrene Pro
 .. container:: line-above tiny
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-    :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
+    :Kontakt: michael.eichberg@dhbw.de, Raum 149B
     :Version: 2.0
 
 .. supplemental::

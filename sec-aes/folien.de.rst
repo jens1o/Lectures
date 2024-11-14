@@ -26,14 +26,22 @@
     :format: html
 
 
+
 Advanced Encryption Standard (AES)
 ===============================================
 
-:Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-:Version: 1.0.2
-:Basierend auf: *Cryptography and Network Security - Principles and Practice, 8th Edition, William Stallings*
-:Quellen: `NIST FIPS PUB 197, "Advanced Encryption Standard (AES)" <https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197.pdf>`_
+----
 
+:Dozent:        `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
+:Version:       1.0.3
+
+.. class:: faded-to-white
+
+:Basierend auf: 
+
+                *Cryptography and Network Security - Principles and Practice*,  **William Stallings**, 8th Edition, Pearson, 2023
+      
+                `NIST FIPS PUB 197, "Advanced Encryption Standard (AES)" <https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197.pdf>`_
 
 .. supplemental::
 
@@ -836,10 +844,10 @@ Nehmen wir an, dass der Zustand (*State*) folgendermaßen sei:
     
     ::
 
-        ?? C9 7F 9D
-        CE 4D 4B C2
-        89 71 BE 88
-        65 47 97 CD
+        ?? C9 7F 9A
+        CE 4D 4B CB
+        89 71 BE 86
+        65 47 97 CA
 
     .. solution:: 
         :pwd: MixColumnsS00

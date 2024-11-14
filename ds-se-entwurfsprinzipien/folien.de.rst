@@ -42,7 +42,7 @@ Entwurfsprinzipien für :raw-html:`<br>` Moderne Verteilte Anwendungen
 .. container:: line-above padding-bottom-1em
 
   :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-  :Kontakt: michael.eichberg@dhbw-mannheim.de
+  :Kontakt: michael.eichberg@dhbw.de
   :Version: 1.0
 
 .. supplemental::

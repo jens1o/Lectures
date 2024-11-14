@@ -32,7 +32,7 @@ TOR - The Onion Router
 ===================================================================
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-:Kontakt: michael.eichberg@dhbw-mannheim.de
+:Kontakt: michael.eichberg@dhbw.de
 :Version: 1.1
 
 .. supplemental::

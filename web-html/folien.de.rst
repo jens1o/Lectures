@@ -42,7 +42,7 @@ HTML(5) - HyperText Markup Language
 .. container:: line-above tiny
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-    :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
+    :Kontakt: michael.eichberg@dhbw.de, Raum 149B
     :Version: 1.0.1
 
 .. supplemental::
@@ -826,7 +826,7 @@ HTML - Links
    
       <a href="https://www.dhbw-mannheim.de">DHBW Mannheim</a>
       <a href="#teachers">Unsere Lehrenden</a>
-      <a href="mailto:michael.eichberg@dhbw-mannheim.de">Email: Michael Eichberg</a>
+      <a href="mailto:michael.eichberg@dhbw.de">Email: Michael Eichberg</a>
 
     .. container:: far-smaller
 
