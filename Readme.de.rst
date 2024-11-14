@@ -31,7 +31,11 @@ Vorlesung "Theoretische Informatik" bzw. "Algorithmen und Datenstrukturen"
 
    1. Einführung in die Komplexität von Algorithmen (`<theo-algo-komplexitaet/folien.de.rst.html>`__)
 
+   2. Suchen auf Arrays (`<theo-algo-suchen_auf_arrays/folien.de.rst.html>`__)
 
+   3. Hashing und Hashmaps (`<theo-algo-hashing/folien.de.rst.html>`__)
+   
+   
 
 Vorlesung "Verteilte Systeme"
 -----------------------------
