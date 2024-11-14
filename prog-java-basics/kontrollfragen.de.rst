@@ -44,8 +44,8 @@ Einführung in die Programmierung mit Java - Wiederholung
 .. container:: line-above
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
-    :Kontakt: michael.eichberg@dhbw-mannheim.de, Raum 149B
-    :Version: 1.0
+    :Kontakt: michael.eichberg@dhbw.de, Raum 149B
+    :Version: 1.0.1
 
 
 
@@ -320,7 +320,7 @@ Kontrollfragen
 
    21. 
 
-       .. exercise:: Schleifen und Variablen - wie ist die Ausgabe?
+       .. exercise:: Schleifen und Variablen - wie ist die Ausgabe auf der *JShell*?
 
          .. code:: java
             :class: far-smaller copy-to-clipboard
@@ -336,7 +336,7 @@ Kontrollfragen
          .. solution::
             :pwd: i ist 0
 
-            Die Ausgabe ist 0. (Die Variable i in der Schleife ist eine andere Variable als die Variable i, die vor der Schleife deklariert wurde.)
+            Die Ausgabe ist 0. (Die Variable i in der Schleife ist eine andere Variable als die Variable i, die vor der Schleife deklariert wurde. Achtung in einem Java Skript würde dies zu einem Fehler führen.)
 
    22. 
 
@@ -423,6 +423,7 @@ Kontrollfragen
             Ausgabe:
 
             :: 
+
                1
                1 1
                1 2
@@ -465,22 +466,7 @@ Kontrollfragen
 
             Ausgabe:
 
-            :: 
-               1
-               1 1
-               1 2
-               3
-               3 1
-               3 2
-               5
-               5 1
-               5 2
-               7
-               7 1
-               7 2
-               9
-               9 1
-               9 2
+            <keine>
 
    27. 
    
@@ -521,7 +507,7 @@ Kontrollfragen
             /* private */ int f(int n, int sum) {
                if (n == 0) return sum; return f(n-1,n+sum);
             }
-            inf f(int n) { return f(n,0); }
+            int f(int n) { return f(n,0); }
 
          .. solution::
             :pwd: Summe-optimierbar
@@ -552,3 +538,93 @@ Kontrollfragen
             :pwd: Call-by-value
 
             Call-by-Value (Java) 
+
+   30. 
+   
+       .. exercise:: Wie bewerten Sie folgende Kommentierung?
+
+         .. code:: java
+            :class: far-smaller copy-to-clipboard
+
+            /**
+             * Testet ob eine Zahl eine Primzahl ist.
+             * 
+             * Die Laufzeit ist O(n/4).
+             * 
+             * @param n Eine positive ganze Zahl.
+             * @return true, wenn n eine Primzahl ist, sonst false.
+             */
+            boolean isPrim(int n) {
+               ...
+            }
+
+         .. solution::
+            :pwd: "Ausreichend"
+
+            Ausreichend - obwohl die Frage ist, was bei negativen Zahlen passiert!
+
+   31. 
+   
+       .. exercise:: Ist der Kommentar ausreichend?
+
+         .. code:: java
+            :class: copy-to-clipboard far-smaller
+         
+            /**
+             * Computes the absolute value of the argument.
+             * 
+             * @param a - the argument whose absolute value is to be determined
+             * @return the absolute value of the argument.
+             */
+            double abs(double a) { ... }
+
+         .. solution::
+            :pwd: Nicht schlecht, aber ...
+
+            Es fehlt eine Diskussion der besonderen Werte von a (NaN, +0.0, -0.0, Infinity).
+
+   32. 
+
+       .. exercise:: Ist die Kommentierung hier ausreichend?
+
+         .. code:: java
+            :class: copy-to-clipboard far-smaller
+         
+            /**
+             * Returns the absolute value of an int value. 
+             * If the argument is not negative, the argument is returned. 
+             * If the argument is negative, the negation of the argument is returned.
+             * 
+             * @param a - the argument whose absolute value is to be determined
+             * @return the absolute value of the argument.
+             */
+            long abs(long a) { ... }
+
+         .. solution::
+            :pwd: Nicht schlecht, aber ...
+
+            Der Wertebereich von Long ist nicht symmetrisch! Es stellt sich also unmittelbar die Frage was bei Long.MIN_VALUE passiert. (Die Antwort ist Long.MIN_VALUE.)
+
+   33. 
+
+      .. exercise:: Sind Java Assertions (:java:`assert`) in Java immer aktiv?
+
+         .. solution::
+            :pwd: Nope
+
+            Sie müssen extra aktiviert werden.
+
+   34. 
+
+      .. exercise:: Wofür sollten Assertions verwendet werden?
+
+         1. Zur Validierung von Eingabeparametern?
+         2. Zur Validierung von Rückgabewerten?
+         3. Zur Validierung von internen Invarianten?
+
+         .. solution::
+            :pwd: so oder so
+
+            1. Nur dann, wenn die Funktion eine private Funktion ist, die kein Teil der öffentlichen API ist! Sollte die Eingabe auf Nutzereingaben zurückzuführen sein, dann sind Java Assertions der falsche Mechanismus.
+            2. Ja
+            3. Ja
