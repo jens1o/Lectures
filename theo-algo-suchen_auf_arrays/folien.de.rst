@@ -85,7 +85,10 @@ Welche Skalierung haben gesuchte Daten sind im Array?
 - *Ordinale und kardinale Werte* können sortiert werden für binäre Suche.
 - *Kardinale Größen* können modelliert werden für interpolierende Suche.
 
-Hier erfolgen Vergleiche vereinfacht auf Anzahl Elementzugriffe.
+.. hint::
+    :class: smaller
+
+    Für unsere Betrachtung gehen wir im Folgenden davon aus, dass die Daten sortiert sind. Beim Vergleich der Algorithmen beschränken wir uns auf eine Betrachtung der Anzahl der Elementzugriffe.
 
 
 .. class:: repetition
@@ -103,12 +106,12 @@ Lineare Suche
                 return i
         return nil
 
-Laufzeit kann asymptotisch durch :math:`O(n)` abgeschätzt werden.
+Laufzeit und Elementzugriffe kann asymptotisch durch :math:`O(n)` abgeschätzt werden.
 
 
 .. class:: repetition
 
-Lineare Suche
+Binäre Suche
 --------------------------------------------------------
 
 .. code:: pascal
@@ -131,5 +134,49 @@ Lineare Suche
         return nil
 
 Laufzeit ist :math:`O(\log(n))`, genauer im Schnitt :math:`\log_2(n)−1` Zugriffe.
+
+
+
+Bei linearer Verteilung der Werte
+--------------------------------------------------------
+
+.. stack:: invisible
+
+    .. layer:: 
+
+        .. image:: images/lagrange/lin-1.svg
+            :width: 85%
+            :align: center
+        
+    .. layer:: incremental overlay
+    
+        .. image:: images/lagrange/lin-2.svg
+            :width: 85%
+            :align: center
+
+
+
+Bei exponentieller Verteilung der Werte
+--------------------------------------------------------
+
+.. stack:: invisible
+
+    .. layer:: 
+
+        .. image:: images/lagrange/expo-1.svg
+            :width: 85%
+            :align: center
+        
+    .. layer:: incremental overlay
+    
+        .. image:: images/lagrange/expo-2.svg
+            :width: 85%
+            :align: center
+
+    .. layer:: incremental overlay
+    
+        .. image:: images/lagrange/expo-3.svg
+            :width: 85%
+            :align: center
 
 

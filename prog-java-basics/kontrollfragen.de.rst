@@ -45,7 +45,7 @@ Einführung in die Programmierung mit Java - Wiederholung
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw.de, Raum 149B
-    :Version: 1.0.1
+    :Version: 1.1
 
 
 
@@ -628,3 +628,29 @@ Kontrollfragen
             1. Nur dann, wenn die Funktion eine private Funktion ist, die kein Teil der öffentlichen API ist! Sollte die Eingabe auf Nutzereingaben zurückzuführen sein, dann sind Java Assertions der falsche Mechanismus.
             2. Ja
             3. Ja
+
+   35.  
+
+       .. exercise:: Beschreiben Sie die Ausgabe:
+
+         .. code:: java
+            :class: far-smaller copy-to-clipboard
+   		
+            int width = 20;
+            int height = 10; 
+            for (int i = 0; i < width; i++) print("-"); 
+            println("");
+            for (int i = 0; i < height - 2; i++) {
+                  print("|");
+                  for (int j = 0; j < width - 2; j++) print(" ");
+                  println("|");
+            }
+            for (int i = 0; i < width; i++) {
+                  print("-");
+            }
+            println("");
+
+         .. solution::
+            :pwd: ein Rechteck
+
+            In Abhängigkeit von width und height wird ein Rechteck gezeichnet.   
