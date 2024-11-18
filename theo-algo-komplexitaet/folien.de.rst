@@ -1224,6 +1224,7 @@ Elementare Kosten als Approximation
     Schleifenkörpers + Komplexität aller Schleifenfortschaltungen"
 
 
+
 Beispiel Primzahltest: Analyse mit elementaren Kosten
 ------------------------------------------------------------
 
@@ -1556,6 +1557,259 @@ In Hinblick auf den Zeitaufwand gilt:
 
 
 
+Rucksackproblem (:eng:`Knapsack Problem`)
+--------------------------------------------------------
+
+.. stack::
+
+    .. layer::
+
+        .. admonition:: Definition
+
+            Das Rucksackproblem: Gegeben seien Wertepaare :math:`\{(g_1,w_1),...,(g_m,w_m)\}` mit
+            :math:`g_i ,w_i ∈ \mathbb{N}`, die das Gewicht :math:`g_i` und den Wert :math:`w_i` eines Teils :math:`i` darstellen. Gesucht sind
+            die Anzahlen :math:`a_i ∈ \mathbb{N}_0` der jeweiligen Teile, so dass
+
+            .. math::
+
+                \sum_{i=1}^m a_i g_i ≤ n \quad \text{und} \quad \sum_{i=1}^m a_i w_i\quad \text{maximal wird}
+
+            also für gegebene maximale Last n des Rucksacks der aufsummierte Wert maximal wird.
+
+    .. layer:: incremental
+
+        .. admonition:: Beispiel
+
+            Verfügbare Objekte (:math:`(Gewicht,Wert)`): :math:`A = \{(1,1),(3,4),(5,8),(2,3)\}`. 
+            
+            .. class:: incremental
+
+            - Bei einer maximalen Traglast von 5 ist der maximale Wert ``8``. 
+              
+              (Einmal Objekt 3 mit einem Gewicht von 5 und Wert von 8.)
+
+            - Gesucht ist die maximale Wertsumme bei einer maximalen Traglast von 13.
+
+              .. class:: incremental
+
+              1. Versuch: bei Einhaltung der Traglast (:math:`n =13`): 
+                 
+                 :math:`\overset{\#}{1}·\overset{g}{1}+ \overset{\#}{4}·\overset{g}{3}= 13 ≤13 \quad\Rightarrow\quad \overset{\#}{1}·\overset{w}{1}+ \overset{\#}{4}·\overset{w}{4}= 17` (Wert)
+
+              2. Versuch: bei Einhaltung der Traglast (:math:`n =13`): 
+                 
+                 :math:`1·1+ 2·5+ 1·2= 13 ≤13\quad \Rightarrow\quad 1·1+ 2·8+ 1·3= 20`  (Wert)
+
+
+
+Rucksackproblem - rekursive Lösung
+----------------------------------------
+
+.. container:: scrollable
+        
+    .. code:: python
+        :number-lines:
+        :class: slightly-more-smaller copy-to-clipboard
+
+        gW = [ (1, 1), (3, 4), (5, 8), (2, 3) ] # [(Gewicht, Wert)...]
+
+        def bestWertRekursiv(n):
+            best = 0
+            for i in range(len(gW)):
+                (gewt,wert) = gW[i]
+                if n >= gewt: 
+                    test = wert + bestWertRekursiv(n - gewt)
+                    if test > best:
+                        best = test
+            return best
+
+        print(bestWertRekursiv(5)) # max. Traglast ist hier zu Beginn n = 5
+
+    .. incremental:: margin-top-1em
+
+        Für Komplexität nehmen wir jetzt die häufigste Aktion her; hier die Additionen.
+
+        Bei der Rekursion ergibt sich (:math:`m` = Anzahl der verschiedenen Objekte):
+
+        - Im schlimmsten Fall sind alle :math:`g_i = 1`.
+        - Pro Aufruf :math:`m` weitere Aufrufe. 
+        
+          (D. h. auf erster Ebene haben wir :math:`m` Additionen, auf der zweiten Ebene :math:`m^2` Additionen, usw.)
+
+    .. incremental::
+
+        .. math::
+            
+            \begin{array}{rl}
+            c^{Rek}_{Add}(n) = & m + m^2 +...+ m^n\quad | \text{Anw. der Summenformel für geo. Reihen}\\
+            = & m· \dfrac{m^n-1}{m-1}            =  \dfrac{m}{m-1} (m^n-1) \\
+            = & \dfrac{4}{3}(4^n-1) \quad \text{hier mit } m = 4\quad \text{(Anzahl der Objekte)}
+            \end{array}
+
+
+.. supplemental::
+
+    .. rubric:: Erklärungen
+
+    *Grobe Idee*: Wir gehen in der Methode :java:`bestWertRek` über alle Elemente und probieren aus ob wir diese einmal in den Rucksack packen können, d. h. die (verbleibende) Traglast ausreicht. Falls ja, dann führen wir einen rekursiven Aufruf durch bei dem wir die Traglast entsprechende reduziert haben.
+
+    *Details*: Für jedes Element entscheiden wir, ob es noch in den Rucksack passt (Zeile 7). Falls ja, dann wird der Wert des Elements addiert und die Traglast um das Gewicht des Elements reduziert (Zeile 8: :java:`n - gewt`). Anschließend wird rekursiv der bester Wert für den  kleineren Rucksacks berechnet.
+
+
+
+
+Rucksackproblem - iterative Lösung
+----------------------------------------
+
+.. container:: scrollable
+
+    .. rubric:: Grundsätzliche Idee der iterativen Lösung
+    
+    Gehe über alle Objekte. Berechne in jedem Schleifendurchlauf :java:`i` bei Hinzunahme von Teil :java:`i` das jeweils das beste Ergebnis für alle Kapazitäten bis inklusive :java:`n`. 
+
+
+    .. container:: incremental
+
+        .. rubric:: Beispiel    
+
+        Verfügbare Objekte (:math:`(Gewicht,Wert)`): :math:`A = \{(1,1),(3,4),(5,8),(2,3)\}`. Sei die maximale Traglast :math:`n = 7`:
+
+        .. csv-table::
+            :header: ``j\\i``, 0, 1, 2, 3, 4, 5, 6, 7
+            :align: center
+            :class: fake-header-column highlight-line-on-hover
+
+            0, 0, 1, 2, 3, 4, 5, 6, 7
+            1, 0, 1, 2, 4, 5, 6, 8, 9
+            2, 0, 1, 2, 4, 5, 8, 9, 10
+            3, 0, 1, 3, 4, 6, 8, 9, 11
+
+    .. container:: incremental
+
+        .. rubric:: Implementierung
+                    
+        .. code:: python
+            :number-lines:
+            :class: slightly-more-smaller copy-to-clipboard
+
+            gW = [ (1, 1), (3, 4), (5, 8), (2, 3) ] # (Gewicht, Wert)
+
+            def bestWertIterativ(n):
+                best = [0] * (n + 1)  # best[i] = bester Wert für Traglast i
+                for i in range(len(gW)):
+                    (gewt, wert) = gW[i]
+                    for j in range(gewt, n + 1):
+                        test = best[j - gewt] + wert
+                        if test > best[j]:
+                            best[j] = test
+                
+                return best[n]
+
+            print(bestWertIterativ(5)) # max. Traglast ist hier zu Beginn n = 5
+
+
+def timeit(f):
+     start = time.time()
+     r = f()
+     end = time.time()
+     print("It took" + str((end-start)))
+     return r
+
+    .. container:: incremental    
+
+        Bei der Iterationen ergibt sich:
+
+        Zwei Schleifen über :math:`m` und :math:`n`:
+
+        .. math::
+
+            \begin{array}{rl}
+                c^{Ite}_{Add}(n)    & = m·n \\
+                                    & = 4n \quad \text{hier mit } m = 4
+            \end{array}
+
+.. supplemental::
+
+    .. rubric:: Erklärungen
+
+    Grobe Idee: Wir gehen in der Methode :java:`bestWertIterativ` über alle Objekte (Zeile 5). In der inneren Schleife (Zeile 7) iterieren wir über die Traglasten, die das Objekt – ggf. auch mehrfach – aufnehmen könnten (:java:`range(gewt, n + 1)`). Für jede dieser Traglasten prüfen wir ob es vorteilhaft ist das Objekt in den Rucksack zu packen. Falls ja, dann wird der aktuell beste Wert für die Traglast aktualisiert.
+    
+    D. h. wir legen zum Beispiel ein Objekt mit dem Gewicht 2 bei einer verbleibenden Traglast von 5 ggf. (implizit) mehrfach in den Rucksack dadurch, dass wir bereits den besten Wert für die kleineren Traglasten kennen.
+
+
+Rucksackproblem - Vergleich
+----------------------------------------
+
+.. container:: scrollable
+
+    .. container:: two-columns
+
+        .. container:: column
+
+            .. math::
+
+                \begin{array}{rl}
+                c^{Rek}_{Add}(n) = & \dfrac{m}{m-1} (m^n-1) \\
+                = & \dfrac{4}{3}(4^n-1) 
+                \end{array}
+
+        .. container:: column
+
+            .. math::
+                    
+                \begin{array}{rl}
+                    c^{Ite}_{Add}(n)    & = m·n \\
+                                        & = 4n 
+                \end{array}
+
+    .. container:: incremental margin-top-1em summary
+
+        Die iterative Variante ist wegen der vermiedenen Berechnung gleicher Werte – aufgrund der Verwendung von dynamischer Programmierung – praktisch immer schneller. Dies könnte bei Rekursion ggf. mit Caching erreicht werden.
+
+    .. container:: margin-top-1em incremental
+
+        Wieso ist das Rucksackproblem dann aber als NP-vollständig klassifiziert?
+
+        .. container:: incremental
+
+            Die Analyse erfolgte nicht über die Wortlänge (als Eingabegröße); d. h. :math:`n` (Kapazität bzw. Tragkraft) entspricht nicht der Wortlänge. Ein Binärwort :math:`n` mit :math:`k` Zeichen hat zum Beispiel bis zu :math:`2^k-1` Werte.
+        
+        .. container:: incremental
+
+            .. container:: two-columns
+
+                .. container:: column
+
+                    .. math::
+
+                        c^{Rek}_{Add}(2^k-1) =  \dfrac{4}{3}(4^{2^k-1}-1) \in O(4^{2\cdot k})
+                        
+
+                .. container:: column
+
+                    .. math::
+                            
+                        c^{Ite}_{Add}(2^k-1) = 4(2^k-1) \in \Theta(2^k)
+                        
+
+    .. important::
+        :class: margin-top-1em incremental
+
+        Der erste Vergleich der Algorithmen ist valide in Hinblick auf die relative Laufzeit beider Varianten. Für die Komplexitätsklassifizierung ist jedoch die Wortlänge entscheidend.
+
+        Es ist immer genau zu prüfen was die Wortlänge ist!
+
+.. supplemental:: 
+    
+    Die Wortlänge eines Problems bezeichnet hier die Anzahl der Bits, die benötigt werden, um die Eingabe eines Problems darzustellen. Sie ist ein Maß dafür, wie groß oder komplex die Darstellung der Eingabedaten ist.
+
+    Die iterative Variante mit dynamischer Programmierung hat eine Laufzeit von O(m⋅n) wobei n hier die Kapazität in Gewichtseinheiten ist, nicht die Wortlänge. Wenn n exponentiell groß ist, wird der Algorithmus ineffizient, da die Eingabegröße :math:`⌈log_2	N⌉` viel kleiner ist als N selbst. (D. h. wenn die Kapazität 10 ist, dann brauchen wir 4 Bits, um die Kapazität darzustellen, wenn die Kapazität jedoch 1000 (100 mal größer) ist, dann brauchen wir 10 Bits (d. h. nur 2,5 mal so viele Bits.)
+
+
+
+
+
+
 .. class:: new-subsection transition-scale
 
 Rekursiv teilende Algorithmen
@@ -1861,6 +2115,7 @@ Master-Theorem: Zusammenfassung
         .. math::
 
            T(n) = \Theta(n \cdot \log n)
+
 
 
 
