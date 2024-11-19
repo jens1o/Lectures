@@ -50,7 +50,7 @@ Algorithmen und Datenstrukturen: Hashing und Hashmaps
 .. container:: minor
 
     :Quelle: 
-        Die Folien sind teilweise inspiriert von oder basierend auf Robert Sedgewick und Kevin Wayne, "Algorithms", Addison-Wesley, 4th Edition, 2011.
+        Die Folien sind teilweise inspiriert von oder basierend auf Robert Sedgewick und Kevin Wayne, "Algorithms", Addison-Wesley, 4th Edition, 2011 sowie auf Lehrmaterial von Prof. Dr. Ritterbusch
 
 .. supplemental::
 
