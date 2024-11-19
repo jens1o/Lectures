@@ -742,20 +742,72 @@ Exponentielle Suche im sortierten (unbeschränkten) *Array*
 
 .. exercise:: Exponentiell Interpolierende Suche
 
-    Wann macht es Sinn die exponentiell interpolierende Suche zu verwenden?
+    Implementieren Sie den Algorithmus für die exponentiell interpolierende Suche in einer Programmiersprache Ihrer Wahl.
 
-    Bedenken Sie zum Beispiel ein (virtuelles) Array. D. h. ein Array, dass durch Bildungsgesetz definiert ist.
+    Wann macht es Sinn die exponentiell interpolierende Suche zu verwenden?
 
     .. solution:: 
         :pwd: sonst_ist_er_nicht_wirklich besser
 
         1. Wenn es keine (echte) obere Grenze gibt, da dann kein oberster Wert für die binäre Suche bestimmt werden kann.
 
-        2. Insbesondere wenn die Werte am unteren Rande sind. 
+        2. Insbesondere dann, wenn die gesuchten Werte am unteren Rande sind. 
          
-           Zum Beispiel ist die Suche nach einem Wert wie 1.01^{10/20} sehr viel schneller als eine reine binäre Suche!
+           Zum Beispiel ist die Suche nach einem Wert nahe am unteren Rand in einem Array mit zehntausenden von Werten schneller als eine reine binäre Suche!
 
         .. include:: code/exponential_search.py
             :code: python
             :class: smaller
             :number-lines:
+
+
+.. class:: new-section transition-move-to-top
+
+Selbstanordnende Arrays
+--------------------------------------------------------
+
+- Relevant bei nominal skalierten Daten.
+- Erfordert prinzipiell eine lineare Suche.
+
+
+.. admonition:: Definition 
+    
+    Ein Array A ist gemäß **frequency count** oder **FC-Regel** sortiert, wenn für alle Werte gilt, dass :math:`c(A[k]) >c(A[j])` wenn :math:`k <j` und :math:`c(x)` die realisierte Häufigkeit des Wertes :math:`x` darstellt.
+
+
+.. admonition:: Definition 
+    
+    Ein Array A ist gemäß **move to front** oder nach der **MF-Regel** sortiert, wenn bei Auftritt eines Wertes :math:`A[k]` in der Folge mit der ersten Position :math:`A[1]` oder :math:`A[0]` vertauscht wird, sollte der Wert noch nicht an der ersten Stelle stehen.
+
+
+.. admonition:: Definition 
+    
+    Ein Array A ist gemäß **transpose** oder nach der **T-Regel** sortiert, wenn bei Auftritt eines Wertes :math:`A[k]` in der Folge mit der Position davor :math:`A[k-1]` vertauscht wird, sollte der Wert noch nicht an der ersten Stelle stehen.
+
+.. supplemental::
+
+    Die FC-Regel erfordert das Mitführen der Häufigkeit der Werte. Die MF-Regel und die T-Regel sind einfacher zu implementieren, da sie nur die Reihenfolge der Werte im Array verändern. Die FC-Regel ist in der Praxis nur dann sinnvoll, wenn die Häufigkeit der Werte ohnehin mitgeführt wird. 
+
+
+
+.. class:: new-section transition-move-to-top
+
+Textsuche
+---------------------------------------------
+
+
+Einfache Textsuche
+--------------------------------------------------------
+
+.. code:: pascal
+    :number-lines:
+    :class: far-smaller
+
+    Algorithmus NaiveTextSearch(text,n,needle,m)
+        for i = 1,...,n−m + 1 do
+            j = 0
+            while text[i + j] == needle[j + 1] do
+                j = j + 1
+                if j == m then
+                    return i // print("Found at",i) 
+        return nil
