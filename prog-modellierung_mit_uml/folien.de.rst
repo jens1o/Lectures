@@ -70,7 +70,7 @@ UML (Unified Modeling Language)
 - UML wird in der Softwareentwicklung verwendet, um Konzepte und Entwürfe zu kommunizieren und zu besprechen. Eine detaillierte Modellierung ist nicht (mehr) das Ziel/üblich.
 - :minor:`Die Hoffnungen/Erwartungen, die an UML Anfang der 2000er gestellt wurden, wurden nicht erfüllt. Seit 2017 ist die Version 2.5.1 aktuell.`
 
-.. admonition:: Warning
+.. warning::
     :class: incremental far-smaller
 
     Wenn Sie UML verwenden, dann verwenden Sie die Notationen spezifikationskonform, da sonst der Sinn der Notation (vollständig) verloren geht oder es sogar zu Missverständnissen kommt.
@@ -666,7 +666,7 @@ Beispiel: Sequenzdiagram für ein Alarmsystem
     - Eine Antwortnachricht wird durch eine gestrichelte Linie mit einem offenen Pfeil (:math:`\leftarrow`) dargestellt.
 
 
-    .. admonition:: warning
+    .. warning::
 
         In vielen Diagrammen wird auf die Feinheiten bzgl. der korrekten Darstellung der Nachrichten wenig Wert gelegt. Sollte sie sich nicht sicher sein, dass der Ersteller bewusst synchrone und asynchrone Nachrichten unterschieden hat, dann sollten Sie davon ausgehen, dass es sich um synchrone Nachrichten handelt.
 
