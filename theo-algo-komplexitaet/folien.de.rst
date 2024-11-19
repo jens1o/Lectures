@@ -23,6 +23,7 @@
 .. role:: dhbw-red
 .. role:: green
 .. role:: the-blue
+.. role:: the-green
 .. role:: minor
 .. role:: obsolete
 .. role:: line-above
@@ -120,7 +121,7 @@ Berechnungskomplexität
 
 .. class:: new-subsection
 
-Exkursion: Dynamische Programmierung
+Entwurf von Algorithmen: Dynamische Programmierung
 --------------------------------------------------------
 
 .. supplemental::
@@ -222,6 +223,7 @@ Beispiel: Berechnung der Fibonacci-Zahlen (rekursiv)
             :align: center
 
 
+
 Vorgehen beim dynamischen Programmieren
 ----------------------------------------
 
@@ -231,6 +233,7 @@ Vorgehen beim dynamischen Programmieren
 2. Bestimmung einer Menge :math:`T`, die alle Teilprobleme von :math:`P` enthält, auf die bei der Lösung von :math:`P` – auch in tieferen Rekursionsstufen – zurückgegriffen wird.
 3. Bestimmung einer Reihenfolge :math:`T_0 , \ldots, T_k` der Probleme in :math:`T`, so dass bei der Lösung von :math:`T_i` nur auf Probleme :math:`T_j`  mit :math:`j < i` zurückgegriffen wird.
 4. Sukzessive Berechnung und Speicherung von Lösungen für :math:`T_0 ,...,T_k`.
+
 
 
 Beispiel: Berechnung der Fibonacci-Zahlen mit dynamischer Programmierung
@@ -284,6 +287,8 @@ Beispiel: Berechnung der Fibonacci-Zahlen mit dynamischer Programmierung
                 if F[n] = ∞ then
                     F[n] := lookupfib(n-1) + lookupfib(n-2)
                 return F[n]
+
+
 
 .. class:: integrated-exercise
 
@@ -2121,4 +2126,215 @@ Master-Theorem: Zusammenfassung
 
 
 
+.. class:: new-subsection
 
+Entwurf von Algorithmen: Backtracking bzw. das Backtrack-Prinzip
+--------------------------------------------------------------------
+
+.. supplemental::
+
+    Neben der dynamischen Programmierung ist das Backtrack-Prinzip ein weiteres grundlegendes Verfahren zur Lösung von Problemen.
+
+
+Backtracking
+--------------------------------------------------------
+
+- Backtracking ist ein Verfahren, das in vielen Algorithmen zur Anwendung kommt. Insbesondere, wenn kein effizienterer Algorithmus bekannt ist, als *alle möglichen Lösungen auszuprobieren*.
+
+.. class:: incremental
+
+- Backtracking ist eine systematische Methode, um alle möglichen Lösungen eines Problems zu finden. Es ist eine Art von rekursivem Durchsuchen, bei dem Teillösungen zu Gesamtlösungen erweitert werden. 
+- Backtracking erlaubt ggf. Heuristiken, um die Suche zu beschleunigen. Weder die Komplexitätsklasse noch die Korrektheit ändert sich dadurch.
+- Viele NP-harte Probleme werden mit Backtracking gelöst.
+
+.. supplemental::
+
+    Backtracking führt eine erschöpfende Suche durch, um eine Lösung zu finden. Kann aber auch direkt genutzt werden, um ggf. alle Lösungen zu finden.
+
+    Backtracking ist in Prolog inherent vorhanden, da Prolog auf dem Prinzip des Backtrackings basiert, weswegen Prolog für die Lösung solcher Probleme gut geeignet ist.
+
+
+
+Beispiel: Das 4-Damen Problem (konzeptuell)
+--------------------------------------------------------------------------
+
+.. note::
+    :class: smaller
+
+    Ziel: Vier Damen auf einem Schachbrett so zu platzieren, dass keine Dame eine andere Dame schlagen kann.\ [#]_ Ein Lösung:
+
+    .. csv-table::
+        :header: " ", "1", "2", "3", "4"
+        :class: smaller align-center background-white
+
+        1, " ", " ", "D", " "
+        2, "D", " ", " ", " "
+        3, " ", " ", " ", "D"
+        4, " ", "D", " ", " "
+
+.. code:: pascal
+    :number-lines:
+    :class: far-smaller 
+
+    // i: Spalte; j: Zeile
+    procedure findeStellung(i : integer)  
+      j := 0
+      repeat
+        { wähle nächste Zeile j }
+        if  Dame an Position i / j bedroht 
+            keine bisher platzierte Dame then
+          { platziere Dame in Feld i / j }
+          if i = 4 then
+            { Lösung gefunden }
+            { Ausgabe der Lösung }
+          else
+            findeStellung(i + 1) // rek. Aufruf
+          { entferne Dame aus Spalte i und Zeile j }
+      until { alle Zeilen j getestet }
+
+.. [#] Es gibt eine geschlossene Lösung für das Problem. Backtracking wird hier nur als Beispiel für das Verfahren verwendet.
+
+.. supplemental::
+
+   Wesentliche Elemente:
+
+   - Die Lösung ist endlich.
+   - Die Lösung wird iterativ aufgebaut. Es ist jederzeit möglich zu testen, ob die bisherige Lösung noch gültig ist. (Zeile 6, 7) 
+   - Ist eine Lösung nicht mehr möglich, wird die Teillösung auch nicht weiter verfolgt. 
+   - Wurde eine Lösung gefunden, wird sie ausgegeben. (Zeile 10, 11)
+   - Die Methode wird rekursiv aufgerufen, um die Lösung zu vervollständigen. (Zeile 13)
+
+
+
+Backtracking - Allgemein
+--------------------------------------------------------
+
+.. stack::
+
+    .. layer::
+
+        .. rubric:: Voraussetzungen für Backtracking
+
+        .. class:: incremental  
+
+        1. Die Lösung ist als Vektor :java:`a[1], a[2], ...` endlicher Länge darstellbar.
+        2. Jedes Element :java:`a[i]` hat eine endliche Anzahl von möglichen Werten :java:`A[i]`.
+        3. Es gibt einen effizienten Test, ob eine Teillösung :java:`a[1], a[2], ..., a[k]` zu einer gültigen Lösung führen kann.
+
+    .. layer:: incremental
+
+        .. rubric:: Verfahren
+
+        :Start: Wähle eine Teillösung :java:`a[1]`.
+        :Allgemein: 
+            Ist eine Teillösung basierend auf :java:`a[1], a[2], ..., a[k-1]` noch keine Gesamtlösung, dann erweitere sie mit dem nächsten nicht ausgeschlossenen Wert :java:`a[k]` aus :java:`A[k]` zur neuen Teillösung :java:`a[1], a[2], ..., a[k]`.
+        
+            Falls noch nicht alle Elemente von :java:`A[K]`, die zu keiner inkonsistenten Lösungen führen, ausgeschöpft sind, dann gehe zurück (backtrack) und wähle :java:`a[k]` neu. Ggf. gehe zu  :java:`a[k-1]` usw. zurück.
+
+.. supplemental::
+
+    Es wird hier nicht gefordert, dass alle Element den gleichen Wertebereich haben. Es ist auch möglich, dass die Werte unterschiedlich sind.
+
+
+
+.. class:: integrated-exercise transition-scale
+
+Übung
+------------------------------------------
+
+.. exercise:: Auswerten logischer Ausdrücke mittels Backtracking
+
+    Bestimmen Sie für folgenden Ausdruck ``c`` - mittels Backtracking - Wahrheitswerte für die Variablen, damit der Ausdruck als Ganzes wahr wird: 
+
+    ``c = (A ∨ ¬B) ∧ (¬A ∨ B) ∧ (¬A ∨ ¬C) ∧ (C ∨ D) ∧ (¬C ∨ ¬D)``
+
+    Füllen Sie dazu die folgende Tabelle aus, um alle Lösungen zu finden. In der letzten Spalte geben Sie an, ob die Zeile eine Teillösung darstellt, eine Inkonsistenz gefunden wurde, oder eine Gesamtlösung identifiziert wurde. Die Evaluation wie vieler vollständiger Belegungen wurde eingespart, wenn die Lösung gefunden wurde?
+
+    .. csv-table::
+        :header: " ", A, B, C, D, "nicht inkonsistent (T), keine Lösung (K), vollständige Lösung (L)"
+        :align: center
+        :class: smaller
+
+        1, w, , , , T        
+        ..., ..., ..., ..., ..., ...
+        16, ..., ..., ..., ..., ...
+
+    .. solution::
+        :pwd: Backtracking
+
+        Es gibt 16 mögliche Belegungen (:math:`2^4`); nur 6 davon wurden vollständig evaluiert. 10 (vollständige) Belegungen wurden nicht getestet, da bereits Teillösungen als inkonsistent identifiziert wurden.
+
+        .. csv-table::
+            :header: A, B, C, D, "nicht inkonsistent (T), keine Lösung (K), vollständige Lösung (L)"
+            :align: center
+
+            w, , , , T
+            w, w, , , T
+            w, w, w, , :dhbw-red:`K`
+            w, w, f, , T
+            w, w, f, w, :the-green:`L`
+            w, w, f, f, :dhbw-red:`K`
+            w, f, , , :dhbw-red:`K`
+            f, , , , T
+            f, w, , , :dhbw-red:`K`
+            f, f, , , T
+            f, f, w, , T
+            f, f, w, w, :dhbw-red:`K`
+            f, f, w, f, :the-green:`L`
+            f, f, f, , T
+            f, f, f, w, :the-green:`L`
+            f, f, f, f, :dhbw-red:`K`
+
+
+
+
+.. class:: integrated-exercise 
+
+Übung
+------------------------------------------
+
+.. exercise:: Das Erfüllbarkeitsproblem
+
+    .. note:: 
+        :class: smaller
+
+        **Konjunktive Normalform (KNF)**
+
+        Ein logischer Ausdruck ist in KNF, wenn der Ausdruck nur als Konjunktion (UND-Verknüpfung) von Disjunktionen (ODER-Verknüpfungen) dargestellt wird. Die Negation darf nur auf Variablen angewendet werden.
+
+        Beispiel: (A ∨ B) ∧ (¬C ∨ D)
+
+    Entwickeln Sie ein Programm – in einer Programmiersprache Ihrer Wahl – dass in der Lage ist eine Formel in konjunktiver Normalform (KNF) auf Erfüllbarkeit zu prüfen. Prüfen Sie Ihr Programm anhand der vorhergehenden Aufgabe.
+
+    .. hint::
+        :class: far-smaller 
+
+        Sollten Sie das Programm in Python implementieren wollen, dann können sie den Code im Anhang als Grundlage verwenden. Sie müssen dann nur noch die Methode ``solve`` implementieren. Der Code implementiert eine kleine Klassenhierarchie zur Darstellung von logischen Ausdrücken und ermöglicht die Evaluation unter einer gegebenen Belegung.
+    
+    .. solution::
+        :pwd: Anzahl_der_Belegungen
+
+        .. rubric:: Prolog
+
+        Eine Lösung in (SWI)-Prolog könnte wie folgt aussehen:
+
+        .. include:: code/sat_model.pl
+            :code: prolog
+            :number-lines:
+            :class: smaller copy-to-clipboard
+
+        .. rubric:: Python
+
+        .. include:: code/sat.py
+            :code: python
+            :number-lines:
+            :class: smaller
+            :start-after: variable to its current truth value."""
+
+.. supplemental::
+
+    .. include:: code/sat.py
+        :code: python
+        :number-lines:
+        :class: far-smaller copy-to-clipboard
+        :end-before:     for v
