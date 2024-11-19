@@ -3,7 +3,7 @@
     :author: Michael Eichberg
     :keywords: "Programmierung", "Java", "Arrays"
     :description lang=de: Kontrollfragen zu Java Arrays
-    :id: lecture-prog-java-basics-kontrollfragen
+    :id: lecture-prog-java-arrays-kontrollfragen
     :first-slide: last-viewed
     :exercises-master-password: WirklichSchwierig!
     
@@ -39,7 +39,7 @@
 .. class:: animated-symbol 
 
 Java Arrays
-===========================================================
+===================================
 
 .. container:: line-above
 
@@ -185,3 +185,4 @@ Kontrollfragen
             :pwd: array_index
 
             Der Index des Arrays beginnt bei 0 und endet bei a.length-1. Der Code führt zu einer :java:`ArrayIndexOutOfBoundsException`.
+            
