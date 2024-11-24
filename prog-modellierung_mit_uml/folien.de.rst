@@ -188,6 +188,30 @@ Aktivitätsdiagramm für die Abwicklung einer Bestellung
 
 
 
+.. class:: integrated-exercise
+
+Übung
+-------------------
+
+.. exercise:: Bearbeitung einer Bewerbung modellieren
+    
+    Modellieren Sie die Bearbeitung einer Bewerbung aus Sicht eines Unternehmens mit Hilfe eines Aktivitätsdiagramms.
+
+    Bedenken Sie dabei Aspekte, wie die Prüfung der formalen Voraussetzungen, Prüfung durch die Fachabteilung, die Einladung zu einem Vorstellungsgespräch, die Absage oder die Annahme der Bewerbung. 
+    
+    Identifizieren Sie ggf. Möglichkeiten für eine parallele Verarbeitung.
+    
+    .. solution::
+        :pwd: Bewerbung
+
+        Da es nicht die eine Lösung gibt, sind im Folgenden nur Hinweise gegeben, was ggf. wichtig ist/gewesen wäre.
+
+        - Es muss einen Startpunkt geben (z. B. „Bewerbung wird entgegengenommen“).
+        - Danach sollte es eine Aktivität geben, die die Bewerbung grundlegend prüft.
+        - Danach kann zum Beispiel direkt eine Entscheidung folgen, ob der Bewerber zu einem Vorstellungsgespräch eingeladen wird, oder ob eine Klärung notwendig ist, ob der Bewerber (doch noch) in Frage kommt.
+        - Es muss einen Endpunkt geben.
+
+
 
 .. class:: new-section transition-move-to-top
 
@@ -243,7 +267,7 @@ Modellierung einer Party - Klassen\ [#]_
     Hierbei repräsentieren die Klassen verschiedene „Dinge“:
 
     - Eine Party als virtuelles Konstrukt, das eine bestimmte Anzahl von Partyteilnehmern hat.
-    - Ein Gast, der an einer Party teilnimmt.
+    - Einen Gast, der an einer Party teilnimmt.
     - Ein Cocktail, welcher aus verschiedenen (konkreten) Zutaten besteht.
     - Ein Partyteilnehmer welcher eine Abstraktion für Gäste und Gastgeber darstellt.
   
@@ -258,7 +282,7 @@ Attribute
 
 - Die Attribute in einem Modell sollten vorzugsweise „primitive“ Datentypen sein. 
   
-  Sehr häufig betrachten wir als primitive Datentypen: Boolesche Werte (Boolean), Datumsangaben (:eng:`Date`), Zahlen (:eng:`Number`), Zeichen (:eng:`Character`), Strings, Adressen, Farben, Telefonnummern,...
+ 
 
 - Häufig macht es Sinn Mengen (x Liter, y Kilogramm, etc.) als Klassen zu modellieren, um Einheiten zuordnen zu können. 
   
@@ -273,6 +297,13 @@ Attribute
   - abgeleitet sein und ggf.
   - Defaultwerte haben sowie
   - Sichtbarkeiten haben.
+
+
+.. supplemental::
+
+    Sehr häufig betrachten wir als primitive Datentypen: Boolesche Werte (Boolean), Datumsangaben (:eng:`Date`), Zahlen (:eng:`Number`), Zeichen (:eng:`Character`), Strings, Adressen, Farben, Telefonnummern,... 
+    
+    Bitte bedenken Sie, dass wir auf Modellierungsebene nicht an technische Details gebunden sind.
 
 
 
@@ -570,25 +601,10 @@ Modellierung einer Party - Beziehungen
         
         **Dies ist unter allen Umständen zu vermeiden, da es zu schwerwiegenden Fehlern führen kann.**
 
-      (Beispiele wären Methodenparameter oder Rückgabewerte, die auf einmal einen anderen Wertebereich haben. Oder, wenn andere Seiteneffekte auftreten.)
+
+        (Beispiele wären Methodenparameter oder Rückgabewerte, die auf einmal einen anderen Wertebereich haben. Oder, wenn andere Seiteneffekte auftreten.)
 
     - **Assoziationsklasse**: Eine Assoziationsklasse (eine Klasse verbunden mit einer Assoziation über einen gestrichelte Linie) beschreibt eine Assoziation zwischen zwei anderen Klassen detaillierter und wird insbesondere dann verwendet, wenn die Attribute und Operationen nicht sinnvoll den beteiligten Klassen zugeordnet werden können. Sie kann Attribute und Methoden haben, die die Beziehung zwischen den beiden Klassen beschreiben.
-
-
-
-.. class:: integrated-exercise
-
-Übung
--------------------
-
-Im Folgenden wird ein Teil eines Kursmanagementsystems für Universitäten modelliert. Setzen Sie das Modell in UML um. 
-
-- Eine Vorlesung hat immer einen Namen, eine Nummer und einen Raum. 
-- Ein Dozent liest ggf. mehrere Vorlesungen. 
-- Ein Student besucht in der Regel eine oder mehrere Vorlesungen.
-- Zu einer Vorlesung gibt es ggf. mehrere optionale Übungen.
-- Eine Prüfung kann entweder eine Klausur oder eine Portfolio-Prüfung sein. Letztere besteht aus einer Präsentation zu einem Thema und einer schriftlichen Ausarbeitung. Beide haben eine festgelegte Anzahl an Punkten. Die Endnote ergibt sich aus dem Durchschnitt der beiden Noten.
-- Hat die Veranstaltung eine Portfolio-Prüfung, dann ist jeder Studierende für das gesamte Semester einer bestimmten Studiengruppe zugeordnet.
 
 
 
@@ -612,6 +628,84 @@ Modellierungsfehler
    In Hinblick auf das Verhalten ist es falsch, dass ein Quadrat von einem Rechteck erbt. Ein Quadrat ist ein Spezialfall eines Rechtecks, bei dem die Seitenlängen gleich sind. Würden wir in unserem Code glauben, dass wir - zum Beispiel - die Breite eines Rechtecks verändern, da der Datentyp :java:`Rectangle` ist, sich hinter dem :java:`Rectangle` ein Objekt vom Typ :java:`Square` verbergen, dann würde sich auch die Höhe des :java:`Rectangle` verändern. Das ist nicht das Verhalten, das wir als Nutzer einer Instanz der Klasse erwarten würden.
 
 
+.. class:: integrated-exercise
+
+Übung
+-------------------
+
+
+.. exercise:: Modellierung einer einfachen Bibliotheksverwaltung
+
+    Modellieren Sie eine einfache Bibliotheksverwaltung mit Hilfe eines Klassendiagramms. 
+
+    - Es gibt Bücher, die von Autoren geschrieben werden.
+    - Ein Buch kann in mehreren Exemplaren vorhanden sein.
+    - Ein Buch hat einen Titel, einen Autor und eine ISBN-Nummer.
+    - Ein Autor hat einen Namen und ein Geburtsdatum.
+    - Ein Exemplar hat eine eindeutige Nummer. Jedes Exemplar ist entweder ausgeliehen oder verfügbar.
+    - Ein Ausleiher hat einen Namen und eine Adresse.
+    
+    Modellieren Sie auch explizit die Beziehungen zwischen den Klassen - inkl. Multiplizitäten.
+
+    .. solution::
+        :pwd: Bibliotheksverwaltung
+
+        .. important:: 
+            
+            Es handelt sich nur um eine von vielen möglichen Modellierungen.
+
+        .. image:: images/uml-cd-bib.svg
+            :alt: Klassendiagramm für eine Bibliotheksverwaltung
+            :width: 600px
+            :align: center
+
+
+.. supplemental::
+
+    Sie können die Modellierung auf Papier machen oder zum Beispiel eine (kostenlose) UML-Modellierungssoftware verwenden: z. B. https://app.diagrams.net.
+
+
+.. class:: integrated-exercise
+
+Übung
+-------------------
+
+.. exercise:: Modellierung eines einfachen Kursmanagementsystem
+
+    Im Folgenden wird ein Teil eines Kursmanagementsystems für Universitäten beschrieben. Setzen Sie das Modell in UML um. 
+
+    .. container:: smaller
+
+        - Eine Vorlesung hat immer einen Namen, eine Nummer und einen Raum. 
+        - Manchmal hat eine Vorlesung auch Teilnehmer.
+        - Ein Dozent liest ggf. mehrere Vorlesungen. 
+        - Ein Student besucht in der Regel eine oder mehrere Vorlesungen.
+        - Zu einer Vorlesung gibt es ggf. mehrere optionale Übungen.
+        - Eine Prüfung kann entweder eine Klausur oder eine Portfolio-Prüfung sein. Letztere besteht aus einer Präsentation zu einem Thema und einer schriftlichen Ausarbeitung. Beide haben eine festgelegte Anzahl an Punkten. Die Endnote ergibt sich aus dem Durchschnitt der beiden Noten.
+        - Hat die Veranstaltung eine Portfolio-Prüfung, dann ist jeder Studierende für das gesamte Semester einer bestimmten Studiengruppe zugeordnet.
+
+
+
+.. class:: integrated-exercise
+
+Übung
+-------------------
+
+.. exercise:: Darstellung von Mathematischen Ausdrücken.
+
+    Ihre Aufgabe ist es mathematische Ausdrücke in UML zu modellieren. Zum Beispiel einen Ausdruck wie: :math:`(a + b) \cdot c` oder auch eine Ausdruck wie :math:`\frac{a}{b}` oder auch :math:`\sqrt{a^2 + b^2}`.
+
+    Beachten Sie bei Ihrer Modellierung, dass Sie beliebig komplexe Ausdrücke modellieren können. Die grundlegenden Operationen sollten: Addition, Subtraktion, Multiplikation, Division, Potenzierung, Wurzelziehen und den Logarithmus zur einer beliebigen Basis umfassen (:math:`\log_bx`); das unäre Minus soll auch unterstützt werden (:math:`-x`). Darüber hinaus sollen beliebig viele benannte Variablen (x,y,...) und Konstanten (Zahlen) in den Ausdrücken verwendet werden können.
+
+    Welche Methoden machen auf Ausdrücken immer Sinn und würden Sie dann in Ihrer Modellierung definieren?
+
+
+    .. solution::
+        :pwd: ExprIstDieSuperklasse 
+
+        Auch hier gibt es Variationsmöglichkeiten bei der Modellierung. Ein wesentlicher Aspekt, der sich in der Modellierung wiederspiegeln muss, ist, dass es sich um eine rekursive Datenstruktur handelt, die wir modellieren: ein bestimmter Ausdruck besteht aus einem (impliziten) Operator und einer Liste von Operanden, wobei die Operanden wieder Ausdrücken sein können. 
+        
+        :math:`{x^2 + y^2}` könnte repräsentiert werden als ein Ausdruck vom Typ Addition, der auf zwei Ausdrücke vom Typ Potenz verweist, die wiederum auf Variablen (:math:`x` und :math:`y`) verweisen und zwei konkrete Zahlen (:math:`2`). Im Allgemeinen könnte natürlich auch der Exponent ein Ausdruck sein, der wiederum auf andere Ausdrücke verweist.
 
 
 .. class:: new-section transition-move-to-top
@@ -660,7 +754,7 @@ Beispiel: Sequenzdiagram für ein Alarmsystem
     In Sequenzdiagrammen wird der zeitliche Ablauf von Interaktionen zwischen Objekten dargestellt.
 
     - Eine Ausführungssequenz wird durch eine vertikales Rechteck über der Lebenslinie dargestellt.
-    - Bei einem synchronen Nachrichtenaustausch wartet der Sender, bis der Empfänger diese abgearbeitet hat. Er wird durch eine durchgezogene Linie mit einem gefüllten Dreieck dargestellt.
+    - Bei einem synchronen Nachrichtenaustausch wartet der Sender, bis der Empfänger diese abgearbeitet hat. Er wird durch eine durchgezogene Linie mit einem gefüllten Dreieck (➝)dargestellt.
     - Bei einem asynchronen Nachrichtenaustausch wartet der Sender nicht auf eine Antwort des Empfängers. Er wird durch eine durchgezogene Linie mit einem offenen Pfeil (:math:`\rightarrow`) dargestellt.
     - Eine Nachricht, die ein Objekt erzeugt wird mit einer gestrichelten Linie dargestellt.
     - Eine Antwortnachricht wird durch eine gestrichelte Linie mit einem offenen Pfeil (:math:`\leftarrow`) dargestellt.
@@ -679,7 +773,7 @@ Beispiel: Sequenzdiagram für ein Alarmsystem
 .. exercise:: Erstellen Sie ein Sequenzdiagramm für die Bestellung eines Cocktails.
 
     - Ein Gast bestellt einen Cocktail beim Barkeeper.
-    - Der Barkeeper bereitet dann den Cocktail zu indem er erst die Zutaten hinzufügt und danach diese fachgerecht mixt. Sobald er fertig ist, überreicht er den Cocktail an den Gast.
+    - Der Barkeeper bereitet dann den Cocktail zu, indem er erst die Zutaten hinzufügt und danach diese fachgerecht mixt. Sobald er fertig ist, überreicht er den Cocktail an den Gast.
     - Da der Gast sehr durstig ist, trinkt er den Cocktail in einem Zug aus.
   
     Hinweis: es gibt mehrere Möglichkeiten, wie das obige Szenario modelliert werden kann, da nicht alles explizit vorgegeben ist. Treffen Sie eine bewusste Entscheidung, wie Sie das Szenario modellieren.
@@ -691,7 +785,7 @@ Beispiel: Sequenzdiagram für ein Alarmsystem
 
         .. image:: images/uml-sd-exercise.svg
             :alt: Sequenzdiagramm für die Bestellung eines Cocktails
-            :width: 800px
+            :width: 600px
             :align: center
 
         
