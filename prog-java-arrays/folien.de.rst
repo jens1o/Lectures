@@ -41,7 +41,7 @@ Verwendung von Feldern (:eng:`Arrays`) in Java
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw.de, Raum 149B
-    :Version: 1.0
+    :Version: 1.2
 
 .. supplemental::
 
@@ -54,6 +54,13 @@ Verwendung von Feldern (:eng:`Arrays`) in Java
     :Kontrollfragen:
 
         .. source:: kontrollfragen.de.rst 
+            :path: relative
+            :prefix: https://delors.github.io/
+            :suffix: .html
+
+    :Klausurvorbereitung:
+
+        .. source:: klausurvorbereitung.de.rst 
             :path: relative
             :prefix: https://delors.github.io/
             :suffix: .html
@@ -715,10 +722,7 @@ Multidimensional Arrays
             };
 
             final var c = multiply(a, b);
-            // println(Arrays.deepToString(c));
-            for (int i = 0; i < c.length; i++) {
-                println(Arrays.toString(c[i]));
-            }
+            printToConsole(c);
         }   
 
 
@@ -754,6 +758,10 @@ Multidimensional Arrays
                         10 & -2 & -4
                     \end{matrix} \right)
 
+    .. hint:: 
+        :class: far-smaller incremental
+
+        Verwenden Sie Ihre Methoden zum Einlesen und zur Ausgabe von Matrizen aus der vorherigen Übung weiter.
 
     .. solution:: 
         :pwd: SattelpunkteSindAuchNichtSchwer!
@@ -801,13 +809,15 @@ Multidimensional Arrays
 
     .. hint::
 
-        Denken Sie daran, dass die erste Zeile eines echten Java Scripts mit einem Shebang anfangen muss und der Dateiname des Scripts nicht mit :java:`.java` enden darf. Denken Sie auch daran, dass das Script ausführbar sein muss (z. B. Rechte 755).
+        (Für Mac und Linux Nutzer!)
+
+        Denken Sie daran, dass die erste Zeile eines echten Java Skripts mit einem Shebang anfangen muss und der Dateiname des Skripts nicht mit :java:`.java` enden darf. Denken Sie auch daran, dass das Skript ausführbar sein muss (z. B. Rechte 755).
 
         Alternativ schreiben Sie eine Java Datei mit der entsprechenden Logik und führen Sie diese mit :java:`java` aus.
 
     .. important::
 
-        Die *erste Zeile* eines *echten* Java Scripts:
+        Die *erste Zeile* eines *echten* Java Skripts:
 
         .. code:: java
 
@@ -848,17 +858,45 @@ Methoden mit einer variablen Anzahl von Parametern (:java:`varargs`)
 
     .. layer:: incremental
 
+        - Pro Methode kann es nur einen *varargs* Parameter geben und dies muss der letzte Parameter sein.
+  
+          :Syntax für den letzten Methodenparameter: :java:`<Typ>... <Bezeichner>`
+
         .. class:: incremental list-with-explanations
 
-        - Pro Methode kann es nur einen *varargs* Parameter geben und dies muss der letzte Parameter sein.
         - Der Compiler erzeugt ein Array, das die übergebenen Parameter enthält.
           
           *Best Practice: das varargs-Array sollte die Methode nicht verlassen*.
           
-        .. class:: incremental
+  
+    .. layer:: incremental
 
-        :Syntax für den letzten Methodenparameter: :java:`<Typ>... <Bezeichner>`
+        - Die Methode verhält sich wie eine Methode mit einem Array als Parameter.
+  
+          .. container:: incremental
 
+                ⇒ :minor:`D. h. die Methoden können auch mit einem Array aufgerufen werden und sind bezüglich der Signatur nicht unterscheidbar. Demzufolge ist es auch nicht möglich zwei entsprechende Methoden zu definieren:`
+
+                .. code:: java
+                    :class: far-smaller copy-to-clipboard
+                
+                    double sum(double... values) { ... }
+
+                .. code:: java
+                    :class: obsolete far-smaller
+            
+                    double sum(double[] values) { ... } // nicht möglich
+
+            .. container:: incremental
+          
+                ⇒ Die Methode kann mit :java:`null` als Wert aufgerufen werden. In diesem Fall wird kein Array erzeugt sondern :java:`null` übergeben.
+
+                .. code:: java
+                    :class:  far-smaller
+            
+                    println(sum(null)); // ==> ??? 
+
+        
 
 .. class:: integrated-exercise transition-move-left
 
@@ -868,6 +906,8 @@ Methoden mit einer variablen Anzahl von Parametern (:java:`varargs`)
 .. exercise:: varargs
 
     Schreiben Sie eine Methode :java:`join`, die eine beliebige Anzahl von :java:`int` Arrays (:java:`int[]`) entgegennimmt und daraus ein Array erzeugt.
+
+    Dokumentieren Sie die Methode ausführlich. Achten sie darauf alle Sonderfälle abzudecken.
 
     Beispielinteraktion:
 
@@ -891,6 +931,15 @@ Methoden mit einer variablen Anzahl von Parametern (:java:`varargs`)
         .. code:: java
             :class: far-smaller copy-to-clipboard
 
+            /**
+             * Verbindet eine beliebige Anzahl von Arrays zu einem neuen Array.
+             * 
+             * @param arrays die Arrays, die verbunden werden sollen.
+             * @return ein Array, das alle Elemente der übergebenen Arrays 
+             *         enthält. Die Reihenfolge entspricht der Reihenfolge, in 
+             *         der sie übergeben wurden.
+             * @throws NullPointerException wenn null übergeben wird.
+             */ 
             int[] join(int[]... arrays) {
                 int totalLength = 0;
                 for (int[] a : arrays) {
