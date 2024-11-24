@@ -34,7 +34,7 @@ Cybersecurity
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw.de
-    :Version: 2.1
+    :Version: 2.2
 
 .. supplemental::
 
@@ -430,7 +430,7 @@ Ausgewählte Social-Engineering Angriffe
 
         *Phishing* nutzt elektr. Kommunikationswege um an Informationen zu gelangen (z. B. E-Mail oder SMS). 
         
-        *Spear phishing* ist Phishing, bei der der Angreifer auf eine bestimmte Zielgruppe oder Person abzielt.
+        *Spear phishing* ist Phishing, bei der der Angreifer auf eine bestimmte Zielgruppe oder sogar eine einzelne Person abzielt.
 
     .. class:: incremental
 
@@ -447,6 +447,12 @@ Ausgewählte Social-Engineering Angriffe
         .. incremental::
 
             (Z. B. `Anrufe von Europol <https://www.europol.europa.eu/publications-events/publications/vishing-calls>`__)
+
+    .. class:: incremental
+
+    :Quishing/QR phishing: 
+
+        Phishing mit Hilfe von QR Codes. 
 
     .. class:: incremental
 
@@ -542,11 +548,15 @@ Ausgewählte Social-Engineering Angriffe
 
 .. supplemental::
 
+    .. rubric:: Quishing/QR phishing: 
+
+    D. h. der Angreifer erstellt einen QR Code, der auf eine gefälschte Webseite führt. Der QR Code wird dann z. B. auf einem Plakat angebracht oder zum Beispiel an einer Säule zum Kaufen von Fahrkarten, um möglichst viele Personen glaubhaft zu erreichen.
+
     .. rubric:: HOAX
 
     Ein Beispiel eines nicht-harmlosen Streichs (Hoax) ist die Falschmeldung vom 1. April 2003, dass Bill Gates gestorben sei. Diese Falschmeldung wurde von vielen Menschen geglaubt und hatte relevanten Einfluss auf den Aktienmarkt.
 
-    .. rubric:: *Credential harvesting*
+    .. rubric:: Credential harvesting
 
     In der Anfangszeit von Github und Bitbucket wurden häufig Zugangsdaten und Zertifikate in öffentlichen Repositories gefunden, da die Nutzer diese im Quellcode hinterlegt hatten oder sogar als Ressourcen direkt eingebunden hatten.
 
