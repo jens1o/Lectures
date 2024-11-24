@@ -1,6 +1,6 @@
 /**
  * Die Sattelpunkte einer Matrix sind die Elemente der Matrix (n x m), die in Ihrer Zeile 
- * am kleinsten sind und in der Spalte am größten.
+ * am kleinsten und in der Spalte am größten sind.
  */
 void printSaddlePoints(int [][] b) { // VERIFY!!!!
     final var ROWS = b.length;
@@ -28,6 +28,40 @@ void printSaddlePoints(int [][] b) { // VERIFY!!!!
                 }
             }
             println("Sattelpunkt: " + "(" + i + "," + col[j] + ") = " + min);
+        }
+    }
+}
+
+void printSaddlePoints2(int [][] b) {
+    // Diese Version ist für kleinere Matrizen effizienter, da auf das Speichern 
+    // der Kandidaten verzichtet wird. Dafür muss zweimal über alle Spalten 
+    // iteriert werden. D.h. insbesondere für große Matrizen ist die obige
+    // Version deswegen häufige effizienter, wenn die Anzahl der Kandidaten 
+    // im Vergleich zur Spaltenanzahl gering ist.   
+
+    final var ROWS = b.length;
+    final var COLS = b[0].length;
+    for (int i = 0; i < ROWS; i++) { // für jede Zeile
+        // 1. finde in jeder Zeile das Minimum
+        int min = Integer.MAX_VALUE; // Aktuelles Minimum
+        assert b[i].length == COLS; // Sicherstellung, dass die Matrix "b" rechteckig ist
+        for (int j = 0; j < COLS; j++) {
+            min = Math.min(min, b[i][j]);
+        }
+        // 2. prüfe ob das Minimum in der Zeile auch das Maximum der Spalte ist
+        println("Minimum in Zeile ["+i+"]: " + min);
+        int max = min;
+        for (int j = 0; j < COLS; j++) {
+            // 2.1. finde die relevanten Spalten
+            if (b[i][j] == min) {
+                // 2.2. finde das Maximum in der Spalte
+                for (int k = 0 ; k < ROWS; k++) {
+                    max = Math.max(max, b[k][j]);
+                }
+                if (max == min) {
+                    println("Sattelpunkt: " + "(" + i + "," + j + ") = " + min);
+                }
+            }
         }
     }
 }
@@ -64,5 +98,6 @@ void main() {
     final int[][] a = initMatrix(new int[m][n]);
     printToConsole(a);
     println("Sattelpunkte:");
-    printSaddlePoints(a);
+    //printSaddlePoints(a);
+    printSaddlePoints2(a);
 }
