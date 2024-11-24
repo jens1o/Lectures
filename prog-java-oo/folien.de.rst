@@ -65,7 +65,7 @@ Objekt-orientierte Programmierung mit Java
 Was ist Objektorientierte Programmierung?
 ------------------------------------------
 
-:Definition: OOP ist ein Programmierparadigma, das auf den Konzepten von Klassen und **Objekten** basiert, die Daten und Funktionen kapseln.
+:Definition: Objektorientierte Programmierung (OOP) ist ein Programmierparadigma, das auf den Konzepten von Klassen und **Objekten** basiert, die Daten und Funktionen kapseln.
 
 .. class:: incremental
 
@@ -82,35 +82,79 @@ Was ist Objektorientierte Programmierung?
 
 .. supplemental::
 
-    Während es in der Anfangszeit Programmiersprachen gab, die neben der prozeduralen Programmierung insbesondere auch die objektorientierte Programmierung unterstützten, unterstützen heute fast alle Programmiersprachen auch andere Paradigmen. Insbesondere die funktionale Programmierung.
+    Während es in der Anfangszeit Programmiersprachen gab, die neben der prozeduralen Programmierung insbesondere auch die objektorientierte Programmierung unterstützten, unterstützen heute fast alle Programmiersprachen auch weitere Paradigmen. Insbesondere die funktionale Programmierung.
 
 
 
 Klassen
 --------------------
 
-:Klasse: Ein Bauplan für Objekte, der beschreibt, welche Daten bzw. Felder und Methoden ein Objekt haben kann.
-  
-:Syntax: :java:`class <Klassenname> { ... }`
+.. container:: scrollable
 
-.. class:: incremental
+    :Klasse: Ein Bauplan für Objekte, der beschreibt, welche Daten bzw. Felder und Methoden ein Objekt haben kann.
+    
+    :Syntax: :java:`class <Klassenname> { ... }`
 
-:Beispiel: `Auto` ist eine Klasse.
+    .. class:: incremental
 
-    .. code:: java
-        :class: far-smaller copy-to-clipboard
+    :Beispiele: 
+    
+        .. rubric:: :java:`Auto` ist eine Klasse.
 
-        class Auto {
-            // Felder (gel. auch Attribute genannt)
-            String marke;
-            int geschwindigkeit;
+        .. code:: java
+            :class: far-smaller copy-to-clipboard
 
-            // Methoden
-            void beschleunigen(int wert) {
-                geschwindigkeit += wert; // Zugriff auf das Feld des Objektes
+            class Auto {
+                // Felder (gel. auch Attribute genannt)
+                String marke;
+                int geschwindigkeit; // _aktuelle_ Geschwindigkeit
+
+                // Methoden
+                void beschleunigen(int wert) {
+                    geschwindigkeit += wert; // Zugriff auf das Feld des Objektes
+                }
             }
-        }
 
+        .. container:: incremental
+
+            .. rubric:: :java:`Button` (bei der Modellierung grafischer Benutzeroberflächen) ist eine Klasse.
+
+            .. code:: java
+                :class: far-smaller copy-to-clipboard
+
+                class Button {
+                    String text;
+                    int state; // 0: normal, 1: pressed, 2: disabled
+
+                    void registerListener() { ... }
+                }
+
+        .. container:: incremental
+
+            .. rubric:: :java:`BigDecimal` (zur Repräsentation von Dezimalzahlen mit „beliebiger“ Präzision) ist eine Klasse.
+
+            .. code:: java
+                :class: far-smaller copy-to-clipboard
+
+                class BigDecimal {
+                    int scale;
+                    int precision;
+                    void add(BigDecimal b) { ... }
+                }
+
+
+        .. container:: incremental
+
+            .. rubric:: :java:`File` (zum Zugriff auf Dateien) ist eine Klasse.
+
+            .. code:: java
+                :class: far-smaller copy-to-clipboard
+
+                class File {
+                    String name;
+                    long size;
+                    void read() { ... }
+                }
 
 
 Objekte und die Selbstreferenz `this`
@@ -122,10 +166,6 @@ Objekte und die Selbstreferenz `this`
 
     :Definition: :java:`this` ist eine Referenz auf das aktuelle Objekt. Es wird verwendet, um auf die Felder und Methoden des aktuellen Objekts zuzugreifen.
     
-        .. container:: minor 
-
-            Wenn es keine Zweideutigkeit gibt, dann kann auf die Angabe von :java:`this` verzichtet werden.
-
     .. class:: incremental
 
     :Beispiel: 
@@ -134,6 +174,10 @@ Objekte und die Selbstreferenz `this`
             :code: java
             :class: far-smaller copy-to-clipboard
             :end-before: void main() {
+
+.. supplemental::
+
+    Wenn es keine Zweideutigkeit gibt, dann kann auf die Angabe von :java:`this` verzichtet werden.
 
 
 
@@ -144,12 +188,14 @@ Objekterzeugung/Instanziierung einer Java Klasse
 
     Um eine Objekts zu erzeugen bzw. eine Klasse zu instanziiern, wird der :java:`new` Operator verwendet. 
 
-    Dieser Operator ...
+    Der :java:`new` Operator ...
 
     .. class:: incremental
 
-    - reserviert den benötigten Speicher, und bereinigt diesen ggf. 
+    - reserviert den benötigten Speicher, und stellt sicher, dass alle Felder mit dem Defaultwert initialisiert sind.
     - ruft dann den Konstruktor der Klasse auf. 
+
+      Der Konstruktor ist eine spezielle Methode, die einmalig beim Erzeugen eines Objekts aufgerufen wird und der Initialisierung des Objekts dient.
     
 
     .. class:: incremental
