@@ -2141,10 +2141,12 @@ Backtracking
 
 - Backtracking ist ein Verfahren, das in vielen Algorithmen zur Anwendung kommt. Insbesondere, wenn kein effizienterer Algorithmus bekannt ist, als *alle möglichen Lösungen auszuprobieren*.
 
-.. class:: incremental
+.. class:: incremental list-with-explanations
 
 - Backtracking ist eine systematische Methode, um alle möglichen Lösungen eines Problems zu finden. Es ist eine Art von rekursivem Durchsuchen, bei dem Teillösungen zu Gesamtlösungen erweitert werden. 
-- Backtracking erlaubt ggf. Heuristiken, um die Suche zu beschleunigen. Weder die Komplexitätsklasse noch die Korrektheit ändert sich dadurch.
+- Backtracking erlaubt ggf. Heuristiken, um die Suche zu beschleunigen. 
+  
+  Weder die Komplexitätsklasse noch die Korrektheit ändert sich dadurch.
 - Viele NP-harte Probleme werden mit Backtracking gelöst.
 
 .. supplemental::
@@ -2309,14 +2311,14 @@ Backtracking - Allgemein
     .. hint::
         :class: far-smaller 
 
-        Sollten Sie das Programm in Python implementieren wollen, dann können sie den Code im Anhang als Grundlage verwenden. Sie müssen dann nur noch die Methode ``solve`` implementieren. Der Code implementiert eine kleine Klassenhierarchie zur Darstellung von logischen Ausdrücken und ermöglicht die Evaluation unter einer gegebenen Belegung.
+        Sollten Sie das Programm in Python implementieren wollen, dann können sie den Code im Anhang als Grundlage verwenden. Sie müssen dann nur noch die Methode ``solve`` implementieren. Der Code implementiert eine kleine Klassenhierarchie zur Darstellung von logischen Ausdrücken und ermöglicht die Evaluation (:java:`is_solution`) unter einer gegebenen Belegung. 
     
     .. solution::
         :pwd: Anzahl_der_Belegungen
 
         .. rubric:: Prolog
 
-        Eine Lösung in (SWI)-Prolog könnte wie folgt aussehen:
+        Eine Lösung in (SWI)-Prolog könnte wie folgt aussehen (Zeile 1 bis 11 ist das vollständige Programm; Zeile 13 bis 30 implementiert nur eine elegantere Ausgabe):
 
         .. include:: code/sat_model.pl
             :code: prolog
@@ -2329,7 +2331,18 @@ Backtracking - Allgemein
             :code: python
             :number-lines:
             :class: smaller
-            :start-after: variable to its current truth value."""
+            :start-after: variable to its current truth value (True or False)."""
+
+        Die drei Lösungen sind:
+        
+        .. code:: prolog
+            :number-lines:
+            
+            A = B, B = D, D = true, C = false ;
+            A = B, B = D, D = false, C = true ;
+            A = B, B = C, C = false, D = true ;
+
+        
 
 .. supplemental::
 

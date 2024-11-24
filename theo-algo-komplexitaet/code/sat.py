@@ -1,25 +1,32 @@
 class Expr:
 
-    def is_solution(self, binding : dict[str,bool]):
+    def is_solution(
+            self, 
+            binding : dict[str,bool]) -> bool | None:
         """ True or False if this expression definitively 
             evaluates to the respective truth value with the 
-            given binding, which does not necessarily
-            require all truth values to be bound.
-            None if the definitive truth value cannot be 
-            determined with the given binding. E. g., if 
-            this expression represents a variable for which 
-            the binding has no value, None is returned.
+            given binding or None otherwise.
+            
+            Returning a truth value does not necessarily 
+            require all variables to be bound to a definite
+            value.
+            
+            For example, None will be returned, if the 
+            truth value cannot be determined with the given 
+            binding. E. g., if this expression represents a 
+            variable for which the binding has no value, None 
+            is returned.
 
             An expression such as "A ⋀ B" would return True 
             if A and B are both True in the 
-            binding, False if at least one of them is bound 
+            binding and False if at least one of them is bound 
             to False, and None otherwise.
         """
         pass
 
 
 class And(Expr):
-    def __init__(self, exprs):
+    def __init__(self, exprs : list[Expr]):
         self.exprs = exprs
 
     def is_solution(self, binding):
@@ -27,7 +34,7 @@ class And(Expr):
         for expr in self.exprs:
             e = expr.is_solution(binding)
             if e is None:
-                r = None  # the result may still be true
+                r = None 
             elif not e:
                 return False
         return r
@@ -37,7 +44,7 @@ class And(Expr):
 
 
 class Or(Expr):
-    def __init__(self, exprs):
+    def __init__(self, exprs : list[Expr]):
         self.exprs = exprs
 
     def is_solution(self, binding):
@@ -45,7 +52,7 @@ class Or(Expr):
         for expr in self.exprs:
             e = expr.is_solution(binding)
             if e is None:
-                r = None  # the result maybe true
+                r = None  
             elif e:
                 return True
         return r
@@ -55,7 +62,7 @@ class Or(Expr):
 
 
 class Not(Expr):
-    def __init__(self, expr):
+    def __init__(self, expr : Expr):
         self.expr = expr
 
     def is_solution(self, binding):
@@ -70,7 +77,7 @@ class Not(Expr):
 
 
 class Var(Expr):
-    def __init__(self, name):
+    def __init__(self, name : str):
         self.name = name
 
     def is_solution(self, binding):
@@ -106,16 +113,16 @@ expr = And(
 print("Finding solutions for: " + str(expr))
 
 solution : dict[str,bool] = {} 
-""" Stores the current solution by mapping the name of the 
-    variable to its current truth value."""
+""" Stores the current solution by mapping the name of a 
+    variable to its current truth value (True or False)."""
 
 def solve(expr, vars, nextVar=0):
-    for v in [True,False]: # try both values for the variable
-        solution[vars[nextVar].name] = v
-        e = expr.is_solution(solution)
-        print("Trying: " + str(solution) + " => " + str(e))
-        if e is None: # continue with the next variable
-            solve(expr, vars, nextVar + 1)
+    for v in [True,False]:                  # try both values for the variable
+        solution[vars[nextVar].name] = v    # bind the variable to the value 
+        e = expr.is_solution(solution)      # check if the expression is a solution
+        print("State: " + str(solution) + " => " + str(e))
+        if e is None:                       # not inconsistent -> continue 
+            solve(expr, vars, nextVar + 1)  # try the next variable
         elif e:
             print("Solution found: " + str(solution))
     

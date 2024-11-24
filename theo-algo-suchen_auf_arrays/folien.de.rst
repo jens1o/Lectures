@@ -33,7 +33,8 @@
 .. role:: kbd
 .. role:: java(code)
    :language: java
-
+.. role:: python(code)
+   :language: python
 
 
 .. class:: animated-symbol 
@@ -641,6 +642,7 @@ Exponentielle Suche im sortierten (unbeschränkten) *Array*
     Die Idee ist erst mit einer exponentiellen Schrittweite zu springen, um dann mit einer binären Suche den Wert zu finden. Die Laufzeit ist :math:`O(\log(i))` wobei :math:`i` die Position des gesuchten Wertes ist. Die Laufzeit ist also :math:`O(\log(n))`.
 
 
+
 .. class:: integrated-exercise
 
 Übung
@@ -725,7 +727,7 @@ Exponentielle Suche im sortierten (unbeschränkten) *Array*
     Wie viele Schritte (im Sinne von Schleifendurchläufen) sind maximal notwendig, um festzustellen ob ein Wert im Array enthalten ist oder nicht?
 
     .. solution:: 
-        :pwd: Ist Schnell!
+        :pwd: naja...
 
         Für Array A sind maximal 3 Schritte notwendig, für Array B sind auch maximal 3 Schritte und für Array C maximal 5 Schritte.
 
@@ -761,32 +763,153 @@ Exponentielle Suche im sortierten (unbeschränkten) *Array*
             :number-lines:
 
 
+
 .. class:: new-section transition-move-to-top
 
 Selbstanordnende Arrays
 --------------------------------------------------------
 
-- Relevant bei nominal skalierten Daten.
-- Erfordert prinzipiell eine lineare Suche.
+
+Suchen auf Arrays mit spezieller Ordnung
+--------------------------------------------------------
+
+- Sind die Daten nominal skaliert, oder sagt die Ordnung der Werte im Array nichts über die Zugriffshäufigkeit aus, so können Arrays auf Basis der Zugriffe sortiert werden.
+- Erfordert prinzipiell eine lineare Suche, die es gilt soweit möglich zu beschleunigen.
+
+.. class:: incremental
+
+- Anwendung(-sgebiete):
+
+  - Cache-Zugriffe, Verwaltung von virtuellem Speicher
+  - Wenn Werte häufiger verlangt werden als andere, so besitzen die Anfragen eine Wahrscheinlichkeitsverteilung.
+  - Die Verteilung wird durch Abzählen angenähert, da sie nicht bekannt ist. Darauf basierend werden die Werte entsprechend sortiert.
 
 
-.. admonition:: Definition 
-    
-    Ein Array A ist gemäß **frequency count** oder **FC-Regel** sortiert, wenn für alle Werte gilt, dass :math:`c(A[k]) >c(A[j])` wenn :math:`k <j` und :math:`c(x)` die realisierte Häufigkeit des Wertes :math:`x` darstellt.
+Strategien zur Anordnung
+--------------------------------------------------------
+
+.. stack:: invisible
+
+    .. layer:: 
+
+        .. admonition:: Definition 
+            
+            Ein Array A ist gemäß **frequency count** oder **FC-Regel** sortiert, wenn für alle Werte gilt, dass :math:`c(A[k]) \geq c(A[j])` wenn :math:`k <j` und :math:`c(x)` die realisierte Häufigkeit des Wertes :math:`x` darstellt.
+
+        .. hint:: 
+            :class: incremental
+
+            Es wird typischerweise lokal getauscht, um die Ordnung herzustellen.
+
+    .. layer:: incremental
+
+        .. admonition:: Definition 
+            
+            Ein Array A ist gemäß **move to front** oder nach der **MF-Regel** sortiert, wenn bei Auftritt eines Wertes :math:`A[k]` in der Folge mit der ersten Position :math:`A[1]` oder :math:`A[0]` vertauscht wird, sollte der Wert noch nicht an der ersten Stelle stehen.
+
+    .. layer:: incremental
+
+        .. admonition:: Definition 
+            
+            Ein Array A ist gemäß **transpose** oder nach der **T-Regel** sortiert, wenn bei Auftritt eines Wertes :math:`A[k]` in der Folge mit der Position davor :math:`A[k-1]` vertauscht wird, sollte der Wert noch nicht an der ersten Stelle stehen.
 
 
-.. admonition:: Definition 
-    
-    Ein Array A ist gemäß **move to front** oder nach der **MF-Regel** sortiert, wenn bei Auftritt eines Wertes :math:`A[k]` in der Folge mit der ersten Position :math:`A[1]` oder :math:`A[0]` vertauscht wird, sollte der Wert noch nicht an der ersten Stelle stehen.
+
+Strategien zur Anordnung - Diskussion
+--------------------------------------------------------
+
+- Die FC-Regel erfordert das Mitführen der Häufigkeit der Werte. Die MF-Regel und die T-Regel sind einfacher zu implementieren, da sie nur die Reihenfolge der Werte im Array verändern. 
+- Für MF-Regel und T-Regel gibt es worst-case Aufrufsequenzen, die immer zu den schlechtesten Laufzeiten führen.
+- Die MF-Regel nimmt eher starke Änderungen vor und reagiert schnell.
+- Die T-Regel nimmt eher schwache Änderungen vor und ist stabiler.
+
+.. admonition:: Zusammenfassung
+    :class: conclusion incremental
+
+    Die Bewertung sollte an Hand der tatsächlichen Daten erfolgen:
+
+    - Liegen Häufigkeitsinformationen vor, so ist die FC-Regel sinnvoll. 
+    - Die MF-Regel ist für sich ändernde Verteilungen sinnvoller, die T-Regel für stabilere Situationen.
 
 
-.. admonition:: Definition 
-    
-    Ein Array A ist gemäß **transpose** oder nach der **T-Regel** sortiert, wenn bei Auftritt eines Wertes :math:`A[k]` in der Folge mit der Position davor :math:`A[k-1]` vertauscht wird, sollte der Wert noch nicht an der ersten Stelle stehen.
+.. class:: integrated-exercise transition-flip
 
-.. supplemental::
+Übung
+--------
 
-    Die FC-Regel erfordert das Mitführen der Häufigkeit der Werte. Die MF-Regel und die T-Regel sind einfacher zu implementieren, da sie nur die Reihenfolge der Werte im Array verändern. Die FC-Regel ist in der Praxis nur dann sinnvoll, wenn die Häufigkeit der Werte ohnehin mitgeführt wird. 
+.. exercise::  A = [1,2,3,4,5] selbstanordnend sortieren
+
+    Das Array :python:`A = [1,2,3,4,5]` soll selbstanordnend sortiert werden. Danach werden die folgenden Werte in der angegebenen Reihenfolge gesucht: :python:`1,2,3,2,3,2,1,5`. Bestimmen Sie die Anordnung des Arrays nach jedem Zugriff für die Sortierungen nach MF-Regel, T-Regel und
+    FC-Regel. Füllen Sie die nachfolgende Tabelle aus:
+
+    .. csv-table::
+        :header: x, MF-Regel, T-Regel, FC-Regel, "Häufigkeiten"
+        :align: center
+
+        1
+        2
+        3
+        2
+        3
+        2
+        1
+        5
+
+    .. solution::
+        :pwd: das_ist_nicht_so_schwer
+
+        .. csv-table::
+            :header: x, MF-Regel, T-Regel, FC-Regel, Häufigkeiten
+            :align: center
+
+            1, "[1,2,3,4,5]", "[1,2,3,4,5]", "[1,2,3,4,5]", "[1,0,0,0,0]"
+            2, "[2,1,3,4,5]", "[2,1,3,4,5]", "[1,2,3,4,5]", "[1,1,0,0,0]"
+            3, "[3,1,2,4,5]", "[2,3,1,4,5]", "[1,2,3,4,5]", "[1,1,1,0,0]"
+            2, "[2,1,3,4,5]", "[2,3,1,4,5]", "[2,1,3,4,5]", "[1,2,1,0,0]"
+            3, "[3,1,2,4,5]", "[3,2,1,4,5]", "[2,3,1,4,5]", "[1,2,2,0,0]"
+            2, "[2,1,3,4,5]", "[2,3,1,4,5]", "[2,3,1,4,5]", "[1,3,2,0,0]"
+            1, "[1,2,3,4,5]", "[2,1,3,4,5]", "[2,3,1,4,5]", "[2,3,2,0,0]"
+            5, "[5,2,3,4,1]", "[2,1,3,5,4]", "[2,3,1,5,4]", "[2,3,2,0,1]"
+
+
+.. class:: integrated-exercise
+
+Übung
+--------
+
+.. exercise::  A = [1,2,3,4,5] selbstanordnend sortieren
+
+    Das Array :python:`A = [1,2,3,4,5]` soll selbstanordnend sortiert werden. Danach werden die folgenden Werte in der angegebenen Reihenfolge gesucht: :python:`5,1,6,2,3,6,5`. Bestimmen Sie die Anordnung des Arrays nach jedem Zugriff für die Sortierungen nach MF-Regel, T-Regel und
+    FC-Regel. Füllen Sie die nachfolgende Tabelle aus:
+
+    .. csv-table::
+        :header: x, MF-Regel, T-Regel, FC-Regel, "Häufigkeiten"
+        :align: center
+
+        5
+        1
+        6
+        2
+        3
+        6
+        5
+
+    .. solution::
+        :pwd: das_ist_noch_immer_nicht_so_schwer
+
+        .. rubric:: Lösung
+
+        .. csv-table::
+            :header: x, MF-Regel, T-Regel, FC-Regel, Häufigkeiten
+            :align: center
+
+            5, "[5,2,3,4,1,6]", "[1,2,3,5,4,6]", "[5,1,2,3,4,6]", "[0,0,0,0,1,0]"
+            1, "[1,2,3,4,5,6]", "[1,2,3,5,4,6]", "[5,1,2,3,4,6]", "[1,0,0,0,1,0]"
+            6, "[6,2,3,4,5,1]", "[1,2,3,5,6,4]", "[5,1,6,2,3,4]", "[1,0,0,0,1,1]"
+            2, "[2,6,3,4,5,1]", "[2,1,3,5,6,4]", "[5,1,6,2,3,4]", "[1,1,0,0,1,1]"
+            3, "[3,6,2,4,5,1]", "[2,3,1,5,6,4]", "[5,1,6,2,3,4]", "[1,1,1,0,1,1]"
+            6, "[6,3,2,4,5,1]", "[2,3,1,6,5,4]", "[6,5,1,2,3,4]", "[1,1,1,0,1,2]"
+            5, "[5,3,2,4,5,1]", "[2,3,1,5,6,4]", "[6,5,1,2,3,4]", "[1,1,1,0,2,2]"
 
 
 
@@ -796,18 +919,89 @@ Textsuche
 ---------------------------------------------
 
 
+
+.. class:: center-child-elements
+
+Arrays und Textsuche
+--------------------------------------------------------
+
+Texte können als unsortierte Arrays von Zeichen verstanden werden, und eine typische
+Frage ist hier das Finden von Textsequenzen im Text.
+
+
+
+
 Einfache Textsuche
 --------------------------------------------------------
 
-.. code:: pascal
-    :number-lines:
-    :class: far-smaller
+.. stack:: 
 
-    Algorithmus NaiveTextSearch(text,n,needle,m)
-        for i = 1,...,n−m + 1 do
-            j = 0
-            while text[i + j] == needle[j + 1] do
-                j = j + 1
-                if j == m then
-                    return i // print("Found at",i) 
-        return nil
+    .. layer:: 
+
+        .. note:: 
+            :class: smaller incremental
+
+            Die Laufzeit der einfachen Textsuche kann asymptotisch durch :math:`O(n·m)` abgeschätzt werden.
+
+        .. code:: pascal
+            :number-lines:
+            :class: far-smaller
+
+            Algorithmus NaiveTextSearch(text,n,needle,m)
+                for i = 1,...,n-m + 1 do
+                    j = 0
+                    while text[i + j] == needle[j + 1] do
+                        j = j + 1
+                        if j == m then
+                            return i // print("Found at",i) 
+                return nil
+
+    .. layer:: incremental
+
+        .. rubric:: Beispiel
+
+        .. container::  monospaced
+
+            :: 
+
+                a a a a a a a a b
+                ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+                a a a b̶
+                  a a a b̶
+                    a a a b̶
+                      a a a b̶
+                        a a a b̶
+                          a a a b
+
+        So viele Vergleiche sind eigentlich nicht erforderlich!
+
+
+.. To generate strike-through unicode letters: https://yaytext.com/strike/
+
+::
+
+    s a a n s a n a n a n a s
+    ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+    a̶ 
+      a n̶
+        a n a̶
+              a n a n a s̶
+                  a n a n a s
+
+
+
+TODO.... KMP-Algorithmus etc...
+
+
+
+.. class:: new-section transition-move-to-top
+
+Suche nach dem n-ten Element
+---------------------------------------------
+
+...
+
+Suche nach dem n-ten Element mittels Quickselect (z. B. dem Median)
+---------------------------------------------------------------------
+
+...
