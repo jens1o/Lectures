@@ -19,6 +19,9 @@ images/uml-cd/methoden_einfach.svg
 images/uml-cd/methoden_mit_in_out.svg
 images/uml-cd/enumeration.svg
 images/uml-cd/assoziationsklasse.svg
+images/uml-cd/benennung.svg
+
+images/uml-cd-bib.svg
 
 images/uml-state/check_state.svg
 images/uml-state/compartment.svg
@@ -34,7 +37,7 @@ images/uml-sd/2nd_alarm.svg
 images/uml-sd/aktivieren.svg
 images/uml-sd/alarm.svg
 images/uml-sd/objekte.svg
-
+images/uml-sd-exercise.svg
 
 images/uml-activity/ausgeliefert.svg
 images/uml-activity/bestellung_abschließen.svg
