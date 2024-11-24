@@ -107,7 +107,7 @@ Modularisierungsebenen in Java
 
 .. supplemental::
 
-    Einzelnen Methoden erlauben zwar bereits eine Modularisierung des Codes, da diese aber für sich nicht wiederverwendbar sind, ist es notwendig, diese in Klassen zu organisieren. Klassen, welche in einzelnen Dateien gespeichert werden, erlauben dann eine Wiederverwendung des Codes. 
+    Einzelnen Methoden erlauben zwar bereits eine Modularisierung des Codes, da diese aber für sich nicht wiederverwendbar sind (es ist nicht möglich eine Methode alleine in einer Datei zu speichern und in einem anderen Kontext zu nutzen), ist es notwendig, diese in Klassen zu organisieren. Klassen, welche in einzelnen Dateien gespeichert werden, erlauben dann eine Wiederverwendung des Codes. 
 
 
 
@@ -161,11 +161,11 @@ Klassen in Java
 
         .. class:: incremental
 
-        (3) Eine Klasse wird mit dem Schlüsselwort `class` deklariert.
+        (2) Eine Klasse wird mit dem Schlüsselwort `class` deklariert.
 
-        (2) Eine Klasse kann Felder (Variablen) und Methoden enthalten.
+        (3) Eine Klasse kann Felder (Variablen) und Methoden enthalten.
 
-        (3) Eine Klasse wird in einer Datei mit dem Namen der Klasse (+\ *.java*) gespeichert.
+        (4) Eine Klasse wird in einer Datei mit dem Namen der Klasse (+\ *.java*) gespeichert.
 
     .. layer:: incremental
 
@@ -185,7 +185,7 @@ Klassen in Java
         .. rubric:: Datei: *MyMath.java*
 
         .. code:: java
-            :class: smaller
+            :class: smaller copy-to-clipboard
 
             class MyMath {
                 static final int ANSWER_TO_EVERYTHING = 42; 
@@ -196,7 +196,7 @@ Klassen in Java
         .. rubric:: Datei: *Main.java*
 
         .. code:: java
-            :class: smaller
+            :class: smaller copy-to-clipboard
 
             void main() {
                     println(MyMath.fibonacci(10));
@@ -233,7 +233,7 @@ Interfaces in Java
         .. rubric:: Datei: *MyMath.java*
 
         .. code:: java
-            :class: smaller
+            :class: smaller copy-to-clipboard
 
             interface MyMath {
                 static final int ANSWER_TO_EVERYTHING = 42; 
@@ -244,7 +244,7 @@ Interfaces in Java
         .. rubric:: Datei: *Main.java*
 
         .. code:: java
-            :class: smaller
+            :class: smaller copy-to-clipboard
 
             void main() {
                 println(MyMath.fibonacci(10));
@@ -271,10 +271,15 @@ Statische Methoden und statische Attribute von Klassen und Interfaces
 
     :java:`static final <type> <name> = <value>;`
 
-.. container:: incremental
+.. container:: incremental smaller
 
-    Das Java Development Kit (JDK) enthält viele Klassen mit statischen Methoden und Attributen, z. B. :java:`java.lang.Math`, :java:`java.lang.System`, :java:`java.io.File`, :java:`java.io.IO` etc..
+    Das Java Development Kit (JDK) enthält viele Klassen – z. B. :java:`java.lang.Math`, :java:`java.lang.System`, :java:`java.io.File`, :java:`java.io.IO`, :java:`java.util.Arrays` etc. – mit statischen Methoden - z. B. :java:`parseDouble(...)` – und Attributen.
 
+
+.. hint::
+    :class: far-smaller incremental
+
+    Wenn Sie das :java:`static` Schlüsselwort vergessen, dann haben Sie Instanzmethoden und Instanzattribute. Diese können Sie nur nutzen, nachdem Sie basierend auf der Klasse ein Objekt instantiiert haben.
 
 
 .. class:: integrated-exercise
@@ -384,7 +389,7 @@ Imports in Java
 
     .. layer:: incremental
 
-        :`import module`:java:: (Seit Java 23) ermöglicht den Import alles Klassen eine Moduls.
+        :`import module`:java:: (Seit Java 23) ermöglicht den Import aller Klassen eine Moduls.
 
         :Syntax: 
             :java:`import modul <moduleName>;`
@@ -474,14 +479,14 @@ Beispiele für Imports
 
         .. rubric:: Hinweis
     
-        Ein Java-Script importiert immer implizit:
+        Ein Java-Skript importiert immer implizit:
 
         .. code:: java
 
             import module java.base;
             import static java.io.IO.*;
 
-        Wenn Sie in der JShell also auch :java:`println` und :java:`readln` direkt verwenden wollen, dann müssen Sie lediglich `import static java.io.IO.*;` hinzufügen.
+        Wenn Sie in der JShell also auch :java:`println` und :java:`readln` direkt verwenden wollen, dann müssen Sie lediglich :java:`import static java.io.IO.*;` hinzufügen.
 
 
 
@@ -496,7 +501,7 @@ Die vier Sichtbarkeiten in Java sind:
 
 1. :java:`public`: Zugriff von überall
 2. :java:`protected`: Zugriff innerhalb des gleichen Packages und von Subklassen
-3. <default> (package-private)**: Zugriff nur innerhalb des gleichen Packages
+3. *<default> (package-private)*: Zugriff nur innerhalb des gleichen Packages
 4. :java:`private`: Zugriff nur innerhalb der gleichen Klasse
 
 
