@@ -45,18 +45,28 @@ Java Arrays - Klausurvorbereitung
     :Version: 1.0
 
 
+
 .. class:: integrated-exercise
 
 Aufgabe
 --------
 
-.. rubric:: Median bestimmen (Niveau: einfach)
+.. rubric:: Median bestimmen (Niveau: sehr einfach)
 
 Sie haben ein *sortiertes* Array von Double-Werten. Schreiben Sie eine Methode, die den Median des Arrays bestimmt.
 
 .. hint::
 
     Sollte die Anzahl der Werte gerade sein, so ist der Median der Durchschnitt der beiden mittleren Werte, ansonsten ist es der mittlere Wert.
+
+
+
+Aufgabe
+--------
+
+.. rubric:: Zwei Arrays Komponentenweise aufsummieren (Niveau: einfach)
+
+Gegeben sind zwei Arrays von ganzen Zahlen (Typ :java:`long`). Schreiben Sie eine Methode (:java:`sumArrays`), die die beiden Arrays komponentenweise aufsummiert und das Ergebnis in einem neuen Array zurückgibt. Das Ergebnis-Array hat die Länge des kürzeren der beiden Arrays.
 
 
 
@@ -89,8 +99,6 @@ ist benachbart, wenn es sich in der gleichen Zeile oder Spalte befindet und eine
     .. hint::
 
         Es bietet sich ggf. an eine rekursive Methode (fill) zu implementieren.
-
-
 
 
 
