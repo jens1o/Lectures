@@ -91,7 +91,7 @@ Kontrollfragen
             }
 
             // in einer anderen Datei in einem anderen Verzeichnis
-            main() {
+            void main() {
                println(math.dhbw.de.Arrays.median(1,2,3,4,5));
             }
 

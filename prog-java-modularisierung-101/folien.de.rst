@@ -51,6 +51,13 @@ Grundlegende Modularisierung von einfachen Java Programmen
 
         |pdf-source|
 
+    :Kontrollfragen:
+
+        .. source:: kontrollfragen.de.rst 
+            :path: relative
+            :prefix: https://delors.github.io/
+            :suffix: .html
+
     :Fehler melden:
         https://github.com/Delors/delors.github.io/issues
 
