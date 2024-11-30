@@ -1,5 +1,8 @@
+from abc import abstractmethod
+
 class Expr:
 
+    @abstractmethod
     def is_solution(
             self, 
             binding : dict[str,bool]) -> bool | None:
@@ -22,7 +25,7 @@ class Expr:
             binding and False if at least one of them is bound 
             to False, and None otherwise.
         """
-        pass
+        raise NotImplementedError
 
 
 class And(Expr):

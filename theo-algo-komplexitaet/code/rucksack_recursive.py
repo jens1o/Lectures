@@ -20,8 +20,12 @@ def bestWertRekursiv(n):
                 best = test
     return best
 
+print(bestWertRekursiv(7))
+
+""" Performance Test 
 n = 1;
 while n < 101:
     r = timeit(lambda: bestWertRekursiv(n))
     print(r) 
     n *= 10
+"""
