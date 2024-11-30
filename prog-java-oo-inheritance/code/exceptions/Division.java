@@ -1,0 +1,15 @@
+import static java.lang.System.err;
+void main(String[] args) {
+    try {
+        int i = Integer.parseInt(args[0]);
+        int j = Integer.parseInt(args[1]);
+        try {
+            println(i / j);
+        } catch (ArithmeticException e) {
+            err.println("Division durch 0 nicht erlaubt.");
+        }
+    } catch (NumberFormatException e) {
+        err.println("Fehler beim Parsen der Argumente.");
+    } catch (ArrayIndexOutOfBoundsException e) {
+        err.println("Zu wenige Argumente.");
+}   }
