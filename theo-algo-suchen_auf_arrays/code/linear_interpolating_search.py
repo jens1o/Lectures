@@ -1,4 +1,4 @@
-def linear_interpolating_search(A, needle):
+def linear_interpolating_search(A : list[int], needle: int) -> tuple[int|None, int]:
     steps = 0
     lower = 0
     upper = len(A) - 1
@@ -29,7 +29,7 @@ def linear_interpolating_search(A, needle):
     return (None, steps)
 
 
-def eval(name, A):
+def eval(name : str, A : list[int]):
     min = A[0] - 1
     max = A[len(A) - 1] + 1
     steps = 0
@@ -47,4 +47,6 @@ eval("A", [1, 3, 5, 7, 9, 11, 13, 15])
 print("\n\n\n-----------------------------------------------------------")
 eval("B", [0, 7, 13, 22, 27, 32, 44, 49])
 print("\n\n\n-----------------------------------------------------------")
-eval("C", [0, 4, 16, 36, 64, 100, 144, 196])  
+eval("C", [0, 4, 16, 36, 64, 100, 144, 196])
+
+# typing checked using mypy: /Users/Michael/Library/Python/3.13/bin/mypy

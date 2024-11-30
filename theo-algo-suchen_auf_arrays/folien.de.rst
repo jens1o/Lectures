@@ -839,12 +839,12 @@ Strategien zur Anordnung - Diskussion
 
 .. exercise::  A = [1,2,3,4,5] selbstanordnend sortieren
 
-    Das Array :python:`A = [1,2,3,4,5]` soll selbstanordnend sortiert werden. Danach werden die folgenden Werte in der angegebenen Reihenfolge gesucht: :python:`1,2,3,2,3,2,1,5`. Bestimmen Sie die Anordnung des Arrays nach jedem Zugriff für die Sortierungen nach MF-Regel, T-Regel und
-    FC-Regel. Füllen Sie die nachfolgende Tabelle aus:
+    Das Array :python:`A = [1,2,3,4,5]` soll selbstanordnend sortiert werden. Die gesuchten Werte sind: :python:`1,2,3,2,3,2,1,5`. Bestimmen Sie die Anordnung des Arrays nach jedem Zugriff für die Sortierungen nach MF-Regel, T-Regel und FC-Regel. Füllen Sie die nachfolgende Tabelle aus:
 
     .. csv-table::
         :header: x, MF-Regel, T-Regel, FC-Regel, "Häufigkeiten"
         :align: center
+        :class: smaller
 
         1
         2
@@ -872,6 +872,7 @@ Strategien zur Anordnung - Diskussion
             5, "[5,2,3,4,1]", "[2,1,3,5,4]", "[2,3,1,5,4]", "[2,3,2,0,1]"
 
 
+
 .. class:: integrated-exercise
 
 Übung
@@ -885,6 +886,7 @@ Strategien zur Anordnung - Diskussion
     .. csv-table::
         :header: x, MF-Regel, T-Regel, FC-Regel, "Häufigkeiten"
         :align: center
+        :class: smaller
 
         5
         1
@@ -925,14 +927,16 @@ Textsuche
 Arrays und Textsuche
 --------------------------------------------------------
 
-Texte können als unsortierte Arrays von Zeichen verstanden werden, und eine typische
+Texte können als unsortierte Arrays von Zeichen verstanden werden. Eine typische
 Frage ist hier das Finden von Textsequenzen im Text.
 
 
 
 
 Einfache Textsuche
---------------------------------------------------------
+------------------------------------------------
+
+.. To generate strike-through unicode letters: https://yaytext.com/strike/
 
 .. stack:: 
 
@@ -947,7 +951,9 @@ Einfache Textsuche
             :number-lines:
             :class: far-smaller
 
-            Algorithmus NaiveTextSearch(text,n,needle,m)
+            Algorithmus NaiveTextSearch(text,needle)
+                n = length(text)
+                m = length(needle)
                 for i = 1,...,n-m + 1 do
                     j = 0
                     while text[i + j] == needle[j + 1] do
@@ -958,7 +964,7 @@ Einfache Textsuche
 
     .. layer:: incremental
 
-        .. rubric:: Beispiel
+        .. rubric:: Beispiel bei einfacher Suche nach ``aaab`` in ``aaaaaaaab``:
 
         .. container::  monospaced
 
@@ -973,24 +979,388 @@ Einfache Textsuche
                         a a a b̶
                           a a a b
 
-        So viele Vergleiche sind eigentlich nicht erforderlich!
+        .. incremental:: 
 
-
-.. To generate strike-through unicode letters: https://yaytext.com/strike/
-
-::
-
-    s a a n s a n a n a n a s
-    ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-    a̶ 
-      a n̶
-        a n a̶
-              a n a n a s̶
-                  a n a n a s
+            Sind so viele Vergleiche notwendig?
 
 
 
-TODO.... KMP-Algorithmus etc...
+Knuth-Morris-Pratt Verfahren - Grundlagen
+------------------------------------------------
+
+.. Use the jshell to generate combined characters: (https://www.compart.com/en/unicode/combining/220)
+   Example: \u0305 = Combining Overline   
+            \u0332 = Combining Low Line      
+            a̲̅ = "a\u0305\u0332"        
+            a̅ = "a\u0305"
+            a̲ = "a\u0332"
+            n̲ = "n\u0332"
+            n̅ = "n\u0305"
+
+.. stack::
+
+    .. layer:: 
+
+        Das Verfahren von Knuth-Morris-Pratt vermeidet unnötige Vergleiche, da es zunächst die Suchwortteile auf den größten Rand, also das größte Prefix, das auch Postfix ist, untersucht.
+
+        .. admonition:: Definition: Präfix, Postfix und Rand
+            :class: incremental
+
+            Für ein Wort :math:`w = (w_1,...,w_n)` sind die Präfixe :math:`p^{(k)} = (w_1,...,w_k )` und die Postfixe :math:`q^{(k)} = (w_{n−k+1},...,w_{n})` für :math:`0 ≤k ≤n`. 
+            
+            Ist :math:`p^{(k)} = q^{(k)} = r^{(k)}` für ein :math:`0 ≤k <n`, so ist :math:`r(k)` ein Rand von :math:`w`. 
+            
+            Für :math:`k <n` werden :math:`p^{(k)}` und :math:`q^{(k)}` auch echte Prä- und Postfixe genannt.
+
+    .. layer:: incremental
+
+        .. rubric:: Beispiel/Idee
+
+        ::
+
+            Text              010110101
+            Gesucht/Muster    010101
+            Übereinstimmung   ✓✓✓✓✗
+
+        .. container:: incremental margin-top-1em
+
+            **Beobachtungen:**
+
+            1. Wir haben an Stelle 5 ein Mismatch.
+            2. Wenn wir im Text das Muster um eine Stelle nach rechts verschoben suchen, so haben wir garantiert wieder ein Mismatch.
+   
+            .. admonition:: Frage
+                :class: question far-smaller incremental
+                
+                Wie weit kann man also das Muster im Allgemeinen verschoben werden ohne ein Vorkommen zu übersehen?
+
+
+    .. layer:: incremental
+
+        .. rubric:: Beispiel/Idee
+
+        ::
+
+                                1.                    2.
+            Text                01101100              0102111
+            Gesucht/Muster      01100                 010201
+            Übereinstimmungen   ✓✓✓✓✗                 ✓✓✓✓✗
+
+        .. container:: incremental margin-top-1em
+
+            **Beobachtungen bzgl.:**
+            
+            3. Beim Mismatch an Stelle 5 kann das Muster "nur" um 3 Stellen nach rechts verschoben werden.
+            4. Beim Mismatch an Stelle 5 kann das Muster um 4 Stellen nach rechts verschoben werden.
+            
+            .. container:: 
+
+                Wie weit wir das Muster verschieben können, hängt also vom Rand des Teils des Musters ab, der bereits übereinstimmt.
+
+
+
+    .. layer:: incremental
+
+            .. rubric:: Beispiel
+
+            Das Wort :math:`aufkauf` hat die *echten* Präfixe und Postfixe:
+
+                :math:`\{p^{(k)} : 0 ≤k <n\}=\{ε,a,au,auf,aufk,aufka,aufkau\}`
+
+                :math:`\{q^{(k)} : 0 ≤k <n\}=\{ε,f,uf,auf,kauf,fkauf,ufkauf\}`
+
+            und die Ränder: 
+            
+                :math:`\{r^{(k)} : 0 ≤k <n\}= \{ε,auf\}`.
+
+            Das bedeutet, dass wenn :math:`aufkauf` erkannt wurde, die letzten drei Buchstaben schon den nächsten Treffer einleiten können, wie beispielsweise in :math:`aufkaufkauf`.
+
+
+    .. layer:: incremental
+
+        Das KMP-Verfahren fängt nicht immer von vorne an, sondern prüft, ob ein Rand eines :math:`Präfixes - ε`   ausgenutzt werden kann. Dazu werden die entsprechenden größten Ränder bestimmt.
+
+        .. container:: two-columns incremental
+
+            .. container:: column
+
+                .. rubric:: Beispiel: ananas
+
+                .. csv-table::
+                    :header: ":math:`Präfixe \\setminus \\{ε\\}`", "Größter Rand", "Länge des Randes"
+                    :class: smaller
+
+                    a, ε, 0
+                    an, ε, 0
+                    a̲na̅, a, 1
+                    a̲n̲a̅n̅, an, 2
+                    a̲n̲a̲̅n̅a̅, ana, 3
+                    ananas, ε , 0
+
+
+            .. container:: column
+
+                .. rubric:: Beispiel: axaaxax
+
+                .. csv-table::
+                    :header: ":math:`Präfixe \\setminus \\{ε\\}`", "Größter Rand", "Länge des Randes"
+                    :class: smaller
+
+                    a, ε, 0
+                    ax, ε, 0
+                    a̲xa̅, a, 1
+                    a̲xaa̅, a, 1
+                    a̲x̲aa̅x̅, ax, 2
+                    a̲x̲a̲a̅x̅a̅, axa, 3
+                    a̲x̲aaxa̅x̅, ax , 2
+
+
+.. supplemental::
+
+    Die Idee ist also, dass wir beim Musterabgleich nach einem Mismatch, wenn der übereinstimmende 
+    Teil einen Rand hat, beim Abgleich des Musters an einer späteren Stelle - basierend auf der Größe des Randes - weitermachen können. Wir müssen also nicht immer das ganze Muster von vorne anfangen zu vergleichen.
+
+
+.. class:: integrated-exercise transition-fade
+
+Übung
+--------
+
+.. exercise:: Ränder und Randlängen bestimmen
+
+    Bestimmen Sie die Ränder und die Längen der :math:`Präfixe - ε` für die Worte:
+    
+    1. :math:`tultatul` 
+    2. :math:`eikleike`
+    3. :math:`okokorok`
+    4. :math:`trattrad`
+
+    .. solution::
+        :pwd: raender_+_randlaengen
+
+        .. rubric:: Beispiel: tultatul
+
+        .. csv-table::
+            :header: ":math:`Präfixe \\setminus \\{ε\\}`", "Größter Rand", "Länge des Randes"
+            :class: smaller
+
+            t, ε, 0
+            tu, ε, 0
+            tul, ε, 0
+            tult, t, 1
+            tulta, ε, 0
+            tultat, t, 1
+            tultatu, tu, 2
+            tultatul, tul, 3
+
+        .. rubric:: Beispiel: eikleike
+
+        .. csv-table::
+            :header: ":math:`Präfixe \\setminus \\{ε\\}`", "Größter Rand", "Länge des Randes"
+            :class: smaller
+
+            e, ε, 0
+            ei, ε, 0
+            eik, ε, 0
+            eikl, ε, 0
+            eikle, e, 1
+            eiklei, ei, 2
+            eikleik, eik, 3
+            eikleike, e, 1
+
+        .. rubric:: Beispiel: okokorok
+
+        .. csv-table::
+            :header: ":math:`Präfixe \\setminus \\{ε\\}`", "Größter Rand", "Länge des Randes"
+            :class: smaller
+
+            o, ε, 0
+            ok, ε, 0
+            oko, o, 1
+            okok, ok, 2
+            okoko, oko, 3
+            okokor, ε, 0
+            okokoro, o, 1
+            okokorok, ok, 2
+
+        .. rubric:: Beispiel: trattrad
+
+        .. csv-table::
+            :header: ":math:`Präfixe \\setminus \\{ε\\}`", "Größter Rand", "Länge des Randes"
+            :class: smaller            
+
+            t, ε, 0
+            tr, ε, 0
+            tra, ε, 0
+            trat, t, 1
+            tratt, t, 1
+            trattr, tr, 2
+            trattra, tra, 3
+            trattrad, ε, 0
+
+
+
+Knuth-Morris-Pratt Verfahren
+------------------------------------------------
+
+.. stack::
+
+    .. layer:: incremental
+
+        .. code:: pascal
+            :number-lines:
+            :class: far-smaller copy-to-clipboard
+
+            Algorithmus ComputePrefixFunction(needle)
+                m = length(needle)
+                sei B[1...m] ein Array // Array für die Längen der Ränder der Teilworte
+                B[1] = 0
+                j = 0 // j ist die Länge des Randess
+                for i = 2,...,m do
+                    j = j + 1
+                    while j > 0 and needle[j] ≠ needle[i] do
+                        if j > 1 then
+                            j = B[j-1] + 1
+                        else
+                            j = 0
+                    B[i] = j
+                return B
+
+        Komplexität: :math:`O(m)`
+
+    .. layer:: incremental
+
+        .. code:: pascal
+            :number-lines:
+            :class: far-smaller
+
+            Algorithmus KMP(text,needle)
+                n = length(text), m = length(needle)
+                B = ComputePrefixFunction(needle)
+                q = 0               // Anzahl der übereinstimmenden Zeichen
+                R = []              // Liste der Indizes der Übereinstimmungen
+                for i = 1,...,n do
+                    while q > 0 and needle[q + 1] ≠ text[i] do
+                        q = B[q]    // ... die nächsten Zeichen stimmen nicht überein
+                    if needle[q + 1] == text[i] then
+                        q = q + 1   // Übereinstimmung
+                    if q == m then
+                        R append (i - m + 1)
+                        q = B[q]    // Suche nach nächster Übereinstimmung
+                return R
+
+        Komplexität: :math:`O(n+m)`
+
+.. supplemental::
+
+    **Details ComputePrefixFunction**
+
+    Die Funktion :math:`ComputePrefixFunction` berechnet die größten Werte der Präfixe für das Suchwort :math:`needle` der Länge :math:`m` und gibt diese als Array (:math:`B`) zurück.
+    Das Array :math:`B` enthält somit die größten Ränder der Präfixe :math:`needle[1,...,i]`.
+    (Der Wert von :math:`B[1]` ist immer 0, da es keinen Rand gibt.)
+    
+    .. ? Die grundlegende Idee ist, dass der Rand des Präfixes :math:`needle[1,...,i]` der Rand des Präfixes :math:`needle[1,...,i-1]` ist, wenn :math:`needle[i] = needle[j]` ist.
+
+    
+
+Beispiel für eine KMP-Textsuche 
+------------------------------------------------------------
+        
+Gesucht wird ``ananas`` in ``saansanananas``
+
+.. container:: far-smaller
+        
+    ::
+
+                s a a n s a n a n a n a s
+        i       ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+        1       a̶ 
+        ...
+        3         a n̶
+        ...
+        5           a n a̶
+        ...
+        11                a n a n a s̶       Beim Auftreten des Mismatch (Zeile 7) ist 
+        ...                                 q = 5 und wird auf p[5] = 3 (Zeile 8) gesetzt
+        13                    a n a n a s
+
+.. container:: rounded-corners box-shadow far-smaller padding-1em margin-top-1em
+
+    Dargestellt sind die Fälle, in denen ein Mismatch auftritt. ``i`` ist der Index des aktuellen Zeichen im Text, das mit dem Muster verglichen wird. 
+
+
+.. class:: integrated-exercise transition-fade
+
+Übung
+--------
+
+.. exercise:: KMP-Algorithmus
+
+    Bestimmen Sie die Randlängen der Muster und stellen Sie die Teilschritte bei der Durchführung des KMP-Algorithmus zur Suche des Wortes/Muster im Text  dar.
+
+    Stellen Sie insbesondere die Fälle dar in denen ein Mismatch auftritt.
+
+    .. csv-table::
+        :header: "Muster", "Text"
+        :align: left
+
+        ``aaab``, ``aaaaaaaab``
+        ``barbara``, ``abbabarabarbarbara``
+
+    .. solution::
+        :pwd: Barbarasrababerbar
+
+        .. rubric:: Lösung bzgl. ``aaab`` in ``aaaaaaaab``
+
+        .. csv-table:: 
+            :header: Präfixe, größter Rand, Länge des Randes
+
+            a, ε, 0
+            aa, a, 1
+            aaa, aa, 2           
+            aaab, ε, 0
+
+        **Durchführung des KMP-Algorithmus**
+
+        ::
+
+          a a a a a a a a b
+          ___________________
+          a a a b̶             Beim Mismatch bei i == 4 ist q == 3 und wird auf q = p[3] == 2 
+                              (längster Rand) gesetzt und direkt wieder um 1 
+                              erhöht, da das nächste Zeichen (a == a) übereinstimmt.
+            a a a b̶
+              a a a b̶
+                a a a b̶
+                  a a a b̶
+                    a a a b
+
+        .. rubric:: Lösung bzgl. ``barbara`` in ``abbabarabarbarbara``
+
+        .. csv-table:: 
+            :header: Präfixe, größter Rand, Länge des Randes
+
+                Präfixe, größter Rand, Länge des Randes
+                b, ε, 0
+                ba, ε, 0
+                bar, ε, 0
+                barb, b, 1
+                barba, ba, 2
+                barbar, bar, 3
+                barbara, ε, 0
+
+        **Durchführung des KMP-Algorithmus**
+
+        ::
+
+            a b b a b a r a b a r b a r b a r a
+            ___________________________________
+            b̶
+              b a̶
+                b a r̶
+                    b a r b̶
+                            b a r b a r a̶
+                                  b a r b a r a
 
 
 
@@ -999,9 +1369,170 @@ TODO.... KMP-Algorithmus etc...
 Suche nach dem n-ten Element
 ---------------------------------------------
 
-...
 
-Suche nach dem n-ten Element mittels Quickselect (z. B. dem Median)
+Suche nach dem n-ten Element - Einführung
+---------------------------------------------
+
+.. class:: incremental
+
+- Ist das Array sortiert, so ist die Suche nach dem n-ten Element trivial und hat eine Laufzeit von :math:`O(1)`.
+
+- Ist das Array nicht sortiert, so ist die Suche nach dem n-ten Element nicht trivial.
+  
+  Wir unterscheiden:
+
+  .. class:: incremental
+
+  1. wird das Array (im Folgenden) auch noch sortiert gebraucht, so ist es am effizientesten dieses erst zu sortieren, um dann das n-te Element auszulesen. Die Laufzeit beträgt dann - mit der Wahl eines geeigneten Sortierverfahrens - :math:`O(n \log n)`.
+  2. Ist eine Sortierung nicht erforderlich/gewünscht, so können wir mit Hilfe von Teile-und-Herrsche-Verfahren das n-te Element auch effizienter bestimmen. 
+
+
+
+Suche nach dem n-ten Element mittels Quickselect
 ---------------------------------------------------------------------
 
-...
+
+        .. code:: pascal
+            :number-lines:
+            :class: far-smaller
+
+            Algorithmus Quickselect(A,k) // k ist der Index des gesuchten Elements
+                if length(A) == 1 then return A[0]
+
+                pivot := arr[length(A)-1] // ein bel. Element als Pivot (hier das letzte)
+                lows := [] // Elemente kleiner als Pivot
+                highs := [] // Elemente größer als Pivot 
+                pivotsCount := 0 // Anzahl der Pivot-Elemente
+                for x in arr do // Partitionierung
+                    if x < pivot then lows.append(x)
+                    else if x > pivot then highs.append(x)
+                    else pivotsCount := pivotsCount + 1
+    
+                if k < length(lows) then 
+                    return Quickselect(lows, k)
+                else if k < length(lows) + pivotsCount then
+                    return pivot  # das k-te Element ist ein Pivot-Element
+                else
+                    return Quickselect(highs, k - len(lows) -  pivotsCount)
+
+
+.. supplemental::
+
+    .. hint::
+
+        In einer realen Implementierung sollte das Pivot-Element zufällig gewählt werden, um - für den Fall, dass das Array sortiert ist, die Laufzeit zu verbessern.
+
+    .. hint::
+
+        Der Quickselect Algorithmus kann auch *in-place* implementiert werden, d. h. ohne zusätzlichen Speicherbedarf. Dies setzt voraus, das die ursprüngliche Reihenfolge der Elemente nicht erhalten bleiben muss.
+
+
+
+Beispiel: Bestimmung des Medians mittels Quickselect
+----------------------------------------------------
+
+.. code:: pascal
+    :number-lines:
+    :class: far-smaller
+
+    Algorithmus FindeMedian(A) // A ist _nicht sortiert_
+        n = length(A)
+        if n % 2 == 1 then // d. h. wir haben eine ungerade Anzahl von Elementen in A
+            return Quickselect(A, floor(n / 2))
+        else // gerade Anzahl von Elementen in A
+            left = Quickselect(A, floor(n / 2) - 1)
+            right = Quickselect(A, floor(n / 2))
+            return (left + right) / 2
+
+
+.. class:: integrated-exercise
+
+Übung
+--------
+
+.. exercise:: n-te Element bestimmen
+
+    Bestimmen Sie (I) den Median für das Array ``A = [23,335,2,24,566,3,233,54,42,6,667,7,5,7,7]``. Wenden Sie dazu den Algorithmus ``FindeMedian`` (inkl. ``Quickselect-Algorithmus``) an. 
+    
+    Geben Sie weiterhin (II) nach jeder Partitionierung im Quickselect Algorithmus den aktuellen Zustand an (d. h. nach Zeile 11 in Quickselect). 
+
+    .. csv-table::
+        :header: "Array A", "k", "Pivot", "Lows", "Highs", "Pivots Count"
+        :align: center
+        :class: smaller
+
+        "[...]", <K>, <P>, "[...]", "[...]", "<#P>"
+
+    .. solution::
+        :pwd: mal_schnell_mal_langsam
+
+            .. csv-table::
+                :header: "Array A", "length(A)", "k", "Pivot", "lows", "highs", "pivotsCount"
+                :align: center
+                :class: smaller
+
+                "[23, 335, 2, 24, 566, 3, 233, 54, 42, 6, 667, 7, 5, 7, 7]", 15 , 7 , 7 , "[2, 3, 6, 5]", "[23, 335, 24, 566, 233, 54, 42, 667]", 3
+                "[23, 335, 24, 566, 233, 54, 42, 667]", 8 , 0 , 667 , "[23, 335, 24, 566, 233, 54, 42]", "[]", 1
+                "[23, 335, 24, 566, 233, 54, 42]", 7 , 0 , 42 , "[23, 24]", "[335, 566, 233, 54]", 1
+                "[23, 24]", 2 , 0 , 24 , "[23]", "[]", 1
+
+            Median: 23
+
+Übung
+--------
+
+.. exercise:: Komplexität von Quickselect
+
+    Bestimmen Sie die Komplexität des Quickselect-Algorithmus im schlechtesten Fall,im Durchschnittsfall und im besten Fall.
+
+    .. solution::
+        :pwd: Analyse
+
+        **Schlechtester Fall:**
+
+        Beispiel: die Suche nach dem kleinsten Element in einem (zufällig) aufsteigend sortierten Array, bei dem immer das größte Element als Pivot Element gewählt wird.
+
+        Im schlechtesten Fall ist die Partitionierung somit ineffektiv und wir benötigen ``length(A)`` Aufrufe von Quickselect (d. h. ``length(A)-1`` rekursive Aufrufe). Die Anzahl der Schritte für die Partitionierung nimmt pro rekursivem Aufruf um eins ab (d. h. ``length(A), length(A)-1, ... 2`` Schritte für das Partitionieren).
+
+        Sei :math:`n = `\ ``length(A)``` die Länge des Arrays, dann haben wir im schlechtesten Fall :math:`n + (n-1) + ... + 2 = \frac{n(n+1)}{2}-1` Schritte.
+
+        Die Komplexität beträgt also :math:`O(n^2)`.
+
+
+        **Durchschnittsfall:**
+        
+        Im Durchschnittsfall ist die Partitionierung effektiv und halbiert das Array bei jeder Durchführung. Die Anzahl der Schritte für die Partitionierung nimmt pro rekursivem Aufruf somit um die Hälfte ab (d. h. ``length(A), length(A)/2, length(A)/4, ... 2`` Schritte für das Partitionieren).
+
+        Sei :math:`n =` ``length(A)`` die Länge des Arrays, dann haben wir im durchschnittlichen Fall :math:`n + \frac{n}{2} + \frac{n}{4} + \frac{n}{8} + \ldots = 2n` Schritte durchzuführen. 
+
+        (Anwendung der Summenformel für eine geometrische Reihe: :math:`a = n, r = \frac{1}{2}` für :math:`n \rightarrow \infty` gilt hier: :math:`S_n = a \cdot \frac{1}{1-r} = n \cdot \frac{1}{1-\frac{1}{2}} = 2n`).  
+
+        Die Komplexität beträgt also :math:`O(n)`.
+
+        **Bester Fall:**
+
+        Der Aufwand ist :math:`O(n)` und tritt ein, wenn das Pivot-Element das Median-Element ist. In diesem Fall wird das Array nur einmal durchsucht und partitioniert.
+
+
+.. supplemental::
+
+    .. rubric:: Geometrische Reihen
+
+    Die Summenformel für eine geometrische Reihe lautet:
+
+    .. math::
+
+        S_n = a \cdot \frac{1-r^n}{1-r}\quad \text{für}\quad r \neq 1
+
+    Mit:
+
+        :`S_n`:math:: Summe der ersten :math:`n` Glieder der geometrischen Reihe.
+        :`a`:math:: Das erste Glied der Reihe.
+        :`r`:math:: Der Quotient (Verhältnis aufeinanderfolgender Glieder).
+        :`n`:math:: Die Anzahl der Glieder.
+  
+    Für :math:`n` gegen unendlich und :math:`|r| < 1` gilt somit:
+
+    .. math::
+            
+            S = \frac{a}{1-r} \quad \text{für}\quad |r| < 1
