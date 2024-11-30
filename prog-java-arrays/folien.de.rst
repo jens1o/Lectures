@@ -41,7 +41,7 @@ Verwendung von Feldern (:eng:`Arrays`) in Java
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw.de, Raum 149B
-    :Version: 1.2
+    :Version: 1.2.1
 
 .. supplemental::
 
@@ -786,16 +786,16 @@ Multidimensional Arrays
 
 .. exercise:: java.util.Arrays
 
-    Lesen Sie ein Array von der Kommandozeile ein und sortieren Sie es lexikalisch. Danach geben Sie das sortierte Array aus. Schreiben Sie ein Java Script.
+    Lesen Sie ein Array von der Kommandozeile ein und sortieren Sie es numerisch. D. h. wandeln Sie die Zahlen in echte Zahlen um und sortieren Sie danach. Danach geben Sie das sortierte Array aus. Schreiben Sie ein Java Script.
 
     Beispielinteraktion:
 
     .. code:: java
 
         $ ./sort 3 2 1 4 5 6 7 8 9 10 
-        [1, 10, 2, 3, 4, 5, 6, 7, 8, 9]
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 
-    Studieren Sie die verfügbaren Methoden der Klasse :java:`Arrays` (https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Arrays.html). Suchen Sie nach einer Methode zum sortieren von Arrays mit dem Datentyp :java:`String`. Suchen Sie weiterhin nach einer Methode, um ein String-Array „vernünftig“ auszugeben.
+    Studieren Sie die verfügbaren Methoden der Klasse :java:`Arrays` (https://docs.oracle.com/en/java/javase/23/docs/api/java.base/java/util/Arrays.html). Suchen Sie nach einer Methode zum sortieren von Arrays mit dem Datentyp :java:`int`. Suchen Sie weiterhin nach einer Methode, um das Array „vernünftig“ auszugeben.
 
     .. solution::
         :pwd: SortierenUndAusgebenMitEchtemScript
@@ -929,12 +929,14 @@ Methoden mit einer variablen Anzahl von Parametern (:java:`varargs`)
         Beispielimplementierung:
 
         .. code:: java
-            :class: far-smaller copy-to-clipboard
+            :number-lines:
+            :class: far-smaller copy-to-clipboard 
 
             /**
              * Verbindet eine beliebige Anzahl von Arrays zu einem neuen Array.
              * 
-             * @param arrays die Arrays, die verbunden werden sollen.
+             * @param arrays die Arrays, die verbunden werden sollen. Darf nicht
+             *         null sein.
              * @return ein Array, das alle Elemente der übergebenen Arrays 
              *         enthält. Die Reihenfolge entspricht der Reihenfolge, in 
              *         der sie übergeben wurden.
