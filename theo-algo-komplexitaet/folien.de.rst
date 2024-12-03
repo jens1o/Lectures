@@ -2,7 +2,7 @@
     :lang: de
     :author: Michael Eichberg
     :keywords: "Komplexität", "Algorithmen"
-    :description lang=de: Theoretische Informatik - Algorithmen und Datenstrukturen
+    :description lang=de: Theoretische Informatik - Komplexität und Algorithmen
     :id: lecture-theo-algo-komplexitaet
     :first-slide: last-viewed
     :exercises-master-password: WirklichSchwierig!
@@ -46,7 +46,7 @@ Komplexität und Algorithmen
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw.de, Raum 149B
-    :Version: 1.1.1
+    :Version: 1.1.2
 
     .. container:: minor
 
@@ -60,6 +60,14 @@ Komplexität und Algorithmen
         |html-source| 
 
         |pdf-source|
+
+
+    :Kontrollfragen:
+
+        .. source:: kontrollfragen.de.rst 
+            :path: relative
+            :prefix: https://delors.github.io/
+            :suffix: .html
 
     :Fehler melden:
         https://github.com/Delors/delors.github.io/issues
@@ -1887,7 +1895,7 @@ Teilende Verfahren, *bzw. Divide-and-Conquer-Algorithmen*, sind typischerweise s
 
 .. container:: incremental margin-top-1em box-shadow rounded-corners padding-0-5em
 
-  Ein Beispiel ist binäre Suche nach einem Namen im Telefonbuch oder nach einer zu erratenden Zahl.
+  Ein Beispiel ist die binäre Suche nach einem Namen im Telefonbuch oder nach einer zu erratenden Zahl.
 
 .. supplemental::
 
@@ -2076,11 +2084,11 @@ Master-Theorem: Zusammenfassung
         - :math:`b = 4`: Jeder Aufruf hat die Größe :math:`n/4`,
         - :math:`f(n) = 1`: Die Kosten für die Rekursion.
 
-        (Hinweis: :math:`log_4 2 = {log_{10} 2 \over log_{10} 4 } = 1/2`) 
+        (Hinweis: :math:`\log_4 2 = {\log_{10} 2 \over \log_{10} 4 } = {\ln 2 \over \ln 4 }  = 1/2`) 
 
         :Analyse: 
         
-            Hier ergibt sich :math:`n^{\log_b a} = n^{\log_4 2} = n^\frac{1}{2}`. Für :math:`\epsilon \leq ½` gilt :math:`f(n) \in O(n^{\log_4 2 - \epsilon})`. 
+            Hier ergibt sich :math:`n^{\log_b a} = n^{\log_4 2} = n^\frac{1}{2}`. Für :math:`\epsilon \leq ½` gilt :math:`f(n) \in O(n^{\log_4 2 - \epsilon})` d. h. :math:`1 \in O(n^{(1/2)-\epsilon}`. 
 
             Das passt zu Fall 1, da :math:`f(n) \in O(n^{\log_b a - \epsilon})`. 
 
@@ -2104,6 +2112,8 @@ Master-Theorem: Zusammenfassung
             Hier ergibt sich :math:`n^{\log_b a} = n^{\log_9 3} = n^\frac{1}{2}`. 
 
             Das passt zu Fall 2, da :math:`f(n) \in \Theta(\sqrt{n}\cdot (\log n)^0)`. 
+
+            Anmerkung: :math:`f(n) =  n^{(1/2)} \nin O(n^{(1/2) - \epsilon})` für :math:`\epsilon > 0`.
 
         :Ergebnis: Daher ist die Laufzeit :math:`T(n) \in \Theta(\sqrt{n} \cdot \log n)`.
 
@@ -2178,7 +2188,7 @@ Backtracking
 - Backtracking erlaubt ggf. Heuristiken, um die Suche zu beschleunigen. 
   
   Weder die Komplexitätsklasse noch die Korrektheit ändert sich dadurch.
-- Viele NP-harte Probleme werden mit Backtracking gelöst.
+- Viele NP-harte Probleme werden mit Backtracking gelöst.\ [#]_
 
 .. supplemental::
 
@@ -2186,19 +2196,20 @@ Backtracking
 
     Backtracking ist in Prolog inherent vorhanden, da Prolog auf dem Prinzip des Backtrackings basiert, weswegen Prolog für die Lösung solcher Probleme gut geeignet ist.
 
+.. [#] Wir werden uns später mit NP-harten und NP-vollständigen Problemen beschäftigen. Für den Moment reicht es zu wissen, dass es Probleme gibt, die nicht in polynomieller („vernünftiger“) Zeit gelöst werden können.
 
 
 Beispiel: Das 4-Damen Problem (konzeptuell)
 --------------------------------------------------------------------------
 
 .. note::
-    :class: smaller
+    :class: slightly-more-smaller
 
-    Ziel: Vier Damen auf einem Schachbrett so zu platzieren, dass keine Dame eine andere Dame schlagen kann.\ [#]_ Ein Lösung:
+    Ziel: Vier Damen auf einem Schachbrett so zu platzieren, dass keine Dame eine andere Dame schlagen kann.\ [#]_ Eine Lösung:
 
     .. csv-table::
         :header: " ", "1", "2", "3", "4"
-        :class: smaller align-center background-white
+        :class: align-center background-white
 
         1, " ", " ", "D", " "
         2, "D", " ", " ", " "
@@ -2222,7 +2233,7 @@ Beispiel: Das 4-Damen Problem (konzeptuell)
             { Ausgabe der Lösung }
           else
             findeStellung(i + 1) // rek. Aufruf
-          { entferne Dame aus Spalte i und Zeile j }
+          { entferne Dame aus Spalte i und Zeile j } // zurücksetzen des Zustands
       until { alle Zeilen j getestet }
 
 .. [#] Es gibt eine geschlossene Lösung für das Problem. Backtracking wird hier nur als Beispiel für das Verfahren verwendet.
@@ -2232,10 +2243,10 @@ Beispiel: Das 4-Damen Problem (konzeptuell)
    Wesentliche Elemente:
 
    - Die Lösung ist endlich.
-   - Die Lösung wird iterativ aufgebaut. Es ist jederzeit möglich zu testen, ob die bisherige Lösung noch gültig ist. (Zeile 6, 7) 
+   - Die Lösung wird iterativ aufgebaut. Es ist jederzeit möglich zu testen, ob die bisherige Lösung noch gültig ist (Zeile 6, 7).
    - Ist eine Lösung nicht mehr möglich, wird die Teillösung auch nicht weiter verfolgt. 
-   - Wurde eine Lösung gefunden, wird sie ausgegeben. (Zeile 10, 11)
-   - Die Methode wird rekursiv aufgerufen, um die Lösung zu vervollständigen. (Zeile 13)
+   - Wurde eine Lösung gefunden, wird sie ausgegeben (Zeile 10, 11).
+   - Die Methode wird rekursiv aufgerufen, um die Lösung zu vervollständigen (Zeile 13).
 
 
 
@@ -2248,10 +2259,12 @@ Backtracking - Allgemein
 
         .. rubric:: Voraussetzungen für Backtracking
 
-        .. class:: incremental  
+        .. class:: incremental  list-with-explanations
 
         1. Die Lösung ist als Vektor :java:`a[1], a[2], ...` endlicher Länge darstellbar.
         2. Jedes Element :java:`a[i]` hat eine endliche Anzahl von möglichen Werten :java:`A[i]`.
+
+           D. h. die Menge der möglichen Werte pro :java:`a[i]` kann unterschiedlich sein. 
         3. Es gibt einen effizienten Test, ob eine Teillösung :java:`a[1], a[2], ..., a[k]` zu einer gültigen Lösung führen kann.
 
     .. layer:: incremental
@@ -2335,7 +2348,7 @@ Backtracking - Allgemein
 
         Ein logischer Ausdruck ist in KNF, wenn der Ausdruck nur als Konjunktion (UND-Verknüpfung) von Disjunktionen (ODER-Verknüpfungen) dargestellt wird. Die Negation darf nur auf Variablen angewendet werden.
 
-        Beispiel: (A ∨ B) ∧ (¬C ∨ D)
+        Beispiel: (A ∨ B ∨ C) ∧ (¬C ∨ D)
 
     Entwickeln Sie ein Programm – in einer Programmiersprache Ihrer Wahl – dass in der Lage ist eine Formel in konjunktiver Normalform (KNF) auf Erfüllbarkeit zu prüfen. Prüfen Sie Ihr Programm anhand der vorhergehenden Aufgabe.
 
@@ -2349,7 +2362,7 @@ Backtracking - Allgemein
 
         .. rubric:: Prolog
 
-        Eine Lösung in (SWI)-Prolog könnte wie folgt aussehen (Zeile 1 bis 11 ist das vollständige Programm; Zeile 13 bis 30 implementiert ist nur schöner):
+        Eine Lösung in (SWI)-Prolog könnte wie folgt aussehen (Zeile 1 bis 11 ist das vollständige Programm; Zeile 13 bis 30 implementiert die selber Lösung nur schöner):
 
         .. include:: code/sat_model.pl
             :code: prolog

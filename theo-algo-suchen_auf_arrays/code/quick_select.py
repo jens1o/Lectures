@@ -6,9 +6,9 @@ def quickselect(arr :list[int], k):
     pivot = arr[len(arr)-1] # jedes andere Element ist auch möglich!
 
     # 2. Partitionieren
-    lows = [] # Elemente kleiner als Pivot
-    highs = [] # Elemente größer als Pivot
-    pivotsCount = 0 # Anzahl der Elemente gleich dem Pivot-Element
+    lows = []               # Elemente kleiner als Pivot
+    highs = []              # Elemente größer als Pivot
+    pivotsCount = 0         # Anzahl der Elemente gleich dem Pivot-Element
     for x in arr:
         if x < pivot:
             lows.append(x)
@@ -23,13 +23,13 @@ def quickselect(arr :list[int], k):
     if k < len(lows):
         return quickselect(lows, k)
     elif k < len(lows) + pivotsCount:
-        return pivot  # das k-te Element ist ein Pivot-Element
+        return pivot        # das k-te Element ist ein Pivot-Element
     else:
         return quickselect(highs, k - len(lows) -  pivotsCount)
 
 def find_median(arr):
     n = len(arr)
-    if n % 2 == 1:  # Ungerade Anzahl
+    if n % 2 == 1:          # Ungerade Anzahl
         return quickselect(arr, n // 2)
     else:  # Gerade Anzahl
         left = quickselect(arr, n // 2 - 1)
