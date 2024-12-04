@@ -34,7 +34,7 @@ Cybersecurity
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw.de
-    :Version: 2.2
+    :Version: 2.3
 
 .. supplemental::
 
@@ -231,6 +231,31 @@ Online-Betrug
 
 
 
+.. class:: no-title center-child-elements
+
+Receiver mit DDoS Funktion
+-------------------------------------------------------------
+
+.. epigraph::
+
+    *CEO VERHAFTET*
+
+    Der Hersteller soll insgesamt 240.000 Geräte mit der DDoS-Funktion ausgestattet haben – teils ab Werk, teils erst nachträglich per Firmwareupdate.
+
+    [...] In Südkorea sind fünf Mitarbeiter sowie der CEO eines Unternehmens verhaftet worden. Dieses soll Satellitenreceiver hergestellt und Hunderttausende davon auf Wunsch eines Kunden mit einer DDoS-Funktion ausgestattet haben. Wie [...] unter Verweis auf Angaben der südkoreanischen Polizei berichtet, lieferte der Hersteller 98.000 Geräte ab Werk mit dieser Funktion aus.
+
+    [...] Dass Geräte ab Werk mit Schadsoftware ausgeliefert werden, ist gerade im unteren Preissegment keine Seltenheit. Sicherheitsforscher deckten erst im vergangenen Jahr eine Malware-Kampagne auf, bei der vor allem billige Android-Geräte wie Smartphones, Tablets und TV-Boxen aus China vor ihrer Auslieferung an Endkunden mit einer Schadsoftware ausgestattet worden waren. 
+
+    -- 3.12.2024 - `Golem.de <https://www.golem.de/news/ceo-verhaftet-satellitenreceiver-jahrelang-mit-ddos-funktion-ausgeliefert-2412-191354.html>`__
+
+
+
+.. class:: new-section transition-fade
+
+Angriffe auf die Schutzziele der IT-Sicherheit
+-------------------------------------------------------------
+
+
 
 Ausgewählte Angriffe, Angriffsmethoden und Bedrohungsszenarien
 ----------------------------------------------------------------
@@ -251,6 +276,7 @@ Ausgewählte Angriffe, Angriffsmethoden und Bedrohungsszenarien
 .. class:: incremental
     
 - Advanced Persistent Threats (APT)
+- *store-now, decrypt-later* (:ger:`Speichere jetzt, Entschlüssele später`)
 
 
 .. supplemental::
@@ -586,7 +612,71 @@ Ausgewählte Social-Engineering Angriffe
 
 .. class:: new-section transition-fade
 
-Cybersicherheit stärken - NIS 2
+Cybersicherheit stärken 
+-------------------------------------------------------------
+
+
+
+.. class:: no-title center-child-elements
+
+Bug-Bounty-Programme
+-------------------------------------------------------------
+
+
+.. epigraph::
+
+    **Microsoft to offer hackers millions in Zero Day Quest event**
+
+    Microsoft on Tuesday unveiled Zero Day Quest, a bug bounty event offering up to $4 million in rewards to security researchers.
+
+    "At the end of the day, we recognize that when it comes to security, it's fundamentally a team sport," Microsoft CEO Satya Nadella said during his Tuesday keynote. "And that's why we want to partner, and we're partnering broadly with the security community." 
+
+    [...] Zero Day Quest is the "largest of its kind" and will offer a potential $4 million in awards for research into cloud and AI, which he described as "high-impact areas."
+
+    -- 19.11.2024 `Techtarget <https://www.techtarget.com/searchsecurity/news/366616078/Microsoft-to-offer-hackers-millions-in-Zero-Day-Quest-event>`__
+
+
+.. supplemental::
+
+    Bug-Bounty-Programme sind Initiativen, die Einzelpersonen oder Forschergruppen für das Finden und Melden von Softwarefehlern belohnen. Diese Programme werden häufig von Softwareanbietern initiiert, um die Sicherheit ihrer Produkte zu verbessern.
+
+
+.. class:: no-title center-child-elements
+
+BSI: Post-Quantum Cryptography
+-------------------------------------------------------------
+
+.. epigraph::
+
+    **A joint statement from partners from 18 EU member states[...]**
+
+    This threat to cryptography [i. e. established public-key cryptography is no longer secure] is posed by the development of a [...] quantum computer, which can break traditional public-key cryptographic schemes, [...] due to Shor’s algorithm. While there are currently no such cryptographically relevant quantum computers (CRQC) available, their development is progressing rapidly [...] :incremental:`preparing for the quantum threat should be considered an integral aspect of cyber security risk management.`
+
+    :incremental:`[...] we currently strongly recommend to deploy PQC in hybrid solutions for most use-cases, i.e. combining a deployed cryptographic scheme with PQC in such a way that the combination remains secure even if one of its components is broken.`
+
+    :incremental:`[...] The transition should also consider cryptoagility, allowing to ensure a more resilient transition to PQC[...]`
+
+    -- 27.11.2024 `Securing Tomorrow, Today: Transitioning to Post-Quantum Cryptography (PQC) <https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Crypto/PQC-joint-statement.pdf?__blob=publicationFile&v=3>`__
+
+
+
+Quantencomputer - Bedrohungsbewertung
+-------------------------------------------------------------
+
+.. rubric:: [Bewertung der Bedrohung durch Quantencomputer]
+
+.. epigraph::
+
+    [...] preparing for the quantum threat should be considered an integral aspect of cybersecurity risk management. In an attempt to quantify the risk, the 2023 issue of the Quantum Threat Timeline conducted a survey among 37 international leading experts from academia and industry. Out of these, 17 estimated the risk that a CRQC appears within a 10-year timeframe higher than 5%. Moreover, 10 of these respondents even indicated a likelihood of about 50% or more.
+
+    :incremental:`[...] To ensure an acceptable level of readiness, we recommend that these should be protected against 'store now, decrypt later' attacks as soon as possible, latest by the end of 2030.`
+
+    -- 27.11.2024 `Securing Tomorrow, Today: Transitioning to Post-Quantum Cryptography (PQC) <https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Crypto/PQC-joint-statement.pdf?__blob=publicationFile&v=3>`__
+
+
+.. class:: new-subsection transition-scale
+
+Die NIS 2 Richtlinie
 -------------------------------------------------------------
 
 .. container:: far-far-smaller minor margin-left-1em margin-right-1em margin-top-1em
