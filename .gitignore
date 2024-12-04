@@ -8,8 +8,9 @@ start_python_http_server.sh
 exercise
 TODO
 
-# Generated files
+# Generated/downloaded files and folders
 node_modules
+.mypy_cache
 *.rst.html
 *.rst.html.pdf
 *.rst.html.passwords.txt
