@@ -46,7 +46,7 @@ Komplexität und Algorithmen
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw.de, Raum 149B
-    :Version: 1.1.2
+    :Version: 1.1.3
 
     .. container:: minor
 
@@ -2113,7 +2113,7 @@ Master-Theorem: Zusammenfassung
 
             Das passt zu Fall 2, da :math:`f(n) \in \Theta(\sqrt{n}\cdot (\log n)^0)`. 
 
-            Anmerkung: :math:`f(n) =  n^{(1/2)} \nin O(n^{(1/2) - \epsilon})` für :math:`\epsilon > 0`.
+            Anmerkung: :math:`f(n) =  n^{(1/2)} \notin O(n^{(1/2) - \epsilon})` für :math:`\epsilon > 0`.
 
         :Ergebnis: Daher ist die Laufzeit :math:`T(n) \in \Theta(\sqrt{n} \cdot \log n)`.
 
