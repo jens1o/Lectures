@@ -43,7 +43,7 @@ Objekt-orientierte Programmierung - Vererbung und Polymorphie
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw.de, Raum 149B
-    :Version: 1.0
+    :Version: 1.0.1
 
 .. supplemental::
 
@@ -52,6 +52,13 @@ Objekt-orientierte Programmierung - Vererbung und Polymorphie
         |html-source| 
 
         |pdf-source|
+
+    :Kontrollfragen:
+
+        .. source:: kontrollfragen.de.rst 
+            :path: relative
+            :prefix: https://delors.github.io/
+            :suffix: .html
 
     :Fehler melden:
         https://github.com/Delors/delors.github.io/issues
