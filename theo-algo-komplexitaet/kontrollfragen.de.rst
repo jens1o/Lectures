@@ -35,6 +35,8 @@
 .. role:: java(code)
    :language: java
 
+
+
 .. class:: animated-symbol 
 
 Komplexität und Algorithmen - Kontrollfragen
@@ -44,7 +46,7 @@ Komplexität und Algorithmen - Kontrollfragen
 
     :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
     :Kontakt: michael.eichberg@dhbw.de, Raum 149B
-    :Version: 1.0
+    :Version: 1.0.1
 
 
 .. class:: integrated-exercise
@@ -91,6 +93,7 @@ Dynamische Programmierung
          :class: far-smaller
 
 
+
 .. class:: integrated-exercise
 
 Folgen
@@ -130,6 +133,7 @@ Folgen
       Vorgehensweise: Termumformung mit dem Ziel, dass der Nenner und/oder der Zähler ein Konstanter Wert ist, um den Grenzwert zu bestimmen.
 
 
+
 .. class:: integrated-exercise
 
 Analyse des asymptotischen Verhaltens
@@ -151,6 +155,7 @@ Analyse des asymptotischen Verhaltens
       :math:`f(x) = \frac{\ln x}{\log_2 x} = \frac{\ln x}{\ln x / \ln 2} = \ln 2`
 
 
+
 .. class:: integrated-exercise
 
 Landau-Notation
@@ -170,6 +175,7 @@ Landau-Notation
       - Ja; :math:`\Theta(g)` ist eine Menge von Funktionen, die sowohl in :math:`O(g)` als auch in :math:`\Omega(g)` sind. Daher ist :math:`\Theta(g) \subseteq O(g)`.
       - Ja, die Aussage gilt. :math:`\lim_{x→∞} {f_1(x) \over f_2(x)} = \infty` bedeutet, dass :math:`f_1(x)` asymptotisch schneller wächst als :math:`f_2(x)`. Daher ist :math:`f_1(x) \in \Omega(f_2(x))`.
       - In diesem Fall ist :math:`f_1(x)` sowohl in :math:`\Omega(f_2(x))` als auch :math:`\Theta(f_2(x))` und auch in :math:`O(f_2(x))`.
+  
   
 
 .. class:: integrated-exercise
@@ -194,7 +200,7 @@ Rekurrenz-Gleichungen und das Master Theorem
             
             - :math:`a = 9`, :math:`b = 3`, :math:`f(n) = 3n^2\log_2n`.
 
-            - :math:`n^{\log_b a} = n^{\log_3 9} = 2`. 
+            - :math:`n^{\log_b a} = n^{\log_3 9} = n^2`. 
 
             - Durchtesten:
             
