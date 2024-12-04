@@ -1,9 +1,9 @@
 .. meta:: 
     :lang: de
     :author: Michael Eichberg
-    :keywords: "Programmierung", "Java", "Arrays"
-    :description lang=de: Kontrollfragen zu Java Arrays
-    :id: lecture-prog-java-arrays-kontrollfragen
+    :keywords: "Programmierung", "Java", "Objektorientierung"
+    :description lang=de: Kontrollfragen zu einfacher objektorientierter Programmierung
+    :id: lecture-prog-java-simple-oo-kontrollfragen
     :first-slide: last-viewed
     :exercises-master-password: WirklichSchwierig!
     
