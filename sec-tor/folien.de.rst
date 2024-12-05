@@ -33,7 +33,7 @@ TOR - The Onion Router
 
 :Dozent: `Prof. Dr. Michael Eichberg <https://delors.github.io/cv/folien.de.rst.html>`__
 :Kontakt: michael.eichberg@dhbw.de
-:Version: 1.1
+:Version: 1.2
 
 .. supplemental::
 
@@ -366,6 +366,55 @@ Jeder ``Node`` legt in seiner ``Exit Policy`` genau fest welchen Datenverkehr we
 - Es gibt Knoten, die nur bestimmte Dienste (z. B. HTTPs) weiterleiten.
 - Es gibt „private Exit Nodes“, die nur zu einem bestimmten Netz Verbindungen aufbauen.
 
+
+
+Bedeutung von Bridge Nodes (hier: WebTunnel bridges)
+-------------------------------------------------------
+
+.. stack::
+
+    .. layer::
+
+        .. epigraph::
+
+            The Tor Project has put out an urgent call to the privacy community asking volunteers to help deploy 200 new WebTunnel bridges by the end of the year to fight government censorship.
+
+            Currently, the Tor Project operates 143 WebTunnel bridges, which help users in heavily censored regions bypass internet access restrictions and website blocks.
+
+            This comes in response to increasing censorship in Russia, which Tor says currently impacts the browser's built-in censorship circumvention mechanisms, including obfs4 connections and Snowflake
+
+            -- 28.11.2024 `Tor needs 200 new WebTunnel bridges to fight censorship <https://www.bleepingcomputer.com/news/security/tor-needs-200-new-webtunnel-bridges-to-fight-censorship/>`__
+
+    .. layer:: incremental
+
+        .. epigraph::
+
+            *How WebTunnels help bypass blocks*
+
+            WebTunnels are a new type of bridge introduced by the Tor Project in March 2024,  specifically designed to blend Tor traffic with regular web traffic, making it harder for censors to detect and block.
+
+            The system achieves this by running over a web server with a valid SSL/TLS certificate, disguising Tor traffic as regular HTTPS traffic.
+
+            Contrary to standard Tor bridges that use specific protocols, like obfs4, which makes their identification easier, WebTunnel bridges "hide in plain sight." This allows them to be resistant to aggressive censorship.
+
+            -- 28.11.2024 `Tor needs 200 new WebTunnel bridges to fight censorship <https://www.bleepingcomputer.com/news/security/tor-needs-200-new-webtunnel-bridges-to-fight-censorship/>`__
+
+    .. layer:: incremental
+
+        .. epigraph::
+
+            Today, Tor launched a new campaign that runs until March 10, 2025, calling on volunteers to set up and maintain new WebTunnel bridges.
+
+            The requirements for participation are the following:
+
+            - One WebTunnel bridge per IPv4; subdomains or distinct domains allowed.
+            - Provide a valid email for confirmation.
+            - Keep bridges running for at least 1 year.
+            - Ensure near 24/7 uptime; reboots for updates allowed.
+            - **Avoid hosting with Hetzner.**
+
+            -- 28.11.2024 `Tor needs 200 new WebTunnel bridges to fight censorship <https://www.bleepingcomputer.com/news/security/tor-needs-200-new-webtunnel-bridges-to-fight-censorship/>`__
+            
 
 
 Onion Services/Hidden Services
